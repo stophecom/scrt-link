@@ -5,7 +5,6 @@ import { Formik, Form, FormikConfig } from 'formik';
 import { Maybe, ShortUrlInput } from '@/types';
 import BaseTextField from '@/components/BaseTextField';
 import { ShortUrlData } from '@/api/models/ShortUrl';
-import UrlShortenerSvg from './components/UrlShortenerSvg';
 import ExternalLink from '@/components/ExternalLink';
 import ShareButtons from './components/ShareButtons';
 import UrlQrCode from './components/UrlQrCode';
@@ -119,7 +118,8 @@ const HomeView = () => {
   return (
     <>
       <Box flex={1} height="200px" marginBottom={2}>
-        <UrlShortenerSvg />
+        <h1>scrt.link</h1>
+        <h2>Secret one-time links and messages!</h2>
       </Box>
       <Formik<UrlFormValues>
         initialValues={initialValues}
