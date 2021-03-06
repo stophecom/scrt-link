@@ -15,7 +15,7 @@ const qrCodeId = 'qrCode';
 const handleSaveQrCode = async () => {
   const canvas = document.getElementById(qrCodeId) as HTMLCanvasElement;
   const png = canvas?.toDataURL();
-  saveAs(png, `OnUrl-QRCode-${Date.now}`);
+  saveAs(png, `scrt.link-QRCode-${Date.now}`);
 };
 
 const StyledQRCode = styled(QRCode)`
