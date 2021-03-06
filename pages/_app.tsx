@@ -11,7 +11,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const url = `${baseUrl}${pathname}`;
   const title = appTitle;
-  const description = `${appTitle} is a URL shortener. Use it to send secret one-time messages!`;
+  const description = `Share a secret! ${appTitle} is a URL shortener. Use it to send one-time disposable messages that are distroyed after the first visit.`;
   return {
     title,
     canonical: url,
@@ -83,6 +83,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           name="keywords"
           content="scrt.link, secret text, one-time text, one-time link, disposable message, disposable link, url shortener"
           key="keywords"
+        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,600;1,400&family=Poppins:wght@700&display=swap"
+          rel="stylesheet"
         />
       </Head>
       <BaseThemeProvider>

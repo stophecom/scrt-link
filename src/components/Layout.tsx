@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Divider, IconButton, Link } from '@material-ui/core';
-import Spacer from './Spacer';
+import { Box, IconButton } from '@material-ui/core';
 import ExternalLink from './ExternalLink';
 
 import styled from 'styled-components';
@@ -24,17 +23,16 @@ const Layout: React.FC = ({ children }) => {
       <Box
         display="flex"
         padding={1}
-        justifyContent="flex-center"
+        justifyContent="center"
         component="footer"
+        p={2}
       >
-        <Spacer flexDirection="row" spacing={1}>
-          <IconButton
-            component={ExternalLink}
-            href="https://twitter.com/stophecom"
-          >
-            <TwitterIcon />
-          </IconButton>
-        </Spacer>
+        <IconButton
+          component={ExternalLink}
+          href="https://twitter.com/stophecom"
+        >
+          <TwitterIcon />
+        </IconButton>
       </Box>
     </Box>
   );
