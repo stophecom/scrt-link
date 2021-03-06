@@ -119,11 +119,11 @@ const HomeView = () => {
 
   return (
     <>
-      <Box flex={1} marginBottom={9}>
+      <Box flex={1} marginBottom={9} mt={5}>
         <Typography variant="h1">Share a secret</Typography>
 
         <Typography variant="subtitle1">
-          One-time disposable links and messages!
+          Create links that only work once!
         </Typography>
       </Box>
 
