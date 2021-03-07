@@ -18,6 +18,8 @@ import { Bold } from '@/components/StyleUtils';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import ShareIcon from '@material-ui/icons/FileCopyOutlined';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import Logo from '!@svgr/webpack!@/assets/images/logo.svg';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
@@ -33,6 +35,7 @@ type UrlFormValues = ShortUrlInput;
 const initialValues: UrlFormValues = {
   url: '',
   customAlias: '',
+  message: '',
 };
 
 interface State {
@@ -120,6 +123,7 @@ const HomeView = () => {
   return (
     <>
       <Box flex={1} marginBottom={9} mt={5}>
+        <Logo width="150px" height="150px" />
         <Typography variant="h1">Share a secret</Typography>
 
         <Typography variant="subtitle1">
@@ -151,6 +155,7 @@ const HomeView = () => {
                       ),
                     }}
                   />
+                  <BaseTextField name="message" label="Message" />
                   <BaseTextField
                     name="customAlias"
                     label="Custom Alias (Optional)"

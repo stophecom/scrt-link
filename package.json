@@ -34,6 +34,7 @@
     "yup": "^0.29.3"
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@types/file-saver": "^2.0.1",
     "@types/mongoose": "^5.10.2",
     "@types/mongoose-unique-validator": "^1.0.4",
