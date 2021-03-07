@@ -1,23 +1,20 @@
-import React, { useCallback, useReducer, useState } from 'react';
+import React, { Fragment, useCallback, useReducer } from 'react';
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import { isServer } from '@/utils';
-import { Formik, Form, FormikConfig } from 'formik';
-import { Maybe, ShortUrlInput } from '@/types';
-import BaseTextField from '@/components/BaseTextField';
-import { ShortUrlData } from '@/api/models/ShortUrl';
-import ExternalLink from '@/components/ExternalLink';
-import ShareButtons from './components/ShareButtons';
-import UrlQrCode from './components/UrlQrCode';
-import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
+
 import { Box, InputAdornment, Typography } from '@material-ui/core';
+import { Formik, Form, FormikConfig } from 'formik';
+
+import { ShortUrlData } from '@/api/models/ShortUrl';
+import BaseTextField from '@/components/BaseTextField';
+import { Maybe, ShortUrlInput } from '@/types';
+
+import TabsMenu from './components/TabsMenu';
+import Result from './components/Result';
+import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
 import LinkIcon from '@material-ui/icons/Link';
 import BaseButton from '@/components/BaseButton';
 import Spacer from '@/components/Spacer';
-import Alert from '@material-ui/lab/Alert';
-import { Bold } from '@/components/StyleUtils';
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
-import ShareIcon from '@material-ui/icons/FileCopyOutlined';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg';
 
@@ -25,8 +22,6 @@ import Logo from '!@svgr/webpack!@/assets/images/logo.svg';
 function isAxiosError(error: any): error is AxiosError {
   return (error as AxiosError).isAxiosError;
 }
-
-const qrCodeSize = 256;
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit'];
 
@@ -38,7 +33,7 @@ const initialValues: UrlFormValues = {
   message: '',
 };
 
-interface State {
+export interface State {
   data: Maybe<ShortUrlData>;
   error: Maybe<string>;
 }
@@ -107,18 +102,16 @@ const HomeView = () => {
     [],
   );
 
-  const { data } = state;
-  const url = data?.url;
-  const alias = data?.alias;
-  const origin = isServer()
-    ? process.env.NEXT_PUBLIC_BASE_URL
-    : window.location.origin;
-  const shortenedUrl = alias ? `${origin}/${alias}` : null;
+  const { data, error } = state;
 
-  const { error } = state;
+  const [secretType, setSecretType] = React.useState('message');
 
-  const [hasCopied, setHasCopied] = useState(false);
-  const [isShareVisible, setIsShareVisible] = useState(false);
+  const handleMenuChange = (
+    event: React.ChangeEvent<Record<string, unknown>>,
+    newValue: string,
+  ) => {
+    setSecretType(newValue);
+  };
 
   return (
     <>
@@ -127,124 +120,82 @@ const HomeView = () => {
         <Typography variant="h1">Share a secret</Typography>
 
         <Typography variant="subtitle1">
-          Create links that only work once!
+          Create a secret link that only works once.
         </Typography>
       </Box>
 
-      <Formik<UrlFormValues>
-        initialValues={initialValues}
-        validationSchema={shortUrlInputValidationSchema}
-        validateOnMount
-        onSubmit={handleSubmit}
-      >
-        {({ isValid, isSubmitting }) => {
-          return (
-            <>
-              <Form noValidate>
-                <Spacer flexDirection="column" spacing={2}>
-                  <BaseTextField
-                    name="url"
-                    label="URL"
-                    autoFocus
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <LinkIcon />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                  <BaseTextField name="message" label="Message" />
-                  <BaseTextField
-                    name="customAlias"
-                    label="Custom Alias (Optional)"
-                  />
-                  <Box display="flex" justifyContent="flex-end">
-                    <BaseButton
-                      type="submit"
-                      color="primary"
-                      variant="contained"
-                      loading={isSubmitting}
-                      disabled={!isValid}
-                    >
-                      Submit
-                    </BaseButton>
-                  </Box>
-                </Spacer>
-              </Form>
-            </>
-          );
-        }}
-      </Formik>
+      {data || error ? (
+        <Result data={data} error={error} />
+      ) : (
+        <Fragment>
+          <Box mb={4}>
+            <TabsMenu handleChange={handleMenuChange} value={secretType} />
+          </Box>
+          <Formik<UrlFormValues>
+            initialValues={initialValues}
+            validationSchema={shortUrlInputValidationSchema}
+            validateOnMount
+            onSubmit={handleSubmit}
+          >
+            {({ isValid, isSubmitting }) => {
+              return (
+                <>
+                  <Form noValidate>
+                    <Spacer flexDirection="column" spacing={2}>
+                      {secretType === 'url' && (
+                        <Fragment>
+                          <BaseTextField
+                            name="url"
+                            label="URL"
+                            autoFocus
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <LinkIcon />
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                          <BaseTextField
+                            name="customAlias"
+                            label="Custom Alias (Optional)"
+                          />
+                        </Fragment>
+                      )}
+                      {secretType === 'message' && (
+                        <BaseTextField
+                          name="message"
+                          multiline
+                          rows={3}
+                          rowsMax={7}
+                          label="Message"
+                          placeholder="Your secret message…"
+                        />
+                      )}
 
-      <Spacer flexDirection="column" spacing={2} marginY={1}>
-        {(data || error) && (
-          <Box marginY={2}>
-            <Alert severity={error ? 'error' : 'success'}>
-              {error || 'Your new URL has been created successfully!'}
-            </Alert>
-          </Box>
-        )}
-        {url && (
-          <Box>
-            <Typography noWrap>
-              <Bold>Old URL:</Bold>{' '}
-              <ExternalLink href={url} hasIcon>
-                {url}
-              </ExternalLink>
-            </Typography>
-          </Box>
-        )}
-        {shortenedUrl && (
-          <Box>
-            <Box display="flex" alignItems="center">
-              <Typography noWrap>
-                <Bold>New URL:</Bold>{' '}
-                <ExternalLink href={shortenedUrl}>{shortenedUrl}</ExternalLink>
-              </Typography>
-              <Box marginLeft={1}>
-                <CopyToClipboard
-                  text={shortenedUrl}
-                  onCopy={() => {
-                    setHasCopied(true);
-                    setTimeout(() => {
-                      setHasCopied(false);
-                    }, 2000);
-                  }}
-                >
-                  <BaseButton
-                    startIcon={<FileCopyOutlinedIcon />}
-                    size="small"
-                    variant="contained"
-                  >
-                    {hasCopied ? 'Copied' : 'Copy'}
-                  </BaseButton>
-                </CopyToClipboard>
-                {isShareVisible || (
-                  <BaseButton
-                    startIcon={<ShareIcon />}
-                    size="small"
-                    variant="contained"
-                    onClick={() => setIsShareVisible(true)}
-                    ml={2}
-                  >
-                    Share
-                  </BaseButton>
-                )}
-              </Box>
-            </Box>
-          </Box>
-        )}
-        {shortenedUrl && isShareVisible && (
-          <Box maxWidth={qrCodeSize}>
-            <Typography>
-              <Bold>QR Code:</Bold>
-            </Typography>
-            <UrlQrCode url={shortenedUrl} size={qrCodeSize} />
-            <ShareButtons url={shortenedUrl} />
-          </Box>
-        )}
-      </Spacer>
+                      {secretType === 'password' && (
+                        <BaseTextField name="message" label="Password" />
+                      )}
+
+                      <Box display="flex" justifyContent="flex-end">
+                        <BaseButton
+                          type="submit"
+                          color="primary"
+                          variant="contained"
+                          loading={isSubmitting}
+                          disabled={!isValid}
+                        >
+                          Submit
+                        </BaseButton>
+                      </Box>
+                    </Spacer>
+                  </Form>
+                </>
+              );
+            }}
+          </Formik>
+        </Fragment>
+      )}
     </>
   );
 };
