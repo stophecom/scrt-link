@@ -12,6 +12,7 @@ declare global {
 export interface ShortUrlInput {
   url: string;
   customAlias?: string;
+  message?: string;
 }
 
 export {};
