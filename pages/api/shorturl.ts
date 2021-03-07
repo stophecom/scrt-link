@@ -49,10 +49,13 @@ const extractPostInput = async (req: NextApiRequest) => {
   if (!isAbsoluteUrl(url)) {
     url = `http://${url}`;
   }
-  let { customAlias } = req.body;
+  let { customAlias, message } = req.body;
   customAlias = customAlias.trim();
   customAlias = encodeURIComponent(customAlias);
-  return { url, customAlias };
+
+  message = message.trim();
+  message = encodeURIComponent(message);
+  return { url, message, customAlias };
 };
 
 const handler: NextApiHandler = async (req, res) => {
@@ -63,21 +66,17 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET':
       const alias = await extractGetInput(req);
-      const shortUrl = await models.ShortUrl.findOneAndUpdate(
-        { alias },
-        { $inc: { clicks: 1 } },
-        // To get the updated doc
-        { new: true },
-      );
+      const shortUrl = await models.ShortUrl.findOneAndDelete({ alias });
       if (!shortUrl) {
         throw createError(404, 'URL not found');
       }
       res.json(shortUrl);
       break;
     case 'POST':
-      const { url, customAlias } = await extractPostInput(req);
+      const { url, message, customAlias } = await extractPostInput(req);
       const shortened = new models.ShortUrl({
         url,
+        message,
         alias: customAlias || nanoid(urlAliasLength),
       });
       await shortened.save();

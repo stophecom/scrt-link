@@ -39,11 +39,16 @@ const pageRedirect = (
 
 interface AliasViewProps {
   error?: string;
+  message?: string;
 }
 
-const AliasView: NextPage<AliasViewProps> = ({ error }) => {
+const AliasView: NextPage<AliasViewProps> = ({ error, message }) => {
   if (error) {
     return <Alert severity="error">{error}</Alert>;
+  }
+
+  if (message) {
+    return <Alert severity="success">{message}</Alert>;
   }
 
   return (
@@ -67,8 +72,15 @@ AliasView.getInitialProps = async ({ res, query }) => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/shorturl?alias=${alias}`,
     );
     const { data } = response;
-    const { url } = data;
-    pageRedirect(res, url, { replace: true });
+    const { url, message } = data;
+
+    // If message is
+    if (message) {
+      return { message: decodeURIComponent(message) };
+    }
+    if (url) {
+      pageRedirect(res, url, { replace: true });
+    }
   } catch (err) {
     const { response } = err;
     if (response) {

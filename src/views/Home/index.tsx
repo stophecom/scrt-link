@@ -145,7 +145,6 @@ const HomeView = () => {
                   <BaseTextField
                     name="url"
                     label="URL"
-                    required
                     autoFocus
                     InputProps={{
                       startAdornment: (

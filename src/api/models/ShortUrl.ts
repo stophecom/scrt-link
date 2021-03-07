@@ -6,7 +6,7 @@ import uniqueValidator from 'mongoose-unique-validator';
 interface ShortUrlFields {
   url: string;
   alias: string;
-  clicks: number;
+  message: string;
 }
 
 export type ShortUrlData = BaseDocumentData & ShortUrlFields;
@@ -15,7 +15,7 @@ type ShortUrlDocument = mongoose.Document & ShortUrlFields;
 
 const shortUrlSchema = new mongoose.Schema(
   {
-    url: { type: String, required: true, trim: true },
+    url: { type: String, required: false, trim: true },
     alias: {
       type: String,
       required: true,
@@ -23,7 +23,7 @@ const shortUrlSchema = new mongoose.Schema(
       trim: true,
       maxlength: maxCustomAliasLength,
     },
-    clicks: { type: Number, required: true, default: 0 },
+    message: { type: String, required: false, default: '' },
   },
   { timestamps: true },
 );
