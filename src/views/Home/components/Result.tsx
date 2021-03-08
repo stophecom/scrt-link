@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import { Box, Typography } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import ShareIcon from '@material-ui/icons/Share';
+import Refresh from '@material-ui/icons/Refresh';
+
 import BaseButton from '@/components/BaseButton';
 import Spacer from '@/components/Spacer';
-
-import ExternalLink from '@/components/ExternalLink';
 import ShareButtons from './ShareButtons';
 import UrlQrCode from './UrlQrCode';
-import Alert from '@material-ui/lab/Alert';
 import { Bold } from '@/components/StyleUtils';
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
-import ShareIcon from '@material-ui/icons/FileCopyOutlined';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { isServer } from '@/utils';
 import { State } from '../index';
 
 const qrCodeSize = 256;
 
 const Result = ({ data, error }: State) => {
-  const url = data?.url;
   const alias = data?.alias;
   const origin = isServer()
     ? process.env.NEXT_PUBLIC_BASE_URL
@@ -33,47 +32,62 @@ const Result = ({ data, error }: State) => {
       {(data || error) && (
         <Box marginY={2}>
           <Alert severity={error ? 'error' : 'success'}>
-            {error || 'Your secret short URL has been created successfully!'}
-          </Alert>
-        </Box>
-      )}
-      {shortenedUrl && (
-        <Box>
-          <Box display="flex" alignItems="center">
-            <Typography noWrap>{shortenedUrl}</Typography>
-            <Box marginLeft={1}>
-              <CopyToClipboard
-                text={shortenedUrl}
-                onCopy={() => {
-                  setHasCopied(true);
-                  setTimeout(() => {
-                    setHasCopied(false);
-                  }, 2000);
-                }}
-              >
-                <BaseButton
-                  startIcon={<FileCopyOutlinedIcon />}
-                  size="small"
-                  variant="contained"
-                >
-                  {hasCopied ? 'Copied' : 'Copy'}
-                </BaseButton>
-              </CopyToClipboard>
-              {isShareVisible || (
-                <BaseButton
-                  startIcon={<ShareIcon />}
-                  size="small"
-                  variant="contained"
-                  onClick={() => setIsShareVisible(true)}
-                  ml={2}
-                >
-                  Share
-                </BaseButton>
-              )}
+            <Box mb={3}>
+              {error || 'Your secret short URL has been created successfully!'}
             </Box>
+
+            {shortenedUrl && (
+              <Box>
+                <Box display="flex" alignItems="center">
+                  <Typography noWrap>{shortenedUrl}</Typography>
+                  <Box marginLeft={1}>
+                    <CopyToClipboard
+                      text={shortenedUrl}
+                      onCopy={() => {
+                        setHasCopied(true);
+                        setTimeout(() => {
+                          setHasCopied(false);
+                        }, 2000);
+                      }}
+                    >
+                      <BaseButton
+                        startIcon={<FileCopyOutlinedIcon />}
+                        size="small"
+                        variant="contained"
+                      >
+                        {hasCopied ? 'Copied' : 'Copy'}
+                      </BaseButton>
+                    </CopyToClipboard>
+                  </Box>
+                  {isShareVisible || (
+                    <Box ml={1}>
+                      <BaseButton
+                        startIcon={<ShareIcon />}
+                        size="small"
+                        variant="contained"
+                        onClick={() => setIsShareVisible(true)}
+                      >
+                        Share
+                      </BaseButton>
+                    </Box>
+                  )}
+                </Box>
+              </Box>
+            )}
+          </Alert>
+          <Box py={1}>
+            <BaseButton
+              startIcon={<Refresh />}
+              size="small"
+              variant="text"
+              onClick={() => document.location.reload()}
+            >
+              Create new secret
+            </BaseButton>
           </Box>
         </Box>
       )}
+
       {shortenedUrl && isShareVisible && (
         <Box maxWidth={qrCodeSize}>
           <Typography>
