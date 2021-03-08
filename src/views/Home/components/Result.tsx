@@ -30,50 +30,48 @@ const Result = ({ data, error }: State) => {
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
       {(data || error) && (
-        <Box marginY={2}>
+        <Box my={2}>
           <Alert severity={error ? 'error' : 'success'}>
             <Box mb={3}>
               {error || 'Your secret short URL has been created successfully!'}
             </Box>
 
             {shortenedUrl && (
-              <Box>
-                <Box display="flex" alignItems="center" flexWrap="wrap">
-                  <Box mr={1} mb={1}>
-                    <Typography noWrap>{shortenedUrl}</Typography>
-                  </Box>
-                  <Box mr={1}>
-                    <CopyToClipboard
-                      text={shortenedUrl}
-                      onCopy={() => {
-                        setHasCopied(true)
-                        setTimeout(() => {
-                          setHasCopied(false)
-                        }, 2000)
-                      }}
-                    >
-                      <BaseButton
-                        startIcon={<FileCopyOutlinedIcon />}
-                        size="small"
-                        variant="contained"
-                      >
-                        {hasCopied ? 'Copied' : 'Copy'}
-                      </BaseButton>
-                    </CopyToClipboard>
-                  </Box>
-                  {isShareVisible || (
-                    <Box>
-                      <BaseButton
-                        startIcon={<ShareIcon />}
-                        size="small"
-                        variant="contained"
-                        onClick={() => setIsShareVisible(true)}
-                      >
-                        Share
-                      </BaseButton>
-                    </Box>
-                  )}
+              <Box display="flex" alignItems="center" flexWrap="wrap">
+                <Box mr={1} my={1}>
+                  <Typography noWrap>{shortenedUrl}</Typography>
                 </Box>
+                <Box mr={1}>
+                  <CopyToClipboard
+                    text={shortenedUrl}
+                    onCopy={() => {
+                      setHasCopied(true)
+                      setTimeout(() => {
+                        setHasCopied(false)
+                      }, 2000)
+                    }}
+                  >
+                    <BaseButton
+                      startIcon={<FileCopyOutlinedIcon />}
+                      size="small"
+                      variant="contained"
+                    >
+                      {hasCopied ? 'Copied' : 'Copy'}
+                    </BaseButton>
+                  </CopyToClipboard>
+                </Box>
+                {isShareVisible || (
+                  <Box>
+                    <BaseButton
+                      startIcon={<ShareIcon />}
+                      size="small"
+                      variant="contained"
+                      onClick={() => setIsShareVisible(true)}
+                    >
+                      Share
+                    </BaseButton>
+                  </Box>
+                )}
               </Box>
             )}
           </Alert>

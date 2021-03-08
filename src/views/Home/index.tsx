@@ -118,11 +118,15 @@ const HomeView = () => {
     <>
       <Box flex={1} marginBottom={9} mt={5}>
         <Logo width="150px" height="150px" />
-        <Typography variant="h1">Share a secret</Typography>
-
+        <Box mb={2}>
+          <Typography variant="h1">Share a secret</Typography>
+        </Box>
         <Typography variant="subtitle1">
           …with a link that only works{' '}
-          <StrokeHighlight>one time.</StrokeHighlight>
+          <StrokeHighlight>one time</StrokeHighlight> and then{' '}
+          <Box component="span" whiteSpace="nowrap">
+            self-distructs.
+          </Box>
         </Typography>
       </Box>
 
@@ -189,7 +193,7 @@ const HomeView = () => {
                           loading={isSubmitting}
                           disabled={!isValid}
                         >
-                          Create link
+                          Create secret link
                         </BaseButton>
                       </Box>
                     </Spacer>

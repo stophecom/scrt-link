@@ -21,10 +21,10 @@ let theme = createMuiTheme({
   },
   typography: {
     fontFamily: 'IBM Plex Sans, sans-serif',
-    h1: { fontFamily: 'Poppins, sans-serif', fontSize: '80%', color: pink },
+    h1: { fontFamily: 'Poppins, sans-serif', fontSize: '70%', color: pink },
     h2: { fontFamily: 'Poppins, sans-serif' },
     h3: { fontFamily: 'Poppins, sans-serif' },
-    subtitle1: { fontSize: '32%' },
+    subtitle1: { fontSize: '40%' },
   },
 })
 theme = responsiveFontSizes(theme, { factor: 3 })
