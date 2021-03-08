@@ -21,7 +21,8 @@ const ExternalLink: React.FC<ExternalLinkProps> = React.forwardRef<
       target="_blank"
       rel="noopener noreferrer"
     >
-      {children} {hasIcon && <LinkIcon fontSize="small" />}
+      {children}
+      {hasIcon && <LinkIcon fontSize="small" />}
     </Link>
   )
 })

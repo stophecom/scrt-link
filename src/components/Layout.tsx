@@ -1,9 +1,11 @@
 import React from 'react'
 import { Box, IconButton } from '@material-ui/core'
-import ExternalLink from './ExternalLink'
 
 import styled from 'styled-components'
 import TwitterIcon from '@material-ui/icons/Twitter'
+
+import ExternalLink from './ExternalLink'
+import { twitterLink } from '@/constants'
 
 const MainContent = styled.main`
   flex: 1;
@@ -27,10 +29,7 @@ const Layout: React.FC = ({ children }) => {
         component="footer"
         p={2}
       >
-        <IconButton
-          component={ExternalLink}
-          href="https://twitter.com/stophecom"
-        >
+        <IconButton component={ExternalLink} href={twitterLink}>
           <TwitterIcon />
         </IconButton>
       </Box>

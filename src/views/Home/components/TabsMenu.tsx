@@ -18,7 +18,7 @@ const TabsMenu = ({ value, handleChange }: TabsMenuProps) => {
         aria-label="What type of secret do you want to share?"
       >
         <Tab label="Message" id="message" value="message" />
-        <Tab label="URL" id="url" value="url" />
+        <Tab label="Redirect URL" id="url" value="url" />
         {/* <Tab label="Password" id="password" value="password" /> */}
       </Tabs>
     </Paper>
