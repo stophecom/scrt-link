@@ -6,11 +6,11 @@ import { Formik, Form, FormikConfig } from 'formik';
 
 import { ShortUrlData } from '@/api/models/ShortUrl';
 import BaseTextField from '@/components/BaseTextField';
-import { Maybe, ShortUrlInput } from '@/types';
+import { Maybe, ShortUrlInput, SecretType } from '@/types';
 
 import TabsMenu from './components/TabsMenu';
 import Result from './components/Result';
-import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
+import { getValidationSchemaByType } from '@/utils/validationSchemas';
 import LinkIcon from '@material-ui/icons/Link';
 import BaseButton from '@/components/BaseButton';
 import Spacer from '@/components/Spacer';
@@ -104,11 +104,11 @@ const HomeView = () => {
 
   const { data, error } = state;
 
-  const [secretType, setSecretType] = React.useState('message');
+  const [secretType, setSecretType] = React.useState<SecretType>('message');
 
   const handleMenuChange = (
     event: React.ChangeEvent<Record<string, unknown>>,
-    newValue: string,
+    newValue: SecretType,
   ) => {
     setSecretType(newValue);
   };
@@ -133,7 +133,7 @@ const HomeView = () => {
           </Box>
           <Formik<UrlFormValues>
             initialValues={initialValues}
-            validationSchema={shortUrlInputValidationSchema}
+            validationSchema={getValidationSchemaByType(secretType)}
             validateOnMount
             onSubmit={handleSubmit}
           >
@@ -147,6 +147,7 @@ const HomeView = () => {
                           <BaseTextField
                             name="url"
                             label="URL"
+                            required
                             autoFocus
                             InputProps={{
                               startAdornment: (
@@ -166,6 +167,7 @@ const HomeView = () => {
                         <BaseTextField
                           name="message"
                           multiline
+                          required
                           rows={3}
                           rowsMax={7}
                           label="Message"
@@ -173,9 +175,9 @@ const HomeView = () => {
                         />
                       )}
 
-                      {secretType === 'password' && (
+                      {/* {secretType === 'password' && (
                         <BaseTextField name="message" label="Password" />
-                      )}
+                      )} */}
 
                       <Box display="flex" justifyContent="flex-end">
                         <BaseButton

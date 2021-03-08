@@ -19,7 +19,7 @@ const TabsMenu = ({ value, handleChange }: TabsMenuProps) => {
       >
         <Tab label="Message" id="message" value="message" />
         <Tab label="URL" id="url" value="url" />
-        <Tab label="Password" id="password" value="password" />
+        {/* <Tab label="Password" id="password" value="password" /> */}
       </Tabs>
     </Paper>
   );

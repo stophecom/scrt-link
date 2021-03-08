@@ -9,6 +9,7 @@ declare global {
   }
 }
 
+export type SecretType = 'message' | 'url';
 export interface ShortUrlInput {
   url?: string;
   customAlias?: string;
