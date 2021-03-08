@@ -38,9 +38,11 @@ const Result = ({ data, error }: State) => {
 
             {shortenedUrl && (
               <Box>
-                <Box display="flex" alignItems="center">
-                  <Typography noWrap>{shortenedUrl}</Typography>
-                  <Box marginLeft={1}>
+                <Box display="flex" alignItems="center" flexWrap="wrap">
+                  <Box mr={1} mb={1}>
+                    <Typography noWrap>{shortenedUrl}</Typography>
+                  </Box>
+                  <Box mr={1}>
                     <CopyToClipboard
                       text={shortenedUrl}
                       onCopy={() => {
@@ -60,7 +62,7 @@ const Result = ({ data, error }: State) => {
                     </CopyToClipboard>
                   </Box>
                   {isShareVisible || (
-                    <Box ml={1}>
+                    <Box>
                       <BaseButton
                         startIcon={<ShareIcon />}
                         size="small"
