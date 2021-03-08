@@ -18,6 +18,16 @@ import Spacer from '@/components/Spacer';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg';
 
+import styled from 'styled-components';
+
+const Stroke = styled.span`
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+`;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
   return (error as AxiosError).isAxiosError;
@@ -120,7 +130,33 @@ const HomeView = () => {
         <Typography variant="h1">Share a secret</Typography>
 
         <Typography variant="subtitle1">
-          Create a secret link that only works once.
+          …with a link that only works{' '}
+          <span style={{ position: 'relative', display: 'inline-block' }}>
+            one time
+            <Stroke>
+              <svg
+                id="stroke"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 154 13"
+                display="block"
+                stroke="#ff0083"
+                strokeWidth="3"
+                // transition="stroke-dashoffset 800ms ease-out"
+                // strokeDasharray="650px"
+                // strokeDashoffset="650px"
+              >
+                <path
+                  id="line"
+                  d="M2 2c49.7 2.6 100 3.1 150 1.7-46.5 2-93 4.4-139.2 7.3 45.2-1.5 90.6-1.8 135.8-.6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+            </Stroke>
+          </span>
+          .
         </Typography>
       </Box>
 
@@ -128,7 +164,7 @@ const HomeView = () => {
         <Result data={data} error={error} />
       ) : (
         <Fragment>
-          <Box mb={4}>
+          <Box mb={3}>
             <TabsMenu handleChange={handleMenuChange} value={secretType} />
           </Box>
           <Formik<UrlFormValues>
@@ -171,7 +207,7 @@ const HomeView = () => {
                           rows={3}
                           rowsMax={7}
                           label="Message"
-                          placeholder="Your secret message…"
+                          placeholder="Your secret message, password, private note…"
                         />
                       )}
 
@@ -187,7 +223,7 @@ const HomeView = () => {
                           loading={isSubmitting}
                           disabled={!isValid}
                         >
-                          Submit
+                          Create link
                         </BaseButton>
                       </Box>
                     </Spacer>
