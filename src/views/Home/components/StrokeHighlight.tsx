@@ -12,7 +12,7 @@ const StrokeSvg = styled(SVG)`
   display: block;
   stroke: #ff0083;
   stroke-width: 3;
-  transition: stroke-dashoffset 800ms ease-out;
+  transition: stroke-dashoffset 1800ms ease-out;
   stroke-dasharray: 650px;
   stroke-dashoffset: 650px;
 
@@ -25,7 +25,7 @@ const StrokeWrapper = styled.span`
   display: inline-block;
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: 0;
   width: 100%;
 `
 
@@ -40,7 +40,7 @@ type StrokeHighlightProps = {
 const StrokeHighlight = ({ children }: StrokeHighlightProps) => {
   const [ready, setReady] = useState(false)
   useEffect(() => {
-    setTimeout(() => setReady(true), 1500)
+    setTimeout(() => setReady(true), 1000)
   }, [])
   return (
     <Highlight>
