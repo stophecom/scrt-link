@@ -1,14 +1,14 @@
-import React from 'react';
-import { NextPage } from 'next';
-import { Maybe } from '@/types';
-import { ServerResponse } from 'http';
-import { isServer } from '@/utils';
-import axios from 'axios';
-import { Box, CircularProgress } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import React from 'react'
+import { NextPage } from 'next'
+import { Maybe } from '@/types'
+import { ServerResponse } from 'http'
+import { isServer } from '@/utils'
+import axios from 'axios'
+import { Box, CircularProgress } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 
 interface RedirectOptions {
-  replace: boolean;
+  replace: boolean
 }
 
 const pageRedirect = (
@@ -23,40 +23,40 @@ const pageRedirect = (
     // found at the new location.
     res?.writeHead(301, {
       Location: location,
-    });
-    res?.end();
+    })
+    res?.end()
   } else {
     // https://nextjs.org/docs/api-reference/next/router
     // You don't need to use Router for external URLs,
     // window.location is better suited for those cases.
     if (replace) {
-      window.location.replace(location);
+      window.location.replace(location)
     } else {
-      window.location.href = location;
+      window.location.href = location
     }
   }
-};
+}
 
 interface AliasViewProps {
-  error?: string;
-  message?: string;
+  error?: string
+  message?: string
 }
 
 const AliasView: NextPage<AliasViewProps> = ({ error, message }) => {
   if (error) {
-    return <Alert severity="error">{error}</Alert>;
+    return <Alert severity="error">{error}</Alert>
   }
 
   if (message) {
-    return <Alert severity="success">{message}</Alert>;
+    return <Alert severity="success">{message}</Alert>
   }
 
   return (
     <Box display="flex" justifyContent="center">
       <CircularProgress />
     </Box>
-  );
-};
+  )
+}
 
 // Tried this with "getServerSideProps" too.
 // When the user directly opens this page, there are no problems.
@@ -65,33 +65,33 @@ const AliasView: NextPage<AliasViewProps> = ({ error, message }) => {
 // "getServerSideProps" runs twice and in the end we increase "clicks"
 // twice. So, we are using "getInitialProps" for a while.
 AliasView.getInitialProps = async ({ res, query }) => {
-  const { alias } = query;
-  let error;
+  const { alias } = query
+  let error
   try {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/shorturl?alias=${alias}`,
-    );
-    const { data } = response;
-    const { url, message } = data;
+    )
+    const { data } = response
+    const { url, message } = data
 
     // If message is
     if (message) {
-      return { message: decodeURIComponent(message) };
+      return { message: decodeURIComponent(message) }
     }
     if (url) {
-      pageRedirect(res, url, { replace: true });
+      pageRedirect(res, url, { replace: true })
     }
   } catch (err) {
-    const { response } = err;
+    const { response } = err
     if (response) {
-      const { data } = response;
-      error = `${data.statusCode}: ${data.message}`;
+      const { data } = response
+      error = `${data.statusCode}: ${data.message}`
     } else {
-      error = 'An unknown error occured';
+      error = 'An unknown error occured'
     }
-    return { error };
+    return { error }
   }
-  return {};
-};
+  return {}
+}
 
-export default AliasView;
+export default AliasView

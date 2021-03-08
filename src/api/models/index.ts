@@ -1,7 +1,7 @@
-import ShortUrl from './ShortUrl';
+import ShortUrl from './ShortUrl'
 
 const models = {
   ShortUrl,
-};
+}
 
-export default models;
+export default models

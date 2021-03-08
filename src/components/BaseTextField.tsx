@@ -1,26 +1,26 @@
-import React, { useEffect, useRef } from 'react';
-import { TextField, TextFieldProps } from '@material-ui/core';
-import { useField, FieldHookConfig } from 'formik';
+import React, { useEffect, useRef } from 'react'
+import { TextField, TextFieldProps } from '@material-ui/core'
+import { useField, FieldHookConfig } from 'formik'
 
 export type BaseTextFieldProps = TextFieldProps &
-  FieldHookConfig<TextFieldProps['value']>;
+  FieldHookConfig<TextFieldProps['value']>
 
 function BaseTextField(props: BaseTextFieldProps) {
-  const [field, meta] = useField(props);
-  const { error, touched } = meta;
-  const hasError = Boolean(error && touched);
-  const errorMessage = hasError ? error : undefined;
+  const [field, meta] = useField(props)
+  const { error, touched } = meta
+  const hasError = Boolean(error && touched)
+  const errorMessage = hasError ? error : undefined
 
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>()
 
-  const { autoFocus } = props;
+  const { autoFocus } = props
 
   // To make autoFocus work with Next.js
   useEffect(() => {
     if (autoFocus) {
-      inputRef.current?.focus();
+      inputRef.current?.focus()
     }
-  }, [autoFocus]);
+  }, [autoFocus])
 
   return (
     <TextField
@@ -33,7 +33,7 @@ function BaseTextField(props: BaseTextFieldProps) {
       error={hasError}
       helperText={errorMessage}
     />
-  );
+  )
 }
 
-export default BaseTextField;
+export default BaseTextField

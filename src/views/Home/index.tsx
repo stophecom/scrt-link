@@ -1,127 +1,118 @@
-import React, { Fragment, useCallback, useReducer } from 'react';
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import React, { Fragment, useCallback, useReducer } from 'react'
+import axios, { AxiosResponse, AxiosError } from 'axios'
 
-import { Box, InputAdornment, Typography } from '@material-ui/core';
-import { Formik, Form, FormikConfig } from 'formik';
+import { Box, InputAdornment, Typography } from '@material-ui/core'
+import { Formik, Form, FormikConfig } from 'formik'
 
-import { ShortUrlData } from '@/api/models/ShortUrl';
-import BaseTextField from '@/components/BaseTextField';
-import { Maybe, ShortUrlInput, SecretType } from '@/types';
+import { ShortUrlData } from '@/api/models/ShortUrl'
+import BaseTextField from '@/components/BaseTextField'
+import { Maybe, ShortUrlInput, SecretType } from '@/types'
 
-import TabsMenu from './components/TabsMenu';
-import Result from './components/Result';
-import { getValidationSchemaByType } from '@/utils/validationSchemas';
-import LinkIcon from '@material-ui/icons/Link';
-import BaseButton from '@/components/BaseButton';
-import Spacer from '@/components/Spacer';
+import TabsMenu from './components/TabsMenu'
+import Result from './components/Result'
+import StrokeHighlight from './components/StrokeHighlight'
+import { getValidationSchemaByType } from '@/utils/validationSchemas'
+import LinkIcon from '@material-ui/icons/Link'
+import BaseButton from '@/components/BaseButton'
+import Spacer from '@/components/Spacer'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import Logo from '!@svgr/webpack!@/assets/images/logo.svg';
-
-import styled from 'styled-components';
-
-const Stroke = styled.span`
-  display: inline-block;
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 100%;
-`;
+import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
-  return (error as AxiosError).isAxiosError;
+  return (error as AxiosError).isAxiosError
 }
 
-type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit'];
+type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-type UrlFormValues = ShortUrlInput;
+type UrlFormValues = ShortUrlInput
 
 const initialValues: UrlFormValues = {
   url: '',
   customAlias: '',
   message: '',
-};
+}
 
 export interface State {
-  data: Maybe<ShortUrlData>;
-  error: Maybe<string>;
+  data: Maybe<ShortUrlData>
+  error: Maybe<string>
 }
 
 type Action =
   | { type: 'request' }
   | { type: 'success'; response: AxiosResponse }
-  | { type: 'error'; error: AxiosError | Error };
+  | { type: 'error'; error: AxiosError | Error }
 
 const doRequest = (): Action => ({
   type: 'request',
-});
+})
 
 const doSuccess = (response: AxiosResponse): Action => ({
   type: 'success',
   response,
-});
+})
 
 const doError = (error: AxiosError | Error): Action => ({
   type: 'error',
   error,
-});
+})
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'request':
-      return { ...state, data: undefined, error: undefined };
+      return { ...state, data: undefined, error: undefined }
     case 'success':
-      return { ...state, data: action.response.data };
+      return { ...state, data: action.response.data }
     case 'error':
-      const { error } = action;
-      let errorMessage = error.message;
+      const { error } = action
+      let errorMessage = error.message
       if (isAxiosError(error)) {
-        errorMessage = error.response?.data.message ?? errorMessage;
+        errorMessage = error.response?.data.message ?? errorMessage
       }
       return {
         ...state,
         error: errorMessage,
-      };
+      }
     default:
-      throw new Error();
+      throw new Error()
   }
-};
+}
 
 const initialState: State = {
   data: undefined,
   error: undefined,
-};
+}
 
 const HomeView = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(
     async (values, formikHelpers) => {
-      dispatch(doRequest());
+      dispatch(doRequest())
       try {
-        const response = await axios.post('/api/shorturl', values);
-        dispatch(doSuccess(response));
-        formikHelpers.resetForm();
+        const response = await axios.post('/api/shorturl', values)
+        dispatch(doSuccess(response))
+        formikHelpers.resetForm()
       } catch (error) {
-        dispatch(doError(error));
+        dispatch(doError(error))
       } finally {
-        formikHelpers.setSubmitting(false);
+        formikHelpers.setSubmitting(false)
       }
     },
     [],
-  );
+  )
 
-  const { data, error } = state;
+  const { data, error } = state
 
-  const [secretType, setSecretType] = React.useState<SecretType>('message');
+  const [secretType, setSecretType] = React.useState<SecretType>('message')
 
   const handleMenuChange = (
     event: React.ChangeEvent<Record<string, unknown>>,
     newValue: SecretType,
   ) => {
-    setSecretType(newValue);
-  };
+    setSecretType(newValue)
+  }
 
   return (
     <>
@@ -131,32 +122,7 @@ const HomeView = () => {
 
         <Typography variant="subtitle1">
           …with a link that only works{' '}
-          <span style={{ position: 'relative', display: 'inline-block' }}>
-            one time
-            <Stroke>
-              <svg
-                id="stroke"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 154 13"
-                display="block"
-                stroke="#ff0083"
-                strokeWidth="3"
-                // transition="stroke-dashoffset 800ms ease-out"
-                // strokeDasharray="650px"
-                // strokeDashoffset="650px"
-              >
-                <path
-                  id="line"
-                  d="M2 2c49.7 2.6 100 3.1 150 1.7-46.5 2-93 4.4-139.2 7.3 45.2-1.5 90.6-1.8 135.8-.6"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
-            </Stroke>
-          </span>
-          .
+          <StrokeHighlight>one time.</StrokeHighlight>
         </Typography>
       </Box>
 
@@ -229,13 +195,13 @@ const HomeView = () => {
                     </Spacer>
                   </Form>
                 </>
-              );
+              )
             }}
           </Formik>
         </Fragment>
       )}
     </>
-  );
-};
+  )
+}
 
-export default HomeView;
+export default HomeView

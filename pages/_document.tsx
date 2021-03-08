@@ -1,8 +1,8 @@
-import React from 'react';
-import Document, { Head, Main, NextScript, Html } from 'next/document';
-import theme from '@/theme';
-import { ServerStyleSheets } from '@material-ui/core';
-import { ServerStyleSheet } from 'styled-components';
+import React from 'react'
+import Document, { Head, Main, NextScript, Html } from 'next/document'
+import theme from '@/theme'
+import { ServerStyleSheets } from '@material-ui/core'
+import { ServerStyleSheet } from 'styled-components'
 
 // Example for material-ui with next-js:
 // https://github.com/mui-org/material-ui/tree/master/examples/nextjs
@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
@@ -49,9 +49,9 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const styledComponentsSheet = new ServerStyleSheet();
-  const materialSheets = new ServerStyleSheets();
-  const originalRenderPage = ctx.renderPage;
+  const styledComponentsSheet = new ServerStyleSheet()
+  const materialSheets = new ServerStyleSheets()
+  const originalRenderPage = ctx.renderPage
 
   try {
     ctx.renderPage = () =>
@@ -60,8 +60,8 @@ MyDocument.getInitialProps = async (ctx) => {
           styledComponentsSheet.collectStyles(
             materialSheets.collect(<App {...props} />),
           ),
-      });
-    const initialProps = await Document.getInitialProps(ctx);
+      })
+    const initialProps = await Document.getInitialProps(ctx)
     return {
       ...initialProps,
       styles: (
@@ -71,8 +71,8 @@ MyDocument.getInitialProps = async (ctx) => {
           {styledComponentsSheet.getStyleElement()}
         </>
       ),
-    };
+    }
   } finally {
-    styledComponentsSheet.seal();
+    styledComponentsSheet.seal()
   }
-};
+}

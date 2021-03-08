@@ -1,4 +1,4 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 // https://github.com/zeit/micro#error-handling
 const handleErrors = (fn: NextApiHandler) => async (
@@ -6,12 +6,12 @@ const handleErrors = (fn: NextApiHandler) => async (
   res: NextApiResponse,
 ) => {
   try {
-    return await fn(req, res);
+    return await fn(req, res)
   } catch (err) {
-    const statusCode = err.statusCode || 500;
-    const message = err.message || 'Oops, something went wrong!';
-    res.status(statusCode).json({ statusCode, message });
+    const statusCode = err.statusCode || 500
+    const message = err.message || 'Oops, something went wrong!'
+    res.status(statusCode).json({ statusCode, message })
   }
-};
+}
 
-export default handleErrors;
+export default handleErrors

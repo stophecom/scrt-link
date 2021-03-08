@@ -1,11 +1,11 @@
-import { Box, BoxProps } from '@material-ui/core';
-import styled from 'styled-components';
+import { Box, BoxProps } from '@material-ui/core'
+import styled from 'styled-components'
 
 type SpacerProps = BoxProps & {
-  spacing: number;
+  spacing: number
   // To make it a required prop
-  flexDirection: BoxProps['flexDirection'];
-};
+  flexDirection: BoxProps['flexDirection']
+}
 
 const Spacer = styled(Box)<SpacerProps>`
   display: flex;
@@ -21,6 +21,6 @@ const Spacer = styled(Box)<SpacerProps>`
             margin-bottom: ${theme.spacing(spacing)}px;
           `}
   }
-`;
+`
 
-export default Spacer;
+export default Spacer

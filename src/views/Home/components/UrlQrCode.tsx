@@ -1,32 +1,32 @@
-import React from 'react';
-import QRCode from 'qrcode.react';
-import { saveAs } from 'file-saver';
-import styled from 'styled-components';
-import { Box } from '@material-ui/core';
-import BaseButton from '@/components/BaseButton';
-import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined';
+import React from 'react'
+import QRCode from 'qrcode.react'
+import { saveAs } from 'file-saver'
+import styled from 'styled-components'
+import { Box } from '@material-ui/core'
+import BaseButton from '@/components/BaseButton'
+import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined'
 
 const SaveButton = styled(BaseButton)`
   width: 100%;
-` as typeof BaseButton;
+` as typeof BaseButton
 
-const qrCodeId = 'qrCode';
+const qrCodeId = 'qrCode'
 
 const handleSaveQrCode = async () => {
-  const canvas = document.getElementById(qrCodeId) as HTMLCanvasElement;
-  const png = canvas?.toDataURL();
-  saveAs(png, `scrt.link-QRCode-${Date.now}`);
-};
+  const canvas = document.getElementById(qrCodeId) as HTMLCanvasElement
+  const png = canvas?.toDataURL()
+  saveAs(png, `scrt.link-QRCode-${Date.now}`)
+}
 
 const StyledQRCode = styled(QRCode)`
   display: block;
   height: auto !important;
   width: 100% !important;
-`;
+`
 
 interface UrlQrCodeProps {
-  url: string;
-  size: number;
+  url: string
+  size: number
 }
 
 const UrlQrCode = React.memo<UrlQrCodeProps>(function UrlQrCode({ url, size }) {
@@ -47,7 +47,7 @@ const UrlQrCode = React.memo<UrlQrCodeProps>(function UrlQrCode({ url, size }) {
         Save
       </SaveButton>
     </>
-  );
-});
+  )
+})
 
-export default UrlQrCode;
+export default UrlQrCode

@@ -1,19 +1,19 @@
-import React from 'react';
+import React from 'react'
 import {
   Button,
   CircularProgress,
   ButtonProps,
   ButtonTypeMap,
-} from '@material-ui/core';
-import styled from 'styled-components';
+} from '@material-ui/core'
+import styled from 'styled-components'
 
 type BaseButtonProps<
   T extends React.ElementType = ButtonTypeMap['defaultComponent']
 > = ButtonProps<T, { component?: T }> & {
-  loading?: boolean;
-};
+  loading?: boolean
+}
 
-const loadingSize = 24;
+const loadingSize = 24
 
 const ButtonLoading = styled(CircularProgress)`
   position: absolute;
@@ -21,9 +21,9 @@ const ButtonLoading = styled(CircularProgress)`
   left: 50%;
   margin-top: -${loadingSize / 2}px;
   margin-left: -${loadingSize / 2}px;
-`;
+`
 
-type BaseButtonRef = React.ComponentPropsWithRef<typeof Button>['ref'];
+type BaseButtonRef = React.ComponentPropsWithRef<typeof Button>['ref']
 
 // https://material-ui.com/guides/typescript/#usage-of-component-prop
 function BaseButton<T extends React.ElementType>(
@@ -48,7 +48,7 @@ function BaseButton<T extends React.ElementType>(
       {children}
       {loading && <ButtonLoading size={loadingSize} />}
     </Button>
-  );
+  )
 }
 
-export default React.forwardRef(BaseButton) as typeof BaseButton;
+export default React.forwardRef(BaseButton) as typeof BaseButton

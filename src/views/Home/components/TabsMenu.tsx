@@ -1,12 +1,12 @@
-import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import React from 'react'
+import Paper from '@material-ui/core/Paper'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
 type TabsMenuProps = {
-  value: string;
-  handleChange: any;
-};
+  value: string
+  handleChange: any
+}
 const TabsMenu = ({ value, handleChange }: TabsMenuProps) => {
   return (
     <Paper square>
@@ -22,7 +22,7 @@ const TabsMenu = ({ value, handleChange }: TabsMenuProps) => {
         {/* <Tab label="Password" id="password" value="password" /> */}
       </Tabs>
     </Paper>
-  );
-};
+  )
+}
 
-export default TabsMenu;
+export default TabsMenu

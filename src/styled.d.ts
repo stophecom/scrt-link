@@ -1,6 +1,6 @@
-import { Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core'
 // import original module declarations
-import 'styled-components';
+import 'styled-components'
 
 // and extend them!
 declare module 'styled-components' {

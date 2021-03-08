@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from 'react'
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -14,14 +14,14 @@ import {
   TumblrIcon,
   MailruShareButton,
   MailruIcon,
-} from 'react-share';
-import ShareButtonTooltip from './ShareButtonTooltip';
-import { Maybe } from '@/types';
-import { Box } from '@material-ui/core';
-import Spacer from '@/components/Spacer';
+} from 'react-share'
+import ShareButtonTooltip from './ShareButtonTooltip'
+import { Maybe } from '@/types'
+import { Box } from '@material-ui/core'
+import Spacer from '@/components/Spacer'
 
 interface ShareButtonsProps {
-  url: Maybe<string>;
+  url: Maybe<string>
 }
 
 const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
@@ -30,16 +30,16 @@ const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
       url: url || '',
     }),
     [url],
-  );
+  )
 
-  const shareIconSize = '3.2rem';
+  const shareIconSize = '3.2rem'
 
   const shareIconProps = useMemo(() => ({ size: shareIconSize, round: true }), [
     shareIconSize,
-  ]);
+  ])
 
   if (!url) {
-    return null;
+    return null
   }
 
   return (
@@ -97,7 +97,7 @@ const ShareButtons = React.memo<ShareButtonsProps>(({ url }) => {
         </EmailShareButton>
       </Box>
     </Spacer>
-  );
-});
+  )
+})
 
-export default ShareButtons;
+export default ShareButtons

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Box, IconButton } from '@material-ui/core';
-import ExternalLink from './ExternalLink';
+import React from 'react'
+import { Box, IconButton } from '@material-ui/core'
+import ExternalLink from './ExternalLink'
 
-import styled from 'styled-components';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import styled from 'styled-components'
+import TwitterIcon from '@material-ui/icons/Twitter'
 
 const MainContent = styled.main`
   flex: 1;
@@ -11,7 +11,7 @@ const MainContent = styled.main`
   max-width: 800px;
   width: 100%;
   padding: ${({ theme }) => theme.spacing(4)}px;
-`;
+`
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -35,7 +35,7 @@ const Layout: React.FC = ({ children }) => {
         </IconButton>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

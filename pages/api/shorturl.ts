@@ -1,90 +1,90 @@
-import { NextApiHandler, NextApiRequest } from 'next';
-import withDb from '@/api/middlewares/withDb';
-import { nanoid } from 'nanoid';
-import handleErrors from '@/api/middlewares/handleErrors';
-import createError from '@/api/utils/createError';
-import { urlAliasLength } from '@/constants';
-import { shortUrlInputValidationSchema } from '@/utils/validationSchemas';
-import * as Yup from 'yup';
-import { parse } from 'uri-js';
+import { NextApiHandler, NextApiRequest } from 'next'
+import withDb from '@/api/middlewares/withDb'
+import { nanoid } from 'nanoid'
+import handleErrors from '@/api/middlewares/handleErrors'
+import createError from '@/api/utils/createError'
+import { urlAliasLength } from '@/constants'
+import { shortUrlInputValidationSchema } from '@/utils/validationSchemas'
+import * as Yup from 'yup'
+import { parse } from 'uri-js'
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
-});
+})
 
 const extractGetInput = async (req: NextApiRequest) => {
   try {
-    await getInputValidationSchema.validate(req.query);
+    await getInputValidationSchema.validate(req.query)
   } catch (err) {
-    throw createError(422, err.message);
+    throw createError(422, err.message)
   }
-  const { alias } = req.query;
+  const { alias } = req.query
   if (typeof alias !== 'string') {
-    throw createError(422, 'Invalid URL');
+    throw createError(422, 'Invalid URL')
   }
-  return alias;
-};
+  return alias
+}
 
 // https://stackoverflow.com/a/19709846
 const isAbsoluteUrl = (url: string) => {
   if (url.startsWith('//')) {
-    return true;
+    return true
   }
 
-  const uri = parse(url);
-  return !!uri.scheme;
-};
+  const uri = parse(url)
+  return !!uri.scheme
+}
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    await shortUrlInputValidationSchema.validate(req.body);
+    await shortUrlInputValidationSchema.validate(req.body)
   } catch (err) {
-    throw createError(422, err.message);
+    throw createError(422, err.message)
   }
-  let { url } = req.body;
-  url = url.trim();
+  let { url } = req.body
+  url = url.trim()
   // If we have no protocol, we add "http" prefix.
   // Otherwise, it redirects to "http://localhost:3000/<url>"
   // instead of "http(s)://<url>".
   if (!isAbsoluteUrl(url)) {
-    url = `http://${url}`;
+    url = `http://${url}`
   }
-  let { customAlias, message } = req.body;
-  customAlias = customAlias.trim();
-  customAlias = encodeURIComponent(customAlias);
+  let { customAlias, message } = req.body
+  customAlias = customAlias.trim()
+  customAlias = encodeURIComponent(customAlias)
 
-  message = message.trim();
-  message = encodeURIComponent(message);
-  return { url, message, customAlias };
-};
+  message = message.trim()
+  message = encodeURIComponent(message)
+  return { url, message, customAlias }
+}
 
 const handler: NextApiHandler = async (req, res) => {
-  const models = req.models;
+  const models = req.models
   if (!models) {
-    throw createError(500, 'Could not find db connection');
+    throw createError(500, 'Could not find db connection')
   }
   switch (req.method) {
     case 'GET':
-      const alias = await extractGetInput(req);
-      const shortUrl = await models.ShortUrl.findOneAndDelete({ alias });
+      const alias = await extractGetInput(req)
+      const shortUrl = await models.ShortUrl.findOneAndDelete({ alias })
       if (!shortUrl) {
-        throw createError(404, 'URL not found');
+        throw createError(404, 'URL not found')
       }
-      res.json(shortUrl);
-      break;
+      res.json(shortUrl)
+      break
     case 'POST':
-      const { url, message, customAlias } = await extractPostInput(req);
+      const { url, message, customAlias } = await extractPostInput(req)
       const shortened = new models.ShortUrl({
         url,
         message,
         alias: customAlias || nanoid(urlAliasLength),
-      });
-      await shortened.save();
-      res.json(shortened);
-      break;
+      })
+      await shortened.save()
+      res.json(shortened)
+      break
     default:
-      throw createError(405, 'Method Not Allowed');
+      throw createError(405, 'Method Not Allowed')
   }
-};
+}
 
-export default handleErrors(withDb(handler));
+export default handleErrors(withDb(handler))

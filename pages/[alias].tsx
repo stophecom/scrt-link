@@ -1,3 +1,3 @@
-import AliasView from '@/views/Alias';
+import AliasView from '@/views/Alias'
 
-export default AliasView;
+export default AliasView

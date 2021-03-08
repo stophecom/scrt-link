@@ -1,3 +1,3 @@
 export const isServer = () => {
-  return typeof window === 'undefined';
-};
+  return typeof window === 'undefined'
+}

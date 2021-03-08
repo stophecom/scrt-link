@@ -1,6 +1,6 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
-const pink = '#ff0083';
+const pink = '#ff0083'
 
 let theme = createMuiTheme({
   palette: {
@@ -26,7 +26,7 @@ let theme = createMuiTheme({
     h3: { fontFamily: 'Poppins, sans-serif' },
     subtitle1: { fontSize: '32%' },
   },
-});
-theme = responsiveFontSizes(theme, { factor: 3 });
+})
+theme = responsiveFontSizes(theme, { factor: 3 })
 
-export default theme;
+export default theme

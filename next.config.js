@@ -6,10 +6,14 @@ module.exports = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-cache, must-revalidate',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'DNT',
+            value: '1',
           },
         ],
       },
-    ];
+    ]
   },
-};
+}

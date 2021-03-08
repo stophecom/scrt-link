@@ -16,6 +16,7 @@
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/styled-components": "^5.1.5",
     "axios": "^0.21.0",
+    "classnames": "^2.2.6",
     "file-saver": "^2.0.5",
     "formik": "^2.2.6",
     "mongoose": "^5.11.7",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
+    "@types/classnames": "^2.2.11",
     "@types/file-saver": "^2.0.1",
     "@types/mongoose": "^5.10.2",
     "@types/mongoose-unique-validator": "^1.0.4",

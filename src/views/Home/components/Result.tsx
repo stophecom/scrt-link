@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
-import { Box, Typography } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import ShareIcon from '@material-ui/icons/Share';
-import Refresh from '@material-ui/icons/Refresh';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
+import { Box, Typography } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import ShareIcon from '@material-ui/icons/Share'
+import Refresh from '@material-ui/icons/Refresh'
 
-import BaseButton from '@/components/BaseButton';
-import Spacer from '@/components/Spacer';
-import ShareButtons from './ShareButtons';
-import UrlQrCode from './UrlQrCode';
-import { Bold } from '@/components/StyleUtils';
-import { isServer } from '@/utils';
-import { State } from '../index';
+import BaseButton from '@/components/BaseButton'
+import Spacer from '@/components/Spacer'
+import ShareButtons from './ShareButtons'
+import UrlQrCode from './UrlQrCode'
+import { Bold } from '@/components/StyleUtils'
+import { isServer } from '@/utils'
+import { State } from '../index'
 
-const qrCodeSize = 256;
+const qrCodeSize = 256
 
 const Result = ({ data, error }: State) => {
-  const alias = data?.alias;
+  const alias = data?.alias
   const origin = isServer()
     ? process.env.NEXT_PUBLIC_BASE_URL
-    : window.location.origin;
-  const shortenedUrl = alias ? `${origin}/${alias}` : null;
+    : window.location.origin
+  const shortenedUrl = alias ? `${origin}/${alias}` : null
 
-  const [hasCopied, setHasCopied] = useState(false);
-  const [isShareVisible, setIsShareVisible] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false)
+  const [isShareVisible, setIsShareVisible] = useState(false)
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
@@ -46,10 +46,10 @@ const Result = ({ data, error }: State) => {
                     <CopyToClipboard
                       text={shortenedUrl}
                       onCopy={() => {
-                        setHasCopied(true);
+                        setHasCopied(true)
                         setTimeout(() => {
-                          setHasCopied(false);
-                        }, 2000);
+                          setHasCopied(false)
+                        }, 2000)
                       }}
                     >
                       <BaseButton
@@ -100,7 +100,7 @@ const Result = ({ data, error }: State) => {
         </Box>
       )}
     </Spacer>
-  );
-};
+  )
+}
 
-export default Result;
+export default Result
