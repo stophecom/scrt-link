@@ -1,6 +1,7 @@
 import React, { Fragment, ReactNode } from 'react'
 import Head from 'next/head'
 import { is } from 'ramda'
+import { appTitle } from '@/constants'
 
 export interface JsonLd {
   '@type': string
@@ -30,10 +31,11 @@ const SEO: React.FunctionComponent<SeoProps> = ({
   children,
   keywords,
 }) => {
+  const composedTitle = `${title} - ${appTitle}`
   return (
     <Head>
-      <title>{title}</title>
-      <meta property="og:title" content={title} key="og:title" />
+      <title>{composedTitle}</title>
+      <meta property="og:title" content={composedTitle} key="og:title" />
       {description && (
         <Fragment>
           <meta name="description" content={description} key="description" />

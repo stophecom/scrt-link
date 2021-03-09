@@ -6,6 +6,7 @@ import { Formik, Form, FormikConfig } from 'formik'
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
 import { Maybe, ShortUrlInput, SecretType } from '@/types'
+import Seo from '@/components/Seo'
 
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
@@ -113,6 +114,7 @@ const HomeView = () => {
 
   return (
     <>
+      <Seo title="Share a secret" />
       <Box flex={1} marginBottom={9} mt={5}>
         <Logo width="150px" height="150px" />
         <Box mb={2}>
