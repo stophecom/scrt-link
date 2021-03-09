@@ -10,9 +10,9 @@ import { twitterLink } from '@/constants'
 const MainContent = styled.main`
   flex: 1;
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 780px;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(4)}px;
+  padding: ${({ theme }) => theme.spacing(3)}px;
 `
 
 const Layout: React.FC = ({ children }) => {
