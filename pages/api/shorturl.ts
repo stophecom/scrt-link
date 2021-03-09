@@ -7,22 +7,11 @@ import { urlAliasLength } from '@/constants'
 import { shortUrlInputValidationSchema } from '@/utils/validationSchemas'
 import * as Yup from 'yup'
 import { parse } from 'uri-js'
+import { AES, enc } from 'crypto-js'
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
 })
-
-const badAgents = [
-  'facebook',
-  'google',
-  'yahoo',
-  'bing',
-  'stella',
-  'baidu',
-  'bot',
-  'curl',
-  'wget',
-]
 
 const extractGetInput = async (req: NextApiRequest) => {
   try {
@@ -82,13 +71,29 @@ const handler: NextApiHandler = async (req, res) => {
       if (!shortUrl) {
         throw createError(404, 'URL not found')
       }
-      res.json(shortUrl)
+
+      // Decrypt
+      const decryptAES = (string: string) => {
+        const bytes = AES.decrypt(string, `${process.env.AES_KEY_256}`)
+        return bytes.toString(enc.Utf8)
+      }
+
+      res.json({
+        ...shortUrl,
+        message: decryptAES(shortUrl.message),
+        url: decryptAES(shortUrl.url),
+      })
       break
     case 'POST':
       const { url, message, customAlias } = await extractPostInput(req)
+
+      // Encrypt sensitive information
+      const encryptAES = (string: string) =>
+        AES.encrypt(string, `${process.env.AES_KEY_256}`).toString()
+
       const shortened = new models.ShortUrl({
-        url,
-        message,
+        url: encryptAES(url),
+        message: encryptAES(message),
         alias: customAlias || nanoid(urlAliasLength),
       })
       await shortened.save()
