@@ -12,6 +12,18 @@ const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
 })
 
+const badAgents = [
+  'facebook',
+  'google',
+  'yahoo',
+  'bing',
+  'stella',
+  'baidu',
+  'bot',
+  'curl',
+  'wget',
+]
+
 const extractGetInput = async (req: NextApiRequest) => {
   try {
     await getInputValidationSchema.validate(req.query)

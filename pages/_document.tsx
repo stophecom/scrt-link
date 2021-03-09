@@ -1,6 +1,6 @@
 import React from 'react'
 import Document, { Head, Main, NextScript, Html } from 'next/document'
-import theme from '@/theme'
+
 import { ServerStyleSheets } from '@material-ui/core'
 import { ServerStyleSheet } from 'styled-components'
 
@@ -10,10 +10,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-          {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
@@ -57,9 +54,7 @@ MyDocument.getInitialProps = async (ctx) => {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(
-            materialSheets.collect(<App {...props} />),
-          ),
+          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
       })
     const initialProps = await Document.getInitialProps(ctx)
     return {
