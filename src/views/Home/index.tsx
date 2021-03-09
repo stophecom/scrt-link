@@ -88,21 +88,18 @@ const initialState: State = {
 const HomeView = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(
-    async (values, formikHelpers) => {
-      dispatch(doRequest())
-      try {
-        const response = await axios.post('/api/shorturl', values)
-        dispatch(doSuccess(response))
-        formikHelpers.resetForm()
-      } catch (error) {
-        dispatch(doError(error))
-      } finally {
-        formikHelpers.setSubmitting(false)
-      }
-    },
-    [],
-  )
+  const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(async (values, formikHelpers) => {
+    dispatch(doRequest())
+    try {
+      const response = await axios.post('/api/shorturl', values)
+      dispatch(doSuccess(response))
+      formikHelpers.resetForm()
+    } catch (error) {
+      dispatch(doError(error))
+    } finally {
+      formikHelpers.setSubmitting(false)
+    }
+  }, [])
 
   const { data, error } = state
 
@@ -123,8 +120,7 @@ const HomeView = () => {
           <Typography variant="h1">Share a secret</Typography>
         </Box>
         <Typography variant="subtitle1">
-          …with a link that only works{' '}
-          <StrokeHighlight>one time</StrokeHighlight> and then{' '}
+          …with a link that only works <StrokeHighlight>one time</StrokeHighlight> and then{' '}
           <Box component="span" whiteSpace="nowrap">
             self-distructs.
           </Box>
@@ -164,10 +160,7 @@ const HomeView = () => {
                               ),
                             }}
                           />
-                          <BaseTextField
-                            name="customAlias"
-                            label="Custom Alias (Optional)"
-                          />
+                          <BaseTextField name="customAlias" label="Custom Alias (Optional)" />
                         </Fragment>
                       )}
                       {secretType === 'message' && (

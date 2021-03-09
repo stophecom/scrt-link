@@ -6,14 +6,12 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Box } from '@material-ui/core'
-import { twitterLink, authorWebsiteUrl } from '@/constants'
-
-import ExternalLink from '@/components/ExternalLink'
+import { twitterLink } from '@/constants'
+import Markdown from '@/components/Markdown'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
       marginRight: '-16px',
       marginLeft: '-16px',
     },
@@ -57,25 +55,7 @@ const items = [
   },
   {
     heading: 'Who is behind this service?',
-    body: (
-      <Fragment>
-        {`I'm Christophe, UI-designer and front-end developer from Basel, Switzerland. Checkout my website: `}
-        <ExternalLink href={`https://www.${authorWebsiteUrl}`}>
-          {authorWebsiteUrl}
-        </ExternalLink>
-        {' or follow me on Twitter '}
-        <ExternalLink href={twitterLink}>@stophecom</ExternalLink>. This project
-        has been heavily influenced by{' '}
-        <ExternalLink href="https://github.com/onderonur/onurl">
-          OnURL
-        </ExternalLink>{' '}
-        and{' '}
-        <ExternalLink href="https://github.com/onetimesecret/onetimesecret">
-          OneTimeSecret
-        </ExternalLink>
-        {'. '} Thank you!
-      </Fragment>
-    ),
+    body: `I'm Christophe, UI-designer and front-end developer from Basel, Switzerland. Follow me on Twitter [@stophecom](${twitterLink}). This project has been heavily influenced by [OnURL](https://github.com/onderonur/onurl) and [OneTimeSecret](https://github.com/onetimesecret/onetimesecret) Thank you!`,
   },
 ]
 const SimpleAccordion = () => {
@@ -94,7 +74,7 @@ const SimpleAccordion = () => {
               <Typography className={classes.heading}>{heading}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="body1">{body}</Typography>
+              <Markdown source={body} />
             </AccordionDetails>
           </Accordion>
         ))}
