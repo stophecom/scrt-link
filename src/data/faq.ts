@@ -7,7 +7,7 @@ export const faq = [
   },
   {
     heading: 'Why should I use this service?',
-    body: `Sharing secrets is delicate. You don't want sensitive information, like passwords, to stay in your Slack Channel, Whatsapp chat, Email or any other chat app or communications channel. A one-time disposable link guarantees that your secret is only viewed one time, before it's gone forever.`,
+    body: `Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, Inbox, or any other communications channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.`,
   },
   {
     heading: 'How secure is your service?',
