@@ -10,6 +10,11 @@ export const faq = [
     body: `Sharing secrets is delicate. You don't want sensitive information, like passwords, to stay in your Slack Channel, Whatsapp chat, Email or any other chat app or communications channel. A one-time disposable link guarantees that your secret is only viewed one time, before it's gone forever.`,
   },
   {
+    heading: 'How secure is your service?',
+    body: `All messages are stored encrypted using the **AES-256** encryption standard. AES-256 is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
+    For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrustrcture**, he or she couldn't decrypt your message.`,
+  },
+  {
     heading: 'Can I retrieve a secret that has already been shared?',
     body: `Nope. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.`,
   },
@@ -27,7 +32,7 @@ export const faq = [
   },
   {
     heading: 'Why should I trust you?',
-    body: `Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message. We don't store the password (only a hash) so we can never know what the secret is because we can't decrypt it. 
+    body: `Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message using the AES-256 standard. We don't store the password (only a hash) so we can never know what the secret is because we can't decrypt it. 
     In any case. Don't take our word for it. Check for yourself, the code is open source on Gitlab. Build your own service!
     `,
   },
