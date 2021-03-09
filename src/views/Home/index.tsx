@@ -1,6 +1,5 @@
 import React, { Fragment, useCallback, useReducer } from 'react'
 import axios, { AxiosResponse, AxiosError } from 'axios'
-import Head from 'next/head'
 import { Box, InputAdornment, Typography } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 
