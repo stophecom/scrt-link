@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '100%',
     },
+    summary: {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
     heading: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightBold,
@@ -85,6 +89,7 @@ export default function SimpleAccordion() {
         {items.map(({ heading, body }, index) => (
           <Accordion key={index}>
             <AccordionSummary
+              className={classes.summary}
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`faq-${index}`}
               id={`faq-${index}`}
