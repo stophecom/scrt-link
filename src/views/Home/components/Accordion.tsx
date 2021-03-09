@@ -14,10 +14,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-    },
-    summary: {
-      paddingLeft: 0,
-      paddingRight: 0,
+      marginRight: '-16px',
+      marginLeft: '-16px',
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const items = [
   {
     heading: 'How does it work?',
-    body: `After you submit the form your secret will be encrypted and stored. You can now share the link via text message, email or whatever service you trust. (We recommend Matrix, Signal or Threema) After the recepients clicks the link, the message gets displayed and permanently removed from the server. For extra security you can set a password that will be needed to decrypt the message. (We recommend to share the password via a different channel.)`,
+    body: `After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Matrix, Signal or Threema) After the recepients clicks the link, the message gets displayed and permanently removed from the server. For extra security you can set a password that will be needed to decrypt the message. (We recommend to share the password via a different channel.)`,
   },
   {
     heading: 'Why should I use this service?',
@@ -80,7 +78,7 @@ const items = [
     ),
   },
 ]
-export default function SimpleAccordion() {
+const SimpleAccordion = () => {
   const classes = useStyles()
 
   return (
@@ -89,7 +87,6 @@ export default function SimpleAccordion() {
         {items.map(({ heading, body }, index) => (
           <Accordion key={index}>
             <AccordionSummary
-              className={classes.summary}
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`faq-${index}`}
               id={`faq-${index}`}
@@ -105,3 +102,5 @@ export default function SimpleAccordion() {
     </Box>
   )
 }
+
+export default SimpleAccordion

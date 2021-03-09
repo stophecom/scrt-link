@@ -10,7 +10,7 @@ import { Maybe, ShortUrlInput, SecretType } from '@/types'
 
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
-import HowItWorks from './components/HowItWorks'
+import Accordion from './components/Accordion'
 import StrokeHighlight from './components/StrokeHighlight'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
@@ -205,8 +205,8 @@ const HomeView = () => {
           </Formik>
 
           <Box pt={15}>
-            <Typography variant="h2">Who it works?</Typography>
-            <HowItWorks />
+            <Typography variant="h2">How it works</Typography>
+            <Accordion />
           </Box>
         </Fragment>
       )}

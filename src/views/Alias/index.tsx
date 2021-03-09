@@ -66,6 +66,7 @@ const AliasView: NextPage<AliasViewProps> = ({ error, message }) => {
 // twice. So, we are using "getInitialProps" for a while.
 AliasView.getInitialProps = async ({ res, query }) => {
   const { alias } = query
+
   let error
   try {
     const response = await axios.get(
