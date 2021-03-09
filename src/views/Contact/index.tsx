@@ -28,13 +28,7 @@ const jsonLd = {
 }
 
 const Faq = () => (
-  <Page title="Contact">
-    <Head>
-      <script
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        type="application/ld+json"
-      />
-    </Head>
+  <Page title="Contact" jsonLd={jsonLd}>
     <Typography variant="subtitle1">Christophe Schwyzer</Typography>
     <Typography>
       <ExternalLink href={`https://www.${websiteUrl}`}>{websiteUrl}</ExternalLink>

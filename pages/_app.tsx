@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import Layout from '@/components/Layout'
-import { appTitle } from '@/constants'
+import { appTitle, twitterHandle } from '@/constants'
 import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
@@ -26,16 +26,22 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
       site_name: appTitle,
       images: [
         {
+          url: `${baseUrl}/og-image.png`,
+          height: 1200,
+          width: 627,
+          alt: 'scrt.link - Share a secret!',
+        },
+        {
           url: `${baseUrl}/android-chrome-512x512.png`,
           height: 512,
           width: 512,
-          alt: 'scrt.link large logo',
+          alt: 'scrt.link - Share a secret!',
         },
         {
           url: `${baseUrl}/android-chrome-192x192.png`,
           height: 192,
           width: 192,
-          alt: 'scrt.link small logo',
+          alt: 'scrt.link - Share a secret!',
         },
       ],
     },
@@ -61,6 +67,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
       <Head>
+        <meta name="twitter:card" content="summary" key="twitter:card" />
+        <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
+
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

@@ -1,21 +1,21 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import { Box, Typography } from '@material-ui/core'
-import Head from 'next/head'
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
+import Seo, { SeoProps } from '@/components/Seo'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
 
-type PageProps = {
+interface PageProps extends SeoProps {
   title: string
   children: ReactNode
 }
-const Page = ({ title, children }: PageProps) => (
+
+const Page = ({ title, children, ...seoProps }: PageProps) => (
   <>
-    <Head>
-      <title>{title}</title>
-    </Head>
+    <Seo title={title} {...seoProps} />
+
     <Box flex={1} marginBottom={9} mt={5}>
       <Link href="/">
         <a>
