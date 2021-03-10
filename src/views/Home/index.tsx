@@ -2,9 +2,15 @@ import React, { Fragment, useCallback, useReducer } from 'react'
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import { Box, InputAdornment, Typography } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Switch from '@material-ui/core/Switch'
+import clsx from 'clsx'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import Collapse from '@material-ui/core/Collapse'
 
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
+import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe, ShortUrlInput, SecretType } from '@/types'
 
 import TabsMenu from './components/TabsMenu'
@@ -77,12 +83,33 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      marginBottom: 0,
+      width: '100%',
+    },
+    formFooter: {
+      flexDirection: 'column',
+
+      [theme.breakpoints.up('sm')]: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+    },
+    submitButton: {
+      width: '100%',
+    },
+  }),
+)
+
 const initialState: State = {
   data: undefined,
   error: undefined,
 }
 
 const HomeView = () => {
+  const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(async (values, formikHelpers) => {
@@ -109,6 +136,12 @@ const HomeView = () => {
     setSecretType(newValue)
   }
 
+  // Form options
+  const [hasPassword, setHasPassword] = React.useState(false)
+  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHasPassword(event.target.checked)
+  }
+
   return (
     <Page
       title="Share a secret"
@@ -130,7 +163,7 @@ const HomeView = () => {
           </Box>
           <Formik<UrlFormValues>
             initialValues={initialValues}
-            validationSchema={getValidationSchemaByType(secretType)}
+            validationSchema={getValidationSchemaByType(secretType, hasPassword)}
             validateOnMount
             onSubmit={handleSubmit}
           >
@@ -138,9 +171,9 @@ const HomeView = () => {
               return (
                 <>
                   <Form noValidate>
-                    <Spacer flexDirection="column" spacing={2}>
-                      {secretType === 'url' && (
-                        <Fragment>
+                    {secretType === 'url' && (
+                      <>
+                        <Box mb={2}>
                           <BaseTextField
                             name="url"
                             label="URL"
@@ -154,37 +187,70 @@ const HomeView = () => {
                               ),
                             }}
                           />
+                        </Box>
+                        <Box mb={2}>
                           <BaseTextField name="customAlias" label="Custom Alias (Optional)" />
-                        </Fragment>
-                      )}
-                      {secretType === 'message' && (
-                        <BaseTextField
-                          name="message"
-                          multiline
-                          required
-                          rows={3}
-                          rowsMax={7}
-                          label="Message"
-                          placeholder="Your secret message, password, private note…"
-                        />
-                      )}
+                        </Box>
+                      </>
+                    )}
+                    {secretType === 'message' && (
+                      <>
+                        <Box mb={2}>
+                          <BaseTextField
+                            name="message"
+                            multiline
+                            required
+                            rows={3}
+                            rowsMax={7}
+                            label="Message"
+                            placeholder="Your secret message, password, private note…"
+                          />
+                        </Box>
+                      </>
+                    )}
 
-                      {/* {secretType === 'password' && (
+                    {/* {secretType === 'password' && (
                         <BaseTextField name="message" label="Password" />
                       )} */}
 
-                      <Box display="flex" justifyContent="flex-end">
+                    <Collapse in={hasPassword}>
+                      <Box mb={2}>
+                        <BasePasswordField
+                          required
+                          className={clsx(classes.root)}
+                          name="password"
+                        />
+                      </Box>
+                    </Collapse>
+
+                    <Box display="flex" className={classes.formFooter}>
+                      <Box mb={1}>
+                        <FormControlLabel
+                          control={
+                            <Switch
+                              checked={hasPassword}
+                              onChange={handleSwitchChange}
+                              name="options"
+                              color="primary"
+                            />
+                          }
+                          label="Include Password"
+                        />
+                      </Box>
+                      <Box mb={1}>
                         <BaseButton
+                          className={classes.submitButton}
                           type="submit"
                           color="primary"
                           variant="contained"
+                          size="large"
                           loading={isSubmitting}
                           disabled={!isValid}
                         >
                           Create secret link
                         </BaseButton>
                       </Box>
-                    </Spacer>
+                    </Box>
                   </Form>
                 </>
               )

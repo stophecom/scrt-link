@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 
 import styled from 'styled-components'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 const SVG = styled.svg.attrs({
   xmlns: 'http://www.w3.org/2000/svg',
@@ -46,7 +46,7 @@ const StrokeHighlight = ({ children }: StrokeHighlightProps) => {
     <Highlight>
       {children}
       <StrokeWrapper>
-        <StrokeSvg className={classNames({ ready: ready })}>
+        <StrokeSvg className={clsx({ ready: ready })}>
           <path
             id="line"
             d="M2 2c49.7 2.6 100 3.1 150 1.7-46.5 2-93 4.4-139.2 7.3 45.2-1.5 90.6-1.8 135.8-.6"

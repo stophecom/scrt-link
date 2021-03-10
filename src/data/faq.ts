@@ -3,7 +3,10 @@ import { twitterLink } from '@/constants'
 export const faq = [
   {
     heading: 'How does it work?',
-    body: `After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Matrix, Signal or Threema) After the recepients clicks the link, the message gets displayed and permanently removed from the server. For extra security you can set a password that will be needed to decrypt the message. (We recommend to share the password via a different channel.)`,
+    body: `
+After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Matrix, Signal or Threema.) After the recepients clicks the link, the message gets displayed and permanently removed from the server. 
+    
+For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
   },
   {
     heading: 'Why should I use this service?',

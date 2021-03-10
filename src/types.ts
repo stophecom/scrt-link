@@ -14,6 +14,7 @@ export interface ShortUrlInput {
   url?: string
   customAlias?: string
   message?: string
+  password?: string
 }
 
 export {}

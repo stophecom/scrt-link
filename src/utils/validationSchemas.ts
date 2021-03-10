@@ -3,16 +3,11 @@ import * as Yup from 'yup'
 import validator from 'validator'
 import { maxCustomAliasLength, maxMessageLength } from '@/constants'
 
-const messageValidationSchema = Yup.object().shape<ShortUrlInput>({
-  message: Yup.string()
-    .label('Message')
-    .required()
-    .min(1)
-    .max(maxMessageLength)
-    .trim(),
-})
+const messageValidationSchema = {
+  message: Yup.string().label('Message').required().min(1).max(maxMessageLength).trim(),
+}
 
-const urlValidationSchema = Yup.object().shape<ShortUrlInput>({
+const urlValidationSchema = {
   url: Yup.string()
     .label('URL')
     .required()
@@ -22,18 +17,21 @@ const urlValidationSchema = Yup.object().shape<ShortUrlInput>({
       (value) => (value ? validator.isURL(value) : true),
     )
     .trim(),
-  customAlias: Yup.string()
-    .label('Custom Alias')
-    .max(maxCustomAliasLength)
-    .trim(),
-})
+  customAlias: Yup.string().label('Custom Alias').max(maxCustomAliasLength).trim(),
+}
 
 const schemataMap = {
   url: urlValidationSchema,
   message: messageValidationSchema,
 }
 
-export const getValidationSchemaByType = (type: SecretType) => schemataMap[type]
+export const getValidationSchemaByType = (type: SecretType, hasPassword = false) =>
+  Yup.object().shape<ShortUrlInput>({
+    ...schemataMap[type],
+    ...(hasPassword
+      ? { password: Yup.string().required().label('Password').min(5).max(50).trim() }
+      : {}),
+  })
 
 // Todo: This is used to validate data from db currently. Maybe refactor this.
 export const shortUrlInputValidationSchema = Yup.object().shape<ShortUrlInput>({
@@ -46,8 +44,5 @@ export const shortUrlInputValidationSchema = Yup.object().shape<ShortUrlInput>({
     )
     .trim(),
   message: Yup.string().label('Message').max(maxMessageLength).trim(),
-  customAlias: Yup.string()
-    .label('Custom Alias')
-    .max(maxCustomAliasLength)
-    .trim(),
+  customAlias: Yup.string().label('Custom Alias').max(maxCustomAliasLength).trim(),
 })
