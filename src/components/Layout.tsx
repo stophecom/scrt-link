@@ -1,9 +1,14 @@
 import React from 'react'
-import { Box, IconButton } from '@material-ui/core'
-
+import { Box, IconButton, Link } from '@material-ui/core'
 import styled from 'styled-components'
 import TwitterIcon from '@material-ui/icons/Twitter'
-import { Link } from '@material-ui/core'
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+
+import { appTitle } from '@/constants'
+import SROnly from '@/components/ScreenreaderOnly'
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
 
 import ExternalLink from './ExternalLink'
 import { twitterLink } from '@/constants'
@@ -23,11 +28,35 @@ const LinkStyled = styled(Link)`
   padding: ${({ theme }) => theme.spacing(1)}px;
 `
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100px',
+      height: '100px',
+
+      [theme.breakpoints.up('md')]: {
+        width: '150px',
+        height: '150px',
+      },
+    },
+  }),
+)
+
 const Layout: React.FC = ({ children }) => {
+  const classes = useStyles()
+
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <MainContent>
-        <>{children}</>
+        <Box mt={3}>
+          <Link href="/">
+            <a>
+              <Logo className={classes.root} />
+              <SROnly>{appTitle}</SROnly>
+            </a>
+          </Link>
+        </Box>
+        {children}
       </MainContent>
 
       <Box display="flex" justifyContent="center" p={2}>

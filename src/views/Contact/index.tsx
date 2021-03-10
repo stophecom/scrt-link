@@ -1,13 +1,11 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
-import Head from 'next/head'
+import { Typography, Box } from '@material-ui/core'
 import { Link } from '@material-ui/core'
-import ArrowForward from '@material-ui/icons/ArrowForward'
 
 import Page from '@/components/Page'
 import ExternalLink from '@/components/ExternalLink'
 
-import { email, twitterLink, twitterHandle, websiteUrl } from '@/constants'
+import { email, twitterLink, twitterHandle, websiteUrl, gitlab, github } from '@/constants'
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -28,15 +26,29 @@ const jsonLd = {
 }
 
 const Faq = () => (
-  <Page title="Contact" jsonLd={jsonLd}>
-    <Typography variant="subtitle1">Christophe Schwyzer</Typography>
-    <Typography>
-      <ExternalLink href={`https://www.${websiteUrl}`}>{websiteUrl}</ExternalLink>
-      <br />
-      <Link href={`mailto:${email}`}>{email}</Link>
-      <br />
-      <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
-    </Typography>
+  <Page title="Contact" subtitle={`Hi, it's Christophe, get in touch!`} jsonLd={jsonLd}>
+    <Box mb={4}>
+      <Typography variant="h3">Email</Typography>
+      <Typography>
+        <Link href={`mailto:${email}`}>{email}</Link>
+      </Typography>
+    </Box>
+    <Box mb={4}>
+      <Typography variant="h3">Web</Typography>
+      <Typography>
+        <ExternalLink href={`https://www.${websiteUrl}`}>{websiteUrl}</ExternalLink>
+      </Typography>
+    </Box>
+    <Box mb={4}>
+      <Typography variant="h3">Social</Typography>
+      <Typography>
+        <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
+        <br />
+        <ExternalLink href={gitlab}>Gitlab</ExternalLink>
+        <br />
+        <ExternalLink href={github}>Github</ExternalLink>
+      </Typography>
+    </Box>
   </Page>
 )
 

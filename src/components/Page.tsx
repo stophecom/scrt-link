@@ -16,33 +16,12 @@ interface PageProps extends SeoProps {
   children: ReactNode
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100px',
-      height: '100px',
-
-      [theme.breakpoints.up('md')]: {
-        width: '150px',
-        height: '150px',
-      },
-    },
-  }),
-)
-
 const Page = ({ title, subtitle, children, ...seoProps }: PageProps) => {
-  const classes = useStyles()
   return (
     <>
       <Seo title={title} {...seoProps} />
 
-      <Box flex={1} marginBottom={9} mt={3}>
-        <Link href="/">
-          <a>
-            <Logo className={classes.root} />
-            <SROnly>{appTitle}</SROnly>
-          </a>
-        </Link>
+      <Box flex={1} marginBottom={9}>
         <Box pt={3} mb={8}>
           <Box mb={2}>
             <Typography variant="h1">{title}</Typography>
