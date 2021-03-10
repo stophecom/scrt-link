@@ -6,7 +6,6 @@ import { Formik, Form, FormikConfig } from 'formik'
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
 import { Maybe, ShortUrlInput, SecretType } from '@/types'
-import Seo from '@/components/Seo'
 
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
@@ -16,9 +15,7 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
+import Page from '@/components/Page'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
@@ -113,21 +110,18 @@ const HomeView = () => {
   }
 
   return (
-    <>
-      <Seo title="Share a secret" />
-      <Box flex={1} marginBottom={9} mt={5}>
-        <Logo width="150px" height="150px" />
-        <Box mb={2}>
-          <Typography variant="h1">Share a secret</Typography>
-        </Box>
-        <Typography variant="subtitle1">
+    <Page
+      title="Share a secret"
+      subtitle={
+        <>
+          {' '}
           …with a link that only works <StrokeHighlight>one time</StrokeHighlight> and then{' '}
           <Box component="span" whiteSpace="nowrap">
             self-distructs.
           </Box>
-        </Typography>
-      </Box>
-
+        </>
+      }
+    >
       {data || error ? (
         <Result data={data} error={error} />
       ) : (
@@ -204,7 +198,7 @@ const HomeView = () => {
           </Box>
         </Fragment>
       )}
-    </>
+    </Page>
   )
 }
 

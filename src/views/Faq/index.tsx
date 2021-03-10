@@ -29,7 +29,9 @@ const Faq = () => (
     </Head>
     {faq.map(({ heading, body }, index) => (
       <Box key={index} py={3}>
-        <Typography variant="h3">{heading}</Typography>
+        <Box mb={2}>
+          <Typography variant="h3">{heading}</Typography>
+        </Box>
         <Markdown source={body} />
       </Box>
     ))}
