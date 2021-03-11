@@ -1,60 +1,146 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { NextPage } from 'next'
-import { Maybe } from '@/types'
-import { ServerResponse } from 'http'
-import { isServer } from '@/utils'
 import axios from 'axios'
 import { Box, CircularProgress } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
+import { Formik, Form, FormikConfig } from 'formik'
+import { AES, enc } from 'crypto-js'
+import { parse } from 'uri-js'
 
-interface RedirectOptions {
-  replace: boolean
-}
+import { passwordValidationSchema } from '@/utils/validationSchemas'
+import { SecretType } from '@/types'
+import { isServer } from '@/utils'
+import BasePasswordField from '@/components/BasePasswordField'
+import BaseButton from '@/components/BaseButton'
+import Page from '@/components/Page'
 
-const pageRedirect = (
-  res: Maybe<ServerResponse>,
-  location: string,
-  { replace }: RedirectOptions,
-) => {
-  if (isServer()) {
-    // A 301 redirect means that the page has permanently moved to a new location.
-    // A 302 redirect means that the move is only temporary. Search engines need
-    // to figure out whether to keep the old page, or replace it with the one
-    // found at the new location.
-    res?.writeHead(301, {
-      Location: location,
-    })
-    res?.end()
-  } else {
-    // https://nextjs.org/docs/api-reference/next/router
-    // You don't need to use Router for external URLs,
-    // window.location is better suited for those cases.
-    if (replace) {
-      window.location.replace(location)
-    } else {
-      window.location.href = location
-    }
+// https://stackoverflow.com/a/19709846
+const isAbsoluteUrl = (url: string) => {
+  if (url.startsWith('//')) {
+    return true
   }
+
+  const uri = parse(url)
+  return !!uri.scheme
 }
+
+type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
 interface AliasViewProps {
   error?: string
   message?: string
+  isEncryptedWithUserPassword?: boolean
+  type?: SecretType
+}
+interface PasswordForm {
+  password: string
 }
 
-const AliasView: NextPage<AliasViewProps> = ({ error, message }) => {
-  if (error) {
-    return <Alert severity="error">{error}</Alert>
+const AliasView: NextPage<AliasViewProps> = ({
+  error,
+  message = '',
+  isEncryptedWithUserPassword = false,
+  type,
+}) => {
+  const [localMessage, setLocalMessage] = useState(message)
+  const [success, setSuccess] = useState(false)
+
+  const initialValues: PasswordForm = {
+    password: '',
   }
 
-  if (message) {
-    return <Alert severity="success">{message}</Alert>
+  const pageRedirect = (url: string) => {
+    if (!isServer()) {
+      if (!isAbsoluteUrl(url)) {
+        url = `http://${url}`
+      }
+
+      window.location.replace(url)
+    }
+  }
+
+  console.log(type)
+
+  // If URL is in plain text, redirect early
+  if (!isEncryptedWithUserPassword && type === 'url') {
+    pageRedirect(message)
+  }
+
+  const handleSubmit = useCallback<OnSubmit<PasswordForm>>(async (values, formikHelpers) => {
+    try {
+      const bytes = AES.decrypt(message, values.password)
+
+      const result = bytes.toString(enc.Utf8)
+      if (!result) {
+        throw new Error('Wrong Password')
+      } else {
+        setSuccess(true)
+        setLocalMessage(result)
+
+        if (type === 'url') {
+          pageRedirect(message)
+        }
+      }
+
+      formikHelpers.resetForm()
+    } catch (error) {
+      formikHelpers.setErrors({ password: 'Wrong Password' })
+    } finally {
+      formikHelpers.setSubmitting(false)
+    }
+  }, [])
+
+  if (!message && !error) {
+    return (
+      <Box display="flex" justifyContent="center">
+        <CircularProgress />
+      </Box>
+    )
   }
 
   return (
-    <Box display="flex" justifyContent="center">
-      <CircularProgress />
-    </Box>
+    <>
+      <Page title="Your secret message">
+        <Box mb={3}>
+          {localMessage && <Alert severity={success ? 'success' : 'info'}>{localMessage}</Alert>}
+        </Box>
+
+        {isEncryptedWithUserPassword && !success && (
+          <Formik<PasswordForm>
+            initialValues={initialValues}
+            validationSchema={passwordValidationSchema}
+            validateOnMount
+            onSubmit={handleSubmit}
+          >
+            {({ isValid, isSubmitting }) => {
+              return (
+                <>
+                  <Form noValidate>
+                    <Box mb={2}>
+                      <BasePasswordField required name="password" />
+                    </Box>
+                    <Box mb={1}>
+                      <BaseButton
+                        type="submit"
+                        color="primary"
+                        variant="contained"
+                        size="large"
+                        loading={isSubmitting}
+                        disabled={!isValid}
+                      >
+                        Decrypt Message
+                      </BaseButton>
+                    </Box>
+                  </Form>
+                </>
+              )
+            }}
+          </Formik>
+        )}
+
+        {error && <Alert severity="error">{error}</Alert>}
+      </Page>
+    </>
   )
 }
 
@@ -73,15 +159,9 @@ AliasView.getInitialProps = async ({ res, query }) => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/shorturl?alias=${alias}`,
     )
     const { data } = response
-    const { url, message } = data
+    const { type, message, isEncryptedWithUserPassword } = data
 
-    // If message is
-    if (message) {
-      return { message: decodeURIComponent(message) }
-    }
-    if (url) {
-      pageRedirect(res, url, { replace: true })
-    }
+    return { type, message: decodeURIComponent(message), isEncryptedWithUserPassword }
   } catch (err) {
     const { response } = err
     if (response) {

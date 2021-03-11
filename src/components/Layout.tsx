@@ -50,10 +50,8 @@ const Layout: React.FC = ({ children }) => {
       <MainContent>
         <Box mt={3}>
           <Link href="/">
-            <a>
-              <Logo className={classes.root} />
-              <SROnly>{appTitle}</SROnly>
-            </a>
+            <Logo className={classes.root} />
+            <SROnly>{appTitle}</SROnly>
           </Link>
         </Box>
         {children}

@@ -1,17 +1,18 @@
 import React, { Fragment, useCallback, useReducer } from 'react'
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import { Box, InputAdornment, Typography } from '@material-ui/core'
-import { Formik, Form, FormikConfig } from 'formik'
+import { Formik, Form, Field, FormikConfig } from 'formik'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
+import { omit } from 'ramda'
 
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
-import { Maybe, ShortUrlInput, SecretType } from '@/types'
+import { Maybe, FormInput, SecretType } from '@/types'
 
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
@@ -20,8 +21,8 @@ import StrokeHighlight from './components/StrokeHighlight'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
-import Spacer from '@/components/Spacer'
 import Page from '@/components/Page'
+import { AES } from 'crypto-js'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
@@ -30,12 +31,12 @@ function isAxiosError(error: any): error is AxiosError {
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-type UrlFormValues = ShortUrlInput
+type UrlFormValues = FormInput
 
 const initialValues: UrlFormValues = {
-  url: '',
   customAlias: '',
   message: '',
+  type: 'message',
 }
 
 export interface State {
@@ -111,11 +112,20 @@ const initialState: State = {
 const HomeView = () => {
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [secretType, setSecretType] = React.useState<SecretType>('message')
 
   const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(async (values, formikHelpers) => {
     dispatch(doRequest())
+
+    const { message, password } = values
+
+    const data = {
+      ...omit(['password'], values),
+      message: password && message ? AES.encrypt(message, password).toString() : message,
+      isEncryptedWithUserPassword: !!values.password,
+    }
     try {
-      const response = await axios.post('/api/shorturl', values)
+      const response = await axios.post('/api/shorturl', data)
       dispatch(doSuccess(response))
       formikHelpers.resetForm()
     } catch (error) {
@@ -126,8 +136,6 @@ const HomeView = () => {
   }, [])
 
   const { data, error } = state
-
-  const [secretType, setSecretType] = React.useState<SecretType>('message')
 
   const handleMenuChange = (
     event: React.ChangeEvent<Record<string, unknown>>,
@@ -167,15 +175,17 @@ const HomeView = () => {
             validateOnMount
             onSubmit={handleSubmit}
           >
-            {({ isValid, isSubmitting }) => {
+            {({ isValid, isSubmitting, setFieldValue }) => {
               return (
                 <>
                   <Form noValidate>
+                    <Field type="hidden" name="type" value={secretType} />
+
                     {secretType === 'url' && (
                       <>
                         <Box mb={2}>
                           <BaseTextField
-                            name="url"
+                            name="message"
                             label="URL"
                             required
                             autoFocus
@@ -208,11 +218,9 @@ const HomeView = () => {
                         </Box>
                       </>
                     )}
-
                     {/* {secretType === 'password' && (
                         <BaseTextField name="message" label="Password" />
                       )} */}
-
                     <Collapse in={hasPassword}>
                       <Box mb={2}>
                         <BasePasswordField
@@ -222,7 +230,6 @@ const HomeView = () => {
                         />
                       </Box>
                     </Collapse>
-
                     <Box display="flex" className={classes.formFooter}>
                       <Box mb={1}>
                         <FormControlLabel
@@ -230,7 +237,7 @@ const HomeView = () => {
                             <Switch
                               checked={hasPassword}
                               onChange={handleSwitchChange}
-                              name="options"
+                              name="isEncryptedWithUserPassword"
                               color="primary"
                             />
                           }
@@ -240,6 +247,9 @@ const HomeView = () => {
                       <Box mb={1}>
                         <BaseButton
                           className={classes.submitButton}
+                          onClick={() => {
+                            setFieldValue('type', secretType)
+                          }}
                           type="submit"
                           color="primary"
                           variant="contained"

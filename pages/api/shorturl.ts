@@ -4,9 +4,9 @@ import { nanoid } from 'nanoid'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { urlAliasLength } from '@/constants'
-import { shortUrlInputValidationSchema } from '@/utils/validationSchemas'
+import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import * as Yup from 'yup'
-import { parse } from 'uri-js'
+
 import { AES, enc } from 'crypto-js'
 
 const getInputValidationSchema = Yup.object().shape({
@@ -26,37 +26,22 @@ const extractGetInput = async (req: NextApiRequest) => {
   return alias
 }
 
-// https://stackoverflow.com/a/19709846
-const isAbsoluteUrl = (url: string) => {
-  if (url.startsWith('//')) {
-    return true
-  }
-
-  const uri = parse(url)
-  return !!uri.scheme
-}
-
 const extractPostInput = async (req: NextApiRequest) => {
+  const { type, isEncryptedWithUserPassword } = req.body
+
   try {
-    await shortUrlInputValidationSchema.validate(req.body)
+    await getValidationSchemaByType(type, false).validate(req.body)
   } catch (err) {
     throw createError(422, err.message)
   }
-  let { url } = req.body
-  url = url.trim()
-  // If we have no protocol, we add "http" prefix.
-  // Otherwise, it redirects to "http://localhost:3000/<url>"
-  // instead of "http(s)://<url>".
-  if (!isAbsoluteUrl(url)) {
-    url = `http://${url}`
-  }
+
   let { customAlias, message } = req.body
   customAlias = customAlias.trim()
   customAlias = encodeURIComponent(customAlias)
 
   message = message.trim()
   message = encodeURIComponent(message)
-  return { url, message, customAlias }
+  return { type, message, customAlias, isEncryptedWithUserPassword }
 }
 
 const handler: NextApiHandler = async (req, res) => {
@@ -69,7 +54,10 @@ const handler: NextApiHandler = async (req, res) => {
       const alias = await extractGetInput(req)
       const shortUrl = await models.ShortUrl.findOneAndDelete({ alias })
       if (!shortUrl) {
-        throw createError(404, 'URL not found')
+        throw createError(
+          404,
+          `URL not found - This usually means your secret link has already been visited.`,
+        )
       }
 
       // Decrypt
@@ -79,22 +67,25 @@ const handler: NextApiHandler = async (req, res) => {
       }
 
       res.json({
-        ...shortUrl,
+        type: shortUrl.type,
         message: decryptAES(shortUrl.message),
-        url: decryptAES(shortUrl.url),
+        isEncryptedWithUserPassword: shortUrl.isEncryptedWithUserPassword,
       })
       break
     case 'POST':
-      const { url, message, customAlias } = await extractPostInput(req)
+      const { type, message, customAlias, isEncryptedWithUserPassword } = await extractPostInput(
+        req,
+      )
 
       // Encrypt sensitive information
       const encryptAES = (string: string) =>
         AES.encrypt(string, `${process.env.AES_KEY_256}`).toString()
 
       const shortened = new models.ShortUrl({
-        url: encryptAES(url),
+        type,
         message: encryptAES(message),
         alias: customAlias || nanoid(urlAliasLength),
+        isEncryptedWithUserPassword,
       })
       await shortened.save()
       res.json(shortened)

@@ -1,12 +1,13 @@
 import mongoose from 'mongoose'
-import { BaseDocumentData } from './types'
-import { maxCustomAliasLength } from '@/constants'
 import uniqueValidator from 'mongoose-unique-validator'
 
+import { maxCustomAliasLength, maxMessageLength } from '@/constants'
+import { BaseDocumentData } from './types'
 interface ShortUrlFields {
-  url: string
+  type: string
   alias: string
   message: string
+  isEncryptedWithUserPassword: boolean
 }
 
 export type ShortUrlData = BaseDocumentData & ShortUrlFields
@@ -15,7 +16,7 @@ type ShortUrlDocument = mongoose.Document & ShortUrlFields
 
 const shortUrlSchema = new mongoose.Schema(
   {
-    url: { type: String, required: false, trim: true },
+    type: { type: String, required: true, trim: true },
     alias: {
       type: String,
       required: true,
@@ -23,7 +24,8 @@ const shortUrlSchema = new mongoose.Schema(
       trim: true,
       maxlength: maxCustomAliasLength,
     },
-    message: { type: String, required: false, default: '' },
+    message: { type: String, required: false, default: '', maxlength: maxMessageLength },
+    isEncryptedWithUserPassword: { type: Boolean, required: true, default: false },
   },
   { timestamps: true },
 )

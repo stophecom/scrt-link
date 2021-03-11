@@ -10,11 +10,18 @@ declare global {
 }
 
 export type SecretType = 'message' | 'url'
-export interface ShortUrlInput {
-  url?: string
-  customAlias?: string
-  message?: string
+
+export interface Password {
   password?: string
+}
+
+export interface MessageInput extends Password {
+  message: string
+}
+
+export interface FormInput extends MessageInput {
+  type: SecretType
+  customAlias?: string
 }
 
 export {}
