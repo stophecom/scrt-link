@@ -3,12 +3,18 @@ import * as Yup from 'yup'
 import validator from 'validator'
 import { maxCustomAliasLength, maxMessageLength } from '@/constants'
 
+const secretTypes = ['message' as SecretType, 'url' as SecretType]
+
 const messageValidation = {
   message: Yup.string().label('Message').required().min(1).max(maxMessageLength).trim(),
 }
 
 const passwordValidation = {
-  password: Yup.string().required().label('Password').min(5).max(50).trim(),
+  password: Yup.string().required().label('Password').min(1).max(50).trim(),
+}
+
+const typeValidation = {
+  type: Yup.mixed<SecretType>().oneOf(secretTypes),
 }
 
 const urlValidation = {
@@ -33,6 +39,12 @@ export const getValidationSchemaByType = (type: SecretType, hasPassword = false)
   Yup.object().shape<FormInput>({
     ...schemataMap[type],
     ...(hasPassword ? passwordValidation : {}),
+    ...typeValidation,
   })
+
+export const apiValidationSchemaByType = Yup.object().shape<FormInput>({
+  message: Yup.string().label('Message').required().trim(),
+  ...typeValidation,
+})
 
 export const passwordValidationSchema = Yup.object().shape<Password>(passwordValidation)

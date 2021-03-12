@@ -6,6 +6,7 @@ import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
 import { AES, enc } from 'crypto-js'
 import { parse } from 'uri-js'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
@@ -36,12 +37,22 @@ interface PasswordForm {
   password: string
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    alert: {
+      wordBreak: 'break-word',
+    },
+  }),
+)
+
 const AliasView: NextPage<AliasViewProps> = ({
   error,
   message = '',
   isEncryptedWithUserPassword = false,
   type,
 }) => {
+  const classes = useStyles()
+
   const [localMessage, setLocalMessage] = useState(message)
   const [success, setSuccess] = useState(false)
 
@@ -58,8 +69,6 @@ const AliasView: NextPage<AliasViewProps> = ({
       window.location.replace(url)
     }
   }
-
-  console.log(type)
 
   // If URL is in plain text, redirect early
   if (!isEncryptedWithUserPassword && type === 'url') {
@@ -78,7 +87,7 @@ const AliasView: NextPage<AliasViewProps> = ({
         setLocalMessage(result)
 
         if (type === 'url') {
-          pageRedirect(message)
+          pageRedirect(result)
         }
       }
 
@@ -100,9 +109,13 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   return (
     <>
-      <Page title="Your secret message">
+      <Page title={`Your secret ${type}`}>
         <Box mb={3}>
-          {localMessage && <Alert severity={success ? 'success' : 'info'}>{localMessage}</Alert>}
+          {localMessage && (
+            <Alert className={classes.alert} severity={success ? 'success' : 'info'}>
+              {localMessage}
+            </Alert>
+          )}
         </Box>
 
         {isEncryptedWithUserPassword && !success && (

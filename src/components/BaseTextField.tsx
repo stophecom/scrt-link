@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { TextField, TextFieldProps } from '@material-ui/core'
 import { useField, FieldHookConfig } from 'formik'
 
-export type BaseTextFieldProps = TextFieldProps &
-  FieldHookConfig<TextFieldProps['value']>
+export type BaseTextFieldProps = TextFieldProps & FieldHookConfig<TextFieldProps['value']>
 
 function BaseTextField(props: BaseTextFieldProps) {
   const [field, meta] = useField(props)

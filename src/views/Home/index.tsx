@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
+import { AES } from 'crypto-js'
 
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
@@ -22,7 +23,7 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
-import { AES } from 'crypto-js'
+import { maxMessageLength } from '@/constants'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
@@ -101,6 +102,11 @@ const useStyles = makeStyles((theme: Theme) =>
     submitButton: {
       width: '100%',
     },
+    counter: {
+      position: 'absolute',
+      bottom: 5,
+      right: 10,
+    },
   }),
 )
 
@@ -175,7 +181,7 @@ const HomeView = () => {
             validateOnMount
             onSubmit={handleSubmit}
           >
-            {({ isValid, isSubmitting, setFieldValue }) => {
+            {({ isValid, isSubmitting, setFieldValue, values }) => {
               return (
                 <>
                   <Form noValidate>
@@ -205,7 +211,7 @@ const HomeView = () => {
                     )}
                     {secretType === 'message' && (
                       <>
-                        <Box mb={2}>
+                        <Box position="relative" mb={2}>
                           <BaseTextField
                             name="message"
                             multiline
@@ -215,6 +221,9 @@ const HomeView = () => {
                             label="Message"
                             placeholder="Your secret message, password, private note…"
                           />
+                          <small className={classes.counter}>
+                            {maxMessageLength - values.message.length}
+                          </small>
                         </Box>
                       </>
                     )}
@@ -241,7 +250,7 @@ const HomeView = () => {
                               color="primary"
                             />
                           }
-                          label="Include Password"
+                          label="Include password"
                         />
                       </Box>
                       <Box mb={1}>

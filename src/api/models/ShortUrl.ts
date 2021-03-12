@@ -24,7 +24,7 @@ const shortUrlSchema = new mongoose.Schema(
       trim: true,
       maxlength: maxCustomAliasLength,
     },
-    message: { type: String, required: false, default: '', maxlength: maxMessageLength },
+    message: { type: String, required: false, default: '', maxlength: 5 * maxMessageLength }, // Set maxlength reasonably big
     isEncryptedWithUserPassword: { type: Boolean, required: true, default: false },
   },
   { timestamps: true },

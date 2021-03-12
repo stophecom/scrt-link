@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { urlAliasLength } from '@/constants'
-import { getValidationSchemaByType } from '@/utils/validationSchemas'
+import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import * as Yup from 'yup'
 
 import { AES, enc } from 'crypto-js'
@@ -30,7 +30,7 @@ const extractPostInput = async (req: NextApiRequest) => {
   const { type, isEncryptedWithUserPassword } = req.body
 
   try {
-    await getValidationSchemaByType(type, false).validate(req.body)
+    await apiValidationSchemaByType.validate(req.body)
   } catch (err) {
     throw createError(422, err.message)
   }

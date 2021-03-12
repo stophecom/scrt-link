@@ -6,6 +6,7 @@ import Alert from '@material-ui/lab/Alert'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ShareIcon from '@material-ui/icons/Share'
 import Refresh from '@material-ui/icons/Refresh'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
@@ -17,11 +18,18 @@ import { State } from '../index'
 
 const qrCodeSize = 256
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      wordBreak: 'break-word',
+    },
+  }),
+)
+
 const Result = ({ data, error }: State) => {
+  const classes = useStyles()
   const alias = data?.alias
-  const origin = isServer()
-    ? process.env.NEXT_PUBLIC_BASE_URL
-    : window.location.origin
+  const origin = isServer() ? process.env.NEXT_PUBLIC_BASE_URL : window.location.origin
   const shortenedUrl = alias ? `${origin}/${alias}` : null
 
   const [hasCopied, setHasCopied] = useState(false)
@@ -32,7 +40,7 @@ const Result = ({ data, error }: State) => {
       {(data || error) && (
         <Box my={2}>
           <Alert severity={error ? 'error' : 'success'}>
-            <Box mb={3}>
+            <Box mb={3} className={classes.root}>
               {error || 'Your secret short URL has been created successfully!'}
             </Box>
 
