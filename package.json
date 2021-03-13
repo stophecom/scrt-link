@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
+    "postexport": "node ./sitemapGenerator.js",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --fix --max-warnings 0 --ext .js,.jsx,.ts,.tsx ."
@@ -18,6 +20,7 @@
     "@types/styled-components": "^5.1.5",
     "axios": "^0.21.0",
     "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
     "file-saver": "^2.0.5",
     "formik": "^2.2.6",
     "mongoose": "^5.11.7",
@@ -26,6 +29,7 @@
     "next": "^10.0.3",
     "next-pwa": "^5.0.6",
     "next-seo": "^4.17.0",
+    "nextjs-sitemap-generator": "^1.3.1",
     "qrcode.react": "^1.0.0",
     "ramda": "^0.27.1",
     "react": "^17.0.1",
