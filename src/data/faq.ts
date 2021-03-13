@@ -15,7 +15,7 @@ For **extra security**, you can include a password that will be needed to decryp
   {
     heading: 'How secure is your service?',
     body: `All messages are stored encrypted using the **AES-256** encryption standard. AES-256 is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
-    For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrustrcture**, he or she couldn't decrypt your message.`,
+    For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrastructure**, he or she couldn't decrypt your message.`,
   },
   {
     heading: 'Can I retrieve a secret that has already been shared?',
@@ -35,8 +35,7 @@ For **extra security**, you can include a password that will be needed to decryp
   },
   {
     heading: 'Why should I trust you?',
-    body: `Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message using the AES-256 standard. We don't store the password (only a hash) so we can never know what the secret is because we can't decrypt it. 
-    In any case. Don't take our word for it. Check for yourself, the code is open source on Gitlab. Build your own service!
+    body: `Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message using the AES-256 standard. We don't store the password so we can never know what the secret is because we can't decrypt it. 
     `,
   },
   {
