@@ -13,7 +13,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   const url = `${baseUrl}${pathname}`
   const title = appTitle
-  const description = `Share a secret! ${appTitle} is a URL shortener. Use it to send one-time disposable messages that self-distruct after the first visit. `
+  const description = `Share a secret! Use ${appTitle} to send one-time disposable messages via link that self-distructs after the first visit. `
   return {
     title,
     canonical: url,
