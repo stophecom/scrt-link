@@ -5,7 +5,7 @@ const sitemap = require('nextjs-sitemap-generator')
 
 sitemap({
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
-  pagesDirectory: __dirname + `/.next/serverless/pages`,
+  pagesDirectory: `/.next/serverless/pages`,
   targetDirectory: `public/`,
   ignoredExtensions: ['png', 'jpg', 'ico', 'json', 'js', 'txt', 'xml'],
   ignoredPaths: ['l', 'api'],
