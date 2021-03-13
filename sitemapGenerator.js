@@ -8,5 +8,6 @@ sitemap({
   pagesDirectory: __dirname + `/.next/server/pages`,
   targetDirectory: `out/`,
   ignoredExtensions: ['png', 'jpg'],
+  ignoredPaths: ['l', 'api'],
 })
 console.log(`✅ sitemap.xml generated!`)
