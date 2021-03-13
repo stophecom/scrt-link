@@ -30,7 +30,7 @@ const Result = ({ data, error }: State) => {
   const classes = useStyles()
   const alias = data?.alias
   const origin = isServer() ? process.env.NEXT_PUBLIC_BASE_URL : window.location.origin
-  const shortenedUrl = alias ? `${origin}/${alias}` : null
+  const shortenedUrl = alias ? `${origin}/l/${alias}` : null
 
   const [hasCopied, setHasCopied] = useState(false)
   const [isShareVisible, setIsShareVisible] = useState(false)

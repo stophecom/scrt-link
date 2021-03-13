@@ -1,5 +1,4 @@
 User-agent: *
-Allow: /$
-Disallow: /*
-Allow: /contact
-Allow: /faq
+Allow: /
+Disallow: /l/
+
