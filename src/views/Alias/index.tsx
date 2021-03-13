@@ -109,7 +109,8 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   return (
     <>
-      <Page title={`Your secret ${type}`}>
+      <Page title={`Your secret ${type}`} noindex>
+        <meta name="robots" content="noindex,nofollow" />
         <Box mb={3}>
           {localMessage && (
             <Alert className={classes.alert} severity={success ? 'success' : 'info'}>
