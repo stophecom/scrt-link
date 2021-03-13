@@ -31,7 +31,7 @@ interface AliasViewProps {
   error?: string
   message?: string
   isEncryptedWithUserPassword?: boolean
-  type?: SecretType
+  secretType?: SecretType
 }
 interface PasswordForm {
   password: string
@@ -49,7 +49,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   error,
   message = '',
   isEncryptedWithUserPassword = false,
-  type,
+  secretType,
 }) => {
   const classes = useStyles()
 
@@ -71,7 +71,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   }
 
   // If URL is in plain text, redirect early
-  if (!isEncryptedWithUserPassword && type === 'url') {
+  if (!isEncryptedWithUserPassword && secretType === 'url') {
     pageRedirect(message)
   }
 
@@ -86,7 +86,7 @@ const AliasView: NextPage<AliasViewProps> = ({
         setSuccess(true)
         setLocalMessage(result)
 
-        if (type === 'url') {
+        if (secretType === 'url') {
           pageRedirect(result)
         }
       }
@@ -109,7 +109,7 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   return (
     <>
-      <Page title={`Your secret ${type}`} noindex>
+      <Page title={`Your secret ${secretType}`} noindex>
         <meta name="robots" content="noindex,nofollow" />
         <Box mb={3}>
           {localMessage && (
@@ -173,9 +173,9 @@ AliasView.getInitialProps = async ({ res, query }) => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/shorturl?alias=${alias}`,
     )
     const { data } = response
-    const { type, message, isEncryptedWithUserPassword } = data
+    const { secretType, message, isEncryptedWithUserPassword } = data
 
-    return { type, message: decodeURIComponent(message), isEncryptedWithUserPassword }
+    return { secretType, message: decodeURIComponent(message), isEncryptedWithUserPassword }
   } catch (err) {
     const { response } = err
     if (response) {

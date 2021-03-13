@@ -14,7 +14,7 @@ const passwordValidation = {
 }
 
 const typeValidation = {
-  type: Yup.mixed<SecretType>().oneOf(secretTypes),
+  secretType: Yup.mixed<SecretType>().oneOf(secretTypes),
 }
 
 const urlValidation = {
@@ -35,9 +35,9 @@ const schemataMap = {
   message: messageValidation,
 }
 
-export const getValidationSchemaByType = (type: SecretType, hasPassword = false) =>
+export const getValidationSchemaByType = (secretType: SecretType, hasPassword = false) =>
   Yup.object().shape<FormInput>({
-    ...schemataMap[type],
+    ...schemataMap[secretType],
     ...(hasPassword ? passwordValidation : {}),
     ...typeValidation,
   })

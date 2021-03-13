@@ -20,7 +20,7 @@ export interface MessageInput extends Password {
 }
 
 export interface FormInput extends MessageInput {
-  type: SecretType
+  secretType: SecretType
   customAlias?: string
 }
 

@@ -37,7 +37,7 @@ type UrlFormValues = FormInput
 const initialValues: UrlFormValues = {
   customAlias: '',
   message: '',
-  type: 'message',
+  secretType: 'message',
 }
 
 export interface State {
@@ -185,7 +185,7 @@ const HomeView = () => {
               return (
                 <>
                   <Form noValidate>
-                    <Field type="hidden" name="type" value={secretType} />
+                    <Field type="hidden" name="secretType" value={secretType} />
 
                     {secretType === 'url' && (
                       <>
@@ -257,7 +257,7 @@ const HomeView = () => {
                         <BaseButton
                           className={classes.submitButton}
                           onClick={() => {
-                            setFieldValue('type', secretType)
+                            setFieldValue('secretType', secretType)
                           }}
                           type="submit"
                           color="primary"

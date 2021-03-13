@@ -27,7 +27,7 @@ const extractGetInput = async (req: NextApiRequest) => {
 }
 
 const extractPostInput = async (req: NextApiRequest) => {
-  const { type, isEncryptedWithUserPassword } = req.body
+  const { secretType, isEncryptedWithUserPassword } = req.body
 
   try {
     await apiValidationSchemaByType.validate(req.body)
@@ -41,7 +41,7 @@ const extractPostInput = async (req: NextApiRequest) => {
 
   message = message.trim()
   message = encodeURIComponent(message)
-  return { type, message, customAlias, isEncryptedWithUserPassword }
+  return { secretType, message, customAlias, isEncryptedWithUserPassword }
 }
 
 const handler: NextApiHandler = async (req, res) => {
@@ -67,22 +67,25 @@ const handler: NextApiHandler = async (req, res) => {
       }
 
       res.json({
-        type: shortUrl.type,
+        secretType: shortUrl.secretType,
         message: decryptAES(shortUrl.message),
         isEncryptedWithUserPassword: shortUrl.isEncryptedWithUserPassword,
       })
       break
     case 'POST':
-      const { type, message, customAlias, isEncryptedWithUserPassword } = await extractPostInput(
-        req,
-      )
+      const {
+        secretType,
+        message,
+        customAlias,
+        isEncryptedWithUserPassword,
+      } = await extractPostInput(req)
 
       // Encrypt sensitive information
       const encryptAES = (string: string) =>
         AES.encrypt(string, `${process.env.AES_KEY_256}`).toString()
 
       const shortened = new models.ShortUrl({
-        type,
+        secretType,
         message: encryptAES(message),
         alias: customAlias || nanoid(urlAliasLength),
         isEncryptedWithUserPassword,

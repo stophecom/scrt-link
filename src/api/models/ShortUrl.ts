@@ -4,7 +4,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 import { maxCustomAliasLength, maxMessageLength } from '@/constants'
 import { BaseDocumentData } from './types'
 interface ShortUrlFields {
-  type: string
+  secretType: string
   alias: string
   message: string
   isEncryptedWithUserPassword: boolean
@@ -16,7 +16,7 @@ type ShortUrlDocument = mongoose.Document & ShortUrlFields
 
 const shortUrlSchema = new mongoose.Schema(
   {
-    type: { type: String, required: true, trim: true },
+    secretType: { type: String, required: true, trim: true },
     alias: {
       type: String,
       required: true,
