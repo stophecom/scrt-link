@@ -12,6 +12,11 @@
 /.next/
 /out/
 
+# next-pwa
+/public/sw.js
+/public/workbox*
+
+
 # production
 /build
 
@@ -26,4 +31,5 @@ yarn-error.log*
 # local env files
 .env.*
 !.env.example
+
 
