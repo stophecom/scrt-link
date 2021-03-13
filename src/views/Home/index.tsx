@@ -209,7 +209,7 @@ const HomeView = () => {
                         </Box>
                       </>
                     )}
-                    {secretType === 'message' && (
+                    {['message', 'neogram'].includes(secretType) && (
                       <>
                         <Box position="relative" mb={2}>
                           <BaseTextField
@@ -227,9 +227,7 @@ const HomeView = () => {
                         </Box>
                       </>
                     )}
-                    {/* {secretType === 'password' && (
-                        <BaseTextField name="message" label="Password" />
-                      )} */}
+
                     <Collapse in={hasPassword}>
                       <Box mb={2}>
                         <BasePasswordField

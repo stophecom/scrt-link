@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from 'react'
 import { NextPage } from 'next'
 import axios from 'axios'
-import { Box, CircularProgress } from '@material-ui/core'
+import { Box, CircularProgress, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
 import { AES, enc } from 'crypto-js'
 import { parse } from 'uri-js'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
+import Windups from '@/components/Windups'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
 import { isServer } from '@/utils'
@@ -39,7 +40,7 @@ interface PasswordForm {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    alert: {
+    break: {
       wordBreak: 'break-word',
     },
   }),
@@ -107,17 +108,29 @@ const AliasView: NextPage<AliasViewProps> = ({
     )
   }
 
+  const needsPassword = isEncryptedWithUserPassword && !success
+  const pageTitle = needsPassword
+    ? 'Enter password'
+    : secretType === 'message'
+    ? `Your secret message`
+    : ''
+
   return (
     <>
-      <Page title={`Your secret ${secretType}`} noindex>
-        <meta name="robots" content="noindex,nofollow" />
-        <Box mb={3}>
-          {localMessage && (
-            <Alert className={classes.alert} severity={success ? 'success' : 'info'}>
-              {localMessage}
-            </Alert>
-          )}
-        </Box>
+      <Page title={pageTitle} noindex>
+        {!needsPassword && localMessage && (
+          <Box mb={3}>
+            {secretType === 'neogram' ? (
+              <Typography variant="subtitle1" className={classes.break}>
+                <Windups message={localMessage} />
+              </Typography>
+            ) : (
+              <Alert className={classes.break} severity={success ? 'success' : 'info'}>
+                {localMessage}
+              </Alert>
+            )}
+          </Box>
+        )}
 
         {isEncryptedWithUserPassword && !success && (
           <Formik<PasswordForm>

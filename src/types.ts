@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-export type SecretType = 'message' | 'url'
+export type SecretType = 'message' | 'url' | 'neogram'
 
 export interface Password {
   password?: string

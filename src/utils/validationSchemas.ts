@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import validator from 'validator'
 import { maxCustomAliasLength, maxMessageLength } from '@/constants'
 
-const secretTypes = ['message' as SecretType, 'url' as SecretType]
+const secretTypes = ['message' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 
 const messageValidation = {
   message: Yup.string().label('Message').required().min(1).max(maxMessageLength).trim(),
