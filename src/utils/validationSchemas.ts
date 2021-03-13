@@ -33,6 +33,7 @@ const urlValidation = {
 const schemataMap = {
   url: urlValidation,
   message: messageValidation,
+  neogram: messageValidation,
 }
 
 export const getValidationSchemaByType = (secretType: SecretType, hasPassword = false) =>
