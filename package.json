@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "postbuild": "node ./sitemapGenerator.js",
+    "sitemap": "node ./sitemapGenerator.js",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --fix --max-warnings 0 --ext .js,.jsx,.ts,.tsx ."
@@ -40,6 +40,7 @@
     "styled-components": "^5.2.1",
     "uri-js": "^4.4.0",
     "validator": "^13.5.2",
+    "windups": "^1.1.9",
     "yup": "^0.29.3"
   },
   "devDependencies": {
