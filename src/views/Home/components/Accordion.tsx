@@ -35,7 +35,7 @@ const SimpleAccordion = () => {
         {faq.map(({ heading, body }, index) => (
           <Accordion
             key={index}
-            onChange={(event, expanded) => {
+            onChange={(_event, expanded) => {
               if (expanded) {
                 plausible('FAQAccordion', { props: { question: heading } })
               }
