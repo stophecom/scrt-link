@@ -7,6 +7,8 @@ import { Formik, Form, FormikConfig } from 'formik'
 import { AES, enc } from 'crypto-js'
 import { parse } from 'uri-js'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import ReplyIcon from '@material-ui/icons/Reply'
+import { usePlausible } from 'next-plausible'
 
 import Windups from '@/components/Windups'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
@@ -53,6 +55,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   secretType,
 }) => {
   const classes = useStyles()
+  const plausible = usePlausible()
 
   const [localMessage, setLocalMessage] = useState(message)
   const [success, setSuccess] = useState(false)
@@ -112,7 +115,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   const pageTitle = needsPassword
     ? 'Enter password'
     : secretType === 'message'
-    ? `Your secret message`
+    ? `Your secret message:`
     : ''
 
   return (
@@ -129,6 +132,19 @@ const AliasView: NextPage<AliasViewProps> = ({
                 {localMessage}
               </Alert>
             )}
+
+            <Box mt={3}>
+              <BaseButton
+                href="/"
+                color="primary"
+                variant="contained"
+                size="large"
+                startIcon={<ReplyIcon />}
+                onClick={() => plausible('ReplyButton')}
+              >
+                Reply with a secret
+              </BaseButton>
+            </Box>
           </Box>
         )}
 
