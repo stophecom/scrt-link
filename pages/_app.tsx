@@ -71,8 +71,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           async
           defer
           data-domain="scrt.link"
-          src="https://plausible.io/js/plausible.js"
+          src="https://stats.scrt.link/js/index.js"
         ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`,
+          }}
+        />
 
         <meta name="twitter:card" content="summary" key="twitter:card" />
         <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
