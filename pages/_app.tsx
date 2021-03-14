@@ -67,6 +67,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <>
       <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
       <Head>
+        <script
+          async
+          defer
+          data-domain="scrt.link"
+          src="https://plausible.io/js/plausible.js"
+        ></script>
+
         <meta name="twitter:card" content="summary" key="twitter:card" />
         <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
 
