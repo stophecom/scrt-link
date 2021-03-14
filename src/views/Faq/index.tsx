@@ -27,7 +27,7 @@ const jsonLd = {
       name: heading,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'foo' + answer,
+        text: answer,
       },
     }
   }),
