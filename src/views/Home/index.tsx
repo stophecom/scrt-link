@@ -130,13 +130,15 @@ const HomeView = () => {
     const data = {
       ...omit(['password'], values),
       message: password && message ? AES.encrypt(message, password).toString() : message,
-      isEncryptedWithUserPassword: !!values.password,
+      isEncryptedWithUserPassword: !!password,
     }
     try {
       const response = await axios.post('/api/shorturl', data)
       dispatch(doSuccess(response))
 
-      plausible('SecretCreation', { props: secretType })
+      plausible('SecretCreation', {
+        props: { secretType, messageLength: message.length, withPassword: !!password },
+      })
       formikHelpers.resetForm()
     } catch (error) {
       dispatch(doError(error))
