@@ -6,6 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Box } from '@material-ui/core'
+import { usePlausible } from 'next-plausible'
 
 import Markdown from '@/components/Markdown'
 
@@ -26,12 +27,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SimpleAccordion = () => {
   const classes = useStyles()
+  const plausible = usePlausible()
 
   return (
     <Box py={3}>
       <div className={classes.root}>
         {faq.map(({ heading, body }, index) => (
-          <Accordion key={index}>
+          <Accordion
+            key={index}
+            onChange={(event, expanded) => {
+              if (expanded) {
+                plausible('FAQAccordion', { props: { question: heading } })
+              }
+            }}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`faq-${index}`}
