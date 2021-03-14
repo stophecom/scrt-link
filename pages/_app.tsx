@@ -6,6 +6,7 @@ import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import Head from 'next/head'
+import PlausibleProvider from 'next-plausible'
 
 import theme from '@/theme'
 
@@ -64,21 +65,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   return (
-    <>
+    <PlausibleProvider domain="scrt.link" customDomain="https://stats.scrt.link">
       <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
       <Head>
-        <script
-          async
-          defer
-          data-domain="scrt.link"
-          src="https://stats.scrt.link/js/index.js"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`,
-          }}
-        />
-
         <meta name="twitter:card" content="summary" key="twitter:card" />
         <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
 
@@ -104,7 +93,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </Layout>
       </BaseThemeProvider>
-    </>
+    </PlausibleProvider>
   )
 }
 

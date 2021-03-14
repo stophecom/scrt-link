@@ -9,6 +9,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { AES } from 'crypto-js'
+import { usePlausible } from 'next-plausible'
 
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
@@ -117,6 +118,7 @@ const initialState: State = {
 
 const HomeView = () => {
   const classes = useStyles()
+  const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = React.useState<SecretType>('message')
 
@@ -133,6 +135,8 @@ const HomeView = () => {
     try {
       const response = await axios.post('/api/shorturl', data)
       dispatch(doSuccess(response))
+
+      plausible('SecretCreation', { props: secretType })
       formikHelpers.resetForm()
     } catch (error) {
       dispatch(doError(error))
