@@ -6,17 +6,31 @@ import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import { faq } from '@/data/faq'
 
+import remark from 'remark'
+import strip from 'strip-markdown'
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faq.map(({ heading, body }, index) => ({
-    '@type': 'Question',
-    name: heading,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: <Markdown source={body} />,
-    },
-  })),
+  mainEntity: faq.map(({ heading, body }) => {
+    let answer = ''
+
+    remark()
+      .use(strip)
+      .process(body, function (err, file) {
+        if (err) throw err
+        answer = String(file)
+      })
+
+    return {
+      '@type': 'Question',
+      name: heading,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'foo' + answer,
+      },
+    }
+  }),
 }
 
 const Faq = () => (
