@@ -65,7 +65,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   return (
-    <PlausibleProvider domain="scrt.link" customDomain="https://stats.scrt.link">
+    <PlausibleProvider domain="scrt.link" customDomain="https://stats.scrt.link" exclude="/l/*">
       <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
       <Head>
         <meta name="twitter:card" content="summary" key="twitter:card" />
