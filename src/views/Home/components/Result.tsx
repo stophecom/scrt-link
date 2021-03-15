@@ -7,16 +7,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ShareIcon from '@material-ui/icons/Share'
 import Refresh from '@material-ui/icons/Refresh'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { RWebShare } from 'react-web-share'
 
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
-import ShareButtons from './ShareButtons'
-import UrlQrCode from './UrlQrCode'
-import { Bold } from '@/components/StyleUtils'
 import { isServer } from '@/utils'
 import { State } from '../index'
-
-const qrCodeSize = 256
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +29,6 @@ const Result = ({ data, error }: State) => {
   const shortenedUrl = alias ? `${origin}/l/${alias}` : null
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [isShareVisible, setIsShareVisible] = useState(false)
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
@@ -68,18 +63,24 @@ const Result = ({ data, error }: State) => {
                     </BaseButton>
                   </CopyToClipboard>
                 </Box>
-                {isShareVisible || (
-                  <Box>
-                    <BaseButton
-                      startIcon={<ShareIcon />}
-                      size="small"
-                      variant="contained"
-                      onClick={() => setIsShareVisible(true)}
-                    >
+                <Box>
+                  <style
+                    dangerouslySetInnerHTML={{
+                      __html: `.web-share-fade { color: #1b242e; }`,
+                    }}
+                  />
+                  <RWebShare
+                    data={{
+                      text: 'Psssst. Here is a secret.',
+                      url: shortenedUrl,
+                      title: 'Share your secret link:',
+                    }}
+                  >
+                    <BaseButton startIcon={<ShareIcon />} size="small" variant="contained">
                       Share
                     </BaseButton>
-                  </Box>
-                )}
+                  </RWebShare>
+                </Box>
               </Box>
             )}
           </Alert>
@@ -93,16 +94,6 @@ const Result = ({ data, error }: State) => {
               Create new secret
             </BaseButton>
           </Box>
-        </Box>
-      )}
-
-      {shortenedUrl && isShareVisible && (
-        <Box maxWidth={qrCodeSize}>
-          <Typography>
-            <Bold>QR Code:</Bold>
-          </Typography>
-          <UrlQrCode url={shortenedUrl} size={qrCodeSize} />
-          <ShareButtons url={shortenedUrl} />
         </Box>
       )}
     </Spacer>

@@ -4958,6 +4958,11 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-web-share@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/react-web-share/-/react-web-share-1.0.18.tgz#fdf2e789341b04f112ae0a5b380d2c483c20a579"
+  integrity sha512-4xlpjoU8X/M56CqCef9cMd0qMDQJoQETC1JJ7oqhcYZfFQ+JS9zLun8APLw9GCN2sC32rvjFcd/Cry7IqTAU4Q==
+
 react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
