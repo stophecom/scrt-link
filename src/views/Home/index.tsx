@@ -10,6 +10,7 @@ import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { AES } from 'crypto-js'
 import { usePlausible } from 'next-plausible'
+import Alert from '@material-ui/lab/Alert'
 
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
@@ -88,6 +89,9 @@ const reducer = (state: State, action: Action): State => {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    wordBreak: {
+      wordBreak: 'break-word',
+    },
     root: {
       marginBottom: 0,
       width: '100%',
@@ -162,10 +166,22 @@ const HomeView = () => {
     setHasPassword(event.target.checked)
   }
 
-  if (data || error) {
+  if (error) {
+    return (
+      <Page title="An error occured!">
+        <Box mb={3}>
+          <Alert severity="error">
+            <Box className={classes.wordBreak}>{error}</Box>
+          </Alert>
+        </Box>
+      </Page>
+    )
+  }
+
+  if (data) {
     return (
       <Page title="Secret link created!" subtitle="Now share the link with your confidant.">
-        <Result data={data} error={error} />
+        <Result data={data} />
       </Page>
     )
   }
