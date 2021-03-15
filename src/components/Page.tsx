@@ -16,7 +16,7 @@ const Page = ({ title, subtitle, children, ...seoProps }: PageProps) => {
       <Seo title={title} {...seoProps} />
 
       <Box flex={1} marginBottom={9}>
-        <Box pt={3} mb={8}>
+        <Box pt={3} mb={6}>
           <Box mb={2}>
             <Typography variant="h1">{title}</Typography>
           </Box>

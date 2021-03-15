@@ -162,6 +162,14 @@ const HomeView = () => {
     setHasPassword(event.target.checked)
   }
 
+  if (data || error) {
+    return (
+      <Page title="Secret link created!" subtitle="Now share the link with your confidant.">
+        <Result data={data} error={error} />
+      </Page>
+    )
+  }
+
   return (
     <Page
       title="Share a secret"
@@ -174,118 +182,108 @@ const HomeView = () => {
         </>
       }
     >
-      {data || error ? (
-        <Result data={data} error={error} />
-      ) : (
-        <Fragment>
-          <Box mb={3}>
-            <TabsMenu handleChange={handleMenuChange} value={secretType} />
-          </Box>
-          <Formik<UrlFormValues>
-            initialValues={initialValues}
-            validationSchema={getValidationSchemaByType(secretType, hasPassword)}
-            validateOnMount
-            onSubmit={handleSubmit}
-          >
-            {({ isValid, isSubmitting, setFieldValue, values }) => {
-              return (
-                <>
-                  <Form noValidate>
-                    <Field type="hidden" name="secretType" value={secretType} />
+      <Box mb={1}>
+        <TabsMenu handleChange={handleMenuChange} value={secretType} />
+      </Box>
+      <Formik<UrlFormValues>
+        initialValues={initialValues}
+        validationSchema={getValidationSchemaByType(secretType, hasPassword)}
+        validateOnMount
+        onSubmit={handleSubmit}
+      >
+        {({ isValid, isSubmitting, setFieldValue, values }) => {
+          return (
+            <>
+              <Form noValidate>
+                <Field type="hidden" name="secretType" value={secretType} />
 
-                    {secretType === 'url' && (
-                      <>
-                        <Box mb={2}>
-                          <BaseTextField
-                            name="message"
-                            label="URL"
-                            required
-                            autoFocus
-                            InputProps={{
-                              startAdornment: (
-                                <InputAdornment position="start">
-                                  <LinkIcon />
-                                </InputAdornment>
-                              ),
-                            }}
-                          />
-                        </Box>
-                        <Box mb={2}>
-                          <BaseTextField name="customAlias" label="Custom Alias (Optional)" />
-                        </Box>
-                      </>
-                    )}
-                    {['message', 'neogram'].includes(secretType) && (
-                      <>
-                        <Box position="relative" mb={2}>
-                          <BaseTextField
-                            name="message"
-                            multiline
-                            required
-                            rows={3}
-                            rowsMax={7}
-                            label="Message"
-                            placeholder="Your secret message, password, private note…"
-                          />
-                          <small className={classes.counter}>
-                            {maxMessageLength - values.message.length}
-                          </small>
-                        </Box>
-                      </>
-                    )}
-
-                    <Collapse in={hasPassword}>
-                      <Box mb={2}>
-                        <BasePasswordField
-                          required
-                          className={clsx(classes.root)}
-                          name="password"
-                        />
-                      </Box>
-                    </Collapse>
-                    <Box display="flex" className={classes.formFooter}>
-                      <Box mb={1}>
-                        <FormControlLabel
-                          control={
-                            <Switch
-                              checked={hasPassword}
-                              onChange={handleSwitchChange}
-                              name="isEncryptedWithUserPassword"
-                              color="primary"
-                            />
-                          }
-                          label="Include password"
-                        />
-                      </Box>
-                      <Box mb={1}>
-                        <BaseButton
-                          className={classes.submitButton}
-                          onClick={() => {
-                            setFieldValue('secretType', secretType)
-                          }}
-                          type="submit"
-                          color="primary"
-                          variant="contained"
-                          size="large"
-                          loading={isSubmitting}
-                          disabled={!isValid}
-                        >
-                          Create secret link
-                        </BaseButton>
-                      </Box>
+                {secretType === 'url' && (
+                  <>
+                    <Box mb={2}>
+                      <BaseTextField
+                        name="message"
+                        label="URL"
+                        required
+                        autoFocus
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <LinkIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
                     </Box>
-                  </Form>
-                </>
-              )
-            }}
-          </Formik>
+                    <Box mb={2}>
+                      <BaseTextField name="customAlias" label="Custom Alias (Optional)" />
+                    </Box>
+                  </>
+                )}
+                {['message', 'neogram'].includes(secretType) && (
+                  <>
+                    <Box position="relative" mb={2}>
+                      <BaseTextField
+                        name="message"
+                        multiline
+                        required
+                        rows={3}
+                        rowsMax={7}
+                        label="Message"
+                        placeholder="Your secret message, password, private note…"
+                      />
+                      <small className={classes.counter}>
+                        {maxMessageLength - values.message.length}
+                      </small>
+                    </Box>
+                  </>
+                )}
 
-          <Box pt={15}>
-            <Typography variant="h2">How it works</Typography>
-            <Accordion />
-          </Box>
-        </Fragment>
-      )}
+                <Collapse in={hasPassword}>
+                  <Box mb={2}>
+                    <BasePasswordField required className={clsx(classes.root)} name="password" />
+                  </Box>
+                </Collapse>
+                <Box display="flex" className={classes.formFooter}>
+                  <Box mb={1}>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={hasPassword}
+                          onChange={handleSwitchChange}
+                          name="isEncryptedWithUserPassword"
+                          color="primary"
+                        />
+                      }
+                      label="Include password"
+                    />
+                  </Box>
+                  <Box mb={1}>
+                    <BaseButton
+                      className={classes.submitButton}
+                      onClick={() => {
+                        setFieldValue('secretType', secretType)
+                      }}
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      size="large"
+                      loading={isSubmitting}
+                      disabled={!isValid}
+                    >
+                      Create secret link
+                    </BaseButton>
+                  </Box>
+                </Box>
+              </Form>
+            </>
+          )
+        }}
+      </Formik>
+
+      <Box pt={15}>
+        <Typography variant="h2">How it works</Typography>
+        <Accordion />
+      </Box>
     </Page>
   )
 }

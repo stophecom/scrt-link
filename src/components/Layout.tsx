@@ -20,7 +20,7 @@ const MainContent = styled.main`
   margin: 0 auto;
   max-width: 780px;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(3)}px;
+  padding: ${({ theme }) => theme.spacing(2)}px;
 `
 
 const LinkStyled = styled(Link)`

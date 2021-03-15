@@ -1,11 +1,12 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
 const pink = '#ff0083'
+const bg = '#1b242e'
 
 let theme = createMuiTheme({
   palette: {
     type: 'dark',
-    background: { paper: '#1b242e', default: '#1b242e' },
+    background: { paper: '#151c24', default: bg },
     primary: {
       main: pink,
     },
@@ -16,7 +17,7 @@ let theme = createMuiTheme({
       primary: '#dddddd',
     },
     secondary: {
-      main: '#1b242e',
+      main: bg,
     },
   },
   typography: {
@@ -24,6 +25,7 @@ let theme = createMuiTheme({
     h1: { fontFamily: 'Poppins, sans-serif', fontSize: '70%', color: pink },
     h2: { fontFamily: 'Poppins, sans-serif', fontSize: '40%' },
     h3: { fontFamily: 'Poppins, sans-serif', fontSize: '30%', marginBottom: '.2em' },
+    h4: { fontFamily: 'IBM Plex Sans, sans-serif', fontSize: '25%', fontWeight: 'normal' },
     subtitle1: { fontSize: '40%' },
   },
 })
