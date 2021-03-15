@@ -120,6 +120,41 @@ const initialState: State = {
   error: undefined,
 }
 
+type SecretTypeConfig = {
+  label?: string
+  tabLabel?: string
+  placeholder?: string
+}
+
+type ObjKey = { [key: string]: SecretTypeConfig }
+
+export const secretTypesMap = {
+  message: {
+    label: 'Secret Message',
+    tabLabel: 'Message',
+    placeholder: 'Your secret message, password, private key, etc.',
+  },
+  url: {
+    label: 'URL',
+    tabLabel: 'Redirect URL',
+    placeholder: 'e.g. https://www.example.com',
+  },
+  neogram: {
+    label: 'Neogram',
+    tabLabel: 'Neogram™',
+    placeholder: 'Wake up Neo…',
+  },
+} as ObjKey
+
+const tabsMenu = Object.keys(secretTypesMap).map((item) => {
+  const secretTypeItem = secretTypesMap[item]
+
+  return {
+    label: secretTypeItem.tabLabel as string,
+    key: item,
+  }
+})
+
 const HomeView = () => {
   const classes = useStyles()
   const plausible = usePlausible()
@@ -166,6 +201,10 @@ const HomeView = () => {
     setHasPassword(event.target.checked)
   }
 
+  const getFormFieldConfigBySecretType = (secretType: SecretType) => {
+    return secretTypesMap[secretType]
+  }
+
   if (error) {
     return (
       <Page title="An error occured!">
@@ -198,8 +237,12 @@ const HomeView = () => {
         </>
       }
     >
-      <Box mb={1}>
-        <TabsMenu handleChange={handleMenuChange} value={secretType} />
+      <Box mb={2}>
+        <TabsMenu
+          handleChange={handleMenuChange}
+          value={secretType}
+          tabsMenu={Object.values(tabsMenu)}
+        />
       </Box>
       <Formik<UrlFormValues>
         initialValues={initialValues}
@@ -244,8 +287,8 @@ const HomeView = () => {
                         required
                         rows={3}
                         rowsMax={7}
-                        label="Message"
-                        placeholder="Your secret message, password, private note…"
+                        label={getFormFieldConfigBySecretType(secretType).label}
+                        placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                       />
                       <small className={classes.counter}>
                         {maxMessageLength - values.message.length}
@@ -270,7 +313,7 @@ const HomeView = () => {
                           color="primary"
                         />
                       }
-                      label="Include password"
+                      label="Include Password"
                     />
                   </Box>
                   <Box mb={1}>
