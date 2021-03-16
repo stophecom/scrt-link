@@ -55,6 +55,7 @@ const Result = ({ data }: Pick<State, 'data'>) => {
                   <Box mx={1}>
                     <CopyToClipboard
                       text={shortenedUrl}
+                      options={{ format: 'text/plain' }}
                       onCopy={() => {
                         setHasCopied(true)
                         setTimeout(() => {
