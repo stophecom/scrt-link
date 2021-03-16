@@ -13,6 +13,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: faq.map(({ heading, body }) => {
+    let question = ''
     let answer = ''
 
     remark()
@@ -22,9 +23,16 @@ const jsonLd = {
         answer = String(file)
       })
 
+    remark()
+      .use(strip)
+      .process(question, function (err, file) {
+        if (err) throw err
+        question = String(file)
+      })
+
     return {
       '@type': 'Question',
-      name: heading,
+      name: question,
       acceptedAnswer: {
         '@type': 'Answer',
         text: answer,

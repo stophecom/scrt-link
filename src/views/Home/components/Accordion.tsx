@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
     heading: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightBold,
+      '& p': {
+        marginBottom: 0,
+      },
     },
   }),
 )
@@ -46,7 +49,7 @@ const SimpleAccordion = () => {
               aria-controls={`faq-${index}`}
               id={`faq-${index}`}
             >
-              <Typography className={classes.heading}>{heading}</Typography>
+              <Markdown className={classes.heading} source={heading} />
             </AccordionSummary>
             <AccordionDetails>
               <Markdown source={body} />

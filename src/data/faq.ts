@@ -9,8 +9,24 @@ After you submit the form your secret will be encrypted and stored. You can now 
 For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
   },
   {
+    heading: 'What is the difference between *Message*, *URL Redirect* and *Neogram™*?',
+    body: `
+- **Message**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recepient has the option to copy the secret.
+- **URL Redirect**: Think about it as a URL-shortener where the generated link only works once.
+- **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential mission instructions, confessions or secret love letters.
+    `,
+  },
+  {
     heading: 'Why should I use this service?',
-    body: `Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, Inbox, or any other communications channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.`,
+    body: `
+Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, Inbox, or any other communications channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.
+
+**Use this service in case you want to…**
+- Share your Netflix password with a family member.
+- Send a private message from a friends phone.
+- Confess to a secret crush without the fear of being exposed.
+- Transmit information that could be used against you.
+`,
   },
   {
     heading: 'How secure is your service?',
@@ -23,7 +39,7 @@ For **extra security**, you can include a password that will be needed to decryp
   },
   {
     heading: 'What is the maximum message size?',
-    body: `The current limit is 280 characters.`,
+    body: `The current limit is 280 characters. Need more? Get in touch!`,
   },
   {
     heading: 'Can the recepient save the message?',

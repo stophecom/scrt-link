@@ -23,6 +23,9 @@ const StyledMarkdown = styled(Markdown)`
   p {
     margin-top: 0;
   }
+  ul li {
+    margin-bottom: 0.5em;
+  }
   a {
     color: ${({ theme }) => theme.palette.primary.main};
   }
