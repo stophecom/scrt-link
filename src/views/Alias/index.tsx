@@ -13,8 +13,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
+import { useWindupString, WindupChildren, Pause, Pace } from 'windups'
 
-import Windups from '@/components/Windups'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
 import { isServer } from '@/utils'
@@ -52,6 +52,13 @@ const useStyles = makeStyles((theme: Theme) =>
     message: {
       fontSize: '1.1rem',
     },
+    replyButton: {
+      opacity: 0,
+
+      '&.visible': {
+        opacity: 1,
+      },
+    },
   }),
 )
 
@@ -67,6 +74,33 @@ const AliasView: NextPage<AliasViewProps> = ({
   const [hasCopied, setHasCopied] = useState(false)
   const [localMessage, setLocalMessage] = useState(message)
   const [success, setSuccess] = useState(false)
+  const [isNeogramFinished, setIsNeogramFinished] = useState(false)
+  const [text] = useWindupString(localMessage, {
+    pace: (char) => (char === ' ' ? 600 : 40),
+    onFinished: () => setTimeout(() => setIsNeogramFinished(true), 1000),
+  })
+
+  const SelfDestructionSequence = () => {
+    return (
+      <WindupChildren onFinished={() => setTimeout(() => window.location.reload(), 500)}>
+        {'This message will self-destruct in five seconds!'}
+        <br />
+        <Pause ms={1000} />
+        {'5…'}
+        <Pause ms={1000} />
+        {'4…'}
+        <Pause ms={1000} />
+        {'3…'}
+        <Pause ms={1000} />
+        {'2…'}
+        <Pause ms={1000} />
+        {'1…'}
+        <br />
+        <Pause ms={1000} />
+        {'💥'}
+      </WindupChildren>
+    )
+  }
 
   const initialValues: PasswordForm = {
     password: '',
@@ -121,61 +155,71 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   const needsPassword = isEncryptedWithUserPassword && !success
 
+  const pageTitle = secretType === 'message' ? 'Your secret:' : ''
   const pageSubTitle = needsPassword ? 'Enter password to descypt your secret:' : ''
   return (
     <>
-      <Page title="Your secret:" subtitle={pageSubTitle} noindex>
+      <Page title={pageTitle} subtitle={pageSubTitle} noindex>
         {!needsPassword && localMessage && (
           <Box mb={3}>
             {secretType === 'neogram' ? (
-              <Typography variant="subtitle1" className={classes.break}>
-                <Windups message={localMessage} />
-              </Typography>
+              <>
+                <Typography variant="subtitle1" className={classes.break}>
+                  {text}
+                </Typography>
+                {isNeogramFinished && (
+                  <Typography variant="subtitle1" color="primary">
+                    <SelfDestructionSequence />
+                  </Typography>
+                )}
+              </>
             ) : (
-              <Paper elevation={3} className={clsx(classes.break, classes.message)}>
-                <Box px={4} pt={4} pb={2}>
-                  {localMessage}
-                  <Box pt={2} display="flex" justifyContent="flex-end">
-                    <Box mr={2}>
-                      <BaseButton variant="text" color="primary" size="small" href="/">
-                        Destroy secret
-                      </BaseButton>
-                    </Box>
-                    <CopyToClipboard
-                      text={localMessage}
-                      onCopy={() => {
-                        setHasCopied(true)
-                        setTimeout(() => {
-                          setHasCopied(false)
-                        }, 2000)
-                      }}
-                    >
-                      <BaseButton
-                        startIcon={<FileCopyOutlinedIcon />}
-                        variant="contained"
-                        color="primary"
-                        size="small"
+              <>
+                <Paper elevation={3} className={clsx(classes.break, classes.message)}>
+                  <Box px={4} pt={4} pb={2}>
+                    {localMessage}
+                    <Box pt={2} display="flex" justifyContent="flex-end">
+                      <Box mr={2}>
+                        <BaseButton variant="text" color="primary" size="small" href="/">
+                          Destroy secret
+                        </BaseButton>
+                      </Box>
+                      <CopyToClipboard
+                        text={localMessage}
+                        onCopy={() => {
+                          setHasCopied(true)
+                          setTimeout(() => {
+                            setHasCopied(false)
+                          }, 2000)
+                        }}
                       >
-                        {hasCopied ? 'Copied' : 'Copy'}
-                      </BaseButton>
-                    </CopyToClipboard>
+                        <BaseButton
+                          startIcon={<FileCopyOutlinedIcon />}
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                        >
+                          {hasCopied ? 'Copied' : 'Copy'}
+                        </BaseButton>
+                      </CopyToClipboard>
+                    </Box>
                   </Box>
-                </Box>
-              </Paper>
-            )}
+                </Paper>
 
-            <Box mt={3}>
-              <BaseButton
-                href="/"
-                color="primary"
-                variant="contained"
-                size="large"
-                startIcon={<ReplyIcon />}
-                onClick={() => plausible('ReplyButton')}
-              >
-                Reply with a secret
-              </BaseButton>
-            </Box>
+                <Box mt={3}>
+                  <BaseButton
+                    href="/"
+                    color="primary"
+                    variant="contained"
+                    size="large"
+                    startIcon={<ReplyIcon />}
+                    onClick={() => plausible('ReplyButton')}
+                  >
+                    Reply with a secret
+                  </BaseButton>
+                </Box>
+              </>
+            )}
           </Box>
         )}
 
