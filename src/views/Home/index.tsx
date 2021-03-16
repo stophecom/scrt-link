@@ -219,7 +219,10 @@ const HomeView = () => {
 
   if (data) {
     return (
-      <Page title="Secret link created!" subtitle="Now share the link with your confidant.">
+      <Page
+        title="Success!"
+        subtitle="The secret link has been created - now share it with your confidant."
+      >
         <Result data={data} />
       </Page>
     )

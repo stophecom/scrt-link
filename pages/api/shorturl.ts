@@ -56,7 +56,7 @@ const handler: NextApiHandler = async (req, res) => {
       if (!shortUrl) {
         throw createError(
           404,
-          `URL not found - This usually means your secret link has already been visited.`,
+          `URL not found - This usually means the secret link has already been visited. The secret has been destroyed.`,
         )
       }
 

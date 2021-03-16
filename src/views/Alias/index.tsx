@@ -9,6 +9,10 @@ import { parse } from 'uri-js'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import ReplyIcon from '@material-ui/icons/Reply'
 import { usePlausible } from 'next-plausible'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
+import Paper from '@material-ui/core/Paper'
+import clsx from 'clsx'
 
 import Windups from '@/components/Windups'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
@@ -45,6 +49,9 @@ const useStyles = makeStyles((theme: Theme) =>
     break: {
       wordBreak: 'break-word',
     },
+    message: {
+      fontSize: '1.1rem',
+    },
   }),
 )
 
@@ -57,6 +64,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   const classes = useStyles()
   const plausible = usePlausible()
 
+  const [hasCopied, setHasCopied] = useState(false)
   const [localMessage, setLocalMessage] = useState(message)
   const [success, setSuccess] = useState(false)
 
@@ -112,15 +120,11 @@ const AliasView: NextPage<AliasViewProps> = ({
   }
 
   const needsPassword = isEncryptedWithUserPassword && !success
-  const pageTitle = needsPassword
-    ? 'Enter password'
-    : secretType === 'message'
-    ? `Your secret message:`
-    : ''
 
+  const pageSubTitle = needsPassword ? 'Enter password to descypt your secret:' : ''
   return (
     <>
-      <Page title={pageTitle} noindex>
+      <Page title="Your secret:" subtitle={pageSubTitle} noindex>
         {!needsPassword && localMessage && (
           <Box mb={3}>
             {secretType === 'neogram' ? (
@@ -128,9 +132,36 @@ const AliasView: NextPage<AliasViewProps> = ({
                 <Windups message={localMessage} />
               </Typography>
             ) : (
-              <Alert className={classes.break} severity={success ? 'success' : 'info'}>
-                {localMessage}
-              </Alert>
+              <Paper elevation={3} className={clsx(classes.break, classes.message)}>
+                <Box px={4} pt={4} pb={2}>
+                  {localMessage}
+                  <Box pt={2} display="flex" justifyContent="flex-end">
+                    <Box mr={2}>
+                      <BaseButton variant="text" color="primary" size="small" href="/">
+                        Destroy secret
+                      </BaseButton>
+                    </Box>
+                    <CopyToClipboard
+                      text={localMessage}
+                      onCopy={() => {
+                        setHasCopied(true)
+                        setTimeout(() => {
+                          setHasCopied(false)
+                        }, 2000)
+                      }}
+                    >
+                      <BaseButton
+                        startIcon={<FileCopyOutlinedIcon />}
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                      >
+                        {hasCopied ? 'Copied' : 'Copy'}
+                      </BaseButton>
+                    </CopyToClipboard>
+                  </Box>
+                </Box>
+              </Paper>
             )}
 
             <Box mt={3}>
