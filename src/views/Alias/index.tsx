@@ -13,7 +13,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
-import { WindupChildren, Pause, Pace } from 'windups'
+import { WindupChildren, Pause } from 'windups'
 
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
@@ -78,7 +78,6 @@ const AliasView: NextPage<AliasViewProps> = ({
   const SelfDestructionSequence = () => {
     return (
       <WindupChildren onFinished={() => setTimeout(() => window.location.reload(), 500)}>
-        <Pace fn={(char) => (char === ' ' ? 600 : 40)} />
         <Typography variant="subtitle1" className={classes.break}>
           {localMessage}
         </Typography>
