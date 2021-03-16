@@ -17,7 +17,7 @@ import { State } from '../index'
 const Result = ({ data }: Pick<State, 'data'>) => {
   const alias = data?.alias
   const origin = isServer() ? process.env.NEXT_PUBLIC_BASE_URL : window.location.origin
-  const shortenedUrl = alias ? `${origin}/l/${alias}` : null
+  const shortenedUrl = alias ? `${origin}/l/${alias}`.replace('https://', '') : null // Stripping "https://" will disable link previews in most messaging apps.
 
   const [hasCopied, setHasCopied] = useState(false)
 
