@@ -13,7 +13,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
-import { useWindupString, WindupChildren, Pause, Pace } from 'windups'
+import { WindupChildren, Pause, Pace } from 'windups'
 
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
@@ -74,30 +74,32 @@ const AliasView: NextPage<AliasViewProps> = ({
   const [hasCopied, setHasCopied] = useState(false)
   const [localMessage, setLocalMessage] = useState(message)
   const [success, setSuccess] = useState(false)
-  const [isNeogramFinished, setIsNeogramFinished] = useState(false)
-  const [text] = useWindupString(localMessage, {
-    pace: (char) => (char === ' ' ? 600 : 40),
-    onFinished: () => setTimeout(() => setIsNeogramFinished(true), 1000),
-  })
 
   const SelfDestructionSequence = () => {
     return (
       <WindupChildren onFinished={() => setTimeout(() => window.location.reload(), 500)}>
-        {'This message will self-destruct in five seconds!'}
-        <br />
-        <Pause ms={1000} />
-        {'5…'}
-        <Pause ms={1000} />
-        {'4…'}
-        <Pause ms={1000} />
-        {'3…'}
-        <Pause ms={1000} />
-        {'2…'}
-        <Pause ms={1000} />
-        {'1…'}
-        <br />
-        <Pause ms={1000} />
-        {'💥'}
+        <Pace fn={(char) => (char === ' ' ? 600 : 40)} />
+        <Typography variant="subtitle1" className={classes.break}>
+          {localMessage}
+        </Typography>
+        <Typography variant="subtitle1" color="primary">
+          <Pause ms={2000} />
+          {'This message will self-destruct in five seconds!'}
+          <br />
+          <Pause ms={1000} />
+          {'5…'}
+          <Pause ms={1000} />
+          {'4…'}
+          <Pause ms={1000} />
+          {'3…'}
+          <Pause ms={1000} />
+          {'2…'}
+          <Pause ms={1000} />
+          {'1…'}
+          <br />
+          <Pause ms={1000} />
+          {'💥'}
+        </Typography>
       </WindupChildren>
     )
   }
@@ -163,16 +165,7 @@ const AliasView: NextPage<AliasViewProps> = ({
         {!needsPassword && localMessage && (
           <Box mb={3}>
             {secretType === 'neogram' ? (
-              <>
-                <Typography variant="subtitle1" className={classes.break}>
-                  {text}
-                </Typography>
-                {isNeogramFinished && (
-                  <Typography variant="subtitle1" color="primary">
-                    <SelfDestructionSequence />
-                  </Typography>
-                )}
-              </>
+              <SelfDestructionSequence />
             ) : (
               <>
                 <Paper elevation={3} className={clsx(classes.break, classes.message)}>
