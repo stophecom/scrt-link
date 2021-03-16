@@ -263,7 +263,6 @@ const HomeView = () => {
                         name="message"
                         label="URL"
                         required
-                        autoFocus
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
@@ -299,7 +298,12 @@ const HomeView = () => {
 
                 <Collapse in={hasPassword}>
                   <Box mb={2}>
-                    <BasePasswordField required className={clsx(classes.root)} name="password" />
+                    <BasePasswordField
+                      autoFocus={hasPassword}
+                      required={hasPassword}
+                      className={clsx(classes.root)}
+                      name="password"
+                    />
                   </Box>
                 </Collapse>
                 <Box display="flex" className={classes.formFooter}>

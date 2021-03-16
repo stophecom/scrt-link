@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import IconButton from '@material-ui/core/IconButton'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
@@ -31,6 +31,15 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
   const errorMessage = hasError ? error : undefined
 
   const inputRef = useRef<HTMLInputElement>()
+
+  const { autoFocus } = props
+
+  // To make autoFocus work with Next.js
+  useEffect(() => {
+    if (autoFocus) {
+      inputRef.current?.focus()
+    }
+  }, [autoFocus])
 
   return (
     <FormControl variant="outlined" error={hasError} {...props}>
