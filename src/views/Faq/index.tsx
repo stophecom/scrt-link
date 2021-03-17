@@ -42,7 +42,7 @@ const jsonLd = {
 }
 
 const Faq = () => (
-  <Page title="Frequently Asked Questions">
+  <Page title="FAQ" subtitle="Frequently Asked Questions">
     <Head>
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
