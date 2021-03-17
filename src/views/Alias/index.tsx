@@ -161,7 +161,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   const needsPassword = isEncryptedWithUserPassword && !success
 
   const pageTitle = secretType === 'message' ? 'Your secret:' : ''
-  const pageSubTitle = needsPassword ? 'Enter password to descypt your secret:' : ''
+  const pageSubTitle = needsPassword ? 'Enter password to decrypt your secret:' : ''
   return (
     <>
       <Page title={pageTitle} subtitle={pageSubTitle} noindex>
@@ -264,9 +264,10 @@ const AliasView: NextPage<AliasViewProps> = ({
 // some CORS error is happening while redirecting the request.
 // "getServerSideProps" runs twice and in the end we increase "clicks"
 // twice. So, we are using "getInitialProps" for a while.
-AliasView.getInitialProps = async ({ res, query }) => {
+AliasView.getInitialProps = async ({ req, res, query }) => {
   const { alias } = query
 
+  console.log(req)
   let error
   try {
     const response = await axios.get(
