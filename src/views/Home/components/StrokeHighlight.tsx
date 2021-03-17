@@ -25,7 +25,7 @@ const StrokeWrapper = styled.span`
   display: inline-block;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -4px;
   width: 100%;
 `
 
