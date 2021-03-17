@@ -14,6 +14,7 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import { WindupChildren, Pause } from 'windups'
+import { sha256 } from 'js-sha256'
 
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
@@ -124,7 +125,10 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   const handleSubmit = useCallback<OnSubmit<PasswordForm>>(async (values, formikHelpers) => {
     try {
-      const bytes = AES.decrypt(message, values.password)
+      const { password } = values
+
+      const hash = sha256(password)
+      const bytes = AES.decrypt(message, hash)
 
       const result = bytes.toString(enc.Utf8)
       if (!result) {

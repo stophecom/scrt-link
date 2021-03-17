@@ -8,9 +8,11 @@ import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
-import { AES } from 'crypto-js'
 import { usePlausible } from 'next-plausible'
 import Alert from '@material-ui/lab/Alert'
+
+import { AES } from 'crypto-js'
+import { sha256 } from 'js-sha256'
 
 import { ShortUrlData } from '@/api/models/ShortUrl'
 import BaseTextField from '@/components/BaseTextField'
@@ -164,11 +166,17 @@ const HomeView = () => {
   const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(async (values, formikHelpers) => {
     dispatch(doRequest())
 
-    const { message, password } = values
+    const { password } = values
+    let { message } = values
+
+    if (password) {
+      const hash = sha256(password)
+      message = AES.encrypt(message, hash).toString()
+    }
 
     const data = {
       ...omit(['password'], values),
-      message: password && message ? AES.encrypt(message, password).toString() : message,
+      message,
       isEncryptedWithUserPassword: !!password,
     }
     try {
