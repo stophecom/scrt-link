@@ -45,7 +45,7 @@ const SimpleAccordion = () => {
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              aria-controls={`faq-${index}`}
+              aria-controls={`aria-faq-${index}`}
               id={`faq-${index}`}
             >
               <Markdown className={classes.heading} source={heading} />
