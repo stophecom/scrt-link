@@ -67,6 +67,7 @@ const Layout: React.FC = ({ children }) => {
       <Box display="flex" justifyContent="center" component="footer" p={2}>
         <IconButton component={ExternalLink} href={twitterLink}>
           <TwitterIcon />
+          <SROnly>@stophecom</SROnly>
         </IconButton>
       </Box>
     </Box>
