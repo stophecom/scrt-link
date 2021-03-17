@@ -19,6 +19,7 @@
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/styled-components": "^5.1.5",
     "axios": "^0.21.0",
+    "crawler-user-agents": "^1.0.1",
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "file-saver": "^2.0.5",

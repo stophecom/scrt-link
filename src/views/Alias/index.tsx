@@ -16,6 +16,8 @@ import clsx from 'clsx'
 import { WindupChildren, Pause } from 'windups'
 import { sha256 } from 'js-sha256'
 
+import crawlers from 'crawler-user-agents'
+
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
 import { isServer } from '@/utils'
@@ -267,7 +269,11 @@ const AliasView: NextPage<AliasViewProps> = ({
 AliasView.getInitialProps = async ({ req, res, query }) => {
   const { alias } = query
 
-  console.log(req?.headers)
+  const userAgent = req?.headers['user-agent']
+
+  if (userAgent && crawlers.some(({ pattern }) => RegExp(pattern).test(userAgent))) {
+    return {}
+  }
 
   let error
   try {
