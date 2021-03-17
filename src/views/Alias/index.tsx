@@ -267,7 +267,8 @@ const AliasView: NextPage<AliasViewProps> = ({
 AliasView.getInitialProps = async ({ req, res, query }) => {
   const { alias } = query
 
-  console.log(req)
+  console.log(req?.headers)
+
   let error
   try {
     const response = await axios.get(
