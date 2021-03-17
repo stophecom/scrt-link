@@ -26,7 +26,7 @@ let theme = createMuiTheme({
     h2: { fontFamily: 'Poppins, sans-serif', fontSize: '40%' },
     h3: { fontFamily: 'Poppins, sans-serif', fontSize: '30%', marginBottom: '.2em' },
     h4: { fontFamily: 'IBM Plex Sans, sans-serif', fontSize: '25%', fontWeight: 'normal' },
-    subtitle1: { fontSize: '40%' },
+    subtitle1: { fontSize: '40%', lineHeight: '1.55' },
   },
 })
 theme = responsiveFontSizes(theme, { factor: 3 })
