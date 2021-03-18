@@ -30,7 +30,7 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
   },
   {
     heading: 'How secure is your service?',
-    body: `All messages are stored encrypted using the **AES-256** encryption standard. AES-256 is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
+    body: `All messages are stored encrypted using **AES-256** with a 512bit hash. AES-256 is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
     For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrastructure**, he or she couldn't decrypt your message.`,
   },
   {
@@ -47,15 +47,14 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
   },
   {
     heading: 'How long do you keep non-viewed secrets?',
-    body: `Until the end of times.`,
+    body: `Until the end of times. Seriously, there is no maximum time limit set. But you can always destroy your secret by visiting the secret link.`,
   },
   {
     heading: 'Why should I trust you?',
-    body: `Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message using the AES-256 standard. We don't store the password so we can never know what the secret is because we can't decrypt it. 
-    `,
+    body: `Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message on the client. We don't store the password so we can never know what the secret is because we can't decrypt it. The Project is open-source - all code is available on [Gitlab](https://gitlab.com/kingchiller/scrt-link)`,
   },
   {
     heading: 'Who is behind this service?',
-    body: `I'm Christophe, UI-designer and front-end developer from Basel, Switzerland. Follow me on Twitter [@stophecom](${twitterLink}). This project has been heavily influenced by [OnURL](https://github.com/onderonur/onurl) and [OneTimeSecret](https://github.com/onetimesecret/onetimesecret) Thank you!`,
+    body: `[@stophecom](${twitterLink}). See [contact](/contact) for more info.`,
   },
 ]
