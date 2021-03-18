@@ -14,7 +14,7 @@ import Alert from '@material-ui/lab/Alert'
 import { AES } from 'crypto-js'
 import { sha256 } from 'js-sha256'
 
-import { ShortUrlData } from '@/api/models/ShortUrl'
+import { SecretUrlData } from '@/api/models/SecretUrl'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe, FormInput, SecretType } from '@/types'
@@ -45,7 +45,7 @@ const initialValues: UrlFormValues = {
 }
 
 export interface State {
-  data: Maybe<ShortUrlData>
+  data: Maybe<SecretUrlData>
   error: Maybe<string>
 }
 
@@ -180,7 +180,7 @@ const HomeView = () => {
       isEncryptedWithUserPassword: !!password,
     }
     try {
-      const response = await axios.post('/api/shorturl', data)
+      const response = await axios.post('/api', data)
       dispatch(doSuccess(response))
 
       plausible('SecretCreation', {

@@ -277,9 +277,7 @@ AliasView.getInitialProps = async ({ req, res, query }) => {
 
   let error
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/shorturl?alias=${alias}`,
-    )
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api?alias=${alias}`)
     const { data } = response
     const { secretType, message, isEncryptedWithUserPassword } = data
 

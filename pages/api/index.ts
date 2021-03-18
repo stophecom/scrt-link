@@ -52,8 +52,8 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET':
       const alias = await extractGetInput(req)
-      const shortUrl = await models.ShortUrl.findOneAndDelete({ alias })
-      if (!shortUrl) {
+      const secretUrl = await models.SecretUrl.findOneAndDelete({ alias })
+      if (!secretUrl) {
         throw createError(
           404,
           `URL not found - This usually means the secret link has already been visited. The secret has been destroyed.`,
@@ -62,14 +62,14 @@ const handler: NextApiHandler = async (req, res) => {
 
       // Decrypt
       const decryptAES = (string: string) => {
-        const bytes = AES.decrypt(string, `${process.env.AES_KEY_256}`)
+        const bytes = AES.decrypt(string, `${process.env.AES_KEY_512}`)
         return bytes.toString(enc.Utf8)
       }
 
       res.json({
-        secretType: shortUrl.secretType,
-        message: decryptAES(shortUrl.message),
-        isEncryptedWithUserPassword: shortUrl.isEncryptedWithUserPassword,
+        secretType: secretUrl.secretType,
+        message: decryptAES(secretUrl.message),
+        isEncryptedWithUserPassword: secretUrl.isEncryptedWithUserPassword,
       })
       break
     case 'POST':
@@ -82,9 +82,9 @@ const handler: NextApiHandler = async (req, res) => {
 
       // Encrypt sensitive information
       const encryptAES = (string: string) =>
-        AES.encrypt(string, `${process.env.AES_KEY_256}`).toString()
+        AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
 
-      const shortened = new models.ShortUrl({
+      const shortened = new models.SecretUrl({
         secretType,
         message: encryptAES(message),
         alias: customAlias || nanoid(urlAliasLength),

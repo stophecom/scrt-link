@@ -3,18 +3,18 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 import { maxCustomAliasLength, maxMessageLength } from '@/constants'
 import { BaseDocumentData } from './types'
-interface ShortUrlFields {
+interface SecretUrlFields {
   secretType: string
   alias: string
   message: string
   isEncryptedWithUserPassword: boolean
 }
 
-export type ShortUrlData = BaseDocumentData & ShortUrlFields
+export type SecretUrlData = BaseDocumentData & SecretUrlFields
 
-type ShortUrlDocument = mongoose.Document & ShortUrlFields
+type SecretUrlDocument = mongoose.Document & SecretUrlFields
 
-const shortUrlSchema = new mongoose.Schema(
+const SecretUrlSchema = new mongoose.Schema(
   {
     secretType: { type: String, required: true, trim: true },
     alias: {
@@ -31,14 +31,14 @@ const shortUrlSchema = new mongoose.Schema(
 )
 
 // To have a custom error message when unique validation fails.
-shortUrlSchema.plugin(uniqueValidator, {
+SecretUrlSchema.plugin(uniqueValidator, {
   message: '"{VALUE}" is already in use. Please use another {PATH}.',
 })
 
 // For "Cannot overwrite model once compiled" error:
 // https://hoangvvo.com/blog/migrate-from-express-js-to-next-js-api-routes/
-const ShortUrl =
-  (mongoose.models.ShortUrl as mongoose.Model<ShortUrlDocument>) ||
-  mongoose.model<ShortUrlDocument>('ShortUrl', shortUrlSchema)
+const SecretUrl =
+  (mongoose.models.SecretUrl as mongoose.Model<SecretUrlDocument>) ||
+  mongoose.model<SecretUrlDocument>('SecretUrl', SecretUrlSchema)
 
-export default ShortUrl
+export default SecretUrl
