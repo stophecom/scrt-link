@@ -25,7 +25,7 @@ const jsonLd = {
 
     remark()
       .use(strip)
-      .process(question, function (err, file) {
+      .process(heading, function (err, file) {
         if (err) throw err
         question = String(file)
       })
