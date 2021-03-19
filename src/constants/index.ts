@@ -4,7 +4,6 @@ export const urlAliasLength = 24
 export const maxMessageLength = 280
 export const twitterLink = 'https://twitter.com/stophecom'
 export const twitterHandle = '@stophecom'
-export const websiteUrl = 'stophe.com'
 export const email = 'kingchiller@protonmail.com'
 export const gitlab = 'https://gitlab.com/kingchiller'
 export const github = 'https://github.com/christopheschwyzer'
