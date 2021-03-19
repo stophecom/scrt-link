@@ -31,7 +31,7 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
   {
     heading: 'How secure is your service?',
     body: `All messages are stored encrypted using **AES-256** with a 512bit hash. AES-256 is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
-    For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrastructure**, he or she couldn't decrypt your message.`,
+    For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrastructure**, he or she couldn't decrypt your message. Read more on our [Security page](/security).`,
   },
   {
     heading: 'Can I retrieve a secret that has already been shared?',
@@ -51,6 +51,9 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
   },
   {
     heading: 'Why should I trust you?',
-    body: `Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message on the client. We don't store the password so we can never know what the secret is because we can't decrypt it. The Project is open-source - all code is available on [Gitlab](https://gitlab.com/kingchiller/scrt-link)`,
+    body: `
+Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message on the client. We don't store the password so we can never know what the secret is because we can't decrypt it.  
+However, don't take our word for it - see for yourself: The project is open-source and all code is available on [Gitlab](https://gitlab.com/kingchiller/scrt-link).
+`,
   },
 ]

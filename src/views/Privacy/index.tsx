@@ -24,10 +24,11 @@ This project is all about the respect for people's integrity and privacy. We hav
           source={`
 We do basic web traffic analytics with [Plausible.io](https://plausible.io/) -  the simple and privacy-friendly alternative to Google Analytics.
 
-- No cookies
+- No use of cookies
 - Fully compliant with privacy regulations GDPR, CCPA and PECR
-- No tracking of personal data whatsoever
-- Open source
+- No collection of personal data
+- Project is open source
+- All analytics data is **publicly available**: [Analytics Dashboard](https://plausible.io/scrt.link)
 `}
         />
       </Typography>
