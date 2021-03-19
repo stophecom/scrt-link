@@ -49,11 +49,4 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
     heading: 'How long do you keep non-viewed secrets?',
     body: `Until the end of times. Seriously, there is no maximum time limit set. But you can always destroy your secret by visiting the secret link.`,
   },
-  {
-    heading: 'Why should I trust you?',
-    body: `
-Information without context is useless. Let's say you share a password - we have no way of knowing what service and/or username it belongs to. If you include a password, we use it to encrypt your secret message on the client. We don't store the password so we can never know what the secret is because we can't decrypt it.  
-However, don't take our word for it - see for yourself: The project is open-source and all code is available on [Gitlab](https://gitlab.com/kingchiller/scrt-link).
-`,
-  },
 ]
