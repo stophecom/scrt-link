@@ -7,16 +7,26 @@
       
 	<url>
 		<loc>https://scrt.link/contact</loc>
-		<lastmod>2021-03-17</lastmod>
+		<lastmod>2021-03-19</lastmod>
 	</url>
 
 	<url>
 		<loc>https://scrt.link/faq</loc>
-		<lastmod>2021-03-17</lastmod>
+		<lastmod>2021-03-19</lastmod>
 	</url>
 
 	<url>
 		<loc>https://scrt.link/index</loc>
-		<lastmod>2021-03-17</lastmod>
+		<lastmod>2021-03-19</lastmod>
+	</url>
+
+	<url>
+		<loc>https://scrt.link/privacy</loc>
+		<lastmod>2021-03-19</lastmod>
+	</url>
+
+	<url>
+		<loc>https://scrt.link/security</loc>
+		<lastmod>2021-03-19</lastmod>
 	</url>
 </urlset>
