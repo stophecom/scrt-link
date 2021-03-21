@@ -1,5 +1,3 @@
-import { twitterLink } from '@/constants'
-
 export const faq = [
   {
     heading: 'How does it work?',
