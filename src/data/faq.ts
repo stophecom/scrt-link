@@ -4,7 +4,7 @@ export const faq = [
   {
     heading: 'How does it work?',
     body: `
-After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Matrix, Signal or Threema.) After the recepients clicks the link, the message gets displayed and permanently removed from the server. 
+After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recepients clicks the link, the message gets displayed and permanently removed from the server. 
     
 For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
   },
@@ -13,7 +13,7 @@ For **extra security**, you can include a password that will be needed to decryp
     body: `
 - **Message**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recepient has the option to copy the secret.
 - **URL Redirect**: Think about it as a URL-shortener where the generated link only works once.
-- **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential mission instructions, confessions or secret love letters.
+- **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters.
     `,
   },
   {
@@ -23,8 +23,8 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
 
 **Use this service in case you want to…**
 - Share your Netflix password with a family member.
-- Send a private message from a friends phone.
-- Confess to a secret crush without the fear of being exposed.
+- Send a private message from a public computer.
+- Confess to a secret crush.
 - Transmit information that could be used against you.
 `,
   },
