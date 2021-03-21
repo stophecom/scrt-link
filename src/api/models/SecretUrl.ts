@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
-import { maxCustomAliasLength, maxMessageLength } from '@/constants'
+import { urlAliasLength, maxMessageLength } from '@/constants'
 import { BaseDocumentData } from './types'
 interface SecretUrlFields {
   secretType: string
@@ -22,7 +22,7 @@ const SecretUrlSchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
-      maxlength: maxCustomAliasLength,
+      maxlength: urlAliasLength,
     },
     message: { type: String, required: false, default: '', maxlength: 5 * maxMessageLength }, // Set maxlength reasonably big
     isEncryptedWithUserPassword: { type: Boolean, required: true, default: false },

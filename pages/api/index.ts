@@ -35,13 +35,11 @@ const extractPostInput = async (req: NextApiRequest) => {
     throw createError(422, err.message)
   }
 
-  let { customAlias, message } = req.body
-  customAlias = customAlias.trim()
-  customAlias = encodeURIComponent(customAlias)
+  let { message } = req.body
 
   message = message.trim()
   message = encodeURIComponent(message)
-  return { secretType, message, customAlias, isEncryptedWithUserPassword }
+  return { secretType, message, isEncryptedWithUserPassword }
 }
 
 const handler: NextApiHandler = async (req, res) => {
@@ -76,7 +74,6 @@ const handler: NextApiHandler = async (req, res) => {
       const {
         secretType,
         message,
-        customAlias,
         isEncryptedWithUserPassword,
       } = await extractPostInput(req)
 
@@ -87,7 +84,7 @@ const handler: NextApiHandler = async (req, res) => {
       const shortened = new models.SecretUrl({
         secretType,
         message: encryptAES(message),
-        alias: customAlias || nanoid(urlAliasLength),
+        alias: nanoid(urlAliasLength),
         isEncryptedWithUserPassword,
       })
       await shortened.save()

@@ -1,7 +1,7 @@
 import { FormInput, Password, SecretType } from '@/types'
 import * as Yup from 'yup'
 import validator from 'validator'
-import { maxCustomAliasLength, maxMessageLength } from '@/constants'
+import { maxMessageLength } from '@/constants'
 
 const secretTypes = ['message' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 
@@ -27,7 +27,6 @@ const urlValidation = {
       (value) => (value ? validator.isURL(value) : true),
     )
     .trim(),
-  customAlias: Yup.string().label('Custom Alias').max(maxCustomAliasLength).trim(),
 }
 
 const schemataMap = {

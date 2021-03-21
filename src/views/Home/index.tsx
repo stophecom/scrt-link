@@ -39,7 +39,6 @@ type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type UrlFormValues = FormInput
 
 const initialValues: UrlFormValues = {
-  customAlias: '',
   message: '',
   secretType: 'message',
 }
@@ -282,9 +281,6 @@ const HomeView = () => {
                           ),
                         }}
                       />
-                    </Box>
-                    <Box mb={2}>
-                      <BaseTextField name="customAlias" label="Custom Alias (Optional)" />
                     </Box>
                   </>
                 )}
