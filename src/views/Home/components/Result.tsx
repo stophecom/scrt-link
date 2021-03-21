@@ -11,13 +11,15 @@ import Paper from '@material-ui/core/Paper'
 
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
-import { isServer } from '@/utils'
 import { State } from '../index'
+import { isProduction } from '@/config'
 
 const Result = ({ data }: Pick<State, 'data'>) => {
   const alias = data?.alias
-  const origin = isServer() ? process.env.NEXT_PUBLIC_BASE_URL : window.location.origin
-  const shortenedUrl = alias ? `${origin}/l/${alias}` : null
+  const origin = isProduction
+    ? `${process.env.NEXT_PUBLIC_SHORT_URL}`
+    : `${process.env.NEXT_PUBLIC_BASE_URL}/l`
+  const shortenedUrl = alias ? `${origin}/${alias}` : null
 
   const [hasCopied, setHasCopied] = useState(false)
 
