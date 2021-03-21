@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import axios from 'axios'
 import { Box, CircularProgress, Typography } from '@material-ui/core'
@@ -76,6 +76,11 @@ const AliasView: NextPage<AliasViewProps> = ({
   const [localMessage, setLocalMessage] = useState(message)
   const [success, setSuccess] = useState(false)
 
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(null, 'Secret destroyed', '💥')
+  }, [])
+
   const SelfDestructionSequence = () => {
     return (
       <WindupChildren onFinished={() => setTimeout(() => window.location.reload(), 500)}>
@@ -145,7 +150,7 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   const needsPassword = isEncryptedWithUserPassword && !success
 
-  const pageTitle = secretType === 'message' ? 'Your secret:' : ''
+  const pageTitle = secretType === 'message' ? 'Your secret' : ''
   const pageSubTitle = needsPassword ? 'Enter password to decrypt your secret:' : ''
   return (
     <>
