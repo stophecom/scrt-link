@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box, IconButton, Link } from '@material-ui/core'
+import { Box, Link } from '@material-ui/core'
 import styled from 'styled-components'
-import TwitterIcon from '@material-ui/icons/Twitter'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 
 import { appTitle } from '@/constants'
@@ -10,10 +9,7 @@ import SROnly from '@/components/ScreenreaderOnly'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
 
-import ExternalLink from './ExternalLink'
-import { twitterLink } from '@/constants'
-
-import { menu } from '@/data/menu'
+import { menu, about } from '@/data/menu'
 
 const MainContent = styled.main`
   flex: 1;
@@ -25,7 +21,10 @@ const MainContent = styled.main`
 
 const LinkStyled = styled(Link)`
   font-size: 1.2rem;
-  padding: ${({ theme }) => theme.spacing(1)}px;
+`
+
+const LinkAbout = styled(Link)`
+  text-decoration: underline;
 `
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,6 +37,12 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '150px',
         height: '150px',
       },
+    },
+    linkPadding: {
+      padding: theme.spacing(1),
+    },
+    footer: {
+      opacity: 0.8,
     },
   }),
 )
@@ -59,16 +64,24 @@ const Layout: React.FC = ({ children }) => {
 
       <Box display="flex" justifyContent="center" p={2}>
         {menu.map(({ href, label }, index) => (
-          <LinkStyled key={index} href={href} color="primary">
+          <LinkStyled className={classes.linkPadding} key={index} href={href} color="primary">
             {label}
           </LinkStyled>
         ))}
       </Box>
-      <Box display="flex" justifyContent="center" component="footer" p={2}>
-        <IconButton component={ExternalLink} href={twitterLink}>
-          <TwitterIcon />
-          <SROnly>@stophecom</SROnly>
-        </IconButton>
+      <Box
+        className={classes.footer}
+        display="flex"
+        justifyContent="center"
+        component="footer"
+        p={2}
+      >
+        <span className={classes.linkPadding}>©{new Date().getFullYear()} SANTiHANS GmbH</span>
+        {about.map(({ href, label }, index) => (
+          <LinkAbout className={classes.linkPadding} key={index} href={href} color="inherit">
+            {label}
+          </LinkAbout>
+        ))}
       </Box>
     </Box>
   )

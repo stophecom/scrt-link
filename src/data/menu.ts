@@ -21,3 +21,10 @@ export const menu = [
     label: 'Contact',
   },
 ]
+
+export const about = [
+  {
+    href: '/imprint',
+    label: 'Imprint & Legal',
+  },
+]
