@@ -62,7 +62,7 @@ const Layout: React.FC = ({ children }) => {
         {children}
       </MainContent>
 
-      <Box display="flex" justifyContent="center" p={2}>
+      <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
         {menu.map(({ href, label }, index) => (
           <LinkStyled className={classes.linkPadding} key={index} href={href} color="primary">
             {label}
@@ -74,6 +74,7 @@ const Layout: React.FC = ({ children }) => {
         display="flex"
         justifyContent="center"
         component="footer"
+        flexWrap="wrap"
         p={2}
       >
         <span className={classes.linkPadding}>©{new Date().getFullYear()} SANTiHANS GmbH</span>

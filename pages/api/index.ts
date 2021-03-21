@@ -54,7 +54,7 @@ const handler: NextApiHandler = async (req, res) => {
       if (!secretUrl) {
         throw createError(
           404,
-          `URL not found - This usually means the secret link has already been visited. The secret has been destroyed.`,
+          `URL not found - This usually means the secret link has already been visited and therefor no longer exists.`,
         )
       }
 
@@ -71,11 +71,7 @@ const handler: NextApiHandler = async (req, res) => {
       })
       break
     case 'POST':
-      const {
-        secretType,
-        message,
-        isEncryptedWithUserPassword,
-      } = await extractPostInput(req)
+      const { secretType, message, isEncryptedWithUserPassword } = await extractPostInput(req)
 
       // Encrypt sensitive information
       const encryptAES = (string: string) =>

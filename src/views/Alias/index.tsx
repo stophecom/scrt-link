@@ -109,6 +109,19 @@ const AliasView: NextPage<AliasViewProps> = ({
     )
   }
 
+  const ReplyButton = () => (
+    <BaseButton
+      href="/"
+      color="primary"
+      variant="contained"
+      size="large"
+      startIcon={<ReplyIcon />}
+      onClick={() => plausible('ReplyButton')}
+    >
+      Reply with a secret
+    </BaseButton>
+  )
+
   const initialValues: PasswordForm = {
     password: '',
   }
@@ -150,8 +163,10 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   const needsPassword = isEncryptedWithUserPassword && !success
 
-  const pageTitle = secretType === 'message' ? 'Your secret' : ''
-  const pageSubTitle = needsPassword ? 'Enter password to decrypt your secret:' : ''
+  const pageTitle = secretType === 'message' ? 'Psssst' : ''
+  const pageSubTitle = needsPassword
+    ? 'Enter password to decrypt your secret:'
+    : 'You received a secret:'
   return (
     <>
       <Page title={pageTitle} subtitle={pageSubTitle} noindex>
@@ -193,16 +208,7 @@ const AliasView: NextPage<AliasViewProps> = ({
                 </Paper>
 
                 <Box mt={3}>
-                  <BaseButton
-                    href="/"
-                    color="primary"
-                    variant="contained"
-                    size="large"
-                    startIcon={<ReplyIcon />}
-                    onClick={() => plausible('ReplyButton')}
-                  >
-                    Reply with a secret
-                  </BaseButton>
+                  <ReplyButton />
                 </Box>
               </>
             )}
@@ -242,7 +248,14 @@ const AliasView: NextPage<AliasViewProps> = ({
           </Formik>
         )}
 
-        {error && <Alert severity="error">{error}</Alert>}
+        {error && (
+          <>
+            <Alert severity="error">{error}</Alert>
+            <Box mt={3}>
+              <ReplyButton />
+            </Box>
+          </>
+        )}
       </Page>
     </>
   )
@@ -283,7 +296,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       const { data } = response
       error = `${data.statusCode}: ${data.message}`
     } else {
-      error = 'An unknown error occured'
+      error =
+        'Error occured. If you see 💥 in the address bar you have most likely tried to re-visit a burned link.'
     }
     return { props: { error } }
   }

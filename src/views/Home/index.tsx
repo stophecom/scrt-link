@@ -324,7 +324,7 @@ const HomeView = () => {
                           color="primary"
                         />
                       }
-                      label="Include Password"
+                      label="Include password"
                     />
                   </Box>
                   <Box mb={1}>
