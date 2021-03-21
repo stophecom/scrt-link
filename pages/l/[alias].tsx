@@ -1,3 +1,1 @@
-import AliasView from '@/views/Alias'
-
-export default AliasView
+export { default, getServerSideProps } from '@/views/Alias'

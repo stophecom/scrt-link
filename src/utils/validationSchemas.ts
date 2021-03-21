@@ -10,7 +10,7 @@ const messageValidation = {
 }
 
 const passwordValidation = {
-  password: Yup.string().required().label('Password').min(1).max(50).trim(),
+  password: Yup.string().required().label('Password').min(5).max(50).trim(),
 }
 
 const typeValidation = {

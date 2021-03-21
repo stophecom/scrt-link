@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import axios from 'axios'
 import { Box, CircularProgress, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
@@ -20,29 +20,22 @@ import crawlers from 'crawler-user-agents'
 
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { SecretType } from '@/types'
-import { isServer } from '@/utils'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
 
 // https://stackoverflow.com/a/19709846
-const isAbsoluteUrl = (url: string) => {
+const sanitizeUrl = (url: string) => {
   if (url.startsWith('//')) {
-    return true
+    return url
   }
 
   const uri = parse(url)
-  return !!uri.scheme
+  return uri.scheme ? url : `http://${url}`
 }
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-interface AliasViewProps {
-  error?: string
-  message?: string
-  isEncryptedWithUserPassword?: boolean
-  secretType?: SecretType
-}
 interface PasswordForm {
   password: string
 }
@@ -64,7 +57,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
-
+interface AliasViewProps {
+  error?: string
+  message?: string
+  isEncryptedWithUserPassword?: boolean
+  secretType?: SecretType
+}
 const AliasView: NextPage<AliasViewProps> = ({
   error,
   message = '',
@@ -110,21 +108,6 @@ const AliasView: NextPage<AliasViewProps> = ({
     password: '',
   }
 
-  const pageRedirect = (url: string) => {
-    if (!isServer()) {
-      if (!isAbsoluteUrl(url)) {
-        url = `http://${url}`
-      }
-
-      window.location.replace(url)
-    }
-  }
-
-  // If URL is in plain text, redirect early
-  if (!isEncryptedWithUserPassword && secretType === 'url') {
-    pageRedirect(message)
-  }
-
   const handleSubmit = useCallback<OnSubmit<PasswordForm>>(async (values, formikHelpers) => {
     try {
       const { password } = values
@@ -140,7 +123,7 @@ const AliasView: NextPage<AliasViewProps> = ({
         setLocalMessage(result)
 
         if (secretType === 'url') {
-          pageRedirect(result)
+          window.location.replace(sanitizeUrl(result))
         }
       }
 
@@ -260,19 +243,14 @@ const AliasView: NextPage<AliasViewProps> = ({
   )
 }
 
-// Tried this with "getServerSideProps" too.
-// When the user directly opens this page, there are no problems.
-// But when user redirects to this page from another page in the app,
-// some CORS error is happening while redirecting the request.
-// "getServerSideProps" runs twice and in the end we increase "clicks"
-// twice. So, we are using "getInitialProps" for a while.
-AliasView.getInitialProps = async ({ req, res, query }) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { req, query } = context
   const { alias } = query
 
+  // Block crawlers
   const userAgent = req?.headers['user-agent']
-
   if (userAgent && crawlers.some(({ pattern }) => RegExp(pattern).test(userAgent))) {
-    return {}
+    return { props: {} }
   }
 
   let error
@@ -281,7 +259,19 @@ AliasView.getInitialProps = async ({ req, res, query }) => {
     const { data } = response
     const { secretType, message, isEncryptedWithUserPassword } = data
 
-    return { secretType, message: decodeURIComponent(message), isEncryptedWithUserPassword }
+    // If URL is in plain text, redirect early
+    if (!isEncryptedWithUserPassword && secretType === 'url') {
+      return {
+        redirect: {
+          destination: sanitizeUrl(message),
+          permanent: false,
+        },
+      }
+    }
+
+    return {
+      props: { secretType, message: decodeURIComponent(message), isEncryptedWithUserPassword },
+    }
   } catch (err) {
     const { response } = err
     if (response) {
@@ -290,9 +280,8 @@ AliasView.getInitialProps = async ({ req, res, query }) => {
     } else {
       error = 'An unknown error occured'
     }
-    return { error }
+    return { props: { error } }
   }
-  return {}
 }
 
 export default AliasView
