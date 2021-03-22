@@ -28,11 +28,7 @@ import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
 import { maxMessageLength } from '@/constants'
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isAxiosError(error: any): error is AxiosError {
-  return (error as AxiosError).isAxiosError
-}
+import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -46,46 +42,6 @@ const initialValues: UrlFormValues = {
 export interface State {
   data: Maybe<SecretUrlData>
   error: Maybe<string>
-}
-
-type Action =
-  | { type: 'request' }
-  | { type: 'success'; response: AxiosResponse }
-  | { type: 'error'; error: AxiosError | Error }
-
-const doRequest = (): Action => ({
-  type: 'request',
-})
-
-const doSuccess = (response: AxiosResponse): Action => ({
-  type: 'success',
-  response,
-})
-
-const doError = (error: AxiosError | Error): Action => ({
-  type: 'error',
-  error,
-})
-
-const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case 'request':
-      return { ...state, data: undefined, error: undefined }
-    case 'success':
-      return { ...state, data: action.response.data }
-    case 'error':
-      const { error } = action
-      let errorMessage = error.message
-      if (isAxiosError(error)) {
-        errorMessage = error.response?.data.message ?? errorMessage
-      }
-      return {
-        ...state,
-        error: errorMessage,
-      }
-    default:
-      throw new Error()
-  }
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -155,6 +111,8 @@ const tabsMenu = Object.keys(secretTypesMap).map((item) => {
     key: item,
   }
 })
+
+const reducer = createReducer<State>()
 
 const HomeView = () => {
   const classes = useStyles()
