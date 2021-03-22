@@ -4,7 +4,7 @@ import { Link } from '@material-ui/core'
 
 import Page from '@/components/Page'
 
-import { email } from '@/constants'
+import { emailSantihans } from '@/constants'
 
 const Imprint = () => (
   <Page title="Imprint" subtitle={`…for legal reasons.`}>
@@ -15,7 +15,7 @@ const Imprint = () => (
         CH-4056 Basel <br />
         UID: CHE-244.875.499
         <br />
-        <Link href={`mailto:${email}`}>{email}</Link>
+        <Link href={`mailto:${emailSantihans}`}>{emailSantihans}</Link>
       </Typography>
     </Box>
     <Box mb={4}>
