@@ -28,7 +28,7 @@ const handler: NextApiHandler = async (req, res) => {
         secure: true, // true for 465, false for other ports
         auth: {
           user: `${process.env.MAIL_USER}`,
-          pass: `${process.env.MAIL_USER}`,
+          pass: `${process.env.MAIL_PASS}`,
         },
       })
 
