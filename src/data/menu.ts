@@ -20,6 +20,10 @@ export const menu = [
     href: '/contact',
     label: 'Contact',
   },
+  {
+    href: '/00',
+    label: '00',
+  },
 ]
 
 export const about = [
