@@ -10,7 +10,7 @@ const Imprint = () => (
   <Page title="Imprint" subtitle={`…for legal reasons.`}>
     <Box mb={4}>
       <Typography>
-        SANTiHANS GmbH (The Conpany)
+        SANTiHANS GmbH (The Company)
         <br />
         CH-4056 Basel <br />
         UID: CHE-244.875.499
