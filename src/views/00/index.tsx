@@ -18,8 +18,9 @@ const body = `
 Top secret plan will be priced at **$2/month** and includes:
 - Increased 2k character limit for all secret types 
 - Read receipts (Get informed when secret has been viewed.)
+- Send secret links directly via Email
 - Custom Neogram™ destruction message
-- Full API access
+- Access to the API
 `
 const TopSecret = () => {
   const classes = useStyles()
