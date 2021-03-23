@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@material-ui/core'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
-import EmailForm from '@/components/EmailForm'
+import BetaInviteForm from '@/components/BetaInviteForm'
 import Page from '@/components/Page'
 import Markdown from '@/components/Markdown'
 
@@ -31,7 +31,7 @@ const TopSecret = () => {
         <Markdown className={classes.root} source={body} />
         *The first 10 customers who request early access get the premium plan for a full year free!
       </Box>
-      <EmailForm />
+      <BetaInviteForm />
     </Page>
   )
 }

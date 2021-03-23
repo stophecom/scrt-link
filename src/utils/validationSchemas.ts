@@ -1,4 +1,4 @@
-import { FormInput, Password, SecretType, Email } from '@/types'
+import { FormInput, Password, SecretType, BetaInvite } from '@/types'
 import * as Yup from 'yup'
 import validator from 'validator'
 import { maxMessageLength } from '@/constants'
@@ -49,6 +49,7 @@ export const apiValidationSchemaByType = Yup.object().shape<FormInput>({
 
 export const passwordValidationSchema = Yup.object().shape<Password>(passwordValidation)
 
-export const emailValidationSchema = Yup.object().shape<Email>({
+export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
+  name: Yup.string().label('Name').max(200).trim(),
   email: Yup.string().label('Email').required().email().trim(),
 })

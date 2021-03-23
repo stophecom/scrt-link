@@ -11,6 +11,8 @@ declare global {
       MAIL_HOST: string
       MAIL_USER: string
       MAIL_PASS: string
+      MJ_APIKEY_PUBLIC: string
+      MJ_APIKEY_PRIVATE: string
     }
   }
 }
@@ -21,16 +23,17 @@ export interface Password {
   password?: string
 }
 
-export interface Email {
-  email?: string
-}
-
 export interface MessageInput extends Password {
   message: string
 }
 
 export interface FormInput extends MessageInput {
   secretType: SecretType
+}
+
+export interface BetaInvite {
+  name?: string
+  email: string
 }
 
 export {}

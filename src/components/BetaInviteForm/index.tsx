@@ -8,19 +8,16 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 
 import BaseTextField from '@/components/BaseTextField'
-import { Maybe } from '@/types'
+import { Maybe, BetaInvite } from '@/types'
 
 import BaseButton from '@/components/BaseButton'
-import { emailValidationSchema } from '@/utils/validationSchemas'
+import { betaInviteValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-export interface FormInput {
-  email: string
-}
-
-const initialValues: FormInput = {
+const initialValues: BetaInvite = {
+  name: '',
   email: '',
 }
 
@@ -44,11 +41,11 @@ const initialState: State = {
 
 const reducer = createReducer<State>()
 
-const EmailForm = () => {
+const BetaInviteForm = () => {
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleSubmit = useCallback<OnSubmit<FormInput>>(async (values, formikHelpers) => {
+  const handleSubmit = useCallback<OnSubmit<BetaInvite>>(async (values, formikHelpers) => {
     dispatch(doRequest())
 
     try {
@@ -74,9 +71,9 @@ const EmailForm = () => {
   }
 
   return (
-    <Formik<FormInput>
+    <Formik<BetaInvite>
       initialValues={initialValues}
-      validationSchema={emailValidationSchema}
+      validationSchema={betaInviteValidationSchema}
       validateOnMount
       onSubmit={handleSubmit}
     >
@@ -84,6 +81,9 @@ const EmailForm = () => {
         return (
           <>
             <Form noValidate>
+              <Box mb={2}>
+                <BaseTextField name="name" label="Name" />
+              </Box>
               <Box mb={2}>
                 <BaseTextField name="email" label="Email" required />
               </Box>
@@ -108,4 +108,4 @@ const EmailForm = () => {
   )
 }
 
-export default EmailForm
+export default BetaInviteForm
