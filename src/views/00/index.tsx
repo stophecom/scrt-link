@@ -15,9 +15,9 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const body = `
-Top secret plan includes:
+Top secret plan will be priced at **$2/month** and includes:
 - Increased 2k character limit for all secret types 
-- Read receipts 
+- Read receipts (Get informed when secret has been viewed.)
 - Custom Neogram™ destruction message
 - Full API access
 `
@@ -28,8 +28,7 @@ const TopSecret = () => {
     <Page title="Go 00" subtitle={`Request early access* to our top secret plan!`}>
       <Box mb={4}>
         <Markdown className={classes.root} source={body} />
-        *The first 007 customers who request request early access get the premium plan for a full
-        year free!
+        *The first 10 customers who request early access get the premium plan for a full year free!
       </Box>
       <EmailForm />
     </Page>

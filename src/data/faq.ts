@@ -37,7 +37,7 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
   },
   {
     heading: 'What is the maximum message size?',
-    body: `The current limit is 280 characters. Need more? Get in touch!`,
+    body: `The current limit is 280 characters. Need more? [Go top secret!](/00)`,
   },
   {
     heading: 'Can the recepient save the message?',
