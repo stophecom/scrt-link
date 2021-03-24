@@ -141,7 +141,7 @@ const HomeView = () => {
       dispatch(doSuccess(response))
 
       plausible('SecretCreation', {
-        props: { secretType, messageLength: message.length, withPassword: !!password },
+        props: { secretType: secretType, messageLength: message.length, withPassword: !!password },
       })
       formikHelpers.resetForm()
     } catch (error) {
