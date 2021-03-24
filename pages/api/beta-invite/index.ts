@@ -3,8 +3,6 @@ import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { betaInviteValidationSchema } from '@/utils/validationSchemas'
 
-import nodemailer from 'nodemailer'
-
 import mailjet from '@/api/utils/mailjet'
 
 const extractPostInput = async (req: NextApiRequest) => {
@@ -39,20 +37,10 @@ const handler: NextApiHandler = async (req, res) => {
         }
       })
 
-      const transporter = nodemailer.createTransport({
-        host: `${process.env.MAIL_HOST}`,
-        port: 465,
-        secure: true,
-        auth: {
-          user: `${process.env.MAIL_USER}`,
-          pass: `${process.env.MAIL_PASS}`,
-        },
-      })
-      transporter.sendMail({
-        from: `"X" <${process.env.MAIL_USER}>`,
-        to: 'pssst@scrt.link',
-        subject: 'Beta Invite',
-        text: `New potential customer signup: ${name} <${email}>`,
+      mailjet({
+        To: [{ Email: 'pssst@scrt.link', Name: 'X' }],
+        Subject: 'Beta Invite',
+        TextPart: `New beta invite: ${name} <${email}>`,
       })
 
       res.json(sendCustomer)

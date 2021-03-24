@@ -8,9 +8,6 @@ declare global {
       NEXT_PUBLIC_ENV: string
       DB: string
       AES_KEY_512: string
-      MAIL_HOST: string
-      MAIL_USER: string
-      MAIL_PASS: string
       MJ_APIKEY_PUBLIC: string
       MJ_APIKEY_PRIVATE: string
     }
