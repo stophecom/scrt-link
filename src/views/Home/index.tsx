@@ -123,7 +123,7 @@ const HomeView = () => {
   const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(async (values, formikHelpers) => {
     dispatch(doRequest())
 
-    const { password } = values
+    const { password, secretType } = values
     let { message } = values
 
     if (password) {
@@ -134,6 +134,7 @@ const HomeView = () => {
     const data = {
       ...omit(['password'], values),
       message,
+      secretType,
       isEncryptedWithUserPassword: !!password,
     }
     try {
