@@ -8,6 +8,6 @@ sitemap({
   pagesDirectory: __dirname + `/pages`,
   targetDirectory: `public/`,
   ignoredExtensions: ['png', 'jpg'],
-  ignoredPaths: ['l', 'api', '404', '500'],
+  ignoredPaths: ['l', 'api', '404', '500', 'account'],
 })
 console.log(`✅ sitemap.xml generated!`)
