@@ -1,25 +1,12 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
-import { signIn, useSession, getSession } from 'next-auth/client'
-import VpnKeyIcon from '@material-ui/icons/VpnKey'
+import { useSession, getSession } from 'next-auth/client'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { Box } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
 
+import SignInForm from '@/components/SignInForm'
 import Page from '@/components/Page'
-import BaseButton from '@/components/BaseButton'
-
-const SignInButton = () => (
-  <BaseButton
-    onClick={() => signIn()}
-    color="primary"
-    variant="contained"
-    size="large"
-    startIcon={<VpnKeyIcon />}
-  >
-    Sign in
-  </BaseButton>
-)
 
 const Account = () => {
   const [session, loading] = useSession()
@@ -35,7 +22,7 @@ const Account = () => {
 
   if (session) {
     return (
-      <Page title={`Hi ${session?.user?.name}`} subtitle="Welcome back!">
+      <Page title={`Hi ${session?.user?.name || ''}`} subtitle="Welcome back!">
         <p>You can view this page because you are signed in.</p>
       </Page>
     )
@@ -43,8 +30,13 @@ const Account = () => {
 
   return (
     <NoSsr>
-      <Page title="Secret account" subtitle="You have to sign in first…">
-        <SignInButton />
+      <Page title="Scrt account" subtitle="Sign in with your email.">
+        <SignInForm />
+        <Box mt={4}>
+          <Typography variant="body2">
+            No account yet? Use the same form to create an account.
+          </Typography>
+        </Box>
       </Page>
     </NoSsr>
   )

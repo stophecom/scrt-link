@@ -53,3 +53,7 @@ export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
   name: Yup.string().label('Name').max(200).trim(),
   email: Yup.string().label('Email').required().email().trim(),
 })
+
+export const signInValidationSchema = Yup.object().shape<BetaInvite>({
+  email: Yup.string().label('Email').required().email().trim(),
+})

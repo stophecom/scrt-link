@@ -12,11 +12,15 @@ export default NextAuth({
     Providers.Email({
       // server: process.env.EMAIL_SERVER,
       // from: process.env.EMAIL_FROM,
-      sendVerificationRequest: ({ identifier: email, url, _token, site, _provider }) =>
+      sendVerificationRequest: ({ identifier: email, url }) =>
         mailjet({
-          To: [{ Email: email, Name: 'Anonymous' }],
-          Subject: 'Signin to scrt.link',
-          TextPart: `Sign in to ${site} with the following link: ${url}`,
+          To: [{ Email: email, Name: 'X' }],
+          Subject: 'Sign in request',
+          TemplateID: 2715593,
+          TemplateLanguage: true,
+          Variables: {
+            url: url,
+          },
         }).catch((error) => new Error('SEND_VERIFICATION_EMAIL_ERROR', error)),
     }),
   ],

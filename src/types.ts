@@ -36,4 +36,9 @@ export interface BetaInvite {
   email: string
 }
 
+export interface SignIn {
+  name?: string
+  email: string
+}
+
 export {}
