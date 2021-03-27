@@ -6,6 +6,7 @@ import { signOut, useSession } from 'next-auth/client'
 
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
+import BaseButton from '@/components/BaseButton'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
@@ -55,9 +56,11 @@ const Layout: React.FC = ({ children }) => {
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <MainContent>
         {session && (
-          <Box display="flex" justifyContent="flex-end">
-            Signed in as {session.user.email} <br />
-            <button onClick={() => signOut()}>Sign out</button>
+          <Box display="flex" justifyContent="flex-end" alignItems="center">
+            Signed in as {session.user.email}&nbsp;
+            <BaseButton onClick={() => signOut()} color="primary" variant="contained" size="small">
+              Sign out
+            </BaseButton>
           </Box>
         )}
         <Box mt={3}>
