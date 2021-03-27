@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
-import Layout from '@/components/Layout'
-import { appTitle, twitterHandle } from '@/constants'
+
 import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
-import BaseThemeProvider from '@/components/BaseThemeProvider'
 import Head from 'next/head'
 import PlausibleProvider from 'next-plausible'
+import { Provider } from 'next-auth/client'
 
+import Layout from '@/components/Layout'
+import { appTitle, twitterHandle } from '@/constants'
+import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
 
 const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
@@ -65,35 +67,37 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   return (
-    <PlausibleProvider domain="scrt.link" customDomain="https://stats.scrt.link" exclude="/l/*">
-      <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
-      <Head>
-        <meta name="twitter:card" content="summary" key="twitter:card" />
-        <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
+    <Provider session={pageProps.session}>
+      <PlausibleProvider domain="scrt.link" customDomain="https://stats.scrt.link" exclude="/l/*">
+        <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
+        <Head>
+          <meta name="twitter:card" content="summary" key="twitter:card" />
+          <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
-        <meta
-          name="keywords"
-          content="scrt.link, secret text, one-time text, one-time link, disposable message, disposable link, url shortener, self-distructing links, share sensitive information"
-          key="keywords"
-        />
-        <meta name="theme-color" content={theme.palette.primary.main} />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <BaseThemeProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </BaseThemeProvider>
-    </PlausibleProvider>
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="manifest" href="/manifest.json" />
+          <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
+          <meta
+            name="keywords"
+            content="scrt.link, secret text, one-time text, one-time link, disposable message, disposable link, url shortener, self-distructing links, share sensitive information"
+            key="keywords"
+          />
+          <meta name="theme-color" content={theme.palette.primary.main} />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <BaseThemeProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </BaseThemeProvider>
+      </PlausibleProvider>
+    </Provider>
   )
 }
 

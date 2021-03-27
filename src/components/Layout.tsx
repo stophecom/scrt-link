@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Link } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+import { signOut, useSession } from 'next-auth/client'
 
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
@@ -49,10 +50,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
-
+  const [session] = useSession()
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <MainContent>
+        {session && (
+          <Box display="flex" justifyContent="flex-end">
+            Signed in as {session.user.email} <br />
+            <button onClick={() => signOut()}>Sign out</button>
+          </Box>
+        )}
         <Box mt={3}>
           <Link href="/">
             <Logo className={classes.root} />
@@ -61,7 +68,6 @@ const Layout: React.FC = ({ children }) => {
         </Box>
         {children}
       </MainContent>
-
       <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
         {menu.map(({ href, label }, index) => (
           <LinkStyled className={classes.linkPadding} key={index} href={href} color="primary">
