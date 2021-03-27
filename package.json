@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node ./sitemapGenerator.js",
+    "prebuild": "node ./sitemapGenerator.js",
     "export": "next export",
     "start": "next start",
     "typecheck": "tsc --noEmit",
