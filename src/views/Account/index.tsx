@@ -4,6 +4,7 @@ import { signIn, useSession, getSession } from 'next-auth/client'
 import VpnKeyIcon from '@material-ui/icons/VpnKey'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { Box } from '@material-ui/core'
+import NoSsr from '@material-ui/core/NoSsr'
 
 import Page from '@/components/Page'
 import BaseButton from '@/components/BaseButton'
@@ -25,9 +26,11 @@ const Account = () => {
 
   if (typeof window !== 'undefined' && loading)
     return (
-      <Box display="flex" justifyContent="center" mt={8}>
-        <CircularProgress />
-      </Box>
+      <NoSsr>
+        <Box display="flex" justifyContent="center" mt={8}>
+          <CircularProgress />
+        </Box>
+      </NoSsr>
     )
 
   if (session) {
@@ -39,9 +42,11 @@ const Account = () => {
   }
 
   return (
-    <Page title="Access denied" subtitle="You have to sign in first…">
-      <SignInButton />
-    </Page>
+    <NoSsr>
+      <Page title="Access denied" subtitle="You have to sign in first…">
+        <SignInButton />
+      </Page>
+    </NoSsr>
   )
 }
 

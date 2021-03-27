@@ -3,6 +3,7 @@ import { Box, Link } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { signOut, useSession } from 'next-auth/client'
+import NoSsr from '@material-ui/core/NoSsr'
 
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
@@ -56,12 +57,19 @@ const Layout: React.FC = ({ children }) => {
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <MainContent>
         {session && (
-          <Box display="flex" justifyContent="flex-end" alignItems="center">
-            Signed in as {session.user.email}&nbsp;
-            <BaseButton onClick={() => signOut()} color="primary" variant="contained" size="small">
-              Sign out
-            </BaseButton>
-          </Box>
+          <NoSsr>
+            <Box display="flex" justifyContent="flex-end" alignItems="center">
+              Signed in as {session.user.email}&nbsp;
+              <BaseButton
+                onClick={() => signOut()}
+                color="primary"
+                variant="contained"
+                size="small"
+              >
+                Sign out
+              </BaseButton>
+            </Box>
+          </NoSsr>
         )}
         <Box mt={3}>
           <Link href="/">
