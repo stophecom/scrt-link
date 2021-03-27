@@ -43,7 +43,7 @@ const Account = () => {
 
   return (
     <NoSsr>
-      <Page title="Access denied" subtitle="You have to sign in first…">
+      <Page title="Secret account" subtitle="You have to sign in first…">
         <SignInButton />
       </Page>
     </NoSsr>
