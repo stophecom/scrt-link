@@ -20,10 +20,7 @@ const readyStates = {
 let pendingPromise: Maybe<Promise<typeof mongoose>> = null
 
 // https://hoangvvo.com/blog/migrate-from-express-js-to-next-js-api-routes/
-const withDb = (fn: NextApiHandler) => async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-) => {
+const withDb = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
   const next = () => {
     req.models = models
     return fn(req, res)
