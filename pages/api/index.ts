@@ -75,6 +75,7 @@ const handler: NextApiHandler = async (req, res) => {
     case 'POST':
       const cors = initMiddleware(
         Cors({
+          methods: ['GET', 'POST'],
           origin: `${process.env.NEXT_PUBLIC_BASE_URL}`,
         }),
       )
