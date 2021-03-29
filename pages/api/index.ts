@@ -1,13 +1,15 @@
 import { NextApiHandler, NextApiRequest } from 'next'
-import withDb from '@/api/middlewares/withDb'
 import { nanoid } from 'nanoid'
+import * as Yup from 'yup'
+import Cors from 'cors'
+import { AES, enc } from 'crypto-js'
+
+import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { urlAliasLength } from '@/constants'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
-import * as Yup from 'yup'
-
-import { AES, enc } from 'crypto-js'
+import initMiddleware from '@/api/utils/middleware'
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -71,6 +73,14 @@ const handler: NextApiHandler = async (req, res) => {
       })
       break
     case 'POST':
+      const cors = initMiddleware(
+        Cors({
+          origin: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+        }),
+      )
+
+      await cors(req, res)
+
       const { secretType, message, isEncryptedWithUserPassword } = await extractPostInput(req)
 
       // Encrypt sensitive information
