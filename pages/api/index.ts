@@ -45,6 +45,15 @@ const extractPostInput = async (req: NextApiRequest) => {
 }
 
 const handler: NextApiHandler = async (req, res) => {
+  const cors = initMiddleware(
+    Cors({
+      methods: ['GET', 'POST'],
+      origin: `foo.bar`,
+    }),
+  )
+
+  await cors(req, res)
+
   const models = req.models
   if (!models) {
     throw createError(500, 'Could not find db connection')
@@ -73,15 +82,6 @@ const handler: NextApiHandler = async (req, res) => {
       })
       break
     case 'POST':
-      const cors = initMiddleware(
-        Cors({
-          methods: ['GET', 'POST'],
-          origin: `${process.env.NEXT_PUBLIC_BASE_URL}`,
-        }),
-      )
-
-      await cors(req, res)
-
       const { secretType, message, isEncryptedWithUserPassword } = await extractPostInput(req)
 
       // Encrypt sensitive information
