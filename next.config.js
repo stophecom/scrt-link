@@ -6,6 +6,9 @@ module.exports = withPWA({
     disable: process.env.NODE_ENV === 'development',
     dest: 'public',
   },
+  env: {
+    baseUrl: process.env.NEXTAUTH_URL,
+  },
   async headers() {
     return [
       {

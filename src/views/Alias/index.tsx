@@ -273,7 +273,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let error
   try {
-    const response = await axios.get(`${process.env.NEXTAUTH_URL}/api?alias=${alias}`)
+    const response = await axios.get(`${process.env.baseUrl}/api?alias=${alias}`)
     const { data } = response
     const { secretType, message, isEncryptedWithUserPassword } = data
 
