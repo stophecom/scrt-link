@@ -18,7 +18,7 @@ const Result = ({ data }: Pick<State, 'data'>) => {
   const alias = data?.alias
   const origin = isProduction
     ? `${process.env.NEXT_PUBLIC_SHORT_URL}`
-    : `${process.env.NEXT_PUBLIC_BASE_URL}/l`
+    : `${process.env.NEXTAUTH_URL}/l`
   const shortenedUrl = alias ? `${origin}/${alias}` : null
 
   const [hasCopied, setHasCopied] = useState(false)
