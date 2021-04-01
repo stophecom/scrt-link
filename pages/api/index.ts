@@ -47,7 +47,7 @@ const extractPostInput = async (req: NextApiRequest) => {
 const handler: NextApiHandler = async (req, res) => {
   const cors = initMiddleware(
     Cors({
-      methods: ['GET', 'POST'],
+      methods: ['GET', 'POST', 'OPTIONS'],
       origin: `${process.env.baseUrl}`,
     }),
   )
