@@ -266,10 +266,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { alias } = query
 
   // Block crawlers
-  // const userAgent = req?.headers['user-agent']
-  // if (userAgent && crawlers.some(({ pattern }) => RegExp(pattern).test(userAgent))) {
-  //   return { props: {} }
-  // }
+  const userAgent = req?.headers['user-agent']
+  if (userAgent && crawlers.some(({ pattern }) => RegExp(pattern).test(userAgent))) {
+    return { props: {} }
+  }
 
   let error
   try {
