@@ -26,7 +26,7 @@ const Security = () => (
     </Box>
     <Box mb={6}>
       <Typography variant="h3">Infrastructure</Typography>
-      <Typography variant="h4">Trusted players, little dependencies.</Typography>
+      <Typography variant="h4">Trusted players, few dependencies.</Typography>
 
       <Markdown
         source={`
