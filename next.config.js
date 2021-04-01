@@ -5,9 +5,7 @@ module.exports = withPWA({
   pwa: {
     disable: process.env.NODE_ENV === 'development',
     dest: 'public',
-    workbox: {
-      clientsClaim: false,
-    },
+    clientsClaim: false,
   },
   env: {
     baseUrl: process.env.NEXTAUTH_URL,
