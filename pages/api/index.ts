@@ -10,6 +10,7 @@ import createError from '@/api/utils/createError'
 import { urlAliasLength } from '@/constants'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import initMiddleware from '@/api/utils/middleware'
+import { sanitizeUrl } from '@/utils/index'
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -45,14 +46,14 @@ const extractPostInput = async (req: NextApiRequest) => {
 }
 
 const handler: NextApiHandler = async (req, res) => {
-  // const cors = initMiddleware(
-  //   Cors({
-  //     methods: ['GET', 'POST', 'OPTIONS'],
-  //     origin: `${process.env.baseUrl}`,
-  //   }),
-  // )
+  const cors = initMiddleware(
+    Cors({
+      methods: ['GET', 'POST', 'OPTIONS'],
+      origin: `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}`,
+    }),
+  )
 
-  // await cors(req, res)
+  await cors(req, res)
 
   const models = req.models
   if (!models) {
