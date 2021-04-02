@@ -1,13 +1,16 @@
 import { NextApiHandler, NextApiRequest } from 'next'
-import withDb from '@/api/middlewares/withDb'
 import { nanoid } from 'nanoid'
+import * as Yup from 'yup'
+import Cors from 'cors'
+import { AES, enc } from 'crypto-js'
+
+import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { urlAliasLength } from '@/constants'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
-import * as Yup from 'yup'
-
-import { AES, enc } from 'crypto-js'
+import initMiddleware from '@/api/utils/middleware'
+import { sanitizeUrl } from '@/utils/index'
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -43,6 +46,15 @@ const extractPostInput = async (req: NextApiRequest) => {
 }
 
 const handler: NextApiHandler = async (req, res) => {
+  const cors = initMiddleware(
+    Cors({
+      methods: ['GET', 'POST', 'OPTIONS'],
+      origin: `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}`,
+    }),
+  )
+
+  await cors(req, res)
+
   const models = req.models
   if (!models) {
     throw createError(500, 'Could not find db connection')

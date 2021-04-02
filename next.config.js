@@ -5,6 +5,8 @@ module.exports = withPWA({
   pwa: {
     disable: process.env.NODE_ENV === 'development',
     dest: 'public',
+    clientsClaim: false,
+    register: false, // Disable for now
   },
   async headers() {
     return [
