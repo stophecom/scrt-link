@@ -9,6 +9,7 @@ import Refresh from '@material-ui/icons/Refresh'
 import { RWebShare } from 'react-web-share'
 import Paper from '@material-ui/core/Paper'
 
+import { sanitizeUrl } from '@/utils/index'
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
@@ -18,7 +19,7 @@ const Result = ({ data }: Pick<State, 'data'>) => {
   const alias = data?.alias
   const origin = isProduction
     ? `${process.env.NEXT_PUBLIC_SHORT_URL}`
-    : `${process.env.NEXT_PUBLIC_VERCEL_URL}/l`
+    : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
   const shortenedUrl = alias ? `${origin}/${alias}` : null
 
   const [hasCopied, setHasCopied] = useState(false)

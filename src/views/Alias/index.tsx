@@ -5,7 +5,6 @@ import { Box, CircularProgress, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
 import { AES, enc } from 'crypto-js'
-import { parse } from 'uri-js'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import ReplyIcon from '@material-ui/icons/Reply'
 import { usePlausible } from 'next-plausible'
@@ -19,20 +18,11 @@ import { sha256 } from 'js-sha256'
 import crawlers from 'crawler-user-agents'
 
 import { passwordValidationSchema } from '@/utils/validationSchemas'
+import { sanitizeUrl } from '@/utils/index'
 import { SecretType } from '@/types'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
-
-// https://stackoverflow.com/a/19709846
-const sanitizeUrl = (url: string) => {
-  if (url.startsWith('//')) {
-    return url
-  }
-
-  const uri = parse(url)
-  return uri.scheme ? url : `http://${url}`
-}
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -274,7 +264,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let error
   try {
     const response = await axios.get(
-      `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api?alias=${alias}`,
+      `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api?alias=${alias}`,
     )
     const { data } = response
     const { secretType, message, isEncryptedWithUserPassword } = data
