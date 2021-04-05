@@ -21,6 +21,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
     title,
     canonical: url,
     description,
+
     openGraph: {
       url,
       title,

@@ -40,6 +40,10 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
     body: `The current limit is 280 characters. Need more? [Go top secret!](/00)`,
   },
   {
+    heading: 'Can I get notified when a secret has been viewed?',
+    body: `This feature will be availble soon: [Go top secret!](/00)`,
+  },
+  {
     heading: 'Can the recepient save the message?',
     body: `Sure. You can always take a screenshot. The idea behind this service is to securely share sensitive information one time. We (obviously) don't have control over what a recepient does with the message.`,
   },

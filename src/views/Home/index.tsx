@@ -205,6 +205,7 @@ const HomeView = () => {
           </Box>
         </>
       }
+      keywords="end-to-end encrypted, secret messages, one-time links, neogram, private note"
     >
       <Box mb={2}>
         <TabsMenu
