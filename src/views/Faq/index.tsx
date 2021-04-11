@@ -29,9 +29,7 @@ const Faq = ({ faq, jsonLd }: FaqProps) => {
       </Head>
       {faq.map(({ heading, body }, index) => (
         <Box key={index} py={3}>
-          <Box mb={2}>
-            <Typography variant="h3">{heading}</Typography>
-          </Box>
+          <Typography variant="h3">{heading}</Typography>
           <Markdown source={body} />
         </Box>
       ))}

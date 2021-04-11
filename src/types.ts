@@ -41,4 +41,9 @@ export interface SignIn {
   email: string
 }
 
+export interface UserSettings {
+  name?: string
+  neogramDestructionMessage?: string
+}
+
 export {}

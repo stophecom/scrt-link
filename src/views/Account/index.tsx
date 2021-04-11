@@ -1,15 +1,24 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import { useSession, getSession } from 'next-auth/client'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { Box, Typography } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
 
+import { UserSettings } from '@/types'
 import SignInForm from '@/components/SignInForm'
+import UserSettingsForm from '@/components/UserSettingsForm'
 import Page from '@/components/Page'
+import { sanitizeUrl } from '@/utils/index'
 
-const Account = () => {
+type AccountProps = {
+  user: UserSettings
+}
+const Account = ({ user }: AccountProps) => {
   const [session, loading] = useSession()
+  const { name } = user
+  const router = useRouter()
 
   if (typeof window !== 'undefined' && loading)
     return (
@@ -22,8 +31,12 @@ const Account = () => {
 
   if (session) {
     return (
-      <Page title={`Hi ${session?.user?.name || ''}`} subtitle="Welcome back!">
-        <p>You can view this page because you are signed in.</p>
+      <Page title={`Hi ${name || ''}`} subtitle="Welcome back!">
+        <Typography variant="h2">Settings</Typography>
+        <UserSettingsForm
+          {...user}
+          onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
+        />
       </Page>
     )
   }
@@ -44,8 +57,20 @@ const Account = () => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
+
+  let user = {}
+
+  if (session) {
+    const options = { headers: { cookie: context.req.headers.cookie as string } }
+    const res = await fetch(`${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api/me`, options)
+    const json = await res.json()
+    if (json.user) {
+      user = json.user
+    }
+  }
+
   return {
-    props: { session },
+    props: { session, user },
   }
 }
 
