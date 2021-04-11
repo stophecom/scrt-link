@@ -10,7 +10,7 @@ import { getSession } from 'next-auth/client'
 
 const extractPostInput = async (req: NextApiRequest) => {
   let { neogramDestructionMessage } = req.body
-  const { name } = req.body
+  const { name, isReadReceiptsEnabled } = req.body
 
   try {
     await userSettingsValidationSchema.validate(req.body)
@@ -20,7 +20,7 @@ const extractPostInput = async (req: NextApiRequest) => {
 
   neogramDestructionMessage = neogramDestructionMessage.trim()
   neogramDestructionMessage = encodeURIComponent(neogramDestructionMessage)
-  return { neogramDestructionMessage, name: name.trim() }
+  return { neogramDestructionMessage, name: name.trim(), isReadReceiptsEnabled }
 }
 
 const handler: NextApiHandler = async (req, res) => {
@@ -48,16 +48,16 @@ const handler: NextApiHandler = async (req, res) => {
       })
       break
     case 'POST':
-      const { neogramDestructionMessage, name } = await extractPostInput(req)
+      const data = await extractPostInput(req)
 
       // Using user email as unique identifier
       const userId = session.user.email || ''
-      const userSettings = await models.UserSettings.findOneAndUpdate(
-        { userId },
-        { neogramDestructionMessage, name },
-        { upsert: true, new: true },
-      )
+      const userSettings = await models.UserSettings.findOneAndUpdate({ userId }, data, {
+        upsert: true,
+        new: true,
+      })
 
+      console.log(userSettings)
       res.json({ data: userSettings, message: 'Your settings have been saved!' })
       break
     default:

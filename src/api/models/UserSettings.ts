@@ -6,6 +6,7 @@ interface UserSettingsFields {
   userId: string
   neogramDestructionMessage: string
   name: string
+  isReadReceiptsEnabled: boolean
 }
 
 export type UserSettingsData = BaseDocumentData & UserSettingsFields
@@ -16,6 +17,7 @@ const UserSettingsSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true },
     name: { type: String, required: false, trim: true },
+    isReadReceiptsEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
   },
   { timestamps: true },

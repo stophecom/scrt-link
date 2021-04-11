@@ -37,13 +37,13 @@ export interface BetaInvite {
 }
 
 export interface SignIn {
-  name?: string
   email: string
 }
 
 export interface UserSettings {
   name?: string
   neogramDestructionMessage?: string
+  isReadReceiptsEnabled?: boolean
 }
 
 export {}

@@ -35,6 +35,7 @@ const Account = ({ user }: AccountProps) => {
         <Typography variant="h2">Settings</Typography>
         <UserSettingsForm
           {...user}
+          email={session.user.email as string}
           onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
         />
       </Page>

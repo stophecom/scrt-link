@@ -8,7 +8,8 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 
 import BaseTextField from '@/components/BaseTextField'
-import { Maybe, UserSettings } from '@/types'
+import BaseSwitch from '@/components/BaseSwitch'
+import { Maybe, UserSettings, SignIn } from '@/types'
 
 import BaseButton from '@/components/BaseButton'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
@@ -36,20 +37,24 @@ const initialState: State = {
 
 const reducer = createReducer<State>()
 
-interface UserSettingsFormProps extends UserSettings {
+interface UserSettingsFormProps extends SignIn, UserSettings {
   onSuccess: () => void
 }
 const UserSettingsForm = ({
   name,
   neogramDestructionMessage,
+  email,
+  isReadReceiptsEnabled,
   onSuccess,
 }: UserSettingsFormProps) => {
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const initialValues: UserSettings = {
+  const initialValues: UserSettings & SignIn = {
     name: name || '',
     neogramDestructionMessage: neogramDestructionMessage || '',
+    email,
+    isReadReceiptsEnabled,
   }
 
   const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
@@ -91,7 +96,15 @@ const UserSettingsForm = ({
             <>
               <Form noValidate>
                 <Box mb={5}>
-                  <BaseTextField name="name" label="Name" />
+                  <Box mb={3}>
+                    <BaseTextField name="name" label="Name" />
+                  </Box>
+                  <Box mb={1}>
+                    <BaseTextField name="email" label="Email" value={email} disabled />
+                  </Box>
+                  <Box mb={2}>
+                    <BaseSwitch label="Get read receipts" name="isReadReceiptsEnabled" />
+                  </Box>
                 </Box>
                 <Box mb={5}>
                   <Typography variant="h3">Neogram™</Typography>

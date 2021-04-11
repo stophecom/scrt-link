@@ -24,7 +24,7 @@ let theme = createMuiTheme({
     fontFamily: 'IBM Plex Sans, sans-serif',
     h1: { fontFamily: 'Poppins, sans-serif', fontSize: '70%', color: pink },
     h2: { fontFamily: 'Poppins, sans-serif', fontSize: '40%', marginBottom: '.5em' },
-    h3: { fontFamily: 'Poppins, sans-serif', fontSize: '30%', marginBottom: '.7em' },
+    h3: { fontFamily: 'Poppins, sans-serif', fontSize: '26%', marginBottom: '.7em' },
     h4: {
       fontFamily: 'IBM Plex Sans, sans-serif',
       fontSize: '25%',

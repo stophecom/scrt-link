@@ -57,6 +57,7 @@ export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
 export const userSettingsValidationSchema = Yup.object().shape<UserSettings>({
   name: Yup.string().label('Name').max(200).trim(),
   neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
+  isReadReceiptsEnabled: Yup.boolean().label('Read receipts'),
 })
 
 export const signInValidationSchema = Yup.object().shape<BetaInvite>({
