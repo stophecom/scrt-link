@@ -39,7 +39,7 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET':
       const user = await models.UserSettings.findOne({
-        userId: session.user.email || '',
+        userId: session.userId || '',
       })
 
       res.json({
@@ -50,14 +50,12 @@ const handler: NextApiHandler = async (req, res) => {
     case 'POST':
       const data = await extractPostInput(req)
 
-      // Using user email as unique identifier
-      const userId = session.user.email || ''
+      const userId = session.userId || ''
       const userSettings = await models.UserSettings.findOneAndUpdate({ userId }, data, {
         upsert: true,
         new: true,
       })
 
-      console.log(userSettings)
       res.json({ data: userSettings, message: 'Your settings have been saved!' })
       break
     default:

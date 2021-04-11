@@ -29,11 +29,20 @@ const handler = (req, res) =>
       }),
     ],
     callbacks: {
-      async session(session) {
+      async jwt(token, user) {
+        if (user?.id) {
+          token.userId = user.id
+        }
+
+        return token
+      },
+      async session(session, token) {
+        session.userId = token.userId
+
         const models = req.models
         if (models) {
           const user = await models.UserSettings.findOne({
-            userId: session.user.email || '',
+            userId: token.userId || '',
           })
           if (user?.name) {
             session.user.name = user.name
