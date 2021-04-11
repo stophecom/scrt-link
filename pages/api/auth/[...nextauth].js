@@ -35,7 +35,9 @@ const handler = (req, res) =>
           const user = await models.UserSettings.findOne({
             userId: session.user.email || '',
           })
-          session.user.name = user.name
+          if (user?.name) {
+            session.user.name = user.name
+          }
         }
         return session
       },
