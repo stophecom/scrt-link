@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { signOut, useSession } from 'next-auth/client'
 import NoSsr from '@material-ui/core/NoSsr'
+import NextLink from 'next/link'
 
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
@@ -59,7 +60,12 @@ const Layout: React.FC = ({ children }) => {
         {session && (
           <NoSsr>
             <Box display="flex" justifyContent="flex-end" alignItems="center">
-              Signed in as {session.user.email}&nbsp;
+              <NextLink href="/account" passHref>
+                <Link component="a" color="textPrimary">
+                  Signed in as {session.user.name || session.user.email}
+                </Link>
+              </NextLink>
+              &nbsp;
               <BaseButton
                 onClick={() => signOut()}
                 color="primary"
@@ -72,18 +78,22 @@ const Layout: React.FC = ({ children }) => {
           </NoSsr>
         )}
         <Box mt={3}>
-          <Link href="/">
-            <Logo className={classes.root} />
-            <SROnly>{appTitle}</SROnly>
-          </Link>
+          <NextLink href="/">
+            <a>
+              <Logo className={classes.root} />
+              <SROnly>{appTitle}</SROnly>
+            </a>
+          </NextLink>
         </Box>
         {children}
       </MainContent>
       <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
         {menu.map(({ href, label }, index) => (
-          <LinkStyled className={classes.linkPadding} key={index} href={href} color="primary">
-            {label}
-          </LinkStyled>
+          <NextLink key={index} href={href} passHref>
+            <LinkStyled className={classes.linkPadding} color="primary">
+              {label}
+            </LinkStyled>
+          </NextLink>
         ))}
       </Box>
       <Box
@@ -96,9 +106,11 @@ const Layout: React.FC = ({ children }) => {
       >
         <span className={classes.linkPadding}>©{new Date().getFullYear()} SANTiHANS GmbH</span>
         {about.map(({ href, label }, index) => (
-          <LinkAbout className={classes.linkPadding} key={index} href={href} color="inherit">
-            {label}
-          </LinkAbout>
+          <NextLink key={index} href={href} passHref>
+            <LinkAbout className={classes.linkPadding} color="inherit">
+              {label}
+            </LinkAbout>
+          </NextLink>
         ))}
       </Box>
     </Box>
