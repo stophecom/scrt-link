@@ -67,11 +67,14 @@ const handler: NextApiHandler = async (req, res) => {
       }
 
       // Get user specific settings connected with a secret
-      const userSettings = await models.UserSettings.findOne({
-        userId: secretUrl?.userId || '',
-      })
-      const publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings)
+      let publicMeta = {}
 
+      if (secretUrl?.userId) {
+        const userSettings = await models.UserSettings.findOne({
+          userId: secretUrl?.userId,
+        })
+        publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings)
+      }
       // @todo Send read receipts
       // const privateMeta = pick(['isReadReceiptsEnabled'], userSettings)
 
@@ -96,7 +99,7 @@ const handler: NextApiHandler = async (req, res) => {
         AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
 
       const shortened = new models.SecretUrl({
-        userId: session?.userId || '',
+        userId: session?.userId,
         secretType,
         message: encryptAES(message),
         alias: nanoid(urlAliasLength),
