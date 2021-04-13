@@ -4,6 +4,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 import { urlAliasLength, maxMessageLength } from '@/constants'
 import { BaseDocumentData } from './types'
 interface SecretUrlFields {
+  userId?: string
   secretType: string
   alias: string
   message: string
@@ -16,6 +17,7 @@ type SecretUrlDocument = mongoose.Document & SecretUrlFields
 
 const SecretUrlSchema = new mongoose.Schema(
   {
+    userId: { type: mongoose.Types.ObjectId, required: false },
     secretType: { type: String, required: true, trim: true },
     alias: {
       type: String,

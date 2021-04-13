@@ -13,11 +13,11 @@ import Page from '@/components/Page'
 import { sanitizeUrl } from '@/utils/index'
 
 type AccountProps = {
-  user: UserSettings
+  userSettings: UserSettings
 }
-const Account = ({ user }: AccountProps) => {
+const Account = ({ userSettings }: AccountProps) => {
   const [session, loading] = useSession()
-  const { name } = user
+  const { name } = userSettings
   const router = useRouter()
 
   if (typeof window !== 'undefined' && loading)
@@ -34,7 +34,7 @@ const Account = ({ user }: AccountProps) => {
       <Page title={`Hi ${name || ''}`} subtitle="Welcome back!">
         <Typography variant="h2">Settings</Typography>
         <UserSettingsForm
-          {...user}
+          {...userSettings}
           email={session.user.email as string}
           onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
         />
@@ -59,19 +59,19 @@ const Account = ({ user }: AccountProps) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
 
-  let user = {}
+  let userSettings = {}
 
   if (session) {
     const options = { headers: { cookie: context.req.headers.cookie as string } }
     const res = await fetch(`${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api/me`, options)
     const json = await res.json()
-    if (json.user) {
-      user = json.user
+    if (json.userSettings) {
+      userSettings = json.userSettings
     }
   }
 
   return {
-    props: { session, user },
+    props: { session, userSettings },
   }
 }
 

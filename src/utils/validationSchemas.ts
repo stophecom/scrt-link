@@ -1,7 +1,9 @@
-import { FormInput, Password, SecretType, BetaInvite, UserSettings } from '@/types'
+import { FormInput, Password, SecretType, BetaInvite } from '@/types'
 import * as Yup from 'yup'
 import validator from 'validator'
 import { maxMessageLength } from '@/constants'
+
+import { UserSettingsFields } from '@/api/models/UserSettings'
 
 const secretTypes = ['message' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 
@@ -54,7 +56,7 @@ export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
   email: Yup.string().label('Email').required().email().trim(),
 })
 
-export const userSettingsValidationSchema = Yup.object().shape<UserSettings>({
+export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSettingsFields>>({
   name: Yup.string().label('Name').max(200).trim(),
   neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
   isReadReceiptsEnabled: Yup.boolean().label('Read receipts'),

@@ -1,21 +1,22 @@
 import mongoose from 'mongoose'
 
-import { BaseDocumentData } from './types'
-
-interface UserSettingsFields {
+export interface UserSettingsFields {
   userId: string
+  // receiptsEmail: string
+  // receiptsPhoneNumber: string
   neogramDestructionMessage: string
+  // neogramDestructionTimeout: number
   name: string
   isReadReceiptsEnabled: boolean
+  // isSenderNameShown: boolean
+  secretsCount: number
 }
-
-export type UserSettingsData = BaseDocumentData & UserSettingsFields
 
 type UserSettingsDocument = mongoose.Document & UserSettingsFields
 
 const UserSettingsSchema = new mongoose.Schema(
   {
-    userId: { type: String, required: true },
+    userId: { type: mongoose.Types.ObjectId, required: true },
     name: { type: String, required: false, trim: true },
     isReadReceiptsEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },

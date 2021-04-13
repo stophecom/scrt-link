@@ -1,8 +1,9 @@
 import { NextApiHandler, NextApiRequest } from 'next'
 import { nanoid } from 'nanoid'
 import * as Yup from 'yup'
-
+import { pick } from 'ramda'
 import { AES, enc } from 'crypto-js'
+import { getSession } from 'next-auth/client'
 
 import withDb from '@/api/middlewares/withDb'
 import cors from '@/api/middlewares/cors'
@@ -48,9 +49,12 @@ const handler: NextApiHandler = async (req, res) => {
   await cors(req, res)
 
   const models = req.models
+  const session = await getSession({ req })
+
   if (!models) {
     throw createError(500, 'Could not find db connection')
   }
+
   switch (req.method) {
     case 'GET':
       const alias = await extractGetInput(req)
@@ -62,7 +66,16 @@ const handler: NextApiHandler = async (req, res) => {
         )
       }
 
-      // Decrypt
+      // Get user specific settings connected with a secret
+      const userSettings = await models.UserSettings.findOne({
+        userId: secretUrl?.userId || '',
+      })
+      const publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings)
+
+      // @todo Send read receipts
+      // const privateMeta = pick(['isReadReceiptsEnabled'], userSettings)
+
+      // Decrypt essage
       const decryptAES = (string: string) => {
         const bytes = AES.decrypt(string, `${process.env.AES_KEY_512}`)
         return bytes.toString(enc.Utf8)
@@ -72,6 +85,7 @@ const handler: NextApiHandler = async (req, res) => {
         secretType: secretUrl.secretType,
         message: decryptAES(secretUrl.message),
         isEncryptedWithUserPassword: secretUrl.isEncryptedWithUserPassword,
+        meta: publicMeta,
       })
       break
     case 'POST':
@@ -82,6 +96,7 @@ const handler: NextApiHandler = async (req, res) => {
         AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
 
       const shortened = new models.SecretUrl({
+        userId: session?.userId || '',
         secretType,
         message: encryptAES(message),
         alias: nanoid(urlAliasLength),

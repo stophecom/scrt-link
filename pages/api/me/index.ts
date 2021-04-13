@@ -5,22 +5,18 @@ import cors from '@/api/middlewares/cors'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
+import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 
 import { getSession } from 'next-auth/client'
 
 const extractPostInput = async (req: NextApiRequest) => {
-  let { neogramDestructionMessage } = req.body
-  const { name, isReadReceiptsEnabled } = req.body
-
   try {
     await userSettingsValidationSchema.validate(req.body)
   } catch (err) {
     throw createError(422, err.message)
   }
 
-  neogramDestructionMessage = neogramDestructionMessage.trim()
-  neogramDestructionMessage = encodeURIComponent(neogramDestructionMessage)
-  return { neogramDestructionMessage, name: name.trim(), isReadReceiptsEnabled }
+  return encodeStringsForDB(req.body)
 }
 
 const handler: NextApiHandler = async (req, res) => {
@@ -38,12 +34,12 @@ const handler: NextApiHandler = async (req, res) => {
 
   switch (req.method) {
     case 'GET':
-      const user = await models.UserSettings.findOne({
+      const userSettingsRaw = await models.UserSettings.findOne({
         userId: session.userId || '',
       })
 
       res.json({
-        user,
+        userSettings: userSettingsRaw && decodeStringsFromDB(userSettingsRaw),
         session,
       })
       break

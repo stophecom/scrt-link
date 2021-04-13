@@ -63,7 +63,6 @@ const UserSettingsForm = ({
     try {
       const response = await axios.post('/api/me', values)
       dispatch(doSuccess(response))
-      formikHelpers.resetForm()
       onSuccess()
     } catch (error) {
       dispatch(doError(error))

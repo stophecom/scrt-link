@@ -17,6 +17,7 @@ import { sha256 } from 'js-sha256'
 
 import crawlers from 'crawler-user-agents'
 
+import { UserSettingsFields } from '@/api/models/UserSettings'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { sanitizeUrl } from '@/utils/index'
 import { SecretType } from '@/types'
@@ -52,12 +53,14 @@ interface AliasViewProps {
   message?: string
   isEncryptedWithUserPassword?: boolean
   secretType?: SecretType
+  meta: Partial<UserSettingsFields>
 }
 const AliasView: NextPage<AliasViewProps> = ({
   error,
   message = '',
   isEncryptedWithUserPassword = false,
   secretType,
+  meta = {},
 }) => {
   const classes = useStyles()
   const plausible = usePlausible()
@@ -79,7 +82,7 @@ const AliasView: NextPage<AliasViewProps> = ({
         </Typography>
         <Typography variant="subtitle1" color="primary">
           <Pause ms={2000} />
-          {'This message will self-destruct in five seconds!'}
+          {meta?.neogramDestructionMessage || 'This message will self-destruct in five seconds!'}
           <br />
           <Pause ms={1000} />
           {'5…'}
@@ -267,7 +270,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api?alias=${alias}`,
     )
     const { data } = response
-    const { secretType, message, isEncryptedWithUserPassword } = data
+    const { secretType, message, isEncryptedWithUserPassword, meta } = data
 
     // If URL is in plain text, redirect early
     if (!isEncryptedWithUserPassword && secretType === 'url') {
@@ -280,7 +283,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 
     return {
-      props: { secretType, message: decodeURIComponent(message), isEncryptedWithUserPassword },
+      props: {
+        secretType,
+        message: decodeURIComponent(message),
+        isEncryptedWithUserPassword,
+        meta,
+      },
     }
   } catch (err) {
     const { response } = err
