@@ -9,6 +9,7 @@ import NextLink from 'next/link'
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 import BaseButton from '@/components/BaseButton'
+import Stats from '@/components/Stats'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
@@ -112,6 +113,9 @@ const Layout: React.FC = ({ children }) => {
             </LinkAbout>
           </NextLink>
         ))}
+      </Box>
+      <Box className={classes.footer} display="flex" justifyContent="center" p={2} pt={0}>
+        <Stats />
       </Box>
     </Box>
   )

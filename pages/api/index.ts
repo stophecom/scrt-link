@@ -56,7 +56,7 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   switch (req.method) {
-    case 'GET':
+    case 'GET': {
       const alias = await extractGetInput(req)
       const secretUrl = await models.SecretUrl.findOneAndDelete({ alias })
       if (!secretUrl) {
@@ -66,12 +66,28 @@ const handler: NextApiHandler = async (req, res) => {
         )
       }
 
+      const { userId, secretType, isEncryptedWithUserPassword, message } = secretUrl
+
+      // Stats
+      await models.Stats.findOneAndUpdate(
+        {},
+        {
+          $inc: {
+            totalSecretsViewCount: 1,
+            'secretsViewCount.message': Number(secretType === 'message'),
+            'secretsViewCount.url': Number(secretType === 'url'),
+            'secretsViewCount.neogram': Number(secretType === 'neogram'),
+          },
+        },
+        { new: true },
+      )
+
       // Get user specific settings connected with a secret
       let publicMeta = {}
 
-      if (secretUrl?.userId) {
+      if (userId) {
         const userSettings = await models.UserSettings.findOne({
-          userId: secretUrl?.userId,
+          userId,
         })
         publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings)
       }
@@ -85,13 +101,14 @@ const handler: NextApiHandler = async (req, res) => {
       }
 
       res.json({
-        secretType: secretUrl.secretType,
-        message: decryptAES(secretUrl.message),
-        isEncryptedWithUserPassword: secretUrl.isEncryptedWithUserPassword,
+        secretType,
+        message: decryptAES(message),
+        isEncryptedWithUserPassword,
         meta: publicMeta,
       })
       break
-    case 'POST':
+    }
+    case 'POST': {
       const { secretType, message, isEncryptedWithUserPassword } = await extractPostInput(req)
 
       // Encrypt sensitive information
@@ -122,6 +139,7 @@ const handler: NextApiHandler = async (req, res) => {
       await shortened.save()
       res.json(shortened)
       break
+    }
     default:
       throw createError(405, 'Method Not Allowed')
   }
