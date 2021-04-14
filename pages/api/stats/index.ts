@@ -20,7 +20,7 @@ const handler: NextApiHandler = async (req, res) => {
       throw createError(500, 'Internal server error! Could not find statistics data.')
     }
 
-    const response = pick(['totalSecretsCount', 'secretsCount'])(stats)
+    const response = pick(['totalSecretsCount', 'secretsCount', 'totalSecretsViewCount'])(stats)
     return response
   }
 
