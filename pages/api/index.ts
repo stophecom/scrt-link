@@ -98,6 +98,20 @@ const handler: NextApiHandler = async (req, res) => {
       const encryptAES = (string: string) =>
         AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
 
+      // Stats
+      await models.Stats.findOneAndUpdate(
+        {},
+        {
+          $inc: {
+            totalSecretsCount: 1,
+            'secretsCount.message': Number(secretType === 'message'),
+            'secretsCount.url': Number(secretType === 'url'),
+            'secretsCount.neogram': Number(secretType === 'neogram'),
+          },
+        },
+        { new: true, upsert: true },
+      )
+
       const shortened = new models.SecretUrl({
         userId: session?.userId,
         secretType,
