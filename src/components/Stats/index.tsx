@@ -12,9 +12,10 @@ const Stats = () => {
 
   return (
     <span>
-      Secrets created: {new Intl.NumberFormat('en-US').format(data?.totalSecretsCount || 0)} |
-      Viewed: {new Intl.NumberFormat('en-US').format(data?.totalSecretsViewCount || 0)} |
-      Compromised: 0
+      <strong>Secrets</strong> | Created:&nbsp;
+      {new Intl.NumberFormat('en-US').format(data?.totalSecretsCount || 0)} | Viewed:&nbsp;
+      {new Intl.NumberFormat('en-US').format(data?.totalSecretsViewCount || 0)} |
+      Compromised:&nbsp;0
     </span>
   )
 }
