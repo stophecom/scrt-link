@@ -12,6 +12,8 @@ const withServerSentEvents = <T>(fn: NextApiHandler) => async (
 ) => {
   res.setHeader('Content-Type', 'text/event-stream')
   res.setHeader('Cache-Control', 'no-cache, no-transform')
+  res.setHeader('Content-Encoding', 'none')
+
   res.flushHeaders()
 
   const sendEventStreamData = (data: T) => {
