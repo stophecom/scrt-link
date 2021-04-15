@@ -13,6 +13,10 @@ declare global {
       NEXTAUTH_URL: string
       JWT_SECRET: string
       NEXT_AUTH_SECRET: string
+      NEXT_PUBLIC_PUSHER_APP_KEY: string
+      NEXT_PUBLIC_PUSHER_CLUSTER: string
+      PUSHER_SECRET: string
+      PUSHER_APP_ID: string
     }
   }
 }

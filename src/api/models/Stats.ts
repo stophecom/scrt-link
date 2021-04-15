@@ -1,8 +1,14 @@
 import mongoose from 'mongoose'
 
-interface StatsFields {
+export interface StatsFields {
   totalSecretsCount: number
   secretsCount: {
+    message: number
+    url: number
+    neogram: number
+  }
+  totalSecretsViewCount: number
+  secretsViewCount: {
     message: number
     url: number
     neogram: number
@@ -15,6 +21,12 @@ const StatsSchema = new mongoose.Schema(
   {
     totalSecretsCount: { type: Number, required: true, default: 0 },
     secretsCount: {
+      message: Number,
+      url: Number,
+      neogram: Number,
+    },
+    totalSecretsViewCount: Number,
+    secretsViewCount: {
       message: Number,
       url: Number,
       neogram: Number,
