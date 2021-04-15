@@ -1,14 +1,10 @@
 import React from 'react'
 
-import { sanitizeUrl } from '@/utils/index'
-import { useEventSource } from '@/utils/serverSentEvents'
-
+import { usePusher } from '@/utils/pusher'
 import { StatsFields } from '@/api/models/Stats'
 
 const Stats = () => {
-  const data = useEventSource(
-    `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api/stats`,
-  ) as null | StatsFields
+  const data = usePusher('/stats', 'stats', 'stats-update') as StatsFields
 
   if (!data) {
     return null
