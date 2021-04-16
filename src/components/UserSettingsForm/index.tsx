@@ -123,7 +123,7 @@ const UserSettingsForm = ({
                     loading={isSubmitting}
                     disabled={!isValid}
                   >
-                    Send
+                    Save
                   </BaseButton>
                 </Box>
               </Form>

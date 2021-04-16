@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Link, Typography } from '@material-ui/core'
+import { Box, Link } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { signOut, useSession } from 'next-auth/client'
@@ -65,26 +65,22 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Container>
-        {session && (
-          <NoSsr>
-            <Box display="flex" justifyContent="flex-end" alignItems="center">
-              <NextLink href="/account" passHref>
-                <Link component="a" color="textPrimary">
-                  Signed in as {session.user.name || session.user.email}
-                </Link>
-              </NextLink>
-              &nbsp;
-              <BaseButton
-                onClick={() => signOut()}
-                color="primary"
-                variant="contained"
-                size="small"
-              >
-                Sign out
-              </BaseButton>
+        <Box display="flex" justifyContent="flex-end" alignItems="center">
+          {session && (
+            <Box mr={2}>
+              <NoSsr>
+                <BaseButton onClick={() => signOut()} variant="text" size="small">
+                  Sign out
+                </BaseButton>
+              </NoSsr>
             </Box>
-          </NoSsr>
-        )}
+          )}
+          <NextLink href="/account" passHref>
+            <BaseButton component="a" color="primary" variant="contained" size="small">
+              {session ? session.user.name || 'My account' : 'Sign in'}
+            </BaseButton>
+          </NextLink>
+        </Box>
         <Box mt={3}>
           <NextLink href="/">
             <a>
