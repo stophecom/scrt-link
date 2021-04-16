@@ -89,7 +89,8 @@ const handler: NextApiHandler = async (req, res) => {
         const userSettings = await models.UserSettings.findOne({
           userId,
         })
-        publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings)
+
+        publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings?.toJSON())
       }
       // @todo Send read receipts
       // const privateMeta = pick(['isReadReceiptsEnabled'], userSettings)
