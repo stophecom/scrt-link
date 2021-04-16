@@ -8,6 +8,7 @@ import { userSettingsValidationSchema } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 
 import { getSession } from 'next-auth/client'
+import { UserSettingsFields } from '@/api/models/UserSettings'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
@@ -33,16 +34,17 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   switch (req.method) {
-    case 'GET':
-      const userSettingsRaw = await models.UserSettings.findOne({
+    case 'GET': {
+      const userSettings = await models.UserSettings.findOne({
         userId: session.userId || '',
       })
 
       res.json({
-        userSettings: userSettingsRaw && decodeStringsFromDB(userSettingsRaw),
+        userSettings: decodeStringsFromDB(userSettings?.toJSON()),
         session,
       })
       break
+    }
     case 'POST':
       const data = await extractPostInput(req)
 
@@ -52,7 +54,7 @@ const handler: NextApiHandler = async (req, res) => {
         new: true,
       })
 
-      res.json({ data: userSettings, message: 'Your settings have been saved!' })
+      res.json({ data: userSettings.toJSON(), message: 'Your settings have been saved!' })
       break
     default:
       throw createError(405, 'Method Not Allowed')

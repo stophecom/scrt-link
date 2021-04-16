@@ -45,7 +45,7 @@ const handler = (req, res) =>
             userId: token.userId || '',
           })
           if (user?.name) {
-            session.user.name = user.name
+            session.user.name = decodeURIComponent(user.name)
           }
         }
         return session
