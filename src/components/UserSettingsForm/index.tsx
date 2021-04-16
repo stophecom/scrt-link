@@ -101,9 +101,9 @@ const UserSettingsForm = ({
                   <Box mb={1}>
                     <BaseTextField name="email" label="Email" value={email} disabled />
                   </Box>
-                  <Box mb={2}>
+                  {/* <Box mb={2}>
                     <BaseSwitch label="Get read receipts" name="isReadReceiptsEnabled" />
-                  </Box>
+                  </Box> */}
                 </Box>
                 <Box mb={5}>
                   <Typography variant="h3">Neogram™</Typography>
