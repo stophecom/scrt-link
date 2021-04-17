@@ -69,6 +69,8 @@ const AliasView: NextPage<AliasViewProps> = ({
   const [localMessage, setLocalMessage] = useState(message)
   const [success, setSuccess] = useState(false)
 
+  const countDown = Array.from(Array(meta?.neogramDestructionTimeout || 5).keys()).reverse()
+
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
     history.pushState(null, 'Secret destroyed', '💥')
@@ -76,7 +78,7 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   const SelfDestructionSequence = () => {
     return (
-      <WindupChildren onFinished={() => setTimeout(() => window.location.reload(), 500)}>
+      <WindupChildren onFinished={() => window.location.reload()}>
         <Typography variant="subtitle1" className={classes.break}>
           {localMessage}
         </Typography>
@@ -85,18 +87,17 @@ const AliasView: NextPage<AliasViewProps> = ({
           {meta?.neogramDestructionMessage || 'This message will self-destruct in five seconds!'}
           <br />
           <Pause ms={1000} />
-          {'5…'}
-          <Pause ms={1000} />
-          {'4…'}
-          <Pause ms={1000} />
-          {'3…'}
-          <Pause ms={1000} />
-          {'2…'}
-          <Pause ms={1000} />
-          {'1…'}
+          {countDown.map((item) => {
+            return (
+              <>
+                {item + 1}…
+                <Pause ms={1000} />
+              </>
+            )
+          })}
           <br />
           <Pause ms={1000} />
-          {'💥'}
+          {'Booooom 💥'}
         </Typography>
       </WindupChildren>
     )

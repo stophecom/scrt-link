@@ -99,7 +99,7 @@ const handler: NextApiHandler = async (req, res) => {
         )
 
         publicMeta = pick(
-          ['neogramDestructionMessage', 'name'],
+          ['neogramDestructionMessage', 'neogramDestructionTimeout', 'name'],
           decodeStringsFromDB(userSettings?.toJSON()),
         )
       }

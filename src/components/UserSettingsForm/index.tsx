@@ -9,8 +9,9 @@ import Alert from '@material-ui/lab/Alert'
 
 import BaseTextField from '@/components/BaseTextField'
 import BaseSwitch from '@/components/BaseSwitch'
-import { Maybe, UserSettings, SignIn } from '@/types'
-
+import InputAdornment from '@material-ui/core/InputAdornment'
+import { Maybe, SignIn } from '@/types'
+import { UserSettingsFields } from '@/api/models/UserSettings'
 import BaseButton from '@/components/BaseButton'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
@@ -37,12 +38,14 @@ const initialState: State = {
 
 const reducer = createReducer<State>()
 
+type UserSettings = Partial<UserSettingsFields>
 interface UserSettingsFormProps extends SignIn, UserSettings {
   onSuccess: () => void
 }
 const UserSettingsForm = ({
   name,
   neogramDestructionMessage,
+  neogramDestructionTimeout,
   email,
   isReadReceiptsEnabled,
   onSuccess,
@@ -53,6 +56,7 @@ const UserSettingsForm = ({
   const initialValues: UserSettings & SignIn = {
     name: name || '',
     neogramDestructionMessage: neogramDestructionMessage || '',
+    neogramDestructionTimeout: neogramDestructionTimeout || 5,
     email,
     isReadReceiptsEnabled,
   }
@@ -101,17 +105,30 @@ const UserSettingsForm = ({
                   <Box mb={1}>
                     <BaseTextField name="email" label="Email" value={email} disabled />
                   </Box>
-                  {/* <Box mb={2}>
+                  <Box mb={2}>
                     <BaseSwitch label="Get read receipts" name="isReadReceiptsEnabled" />
-                  </Box> */}
+                  </Box>
                 </Box>
                 <Box mb={5}>
                   <Typography variant="h3">Neogram™</Typography>
-                  <BaseTextField
-                    name="neogramDestructionMessage"
-                    label="Destruction message"
-                    placeholder="This message will self-destruct in five seconds!"
-                  />
+                  <Box mb={3}>
+                    <BaseTextField
+                      name="neogramDestructionMessage"
+                      label="Destruction message"
+                      placeholder="This message will self-destruct in five seconds!"
+                    />
+                  </Box>
+                  <Box mb={1} width="60%" minWidth={280}>
+                    <BaseTextField
+                      name="neogramDestructionTimeout"
+                      label="Destruction timeout"
+                      type="number"
+                      helperText="Countdown time before message gets destroyed. Defaults to 5s."
+                      InputProps={{
+                        endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
+                      }}
+                    />
+                  </Box>
                 </Box>
                 <Box mb={1}>
                   <BaseButton

@@ -30,7 +30,7 @@ function BaseTextField(props: BaseTextFieldProps) {
       value={field.value ?? ''}
       fullWidth
       error={hasError}
-      helperText={errorMessage}
+      helperText={errorMessage || props.helperText}
     />
   )
 }

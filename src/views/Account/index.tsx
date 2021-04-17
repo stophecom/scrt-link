@@ -6,16 +6,15 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import { Box, Typography } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
 
-import { UserSettings } from '@/types'
 import SignInForm from '@/components/SignInForm'
 import UserSettingsForm from '@/components/UserSettingsForm'
 import Page from '@/components/Page'
 import { sanitizeUrl } from '@/utils/index'
 import { StatsFields } from '@/api/models/Stats'
-import stats from 'pages/api/stats'
+import { UserSettingsFields } from '@/api/models/UserSettings'
 
 type AccountProps = {
-  userSettings: UserSettings
+  userSettings: Partial<UserSettingsFields>
   stats: Partial<StatsFields>
 }
 const Account = ({ userSettings, stats }: AccountProps) => {
