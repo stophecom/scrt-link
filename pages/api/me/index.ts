@@ -8,7 +8,6 @@ import { userSettingsValidationSchema } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 
 import { getSession } from 'next-auth/client'
-import { UserSettingsFields } from '@/api/models/UserSettings'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {

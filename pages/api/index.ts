@@ -11,6 +11,7 @@ import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { urlAliasLength } from '@/constants'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
+import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -30,19 +31,13 @@ const extractGetInput = async (req: NextApiRequest) => {
 }
 
 const extractPostInput = async (req: NextApiRequest) => {
-  const { secretType, isEncryptedWithUserPassword } = req.body
-
   try {
     await apiValidationSchemaByType.validate(req.body)
   } catch (err) {
     throw createError(422, err.message)
   }
 
-  let { message } = req.body
-
-  message = message.trim()
-  message = encodeURIComponent(message)
-  return { secretType, message, isEncryptedWithUserPassword }
+  return encodeStringsForDB(req.body)
 }
 
 const handler: NextApiHandler = async (req, res) => {
@@ -103,7 +98,10 @@ const handler: NextApiHandler = async (req, res) => {
           { new: true },
         )
 
-        publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings?.toJSON())
+        publicMeta = pick(
+          ['neogramDestructionMessage', 'name'],
+          decodeStringsFromDB(userSettings?.toJSON()),
+        )
       }
       // @todo Send read receipts
       // const privateMeta = pick(['isReadReceiptsEnabled'], userSettings)
