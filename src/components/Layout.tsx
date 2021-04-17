@@ -76,7 +76,12 @@ const Layout: React.FC = ({ children }) => {
             </Box>
           )}
           <NextLink href="/account" passHref>
-            <BaseButton component="a" color="primary" variant="contained" size="small">
+            <BaseButton
+              component="a"
+              color="primary"
+              variant={session ? 'contained' : 'text'}
+              size="small"
+            >
               {session ? session.user.name || 'My account' : 'Sign in'}
             </BaseButton>
           </NextLink>
