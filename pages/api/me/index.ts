@@ -39,8 +39,13 @@ const handler: NextApiHandler = async (req, res) => {
         userId: session.userId || '',
       })
 
+      const stats = await models.Stats.findOne({
+        userId: session.userId || '',
+      }).lean()
+
       res.json({
         userSettings: decodeStringsFromDB(userSettings?.toJSON()),
+        stats,
         session,
       })
       break

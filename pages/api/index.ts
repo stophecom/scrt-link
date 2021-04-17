@@ -90,6 +90,19 @@ const handler: NextApiHandler = async (req, res) => {
           userId,
         })
 
+        await models.Stats.findOneAndUpdate(
+          { userId },
+          {
+            $inc: {
+              totalSecretsViewCount: 1,
+              'secretsViewCount.message': Number(secretType === 'message'),
+              'secretsViewCount.url': Number(secretType === 'url'),
+              'secretsViewCount.neogram': Number(secretType === 'neogram'),
+            },
+          },
+          { new: true },
+        )
+
         publicMeta = pick(['neogramDestructionMessage', 'name'], userSettings?.toJSON())
       }
       // @todo Send read receipts
@@ -129,6 +142,21 @@ const handler: NextApiHandler = async (req, res) => {
         },
         { new: true, upsert: true },
       )
+
+      if (session?.userId) {
+        await models.Stats.findOneAndUpdate(
+          { userId: session.userId },
+          {
+            $inc: {
+              totalSecretsCount: 1,
+              'secretsCount.message': Number(secretType === 'message'),
+              'secretsCount.url': Number(secretType === 'url'),
+              'secretsCount.neogram': Number(secretType === 'neogram'),
+            },
+          },
+          { new: true, upsert: true },
+        )
+      }
 
       const shortened = new models.SecretUrl({
         userId: session?.userId,

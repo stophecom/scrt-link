@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 export interface StatsFields {
+  userId?: string
   totalSecretsCount: number
   secretsCount: {
     message: number
@@ -19,6 +20,7 @@ type StatsDocument = mongoose.Document & StatsFields
 
 const StatsSchema = new mongoose.Schema(
   {
+    userId: { type: mongoose.Types.ObjectId, required: false },
     totalSecretsCount: { type: Number, required: true, default: 0 },
     secretsCount: {
       message: Number,
