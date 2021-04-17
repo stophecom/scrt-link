@@ -10,7 +10,7 @@ import Alert from '@material-ui/lab/Alert'
 import BaseTextField from '@/components/BaseTextField'
 import BaseSwitch from '@/components/BaseSwitch'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import { Maybe, SignIn } from '@/types'
+import { Maybe } from '@/types'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import BaseButton from '@/components/BaseButton'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
@@ -39,7 +39,7 @@ const initialState: State = {
 const reducer = createReducer<State>()
 
 type UserSettings = Partial<UserSettingsFields>
-interface UserSettingsFormProps extends SignIn, UserSettings {
+interface UserSettingsFormProps extends UserSettings {
   onSuccess: () => void
 }
 const UserSettingsForm = ({
@@ -53,7 +53,7 @@ const UserSettingsForm = ({
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const initialValues: UserSettings & SignIn = {
+  const initialValues: UserSettings = {
     name: name || '',
     neogramDestructionMessage: neogramDestructionMessage || '',
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
