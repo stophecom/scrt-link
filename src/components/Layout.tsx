@@ -112,11 +112,10 @@ const Layout: React.FC = ({ children }) => {
           </Box>
           <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
             <Legal>
-              <strong>Scrt.link</strong> let&rsquo;s you share sensitive information online - even
-              in case your communications channel itself is insecure. Keep confidentaionl
-              information out of email, Slack, Whatsapp or any other chat app. A one-time,
-              disposable link guarantees your secrets can only ever be accessed one time. Before
-              being destroyed for good.
+              <strong>Scrt.link</strong> let&rsquo;s you share sensitive information online. Keep
+              confidential information out of email, Slack, Teams, Whatsapp or any other
+              communication channel. A one-time, disposable link guarantees your secrets can only
+              ever be accessed one time - before being destroyed for good.
               <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
                 <span className={classes.linkPadding}>
                   ©{new Date().getFullYear()} SANTiHANS GmbH
