@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 export interface UserSettingsFields {
   userId: string
-  // receiptsEmail: string
+  email: string
   // receiptsPhoneNumber: string
   neogramDestructionMessage: string
   neogramDestructionTimeout: number
@@ -18,6 +18,7 @@ const UserSettingsSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Types.ObjectId, required: true },
     name: { type: String, required: false, trim: true },
+    email: { type: String, required: true, trim: true },
     isReadReceiptsEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },

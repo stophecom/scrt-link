@@ -12,6 +12,8 @@ import createError from '@/api/utils/createError'
 import { urlAliasLength } from '@/constants'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
+import { UserSettingsFields } from '@/api/models/UserSettings'
+import mailjet from '@/api/utils/mailjet'
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -78,13 +80,39 @@ const handler: NextApiHandler = async (req, res) => {
       )
 
       // Get user specific settings connected with a secret
-      let publicMeta = {}
+      let publicMeta = {} as Partial<UserSettingsFields>
 
       if (userId) {
-        const userSettings = await models.UserSettings.findOne({
+        let privateMeta = {} as Pick<UserSettingsFields, 'isReadReceiptsEnabled' | 'email'>
+        const userSettingsRaw = await models.UserSettings.findOne({
           userId,
         })
 
+        const userSettings = decodeStringsFromDB(userSettingsRaw?.toJSON()) as UserSettingsFields
+
+        publicMeta = pick(
+          ['neogramDestructionMessage', 'neogramDestructionTimeout', 'name'],
+          userSettings,
+        )
+
+        privateMeta = pick(['isReadReceiptsEnabled', 'email'], userSettings)
+
+        const name = publicMeta?.name || 'Anonymous'
+
+        if (privateMeta?.isReadReceiptsEnabled) {
+          mailjet({
+            To: [{ Email: privateMeta.email, Name: name }],
+            Subject: 'Secret has been viewed',
+            TemplateID: 2818166,
+            TemplateLanguage: true,
+            Variables: {
+              name,
+              alias,
+            },
+          })
+        }
+
+        // User stats update
         await models.Stats.findOneAndUpdate(
           { userId },
           {
@@ -97,14 +125,7 @@ const handler: NextApiHandler = async (req, res) => {
           },
           { new: true },
         )
-
-        publicMeta = pick(
-          ['neogramDestructionMessage', 'neogramDestructionTimeout', 'name'],
-          decodeStringsFromDB(userSettings?.toJSON()),
-        )
       }
-      // @todo Send read receipts
-      // const privateMeta = pick(['isReadReceiptsEnabled'], userSettings)
 
       // Decrypt essage
       const decryptAES = (string: string) => {

@@ -37,8 +37,8 @@ const Account = ({ userSettings, stats }: AccountProps) => {
         <Box mb={10}>
           <Typography variant="h2">Settings</Typography>
           <UserSettingsForm
-            {...userSettings}
             email={session.user.email as string}
+            {...userSettings}
             onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
           />
         </Box>
