@@ -3,16 +3,15 @@ import Pusher from 'pusher-js'
 
 import { baseUrl, pusherCluster } from '@/constants'
 
-export const usePusher = <T>(apiEndpoint: string, channel: string, event: string): T => {
+export const usePusher = <T>(
+  apiEndpoint: string,
+  channel: string,
+  event: string,
+  realtime = false,
+): T => {
   const [data, updateData] = useState({} as T)
 
   // Pusher.logToConsole = true
-
-  const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
-    cluster: pusherCluster,
-  })
-
-  const pusherChannel = pusher.subscribe(channel)
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -22,9 +21,15 @@ export const usePusher = <T>(apiEndpoint: string, channel: string, event: string
     }
     fetchStats()
 
-    pusherChannel.bind(event, function (incomingData: T) {
-      updateData(incomingData)
-    })
+    if (realtime) {
+      const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
+        cluster: pusherCluster,
+      })
+      const pusherChannel = pusher.subscribe(channel)
+      pusherChannel.bind(event, function (incomingData: T) {
+        updateData(incomingData)
+      })
+    }
   }, [])
 
   return data

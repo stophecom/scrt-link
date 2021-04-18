@@ -3,8 +3,12 @@ import React from 'react'
 import { usePusher } from '@/utils/pusher'
 import { StatsFields } from '@/api/models/Stats'
 
+import { UIStore } from '@/store'
+
 const Stats = () => {
-  const data = usePusher('/stats', 'stats', 'stats-update') as StatsFields
+  const liveStatsEnabled = UIStore.useState((s) => s.liveStatsEnabled)
+
+  const data = usePusher('/stats', 'stats', 'stats-update', liveStatsEnabled) as StatsFields
 
   if (!data) {
     return null
