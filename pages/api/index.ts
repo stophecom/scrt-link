@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { pick } from 'ramda'
 import { AES, enc } from 'crypto-js'
 import { getSession } from 'next-auth/client'
+import Pusher from 'pusher'
 
 import withDb from '@/api/middlewares/withDb'
 import cors from '@/api/middlewares/cors'
@@ -14,6 +15,15 @@ import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import mailjet from '@/api/utils/mailjet'
+import { pusherCluster } from '@/constants'
+
+const pusher = new Pusher({
+  appId: process.env.PUSHER_APP_ID,
+  key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
+  secret: process.env.PUSHER_SECRET,
+  cluster: pusherCluster,
+  useTLS: true,
+})
 
 const getInputValidationSchema = Yup.object().shape({
   alias: Yup.string().label('Alias').required().trim(),
@@ -149,7 +159,7 @@ const handler: NextApiHandler = async (req, res) => {
         AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
 
       // Stats
-      await models.Stats.findOneAndUpdate(
+      const stats = await models.Stats.findOneAndUpdate(
         {},
         {
           $inc: {
@@ -160,6 +170,12 @@ const handler: NextApiHandler = async (req, res) => {
           },
         },
         { new: true, upsert: true },
+      )
+
+      pusher.trigger(
+        'stats',
+        'stats-update',
+        pick(['totalSecretsCount', 'secretsCount', 'totalSecretsViewCount'])(stats.toJSON()),
       )
 
       if (session?.userId) {

@@ -15,7 +15,7 @@ import Spacer from '@/components/Spacer'
 import { State } from '../index'
 import { isProduction } from '@/config'
 
-const Result = ({ data }: Pick<State, 'data'>) => {
+const Result = ({ data, onReset }: Pick<State, 'data'> & { onReset: () => void }) => {
   const alias = data?.alias
   const origin = isProduction
     ? `${process.env.NEXT_PUBLIC_SHORT_URL}`
@@ -81,12 +81,7 @@ const Result = ({ data }: Pick<State, 'data'>) => {
             </Paper>
           )}
           <Box py={1}>
-            <BaseButton
-              startIcon={<Refresh />}
-              size="small"
-              variant="text"
-              onClick={() => document.location.reload()}
-            >
+            <BaseButton startIcon={<Refresh />} size="small" variant="text" onClick={onReset}>
               Create new secret
             </BaseButton>
           </Box>

@@ -28,7 +28,7 @@ import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
 import { maxMessageLength } from '@/constants'
-import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
+import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
@@ -190,7 +190,7 @@ const HomeView = () => {
         title="Success!"
         subtitle="The secret link has been created - now share it with your confidant."
       >
-        <Result data={data} />
+        <Result data={data} onReset={() => dispatch(doReset())} />
       </Page>
     )
   }

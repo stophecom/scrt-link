@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Pusher from 'pusher-js'
+import { isEmpty } from 'ramda'
 
 import { baseUrl, pusherCluster } from '@/constants'
 
@@ -15,6 +16,9 @@ export const usePusher = <T>(
 
   useEffect(() => {
     const fetchStats = async () => {
+      if (!isEmpty(data)) {
+        return
+      }
       const res = await fetch(`${baseUrl}/api${apiEndpoint}`, { method: 'POST' })
       const json = await res.json()
       updateData(json)
