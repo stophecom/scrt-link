@@ -11,7 +11,7 @@ export const usePusher = <T>(
 ): T => {
   const [data, updateData] = useState({} as T)
 
-  // Pusher.logToConsole = true
+  Pusher.logToConsole = true
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -30,7 +30,7 @@ export const usePusher = <T>(
         updateData(incomingData)
       })
     }
-  }, [])
+  }, [realtime])
 
   return data
 }

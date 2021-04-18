@@ -29,6 +29,7 @@ import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
 import { maxMessageLength } from '@/constants'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
+import { UIStore } from '@/store'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -292,6 +293,9 @@ const HomeView = () => {
                       className={classes.submitButton}
                       onClick={() => {
                         setFieldValue('secretType', secretType)
+                        UIStore.update((s) => {
+                          s.liveStatsEnabled = true
+                        })
                       }}
                       type="submit"
                       color="primary"
