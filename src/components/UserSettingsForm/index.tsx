@@ -62,7 +62,7 @@ const UserSettingsForm = ({
   }
 
   const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
-    dispatch(doRequest())
+    dispatch(doRequest({}))
 
     try {
       const response = await axios.post('/api/me', values)
@@ -80,7 +80,7 @@ const UserSettingsForm = ({
   return (
     <>
       {error ||
-        (data && (
+        (data?.message && (
           <Box mb={5}>
             {error && <Alert severity="error">{error}</Alert>}
             {data && <Alert severity="success">{data.message}</Alert>}

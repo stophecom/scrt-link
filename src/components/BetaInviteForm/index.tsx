@@ -46,7 +46,7 @@ const BetaInviteForm = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleSubmit = useCallback<OnSubmit<BetaInvite>>(async (values, formikHelpers) => {
-    dispatch(doRequest())
+    dispatch(doRequest({}))
 
     try {
       const response = await axios.post('/api/beta-invite', values)
@@ -66,7 +66,7 @@ const BetaInviteForm = () => {
     return <Alert severity="error">{error}</Alert>
   }
 
-  if (data) {
+  if (data?.message) {
     return <Alert severity="success">{data.message}</Alert>
   }
 
