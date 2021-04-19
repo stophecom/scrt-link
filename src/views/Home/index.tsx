@@ -129,6 +129,7 @@ const HomeView = () => {
     let { message } = values
 
     dispatch(doRequest({ alias }))
+    window.scrollTo(0, 0)
 
     if (password) {
       const hash = sha256(password)
