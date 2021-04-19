@@ -21,20 +21,6 @@ declare global {
   }
 }
 
-export type SecretType = 'message' | 'url' | 'neogram'
-
-export interface Password {
-  password?: string
-}
-
-export interface MessageInput extends Password {
-  message: string
-}
-
-export interface FormInput extends MessageInput {
-  secretType: SecretType
-}
-
 export interface BetaInvite {
   name?: string
   email: string

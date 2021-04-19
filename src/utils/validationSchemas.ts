@@ -1,9 +1,10 @@
-import { FormInput, Password, SecretType, BetaInvite } from '@/types'
+import { BetaInvite } from '@/types'
 import * as Yup from 'yup'
 import validator from 'validator'
 import { maxMessageLength } from '@/constants'
 
 import { UserSettingsFields } from '@/api/models/UserSettings'
+import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 
 const secretTypes = ['message' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 
@@ -37,19 +38,20 @@ const schemataMap = {
   neogram: messageValidation,
 }
 
+type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & { password?: string }
 export const getValidationSchemaByType = (secretType: SecretType, hasPassword = false) =>
-  Yup.object().shape<FormInput>({
+  Yup.object().shape<SecretFormInput>({
     ...schemataMap[secretType],
     ...(hasPassword ? passwordValidation : {}),
     ...typeValidation,
   })
 
-export const apiValidationSchemaByType = Yup.object().shape<FormInput>({
+export const apiValidationSchemaByType = Yup.object().shape<SecretFormInput>({
   message: Yup.string().label('Message').required().trim(),
   ...typeValidation,
 })
 
-export const passwordValidationSchema = Yup.object().shape<Password>(passwordValidation)
+export const passwordValidationSchema = Yup.object().shape<{ password: string }>(passwordValidation)
 
 export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
   name: Yup.string().label('Name').max(200).trim(),

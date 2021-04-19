@@ -1,5 +1,4 @@
 import { NextApiHandler, NextApiRequest } from 'next'
-import { nanoid } from 'nanoid'
 import * as Yup from 'yup'
 import { pick } from 'ramda'
 import { AES, enc } from 'crypto-js'
@@ -10,7 +9,6 @@ import withDb from '@/api/middlewares/withDb'
 import cors from '@/api/middlewares/cors'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
-import { urlAliasLength } from '@/constants'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 import { UserSettingsFields } from '@/api/models/UserSettings'
@@ -152,7 +150,9 @@ const handler: NextApiHandler = async (req, res) => {
       break
     }
     case 'POST': {
-      const { secretType, message, isEncryptedWithUserPassword } = await extractPostInput(req)
+      const { secretType, message, isEncryptedWithUserPassword, alias } = await extractPostInput(
+        req,
+      )
 
       // Encrypt sensitive information
       const encryptAES = (string: string) =>
@@ -197,11 +197,13 @@ const handler: NextApiHandler = async (req, res) => {
         userId: session?.userId,
         secretType,
         message: encryptAES(message),
-        alias: nanoid(urlAliasLength),
+        alias,
         isEncryptedWithUserPassword,
       })
+
       await shortened.save()
-      res.json(shortened)
+
+      res.status(200).json({ alias, message: 'Secret saved!' })
       break
     }
     default:

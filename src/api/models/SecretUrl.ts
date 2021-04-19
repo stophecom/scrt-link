@@ -3,9 +3,11 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 import { urlAliasLength, maxMessageLength } from '@/constants'
 import { BaseDocumentData } from './types'
-interface SecretUrlFields {
+
+export type SecretType = 'message' | 'url' | 'neogram'
+export interface SecretUrlFields {
   userId?: string
-  secretType: string
+  secretType: SecretType
   alias: string
   message: string
   isEncryptedWithUserPassword: boolean

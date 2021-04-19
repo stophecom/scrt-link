@@ -1,5 +1,4 @@
 import { AxiosResponse, AxiosError } from 'axios'
-import { stat } from 'node:fs'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isAxiosError(error: any): error is AxiosError {
@@ -8,7 +7,7 @@ function isAxiosError(error: any): error is AxiosError {
 
 type Action =
   | { type: 'reset' }
-  | { type: 'request' }
+  | { type: 'request'; data: any }
   | { type: 'success'; response: AxiosResponse }
   | { type: 'error'; error: AxiosError | Error }
 
@@ -16,8 +15,9 @@ export const doReset = (): Action => ({
   type: 'reset',
 })
 
-export const doRequest = (): Action => ({
+export const doRequest = <T>(data: T): Action => ({
   type: 'request',
+  data,
 })
 
 export const doSuccess = (response: AxiosResponse): Action => ({
@@ -35,7 +35,7 @@ export const createReducer = <T>() => (state: T, action: Action): T => {
     case 'reset':
       return { ...state, data: undefined, error: undefined }
     case 'request':
-      return { ...state, data: undefined, error: undefined }
+      return { ...state, data: action.data }
     case 'success':
       return { ...state, data: action.response.data }
     case 'error':

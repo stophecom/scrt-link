@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import { Box, Typography } from '@material-ui/core'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ShareIcon from '@material-ui/icons/Share'
@@ -80,10 +81,19 @@ const Result = ({ data, onReset }: Pick<State, 'data'> & { onReset: () => void }
               </Box>
             </Paper>
           )}
-          <Box py={1}>
+          <Box py={1} display="flex">
             <BaseButton startIcon={<Refresh />} size="small" variant="text" onClick={onReset}>
               Create new secret
             </BaseButton>
+            <Box ml="auto" px={1}>
+              <Typography color="textSecondary" variant="caption">
+                {data?.message || (
+                  <>
+                    <CircularProgress size=".8em" color="inherit" /> Encrypt and save…
+                  </>
+                )}
+              </Typography>
+            </Box>
           </Box>
         </Box>
       )}

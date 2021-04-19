@@ -10,14 +10,14 @@ import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 import Alert from '@material-ui/lab/Alert'
-
+import { nanoid } from 'nanoid'
 import { AES } from 'crypto-js'
 import { sha256 } from 'js-sha256'
 
-import { SecretUrlData } from '@/api/models/SecretUrl'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
-import { Maybe, FormInput, SecretType } from '@/types'
+import { Maybe } from '@/types'
+import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
@@ -27,21 +27,24 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
-import { maxMessageLength } from '@/constants'
+import { maxMessageLength, urlAliasLength } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-type UrlFormValues = FormInput
+type SecretUrlFormValues = Pick<SecretUrlFields, 'secretType' | 'alias' | 'message'> & {
+  password?: string
+}
 
-const initialValues: UrlFormValues = {
+const initialValues: SecretUrlFormValues = {
   message: '',
   secretType: 'message',
+  alias: '',
 }
 
 export interface State {
-  data: Maybe<SecretUrlData>
+  data: Maybe<Pick<SecretUrlFields, 'alias'> & { message: string }>
   error: Maybe<string>
 }
 
@@ -121,11 +124,11 @@ const HomeView = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = React.useState<SecretType>('message')
 
-  const handleSubmit = useCallback<OnSubmit<UrlFormValues>>(async (values, formikHelpers) => {
-    dispatch(doRequest())
-
-    const { password, secretType } = values
+  const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
+    const { password, secretType, alias } = values
     let { message } = values
+
+    dispatch(doRequest({ alias }))
 
     if (password) {
       const hash = sha256(password)
@@ -134,6 +137,7 @@ const HomeView = () => {
 
     const data = {
       ...omit(['password'], values),
+      alias,
       message,
       secretType,
       isEncryptedWithUserPassword: !!password,
@@ -156,7 +160,7 @@ const HomeView = () => {
   const { data, error } = state
 
   const handleMenuChange = (
-    event: React.ChangeEvent<Record<string, unknown>>,
+    _event: React.ChangeEvent<Record<string, unknown>>,
     newValue: SecretType,
   ) => {
     setSecretType(newValue)
@@ -175,11 +179,14 @@ const HomeView = () => {
   if (error) {
     return (
       <Page title="An error occured!">
-        <Box mb={3}>
+        <Box mb={2}>
           <Alert severity="error">
             <Box className={classes.wordBreak}>{error}</Box>
           </Alert>
         </Box>
+        <BaseButton href="/" color="primary" variant="contained">
+          Take me home
+        </BaseButton>
       </Page>
     )
   }
@@ -190,7 +197,13 @@ const HomeView = () => {
         title="Success!"
         subtitle="The secret link has been created - now share it with your confidant."
       >
-        <Result data={data} onReset={() => dispatch(doReset())} />
+        <Result
+          data={data}
+          onReset={() => {
+            dispatch(doReset())
+            setHasPassword(false)
+          }}
+        />
       </Page>
     )
   }
@@ -215,7 +228,7 @@ const HomeView = () => {
           tabsMenu={Object.values(tabsMenu)}
         />
       </Box>
-      <Formik<UrlFormValues>
+      <Formik<SecretUrlFormValues>
         initialValues={initialValues}
         validationSchema={getValidationSchemaByType(secretType, hasPassword)}
         validateOnMount
@@ -226,7 +239,7 @@ const HomeView = () => {
             <>
               <Form noValidate>
                 <Field type="hidden" name="secretType" value={secretType} />
-
+                <Field type="hidden" name="alias" />
                 {secretType === 'url' && (
                   <>
                     <Box mb={2}>
@@ -293,6 +306,8 @@ const HomeView = () => {
                       className={classes.submitButton}
                       onClick={() => {
                         setFieldValue('secretType', secretType)
+                        setFieldValue('alias', nanoid(urlAliasLength))
+
                         UIStore.update((s) => {
                           s.liveStatsEnabled = true
                         })

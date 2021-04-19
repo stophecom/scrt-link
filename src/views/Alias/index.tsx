@@ -14,13 +14,14 @@ import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import { WindupChildren, Pause } from 'windups'
 import { sha256 } from 'js-sha256'
+import NextLink from 'next/link'
 
 import crawlers from 'crawler-user-agents'
 
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { sanitizeUrl } from '@/utils/index'
-import { SecretType } from '@/types'
+import { SecretType } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
@@ -104,16 +105,17 @@ const AliasView: NextPage<AliasViewProps> = ({
   }
 
   const ReplyButton = () => (
-    <BaseButton
-      href="/"
-      color="primary"
-      variant="contained"
-      size="large"
-      startIcon={<ReplyIcon />}
-      onClick={() => plausible('ReplyButton')}
-    >
-      Reply with a secret
-    </BaseButton>
+    <NextLink href="/" passHref>
+      <BaseButton
+        color="primary"
+        variant="contained"
+        size="large"
+        startIcon={<ReplyIcon />}
+        onClick={() => plausible('ReplyButton')}
+      >
+        Reply with a secret
+      </BaseButton>
+    </NextLink>
   )
 
   const initialValues: PasswordForm = {
