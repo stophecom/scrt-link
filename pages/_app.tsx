@@ -16,7 +16,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   const url = `${baseUrl}${pathname}`
   const title = appTitle
-  const description = `Share a secret! Use ${appTitle} to send one-time disposable messages via link that self-distructs after the first visit. `
+  const description = `With ${appTitle} you can securely share sensitive information online: End-to-end encryption combined with a one time self-distructive link.`
   return {
     title,
     canonical: url,
@@ -82,7 +82,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
           <meta
             name="keywords"
-            content="scrt.link, secret text, one-time text, one-time link, disposable message, disposable link, url shortener, self-distructing links, share sensitive information"
+            content="scrt.link, secret link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-distructive links, share sensitive information"
             key="keywords"
           />
           <meta name="theme-color" content={theme.palette.primary.main} />
