@@ -23,9 +23,11 @@ import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
 import Accordion from './components/Accordion'
 import StrokeHighlight from './components/StrokeHighlight'
+import HowItWorks from './components/HowItWorks'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
+import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import { maxMessageLength, urlAliasLength } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
@@ -330,8 +332,13 @@ const HomeView = () => {
         }}
       </Formik>
 
-      <Box pt={15}>
+      <Box py={15}>
         <Typography variant="h2">How it works</Typography>
+        <HowItWorks />
+      </Box>
+
+      <Box>
+        <Typography variant="h2">FAQ</Typography>
         <Accordion />
       </Box>
     </Page>
