@@ -12,11 +12,23 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
 `,
   },
   {
-    heading: 'How does it work?',
-    body: `
-After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recepients clicks the link, the message gets displayed and permanently removed from the server. 
+    heading: `What is the difference to disappearing messages on Signal or Whatsapp?`,
+    body: `Anonymity, privacy and security. Plain text messages within a chat log can always get tracked back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might get compromised on an operating system level.  With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is not way of accessing the original content.
+`,
+  },
+  {
+    heading: `What is the difference to Snapchat?`,
+    body: `Same answer as for the previous question. Also, the business model behind Snapchat, and every other major social media platform, contradicts the idea of privacy and anonymity. Social media companies need to know their users in order to sell ads. 
     
-For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
+However, it is fine to share a generated secret link using Snapchat, Facebook, Instagram, Telegram, etc.
+`,
+  },
+  {
+    heading: 'How does the service work?',
+    body: `
+After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recepients clicks the link, the message gets displayed and permanently removed from the database. 
+    
+For **extra security**, you can include a password that will be needed to decrypt the message. With a password you achieve **full end-to-end encryption**. (We recommend to share the password via a different channel then the link.)`,
   },
   {
     heading: 'What is the difference between *Message*, *URL Redirect* and *Neogram™*?',
@@ -51,5 +63,9 @@ For **extra security**, you can include a password that will be needed to decryp
   {
     heading: 'How long do you keep non-viewed secrets?',
     body: `Until the end of times. Seriously, there is no maximum time limit set. But you can always destroy your secret by visiting the secret link.`,
+  },
+  {
+    heading: 'Who is behind this service?',
+    body: `Hi, it's [@stophecom](https://twitter.com/stophecom), web develper and designer who cares about privacy and the open web.`,
   },
 ]
