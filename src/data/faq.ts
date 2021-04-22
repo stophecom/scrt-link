@@ -1,5 +1,17 @@
 export const faq = [
   {
+    heading: 'Why should I use this service?',
+    body: `
+Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, inbox, or any other communications channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.
+
+**Use this service in case you want to…**
+- Share your Netflix password with a family member.
+- Send a private message from a public computer.
+- Confess to a secret crush.
+- Transmit information that could be used against you.
+`,
+  },
+  {
     heading: 'How does it work?',
     body: `
 After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recepients clicks the link, the message gets displayed and permanently removed from the server. 
@@ -14,18 +26,7 @@ For **extra security**, you can include a password that will be needed to decryp
 - **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters.
     `,
   },
-  {
-    heading: 'Why should I use this service?',
-    body: `
-Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, inbox, or any other communications channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.
 
-**Use this service in case you want to…**
-- Share your Netflix password with a family member.
-- Send a private message from a public computer.
-- Confess to a secret crush.
-- Transmit information that could be used against you.
-`,
-  },
   {
     heading: 'How secure is your service?',
     body: `All messages are stored encrypted using **AES-256** with a 512bit hash. AES-256 is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
