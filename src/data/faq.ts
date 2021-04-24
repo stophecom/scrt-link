@@ -66,6 +66,6 @@ For **extra security**, you can include a password that will be needed to decryp
   },
   {
     heading: 'Who is behind this service?',
-    body: `Hi, it's [@stophecom](https://twitter.com/stophecom), web develper and designer who cares about privacy and the open web.`,
+    body: `Hi, it's [@stophecom](https://twitter.com/stophecom), web developer and designer who cares about privacy and the open web.`,
   },
 ]
