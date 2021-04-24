@@ -15,14 +15,35 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     paper: {
+      display: 'flex',
+      alignItems: 'center',
       padding: theme.spacing(2),
-      textAlign: 'center',
-      height: '100%',
       color: theme.palette.text.secondary,
-    },
-    gridItem: {
       height: '100%',
+
+      [theme.breakpoints.up('sm')]: {
+        flexDirection: 'column',
+        textAlign: 'center',
+      },
     },
+    illustration: {
+      width: '32%',
+      flexShrink: 0,
+      marginRight: theme.spacing(2),
+
+      [theme.breakpoints.up('sm')]: {
+        width: '100%',
+        marginRight: 0,
+      },
+    },
+    title: {
+      marginBottom: theme.spacing(1),
+
+      [theme.breakpoints.up('sm')]: {
+        marginBottom: theme.spacing(2),
+      },
+    },
+
     number: {
       opacity: 0.7,
     },
@@ -33,17 +54,18 @@ const gridContent = [
   {
     illustration: <Create />,
     title: 'Write',
-    text: `Add a secret message. After successful processing you'll receive a one-time link.`,
+    text: `Compose your secret message, submit and you'll receive a one-time link in return.`,
   },
   {
     illustration: <Share />,
     title: 'Share',
-    text: 'Send the secret link using your preferred communications channel.',
+    text: 'Share your secret link using your preferred communications channel.',
   },
   {
     illustration: <Burn />,
     title: 'Burn',
-    text: 'Once the link has been clicked, the secret gets revealed, and destroyed.',
+    text:
+      'Once the link has been clicked, the secret gets revealed, before being destroyed for good.',
   },
 ]
 
@@ -53,14 +75,18 @@ const HowItWorks = () => {
     <Grid container spacing={2} justify="center">
       {gridContent.map(({ illustration, title, text }, index) => {
         return (
-          <Grid item xs={9} sm={4} key={index} className={classes.gridItem}>
+          <Grid item xs={12} sm={4} key={index}>
             <Paper className={classes.paper}>
               <Typography component="div" className={classes.number}>
                 {index + 1}
               </Typography>
-              {illustration}
-              <Typography variant="h3">{title}</Typography>
-              <Typography variant="body1">{text}</Typography>
+              <div className={classes.illustration}>{illustration}</div>
+              <div>
+                <Typography className={classes.title} variant="h3">
+                  {title}
+                </Typography>
+                <Typography variant="body1">{text}</Typography>
+              </div>
             </Paper>
           </Grid>
         )
