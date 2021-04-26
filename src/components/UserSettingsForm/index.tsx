@@ -46,7 +46,7 @@ const UserSettingsForm = ({
   name,
   neogramDestructionMessage,
   neogramDestructionTimeout,
-  email,
+  receiptEmail,
   isReadReceiptsEnabled,
   onSuccess,
 }: UserSettingsFormProps) => {
@@ -57,7 +57,7 @@ const UserSettingsForm = ({
     name: name || '',
     neogramDestructionMessage: neogramDestructionMessage || '',
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
-    email,
+    receiptEmail,
     isReadReceiptsEnabled,
   }
 
@@ -103,7 +103,7 @@ const UserSettingsForm = ({
                     <BaseTextField name="name" label="Name" />
                   </Box>
                   <Box mb={1}>
-                    <BaseTextField name="email" label="Email" value={email} disabled />
+                    <BaseTextField name="receiptEmail" label="Email" value={receiptEmail} />
                   </Box>
                   <Box mb={2}>
                     <BaseSwitch label="Get read receipts" name="isReadReceiptsEnabled" />
