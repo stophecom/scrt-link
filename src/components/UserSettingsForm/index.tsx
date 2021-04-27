@@ -110,9 +110,9 @@ const UserSettingsForm = ({
                   <Box mb={1}>
                     <BaseTextField name="name" label="Name" />
                   </Box>
-                  <Box mb={2}>
+                  {/* <Box mb={2}>
                     <BaseSwitch label="Show sender name" name="isSenderNameVisible" />
-                  </Box>
+                  </Box> */}
                 </Box>
 
                 <Box mb={10}>
