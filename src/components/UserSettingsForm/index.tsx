@@ -116,7 +116,13 @@ const UserSettingsForm = ({
                 </Box>
 
                 <Box mb={10}>
-                  <Typography variant="h3">Read receipts</Typography>
+                  <Box mb={4}>
+                    <Typography variant="h3">Read receipts</Typography>
+                    <Typography variant="body1">
+                      The following information is private and will never be shown to anybody.
+                    </Typography>
+                  </Box>
+
                   <Box mb={3}>
                     <BaseTextField name="receiptEmail" label="Email" value={receiptEmail} />
                     <BaseSwitch
@@ -124,17 +130,13 @@ const UserSettingsForm = ({
                       name="isReadReceiptsViaEmailEnabled"
                     />
                   </Box>
-
                   <Box>
                     <BasePhoneField
                       name="receiptPhoneNumber"
                       label="Phone"
                       value={receiptPhoneNumber}
                     />
-                    <BaseSwitch
-                      label="Get notified via phone"
-                      name="isReadReceiptsViaPhoneEnabled"
-                    />
+                    <BaseSwitch label="Get notified via SMS" name="isReadReceiptsViaPhoneEnabled" />
                   </Box>
                 </Box>
 
