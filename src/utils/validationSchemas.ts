@@ -6,6 +6,8 @@ import { maxMessageLength } from '@/constants'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
 const secretTypes = ['message' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 
 const messageValidation = {
@@ -63,6 +65,12 @@ export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSetti
   neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
   neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
   isReadReceiptsEnabled: Yup.boolean().label('Read receipts'),
+  receiptEmail: Yup.string().label('Email').email().max(200).trim(),
+  receiptPhoneNumber: Yup.string()
+    .label('Phone')
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .max(30)
+    .trim(),
 })
 
 export const signInValidationSchema = Yup.object().shape<BetaInvite>({

@@ -45,6 +45,7 @@
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^17.0.1",
     "react-markdown": "^5.0.3",
+    "react-phone-input-2": "^2.14.0",
     "react-share": "^4.3.1",
     "react-web-share": "^1.0.18",
     "remark": "^13.0.0",

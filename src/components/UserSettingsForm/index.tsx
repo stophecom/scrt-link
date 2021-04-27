@@ -8,6 +8,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 
 import BaseTextField from '@/components/BaseTextField'
+import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitch from '@/components/BaseSwitch'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
@@ -47,6 +48,7 @@ const UserSettingsForm = ({
   neogramDestructionMessage,
   neogramDestructionTimeout,
   receiptEmail,
+  receiptPhoneNumber,
   isReadReceiptsEnabled,
   onSuccess,
 }: UserSettingsFormProps) => {
@@ -58,12 +60,14 @@ const UserSettingsForm = ({
     neogramDestructionMessage: neogramDestructionMessage || '',
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
     receiptEmail,
+    receiptPhoneNumber,
     isReadReceiptsEnabled,
   }
 
   const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
     dispatch(doRequest({}))
 
+    console.log(values)
     try {
       const response = await axios.post('/api/me', values)
       dispatch(doSuccess(response))
@@ -102,8 +106,15 @@ const UserSettingsForm = ({
                   <Box mb={3}>
                     <BaseTextField name="name" label="Name" />
                   </Box>
-                  <Box mb={1}>
+                  <Box mb={3}>
                     <BaseTextField name="receiptEmail" label="Email" value={receiptEmail} />
+                  </Box>
+                  <Box mb={1}>
+                    <BasePhoneField
+                      name="receiptPhoneNumber"
+                      label="Phone"
+                      value={receiptPhoneNumber}
+                    />
                   </Box>
                   <Box mb={2}>
                     <BaseSwitch label="Get read receipts" name="isReadReceiptsEnabled" />
