@@ -10,6 +10,7 @@ declare global {
       AES_KEY_512: string
       MJ_APIKEY_PUBLIC: string
       MJ_APIKEY_PRIVATE: string
+      MJ_SMS_TOKEN: string
       NEXTAUTH_URL: string
       JWT_SECRET: string
       NEXT_AUTH_SECRET: string

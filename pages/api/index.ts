@@ -12,7 +12,7 @@ import createError from '@/api/utils/createError'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 import { UserSettingsFields } from '@/api/models/UserSettings'
-import mailjet from '@/api/utils/mailjet'
+import mailjet, { mailjetSms } from '@/api/utils/mailjet'
 import { pusherCluster } from '@/constants'
 
 const pusher = new Pusher({
@@ -73,7 +73,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       const { userId, secretType, isEncryptedWithUserPassword, message } = secretUrl
 
-      // Stats
+      // Update global stats
       await models.Stats.findOneAndUpdate(
         {},
         {
@@ -91,7 +91,13 @@ const handler: NextApiHandler = async (req, res) => {
       let publicMeta = {} as Partial<UserSettingsFields>
 
       if (userId) {
-        let privateMeta = {} as Pick<UserSettingsFields, 'isReadReceiptsEnabled' | 'email'>
+        let privateMeta = {} as Pick<
+          UserSettingsFields,
+          | 'isReadReceiptsViaEmailEnabled'
+          | 'receiptEmail'
+          | 'isReadReceiptsViaPhoneEnabled'
+          | 'receiptPhoneNumber'
+        >
         const userSettingsRaw = await models.UserSettings.findOne({
           userId,
         })
@@ -103,13 +109,21 @@ const handler: NextApiHandler = async (req, res) => {
           userSettings,
         )
 
-        privateMeta = pick(['isReadReceiptsEnabled', 'email'], userSettings)
+        privateMeta = pick(
+          [
+            'isReadReceiptsViaEmailEnabled',
+            'receiptEmail',
+            'isReadReceiptsViaPhoneEnabled',
+            'receiptPhoneNumber',
+          ],
+          userSettings,
+        )
 
         const name = publicMeta?.name || 'Anonymous'
 
-        if (privateMeta?.isReadReceiptsEnabled) {
+        if (privateMeta?.isReadReceiptsViaEmailEnabled) {
           mailjet({
-            To: [{ Email: privateMeta.email, Name: name }],
+            To: [{ Email: privateMeta.receiptEmail, Name: name }],
             Subject: 'Secret has been viewed',
             TemplateID: 2818166,
             TemplateLanguage: true,
@@ -120,19 +134,12 @@ const handler: NextApiHandler = async (req, res) => {
           })
         }
 
-        // User stats update
-        await models.Stats.findOneAndUpdate(
-          { userId },
-          {
-            $inc: {
-              totalSecretsViewCount: 1,
-              'secretsViewCount.message': Number(secretType === 'message'),
-              'secretsViewCount.url': Number(secretType === 'url'),
-              'secretsViewCount.neogram': Number(secretType === 'neogram'),
-            },
-          },
-          { new: true },
-        )
+        if (privateMeta?.isReadReceiptsViaPhoneEnabled && privateMeta?.receiptPhoneNumber) {
+          mailjetSms({
+            To: `+${privateMeta.receiptPhoneNumber}`,
+            Text: `Secret ${alias} has been viewed! Reply with a secret on https://scrt.link!`,
+          })
+        }
       }
 
       // Decrypt essage

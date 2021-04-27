@@ -55,10 +55,9 @@ const BasePhoneField = ({ label, ...props }: BasePhoneFieldProps) => {
   const { setValue } = helpers
   const hasError = Boolean(error && touched)
   const errorMessage = hasError ? error : undefined
-  const inputRef = useRef<HTMLInputElement>()
 
   return (
-    <>
+    <div>
       <FormControl variant="outlined" error={hasError} focused={focused} {...props}>
         <InputLabel className={classes.label} htmlFor="phone-input" shrink>
           {label}
@@ -78,7 +77,6 @@ const BasePhoneField = ({ label, ...props }: BasePhoneFieldProps) => {
           inputProps={{
             id: 'phone-input',
             autoComplete: 'tel',
-            inputRef,
             onBlur: () => setFocused(false),
           }}
           onChange={(value) => setValue(value)}
@@ -86,7 +84,7 @@ const BasePhoneField = ({ label, ...props }: BasePhoneFieldProps) => {
         />
         {errorMessage && <FormHelperText id="helper-text">{errorMessage}</FormHelperText>}
       </FormControl>
-    </>
+    </div>
   )
 }
 

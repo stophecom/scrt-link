@@ -1,4 +1,4 @@
-import mj, { Email } from 'node-mailjet'
+import mj, { Email, SMS } from 'node-mailjet'
 
 const mailjet = ({ To, Subject = 'Pssst', ...props }: Partial<Email.SendParamsMessage>) =>
   mj
@@ -19,3 +19,16 @@ const mailjet = ({ To, Subject = 'Pssst', ...props }: Partial<Email.SendParamsMe
     })
 
 export default mailjet
+
+export const mailjetSms = (props: Omit<SMS.SendParams, 'From'>) =>
+  mj
+    .connect(process.env.MJ_SMS_TOKEN, {
+      url: 'api.mailjet.com', // default is the API url
+      version: 'v4', // default is '/v3'
+      perform_api_call: true, // used for tests. default is true
+    })
+    .post('sms-send')
+    .request({
+      From: 'scrt.link',
+      ...props,
+    })

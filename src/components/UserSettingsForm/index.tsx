@@ -49,7 +49,9 @@ const UserSettingsForm = ({
   neogramDestructionTimeout,
   receiptEmail,
   receiptPhoneNumber,
-  isReadReceiptsEnabled,
+  isReadReceiptsViaEmailEnabled,
+  isReadReceiptsViaPhoneEnabled,
+  isSenderNameVisible,
   onSuccess,
 }: UserSettingsFormProps) => {
   const classes = useStyles()
@@ -61,13 +63,14 @@ const UserSettingsForm = ({
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
     receiptEmail,
     receiptPhoneNumber,
-    isReadReceiptsEnabled,
+    isReadReceiptsViaEmailEnabled,
+    isReadReceiptsViaPhoneEnabled,
+    isSenderNameVisible: !!name && isSenderNameVisible,
   }
 
   const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
     dispatch(doRequest({}))
 
-    console.log(values)
     try {
       const response = await axios.post('/api/me', values)
       dispatch(doSuccess(response))
@@ -102,25 +105,40 @@ const UserSettingsForm = ({
           return (
             <>
               <Form noValidate>
-                <Box mb={5}>
-                  <Box mb={3}>
+                <Box mb={10}>
+                  <Typography variant="h3">Sender</Typography>
+                  <Box mb={1}>
                     <BaseTextField name="name" label="Name" />
                   </Box>
+                  <Box mb={2}>
+                    <BaseSwitch label="Show sender name" name="isSenderNameVisible" />
+                  </Box>
+                </Box>
+
+                <Box mb={10}>
+                  <Typography variant="h3">Read receipts</Typography>
                   <Box mb={3}>
                     <BaseTextField name="receiptEmail" label="Email" value={receiptEmail} />
+                    <BaseSwitch
+                      label="Get notified via email"
+                      name="isReadReceiptsViaEmailEnabled"
+                    />
                   </Box>
-                  <Box mb={1}>
+
+                  <Box>
                     <BasePhoneField
                       name="receiptPhoneNumber"
                       label="Phone"
                       value={receiptPhoneNumber}
                     />
-                  </Box>
-                  <Box mb={2}>
-                    <BaseSwitch label="Get read receipts" name="isReadReceiptsEnabled" />
+                    <BaseSwitch
+                      label="Get notified via phone"
+                      name="isReadReceiptsViaPhoneEnabled"
+                    />
                   </Box>
                 </Box>
-                <Box mb={5}>
+
+                <Box mb={10}>
                   <Typography variant="h3">Neogram™</Typography>
                   <Box mb={3}>
                     <BaseTextField

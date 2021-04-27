@@ -35,25 +35,31 @@ const Account = ({ userSettings, stats }: AccountProps) => {
     return (
       <Page title={`Hi ${name || ''}`} subtitle="Welcome back!">
         <Box mb={10}>
-          <Typography variant="h2">Settings</Typography>
-          <UserSettingsForm
-            receiptEmail={session.user.email as string}
-            {...userSettings}
-            onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
-          />
-        </Box>
-        <Box mb={3}>
           <Typography variant="h2">Statistics</Typography>
           <Typography variant="body1">
-            <strong>Secrets created: {stats.totalSecretsCount} </strong> ( Messages:&nbsp;
-            {stats.secretsCount?.message}, URLs:&nbsp;{stats.secretsCount?.url}, Neograms:&nbsp;
-            {stats.secretsCount?.neogram})
+            <strong>Total secrets created: {stats.totalSecretsCount}</strong>
+            <br />
+            Message:&nbsp;{stats.secretsCount?.message}
+            <br />
+            URL:&nbsp;{stats.secretsCount?.url}
+            <br />
+            Neogram:&nbsp;
+            {stats.secretsCount?.neogram}
           </Typography>
-          <Typography variant="body1">
-            <strong>Secrets viewed: {stats.totalSecretsViewCount}</strong> ( Messages:&nbsp;
-            {stats.secretsViewCount?.message}, URLs:&nbsp;
-            {stats.secretsViewCount?.url}, Neograms:&nbsp;{stats.secretsViewCount?.neogram})
+        </Box>
+
+        <Box mb={10}>
+          <Typography variant="h2">Settings</Typography>
+          <Typography variant="subtitle2">
+            These are default settings. You can overwrite each setting for every secret.
           </Typography>
+          <Box py={3}>
+            <UserSettingsForm
+              receiptEmail={session.user.email as string}
+              {...userSettings}
+              onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
+            />
+          </Box>
         </Box>
       </Page>
     )
