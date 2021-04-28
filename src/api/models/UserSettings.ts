@@ -9,7 +9,6 @@ export interface UserSettingsFields {
   name: string
   isReadReceiptsViaEmailEnabled: boolean
   isReadReceiptsViaPhoneEnabled: boolean
-  isSenderNameVisible: boolean
   secretsCount: number
 }
 
@@ -23,7 +22,6 @@ const UserSettingsSchema = new mongoose.Schema(
     receiptPhoneNumber: { type: String, required: false, trim: true },
     isReadReceiptsViaEmailEnabled: { type: Boolean, required: false },
     isReadReceiptsViaPhoneEnabled: { type: Boolean, required: false },
-    isSenderNameVisible: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },
   },

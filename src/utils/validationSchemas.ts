@@ -66,7 +66,6 @@ export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSetti
   neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
   isReadReceiptsViaEmailEnabled: Yup.boolean().label('Read receipts via email'),
   isReadReceiptsViaPhoneEnabled: Yup.boolean().label('Is sender name visible'),
-  isSenderNameVisible: Yup.boolean().label('Read receipts via phone'),
   receiptEmail: Yup.string().label('Email').email().max(200).trim(),
   receiptPhoneNumber: Yup.string()
     .label('Phone')

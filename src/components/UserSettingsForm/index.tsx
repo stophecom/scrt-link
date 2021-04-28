@@ -51,7 +51,6 @@ const UserSettingsForm = ({
   receiptPhoneNumber,
   isReadReceiptsViaEmailEnabled,
   isReadReceiptsViaPhoneEnabled,
-  isSenderNameVisible,
   onSuccess,
 }: UserSettingsFormProps) => {
   const classes = useStyles()
@@ -65,7 +64,6 @@ const UserSettingsForm = ({
     receiptPhoneNumber,
     isReadReceiptsViaEmailEnabled,
     isReadReceiptsViaPhoneEnabled,
-    isSenderNameVisible: !!name && isSenderNameVisible,
   }
 
   const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
@@ -106,13 +104,15 @@ const UserSettingsForm = ({
             <>
               <Form noValidate>
                 <Box mb={10}>
-                  <Typography variant="h3">Sender</Typography>
+                  <Box mb={4}>
+                    <Typography variant="h3">General</Typography>
+                    <Typography variant="body1">
+                      The following information is private and will never be shown to anybody.
+                    </Typography>
+                  </Box>
                   <Box mb={1}>
                     <BaseTextField name="name" label="Name" />
                   </Box>
-                  {/* <Box mb={2}>
-                    <BaseSwitch label="Show sender name" name="isSenderNameVisible" />
-                  </Box> */}
                 </Box>
 
                 <Box mb={10}>
