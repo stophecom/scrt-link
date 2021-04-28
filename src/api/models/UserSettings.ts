@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+export type ReadReceipts = 'none' | 'sms' | 'email'
 export interface UserSettingsFields {
   userId: string
   receiptEmail: string
@@ -7,9 +8,7 @@ export interface UserSettingsFields {
   neogramDestructionMessage: string
   neogramDestructionTimeout: number
   name: string
-  isReadReceiptsViaEmailEnabled: boolean
-  isReadReceiptsViaPhoneEnabled: boolean
-  secretsCount: number
+  readReceipts: ReadReceipts
 }
 
 type UserSettingsDocument = mongoose.Document & UserSettingsFields
@@ -20,8 +19,7 @@ const UserSettingsSchema = new mongoose.Schema(
     name: { type: String, required: false, trim: true },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
-    isReadReceiptsViaEmailEnabled: { type: Boolean, required: false },
-    isReadReceiptsViaPhoneEnabled: { type: Boolean, required: false },
+    readReceipts: { type: String, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },
   },

@@ -2,14 +2,15 @@ import React, { useCallback, useReducer } from 'react'
 import axios from 'axios'
 import { Box, Typography } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
+import NoSsr from '@material-ui/core/NoSsr'
 
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import Alert from '@material-ui/lab/Alert'
 
+import BaseRadiosField from '@/components/BaseRadiosField'
 import BaseTextField from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
-import BaseSwitch from '@/components/BaseSwitch'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
 import { UserSettingsFields } from '@/api/models/UserSettings'
@@ -49,8 +50,7 @@ const UserSettingsForm = ({
   neogramDestructionTimeout,
   receiptEmail,
   receiptPhoneNumber,
-  isReadReceiptsViaEmailEnabled,
-  isReadReceiptsViaPhoneEnabled,
+  readReceipts,
   onSuccess,
 }: UserSettingsFormProps) => {
   const classes = useStyles()
@@ -62,8 +62,7 @@ const UserSettingsForm = ({
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
     receiptEmail,
     receiptPhoneNumber,
-    isReadReceiptsViaEmailEnabled,
-    isReadReceiptsViaPhoneEnabled,
+    readReceipts,
   }
 
   const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
@@ -84,13 +83,14 @@ const UserSettingsForm = ({
 
   return (
     <>
-      {error ||
-        (data?.message && (
+      {(error || data?.message) && (
+        <NoSsr>
           <Box mb={5}>
             {error && <Alert severity="error">{error}</Alert>}
-            {data && <Alert severity="success">{data.message}</Alert>}
+            {data?.message && <Alert severity="success">{data.message}</Alert>}
           </Box>
-        ))}
+        </NoSsr>
+      )}
 
       <Formik<UserSettings>
         initialValues={initialValues}
@@ -99,44 +99,55 @@ const UserSettingsForm = ({
         validateOnMount
         onSubmit={handleSubmit}
       >
-        {({ isValid, isSubmitting }) => {
+        {({ isValid, isSubmitting, values, errors }) => {
+          const readReceiptsOptions = [
+            { value: 'none', label: 'None' },
+            {
+              value: 'sms',
+              label: 'Via SMS',
+              disabled: !values.receiptPhoneNumber || !!errors.receiptPhoneNumber,
+            },
+            {
+              value: 'email',
+              label: 'Via email',
+              disabled: !values.receiptEmail || !!errors.receiptEmail,
+            },
+          ]
+
           return (
             <>
               <Form noValidate>
                 <Box mb={10}>
                   <Box mb={4}>
-                    <Typography variant="h3">General</Typography>
+                    <Typography variant="h3">Contact</Typography>
                     <Typography variant="body1">
-                      The following information is private and will never be shown to anybody.
-                    </Typography>
-                  </Box>
-                  <Box mb={1}>
-                    <BaseTextField name="name" label="Name" />
-                  </Box>
-                </Box>
-
-                <Box mb={10}>
-                  <Box mb={4}>
-                    <Typography variant="h3">Read receipts</Typography>
-                    <Typography variant="body1">
-                      The following information is private and will never be shown to anybody.
+                      The following information is <strong>private</strong> and will never be shown
+                      to anybody. We only use it to send you read receipts.
                     </Typography>
                   </Box>
 
                   <Box mb={3}>
-                    <BaseTextField name="receiptEmail" label="Email" value={receiptEmail} />
-                    <BaseSwitch
-                      label="Get notified via email"
-                      name="isReadReceiptsViaEmailEnabled"
-                    />
+                    <BaseTextField name="name" label="Name" />
                   </Box>
-                  <Box>
+
+                  <Box mb={3}>
+                    <BaseTextField name="receiptEmail" label="Email" value={receiptEmail} />
+                  </Box>
+
+                  <Box mb={3}>
                     <BasePhoneField
                       name="receiptPhoneNumber"
                       label="Phone"
                       value={receiptPhoneNumber}
                     />
-                    <BaseSwitch label="Get notified via SMS" name="isReadReceiptsViaPhoneEnabled" />
+                  </Box>
+
+                  <Box>
+                    <BaseRadiosField
+                      options={readReceiptsOptions}
+                      name="readReceipts"
+                      label="Read receipts:"
+                    />
                   </Box>
                 </Box>
 

@@ -51,18 +51,15 @@ const BasePhoneField = ({ label, ...props }: BasePhoneFieldProps) => {
   const classes = useStyles()
   const [field, meta, helpers] = useField(props)
   const [focused, setFocused] = useState(false)
-  const { error, touched } = meta
+  const { error } = meta
   const { setValue } = helpers
-  const hasError = Boolean(error && touched)
-  const errorMessage = hasError ? error : undefined
 
   return (
     <div>
-      <FormControl variant="outlined" error={hasError} focused={focused} {...props}>
+      <FormControl variant="outlined" error={!!error} focused={focused} {...props}>
         <InputLabel className={classes.label} htmlFor="phone-input" shrink>
           {label}
         </InputLabel>
-
         <PhoneInput
           inputClass={classes.input}
           containerClass={classes.container}
@@ -82,7 +79,8 @@ const BasePhoneField = ({ label, ...props }: BasePhoneFieldProps) => {
           onChange={(value) => setValue(value)}
           value={(field.value ?? '') as string}
         />
-        {errorMessage && <FormHelperText id="helper-text">{errorMessage}</FormHelperText>}
+
+        {error && <FormHelperText id="helper-text">{error}</FormHelperText>}
       </FormControl>
     </div>
   )

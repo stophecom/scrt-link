@@ -93,10 +93,7 @@ const handler: NextApiHandler = async (req, res) => {
       if (userId) {
         let privateMeta = {} as Pick<
           UserSettingsFields,
-          | 'isReadReceiptsViaEmailEnabled'
-          | 'receiptEmail'
-          | 'isReadReceiptsViaPhoneEnabled'
-          | 'receiptPhoneNumber'
+          'readReceipts' | 'receiptEmail' | 'receiptPhoneNumber'
         >
         const userSettingsRaw = await models.UserSettings.findOne({
           userId,
@@ -109,36 +106,31 @@ const handler: NextApiHandler = async (req, res) => {
           userSettings,
         )
 
-        privateMeta = pick(
-          [
-            'isReadReceiptsViaEmailEnabled',
-            'receiptEmail',
-            'isReadReceiptsViaPhoneEnabled',
-            'receiptPhoneNumber',
-          ],
-          userSettings,
-        )
+        privateMeta = pick(['receiptEmail', 'readReceipts', 'receiptPhoneNumber'], userSettings)
 
         const name = publicMeta?.name || 'Anonymous'
 
-        if (privateMeta?.isReadReceiptsViaEmailEnabled) {
-          mailjet({
-            To: [{ Email: privateMeta.receiptEmail, Name: name }],
-            Subject: 'Secret has been viewed',
-            TemplateID: 2818166,
-            TemplateLanguage: true,
-            Variables: {
-              name,
-              alias,
-            },
-          })
-        }
-
-        if (privateMeta?.isReadReceiptsViaPhoneEnabled && privateMeta?.receiptPhoneNumber) {
-          mailjetSms({
-            To: `+${privateMeta.receiptPhoneNumber}`,
-            Text: `Secret ${alias} has been viewed! Reply with a secret on https://scrt.link!`,
-          })
+        switch (privateMeta?.readReceipts) {
+          case 'sms': {
+            mailjetSms({
+              To: `+${privateMeta.receiptPhoneNumber}`,
+              Text: `Your secret ${alias} has been viewed!💥 Reply with a secret: https://scrt.link`,
+            })
+            break
+          }
+          case 'email': {
+            mailjet({
+              To: [{ Email: privateMeta.receiptEmail, Name: name }],
+              Subject: 'Secret has been viewed 💥',
+              TemplateID: 2818166,
+              TemplateLanguage: true,
+              Variables: {
+                name,
+                alias,
+              },
+            })
+            break
+          }
         }
       }
 

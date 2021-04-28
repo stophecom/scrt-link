@@ -35,7 +35,7 @@ export const createReducer = <T>() => (state: T, action: Action): T => {
     case 'reset':
       return { ...state, data: undefined, error: undefined }
     case 'request':
-      return { ...state, data: action.data }
+      return { ...state, data: action.data, error: undefined }
     case 'success':
       return { ...state, data: action.response.data }
     case 'error':
