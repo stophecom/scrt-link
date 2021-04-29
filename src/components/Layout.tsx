@@ -112,7 +112,7 @@ const Layout: React.FC = ({ children }) => {
           </Box>
           <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
             <Legal>
-              <strong>Scrt.link</strong> let&rsquo;s you share sensitive information online. Keep
+              <strong>Scrt.link</strong> lets you share sensitive information online. Keep
               confidential information out of email, Slack, Teams, Whatsapp or any other
               communication channel. A one-time, disposable link guarantees your secrets can only
               ever be accessed one time - before being destroyed for good.

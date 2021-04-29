@@ -1,6 +1,6 @@
 ## Scrt.link
 
-**Scrt.link** let's you share one-time secrets with a link that self-destructs after first visit.
+**Scrt.link** lets you share one-time secrets with a link that self-destructs after first visit.
 
 Live: **[scrt.link](https://scrt.link)**.
 
