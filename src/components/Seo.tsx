@@ -31,7 +31,7 @@ const SEO: React.FunctionComponent<SeoProps> = ({
   children,
   keywords,
 }) => {
-  const composedTitle = `${title} - ${appTitle}`
+  const composedTitle = `${title} | 🤫 ${appTitle}`
   return (
     <Head>
       <title>{composedTitle}</title>
