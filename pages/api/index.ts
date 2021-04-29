@@ -114,14 +114,14 @@ const handler: NextApiHandler = async (req, res) => {
           case 'sms': {
             mailjetSms({
               To: `+${privateMeta.receiptPhoneNumber}`,
-              Text: `Your secret ${alias} has been viewed!💥 Reply with a secret: https://scrt.link`,
+              Text: `Your secret ${alias} has been viewed!🔥 Reply with a secret: https://scrt.link`,
             })
             break
           }
           case 'email': {
             mailjet({
               To: [{ Email: privateMeta.receiptEmail, Name: name }],
-              Subject: 'Secret has been viewed 💥',
+              Subject: 'Secret has been viewed 🔥',
               TemplateID: 2818166,
               TemplateLanguage: true,
               Variables: {

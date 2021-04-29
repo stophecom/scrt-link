@@ -74,7 +74,7 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
-    history.pushState(null, 'Secret destroyed', '💥')
+    history.pushState(null, 'Secret destroyed', '🔥')
   }, [])
 
   const SelfDestructionSequence = () => {
@@ -98,7 +98,7 @@ const AliasView: NextPage<AliasViewProps> = ({
           })}
           <br />
           <Pause ms={1000} />
-          {'Booooom 💥'}
+          {'Booooom 🔥'}
         </Typography>
       </WindupChildren>
     )
@@ -300,7 +300,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       error = `${data.statusCode}: ${data.message}`
     } else {
       error =
-        'Error occured. If you see 💥 in the address bar you have most likely tried to re-visit a burned link.'
+        'Error occured. If you see 🔥 in the address bar you have most likely tried to re-visit a burned link.'
     }
     return { props: { error } }
   }
