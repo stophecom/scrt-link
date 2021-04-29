@@ -2,7 +2,7 @@ export const faq = [
   {
     heading: 'Why should I use this service?',
     body: `
-Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, inbox, or any other communications channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.
+Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, inbox, or any other communication channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.
 
 **Use this service in case you want to…**
 - Share your Netflix password with a family member.

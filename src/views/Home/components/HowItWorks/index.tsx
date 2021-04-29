@@ -59,7 +59,7 @@ const gridContent = [
   {
     illustration: <Share />,
     title: 'Share',
-    text: 'Share your secret link using your preferred communications channel.',
+    text: 'Share your secret link using your preferred communication channel.',
   },
   {
     illustration: <Burn />,
