@@ -218,7 +218,7 @@ const HomeView = () => {
         <>
           …with a link that only works <StrokeHighlight>one time</StrokeHighlight> and then{' '}
           <Box component="span" whiteSpace="nowrap">
-            self-distructs.
+            self-destructs.
           </Box>
         </>
       }
