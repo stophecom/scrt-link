@@ -13,7 +13,7 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
   },
   {
     heading: `What is the difference to disappearing messages on Signal or Whatsapp?`,
-    body: `Anonymity, privacy and security. Plain text messages within a chat log can always get tracked back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might get compromised on an operating system level.  With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is not way of accessing the original content.
+    body: `Anonymity, privacy and security. Plain text messages within a chat log can always get tracked back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level.  With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content.
 `,
   },
   {
