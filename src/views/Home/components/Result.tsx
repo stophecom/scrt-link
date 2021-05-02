@@ -16,12 +16,16 @@ import Spacer from '@/components/Spacer'
 import { State } from '../index'
 import { isProduction } from '@/config'
 
-const Result = ({ data, onReset }: Pick<State, 'data'> & { onReset: () => void }) => {
+const Result = ({
+  data,
+  onReset,
+  encryptionKey,
+}: Pick<State, 'data'> & { encryptionKey: string; onReset: () => void }) => {
   const alias = data?.alias
   const origin = isProduction
     ? `${process.env.NEXT_PUBLIC_SHORT_URL}`
     : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
-  const shortenedUrl = alias ? `${origin}/${alias}` : null
+  const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
 
   const [hasCopied, setHasCopied] = useState(false)
 
