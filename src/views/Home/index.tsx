@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from 'react'
+import React, { useState, useCallback, useReducer } from 'react'
 import axios from 'axios'
 import { Box, InputAdornment, Typography } from '@material-ui/core'
 import { Formik, Form, Field, FormikConfig } from 'formik'
@@ -10,9 +10,6 @@ import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 import Alert from '@material-ui/lab/Alert'
-import { nanoid } from 'nanoid'
-import { AES } from 'crypto-js'
-import { sha256 } from 'js-sha256'
 
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
@@ -24,12 +21,12 @@ import Result from './components/Result'
 import Accordion from './components/Accordion'
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
+import { generateNanoId, encryptMessage } from '@/utils'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
-import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
-import { maxMessageLength, urlAliasLength } from '@/constants'
+import { maxMessageLength, urlAliasLength, encryptionKeyLength } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 
@@ -124,18 +121,21 @@ const HomeView = () => {
   const classes = useStyles()
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [secretType, setSecretType] = React.useState<SecretType>('message')
+  const [secretType, setSecretType] = useState<SecretType>('message')
+  const [encryptionKey, setEncryptionKey] = useState(generateNanoId(encryptionKeyLength))
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
     const { password, secretType, alias } = values
     let { message } = values
 
+    // Default encryption
+    message = encryptMessage(message, encryptionKey)
+
     dispatch(doRequest({ alias }))
     window.scrollTo(0, 0)
 
     if (password) {
-      const hash = sha256(password)
-      message = AES.encrypt(message, hash).toString()
+      encryptMessage(message, password)
     }
 
     const data = {
@@ -198,11 +198,13 @@ const HomeView = () => {
     return (
       <Page
         title="Success!"
-        subtitle="The secret link has been created - now share it with your confidant."
+        subtitle="Your secret link has been created - now share it with your confidant."
       >
         <Result
           data={data}
+          encryptionKey={encryptionKey}
           onReset={() => {
+            setEncryptionKey(generateNanoId(encryptionKeyLength))
             dispatch(doReset())
             setHasPassword(false)
           }}
@@ -309,7 +311,7 @@ const HomeView = () => {
                       className={classes.submitButton}
                       onClick={() => {
                         setFieldValue('secretType', secretType)
-                        setFieldValue('alias', nanoid(urlAliasLength))
+                        setFieldValue('alias', generateNanoId(urlAliasLength))
 
                         UIStore.update((s) => {
                           s.liveStatsEnabled = true

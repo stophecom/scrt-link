@@ -4,7 +4,6 @@ import axios from 'axios'
 import { Box, CircularProgress, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
-import { AES, enc } from 'crypto-js'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import ReplyIcon from '@material-ui/icons/Reply'
 import { usePlausible } from 'next-plausible'
@@ -13,14 +12,13 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import { WindupChildren, Pause } from 'windups'
-import { sha256 } from 'js-sha256'
 import NextLink from 'next/link'
 
 import crawlers from 'crawler-user-agents'
 
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
-import { sanitizeUrl } from '@/utils/index'
+import { sanitizeUrl, decryptMessage } from '@/utils/index'
 import { SecretType } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
@@ -52,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface AliasViewProps {
   error?: string
   message?: string
+  decryptionKey: string
   isEncryptedWithUserPassword?: boolean
   secretType?: SecretType
   meta: Partial<UserSettingsFields>
@@ -67,12 +66,24 @@ const AliasView: NextPage<AliasViewProps> = ({
   const plausible = usePlausible()
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [localMessage, setLocalMessage] = useState(message)
+  const [localMessage, setLocalMessage] = useState('')
   const [success, setSuccess] = useState(false)
 
   const countDown = Array.from(Array(meta?.neogramDestructionTimeout || 5).keys()).reverse()
 
   useEffect(() => {
+    // Decrypt message
+    const decryptionKey = window.location.hash.substring(1)
+    if (decryptionKey) {
+      const result = decryptMessage(message, decryptionKey)
+
+      if (!isEncryptedWithUserPassword && secretType === 'url') {
+        window.location.replace(sanitizeUrl(result))
+        return
+      }
+      setLocalMessage(result)
+    }
+
     // eslint-disable-next-line no-restricted-globals
     history.pushState(null, 'Secret destroyed', '🔥')
   }, [])
@@ -125,11 +136,8 @@ const AliasView: NextPage<AliasViewProps> = ({
   const handleSubmit = useCallback<OnSubmit<PasswordForm>>(async (values, formikHelpers) => {
     try {
       const { password } = values
+      const result = decryptMessage(message, password)
 
-      const hash = sha256(password)
-      const bytes = AES.decrypt(message, hash)
-
-      const result = bytes.toString(enc.Utf8)
       if (!result) {
         throw new Error('Wrong Password')
       } else {
@@ -149,7 +157,7 @@ const AliasView: NextPage<AliasViewProps> = ({
     }
   }, [])
 
-  if (!message && !error) {
+  if (!localMessage && !error) {
     return (
       <Box display="flex" justifyContent="center">
         <CircularProgress />
@@ -159,13 +167,12 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   const needsPassword = isEncryptedWithUserPassword && !success
 
-  const pageTitle = secretType === 'message' ? 'Psssst' : ''
   const pageSubTitle = needsPassword
     ? 'Enter password to decrypt your secret:'
     : 'You received a secret:'
   return (
     <>
-      <Page title={pageTitle} subtitle={pageSubTitle} noindex>
+      <Page title="Shhh" subtitle={pageSubTitle} noindex>
         {!needsPassword && localMessage && (
           <Box mb={3}>
             {secretType === 'neogram' ? (
@@ -274,16 +281,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     )
     const { data } = response
     const { secretType, message, isEncryptedWithUserPassword, meta } = data
-
-    // If URL is in plain text, redirect early
-    if (!isEncryptedWithUserPassword && secretType === 'url') {
-      return {
-        redirect: {
-          destination: sanitizeUrl(message),
-          permanent: false,
-        },
-      }
-    }
 
     return {
       props: {
