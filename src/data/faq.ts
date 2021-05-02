@@ -28,7 +28,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
     body: `
 After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recepients clicks the link, the message gets displayed and permanently removed from the database. 
     
-For **extra security**, you can include a password that will be needed to decrypt the message. With a password you achieve **full end-to-end encryption**. (We recommend to share the password via a different channel then the link.)`,
+For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
   },
   {
     heading: 'What is the difference between *Message*, *URL Redirect* and *Neogram™*?',
@@ -41,7 +41,7 @@ For **extra security**, you can include a password that will be needed to decryp
 
   {
     heading: 'How secure is your service?',
-    body: `All messages are stored encrypted using **AES-256** with a 512bit hash. AES-256 is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
+    body: `All messages are end-to-end encrypted using **AES-256**, which is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
     For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrastructure**, he or she couldn't decrypt your message. Read more on our [Security page](/security).`,
   },
   {
