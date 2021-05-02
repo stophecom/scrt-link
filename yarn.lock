@@ -1531,6 +1531,11 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
+"@types/nanoid-dictionary@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@types/nanoid-dictionary/-/nanoid-dictionary-4.2.0.tgz#5a3ae86d7c0db2d3ecf5b1233fc27f5874903f77"
+  integrity sha512-DyQddKC2AYsInXBMqKSwhom4gpouV8SF1smsCPSzR8hp20vZJ5o5Yxg7qXThCHwr/H6VMq01UArEGbF0q2FXig==
+
 "@types/next-auth@^3.7.2":
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/@types/next-auth/-/next-auth-3.7.2.tgz#d8c6a99fd7882fe6b25144f334d10af838b3298b"
@@ -4830,6 +4835,11 @@ mz@^2.4.0:
     any-promise "^1.0.0"
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
+
+nanoid-dictionary@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/nanoid-dictionary/-/nanoid-dictionary-4.3.0.tgz#d4cefa1e4c06b1f576789eeb2646101f8c5419e8"
+  integrity sha512-Xw1+/QnRGWO1KJ0rLfU1xR85qXmAHyLbE3TUkklu9gOIDburP6CsUnLmTaNECGpBh5SHb2uPFmx0VT8UPyoeyw==
 
 nanoid@^3.1.16, nanoid@^3.1.20:
   version "3.1.20"
