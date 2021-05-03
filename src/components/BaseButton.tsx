@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, CircularProgress, ButtonProps, ButtonTypeMap } from '@material-ui/core'
 import styled from 'styled-components'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 
 type BaseButtonProps<T extends React.ElementType = ButtonTypeMap['defaultComponent']> = ButtonProps<
   T,
@@ -20,20 +19,6 @@ const ButtonLoading = styled(CircularProgress)`
   margin-left: -${loadingSize / 2}px;
 `
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      '& .MuiButton-label': {
-        display: 'block',
-        maxWidth: '150px',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      },
-    },
-  }),
-)
-
 type BaseButtonRef = React.ComponentPropsWithRef<typeof Button>['ref']
 
 // https://material-ui.com/guides/typescript/#usage-of-component-prop
@@ -41,11 +26,8 @@ function BaseButton<T extends React.ElementType>(
   { loading, disabled, disableElevation = true, children, onClick, ...rest }: BaseButtonProps<T>,
   ref: BaseButtonRef,
 ) {
-  const classes = useStyles()
-
   return (
     <Button
-      className={classes.button}
       {...rest}
       ref={ref}
       disabled={loading || disabled}

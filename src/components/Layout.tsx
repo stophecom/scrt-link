@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Link } from '@material-ui/core'
+import { Box, Link, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { signOut, useSession } from 'next-auth/client'
@@ -89,7 +89,9 @@ const Layout: React.FC = ({ children }) => {
                   &nbsp;
                 </>
               ) : session ? (
-                session.user.name || 'My account'
+                <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
+                  {session.user.name || 'My account'}
+                </Typography>
               ) : (
                 'Sign in'
               )}
