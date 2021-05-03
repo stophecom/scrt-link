@@ -46,7 +46,7 @@ For **extra security**, you can include a password that will be needed to decryp
   },
   {
     heading: 'Can I retrieve a secret that has already been shared?',
-    body: `Nope. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.`,
+    body: `Nope. It's a one time secret. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.`,
   },
   {
     heading: 'What is the maximum message size?',

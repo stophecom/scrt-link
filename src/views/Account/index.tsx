@@ -50,9 +50,9 @@ const Account = ({ userSettings, stats }: AccountProps) => {
 
         <Box mb={10}>
           <Typography variant="h2">Settings</Typography>
-          <Typography variant="subtitle2">
+          {/* <Typography variant="subtitle2">
             These are default settings. You can overwrite each setting for every secret.
-          </Typography>
+          </Typography> */}
           <Box py={3}>
             <UserSettingsForm
               receiptEmail={session.user.email as string}
