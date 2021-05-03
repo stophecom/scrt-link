@@ -11,12 +11,14 @@ import Alert from '@material-ui/lab/Alert'
 import BaseRadiosField from '@/components/BaseRadiosField'
 import BaseTextField from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
+import BaseSwitch from '@/components/BaseSwitch'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import BaseButton from '@/components/BaseButton'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
+import { bold } from 'nanoid-dictionary/lowercase'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -51,6 +53,7 @@ const UserSettingsForm = ({
   receiptEmail,
   receiptPhoneNumber,
   readReceipts,
+  isEmojiShortLinkEnabled,
   onSuccess,
 }: UserSettingsFormProps) => {
   const classes = useStyles()
@@ -63,6 +66,7 @@ const UserSettingsForm = ({
     receiptEmail,
     receiptPhoneNumber,
     readReceipts,
+    isEmojiShortLinkEnabled,
   }
 
   const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
@@ -151,6 +155,17 @@ const UserSettingsForm = ({
                   </Box>
                 </Box>
 
+                <Box mb={10}>
+                  <Typography variant="h3">Emoji link 🤫</Typography>
+                  <Typography variant="body1">
+                    You can enable fancy emoji links for your secrets. Links will look like this{' '}
+                    <Typography noWrap component="span">
+                      <strong>https://🤫.st/nxKFy…</strong>{' '}
+                    </Typography>
+                    (Note that not all chat applications support emoji links.)
+                  </Typography>
+                  <BaseSwitch label="Use emoji link" name="isEmojiShortLinkEnabled" />
+                </Box>
                 <Box mb={10}>
                   <Typography variant="h3">Neogram™</Typography>
                   <Box mb={3}>

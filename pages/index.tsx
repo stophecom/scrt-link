@@ -1,3 +1,1 @@
-import HomeView from '@/views/Home'
-
-export default HomeView
+export { default, getServerSideProps } from '@/views/Home'

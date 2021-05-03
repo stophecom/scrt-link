@@ -7,6 +7,7 @@ export interface UserSettingsFields {
   receiptPhoneNumber: string
   neogramDestructionMessage: string
   neogramDestructionTimeout: number
+  isEmojiShortLinkEnabled: boolean
   name: string
   readReceipts: ReadReceipts
 }
@@ -20,6 +21,7 @@ const UserSettingsSchema = new mongoose.Schema(
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
     readReceipts: { type: String, required: false },
+    isEmojiShortLinkEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },
   },

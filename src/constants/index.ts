@@ -11,3 +11,5 @@ export const emailSantihans = 'info@santihans.com'
 export const gitlab = 'https://gitlab.com/kingchiller'
 export const baseUrl = sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)
 export const pusherCluster = 'eu'
+export const emojiShortUrl = 'https://🤫.st'
+export const shortUrl = 'https://scrt.li'

@@ -10,11 +10,15 @@ import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 import Alert from '@material-ui/lab/Alert'
+import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/client'
 
+import { sanitizeUrl } from '@/utils/index'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
+import { UserSettingsFields } from '@/api/models/UserSettings'
 
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
@@ -117,12 +121,17 @@ const tabsMenu = Object.keys(secretTypesMap).map((item) => {
 
 const reducer = createReducer<State>()
 
-const HomeView = () => {
+type HomeViewProps = {
+  userSettings: Partial<UserSettingsFields>
+}
+const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
   const classes = useStyles()
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('message')
   const [encryptionKey, setEncryptionKey] = useState(generateNanoId(encryptionKeyLength))
+
+  const { isEmojiShortLinkEnabled = false } = userSettings
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
     const { password, secretType, alias } = values
@@ -202,6 +211,7 @@ const HomeView = () => {
       >
         <Result
           data={data}
+          isEmojiShortLinkEnabled={isEmojiShortLinkEnabled}
           encryptionKey={encryptionKey}
           onReset={() => {
             setEncryptionKey(generateNanoId(encryptionKeyLength))
@@ -345,6 +355,23 @@ const HomeView = () => {
       </Box>
     </Page>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  let userSettings = {}
+
+  if (session) {
+    const options = { headers: { cookie: context.req.headers.cookie as string } }
+    const res = await fetch(`${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api/me`, options)
+    const json = await res.json()
+    userSettings = json?.userSettings
+  }
+
+  return {
+    props: { userSettings },
+  }
 }
 
 export default HomeView

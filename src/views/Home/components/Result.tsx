@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import { Box, Typography } from '@material-ui/core'
@@ -15,16 +15,26 @@ import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
 import { isProduction } from '@/config'
+import { UserSettingsFields } from '@/api/models/UserSettings'
+import { emojiShortUrl } from '@/constants'
 
-const Result = ({
+type ResultProps = Pick<State, 'data'> &
+  Pick<UserSettingsFields, 'isEmojiShortLinkEnabled'> & {
+    encryptionKey: string
+    onReset: () => void
+  }
+
+const Result: React.FunctionComponent<ResultProps> = ({
   data,
   onReset,
   encryptionKey,
-}: Pick<State, 'data'> & { encryptionKey: string; onReset: () => void }) => {
+  isEmojiShortLinkEnabled,
+}) => {
   const alias = data?.alias
-  const origin = isProduction
-    ? `${process.env.NEXT_PUBLIC_SHORT_URL}`
-    : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
+  const origin =
+    isProduction && isEmojiShortLinkEnabled
+      ? emojiShortUrl
+      : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
 
   const [hasCopied, setHasCopied] = useState(false)

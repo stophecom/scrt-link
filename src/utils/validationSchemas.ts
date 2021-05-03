@@ -66,6 +66,7 @@ export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSetti
   neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
   neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
   readReceipts: Yup.mixed<ReadReceipts>().oneOf(readReceipts).label('Read receipts'),
+  isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
   receiptEmail: Yup.string().label('Email').email().max(200).trim(),
   receiptPhoneNumber: Yup.string()
     .label('Phone')
