@@ -14,6 +14,11 @@ export const sanitizeUrl = (url: string) => {
   return uri.scheme ? url : `https://${url}`
 }
 
+export const shortenString = (str: string, length: number) => {
+  const threshold = length + 3
+  return str.length > threshold ? `${str.substring(0, length)}…` : str
+}
+
 export const generateNanoId = (length: number) => {
   const nanoid = customAlphabet(nolookalikes, length)
   return nanoid()

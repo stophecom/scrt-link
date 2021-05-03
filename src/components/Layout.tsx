@@ -5,6 +5,7 @@ import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { signOut, useSession } from 'next-auth/client'
 import NoSsr from '@material-ui/core/NoSsr'
 import NextLink from 'next/link'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
-  const [session] = useSession()
+  const [session, loading] = useSession()
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Container>
@@ -82,7 +83,16 @@ const Layout: React.FC = ({ children }) => {
               variant={session ? 'contained' : 'text'}
               size="small"
             >
-              {session ? session.user.name || 'My account' : 'Sign in'}
+              {loading ? (
+                <>
+                  <CircularProgress size={12} />
+                  &nbsp;
+                </>
+              ) : session ? (
+                session.user.name || 'My account'
+              ) : (
+                'Sign in'
+              )}
             </BaseButton>
           </NextLink>
         </Box>

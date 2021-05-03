@@ -15,7 +15,9 @@ const Page = ({ title, subtitle, children, ...seoProps }: PageProps) => {
       <Seo title={title} {...seoProps} />
       <Box pt={3} mb={6}>
         <Box mb={1}>
-          <Typography variant="h1">{title}</Typography>
+          <Typography variant="h1" noWrap>
+            {title}
+          </Typography>
         </Box>
         {subtitle && (
           <Typography variant="subtitle1" component="h2">
