@@ -38,12 +38,18 @@ For **extra security**, you can include a password that will be needed to decryp
 - **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters.
     `,
   },
-
   {
     heading: 'How secure is your service?',
     body: `All messages are end-to-end encrypted using **AES-256**, which is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.
-    For the highest level of security, an optional password (which is never stored) will be used to encrypt your message. Even if an attacker had access to **all of our infrastructure**, he or she couldn't decrypt your message. Read more on our [Security page](/security).`,
+    For the highest level of security, an optional password (which is never stored either) will be used to encrypt your message. Read more on our [Security page](/security).`,
   },
+  {
+    heading: 'How is end-to-end encryption achieved?',
+    body: `We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to descrypt the secret.
+![Link explanation](/images/link-explanation.svg)
+`,
+  },
+
   {
     heading: 'Can I retrieve a secret that has already been shared?',
     body: `Nope. It's a one time secret. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.`,
