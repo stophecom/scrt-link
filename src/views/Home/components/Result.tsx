@@ -60,7 +60,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                   <Box mx={1}>
                     <RWebShare
                       data={{
-                        text: 'Psssst. Here is a secret.',
+                        text: 'Here is a secret:',
                         url: shortenedUrl,
                         title: 'Share your secret link:',
                       }}
