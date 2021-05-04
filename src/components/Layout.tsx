@@ -17,7 +17,7 @@ import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
 
 import { menu, about } from '@/data/menu'
 
-const Container = styled.main`
+export const Container = styled.main`
   flex: 1;
   margin: 0 auto;
   max-width: 780px;

@@ -1,21 +1,20 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import axios from 'axios'
-import { Box, CircularProgress, Typography } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import ReplyIcon from '@material-ui/icons/Reply'
-import { usePlausible } from 'next-plausible'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
-import { WindupChildren, Pause } from 'windups'
-import NextLink from 'next/link'
-
 import crawlers from 'crawler-user-agents'
+import NextLink from 'next/link'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
+import Neogram from './components/Neogram'
+import ReplyButton from './components/ReplyButton'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { sanitizeUrl, decryptMessage } from '@/utils/index'
@@ -33,13 +32,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     message: {
       fontSize: '1.1rem',
-    },
-    replyButton: {
-      opacity: 0,
-
-      '&.visible': {
-        opacity: 1,
-      },
     },
   }),
 )
@@ -59,13 +51,10 @@ const AliasView: NextPage<AliasViewProps> = ({
   meta = {},
 }) => {
   const classes = useStyles()
-  const plausible = usePlausible()
 
   const [hasCopied, setHasCopied] = useState(false)
   const [decryptedMessage, setDecryptedMessage] = useState('')
   const [success, setSuccess] = useState(false)
-
-  const countDown = Array.from(Array(meta?.neogramDestructionTimeout || 5).keys()).reverse()
 
   useEffect(() => {
     // Decrypt message
@@ -84,47 +73,6 @@ const AliasView: NextPage<AliasViewProps> = ({
     // eslint-disable-next-line no-restricted-globals
     history.pushState(null, 'Secret destroyed', '🔥')
   }, [message])
-
-  const SelfDestructionSequence = () => {
-    return (
-      <WindupChildren onFinished={() => window.location.reload()}>
-        <Typography variant="subtitle1" className={classes.break}>
-          {decryptedMessage}
-        </Typography>
-        <Typography variant="subtitle1" color="primary">
-          <Pause ms={2000} />
-          {meta?.neogramDestructionMessage || 'This message will self-destruct in…'}
-          <br />
-          <Pause ms={1000} />
-          {countDown.map((item, index) => {
-            return (
-              <span key={index}>
-                {item + 1}…
-                <Pause ms={1000} />
-              </span>
-            )
-          })}
-          <br />
-          <Pause ms={1000} />
-          {'Booooom 🔥'}
-        </Typography>
-      </WindupChildren>
-    )
-  }
-
-  const ReplyButton = () => (
-    <NextLink href="/" passHref>
-      <BaseButton
-        color="primary"
-        variant="contained"
-        size="large"
-        startIcon={<ReplyIcon />}
-        onClick={() => plausible('ReplyButton')}
-      >
-        Reply with a secret
-      </BaseButton>
-    </NextLink>
-  )
 
   interface PasswordForm {
     message: string
@@ -161,103 +109,116 @@ const AliasView: NextPage<AliasViewProps> = ({
 
   const needsPassword = isEncryptedWithUserPassword && !success
 
-  const pageSubTitle = needsPassword
-    ? 'Enter password to decrypt your secret:'
-    : 'You received a secret:'
-  return (
-    <>
-      <Page title="Shhh" subtitle={pageSubTitle} noindex>
-        {!needsPassword && decryptedMessage && (
-          <Box mb={3}>
-            {secretType === 'neogram' ? (
-              <SelfDestructionSequence />
-            ) : (
-              <>
-                <Paper elevation={3} className={clsx(classes.break, classes.message)}>
-                  <Box px={4} pt={4} pb={2}>
-                    {decryptedMessage}
-                    <Box pt={2} display="flex" justifyContent="flex-end">
-                      <Box mr={2}>
-                        <BaseButton variant="text" color="primary" size="small" href="/">
-                          Destroy secret
-                        </BaseButton>
-                      </Box>
-                      <CopyToClipboard
-                        text={decryptedMessage}
-                        onCopy={() => {
-                          setHasCopied(true)
-                          setTimeout(() => {
-                            setHasCopied(false)
-                          }, 2000)
-                        }}
-                      >
-                        <BaseButton
-                          startIcon={<FileCopyOutlinedIcon />}
-                          variant="contained"
-                          color="primary"
-                          size="small"
-                        >
-                          {hasCopied ? 'Copied' : 'Copy'}
-                        </BaseButton>
-                      </CopyToClipboard>
-                    </Box>
-                  </Box>
-                </Paper>
-
-                <Box mt={3}>
-                  <ReplyButton />
-                </Box>
-              </>
-            )}
-          </Box>
-        )}
-
-        {isEncryptedWithUserPassword && !success && (
-          <Formik<PasswordForm>
-            initialValues={initialValues}
-            validationSchema={passwordValidationSchema}
-            validateOnMount
-            onSubmit={handleSubmit}
-          >
-            {({ isValid, isSubmitting, setFieldValue }) => {
-              return (
-                <>
-                  <Form noValidate>
-                    <Box mb={2}>
-                      <BasePasswordField required name="password" />
-                    </Box>
-                    <Box mb={1}>
-                      <BaseButton
-                        type="submit"
-                        color="primary"
-                        variant="contained"
-                        size="large"
-                        loading={isSubmitting}
-                        disabled={!isValid}
-                        onClick={() => {
-                          setFieldValue('message', decryptedMessage)
-                        }}
-                      >
-                        Decrypt Message
-                      </BaseButton>
-                    </Box>
-                  </Form>
-                </>
-              )
-            }}
-          </Formik>
-        )}
-
-        {error && (
-          <>
-            <Alert severity="error">{error}</Alert>
-            <Box mt={3}>
-              <ReplyButton />
-            </Box>
-          </>
-        )}
+  if (error) {
+    return (
+      <Page title="Error occured" noindex>
+        <Alert severity="error">{error}</Alert>
+        <Box mt={3}>
+          <ReplyButton />
+        </Box>
       </Page>
-    </>
+    )
+  }
+
+  if (!needsPassword && secretType === 'neogram') {
+    return (
+      <Neogram
+        message={decryptedMessage}
+        timeout={meta?.neogramDestructionTimeout}
+        destructionMessage={meta?.neogramDestructionMessage}
+      />
+    )
+  }
+
+  if (needsPassword) {
+    return (
+      <Page title="Password required" subtitle="Enter password to decrypt your secret:" noindex>
+        <Formik<PasswordForm>
+          initialValues={initialValues}
+          validationSchema={passwordValidationSchema}
+          validateOnMount
+          onSubmit={handleSubmit}
+        >
+          {({ isValid, isSubmitting, setFieldValue }) => {
+            return (
+              <>
+                <Form noValidate>
+                  <Box mb={2}>
+                    <BasePasswordField required name="password" />
+                  </Box>
+                  <Box mb={1}>
+                    <BaseButton
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      size="large"
+                      loading={isSubmitting}
+                      disabled={!isValid}
+                      onClick={() => {
+                        setFieldValue('message', decryptedMessage)
+                      }}
+                    >
+                      Decrypt Message
+                    </BaseButton>
+                  </Box>
+                </Form>
+              </>
+            )
+          }}
+        </Formik>
+      </Page>
+    )
+  }
+
+  if (decryptedMessage) {
+    return (
+      <Page title="Shhh" subtitle="You received a secret:" noindex>
+        <Box mb={3}>
+          <Paper elevation={3} className={clsx(classes.break, classes.message)}>
+            <Box px={4} pt={4} pb={2}>
+              {decryptedMessage}
+              <Box pt={2} display="flex" justifyContent="flex-end">
+                <Box mr={2}>
+                  <NextLink href="/" passHref>
+                    <BaseButton variant="text" color="primary" size="small">
+                      Destroy secret
+                    </BaseButton>
+                  </NextLink>
+                </Box>
+                <CopyToClipboard
+                  text={decryptedMessage}
+                  onCopy={() => {
+                    setHasCopied(true)
+                    setTimeout(() => {
+                      setHasCopied(false)
+                    }, 2000)
+                  }}
+                >
+                  <BaseButton
+                    startIcon={<FileCopyOutlinedIcon />}
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                  >
+                    {hasCopied ? 'Copied' : 'Copy'}
+                  </BaseButton>
+                </CopyToClipboard>
+              </Box>
+            </Box>
+          </Paper>
+
+          <Box mt={3}>
+            <ReplyButton />
+          </Box>
+        </Box>
+      </Page>
+    )
+  }
+
+  return (
+    <Box display="flex" justifyContent="center" mt={8}>
+      <CircularProgress />
+    </Box>
   )
 }
 
@@ -294,7 +255,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       error = `${data.statusCode}: ${data.message}`
     } else {
       error =
-        'Error occured. If you see 🔥 in the address bar you have most likely tried to re-visit a burned link.'
+        'If you see 🔥 in the address bar you have most likely tried to revisit a burned link.'
     }
     return { props: { error } }
   }
