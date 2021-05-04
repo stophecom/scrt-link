@@ -31,9 +31,10 @@ const Result: React.FunctionComponent<ResultProps> = ({
   isEmojiShortLinkEnabled,
 }) => {
   const alias = data?.alias
-  const origin = !isEmojiShortLinkEnabled
-    ? emojiShortUrl
-    : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
+  const origin =
+    isProduction && isEmojiShortLinkEnabled
+      ? emojiShortUrl
+      : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
 
   const [hasCopied, setHasCopied] = useState(false)
@@ -59,7 +60,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                   <Box mx={1}>
                     <RWebShare
                       data={{
-                        text: `Here is a secret: ${shortenedUrl}`,
+                        text: `You received a secret: ${shortenedUrl} \n \nReply with a secret:`,
                         title: 'Share your secret link:',
                       }}
                     >
