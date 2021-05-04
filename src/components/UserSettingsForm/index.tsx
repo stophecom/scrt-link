@@ -158,11 +158,12 @@ const UserSettingsForm = ({
                 <Box mb={10}>
                   <Typography variant="h3">Emoji link 🤫</Typography>
                   <Typography variant="body1">
-                    You can enable fancy emoji links for your secrets. Links will look like this{' '}
+                    You can enable emoji links to share your secrets. Example:{' '}
                     <Typography noWrap component="span">
                       <strong>https://🤫.st/nxKFy…</strong>{' '}
                     </Typography>
-                    (Note that not all chat applications support emoji links.)
+                    (Note that not all chat applications support emoji links: Whatsapp, Telegram,
+                    Threema, Twitter, Matrix, Wire, do work. Signal, Snapchat do not.)
                   </Typography>
                   <BaseSwitch label="Use emoji link" name="isEmojiShortLinkEnabled" />
                 </Box>
