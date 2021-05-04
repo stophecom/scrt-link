@@ -26,10 +26,6 @@ import Page from '@/components/Page'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-interface PasswordForm {
-  password: string
-}
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     break: {
@@ -66,7 +62,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   const plausible = usePlausible()
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [localMessage, setLocalMessage] = useState('')
+  const [decryptedMessage, setDecryptedMessage] = useState('')
   const [success, setSuccess] = useState(false)
 
   const countDown = Array.from(Array(meta?.neogramDestructionTimeout || 5).keys()).reverse()
@@ -81,30 +77,31 @@ const AliasView: NextPage<AliasViewProps> = ({
         window.location.replace(sanitizeUrl(result))
         return
       }
-      setLocalMessage(result)
+
+      setDecryptedMessage(result)
     }
 
     // eslint-disable-next-line no-restricted-globals
     history.pushState(null, 'Secret destroyed', '🔥')
-  }, [])
+  }, [message])
 
   const SelfDestructionSequence = () => {
     return (
       <WindupChildren onFinished={() => window.location.reload()}>
         <Typography variant="subtitle1" className={classes.break}>
-          {localMessage}
+          {decryptedMessage}
         </Typography>
         <Typography variant="subtitle1" color="primary">
           <Pause ms={2000} />
-          {meta?.neogramDestructionMessage || 'This message will self-destruct in five seconds!'}
+          {meta?.neogramDestructionMessage || 'This message will self-destruct in…'}
           <br />
           <Pause ms={1000} />
-          {countDown.map((item) => {
+          {countDown.map((item, index) => {
             return (
-              <>
+              <span key={index}>
                 {item + 1}…
                 <Pause ms={1000} />
-              </>
+              </span>
             )
           })}
           <br />
@@ -129,20 +126,25 @@ const AliasView: NextPage<AliasViewProps> = ({
     </NextLink>
   )
 
+  interface PasswordForm {
+    message: string
+    password: string
+  }
   const initialValues: PasswordForm = {
+    message: '',
     password: '',
   }
 
   const handleSubmit = useCallback<OnSubmit<PasswordForm>>(async (values, formikHelpers) => {
     try {
-      const { password } = values
+      const { message, password } = values
       const result = decryptMessage(message, password)
 
       if (!result) {
         throw new Error('Wrong Password')
       } else {
         setSuccess(true)
-        setLocalMessage(result)
+        setDecryptedMessage(result)
 
         if (secretType === 'url') {
           window.location.replace(sanitizeUrl(result))
@@ -157,14 +159,6 @@ const AliasView: NextPage<AliasViewProps> = ({
     }
   }, [])
 
-  if (!localMessage && !error) {
-    return (
-      <Box display="flex" justifyContent="center">
-        <CircularProgress />
-      </Box>
-    )
-  }
-
   const needsPassword = isEncryptedWithUserPassword && !success
 
   const pageSubTitle = needsPassword
@@ -173,7 +167,7 @@ const AliasView: NextPage<AliasViewProps> = ({
   return (
     <>
       <Page title="Shhh" subtitle={pageSubTitle} noindex>
-        {!needsPassword && localMessage && (
+        {!needsPassword && decryptedMessage && (
           <Box mb={3}>
             {secretType === 'neogram' ? (
               <SelfDestructionSequence />
@@ -181,7 +175,7 @@ const AliasView: NextPage<AliasViewProps> = ({
               <>
                 <Paper elevation={3} className={clsx(classes.break, classes.message)}>
                   <Box px={4} pt={4} pb={2}>
-                    {localMessage}
+                    {decryptedMessage}
                     <Box pt={2} display="flex" justifyContent="flex-end">
                       <Box mr={2}>
                         <BaseButton variant="text" color="primary" size="small" href="/">
@@ -189,7 +183,7 @@ const AliasView: NextPage<AliasViewProps> = ({
                         </BaseButton>
                       </Box>
                       <CopyToClipboard
-                        text={localMessage}
+                        text={decryptedMessage}
                         onCopy={() => {
                           setHasCopied(true)
                           setTimeout(() => {
@@ -225,7 +219,7 @@ const AliasView: NextPage<AliasViewProps> = ({
             validateOnMount
             onSubmit={handleSubmit}
           >
-            {({ isValid, isSubmitting }) => {
+            {({ isValid, isSubmitting, setFieldValue }) => {
               return (
                 <>
                   <Form noValidate>
@@ -240,6 +234,9 @@ const AliasView: NextPage<AliasViewProps> = ({
                         size="large"
                         loading={isSubmitting}
                         disabled={!isValid}
+                        onClick={() => {
+                          setFieldValue('message', decryptedMessage)
+                        }}
                       >
                         Decrypt Message
                       </BaseButton>

@@ -137,15 +137,15 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
     const { password, secretType, alias } = values
     let { message } = values
 
+    if (password) {
+      message = encryptMessage(message, password)
+    }
+
     // Default encryption
     message = encryptMessage(message, encryptionKey)
 
     dispatch(doRequest({ alias }))
     window.scrollTo(0, 0)
-
-    if (password) {
-      encryptMessage(message, password)
-    }
 
     const data = {
       ...omit(['password'], values),
