@@ -18,7 +18,6 @@ import { UserSettingsFields } from '@/api/models/UserSettings'
 import BaseButton from '@/components/BaseButton'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
-import { bold } from 'nanoid-dictionary/lowercase'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -163,7 +162,7 @@ const UserSettingsForm = ({
                       <strong>https://🤫.st/nxKFy…</strong>{' '}
                     </Typography>
                     (Note that not all chat applications support emoji links: Whatsapp, Telegram,
-                    Threema, Twitter, Matrix, Wire, do work. Signal, Snapchat do not.)
+                    Threema, Twitter, Matrix, Wire, do work. Signal, Slack, Snapchat do not.)
                   </Typography>
                   <BaseSwitch label="Use emoji link" name="isEmojiShortLinkEnabled" />
                 </Box>
