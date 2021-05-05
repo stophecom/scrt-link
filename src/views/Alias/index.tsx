@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     break: {
       wordBreak: 'break-word',
+      whiteSpace: 'pre-wrap',
     },
     message: {
       fontSize: '1.1rem',

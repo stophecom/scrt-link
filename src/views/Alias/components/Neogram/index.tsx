@@ -26,9 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     break: {
       wordBreak: 'break-word',
+      whiteSpace: 'pre-wrap',
     },
   }),
 )
+
 type NeogramType = {
   message: string
   timeout?: number
