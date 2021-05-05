@@ -38,16 +38,18 @@ type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
 type SecretUrlFormValues = Pick<SecretUrlFields, 'secretType' | 'alias' | 'message'> & {
   password?: string
+  encryptionKey: string
 }
 
 const initialValues: SecretUrlFormValues = {
   message: '',
   secretType: 'message',
   alias: '',
+  encryptionKey: '',
 }
 
 export interface State {
-  data: Maybe<Pick<SecretUrlFields, 'alias'> & { message: string }>
+  data: Maybe<Pick<SecretUrlFields, 'alias'> & { message: string; encryptionKey: string }>
   error: Maybe<string>
 }
 
@@ -129,12 +131,11 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('message')
-  const [encryptionKey, setEncryptionKey] = useState(generateNanoId(encryptionKeyLength))
 
   const { isEmojiShortLinkEnabled = false } = userSettings
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
-    const { password, secretType, alias } = values
+    const { password, secretType, alias, encryptionKey } = values
     let { message } = values
 
     if (password) {
@@ -144,11 +145,11 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
     // Default encryption
     message = encryptMessage(message, encryptionKey)
 
-    dispatch(doRequest({ alias }))
+    dispatch(doRequest({ alias, encryptionKey }))
     window.scrollTo(0, 0)
 
     const data = {
-      ...omit(['password'], values),
+      ...omit(['password', 'encryptionKey'], values),
       alias,
       message,
       secretType,
@@ -156,6 +157,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
     }
     try {
       const response = await axios.post('/api', data)
+      response.data['encryptionKey'] = encryptionKey
       dispatch(doSuccess(response))
 
       plausible('SecretCreation', {
@@ -212,9 +214,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
         <Result
           data={data}
           isEmojiShortLinkEnabled={isEmojiShortLinkEnabled}
-          encryptionKey={encryptionKey}
           onReset={() => {
-            setEncryptionKey(generateNanoId(encryptionKeyLength))
             dispatch(doReset())
             setHasPassword(false)
           }}
@@ -253,8 +253,6 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           return (
             <>
               <Form noValidate>
-                <Field type="hidden" name="secretType" value={secretType} />
-                <Field type="hidden" name="alias" />
                 {secretType === 'url' && (
                   <>
                     <Box mb={2}>
@@ -322,6 +320,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                       onClick={() => {
                         setFieldValue('secretType', secretType)
                         setFieldValue('alias', generateNanoId(urlAliasLength))
+                        setFieldValue('encryptionKey', generateNanoId(encryptionKeyLength))
 
                         UIStore.update((s) => {
                           s.liveStatsEnabled = true

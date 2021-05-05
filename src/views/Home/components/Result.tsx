@@ -20,17 +20,16 @@ import { emojiShortUrl } from '@/constants'
 
 type ResultProps = Pick<State, 'data'> &
   Pick<UserSettingsFields, 'isEmojiShortLinkEnabled'> & {
-    encryptionKey: string
     onReset: () => void
   }
 
 const Result: React.FunctionComponent<ResultProps> = ({
   data,
   onReset,
-  encryptionKey,
   isEmojiShortLinkEnabled,
 }) => {
   const alias = data?.alias
+  const encryptionKey = data?.encryptionKey
   const origin =
     isProduction && isEmojiShortLinkEnabled
       ? emojiShortUrl
