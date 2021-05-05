@@ -15,10 +15,6 @@ const messageValidation = {
   message: Yup.string().label('Message').required().min(1).max(maxMessageLength).trim(),
 }
 
-const passwordValidation = {
-  password: Yup.string().label('Password').required().min(5).max(50).trim(),
-}
-
 const typeValidation = {
   secretType: Yup.mixed<SecretType>().oneOf(secretTypes),
 }
@@ -45,7 +41,11 @@ type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & { passw
 export const getValidationSchemaByType = (secretType: SecretType, hasPassword = false) =>
   Yup.object().shape<SecretFormInput>({
     ...schemataMap[secretType],
-    ...(hasPassword ? passwordValidation : {}),
+    ...(hasPassword
+      ? {
+          password: Yup.string().label('Password').min(5).max(50).trim(),
+        }
+      : {}),
     ...typeValidation,
   })
 
@@ -54,7 +54,9 @@ export const apiValidationSchemaByType = Yup.object().shape<SecretFormInput>({
   ...typeValidation,
 })
 
-export const passwordValidationSchema = Yup.object().shape<{ password: string }>(passwordValidation)
+export const passwordValidationSchema = Yup.object().shape<{ password: string }>({
+  password: Yup.string().label('Password').required().min(5).max(50).trim(),
+})
 
 export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
   name: Yup.string().label('Name').max(200).trim(),

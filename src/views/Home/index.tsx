@@ -181,9 +181,9 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
   }
 
   // Form options
-  const [hasPassword, setHasPassword] = React.useState(false)
+  const [hasFormOptions, setHasFormOptions] = React.useState(false)
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setHasPassword(event.target.checked)
+    setHasFormOptions(event.target.checked)
   }
 
   const getFormFieldConfigBySecretType = (secretType: SecretType) => {
@@ -216,7 +216,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           isEmojiShortLinkEnabled={isEmojiShortLinkEnabled}
           onReset={() => {
             dispatch(doReset())
-            setHasPassword(false)
+            setHasFormOptions(false)
           }}
         />
       </Page>
@@ -245,7 +245,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
       </Box>
       <Formik<SecretUrlFormValues>
         initialValues={initialValues}
-        validationSchema={getValidationSchemaByType(secretType, hasPassword)}
+        validationSchema={getValidationSchemaByType(secretType, hasFormOptions)}
         validateOnMount
         onSubmit={handleSubmit}
       >
@@ -255,7 +255,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
               <Form noValidate>
                 {secretType === 'url' && (
                   <>
-                    <Box mb={2}>
+                    <Box mb={1}>
                       <BaseTextField
                         name="message"
                         label="URL"
@@ -273,7 +273,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                 )}
                 {['message', 'neogram'].includes(secretType) && (
                   <>
-                    <Box position="relative" mb={2}>
+                    <Box position="relative" mb={1}>
                       <BaseTextField
                         name="message"
                         multiline
@@ -290,14 +290,9 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                   </>
                 )}
 
-                <Collapse in={hasPassword}>
+                <Collapse in={hasFormOptions}>
                   <Box mb={2}>
-                    <BasePasswordField
-                      autoFocus={hasPassword}
-                      required={hasPassword}
-                      className={clsx(classes.root)}
-                      name="password"
-                    />
+                    <BasePasswordField className={clsx(classes.root)} name="password" />
                   </Box>
                 </Collapse>
                 <Box display="flex" className={classes.formFooter}>
@@ -305,13 +300,13 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                     <FormControlLabel
                       control={
                         <Switch
-                          checked={hasPassword}
+                          checked={hasFormOptions}
                           onChange={handleSwitchChange}
-                          name="isEncryptedWithUserPassword"
+                          name="formOptions"
                           color="primary"
                         />
                       }
-                      label="Include password"
+                      label="Show options"
                     />
                   </Box>
                   <Box mb={1}>
