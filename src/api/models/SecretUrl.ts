@@ -11,6 +11,8 @@ export interface SecretUrlFields {
   alias: string
   message: string
   isEncryptedWithUserPassword: boolean
+  neogramDestructionMessage?: string
+  neogramDestructionTimeout?: number
 }
 
 export type SecretUrlData = BaseDocumentData & SecretUrlFields
@@ -30,6 +32,8 @@ const SecretUrlSchema = new mongoose.Schema(
     },
     message: { type: String, required: false, default: '', maxlength: 5 * maxMessageLength }, // Set maxlength reasonably big
     isEncryptedWithUserPassword: { type: Boolean, required: true, default: false },
+    neogramDestructionMessage: { type: String, required: false, trim: true },
+    neogramDestructionTimeout: { type: Number, required: false },
   },
   { timestamps: true },
 )

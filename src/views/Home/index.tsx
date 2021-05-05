@@ -19,6 +19,7 @@ import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import { UserSettingsFields } from '@/api/models/UserSettings'
+import { DestructionMessage, DestructionTimeout } from '@/components/UserSettingsForm'
 
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
@@ -36,16 +37,9 @@ import { UIStore } from '@/store'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-type SecretUrlFormValues = Pick<SecretUrlFields, 'secretType' | 'alias' | 'message'> & {
+type SecretUrlFormValues = Omit<SecretUrlFields, 'userId' | 'isEncryptedWithUserPassword'> & {
   password?: string
   encryptionKey: string
-}
-
-const initialValues: SecretUrlFormValues = {
-  message: '',
-  secretType: 'message',
-  alias: '',
-  encryptionKey: '',
 }
 
 export interface State {
@@ -132,7 +126,20 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('message')
 
-  const { isEmojiShortLinkEnabled = false } = userSettings
+  const {
+    isEmojiShortLinkEnabled = false,
+    neogramDestructionMessage,
+    neogramDestructionTimeout,
+  } = userSettings
+
+  const initialValues: SecretUrlFormValues = {
+    message: '',
+    secretType: 'message',
+    alias: '',
+    encryptionKey: '',
+    neogramDestructionMessage: neogramDestructionMessage || '',
+    neogramDestructionTimeout: neogramDestructionTimeout || 5,
+  }
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
     const { password, secretType, alias, encryptionKey } = values
@@ -253,27 +260,23 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           return (
             <>
               <Form noValidate>
-                {secretType === 'url' && (
-                  <>
-                    <Box mb={1}>
-                      <BaseTextField
-                        name="message"
-                        label="URL"
-                        required
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <LinkIcon />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </Box>
-                  </>
-                )}
-                {['message', 'neogram'].includes(secretType) && (
-                  <>
-                    <Box position="relative" mb={1}>
+                <Box position="relative" mb={2}>
+                  {secretType === 'url' && (
+                    <BaseTextField
+                      name="message"
+                      label="URL"
+                      required
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LinkIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  )}
+                  {['message', 'neogram'].includes(secretType) && (
+                    <>
                       <BaseTextField
                         name="message"
                         multiline
@@ -286,14 +289,24 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                       <small className={classes.counter}>
                         {maxMessageLength - values.message.length}
                       </small>
-                    </Box>
-                  </>
-                )}
+                    </>
+                  )}
+                </Box>
 
                 <Collapse in={hasFormOptions}>
                   <Box mb={2}>
                     <BasePasswordField className={clsx(classes.root)} name="password" />
                   </Box>
+                  {secretType === 'neogram' && (
+                    <>
+                      <Box mb={2}>
+                        <DestructionMessage />
+                      </Box>
+                      <Box mb={2}>
+                        <DestructionTimeout />
+                      </Box>
+                    </>
+                  )}
                 </Collapse>
                 <Box display="flex" className={classes.formFooter}>
                   <Box mb={1}>
@@ -306,7 +319,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                           color="primary"
                         />
                       }
-                      label="Show options"
+                      label="With options"
                     />
                   </Box>
                   <Box mb={1}>

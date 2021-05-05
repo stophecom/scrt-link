@@ -63,15 +63,24 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET': {
       const alias = await extractGetInput(req)
-      const secretUrl = await models.SecretUrl.findOneAndDelete({ alias })
-      if (!secretUrl) {
+      const secretUrlRaw = await models.SecretUrl.findOneAndDelete({ alias })
+      if (!secretUrlRaw) {
         throw createError(
           404,
           `URL not found - This usually means the secret link has already been visited and therefor no longer exists.`,
         )
       }
 
-      const { userId, secretType, isEncryptedWithUserPassword, message } = secretUrl
+      const secretUrl = decodeStringsFromDB(secretUrlRaw?.toJSON())
+
+      const {
+        userId,
+        secretType,
+        isEncryptedWithUserPassword,
+        neogramDestructionMessage,
+        neogramDestructionTimeout,
+        message,
+      } = secretUrl
 
       // Update global stats
       await models.Stats.findOneAndUpdate(
@@ -87,9 +96,6 @@ const handler: NextApiHandler = async (req, res) => {
         { new: true },
       )
 
-      // Get user specific settings connected with a secret
-      let publicMeta = {} as Partial<UserSettingsFields>
-
       if (userId) {
         let privateMeta = {} as Pick<
           UserSettingsFields,
@@ -101,14 +107,9 @@ const handler: NextApiHandler = async (req, res) => {
 
         const userSettings = decodeStringsFromDB(userSettingsRaw?.toJSON()) as UserSettingsFields
 
-        publicMeta = pick(
-          ['neogramDestructionMessage', 'neogramDestructionTimeout', 'name'],
-          userSettings,
-        )
-
         privateMeta = pick(['receiptEmail', 'readReceipts', 'receiptPhoneNumber'], userSettings)
 
-        const name = publicMeta?.name || 'Anonymous'
+        const name = userSettings?.name || 'Anonymous'
 
         switch (privateMeta?.readReceipts) {
           case 'sms': {
@@ -144,14 +145,19 @@ const handler: NextApiHandler = async (req, res) => {
         secretType,
         message: decryptAES(message),
         isEncryptedWithUserPassword,
-        meta: publicMeta,
+        meta: { neogramDestructionMessage, neogramDestructionTimeout },
       })
       break
     }
     case 'POST': {
-      const { secretType, message, isEncryptedWithUserPassword, alias } = await extractPostInput(
-        req,
-      )
+      const {
+        secretType,
+        message,
+        isEncryptedWithUserPassword,
+        alias,
+        neogramDestructionMessage,
+        neogramDestructionTimeout,
+      } = await extractPostInput(req)
 
       // Encrypt sensitive information
       const encryptAES = (string: string) =>
@@ -197,6 +203,8 @@ const handler: NextApiHandler = async (req, res) => {
         secretType,
         message: encryptAES(message),
         alias,
+        neogramDestructionMessage,
+        neogramDestructionTimeout,
         isEncryptedWithUserPassword,
       })
 

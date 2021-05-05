@@ -14,9 +14,14 @@ const readReceipts = ['none' as ReadReceipts, 'sms' as ReadReceipts, 'email' as 
 const messageValidation = {
   message: Yup.string().label('Message').required().min(1).max(maxMessageLength).trim(),
 }
-
 const typeValidation = {
   secretType: Yup.mixed<SecretType>().oneOf(secretTypes),
+}
+const neogramDestructionMessageValidation = {
+  neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
+}
+const neogramDestructionTimeoutValidation = {
+  neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
 }
 
 const urlValidation = {
@@ -34,7 +39,11 @@ const urlValidation = {
 const schemataMap = {
   url: urlValidation,
   message: messageValidation,
-  neogram: messageValidation,
+  neogram: {
+    ...messageValidation,
+    ...neogramDestructionMessageValidation,
+    ...neogramDestructionTimeoutValidation,
+  },
 }
 
 type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & { password?: string }
@@ -65,8 +74,8 @@ export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
 
 export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSettingsFields>>({
   name: Yup.string().label('Name').max(200).trim(),
-  neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
-  neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
+  ...neogramDestructionMessageValidation,
+  ...neogramDestructionTimeoutValidation,
   readReceipts: Yup.mixed<ReadReceipts>().oneOf(readReceipts).label('Read receipts'),
   isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
   receiptEmail: Yup.string().label('Email').email().max(200).trim(),

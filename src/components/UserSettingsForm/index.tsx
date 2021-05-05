@@ -19,6 +19,28 @@ import BaseButton from '@/components/BaseButton'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 
+export const DestructionMessage = () => (
+  <BaseTextField
+    name="neogramDestructionMessage"
+    label="Destruction message"
+    placeholder="This message will self-destruct in five seconds!"
+  />
+)
+
+export const DestructionTimeout = () => (
+  <Box width="60%" minWidth={280}>
+    <BaseTextField
+      name="neogramDestructionTimeout"
+      label="Destruction timeout"
+      type="number"
+      helperText="Countdown time before message gets destroyed. Defaults to 5s."
+      InputProps={{
+        endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
+      }}
+    />
+  </Box>
+)
+
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
 interface State {
@@ -169,22 +191,10 @@ const UserSettingsForm = ({
                 <Box mb={10}>
                   <Typography variant="h3">Neogram™</Typography>
                   <Box mb={3}>
-                    <BaseTextField
-                      name="neogramDestructionMessage"
-                      label="Destruction message"
-                      placeholder="This message will self-destruct in five seconds!"
-                    />
+                    <DestructionMessage />
                   </Box>
-                  <Box mb={1} width="60%" minWidth={280}>
-                    <BaseTextField
-                      name="neogramDestructionTimeout"
-                      label="Destruction timeout"
-                      type="number"
-                      helperText="Countdown time before message gets destroyed. Defaults to 5s."
-                      InputProps={{
-                        endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
-                      }}
-                    />
+                  <Box mb={1}>
+                    <DestructionTimeout />
                   </Box>
                 </Box>
                 <Box mb={1}>
