@@ -17,7 +17,7 @@ let theme = createMuiTheme({
       primary: '#dddddd',
     },
     secondary: {
-      main: bg,
+      main: '#9e9e9e',
     },
   },
 

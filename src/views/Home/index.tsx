@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useReducer } from 'react'
 import axios from 'axios'
 import { Box, InputAdornment, Typography } from '@material-ui/core'
-import { Formik, Form, Field, FormikConfig } from 'formik'
+import { Formik, Form, FormikConfig } from 'formik'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import clsx from 'clsx'
@@ -260,7 +260,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           return (
             <>
               <Form noValidate>
-                <Box position="relative" mb={2}>
+                <Box position="relative" mb={hasFormOptions ? 2 : 1}>
                   {secretType === 'url' && (
                     <BaseTextField
                       name="message"
@@ -309,7 +309,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                   )}
                 </Collapse>
                 <Box display="flex" className={classes.formFooter}>
-                  <Box mb={1}>
+                  <Box mb={1} pl={1}>
                     <FormControlLabel
                       control={
                         <Switch
@@ -317,6 +317,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                           onChange={handleSwitchChange}
                           name="formOptions"
                           color="primary"
+                          size="small"
                         />
                       }
                       label="With options"

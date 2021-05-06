@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
-import { Box, Typography } from '@material-ui/core'
-import CircularProgress from '@material-ui/core/CircularProgress'
-
+import {
+  Box,
+  FormControlLabel,
+  Switch,
+  CircularProgress,
+  Paper,
+  Typography,
+} from '@material-ui/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import ShareIcon from '@material-ui/icons/Share'
-import Refresh from '@material-ui/icons/Refresh'
+import { ArrowBack, Share } from '@material-ui/icons'
 import { RWebShare } from 'react-web-share'
-import Paper from '@material-ui/core/Paper'
 
 import { sanitizeUrl } from '@/utils/index'
 import BaseButton from '@/components/BaseButton'
@@ -17,6 +20,7 @@ import { State } from '../index'
 import { isProduction } from '@/config'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import { emojiShortUrl } from '@/constants'
+import { useSession } from 'next-auth/client'
 
 type ResultProps = Pick<State, 'data'> &
   Pick<UserSettingsFields, 'isEmojiShortLinkEnabled'> & {
@@ -30,13 +34,19 @@ const Result: React.FunctionComponent<ResultProps> = ({
 }) => {
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
-  const origin =
-    isProduction && isEmojiShortLinkEnabled
-      ? emojiShortUrl
-      : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
+  const [session] = useSession()
+  const [hasCopied, setHasCopied] = useState(false)
+  // Form options
+  const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = React.useState(isEmojiShortLinkEnabled)
+
+  const origin = isEmojiLinkEnabled
+    ? emojiShortUrl
+    : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
 
-  const [hasCopied, setHasCopied] = useState(false)
+  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsEmojiLinkEnabled(event.target.checked)
+  }
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
@@ -47,6 +57,15 @@ const Result: React.FunctionComponent<ResultProps> = ({
       />
       {data && (
         <Box my={2}>
+          <BaseButton
+            startIcon={<ArrowBack />}
+            size="small"
+            variant="text"
+            color="secondary"
+            onClick={onReset}
+          >
+            Create new secret
+          </BaseButton>
           {shortenedUrl && (
             <Paper elevation={3}>
               <Box px={4} pt={4} pb={3}>
@@ -63,7 +82,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                         title: 'Share your secret link:',
                       }}
                     >
-                      <BaseButton startIcon={<ShareIcon />} color="primary" size="large">
+                      <BaseButton startIcon={<Share />} color="primary" size="large">
                         Share
                       </BaseButton>
                     </RWebShare>
@@ -93,10 +112,26 @@ const Result: React.FunctionComponent<ResultProps> = ({
               </Box>
             </Paper>
           )}
-          <Box py={1} display="flex">
-            <BaseButton startIcon={<Refresh />} size="small" variant="text" onClick={onReset}>
-              Create new secret
-            </BaseButton>
+          <Box p={1} display="flex">
+            {session && (
+              <FormControlLabel
+                control={
+                  <Switch
+                    size="small"
+                    checked={isEmojiLinkEnabled}
+                    onChange={handleSwitchChange}
+                    name="emojiLink"
+                    color="secondary"
+                  />
+                }
+                label={
+                  <span style={{ filter: `grayscale(${isEmojiLinkEnabled ? '10%' : '70%'})` }}>
+                    🤫 <Typography variant="srOnly">Enable emoji link</Typography>
+                  </span>
+                }
+              />
+            )}
+
             <Box ml="auto" px={1}>
               <Typography color="textSecondary" variant="caption">
                 {data?.message || (
