@@ -260,7 +260,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           return (
             <>
               <Form noValidate>
-                <Box position="relative" mb={hasFormOptions ? 2 : 1}>
+                <Box position="relative" mb={2}>
                   {secretType === 'url' && (
                     <BaseTextField
                       name="message"
