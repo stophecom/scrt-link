@@ -27,7 +27,7 @@ const Usps = () => {
   const classes = useStyles()
 
   const body = `
-No account yet? Sign up and get access to the following features:
+With an account you get access to the following features. It's free.
 - Read receipts via SMS or Email
 - Emoji link to share your secrets: **https://🤫.st**
 - Customizations for Neogram™ messages (custom destruction message, time)
@@ -36,7 +36,7 @@ No account yet? Sign up and get access to the following features:
 `
   return (
     <Box mb={4}>
-      <Typography variant="h2">Get a free account</Typography>
+      <Typography variant="h2">Why?</Typography>
       <Markdown className={classes.root} source={body} />
     </Box>
   )
@@ -100,7 +100,7 @@ const Account = ({ userSettings, stats }: AccountProps) => {
         <SignInForm />
         <Box pt={2} mb={10}>
           <Typography variant="body2">
-            No account yet? Use the same form to create an account.
+            No account yet? Use the same form to sign up and create an account.
           </Typography>
         </Box>
         <Usps />
