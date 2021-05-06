@@ -56,11 +56,11 @@ For **extra security**, you can include a password that will be needed to decryp
   },
   {
     heading: 'What is the maximum message size?',
-    body: `The current limit is 280 characters. Need more? [Go top secret!](/00)`,
+    body: `The current limit is 280 characters.`,
   },
   {
     heading: 'Can I get notified when a secret has been viewed?',
-    body: `This feature will be availble soon: [Go top secret!](/00)`,
+    body: `Yes, you can get SMS or Email notifications with an account. [Go to Account](/account)`,
   },
   {
     heading: 'Can the recepient save the message?',

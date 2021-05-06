@@ -7,7 +7,6 @@ export const menu = [
     href: '/faq',
     label: 'FAQ',
   },
-
   {
     href: '/security',
     label: 'Security',
@@ -21,8 +20,8 @@ export const menu = [
     label: 'Contact',
   },
   {
-    href: '/00',
-    label: '00',
+    href: '/account',
+    label: 'Account',
   },
 ]
 
