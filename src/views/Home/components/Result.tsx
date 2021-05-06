@@ -39,9 +39,10 @@ const Result: React.FunctionComponent<ResultProps> = ({
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = React.useState(isEmojiShortLinkEnabled)
 
-  const origin = isEmojiLinkEnabled
-    ? emojiShortUrl
-    : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
+  const origin =
+    isProduction && isEmojiLinkEnabled
+      ? emojiShortUrl
+      : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
 
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
