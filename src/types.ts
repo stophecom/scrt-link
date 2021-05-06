@@ -21,11 +21,6 @@ declare global {
   }
 }
 
-export interface BetaInvite {
-  name?: string
-  email: string
-}
-
 export interface SignIn {
   email: string
 }

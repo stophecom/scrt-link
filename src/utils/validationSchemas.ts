@@ -1,4 +1,3 @@
-import { BetaInvite } from '@/types'
 import * as Yup from 'yup'
 import validator from 'validator'
 import { maxMessageLength } from '@/constants'
@@ -67,11 +66,6 @@ export const passwordValidationSchema = Yup.object().shape<{ password: string }>
   password: Yup.string().label('Password').required().min(5).max(50).trim(),
 })
 
-export const betaInviteValidationSchema = Yup.object().shape<BetaInvite>({
-  name: Yup.string().label('Name').max(200).trim(),
-  email: Yup.string().label('Email').required().email().trim(),
-})
-
 export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSettingsFields>>({
   name: Yup.string().label('Name').max(200).trim(),
   ...neogramDestructionMessageValidation,
@@ -85,6 +79,6 @@ export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSetti
     .trim(),
 })
 
-export const signInValidationSchema = Yup.object().shape<BetaInvite>({
+export const signInValidationSchema = Yup.object().shape<{ email: string }>({
   email: Yup.string().label('Email').required().email().trim(),
 })
