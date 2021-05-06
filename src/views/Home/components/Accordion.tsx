@@ -4,18 +4,19 @@ import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Box } from '@material-ui/core'
 import { usePlausible } from 'next-plausible'
 
 import Markdown from '@/components/Markdown'
 
-import { faq } from '@/data/faq'
+import { shortFaq } from '@/data/faq'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      marginRight: '-16px',
-      marginLeft: '-16px',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: '-16px',
+        marginLeft: '-16px',
+      },
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -32,31 +33,29 @@ const SimpleAccordion = () => {
   const plausible = usePlausible()
 
   return (
-    <Box py={3}>
-      <div className={classes.root}>
-        {faq.map(({ heading, body }, index) => (
-          <Accordion
-            key={index}
-            onChange={(_event, expanded) => {
-              if (expanded) {
-                plausible('FAQAccordion', { props: { question: heading } })
-              }
-            }}
+    <div className={classes.root}>
+      {shortFaq.map(({ heading, body }, index) => (
+        <Accordion
+          key={index}
+          onChange={(_event, expanded) => {
+            if (expanded) {
+              plausible('FAQAccordion', { props: { question: heading } })
+            }
+          }}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`aria-faq-${index}`}
+            id={`faq-${index}`}
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`aria-faq-${index}`}
-              id={`faq-${index}`}
-            >
-              <Markdown className={classes.heading} source={heading} />
-            </AccordionSummary>
-            <AccordionDetails>
-              <Markdown source={body} />
-            </AccordionDetails>
-          </Accordion>
-        ))}
-      </div>
-    </Box>
+            <Markdown className={classes.heading} source={heading} />
+          </AccordionSummary>
+          <AccordionDetails>
+            <Markdown source={body} />
+          </AccordionDetails>
+        </Accordion>
+      ))}
+    </div>
   )
 }
 

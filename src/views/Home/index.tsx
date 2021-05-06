@@ -12,6 +12,8 @@ import { usePlausible } from 'next-plausible'
 import Alert from '@material-ui/lab/Alert'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/client'
+import NextLink from 'next/link'
+import { ArrowForward } from '@material-ui/icons'
 
 import { sanitizeUrl } from '@/utils/index'
 import BaseTextField from '@/components/BaseTextField'
@@ -359,7 +361,14 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
 
       <Box>
         <Typography variant="h2">FAQ</Typography>
-        <Accordion />
+        <Box mb={1}>
+          <Accordion />
+        </Box>
+        <NextLink href="/faq" passHref>
+          <BaseButton variant="text" color="primary" startIcon={<ArrowForward />}>
+            Read more on FAQ page
+          </BaseButton>
+        </NextLink>
       </Box>
     </Page>
   )
