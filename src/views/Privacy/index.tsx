@@ -11,7 +11,7 @@ const Privacy = () => (
       <Typography variant="body1">
         <Markdown
           source={`
-This project is all about the respect for people's integrity and privacy. We have no interest in you! Not in you as a person, nor in your secrets. We don't care, sorry :) 
+This project is all about the respect for people's integrity and privacy. We have no interest in you! Not in you as a person, nor in your secrets. We don't care 😎 
 `}
         />
       </Typography>

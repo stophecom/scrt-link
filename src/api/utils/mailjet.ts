@@ -1,6 +1,6 @@
 import mj, { Email, SMS } from 'node-mailjet'
-
-const mailjet = ({ To, Subject = 'Pssst', ...props }: Partial<Email.SendParamsMessage>) =>
+import { email } from '@/constants'
+const mailjet = ({ To, Subject = 'Shhh', ...props }: Partial<Email.SendParamsMessage>) =>
   mj
     .connect(`${process.env.MJ_APIKEY_PUBLIC}`, `${process.env.MJ_APIKEY_PRIVATE}`)
     .post('send', { version: 'v3.1' })
@@ -8,7 +8,7 @@ const mailjet = ({ To, Subject = 'Pssst', ...props }: Partial<Email.SendParamsMe
       Messages: [
         {
           From: {
-            Email: 'pssst@scrt.link',
+            Email: email,
             Name: 'scrt.link',
           },
           To,

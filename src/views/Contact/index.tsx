@@ -5,7 +5,7 @@ import { Link } from '@material-ui/core'
 import Page from '@/components/Page'
 import ExternalLink from '@/components/ExternalLink'
 
-import { email, twitterLink, twitterHandle } from '@/constants'
+import { emailEmoji, email, twitterLink, twitterHandle } from '@/constants'
 
 const jsonLd = {
   '@context': 'https://www.schema.org',
@@ -21,6 +21,7 @@ const Contact = () => (
     <Box mb={4}>
       <Typography variant="h3">Email</Typography>
       <Typography>
+        For hackers: <Link href={`mailto:${emailEmoji}`}>{emailEmoji}</Link>, for eveybody else:{' '}
         <Link href={`mailto:${email}`}>{email}</Link>
       </Typography>
     </Box>
