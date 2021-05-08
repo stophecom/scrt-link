@@ -1,6 +1,6 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
-const pink = '#ff0083'
+export const pink = '#ff0083'
 const bg = '#1b242e'
 
 let theme = createMuiTheme({

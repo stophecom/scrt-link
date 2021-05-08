@@ -6,7 +6,9 @@ import { signOut, useSession } from 'next-auth/client'
 import NoSsr from '@material-ui/core/NoSsr'
 import NextLink from 'next/link'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import NextNprogress from 'nextjs-progressbar'
 
+import { pink } from '@/theme'
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 import BaseButton from '@/components/BaseButton'
@@ -65,6 +67,7 @@ const Layout: React.FC = ({ children }) => {
   const [session, loading] = useSession()
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
+      <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
           {session && (

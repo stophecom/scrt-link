@@ -4964,6 +4964,13 @@ next@^10.2.0:
     vm-browserify "1.1.2"
     watchpack "2.1.1"
 
+nextjs-progressbar@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/nextjs-progressbar/-/nextjs-progressbar-0.0.9.tgz#ac0ae5734cde5806f6ffd6fbc18ac90178c4ba89"
+  integrity sha512-t7bsQOIE09lY25AL+zS3GMhSX4bCgdosuJ+1aG4EOpzHSAxY3zfY4PKncilWT5fdcbbyo/iM//KKN79psgpZXw==
+  dependencies:
+    nprogress "^0.2.0"
+
 nextjs-sitemap-generator@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/nextjs-sitemap-generator/-/nextjs-sitemap-generator-1.3.1.tgz#a5da5b23a581d69c2df14bb7fa10224520f4514f"
@@ -5047,6 +5054,11 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
+
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha1-y480xTIT2JVyP8urkH6UIq28r7E=
 
 nth-check@^1.0.2:
   version "1.0.2"
