@@ -35,6 +35,7 @@ import Page from '@/components/Page'
 import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
+import { demoMessage } from '@/data/faq'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -139,7 +140,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
     secretType: 'message',
     alias: '',
     encryptionKey: '',
-    neogramDestructionMessage: neogramDestructionMessage || '',
+    neogramDestructionMessage: neogramDestructionMessage || 'This message will self-destruct in…',
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
   }
 
@@ -333,7 +334,15 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                   )}
                 </Collapse>
                 <Box display="flex" className={classes.formFooter}>
-                  <Box mb={1} pl={1}>
+                  <Box
+                    key="formControls"
+                    display="flex"
+                    alignItems="center"
+                    flexGrow={1}
+                    py={{ xs: 1, sm: 0 }}
+                    mb={{ xs: 1, sm: 0 }}
+                    pl={1}
+                  >
                     <FormControlLabel
                       control={
                         <Switch
@@ -346,8 +355,25 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                       }
                       label="With options"
                     />
+                    {secretType === 'neogram' && (
+                      <Box ml="auto">
+                        <BaseButton
+                          href={`/l/preview?preview=${encodeURIComponent(
+                            JSON.stringify({
+                              ...omit(['password', 'encryptionKey'], values),
+                              message: values.message || demoMessage,
+                              secretType,
+                            }),
+                          )}`}
+                          variant="text"
+                          target="_blank"
+                        >
+                          {values?.message ? 'Preview' : 'Demo'}
+                        </BaseButton>
+                      </Box>
+                    )}
                   </Box>
-                  <Box mb={1} display="flex" alignItems="center">
+                  <Box key="formSubmit" ml={{ xs: 0, sm: 1 }} display="flex" alignItems="center">
                     <BaseButton
                       className={classes.submitButton}
                       onClick={() => {

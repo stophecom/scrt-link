@@ -20,15 +20,16 @@ After you submit the form your secret will be encrypted and stored. You can now 
 For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
 }
 
+export const demoMessage = 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘'
 const demoSecretMessageLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
   JSON.stringify({
-    message: 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘',
+    message: demoMessage,
     secretType: 'message',
   }),
 )}`
 const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
   JSON.stringify({
-    message: 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘',
+    message: demoMessage,
     secretType: 'neogram',
     neogramDestructionMessage: 'This message self-destructs in …',
     neogramDestructionTimeout: 3,

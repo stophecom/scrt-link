@@ -42,8 +42,8 @@ type NeogramType = {
 }
 const Neogram: React.FunctionComponent<NeogramType> = ({
   message,
-  timeout = 5,
-  destructionMessage = 'This message will self-destruct in…',
+  timeout = 0,
+  destructionMessage,
 }) => {
   const classes = useStyles()
   const countDown = Array.from(Array(timeout).keys()).reverse()
@@ -63,8 +63,12 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
           <Typography variant="subtitle1" component="div" color="primary">
             <Pause ms={2000} />
             <br />
-            {destructionMessage}
-            <br />
+            {destructionMessage && (
+              <>
+                {destructionMessage}
+                <br />
+              </>
+            )}
             <Pause ms={1000} />
             {countDown.map((item, index) => {
               return (
