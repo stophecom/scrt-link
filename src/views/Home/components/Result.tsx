@@ -125,11 +125,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     color="secondary"
                   />
                 }
-                label={
-                  <span style={{ filter: `grayscale(${isEmojiLinkEnabled ? '10%' : '70%'})` }}>
-                    🤫 <Typography variant="srOnly">Enable emoji link</Typography>
-                  </span>
-                }
+                label="Use emoji link"
               />
             )}
 
