@@ -31,9 +31,8 @@ export const DestructionTimeout = () => (
   <Box width="60%" minWidth={280}>
     <BaseTextField
       name="neogramDestructionTimeout"
-      label="Destruction timeout"
+      label="Destruction countdown"
       type="number"
-      helperText="Countdown time before message gets destroyed. Defaults to 5s."
       InputProps={{
         endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
       }}
