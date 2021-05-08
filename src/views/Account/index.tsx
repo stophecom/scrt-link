@@ -14,6 +14,7 @@ import { sanitizeUrl } from '@/utils/index'
 import { StatsFields } from '@/api/models/Stats'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import Markdown from '@/components/Markdown'
+import { getMaxMessageLength } from '@/constants'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,10 +30,10 @@ const Usps = () => {
   const body = `
 With an account you get access to the following features. It's free.
 - Read receipts via SMS or Email
+- Extended message limit: ${getMaxMessageLength(true).toLocaleString()} characters
 - Emoji link to share your secrets: **https://🤫.st**
 - Customizations for Neogram™ messages (custom destruction message, time)
 - Statistics
-- Increased 2k character limit for all secret types *(coming soon)*
 `
   return (
     <Box mb={4}>

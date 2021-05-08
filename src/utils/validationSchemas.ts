@@ -1,6 +1,5 @@
 import * as Yup from 'yup'
 import validator from 'validator'
-import { maxMessageLength } from '@/constants'
 
 import { UserSettingsFields, ReadReceipts } from '@/api/models/UserSettings'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
@@ -10,9 +9,9 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const secretTypes = ['message' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 const readReceipts = ['none' as ReadReceipts, 'sms' as ReadReceipts, 'email' as ReadReceipts]
 
-const messageValidation = {
-  message: Yup.string().label('Message').required().min(1).max(maxMessageLength).trim(),
-}
+const messageValidation = (maxLength: number) => ({
+  message: Yup.string().label('Message').required().min(1).max(maxLength).trim(),
+})
 const typeValidation = {
   secretType: Yup.mixed<SecretType>().oneOf(secretTypes),
 }
@@ -35,19 +34,23 @@ const urlValidation = {
     .trim(),
 }
 
-const schemataMap = {
-  url: urlValidation,
-  message: messageValidation,
-  neogram: {
-    ...messageValidation,
-    ...neogramDestructionMessageValidation,
-    ...neogramDestructionTimeoutValidation,
-  },
-}
-
 type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & { password?: string }
-export const getValidationSchemaByType = (secretType: SecretType, hasPassword = false) =>
-  Yup.object().shape<SecretFormInput>({
+export const getValidationSchemaByType = (
+  secretType: SecretType,
+  hasPassword = false,
+  maxMessageLength = 280,
+) => {
+  const schemataMap = {
+    url: urlValidation,
+    message: messageValidation(maxMessageLength),
+    neogram: {
+      ...messageValidation(maxMessageLength),
+      ...neogramDestructionMessageValidation,
+      ...neogramDestructionTimeoutValidation,
+    },
+  }
+
+  return Yup.object().shape<SecretFormInput>({
     ...schemataMap[secretType],
     ...(hasPassword
       ? {
@@ -56,6 +59,7 @@ export const getValidationSchemaByType = (secretType: SecretType, hasPassword = 
       : {}),
     ...typeValidation,
   })
+}
 
 export const apiValidationSchemaByType = Yup.object().shape<SecretFormInput>({
   message: Yup.string().label('Message').required().trim(),

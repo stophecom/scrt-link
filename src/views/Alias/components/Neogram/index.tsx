@@ -22,6 +22,10 @@ const Backdrop = styled(Box)`
   z-index: 1;
 `
 
+const ScrollContainer = styled(Container)`
+  overflow: scroll;
+`
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     break: {
@@ -47,16 +51,16 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
 
   return (
     <Backdrop>
-      <Container>
+      <ScrollContainer>
         <WindupChildren
           onFinished={() => {
             setTimeout(() => router.push('/'), 1000)
           }}
         >
-          <Typography variant="subtitle1" className={classes.break}>
+          <Typography variant="subtitle1" component="div" className={classes.break}>
             {message}
           </Typography>
-          <Typography variant="subtitle1" color="primary">
+          <Typography variant="subtitle1" component="div" color="primary">
             <Pause ms={2000} />
             <br />
             {destructionMessage}
@@ -75,7 +79,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
             {'Booooom 🔥'}
           </Typography>
         </WindupChildren>
-      </Container>
+      </ScrollContainer>
     </Backdrop>
   )
 }

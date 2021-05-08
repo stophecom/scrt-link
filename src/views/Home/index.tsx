@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useReducer } from 'react'
 import axios from 'axios'
-import { Box, InputAdornment, Typography } from '@material-ui/core'
+import { Box, InputAdornment, Typography, Link } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
@@ -11,7 +11,7 @@ import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 import Alert from '@material-ui/lab/Alert'
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/client'
+import { useSession, getSession } from 'next-auth/client'
 import NextLink from 'next/link'
 import { ArrowForward } from '@material-ui/icons'
 
@@ -33,7 +33,7 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
-import { maxMessageLength, urlAliasLength, encryptionKeyLength } from '@/constants'
+import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 
@@ -123,6 +123,7 @@ type HomeViewProps = {
   userSettings: Partial<UserSettingsFields>
 }
 const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
+  const [session] = useSession()
   const classes = useStyles()
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -199,6 +200,26 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
     return secretTypesMap[secretType]
   }
 
+  type CounterProps = {
+    messageLength: number
+  }
+  const Counter: React.FunctionComponent<CounterProps> = ({ messageLength }) => {
+    const charactersLeft = getMaxMessageLength(!!session) - messageLength
+    return (
+      <small className={classes.counter}>
+        {charactersLeft}
+        {charactersLeft < 0 && (
+          <>
+            &nbsp;|&nbsp; Need more?&nbsp;
+            <NextLink href="/account" passHref>
+              <Link>Get free account</Link>
+            </NextLink>{' '}
+          </>
+        )}
+      </small>
+    )
+  }
+
   if (error) {
     return (
       <Page title="An error occured!">
@@ -254,7 +275,11 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
       </Box>
       <Formik<SecretUrlFormValues>
         initialValues={initialValues}
-        validationSchema={getValidationSchemaByType(secretType, hasFormOptions)}
+        validationSchema={getValidationSchemaByType(
+          secretType,
+          hasFormOptions,
+          getMaxMessageLength(!!session),
+        )}
         validateOnMount
         onSubmit={handleSubmit}
       >
@@ -288,9 +313,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                         label={getFormFieldConfigBySecretType(secretType).label}
                         placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                       />
-                      <small className={classes.counter}>
-                        {maxMessageLength - values.message.length}
-                      </small>
+                      <Counter messageLength={values.message.length} />
                     </>
                   )}
                 </Box>
