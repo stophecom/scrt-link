@@ -10,11 +10,10 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import SignInForm from '@/components/SignInForm'
 import UserSettingsForm from '@/components/UserSettingsForm'
 import Page from '@/components/Page'
-import { sanitizeUrl } from '@/utils/index'
 import { StatsFields } from '@/api/models/Stats'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import Markdown from '@/components/Markdown'
-import { getMaxMessageLength } from '@/constants'
+import { baseUrl, getMaxMessageLength } from '@/constants'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -118,7 +117,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (session) {
     const options = { headers: { cookie: context.req.headers.cookie as string } }
-    const res = await fetch(`${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api/me`, options)
+    const res = await fetch(`${baseUrl}/api/me`, options)
     const json = await res.json()
 
     stats = json?.stats

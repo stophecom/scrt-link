@@ -1,3 +1,4 @@
+import { baseUrl } from '@/constants'
 const why = {
   heading: 'Why should I use this service?',
   body: `
@@ -19,12 +20,27 @@ After you submit the form your secret will be encrypted and stored. You can now 
 For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
 }
 
+const demoSecretMessageLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
+  JSON.stringify({
+    message: 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘',
+    secretType: 'message',
+  }),
+)}`
+const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
+  JSON.stringify({
+    message: 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘',
+    secretType: 'neogram',
+    neogramDestructionMessage: 'This message self-destructs in …',
+    neogramDestructionTimeout: 3,
+  }),
+)}`
 const secretTypes = {
   heading: 'What is the difference between *Message*, *URL Redirect* and *Neogram™*?',
   body: `
 - **Message**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recepient has the option to copy the secret.
+[Demo](${demoSecretMessageLink})
 - **URL Redirect**: Think about it as a URL-shortener where the generated link only works once.
-- **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters.
+- **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo](${demoSecretNeogramLink})
     `,
 }
 

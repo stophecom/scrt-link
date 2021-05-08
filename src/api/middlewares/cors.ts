@@ -1,12 +1,12 @@
 import Cors from 'cors'
 
 import initMiddleware from '@/api/utils/middleware'
-import { sanitizeUrl } from '@/utils/index'
+import { baseUrl } from '@/constants'
 
 const cors = initMiddleware(
   Cors({
     methods: ['GET', 'POST', 'OPTIONS'],
-    origin: `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}`,
+    origin: baseUrl,
   }),
 )
 export default cors

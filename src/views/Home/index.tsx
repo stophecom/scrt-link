@@ -15,14 +15,13 @@ import { useSession, getSession } from 'next-auth/client'
 import NextLink from 'next/link'
 import { ArrowForward } from '@material-ui/icons'
 
-import { sanitizeUrl } from '@/utils/index'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import { UserSettingsFields } from '@/api/models/UserSettings'
 import { DestructionMessage, DestructionTimeout } from '@/components/UserSettingsForm'
-
+import { baseUrl } from '@/constants'
 import TabsMenu from './components/TabsMenu'
 import Result from './components/Result'
 import Accordion from './components/Accordion'
@@ -213,7 +212,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
             &nbsp;|&nbsp; Need more?&nbsp;
             <NextLink href="/account" passHref>
               <Link>Get free account</Link>
-            </NextLink>{' '}
+            </NextLink>
           </>
         )}
       </small>
@@ -348,7 +347,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                       label="With options"
                     />
                   </Box>
-                  <Box mb={1}>
+                  <Box mb={1} display="flex" alignItems="center">
                     <BaseButton
                       className={classes.submitButton}
                       onClick={() => {
@@ -404,7 +403,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (session) {
     const options = { headers: { cookie: context.req.headers.cookie as string } }
-    const res = await fetch(`${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api/me`, options)
+    const res = await fetch(`${baseUrl}/api/me`, options)
     const json = await res.json()
     userSettings = json?.userSettings
   }

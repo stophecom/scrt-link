@@ -15,13 +15,13 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 import Neogram from './components/Neogram'
 import ReplyButton from './components/ReplyButton'
-import { UserSettingsFields } from '@/api/models/UserSettings'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { sanitizeUrl, decryptMessage } from '@/utils/index'
-import { SecretType } from '@/api/models/SecretUrl'
+import { SecretUrlFields } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
+import { baseUrl } from '@/constants'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -36,25 +36,24 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
-interface AliasViewProps {
+interface AliasViewProps extends SecretUrlFields {
   error?: string
-  message?: string
+  isPreview?: boolean
   decryptionKey: string
-  isEncryptedWithUserPassword?: boolean
-  secretType?: SecretType
-  meta: Partial<UserSettingsFields>
 }
 const AliasView: NextPage<AliasViewProps> = ({
   error,
   message = '',
+  isPreview = false,
   isEncryptedWithUserPassword = false,
   secretType,
-  meta = {},
+  neogramDestructionTimeout,
+  neogramDestructionMessage,
 }) => {
   const classes = useStyles()
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [decryptedMessage, setDecryptedMessage] = useState('')
+  const [decryptedMessage, setDecryptedMessage] = useState(isPreview ? message : '')
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
@@ -125,8 +124,8 @@ const AliasView: NextPage<AliasViewProps> = ({
     return (
       <Neogram
         message={decryptedMessage}
-        timeout={meta?.neogramDestructionTimeout}
-        destructionMessage={meta?.neogramDestructionMessage}
+        timeout={Number(neogramDestructionTimeout)}
+        destructionMessage={neogramDestructionMessage}
       />
     )
   }
@@ -225,7 +224,21 @@ const AliasView: NextPage<AliasViewProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req, query } = context
-  const { alias } = query
+  const {
+    alias,
+    preview, // This is for previews/demo only
+  } = query
+
+  if (preview) {
+    const obj = decodeURIComponent(preview as string)
+
+    return {
+      props: {
+        isPreview: true,
+        ...JSON.parse(obj),
+      },
+    }
+  }
 
   // Block crawlers
   const userAgent = req?.headers['user-agent']
@@ -235,18 +248,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let error
   try {
-    const response = await axios.get(
-      `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/api?alias=${alias}`,
-    )
+    const response = await axios.get(`${baseUrl}/api?alias=${alias}`)
     const { data } = response
-    const { secretType, message, isEncryptedWithUserPassword, meta } = data
+    const { message } = data
 
     return {
       props: {
-        secretType,
         message: decodeURIComponent(message),
-        isEncryptedWithUserPassword,
-        meta,
+        ...data,
       },
     }
   } catch (err) {

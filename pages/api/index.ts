@@ -145,7 +145,8 @@ const handler: NextApiHandler = async (req, res) => {
         secretType,
         message: decryptAES(message),
         isEncryptedWithUserPassword,
-        meta: { neogramDestructionMessage, neogramDestructionTimeout },
+        neogramDestructionMessage,
+        neogramDestructionTimeout,
       })
       break
     }

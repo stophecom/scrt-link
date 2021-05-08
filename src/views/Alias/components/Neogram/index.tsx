@@ -42,7 +42,7 @@ type NeogramType = {
 }
 const Neogram: React.FunctionComponent<NeogramType> = ({
   message,
-  timeout = 3,
+  timeout = 5,
   destructionMessage = 'This message will self-destruct in…',
 }) => {
   const classes = useStyles()
@@ -54,7 +54,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
       <ScrollContainer>
         <WindupChildren
           onFinished={() => {
-            setTimeout(() => router.push('/'), 1000)
+            setTimeout(() => router.push('/'), 100)
           }}
         >
           <Typography variant="subtitle1" component="div" className={classes.break}>

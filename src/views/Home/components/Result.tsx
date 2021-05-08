@@ -13,13 +13,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ArrowBack, Share } from '@material-ui/icons'
 import { RWebShare } from 'react-web-share'
 
-import { sanitizeUrl } from '@/utils/index'
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
 import { isProduction } from '@/config'
 import { UserSettingsFields } from '@/api/models/UserSettings'
-import { emojiShortUrl } from '@/constants'
+import { emojiShortUrl, baseUrl } from '@/constants'
 import { useSession } from 'next-auth/client'
 
 type ResultProps = Pick<State, 'data'> &
@@ -39,10 +38,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = React.useState(isEmojiShortLinkEnabled)
 
-  const origin =
-    isProduction && isEmojiLinkEnabled
-      ? emojiShortUrl
-      : `${sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL)}/l`
+  const origin = isProduction && isEmojiLinkEnabled ? emojiShortUrl : `${baseUrl}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
 
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
