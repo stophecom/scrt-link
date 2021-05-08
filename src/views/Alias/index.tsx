@@ -13,7 +13,7 @@ import crawlers from 'crawler-user-agents'
 import NextLink from 'next/link'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-import Neogram from './components/Neogram'
+import Neogram from '@/components/Neogram'
 import ReplyButton from './components/ReplyButton'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
 import { sanitizeUrl, decryptMessage } from '@/utils/index'
