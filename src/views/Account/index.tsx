@@ -23,23 +23,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const Usps = () => {
+export const AccountUsps = () => {
   const classes = useStyles()
 
   const body = `
-With an account you get access to the following features. It's free.
+With a free account you get access to the following features:
 - Read receipts via SMS or Email
 - Extended message limit: ${getMaxMessageLength(true).toLocaleString()} characters
 - Emoji link to share your secrets: **https://🤫.st**
-- Customizations for Neogram™ messages (custom destruction message, time)
+- Customizations for Neogram™ messages (custom destruction message, timer)
 - Statistics
 `
-  return (
-    <Box mb={4}>
-      <Typography variant="h2">Why?</Typography>
-      <Markdown className={classes.root} source={body} />
-    </Box>
-  )
+  return <Markdown className={classes.root} source={body} />
 }
 
 type AccountProps = {
@@ -103,7 +98,10 @@ const Account = ({ userSettings, stats }: AccountProps) => {
             No account yet? Use the same form to sign up and create an account.
           </Typography>
         </Box>
-        <Usps />
+        <Box mb={4}>
+          <Typography variant="h2">Why?</Typography>
+          <AccountUsps />
+        </Box>
       </Page>
     </NoSsr>
   )

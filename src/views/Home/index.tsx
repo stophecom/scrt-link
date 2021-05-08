@@ -36,6 +36,7 @@ import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/cons
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
+import { AccountUsps } from '@/views/Account'
 
 const Accordion = dynamic(() => import('./components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
@@ -415,7 +416,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
         <HowItWorks />
       </Box>
 
-      <Box>
+      <Box pb={15}>
         <Typography variant="h2">FAQ</Typography>
         <Box mb={1}>
           <Accordion />
@@ -426,6 +427,25 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           </BaseButton>
         </NextLink>
       </Box>
+
+      {!session && (
+        <Box mb={4}>
+          <Typography variant="h2">There is more…</Typography>
+          <AccountUsps />
+          <Box pt={1}>
+            <NextLink href="/account" passHref>
+              <BaseButton
+                variant="contained"
+                size="large"
+                color="primary"
+                startIcon={<ArrowForward />}
+              >
+                Get free account
+              </BaseButton>
+            </NextLink>
+          </Box>
+        </Box>
+      )}
     </Page>
   )
 }
