@@ -54,7 +54,7 @@ const gridContent = [
   {
     illustration: <Create />,
     title: 'Write',
-    text: `Compose your secret message, submit and you'll receive a one-time link in return.`,
+    text: `Compose your secret message, submit and you'll receive a one-time link.`,
   },
   {
     illustration: <Share />,
@@ -64,8 +64,7 @@ const gridContent = [
   {
     illustration: <Burn />,
     title: 'Burn',
-    text:
-      'Once the link has been clicked, the secret gets revealed, before being destroyed for good.',
+    text: 'The secret link can be accessed one time. Afterwards it gets destroyed.',
   },
 ]
 
