@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     counter: {
       position: 'absolute',
-      bottom: 5,
+      bottom: 12,
       right: 10,
     },
   }),
@@ -262,7 +262,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           return (
             <>
               <Form noValidate>
-                <Box position="relative" mb={2}>
+                <Box position="relative" py={1}>
                   {secretType === 'url' && (
                     <BaseTextField
                       name="message"
@@ -296,15 +296,15 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                 </Box>
 
                 <Collapse in={hasFormOptions}>
-                  <Box mb={2}>
+                  <Box py={1}>
                     <BasePasswordField className={clsx(classes.root)} name="password" />
                   </Box>
                   {secretType === 'neogram' && (
                     <>
-                      <Box mb={2}>
+                      <Box py={1}>
                         <DestructionMessage />
                       </Box>
-                      <Box mb={2}>
+                      <Box py={1}>
                         <DestructionTimeout />
                       </Box>
                     </>
