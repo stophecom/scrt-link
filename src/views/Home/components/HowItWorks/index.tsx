@@ -8,7 +8,6 @@ import Create from '!@svgr/webpack!@/assets/images/create.svg'
 import Share from '!@svgr/webpack!@/assets/images/share.svg'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Burn from '!@svgr/webpack!@/assets/images/burn.svg'
-import { relative } from 'node:path'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
