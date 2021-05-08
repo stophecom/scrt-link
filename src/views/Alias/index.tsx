@@ -254,8 +254,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
       props: {
-        message: decodeURIComponent(message),
         ...data,
+        message: decodeURIComponent(message),
       },
     }
   } catch (err) {
