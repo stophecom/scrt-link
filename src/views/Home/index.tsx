@@ -207,11 +207,11 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
   type CounterProps = {
     messageLength: number
   }
-  const Counter: React.FunctionComponent<CounterProps> = ({ messageLength }) => {
+  const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
     const charactersLeft = getMaxMessageLength(!!session) - messageLength
     return (
       <small className={classes.counter}>
-        {charactersLeft}
+        {charactersLeft.toLocaleString()}
         {charactersLeft < 0 && (
           <>
             &nbsp;|&nbsp; Need more?&nbsp;
