@@ -12,12 +12,6 @@ import { shortFaq } from '@/data/faq'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      [theme.breakpoints.down('sm')]: {
-        marginRight: '-16px',
-        marginLeft: '-16px',
-      },
-    },
     heading: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightBold,
@@ -33,7 +27,7 @@ const SimpleAccordion = () => {
   const plausible = usePlausible()
 
   return (
-    <div className={classes.root}>
+    <div>
       {shortFaq.map(({ heading, body }, index) => (
         <Accordion
           key={index}
