@@ -367,6 +367,11 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                           )}`}
                           variant="text"
                           target="_blank"
+                          onClick={() =>
+                            plausible(values?.message ? 'Preview' : 'Demo', {
+                              props: { secretType },
+                            })
+                          }
                         >
                           {values?.message ? 'Preview' : 'Demo'}
                         </BaseButton>
