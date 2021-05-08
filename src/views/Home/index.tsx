@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useReducer } from 'react'
+import dynamic from 'next/dynamic'
 import axios from 'axios'
 import { Box, InputAdornment, Typography, Link } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
@@ -23,8 +24,7 @@ import { UserSettingsFields } from '@/api/models/UserSettings'
 import { DestructionMessage, DestructionTimeout } from '@/components/UserSettingsForm'
 import { baseUrl } from '@/constants'
 import TabsMenu from './components/TabsMenu'
-import Result from './components/Result'
-import Accordion from './components/Accordion'
+
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 import { generateNanoId, encryptMessage } from '@/utils'
@@ -36,6 +36,9 @@ import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/cons
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
+
+const Accordion = dynamic(() => import('./components/Accordion'))
+const Result = dynamic(() => import('./components/Result'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
