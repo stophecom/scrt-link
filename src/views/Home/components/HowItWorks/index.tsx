@@ -8,6 +8,7 @@ import Create from '!@svgr/webpack!@/assets/images/create.svg'
 import Share from '!@svgr/webpack!@/assets/images/share.svg'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Burn from '!@svgr/webpack!@/assets/images/burn.svg'
+import { relative } from 'node:path'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     paper: {
+      position: 'relative',
       display: 'flex',
       alignItems: 'center',
       padding: theme.spacing(2),
@@ -45,7 +47,26 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     number: {
-      opacity: 0.7,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+      width: '36px',
+      height: '36px',
+      borderRadius: '50%',
+      backgroundColor: theme.palette.background.default,
+      color: theme.palette.text.secondary,
+      border: `2px solid ${theme.palette.primary.main}`,
+      fontSize: '1.1rem',
+      fontWeight: 'bold',
+
+      [theme.breakpoints.down('xs')]: {
+        border: 'none',
+        position: 'absolute',
+        left: 0,
+        top: '50%',
+        transform: 'translate(-50%, -50%) ',
+      },
     },
   }),
 )
