@@ -82,7 +82,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
           <meta
             name="keywords"
-            content="scrt.link, secret link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
+            content="scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
             key="keywords"
           />
           <meta name="theme-color" content={theme.palette.primary.main} />
