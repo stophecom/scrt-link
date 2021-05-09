@@ -1,7 +1,6 @@
 import { NextApiHandler, NextApiRequest } from 'next'
 
 import withDb from '@/api/middlewares/withDb'
-import cors from '@/api/middlewares/cors'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { userSettingsValidationSchema } from '@/utils/validationSchemas'
@@ -20,8 +19,6 @@ const extractPostInput = async (req: NextApiRequest) => {
 }
 
 const handler: NextApiHandler = async (req, res) => {
-  await cors(req, res)
-
   const models = req.models
   const session = await getSession({ req })
 

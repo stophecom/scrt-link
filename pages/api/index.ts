@@ -6,7 +6,6 @@ import { getSession } from 'next-auth/client'
 import Pusher from 'pusher'
 
 import withDb from '@/api/middlewares/withDb'
-import cors from '@/api/middlewares/cors'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
@@ -51,8 +50,6 @@ const extractPostInput = async (req: NextApiRequest) => {
 }
 
 const handler: NextApiHandler = async (req, res) => {
-  await cors(req, res)
-
   const models = req.models
   const session = await getSession({ req })
 
