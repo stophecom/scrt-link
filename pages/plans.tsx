@@ -1,1 +1,1 @@
-export { default } from '@/views/Plans'
+export { default, getStaticProps } from '@/views/Plans'

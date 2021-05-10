@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Switch from '@material-ui/core/Switch'
+
+import { Stripe } from 'stripe'
+
 import { Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
@@ -29,23 +34,17 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const plans = [
-  {
-    name: 'Free',
-    priceId: '',
-  },
-  {
-    name: 'Secret',
-    priceId: 'price_1IpJ6CBo4UBHEOfAKiOu38aq',
-  },
-  {
-    name: 'Top secret',
-    priceId: 'price_1IpIhiBo4UBHEOfAmd6fFHyQ',
-  },
-]
-
-const CheckoutForm = () => {
+type PlansSelectionProps = {
+  plans: { name: string; prices: { monthly: Stripe.Price; yearly: Stripe.Price } }[]
+}
+const PlanSelection: React.FunctionComponent<PlansSelectionProps> = ({ plans = [] }) => {
   const [loading, setLoading] = useState(false)
+
+  // Form options
+  const [hasFormOptions, setHasFormOptions] = React.useState(false)
+  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHasFormOptions(event.target.checked)
+  }
 
   const handleSubmit = async (priceId: string) => {
     setLoading(true)
@@ -61,12 +60,14 @@ const CheckoutForm = () => {
 
     // Redirect to Checkout.
     const stripe = await getStripe()
+
     const { error } = await stripe!.redirectToCheckout({
       // Make the id field from the Checkout Session creation API response
       // available to this file, so you can provide it as parameter here
       // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
       sessionId: response.id,
     })
+
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer
     // using `error.message`.
@@ -81,24 +82,43 @@ const CheckoutForm = () => {
   }
 
   return (
-    <Grid container spacing={2} justify="center">
-      {plans.map(({ name, priceId }, index) => {
-        return (
-          <Grid item xs={12} sm={4} key={index}>
-            <Paper className={classes.paper}>
-              <div>
-                <Typography variant="h3">{name}</Typography>
-                <Typography variant="body1">{priceId}</Typography>
-              </div>
-              <BaseButton variant="contained" color="primary" onClick={() => handleSubmit(priceId)}>
-                Choose Plan
-              </BaseButton>
-            </Paper>
-          </Grid>
-        )
-      })}
-    </Grid>
+    <>
+      <Grid container spacing={2} justify="center">
+        {plans.map(({ name, prices }, index) => {
+          const price = hasFormOptions ? prices.monthly : prices.yearly
+          return (
+            <Grid item xs={12} sm={4} key={index}>
+              <Paper className={classes.paper}>
+                <div>
+                  <Typography variant="h3">{name}</Typography>
+                  <Typography variant="body1">{price.unit_amount}</Typography>
+                </div>
+                <BaseButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleSubmit(price.id)}
+                >
+                  Choose Plan
+                </BaseButton>
+              </Paper>
+            </Grid>
+          )
+        })}
+      </Grid>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={hasFormOptions}
+            onChange={handleSwitchChange}
+            name="formOptions"
+            color="primary"
+            size="small"
+          />
+        }
+        label="Monthly Prices"
+      />
+    </>
   )
 }
 
-export default CheckoutForm
+export default PlanSelection
