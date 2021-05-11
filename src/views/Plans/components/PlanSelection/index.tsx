@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 
-import { Stripe } from 'stripe'
-
 import { Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
@@ -34,8 +32,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
+type Price = {
+  id: string
+  unit_amount: number
+}
 type PlansSelectionProps = {
-  plans: { name: string; prices: { monthly: Stripe.Price; yearly: Stripe.Price } }[]
+  plans: { name: string; prices: { monthly: Price; yearly: Price } }[]
 }
 const PlanSelection: React.FunctionComponent<PlansSelectionProps> = ({ plans = [] }) => {
   const [loading, setLoading] = useState(false)
