@@ -1,8 +1,8 @@
 import React from 'react'
 import { Typography, Box } from '@material-ui/core'
 import { GetStaticProps } from 'next'
+import { baseUrl } from '@/constants'
 
-import stripe from '@/api/utils/stripe'
 import Page from '@/components/Page'
 import PlanSelection from './components/PlanSelection'
 
@@ -19,29 +19,12 @@ const Plans = ({ plans = [] }) => (
 export default Plans
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { data } = await stripe.products.list()
-
-  const getPlans = async () =>
-    Promise.all(
-      data.map(async (item) => {
-        const { data } = await stripe.prices.list({
-          product: item.id,
-          active: true,
-        })
-
-        const priceByInterval = (interval: string) =>
-          data.find(({ recurring }) => recurring?.interval === interval)
-
-        return {
-          name: item.name,
-          prices: { monthly: priceByInterval('month'), yearly: priceByInterval('year') },
-        }
-      }),
-    )
+  const res = await fetch(`${baseUrl}/api/plans`)
+  const json = await res.json()
 
   return {
     props: {
-      plans: await getPlans(),
+      plans: json,
     },
   }
 }
