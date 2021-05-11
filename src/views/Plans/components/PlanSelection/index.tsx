@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
+import useSWR from 'swr'
+import { Stripe } from 'stripe'
 
 import { Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -32,15 +34,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-type Price = {
-  id: string
-  unit_amount: number
+type Plan = {
+  name: string
+  prices: { monthly: Stripe.Price; yearly: Stripe.Price }
 }
-type PlansSelectionProps = {
-  plans: { name: string; prices: { monthly: Price; yearly: Price } }[]
-}
-const PlanSelection: React.FunctionComponent<PlansSelectionProps> = ({ plans = [] }) => {
+const PlanSelection: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(false)
+  const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
 
   // Form options
   const [hasFormOptions, setHasFormOptions] = React.useState(false)
@@ -79,6 +79,10 @@ const PlanSelection: React.FunctionComponent<PlansSelectionProps> = ({ plans = [
 
   const classes = useStyles()
 
+  if (error) {
+    return <div>{error}</div>
+  }
+
   if (loading) {
     return <>Loading…</>
   }
@@ -86,26 +90,27 @@ const PlanSelection: React.FunctionComponent<PlansSelectionProps> = ({ plans = [
   return (
     <>
       <Grid container spacing={2} justify="center">
-        {plans.map(({ name, prices }, index) => {
-          const price = hasFormOptions ? prices.monthly : prices.yearly
-          return (
-            <Grid item xs={12} sm={4} key={index}>
-              <Paper className={classes.paper}>
-                <div>
-                  <Typography variant="h3">{name}</Typography>
-                  <Typography variant="body1">{price.unit_amount}</Typography>
-                </div>
-                <BaseButton
-                  variant="contained"
-                  color="primary"
-                  onClick={() => handleSubmit(price.id)}
-                >
-                  Choose Plan
-                </BaseButton>
-              </Paper>
-            </Grid>
-          )
-        })}
+        {data &&
+          data.map(({ name, prices }, index) => {
+            const price = hasFormOptions ? prices.monthly : prices.yearly
+            return (
+              <Grid item xs={12} sm={4} key={index}>
+                <Paper className={classes.paper}>
+                  <div>
+                    <Typography variant="h3">{name}</Typography>
+                    <Typography variant="body1">{price.unit_amount}</Typography>
+                  </div>
+                  <BaseButton
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleSubmit(price.id)}
+                  >
+                    Choose Plan
+                  </BaseButton>
+                </Paper>
+              </Grid>
+            )
+          })}
       </Grid>
       <FormControlLabel
         control={
