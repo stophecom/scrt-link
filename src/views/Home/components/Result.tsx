@@ -44,15 +44,17 @@ const Result: React.FunctionComponent<ResultProps> = ({
       />
       {data && (
         <Box my={2}>
-          <BaseButton
-            startIcon={<ArrowBack />}
-            size="small"
-            variant="text"
-            color="secondary"
-            onClick={onReset}
-          >
-            Create new secret
-          </BaseButton>
+          <Box pb={1}>
+            <BaseButton
+              startIcon={<ArrowBack />}
+              size="small"
+              variant="text"
+              color="secondary"
+              onClick={onReset}
+            >
+              Create new secret
+            </BaseButton>
+          </Box>
           {shortenedUrl && (
             <Paper elevation={3}>
               <Box px={4} pt={4} pb={3}>
