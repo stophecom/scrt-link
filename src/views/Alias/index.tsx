@@ -10,7 +10,6 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import crawlers from 'crawler-user-agents'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { BaseButtonLink } from '@/components/Link'
 import Neogram from '@/components/Neogram'
@@ -20,6 +19,7 @@ import { sanitizeUrl, decryptMessage } from '@/utils/index'
 import { SecretUrlFields } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
+import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 import { baseUrl } from '@/constants'
 
@@ -213,11 +213,7 @@ const AliasView: NextPage<AliasViewProps> = ({
     )
   }
 
-  return (
-    <Box display="flex" justifyContent="center" mt={8}>
-      <CircularProgress />
-    </Box>
-  )
+  return <Spinner message="Loading secret" />
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

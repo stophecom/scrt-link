@@ -3,8 +3,8 @@ import Alert from '@material-ui/lab/Alert'
 import { Box } from '@material-ui/core'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
-import BaseButton from '@/components/BaseButton'
-import Page from '@/components/Page'
+import { BaseButtonLink } from '@/components/Link'
+import Page, { PageProps } from '@/components/Page'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,19 +17,25 @@ const useStyles = makeStyles((theme: Theme) =>
 type PageErrorProps = {
   error: string
 }
-export const PageError: React.FunctionComponent<PageErrorProps> = ({ error }) => {
+export const PageError: React.FunctionComponent<PageErrorProps & Partial<PageProps>> = ({
+  error,
+  children = (
+    <BaseButtonLink href="/" color="primary" variant="contained">
+      Take me home
+    </BaseButtonLink>
+  ),
+  ...props
+}) => {
   const classes = useStyles()
 
   return (
-    <Page title="An error occured!">
+    <Page title="An error occured!" {...props}>
       <Box mb={2}>
         <Alert severity="error">
           <Box className={classes.wordBreak}>{error}</Box>
         </Alert>
       </Box>
-      <BaseButton href="/" color="primary" variant="contained">
-        Take me home
-      </BaseButton>
+      {children}
     </Page>
   )
 }

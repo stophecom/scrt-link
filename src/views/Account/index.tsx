@@ -2,11 +2,11 @@ import React from 'react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useSession, getSession } from 'next-auth/client'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import { Box, Typography } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
+import { Spinner } from '@/components/Spinner'
 import SignInForm from '@/components/SignInForm'
 import UserSettingsForm from '@/components/UserSettingsForm'
 import Page from '@/components/Page'
@@ -46,14 +46,7 @@ const Account = ({ userSettings, stats }: AccountProps) => {
   const { name } = userSettings
   const router = useRouter()
 
-  if (typeof window !== 'undefined' && loading)
-    return (
-      <NoSsr>
-        <Box display="flex" justifyContent="center" mt={8}>
-          <CircularProgress />
-        </Box>
-      </NoSsr>
-    )
+  if (typeof window !== 'undefined' && loading) return <Spinner />
 
   if (session) {
     return (
