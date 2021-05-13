@@ -1,18 +1,12 @@
 import React, { useState } from 'react'
 
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
-import {
-  Box,
-  FormControlLabel,
-  Switch,
-  CircularProgress,
-  Paper,
-  Typography,
-} from '@material-ui/core'
+import { Box, CircularProgress, Paper, Typography } from '@material-ui/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ArrowBack, Share } from '@material-ui/icons'
 import { RWebShare } from 'react-web-share'
 
+import BooleanSwitch from '@/components/BooleanSwitch'
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
@@ -40,10 +34,6 @@ const Result: React.FunctionComponent<ResultProps> = ({
 
   const origin = isProduction && isEmojiLinkEnabled ? emojiShortUrl : `${baseUrl}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
-
-  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsEmojiLinkEnabled(event.target.checked)
-  }
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
@@ -111,17 +101,11 @@ const Result: React.FunctionComponent<ResultProps> = ({
           )}
           <Box p={1} display="flex">
             {session && (
-              <FormControlLabel
-                control={
-                  <Switch
-                    size="small"
-                    checked={isEmojiLinkEnabled}
-                    onChange={handleSwitchChange}
-                    name="emojiLink"
-                    color="secondary"
-                  />
-                }
+              <BooleanSwitch
                 label="Use emoji link"
+                name="emojiLink"
+                checked={isEmojiLinkEnabled}
+                onChange={setIsEmojiLinkEnabled}
               />
             )}
 

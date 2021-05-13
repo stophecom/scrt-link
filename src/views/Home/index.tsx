@@ -16,6 +16,7 @@ import { useSession, getSession } from 'next-auth/client'
 import NextLink from 'next/link'
 import { ArrowForward } from '@material-ui/icons'
 
+import BooleanSwitch from '@/components/BooleanSwitch'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
@@ -196,9 +197,6 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
 
   // Form options
   const [hasFormOptions, setHasFormOptions] = React.useState(false)
-  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setHasFormOptions(event.target.checked)
-  }
 
   const getFormFieldConfigBySecretType = (secretType: SecretType) => {
     return secretTypesMap[secretType]
@@ -347,18 +345,13 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                     mb={{ xs: 1, sm: 0 }}
                     pl={1}
                   >
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          checked={hasFormOptions}
-                          onChange={handleSwitchChange}
-                          name="formOptions"
-                          color="primary"
-                          size="small"
-                        />
-                      }
+                    <BooleanSwitch
+                      checked={hasFormOptions}
+                      onChange={setHasFormOptions}
+                      name="formOptions"
                       label="With options"
                     />
+
                     {secretType === 'neogram' && (
                       <Box ml="auto">
                         <BaseButton

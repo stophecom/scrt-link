@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 import useSWR from 'swr'
 import { Stripe } from 'stripe'
 
@@ -10,6 +8,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 import { baseUrl } from '@/constants'
 import BaseButton from '@/components/BaseButton'
+import BooleanSwitch from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
 import { fetchPostJSON } from '@/utils/fetch'
 
@@ -43,15 +42,12 @@ const PlanSelection: React.FunctionComponent = () => {
   const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
 
   // Form options
-  const [hasFormOptions, setHasFormOptions] = React.useState(false)
-  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setHasFormOptions(event.target.checked)
-  }
+  const [showMonthlyPrices, setShowMonthlyPrices] = React.useState(true)
 
   const handleSubmit = async (priceId: string) => {
     setLoading(true)
-    // Create a Checkout Session.
 
+    // Create a Checkout Session.
     const response = await fetchPostJSON(`${baseUrl}/api/checkout`, { priceId: priceId })
 
     if (response.statusCode === 500) {
@@ -92,7 +88,7 @@ const PlanSelection: React.FunctionComponent = () => {
       <Grid container spacing={2} justify="center">
         {data &&
           data.map(({ name, prices }, index) => {
-            const price = hasFormOptions ? prices.monthly : prices.yearly
+            const price = showMonthlyPrices ? prices.monthly : prices.yearly
             return (
               <Grid item xs={12} sm={4} key={index}>
                 <Paper className={classes.paper}>
@@ -112,17 +108,10 @@ const PlanSelection: React.FunctionComponent = () => {
             )
           })}
       </Grid>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={hasFormOptions}
-            onChange={handleSwitchChange}
-            name="formOptions"
-            color="primary"
-            size="small"
-          />
-        }
-        label="Monthly Prices"
+      <BooleanSwitch
+        label={'Monthly Prices'}
+        checked={showMonthlyPrices}
+        onChange={setShowMonthlyPrices}
       />
     </>
   )
