@@ -23,8 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
         // the actual Session ID is returned in the query parameter when your customer
         // is redirected to the success page.
-        success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/canceled`,
+        success_url: `${req.headers.origin}/plans?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.origin}/plans/cancelled`,
       }
 
       const session: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params)

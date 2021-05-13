@@ -1,16 +1,26 @@
 import React, { useState } from 'react'
-
 import useSWR from 'swr'
 import { Stripe } from 'stripe'
-
-import { Grid, Paper, Typography } from '@material-ui/core'
+import { Box, Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 import { baseUrl } from '@/constants'
 import BaseButton from '@/components/BaseButton'
-import BooleanSwitch from '@/components/BooleanSwitch'
+import { Spinner } from '@/components/Spinner'
+import { PageError } from '@/components/Error'
+import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
 import { fetchPostJSON } from '@/utils/fetch'
+
+function usePlans() {
+  const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
+
+  return {
+    plans: data,
+    isLoading: !error && !data,
+    error: error,
+  }
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,9 +48,9 @@ type Plan = {
   prices: { monthly: Stripe.Price; yearly: Stripe.Price }
 }
 const PlanSelection: React.FunctionComponent = () => {
-  const [loading, setLoading] = useState(false)
-  const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
+  const { plans, isLoading, error } = usePlans()
 
+  const [loading, setLoading] = useState(false)
   // Form options
   const [showMonthlyPrices, setShowMonthlyPrices] = React.useState(true)
 
@@ -49,7 +59,6 @@ const PlanSelection: React.FunctionComponent = () => {
 
     // Create a Checkout Session.
     const response = await fetchPostJSON(`${baseUrl}/api/checkout`, { priceId: priceId })
-
     if (response.statusCode === 500) {
       console.error(response.message)
       setLoading(false)
@@ -58,7 +67,6 @@ const PlanSelection: React.FunctionComponent = () => {
 
     // Redirect to Checkout.
     const stripe = await getStripe()
-
     const { error } = await stripe!.redirectToCheckout({
       // Make the id field from the Checkout Session creation API response
       // available to this file, so you can provide it as parameter here
@@ -76,19 +84,19 @@ const PlanSelection: React.FunctionComponent = () => {
   const classes = useStyles()
 
   if (error) {
-    return <div>{error}</div>
+    return <PageError error={error} />
   }
 
-  if (loading) {
-    return <>Loading…</>
+  if (loading || isLoading) {
+    return <Spinner message="Loading plans" />
   }
 
   return (
     <>
       <Grid container spacing={2} justify="center">
-        {data &&
-          data.map(({ name, prices }, index) => {
-            const price = showMonthlyPrices ? prices.monthly : prices.yearly
+        {plans &&
+          plans.map(({ name, prices }, index) => {
+            const price = showMonthlyPrices ? prices?.monthly : prices?.yearly
             return (
               <Grid item xs={12} sm={4} key={index}>
                 <Paper className={classes.paper}>
@@ -108,11 +116,18 @@ const PlanSelection: React.FunctionComponent = () => {
             )
           })}
       </Grid>
-      <BooleanSwitch
-        label={'Monthly Prices'}
-        checked={showMonthlyPrices}
-        onChange={setShowMonthlyPrices}
-      />
+      <Box pt={5}>
+        <Box mb={2}>
+          <Typography align="center">Save up to 15% with yearly price!</Typography>
+        </Box>
+        <Grid component="label" container alignItems="center" justify="center" spacing={1}>
+          <Grid item>Monthly</Grid>
+          <Grid item>
+            <Switch checked={showMonthlyPrices} onChange={setShowMonthlyPrices} />
+          </Grid>
+          <Grid item>Yearly</Grid>
+        </Grid>
+      </Box>
     </>
   )
 }
