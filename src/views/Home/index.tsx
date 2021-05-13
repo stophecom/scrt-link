@@ -3,19 +3,18 @@ import dynamic from 'next/dynamic'
 import axios from 'axios'
 import { Box, InputAdornment, Typography, Link } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
-import Alert from '@material-ui/lab/Alert'
+
 import { GetServerSideProps } from 'next'
 import { useSession, getSession } from 'next-auth/client'
 import NextLink from 'next/link'
 import { ArrowForward } from '@material-ui/icons'
 
+import { PageError } from '@/components/Error'
 import BooleanSwitch from '@/components/BooleanSwitch'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
@@ -223,18 +222,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
   }
 
   if (error) {
-    return (
-      <Page title="An error occured!">
-        <Box mb={2}>
-          <Alert severity="error">
-            <Box className={classes.wordBreak}>{error}</Box>
-          </Alert>
-        </Box>
-        <BaseButton href="/" color="primary" variant="contained">
-          Take me home
-        </BaseButton>
-      </Page>
-    )
+    return <PageError error={error} />
   }
 
   if (data) {
