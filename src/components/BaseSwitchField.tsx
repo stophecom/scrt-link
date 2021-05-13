@@ -8,7 +8,7 @@ import { FormControl } from '@material-ui/core'
 export type BaseSwitchProps = Partial<FormControlLabelProps> &
   FieldHookConfig<SwitchProps> & { helperText?: string }
 
-function BaseSwitch({ label, helperText, ...props }: BaseSwitchProps) {
+function BaseSwitchField({ label, helperText, ...props }: BaseSwitchProps) {
   const [field, meta] = useField(props)
   const { error, touched } = meta
   const hasError = Boolean(error && touched)
@@ -29,4 +29,4 @@ function BaseSwitch({ label, helperText, ...props }: BaseSwitchProps) {
   )
 }
 
-export default BaseSwitch
+export default BaseSwitchField

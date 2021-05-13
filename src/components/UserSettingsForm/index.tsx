@@ -11,7 +11,7 @@ import Alert from '@material-ui/lab/Alert'
 import BaseRadiosField from '@/components/BaseRadiosField'
 import BaseTextField from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
-import BaseSwitch from '@/components/BaseSwitch'
+import BaseSwitchField from '@/components/BaseSwitchField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
 import { UserSettingsFields } from '@/api/models/UserSettings'
@@ -185,7 +185,7 @@ const UserSettingsForm = ({
                     (Note that not all chat applications support emoji links: Whatsapp, Telegram,
                     Threema, Twitter, Matrix, Wire, do work. Signal, Slack, Snapchat do not.)
                   </Typography>
-                  <BaseSwitch label="Use emoji link" name="isEmojiShortLinkEnabled" />
+                  <BaseSwitchField label="Use emoji link" name="isEmojiShortLinkEnabled" />
                 </Box>
                 <Box mb={10}>
                   <Typography variant="h3">Neogram™</Typography>
