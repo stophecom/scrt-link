@@ -10,9 +10,9 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import crawlers from 'crawler-user-agents'
-import NextLink from 'next/link'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
+import { BaseButtonLink } from '@/components/Link'
 import Neogram from '@/components/Neogram'
 import ReplyButton from './components/ReplyButton'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
@@ -179,11 +179,9 @@ const AliasView: NextPage<AliasViewProps> = ({
               {decryptedMessage}
               <Box pt={2} display="flex" justifyContent="flex-end">
                 <Box mr={2}>
-                  <NextLink href="/" passHref>
-                    <BaseButton variant="text" color="primary" size="small">
-                      Destroy secret
-                    </BaseButton>
-                  </NextLink>
+                  <BaseButtonLink href="/" variant="text" color="primary" size="small">
+                    Destroy secret
+                  </BaseButtonLink>
                 </Box>
                 <CopyToClipboard
                   text={decryptedMessage}

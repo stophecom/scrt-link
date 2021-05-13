@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
-import { Box, InputAdornment, Typography, Link } from '@material-ui/core'
+import { Box, InputAdornment, Typography } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
@@ -11,9 +11,9 @@ import { usePlausible } from 'next-plausible'
 
 import { GetServerSideProps } from 'next'
 import { useSession, getSession } from 'next-auth/client'
-import NextLink from 'next/link'
 import { ArrowForward } from '@material-ui/icons'
 
+import { Link, BaseButtonLink } from '@/components/Link'
 import { PageError } from '@/components/Error'
 import BooleanSwitch from '@/components/BooleanSwitch'
 import BaseTextField from '@/components/BaseTextField'
@@ -212,9 +212,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
         {charactersLeft < 0 && (
           <>
             &nbsp;|&nbsp; Need more?&nbsp;
-            <NextLink href="/account" passHref>
-              <Link>Get free account</Link>
-            </NextLink>
+            <Link href="/account">Get free account</Link>
           </>
         )}
       </small>
@@ -402,11 +400,10 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
         <Box mb={1}>
           <Accordion />
         </Box>
-        <NextLink href="/faq" passHref>
-          <BaseButton variant="text" color="primary" startIcon={<ArrowForward />}>
-            Read more on FAQ page
-          </BaseButton>
-        </NextLink>
+
+        <BaseButtonLink href="/faq" variant="text" color="primary" startIcon={<ArrowForward />}>
+          Read more on FAQ page
+        </BaseButtonLink>
       </Box>
 
       {!session && (
@@ -414,16 +411,15 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
           <Typography variant="h2">There is more…</Typography>
           <AccountUsps />
           <Box pt={1}>
-            <NextLink href="/account" passHref>
-              <BaseButton
-                variant="contained"
-                size="large"
-                color="primary"
-                startIcon={<ArrowForward />}
-              >
-                Get free account
-              </BaseButton>
-            </NextLink>
+            <BaseButtonLink
+              href="/account"
+              variant="contained"
+              size="large"
+              color="primary"
+              startIcon={<ArrowForward />}
+            >
+              Get free account
+            </BaseButtonLink>
           </Box>
         </Box>
       )}
