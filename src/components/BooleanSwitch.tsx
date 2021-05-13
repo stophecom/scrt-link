@@ -1,30 +1,26 @@
 import React from 'react'
 import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
-import Switch, { SwitchProps } from '@material-ui/core/Switch'
+import MUISwitch, { SwitchProps as MUISwitchProps } from '@material-ui/core/Switch'
 
-export type BaseSwitchProps = Pick<FormControlLabelProps, 'label'> &
-  Omit<SwitchProps, 'onChange'> & {
-    onChange: (checked: boolean) => void
-  }
+type SwitchProps = Omit<MUISwitchProps, 'onChange'> & {
+  onChange: (checked: boolean) => void
+}
+export const Switch = ({ checked, onChange, ...props }: SwitchProps) => (
+  <MUISwitch
+    checked={checked}
+    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+      onChange(event.target.checked)
+    }}
+    name="switch"
+    color="primary"
+    size="small"
+    {...props}
+  />
+)
 
-function BooleanSwitch({ label, checked, onChange, ...props }: BaseSwitchProps) {
-  return (
-    <FormControlLabel
-      control={
-        <Switch
-          checked={checked}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            onChange(event.target.checked)
-          }}
-          name="switch"
-          color="primary"
-          size="small"
-          {...props}
-        />
-      }
-      label={label}
-    />
-  )
+export type BaseSwitchProps = Pick<FormControlLabelProps, 'label'> & SwitchProps
+const BooleanSwitch = ({ label, ...props }: BaseSwitchProps) => {
+  return <FormControlLabel control={<Switch {...props} />} label={label} />
 }
 
 export default BooleanSwitch
