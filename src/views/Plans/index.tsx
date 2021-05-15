@@ -19,7 +19,8 @@ const Plans = ({ stripeSessionId }: any) => (
 export default Plans
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { session_id } = query
+  const { session_id = null } = query
+
   return {
     props: {
       stripeSessionId: session_id,

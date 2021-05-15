@@ -54,14 +54,14 @@ const Account = ({ userSettings, stats }: AccountProps) => {
         <Box mb={10}>
           <Typography variant="h2">Statistics</Typography>
           <Typography variant="body1">
-            <strong>Total secrets created: {stats.totalSecretsCount}</strong>
+            <strong>Total secrets created: {stats?.totalSecretsCount ?? 0}</strong>
             <br />
-            Message:&nbsp;{stats.secretsCount?.message}
+            Message:&nbsp;{stats?.secretsCount?.message ?? 0}
             <br />
-            URL:&nbsp;{stats.secretsCount?.url}
+            URL:&nbsp;{stats?.secretsCount?.url ?? 0}
             <br />
             Neogram:&nbsp;
-            {stats.secretsCount?.neogram}
+            {stats?.secretsCount?.neogram ?? 0}
           </Typography>
         </Box>
 

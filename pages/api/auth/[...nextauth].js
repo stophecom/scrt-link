@@ -1,9 +1,11 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import Stripe from 'stripe'
 
 import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
+import stripe from '@/api/utils/stripe'
 
 const handler = (req, res) =>
   NextAuth(req, res, {
@@ -29,8 +31,43 @@ const handler = (req, res) =>
       }),
     ],
     callbacks: {
-      async jwt(token, user) {
+      async signIn(user, account, profile) {
+        const isAllowedToSignIn = true
+        if (isAllowedToSignIn) {
+          return true
+        } else {
+          // Return false to display a default error message
+          return false
+          // Or you can return a URL to redirect to:
+          // return '/unauthorized'
+        }
+      },
+
+      async jwt(token, user, account, profile, isNewUser) {
+        const models = req.models
+
+        if (isNewUser) {
+          const stripeCustomer = await stripe.customers.create({
+            email: user.email,
+          })
+          models.UserSettings.create({
+            userId: user.id,
+            stripe: { customerId: stripeCustomer?.id },
+          })
+
+          token.stripeCustomerId = stripeCustomer?.id
+        }
+
+        // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
         if (user?.id) {
+          if (models) {
+            const customer = await models.UserSettings.findOne({
+              userId: user.id || '',
+            })
+            if (customer?.name) {
+              token.name = decodeURIComponent(customer.name)
+            }
+          }
           token.userId = user.id
         }
 
@@ -38,16 +75,8 @@ const handler = (req, res) =>
       },
       async session(session, token) {
         session.userId = token.userId
+        session.stripeCustomerId = token.stripeCustomerId
 
-        const models = req.models
-        if (models) {
-          const user = await models.UserSettings.findOne({
-            userId: token.userId || '',
-          })
-          if (user?.name) {
-            session.user.name = decodeURIComponent(user.name)
-          }
-        }
         return session
       },
     },

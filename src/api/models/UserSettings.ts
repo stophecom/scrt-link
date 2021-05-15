@@ -3,6 +3,9 @@ import mongoose from 'mongoose'
 export type ReadReceipts = 'none' | 'sms' | 'email'
 export interface UserSettingsFields {
   userId: string
+  stripe: {
+    customerId: string
+  }
   receiptEmail: string
   receiptPhoneNumber: string
   neogramDestructionMessage: string
@@ -17,6 +20,9 @@ type UserSettingsDocument = mongoose.Document & UserSettingsFields
 const UserSettingsSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Types.ObjectId, required: true },
+    stripe: {
+      customerId: String,
+    },
     name: { type: String, required: false, trim: true },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
