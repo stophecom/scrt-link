@@ -12,8 +12,10 @@ const handler: NextApiHandler = async (req, res) => {
     throw createError(500, 'Could not find db connection')
   }
 
-  const getStats = async () => {
-    const stats = await models.Stats.findOne().lean()
+  const getStats = async (userId: string) => {
+    const stats = await models.Stats.findOne({
+      userId: userId,
+    }).lean()
 
     if (!stats) {
       throw createError(500, 'Internal server error! Could not find statistics data.')
@@ -23,9 +25,13 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   switch (req.method) {
-    case 'GET':
-      res.json(await getStats())
+    case 'GET': {
+      const { userId } = req.query
+
+      res.json(await getStats(userId as string))
       break
+    }
+
     default:
       throw createError(405, 'Method Not Allowed')
   }

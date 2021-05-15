@@ -12,14 +12,14 @@ export const usePusher = <T>(
 ): T => {
   const [data, updateData] = useState({} as T)
 
-  Pusher.logToConsole = true
+  Pusher.logToConsole = false
 
   useEffect(() => {
     const fetchStats = async () => {
       if (!isEmpty(data)) {
         return
       }
-      const res = await fetch(`${baseUrl}/api${apiEndpoint}`, { method: 'POST' })
+      const res = await fetch(`${baseUrl}/api${apiEndpoint}`, { method: 'GET' })
       const json = await res.json()
       updateData(json)
     }

@@ -9,8 +9,7 @@ import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 
-import { GetServerSideProps } from 'next'
-import { useSession, getSession } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { ArrowForward } from '@material-ui/icons'
 
 import { Link, BaseButtonLink } from '@/components/Link'
@@ -20,9 +19,7 @@ import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
-import { UserSettingsFields } from '@/api/models/UserSettings'
 import { DestructionMessage, DestructionTimeout } from '@/components/UserSettingsForm'
-import { baseUrl } from '@/constants'
 import TabsMenu from './components/TabsMenu'
 
 import StrokeHighlight from './components/StrokeHighlight'
@@ -37,6 +34,7 @@ import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/a
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
 import { AccountUsps } from '@/views/Account'
+import { useCustomer } from '@/utils/fetch'
 
 const Accordion = dynamic(() => import('./components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
@@ -123,29 +121,22 @@ const tabsMenu = Object.keys(secretTypesMap).map((item) => {
 
 const reducer = createReducer<State>()
 
-type HomeViewProps = {
-  userSettings: Partial<UserSettingsFields>
-}
-const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
+const HomeView: React.FunctionComponent = () => {
   const [session] = useSession()
   const classes = useStyles()
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('message')
-
-  const {
-    isEmojiShortLinkEnabled = false,
-    neogramDestructionMessage,
-    neogramDestructionTimeout,
-  } = userSettings
+  const { customer } = useCustomer()
 
   const initialValues: SecretUrlFormValues = {
     message: '',
     secretType: 'message',
     alias: '',
     encryptionKey: '',
-    neogramDestructionMessage: neogramDestructionMessage || 'This message will self-destruct in…',
-    neogramDestructionTimeout: neogramDestructionTimeout || 5,
+    neogramDestructionMessage:
+      customer?.neogramDestructionMessage || 'This message will self-destruct in…',
+    neogramDestructionTimeout: customer?.neogramDestructionTimeout || 5,
   }
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
@@ -231,7 +222,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
       >
         <Result
           data={data}
-          isEmojiShortLinkEnabled={isEmojiShortLinkEnabled}
+          isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
           onReset={() => {
             dispatch(doReset())
             setHasFormOptions(false)
@@ -425,23 +416,6 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
       )}
     </Page>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context)
-
-  let userSettings = {}
-
-  if (session) {
-    const options = { headers: { cookie: context.req.headers.cookie as string } }
-    const res = await fetch(`${baseUrl}/api/me`, options)
-    const json = await res.json()
-    userSettings = json?.userSettings
-  }
-
-  return {
-    props: { userSettings },
-  }
 }
 
 export default HomeView

@@ -1,3 +1,39 @@
+import useSWR from 'swr'
+
+import { baseUrl } from '@/constants'
+import { UserSettingsFields } from '@/api/models/UserSettings'
+import { StatsFields } from '@/api/models/Stats'
+
+export const useCustomer = () => {
+  const { data, error } = useSWR<UserSettingsFields>(`${baseUrl}/api/me`)
+
+  return {
+    customer: data,
+    isLoading: !error && !data,
+    error: error,
+  }
+}
+
+export const useStats = () => {
+  const { data, error } = useSWR<StatsFields>(`${baseUrl}/api/stats`)
+
+  return {
+    stats: data,
+    isLoading: !error && !data,
+    error: error,
+  }
+}
+
+export const useCustomerStats = (userId?: string) => {
+  const { data, error } = useSWR<StatsFields>(`${baseUrl}/api/stats/${userId}`)
+
+  return {
+    stats: data,
+    isLoading: !error && !data,
+    error: error,
+  }
+}
+
 export async function fetchPostJSON(url: string, data?: Record<string, unknown>) {
   try {
     // Default options are marked with *

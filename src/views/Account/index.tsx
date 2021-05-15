@@ -1,7 +1,6 @@
 import React from 'react'
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { useSession, getSession } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { Box, Typography } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
@@ -10,10 +9,10 @@ import { Spinner } from '@/components/Spinner'
 import SignInForm from '@/components/SignInForm'
 import UserSettingsForm from '@/components/UserSettingsForm'
 import Page from '@/components/Page'
-import { StatsFields } from '@/api/models/Stats'
-import { UserSettingsFields } from '@/api/models/UserSettings'
+
 import Markdown from '@/components/Markdown'
-import { baseUrl, getMaxMessageLength } from '@/constants'
+import { getMaxMessageLength } from '@/constants'
+import { useCustomer, useCustomerStats } from '@/utils/fetch'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,20 +36,18 @@ With a free account you get access to the following features:
   return <Markdown className={classes.root} source={body} />
 }
 
-type AccountProps = {
-  userSettings: Partial<UserSettingsFields>
-  stats: Partial<StatsFields>
-}
-const Account = ({ userSettings, stats }: AccountProps) => {
+const Account = () => {
   const [session, loading] = useSession()
-  const { name } = userSettings
+
   const router = useRouter()
+  const { customer } = useCustomer()
+  const { stats } = useCustomerStats(session?.userId)
 
   if (typeof window !== 'undefined' && loading) return <Spinner />
 
   if (session) {
     return (
-      <Page title={`Hi ${name || ''}`} subtitle="Welcome back!">
+      <Page title={`Hi ${customer?.name || ''}`} subtitle="Welcome back!">
         <Box mb={10}>
           <Typography variant="h2">Statistics</Typography>
           <Typography variant="body1">
@@ -73,7 +70,7 @@ const Account = ({ userSettings, stats }: AccountProps) => {
           <Box py={3}>
             <UserSettingsForm
               receiptEmail={session.user.email as string}
-              {...userSettings}
+              {...customer}
               onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
             />
           </Box>
@@ -98,26 +95,6 @@ const Account = ({ userSettings, stats }: AccountProps) => {
       </Page>
     </NoSsr>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context)
-
-  let userSettings = {}
-  let stats = {}
-
-  if (session) {
-    const options = { headers: { cookie: context.req.headers.cookie as string } }
-    const res = await fetch(`${baseUrl}/api/me`, options)
-    const json = await res.json()
-
-    stats = json?.stats
-    userSettings = json?.userSettings
-  }
-
-  return {
-    props: { session, userSettings, stats },
-  }
 }
 
 export default Account

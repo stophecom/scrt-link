@@ -13,6 +13,7 @@ import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 import BaseButton from '@/components/BaseButton'
 import Stats from '@/components/Stats'
+import { useCustomer } from '@/utils/fetch'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
@@ -65,6 +66,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
   const [session, loading] = useSession()
+  const { customer } = useCustomer()
+
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
@@ -92,7 +95,7 @@ const Layout: React.FC = ({ children }) => {
               </>
             ) : session ? (
               <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
-                {session.user.name || 'My account'}
+                {customer?.name || 'My account'}
               </Typography>
             ) : (
               'Sign in'
