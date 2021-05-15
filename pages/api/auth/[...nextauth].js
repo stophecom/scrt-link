@@ -1,6 +1,5 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-import Stripe from 'stripe'
 
 import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
@@ -31,18 +30,6 @@ const handler = (req, res) =>
       }),
     ],
     callbacks: {
-      async signIn(user, account, profile) {
-        const isAllowedToSignIn = true
-        if (isAllowedToSignIn) {
-          return true
-        } else {
-          // Return false to display a default error message
-          return false
-          // Or you can return a URL to redirect to:
-          // return '/unauthorized'
-        }
-      },
-
       async jwt(token, user, account, profile, isNewUser) {
         const models = req.models
 
