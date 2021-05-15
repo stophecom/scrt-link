@@ -253,6 +253,7 @@ const HomeView: React.FunctionComponent = () => {
         />
       </Box>
       <Formik<SecretUrlFormValues>
+        enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={getValidationSchemaByType(
           secretType,
