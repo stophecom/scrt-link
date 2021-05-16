@@ -1,11 +1,12 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiHandler } from 'next'
 import Stripe from 'stripe'
 
+import handleErrors from '@/api/middlewares/handleErrors'
 import { getSession } from 'next-auth/client'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler: NextApiHandler = async (req, res) => {
   const session = await getSession({ req })
 
   if (!session) {
@@ -51,3 +52,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw createError(405, 'Method Not Allowed')
   }
 }
+
+export default handleErrors(handler)

@@ -1,9 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiHandler } from 'next'
 
+import handleErrors from '@/api/middlewares/handleErrors'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET': {
       try {
@@ -38,3 +39,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw createError(405, 'Method Not Allowed')
   }
 }
+
+export default handleErrors(handler)
