@@ -37,7 +37,7 @@ const handler = (req, res) =>
           const stripeCustomer = await stripe.customers.create({
             email: user.email,
           })
-          models.UserSettings.create({
+          models.Customer.create({
             userId: user.id,
             stripe: { customerId: stripeCustomer?.id },
           })
@@ -48,7 +48,7 @@ const handler = (req, res) =>
         // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
         if (user?.id) {
           if (models) {
-            const customer = await models.UserSettings.findOne({
+            const customer = await models.Customer.findOne({
               userId: user.id || '',
             })
             if (customer?.name) {

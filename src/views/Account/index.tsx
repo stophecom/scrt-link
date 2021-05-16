@@ -7,7 +7,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import { Spinner } from '@/components/Spinner'
 import SignInForm from '@/components/SignInForm'
-import UserSettingsForm from '@/components/UserSettingsForm'
+import CustomerForm from '@/components/CustomerForm'
 import Page from '@/components/Page'
 
 import Markdown from '@/components/Markdown'
@@ -68,7 +68,7 @@ const Account = () => {
             These are default settings. You can overwrite each setting for every secret.
           </Typography> */}
           <Box py={3}>
-            <UserSettingsForm
+            <CustomerForm
               receiptEmail={session.user.email as string}
               {...customer}
               onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/

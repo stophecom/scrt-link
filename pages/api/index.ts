@@ -10,7 +10,7 @@ import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
-import { UserSettingsFields } from '@/api/models/UserSettings'
+import { CustomerFields } from '@/api/models/Customer'
 import mailjet, { mailjetSms } from '@/api/utils/mailjet'
 import { pusherCluster } from '@/constants'
 
@@ -95,18 +95,18 @@ const handler: NextApiHandler = async (req, res) => {
 
       if (userId) {
         let privateMeta = {} as Pick<
-          UserSettingsFields,
+          CustomerFields,
           'readReceipts' | 'receiptEmail' | 'receiptPhoneNumber'
         >
-        const userSettingsRaw = await models.UserSettings.findOne({
+        const customerRaw = await models.Customer.findOne({
           userId,
         })
 
-        const userSettings = decodeStringsFromDB(userSettingsRaw?.toJSON()) as UserSettingsFields
+        const customer = decodeStringsFromDB(customerRaw?.toJSON()) as CustomerFields
 
-        privateMeta = pick(['receiptEmail', 'readReceipts', 'receiptPhoneNumber'], userSettings)
+        privateMeta = pick(['receiptEmail', 'readReceipts', 'receiptPhoneNumber'], customer)
 
-        const name = userSettings?.name || 'Anonymous'
+        const name = customer?.name || 'Anonymous'
 
         switch (privateMeta?.readReceipts) {
           case 'sms': {

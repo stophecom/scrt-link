@@ -19,7 +19,7 @@ import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
-import { DestructionMessage, DestructionTimeout } from '@/components/UserSettingsForm'
+import { DestructionMessage, DestructionTimeout } from '@/components/CustomerForm'
 import TabsMenu from './components/TabsMenu'
 
 import StrokeHighlight from './components/StrokeHighlight'

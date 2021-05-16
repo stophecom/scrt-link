@@ -14,9 +14,9 @@ import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitchField from '@/components/BaseSwitchField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
-import { UserSettingsFields } from '@/api/models/UserSettings'
+import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
-import { userSettingsValidationSchema } from '@/utils/validationSchemas'
+import { customerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 
 export const DestructionMessage = () => (
@@ -62,11 +62,11 @@ const initialState: State = {
 
 const reducer = createReducer<State>()
 
-type UserSettings = Partial<UserSettingsFields>
-interface UserSettingsFormProps extends UserSettings {
+type Customer = Partial<CustomerFields>
+interface CustomerFormProps extends Customer {
   onSuccess: () => void
 }
-const UserSettingsForm = ({
+const CustomerForm = ({
   name,
   neogramDestructionMessage,
   neogramDestructionTimeout,
@@ -75,11 +75,11 @@ const UserSettingsForm = ({
   readReceipts,
   isEmojiShortLinkEnabled,
   onSuccess,
-}: UserSettingsFormProps) => {
+}: CustomerFormProps) => {
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const initialValues: UserSettings = {
+  const initialValues: Customer = {
     name: name || '',
     neogramDestructionMessage: neogramDestructionMessage || '',
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
@@ -89,7 +89,7 @@ const UserSettingsForm = ({
     isEmojiShortLinkEnabled,
   }
 
-  const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
+  const handleSubmit = useCallback<OnSubmit<Customer>>(async (values, formikHelpers) => {
     dispatch(doRequest({}))
 
     try {
@@ -116,10 +116,10 @@ const UserSettingsForm = ({
         </NoSsr>
       )}
 
-      <Formik<UserSettings>
+      <Formik<Customer>
         initialValues={initialValues}
         enableReinitialize={true}
-        validationSchema={userSettingsValidationSchema}
+        validationSchema={customerValidationSchema}
         validateOnMount
         onSubmit={handleSubmit}
       >
@@ -218,4 +218,4 @@ const UserSettingsForm = ({
   )
 }
 
-export default UserSettingsForm
+export default CustomerForm

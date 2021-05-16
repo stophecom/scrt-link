@@ -3,14 +3,14 @@ import { NextApiHandler, NextApiRequest } from 'next'
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
-import { userSettingsValidationSchema } from '@/utils/validationSchemas'
+import { customerValidationSchema } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 
 import { getSession } from 'next-auth/client'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    await userSettingsValidationSchema.validate(req.body)
+    await customerValidationSchema.validate(req.body)
   } catch (err) {
     throw createError(422, err.message)
   }
@@ -31,12 +31,12 @@ const handler: NextApiHandler = async (req, res) => {
 
   switch (req.method) {
     case 'GET': {
-      const userSettings = await models.UserSettings.findOne({
+      const customer = await models.Customer.findOne({
         userId: session.userId || '',
       })
 
       res.json({
-        ...decodeStringsFromDB(userSettings?.toJSON()),
+        ...decodeStringsFromDB(customer?.toJSON()),
       })
       break
     }
@@ -44,12 +44,12 @@ const handler: NextApiHandler = async (req, res) => {
       const data = await extractPostInput(req)
 
       const userId = session.userId || ''
-      const userSettings = await models.UserSettings.findOneAndUpdate({ userId }, data, {
+      const customer = await models.Customer.findOneAndUpdate({ userId }, data, {
         upsert: true,
         new: true,
       })
 
-      res.json({ data: userSettings.toJSON(), message: 'Your settings have been saved!' })
+      res.json({ data: customer.toJSON(), message: 'Your settings have been saved!' })
       break
     default:
       throw createError(405, 'Method Not Allowed')

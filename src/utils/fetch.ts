@@ -1,11 +1,11 @@
 import useSWR from 'swr'
 
 import { baseUrl } from '@/constants'
-import { UserSettingsFields } from '@/api/models/UserSettings'
+import { CustomerFields } from '@/api/models/Customer'
 import { StatsFields } from '@/api/models/Stats'
 
 export const useCustomer = () => {
-  const { data, error } = useSWR<UserSettingsFields>(`${baseUrl}/api/me`)
+  const { data, error } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
 
   return {
     customer: data,

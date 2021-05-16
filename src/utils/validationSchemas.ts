@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 import validator from 'validator'
 
-import { UserSettingsFields, ReadReceipts } from '@/api/models/UserSettings'
+import { CustomerFields, ReadReceipts } from '@/api/models/Customer'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -70,7 +70,7 @@ export const passwordValidationSchema = Yup.object().shape<{ password: string }>
   password: Yup.string().label('Password').required().min(5).max(50).trim(),
 })
 
-export const userSettingsValidationSchema = Yup.object().shape<Partial<UserSettingsFields>>({
+export const customerValidationSchema = Yup.object().shape<Partial<CustomerFields>>({
   name: Yup.string().label('Name').max(200).trim(),
   ...neogramDestructionMessageValidation,
   ...neogramDestructionTimeoutValidation,

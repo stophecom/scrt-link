@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 export type ReadReceipts = 'none' | 'sms' | 'email'
-export interface UserSettingsFields {
+export interface CustomerFields {
   userId: string
   stripe: {
     customerId: string
@@ -15,9 +15,9 @@ export interface UserSettingsFields {
   readReceipts: ReadReceipts
 }
 
-type UserSettingsDocument = mongoose.Document & UserSettingsFields
+type CustomerDocument = mongoose.Document & CustomerFields
 
-const UserSettingsSchema = new mongoose.Schema(
+const CustomerSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Types.ObjectId, required: true },
     stripe: {
@@ -36,8 +36,8 @@ const UserSettingsSchema = new mongoose.Schema(
 
 // For "Cannot overwrite model once compiled" error:
 // https://hoangvvo.com/blog/migrate-from-express-js-to-next-js-api-routes/
-const UserSettings =
-  (mongoose.models.UserSettings as mongoose.Model<UserSettingsDocument>) ||
-  mongoose.model<UserSettingsDocument>('UserSettings', UserSettingsSchema)
+const Customer =
+  (mongoose.models.Customer as mongoose.Model<CustomerDocument>) ||
+  mongoose.model<CustomerDocument>('Customer', CustomerSchema)
 
-export default UserSettings
+export default Customer

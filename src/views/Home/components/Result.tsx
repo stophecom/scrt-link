@@ -11,12 +11,12 @@ import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
 import { isProduction } from '@/config'
-import { UserSettingsFields } from '@/api/models/UserSettings'
+import { CustomerFields } from '@/api/models/Customer'
 import { emojiShortUrl, baseUrl } from '@/constants'
 import { useSession } from 'next-auth/client'
 
 type ResultProps = Pick<State, 'data'> &
-  Pick<UserSettingsFields, 'isEmojiShortLinkEnabled'> & {
+  Pick<CustomerFields, 'isEmojiShortLinkEnabled'> & {
     onReset: () => void
   }
 
