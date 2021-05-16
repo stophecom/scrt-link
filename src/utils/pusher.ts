@@ -1,30 +1,14 @@
 import { useState, useEffect } from 'react'
 import Pusher from 'pusher-js'
-import { isEmpty } from 'ramda'
 
-import { baseUrl, pusherCluster } from '@/constants'
+import { pusherCluster } from '@/constants'
 
-export const usePusher = <T>(
-  apiEndpoint: string,
-  channel: string,
-  event: string,
-  realtime = false,
-): T => {
+export const usePusher = <T>(channel: string, event: string, realtime = false): T => {
   const [data, updateData] = useState({} as T)
 
   Pusher.logToConsole = false
 
   useEffect(() => {
-    const fetchStats = async () => {
-      if (!isEmpty(data)) {
-        return
-      }
-      const res = await fetch(`${baseUrl}/api${apiEndpoint}`, { method: 'GET' })
-      const json = await res.json()
-      updateData(json)
-    }
-    fetchStats()
-
     if (realtime) {
       const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_APP_KEY, {
         cluster: pusherCluster,
