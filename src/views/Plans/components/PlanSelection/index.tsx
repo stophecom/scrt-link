@@ -7,7 +7,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { baseUrl } from '@/constants'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
-import { PageError } from '@/components/Error'
+import { PageError, Error } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
 import { fetchPostJSON } from '@/utils/fetch'
@@ -51,6 +51,7 @@ const PlanSelection: React.FunctionComponent = () => {
   const { plans, isLoading, error } = usePlans()
 
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false)
+  const [checkoutErrorMessage, setCheckoutErrorMessage] = useState('')
   // Form options
   const [showMonthlyPrices, setShowMonthlyPrices] = React.useState(true)
 
@@ -60,7 +61,7 @@ const PlanSelection: React.FunctionComponent = () => {
     // Create a Checkout Session.
     const response = await fetchPostJSON(`${baseUrl}/api/checkout`, { priceId: priceId })
     if (response.statusCode === 500) {
-      console.error(response.message)
+      setCheckoutErrorMessage(response.message)
       setIsPaymentProcessing(false)
       return
     }
@@ -77,7 +78,7 @@ const PlanSelection: React.FunctionComponent = () => {
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer
     // using `error.message`.
-    console.warn(error.message)
+    setCheckoutErrorMessage(error?.message || '')
     setIsPaymentProcessing(false)
   }
 
@@ -94,6 +95,7 @@ const PlanSelection: React.FunctionComponent = () => {
   return (
     <>
       <Grid container spacing={2} justify="center">
+        {checkoutErrorMessage && <Error error={checkoutErrorMessage} />}
         {plans &&
           plans.map(({ name, prices }, index) => {
             const price = showMonthlyPrices ? prices?.monthly : prices?.yearly

@@ -14,10 +14,20 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-type PageErrorProps = {
+type ErrorProps = {
   error: string
 }
-export const PageError: React.FunctionComponent<PageErrorProps & Partial<PageProps>> = ({
+export const Error: React.FunctionComponent<ErrorProps> = ({ error }) => {
+  const classes = useStyles()
+
+  return (
+    <Alert severity="error">
+      <Box className={classes.wordBreak}>{error}</Box>
+    </Alert>
+  )
+}
+
+export const PageError: React.FunctionComponent<ErrorProps & Partial<PageProps>> = ({
   error,
   children = (
     <BaseButtonLink href="/" color="primary" variant="contained">
@@ -25,17 +35,11 @@ export const PageError: React.FunctionComponent<PageErrorProps & Partial<PagePro
     </BaseButtonLink>
   ),
   ...props
-}) => {
-  const classes = useStyles()
-
-  return (
-    <Page title="An error occured!" {...props}>
-      <Box mb={2}>
-        <Alert severity="error">
-          <Box className={classes.wordBreak}>{error}</Box>
-        </Alert>
-      </Box>
-      {children}
-    </Page>
-  )
-}
+}) => (
+  <Page title="An error occured!" {...props}>
+    <Box mb={2}>
+      <Error error={error} />
+    </Box>
+    {children}
+  </Page>
+)

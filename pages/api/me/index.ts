@@ -26,7 +26,7 @@ const handler: NextApiHandler = async (req, res) => {
     throw createError(500, 'Could not find db connection')
   }
   if (!session) {
-    throw createError(405, 'Not allowed')
+    throw createError(405, 'Not allowed. You need to be signed in!')
   }
 
   switch (req.method) {
