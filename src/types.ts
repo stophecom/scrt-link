@@ -19,6 +19,7 @@ declare global {
       PUSHER_APP_ID: string
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string
       STRIPE_SECRET_KEY: string
+      STRIPE_WEBHOOK_SECRET: string
     }
   }
 }
