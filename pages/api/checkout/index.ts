@@ -1,9 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-
 import Stripe from 'stripe'
+
+import { getSession } from 'next-auth/client'
 import stripe from '@/api/utils/stripe'
+import createError from '@/api/utils/createError'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getSession({ req })
+
+  if (!session) {
+    throw createError(405, 'Not allowed')
+  }
+
   if (req.method === 'POST') {
     const { priceId } = req.body
 
@@ -12,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const params: Stripe.Checkout.SessionCreateParams = {
         mode: 'subscription',
         payment_method_types: ['card'],
+        customer: session.stripeCustomerId,
 
         line_items: [
           {
@@ -27,9 +36,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         cancel_url: `${req.headers.origin}/plans/cancelled`,
       }
 
-      const session: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params)
+      const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params)
 
-      res.status(200).json(session)
+      res.status(200).json(checkoutSession)
     } catch (err) {
       res.status(500).json({ statusCode: 500, message: err.message })
     }

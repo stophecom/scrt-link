@@ -50,18 +50,18 @@ type Plan = {
 const PlanSelection: React.FunctionComponent = () => {
   const { plans, isLoading, error } = usePlans()
 
-  const [loading, setLoading] = useState(false)
+  const [isPaymentProcessing, setIsPaymentProcessing] = useState(false)
   // Form options
   const [showMonthlyPrices, setShowMonthlyPrices] = React.useState(true)
 
   const handleSubmit = async (priceId: string) => {
-    setLoading(true)
+    setIsPaymentProcessing(true)
 
     // Create a Checkout Session.
     const response = await fetchPostJSON(`${baseUrl}/api/checkout`, { priceId: priceId })
     if (response.statusCode === 500) {
       console.error(response.message)
-      setLoading(false)
+      setIsPaymentProcessing(false)
       return
     }
 
@@ -78,7 +78,7 @@ const PlanSelection: React.FunctionComponent = () => {
     // error, display the localized error message to your customer
     // using `error.message`.
     console.warn(error.message)
-    setLoading(false)
+    setIsPaymentProcessing(false)
   }
 
   const classes = useStyles()
@@ -87,7 +87,7 @@ const PlanSelection: React.FunctionComponent = () => {
     return <PageError error={error} />
   }
 
-  if (loading || isLoading) {
+  if (isLoading) {
     return <Spinner message="Loading plans" />
   }
 
@@ -108,6 +108,7 @@ const PlanSelection: React.FunctionComponent = () => {
                     variant="contained"
                     color="primary"
                     onClick={() => handleSubmit(price.id)}
+                    loading={isPaymentProcessing}
                   >
                     Choose Plan
                   </BaseButton>
