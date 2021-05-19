@@ -5,6 +5,7 @@ export interface CustomerFields {
   userId: string
   stripe: {
     customerId: string
+    subscription: string
   }
   receiptEmail: string
   receiptPhoneNumber: string
@@ -22,6 +23,7 @@ const CustomerSchema = new mongoose.Schema(
     userId: { type: mongoose.Types.ObjectId, required: true },
     stripe: {
       customerId: String,
+      subscription: String,
     },
     name: { type: String, required: false, trim: true },
     receiptEmail: { type: String, required: false, trim: true },
