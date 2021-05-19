@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import useSWR from 'swr'
-import { Stripe } from 'stripe'
+
 import { Box, Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { useRouter } from 'next/router'
+import Alert from '@material-ui/lab/Alert'
 
 import { baseUrl } from '@/constants'
 import BaseButton from '@/components/BaseButton'
@@ -10,17 +11,7 @@ import { Spinner } from '@/components/Spinner'
 import { PageError, Error } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
-import { fetchPostJSON } from '@/utils/fetch'
-
-function usePlans() {
-  const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
-
-  return {
-    plans: data,
-    isLoading: !error && !data,
-    error: error,
-  }
-}
+import { fetchJSON, useSubscription, useCheckoutSession, usePlans } from '@/utils/fetch'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,12 +34,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-type Plan = {
-  name: string
-  prices: { monthly: Stripe.Price; yearly: Stripe.Price }
-}
 const PlanSelection: React.FunctionComponent = () => {
+  const router = useRouter()
+
   const { plans, isLoading, error } = usePlans()
+  const { subscription } = useSubscription()
+  const { checkoutSession } = useCheckoutSession(router.query.session_id as string)
 
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false)
   const [checkoutErrorMessage, setCheckoutErrorMessage] = useState('')
@@ -58,28 +49,45 @@ const PlanSelection: React.FunctionComponent = () => {
   const handleSubmit = async (priceId: string) => {
     setIsPaymentProcessing(true)
 
-    // Create a Checkout Session.
-    const response = await fetchPostJSON(`${baseUrl}/api/checkout`, { priceId: priceId })
-    if (response.statusCode === 500) {
-      setCheckoutErrorMessage(response.message)
+    // If customer has a subscription, update it.
+    if (subscription) {
+      const response = await fetchJSON(
+        `${baseUrl}/api/subscription/${subscription?.id}`,
+        {
+          priceId: priceId,
+        },
+        { method: 'PUT' },
+      )
+
       setIsPaymentProcessing(false)
-      return
+      if (response.statusCode === 500) {
+        setCheckoutErrorMessage(response.message)
+        return
+      }
+    } else {
+      // Create a Checkout Session.
+      const response = await fetchJSON(`${baseUrl}/api/checkout`, { priceId: priceId })
+      if (response.statusCode === 500) {
+        setCheckoutErrorMessage(response.message)
+        setIsPaymentProcessing(false)
+        return
+      }
+
+      // Redirect to Checkout.
+      const stripe = await getStripe()
+      const { error } = await stripe!.redirectToCheckout({
+        // Make the id field from the Checkout Session creation API response
+        // available to this file, so you can provide it as parameter here
+        // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+        sessionId: response.id,
+      })
+
+      // If `redirectToCheckout` fails due to a browser or network
+      // error, display the localized error message to your customer
+      // using `error.message`.
+      setCheckoutErrorMessage(error?.message || '')
+      setIsPaymentProcessing(false)
     }
-
-    // Redirect to Checkout.
-    const stripe = await getStripe()
-    const { error } = await stripe!.redirectToCheckout({
-      // Make the id field from the Checkout Session creation API response
-      // available to this file, so you can provide it as parameter here
-      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-      sessionId: response.id,
-    })
-
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-    setCheckoutErrorMessage(error?.message || '')
-    setIsPaymentProcessing(false)
   }
 
   const classes = useStyles()
@@ -89,13 +97,18 @@ const PlanSelection: React.FunctionComponent = () => {
   }
 
   if (isLoading) {
-    return <Spinner message="Loading plans" />
+    return <Spinner message="Loading plans…" />
   }
 
   return (
     <>
+      <Alert severity="success">
+        CheckoutSession: <pre>{JSON.stringify(checkoutSession, null, 2)}</pre>
+        Subscription: <pre>{JSON.stringify(subscription, null, 2)}</pre>
+      </Alert>
+      {error && <Alert severity="error">{error?.message}</Alert>}
+      {checkoutErrorMessage && <Error error={checkoutErrorMessage} />}
       <Grid container spacing={2} justify="center">
-        {checkoutErrorMessage && <Error error={checkoutErrorMessage} />}
         {plans &&
           plans.map(({ name, prices }, index) => {
             const price = showMonthlyPrices ? prices?.monthly : prices?.yearly

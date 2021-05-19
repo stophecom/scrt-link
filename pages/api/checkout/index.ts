@@ -1,14 +1,19 @@
 import { NextApiHandler } from 'next'
 import Stripe from 'stripe'
 
+import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import { getSession } from 'next-auth/client'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
 
 const handler: NextApiHandler = async (req, res) => {
+  const models = req.models
   const session = await getSession({ req })
 
+  if (!models) {
+    throw createError(500, 'Could not find db connection')
+  }
   if (!session) {
     throw createError(405, 'Not allowed. You need to be signed in!')
   }
@@ -44,7 +49,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         res.status(200).json(checkoutSession)
       } catch (err) {
-        res.status(500).json({ statusCode: 500, message: err.message })
+        throw createError(500, err.message)
       }
       break
     }
@@ -53,4 +58,4 @@ const handler: NextApiHandler = async (req, res) => {
   }
 }
 
-export default handleErrors(handler)
+export default handleErrors(withDb(handler))
