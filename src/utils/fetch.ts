@@ -35,6 +35,21 @@ export const useCustomerStats = (userId?: string) => {
   }
 }
 
+// Stripe
+type Plan = {
+  name: string
+  prices: { monthly: Stripe.Price; yearly: Stripe.Price }
+}
+export const usePlans = () => {
+  const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
+
+  return {
+    plans: data,
+    isLoading: !error && !data,
+    error: error,
+  }
+}
+
 export const useCheckoutSession = (checkoutSessionId?: string) => {
   const { data, error } = useSWR(
     checkoutSessionId ? `${baseUrl}/api/checkout/${checkoutSessionId}` : null,
@@ -47,29 +62,28 @@ export const useCheckoutSession = (checkoutSessionId?: string) => {
   }
 }
 
-export const useSubscription = () => {
+export const useStripeCustomer = () => {
   const { data: customer } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
-
-  const { data, error } = useSWR(() =>
-    customer ? `${baseUrl}/api/subscription/${customer?.stripe?.subscription}` : null,
+  const { data, error } = useSWR(
+    customer ? `${baseUrl}/api/customers/${customer?.stripe?.customerId}` : null,
   )
 
   return {
-    subscription: data,
+    stripeCustomer: data,
     isLoading: !error && !data,
     error: error,
   }
 }
 
-type Plan = {
-  name: string
-  prices: { monthly: Stripe.Price; yearly: Stripe.Price }
-}
-export const usePlans = () => {
-  const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
+export const useSubscription = () => {
+  const { data: customer } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
+
+  const { data, error } = useSWR<Stripe.Subscription>(() =>
+    customer ? `${baseUrl}/api/subscriptions/${customer?.stripe?.subscription}` : null,
+  )
 
   return {
-    plans: data,
+    subscription: data,
     isLoading: !error && !data,
     error: error,
   }
