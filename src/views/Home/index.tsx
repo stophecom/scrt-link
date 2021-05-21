@@ -36,7 +36,7 @@ import { demoMessage } from '@/data/faq'
 import { AccountUsps } from '@/views/Account'
 import { useCustomer } from '@/utils/fetch'
 
-const Accordion = dynamic(() => import('./components/Accordion'))
+const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
