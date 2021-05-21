@@ -79,7 +79,7 @@ const PlanSelection: React.FunctionComponent = () => {
 
         setActivePrice(response?.items.data[0].price ?? {})
 
-        if (response.statusCode === 500) {
+        if ([500, 405].includes(response.statusCode)) {
           throw new CustomError(response.message)
         }
       } else {
@@ -120,13 +120,13 @@ const PlanSelection: React.FunctionComponent = () => {
 
   return (
     <>
-      <Alert severity="success">
+      {/* <Alert severity="success">
         Active Price = {JSON.stringify(activePrice?.id, null, 2)}
         <br />
         CheckoutSession: <pre>{JSON.stringify(checkoutSession, null, 2)}</pre>
         Subscription: <pre>{JSON.stringify(subscription, null, 2)}</pre>
         stripeCustomer: <pre>{JSON.stringify(stripeCustomer, null, 2)}</pre>
-      </Alert>
+      </Alert> */}
       {checkoutErrorMessage && <Error error={checkoutErrorMessage} />}
       <Grid container spacing={2} justify="center">
         {plans?.length &&
