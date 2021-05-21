@@ -139,8 +139,8 @@ const PlanSelection: React.FunctionComponent = () => {
 
   const items = usps.map(({ heading, body }, index) => ({
     heading: (
-      <Box display="flex" alignItems="center">
-        <Box pr={1}>
+      <Box display="flex" alignItems="center" textAlign="left">
+        <Box display="flex" alignItems="center" pr={1}>
           <Check color="primary" />
         </Box>
         <span className={classes.accordionHeading}>{heading}</span>
@@ -188,7 +188,7 @@ const PlanSelection: React.FunctionComponent = () => {
             return (
               <Grid item xs={12} sm={8} key={index}>
                 <Paper className={classes.paper}>
-                  <div>
+                  <Box mb={2}>
                     <Typography variant="h3">{name}</Typography>
                     <Typography variant="h4" component="div">
                       {formatCurrency(Number(price.unit_amount) / 100)}
@@ -197,8 +197,9 @@ const PlanSelection: React.FunctionComponent = () => {
                     <SimpleAccordion name="usps" items={items} />
 
                     <small>{price.product === activePrice?.product && 'Current Plan'}</small>
-                  </div>
+                  </Box>
                   <BaseButton
+                    size="large"
                     variant="contained"
                     color="primary"
                     onClick={() => handleSubmit(price.id)}
