@@ -1,1 +1,1 @@
-export { default } from '@/views/Plans/Cancelled'
+export { default } from '@/views/Pricing/Cancelled'

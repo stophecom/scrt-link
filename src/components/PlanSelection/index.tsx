@@ -5,11 +5,13 @@ import { Box, Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 import Alert from '@material-ui/lab/Alert'
-import CustomError from '@/utils/error'
+import { Check } from '@material-ui/icons'
 
+import CustomError from '@/utils/error'
 import { baseUrl } from '@/constants'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
+import { SimpleAccordion } from '@/components/Accordion'
 import { PageError, Error } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
@@ -20,7 +22,6 @@ import {
   useCheckoutSession,
   usePlans,
 } from '@/utils/fetch'
-import { usps } from '@/views/Account'
 import { formatCurrency } from '@/utils/localization'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,14 +36,38 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       color: theme.palette.text.secondary,
       height: '100%',
-
-      [theme.breakpoints.up('sm')]: {
-        flexDirection: 'column',
-        textAlign: 'center',
-      },
+      flexDirection: 'column',
+      textAlign: 'center',
+    },
+    accordionHeading: {
+      fontSize: '1.05rem',
+      fontWeight: 'bold',
     },
   }),
 )
+
+const usps = [
+  {
+    heading: 'Read receipts',
+    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+  {
+    heading: '10k character limit',
+    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+  {
+    heading: 'Emoji link 🤫',
+    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+  {
+    heading: 'Unlimited Neogram™ messages',
+    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+  {
+    heading: 'Statistics',
+    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+]
 
 const PlanSelection: React.FunctionComponent = () => {
   const router = useRouter()
@@ -112,6 +137,18 @@ const PlanSelection: React.FunctionComponent = () => {
 
   const classes = useStyles()
 
+  const items = usps.map(({ heading, body }, index) => ({
+    heading: (
+      <Box display="flex" alignItems="center">
+        <Box pr={1}>
+          <Check color="primary" />
+        </Box>
+        <span className={classes.accordionHeading}>{heading}</span>
+      </Box>
+    ),
+    body: body,
+  }))
+
   if (error) {
     return <PageError error={error} />
   }
@@ -153,15 +190,12 @@ const PlanSelection: React.FunctionComponent = () => {
                 <Paper className={classes.paper}>
                   <div>
                     <Typography variant="h3">{name}</Typography>
-                    <ul>
-                      {usps.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
                     <Typography variant="h4" component="div">
                       {formatCurrency(Number(price.unit_amount) / 100)}
                       <small> / {price.recurring?.interval}</small>
                     </Typography>
+                    <SimpleAccordion name="usps" items={items} />
+
                     <small>{price.product === activePrice?.product && 'Current Plan'}</small>
                   </div>
                   <BaseButton

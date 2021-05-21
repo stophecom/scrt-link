@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Page from '@/components/Page'
-import PlanSelection from './components/PlanSelection'
+import PlanSelection from '@/components/PlanSelection'
 
 const Pricing = () => {
   return (
