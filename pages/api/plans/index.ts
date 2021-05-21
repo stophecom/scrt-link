@@ -8,7 +8,7 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET': {
       try {
-        const { data } = await stripe.products.list()
+        const { data } = await stripe.products.list({ active: true })
 
         const getPlans = async () =>
           Promise.all(

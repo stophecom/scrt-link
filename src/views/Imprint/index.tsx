@@ -7,7 +7,7 @@ import Page from '@/components/Page'
 import { emailSantihans } from '@/constants'
 
 const Imprint = () => (
-  <Page title="Imprint" subtitle={`…for legal reasons.`}>
+  <Page title="Imprint" subtitle={`Tl;dr: No liability whatsoever.`}>
     <Box mb={4}>
       <Typography>
         SANTiHANS GmbH (The Company)
@@ -16,6 +16,7 @@ const Imprint = () => (
         UID: CHE-244.875.499
         <br />
         <Link href={`mailto:${emailSantihans}`}>{emailSantihans}</Link>
+        <br />
       </Typography>
     </Box>
     <Box mb={4}>

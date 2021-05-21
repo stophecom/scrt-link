@@ -20,6 +20,8 @@ import {
   useCheckoutSession,
   usePlans,
 } from '@/utils/fetch'
+import { usps } from '@/views/Account'
+import { formatCurrency } from '@/utils/localization'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -55,7 +57,7 @@ const PlanSelection: React.FunctionComponent = () => {
   const [activePrice, setActivePrice] = useState<Stripe.Price>()
 
   // Form options
-  const [showMonthlyPrices, setShowMonthlyPrices] = React.useState(true)
+  const [showYearlyPrice, setShowYearlyPrices] = React.useState(true)
 
   useEffect(() => {
     setActivePrice(subscription?.items.data[0].price)
@@ -120,24 +122,46 @@ const PlanSelection: React.FunctionComponent = () => {
 
   return (
     <>
-      {/* <Alert severity="success">
-        Active Price = {JSON.stringify(activePrice?.id, null, 2)}
+      <Alert severity="success">
+        plans = {JSON.stringify(plans, null, 2)}
         <br />
-        CheckoutSession: <pre>{JSON.stringify(checkoutSession, null, 2)}</pre>
+        {/* CheckoutSession: <pre>{JSON.stringify(checkoutSession, null, 2)}</pre>
         Subscription: <pre>{JSON.stringify(subscription, null, 2)}</pre>
-        stripeCustomer: <pre>{JSON.stringify(stripeCustomer, null, 2)}</pre>
-      </Alert> */}
+        stripeCustomer: <pre>{JSON.stringify(stripeCustomer, null, 2)}</pre> */}
+      </Alert>
       {checkoutErrorMessage && <Error error={checkoutErrorMessage} />}
       <Grid container spacing={2} justify="center">
+        <Grid item xs={12} sm={4}>
+          <Paper className={classes.paper}>
+            <div>
+              <Typography variant="h3">Free plan</Typography>
+              <Typography variant="h4" component="div">
+                Free
+              </Typography>
+              <small>{'Current Plan'}</small>
+            </div>
+            <BaseButton variant="contained" color="primary" disabled>
+              Current Plan
+            </BaseButton>
+          </Paper>
+        </Grid>
         {plans?.length &&
           plans.map(({ name, prices }, index) => {
-            const price = showMonthlyPrices ? prices?.monthly : prices?.yearly
+            const price = showYearlyPrice ? prices?.yearly : prices?.monthly
             return (
-              <Grid item xs={12} sm={4} key={index}>
+              <Grid item xs={12} sm={8} key={index}>
                 <Paper className={classes.paper}>
                   <div>
                     <Typography variant="h3">{name}</Typography>
-                    <Typography variant="body1">{price.unit_amount}</Typography>
+                    <ul>
+                      {usps.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                    <Typography variant="h4" component="div">
+                      {formatCurrency(Number(price.unit_amount) / 100)}
+                      <small> / {price.recurring?.interval}</small>
+                    </Typography>
                     <small>{price.product === activePrice?.product && 'Current Plan'}</small>
                   </div>
                   <BaseButton
@@ -155,12 +179,18 @@ const PlanSelection: React.FunctionComponent = () => {
       </Grid>
       <Box pt={5}>
         <Box mb={2}>
-          <Typography align="center">Save up to 15% with yearly price!</Typography>
+          <Typography component="div" align="center">
+            Get{' '}
+            <Typography variant="inherit" component="strong" color="primary">
+              2 months free
+            </Typography>{' '}
+            with the yearly plan!
+          </Typography>
         </Box>
         <Grid component="label" container alignItems="center" justify="center" spacing={1}>
           <Grid item>Monthly</Grid>
           <Grid item>
-            <Switch checked={showMonthlyPrices} onChange={setShowMonthlyPrices} />
+            <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />
           </Grid>
           <Grid item>Yearly</Grid>
         </Grid>
