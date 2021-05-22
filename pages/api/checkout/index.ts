@@ -28,7 +28,7 @@ const handler: NextApiHandler = async (req, res) => {
           mode: 'subscription',
           payment_method_types: ['card'],
           customer: session.stripeCustomerId,
-
+          metadata: { userId: session.userId },
           line_items: [
             {
               price: priceId,
