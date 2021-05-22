@@ -32,6 +32,12 @@ let theme = createMuiTheme({
       fontWeight: 'normal',
       marginBottom: '.5em',
     },
+    h5: {
+      fontFamily: 'IBM Plex Sans, sans-serif',
+      fontSize: '20%',
+      fontWeight: 'normal',
+      marginBottom: '.5em',
+    },
     subtitle1: { fontSize: '40%', lineHeight: '1.55' },
     subtitle2: { fontSize: '20%', lineHeight: '1.55', marginBottom: '1em' },
   },

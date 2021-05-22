@@ -44,12 +44,25 @@ const handler: NextApiHandler = async (req, res) => {
           },
         )
 
+        await models.Customer.findOneAndUpdate()
+
         res.status(200).json(updatedSubscription)
       } catch (err) {
         throw createError(500, err.message)
       }
       break
     }
+    case 'DELETE': {
+      try {
+        const deleted = await stripe.subscriptions.del(subscriptionId)
+
+        res.status(200).json(deleted)
+      } catch (err) {
+        throw createError(500, err.message)
+      }
+      break
+    }
+
     default:
       throw createError(405, 'Method Not Allowed')
   }

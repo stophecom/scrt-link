@@ -4,6 +4,40 @@ import { Stripe } from 'stripe'
 import { baseUrl } from '@/constants'
 import { CustomerFields } from '@/api/models/Customer'
 import { StatsFields } from '@/api/models/Stats'
+import { CustomError } from '@/api/utils/createError'
+
+export async function api<T>(
+  url: string,
+  data?: Record<string, unknown> | null,
+  options?: Record<string, unknown>,
+): Promise<T> {
+  try {
+    // Default options are marked with *
+    const response = await fetch(`${baseUrl}/api${url}`, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *client
+      ...options,
+      body: JSON.stringify(data || {}), // body data type must match "Content-Type" header
+    })
+
+    if (!response.ok) {
+      const errorResponse = (await response.json()) as CustomError
+      throw new Error(errorResponse.message ?? response.statusText)
+    }
+
+    return response.json() as Promise<T>
+  } catch (err) {
+    throw new Error(err.message)
+  }
+}
 
 export const useCustomer = () => {
   const { data, error } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
@@ -38,10 +72,14 @@ export const useCustomerStats = (userId?: string) => {
 // Stripe
 type Plan = {
   name: string
+  id: string
+  meta: Record<string, unknown>
   prices: { monthly: Stripe.Price; yearly: Stripe.Price }
 }
+export type Plans = Plan[]
+
 export const usePlans = () => {
-  const { data, error } = useSWR<Plan[]>(`${baseUrl}/api/plans`)
+  const { data, error } = useSWR<Plans>(`${baseUrl}/api/plans`)
 
   return {
     plans: data,
@@ -88,32 +126,5 @@ export const useSubscription = () => {
     subscription: data,
     isLoading: !error && !data,
     error: error,
-  }
-}
-
-export async function fetchJSON(
-  url: string,
-  data?: Record<string, unknown>,
-  options?: Record<string, unknown>,
-) {
-  try {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *client
-      ...options,
-      body: JSON.stringify(data || {}), // body data type must match "Content-Type" header
-    })
-    return await response.json() // parses JSON response into native JavaScript objects
-  } catch (err) {
-    throw new Error(err.message)
   }
 }
