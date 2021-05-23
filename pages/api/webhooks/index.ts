@@ -7,6 +7,7 @@ import NextCors from 'nextjs-cors'
 import withDb from '@/api/middlewares/withDb'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
+import { Role } from '@/api/models/Customer'
 
 const webhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET!
 
@@ -40,7 +41,7 @@ const handler: NextApiHandler = async (req, res) => {
       event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret)
     } catch (err) {
       // On error, log and return the error message.
-      console.log(`❌ Error message: ${err.message}`)
+      console.warn(`❌ Error message: ${err.message}`)
       throw createError(400, `Webhook Error: ${err.message}`)
     }
 
@@ -48,40 +49,37 @@ const handler: NextApiHandler = async (req, res) => {
     console.log('✅ Success:', event.id)
 
     switch (event.type) {
-      case 'checkout.session.completed': {
-        const paymentStatus = event.data.object as Stripe.Checkout.Session
+      case 'customer.subscription.updated': {
+        const subscription = event.data.object as Stripe.Subscription
 
-        await models.Customer.findOneAndUpdate(
-          {
-            'stripe.customerId': paymentStatus.customer,
-          },
-          { 'stripe.subscription': paymentStatus.subscription },
-        )
+        // If payment successful the status changes to active:
+        // https://stripe.com/docs/api/subscriptions/object#subscription_object-status
+        if (subscription.status === 'active') {
+          // We use the role that is stored as metadata on the stripe plan
+          await models.Customer.findOneAndUpdate(
+            {
+              'stripe.customerId': subscription.customer,
+            },
+            { $addToSet: { roles: subscription.items.data[0].price.metadata.role as Role } },
+          )
+          console.log('✅ Subscription active:', event.type)
+        }
 
-        console.log(`💰 Session completed status: ${JSON.stringify(paymentStatus, null, 2)}`)
-        break
-      }
+        if (subscription.status === 'canceled') {
+          // We use the role that is stored as metadata on the stripe plan
+          await models.Customer.findOneAndUpdate(
+            {
+              'stripe.customerId': subscription.customer,
+            },
+            { $pull: { roles: subscription.items.data[0].price.metadata.role as Role } },
+          )
 
-      // Cast event data to Stripe object.
-      case 'payment_intent.succeeded': {
-        const paymentIntent = event.data.object as Stripe.PaymentIntent
-        console.log(`💰 PaymentIntent status: ${paymentIntent.status}`)
-        break
-      }
-
-      case 'payment_intent.payment_failed': {
-        const paymentIntent = event.data.object as Stripe.PaymentIntent
-        console.log(`❌ Payment failed: ${paymentIntent.last_payment_error?.message}`)
-        break
-      }
-
-      case 'charge.succeeded': {
-        const charge = event.data.object as Stripe.Charge
-
-        console.log(`💵 Charge id: ${charge.id}`)
+          console.log('✅ Subscription canceled:', event.type)
+        }
 
         break
       }
+
       default: {
         console.warn(`Unhandled event type: ${event.type}`)
       }

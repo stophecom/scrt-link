@@ -3,29 +3,21 @@ import { Stripe } from 'stripe'
 
 import { Box, Grid, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import { useRouter } from 'next/router'
 import Alert from '@material-ui/lab/Alert'
 import { Check } from '@material-ui/icons'
 import { useSession } from 'next-auth/client'
 
+import { limits } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
-import { baseUrl } from '@/constants'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import { SimpleAccordion } from '@/components/Accordion'
 import { PageError } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
-import {
-  api,
-  useSubscription,
-  useStripeCustomer,
-  useCheckoutSession,
-  usePlans,
-  Plans,
-} from '@/utils/fetch'
+import { api, useStripeCustomer, useCheckoutSession, usePlans, Plans } from '@/utils/fetch'
 import Plan from './Plan'
-import { formatCurrency } from '@/utils/localization'
+import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,13 +35,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const usps = [
+const premiumUsps = [
   {
-    heading: 'Read receipts',
+    heading: `${limits.premium.maxMessageLength / 1000}k character limit`,
     body: 'Get notification via SMS or Email when a secret has been viewed. ',
   },
   {
-    heading: '10k character limit',
+    heading: 'Read receipts: Email & SMS ',
     body: 'Get notification via SMS or Email when a secret has been viewed. ',
   },
   {
@@ -57,8 +49,28 @@ const usps = [
     body: 'Get notification via SMS or Email when a secret has been viewed. ',
   },
   {
-    heading: 'Unlimited Neogram™ messages',
+    heading: 'Customize Neogram™ messages',
     body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+  {
+    heading: 'Personal support',
+    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+  {
+    heading: 'There is more…',
+    body:
+      'You get early access to upcoming features. All future updated will be available for you at no extra cost.',
+  },
+]
+
+const freeUsps = [
+  {
+    heading: `${limits.free.maxMessageLength} character limit`,
+    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+  },
+  {
+    heading: 'Read receipts: Email',
+    body: 'Get notification via Email when a secret has been viewed. ',
   },
   {
     heading: 'Statistics',
@@ -70,34 +82,44 @@ type Status = {
   type: 'initial' | 'success' | 'error' | 'loading'
   message?: string
 }
-const getPlanById = (plans: Plans, id: string) => plans.find((element) => element.id === id)
 
 const PlanSelection: React.FunctionComponent = () => {
-  const router = useRouter()
   const [session] = useSession()
   const { plans, isLoading, error } = usePlans()
-  const { subscription } = useSubscription()
-  const { stripeCustomer } = useStripeCustomer()
-  const { checkoutSession } = useCheckoutSession(router.query.session_id as string)
+  const { stripeCustomer } = useStripeCustomer(session?.stripeCustomerId)
 
   const [status, setStatus] = useState<Status>({ type: 'initial' })
   const [activePrice, setActivePrice] = useState<Stripe.Price>()
-
   // Form options
   const [showYearlyPrice, setShowYearlyPrices] = React.useState(false)
 
+  // We assume a customer only ever has one subscription
+  const subscription = stripeCustomer?.subscriptions?.data[0]
+
+  const isSubscriptionBillingIntervalMonthly = activePrice?.recurring?.interval === 'month'
+  const isSubscriptionBillingIntervalYearly = activePrice?.recurring?.interval === 'year'
+  const isSubscriptionBillingIntervalMatch =
+    (isSubscriptionBillingIntervalYearly && showYearlyPrice) ||
+    (isSubscriptionBillingIntervalMonthly && !showYearlyPrice)
+  const isSubscriptionActive = subscription?.status === 'active'
+  const isSubscriptionActiveNotCanceled = isSubscriptionActive && !subscription?.cancel_at
+  const isSubscriptionCanceled = isSubscriptionActive && !!subscription?.cancel_at
+
   useEffect(() => {
-    setActivePrice(subscription?.items.data[0].price)
+    setActivePrice(subscription?.items?.data[0]?.price)
+    setShowYearlyPrices(subscription?.items?.data[0]?.price.recurring?.interval === 'year')
   }, [subscription])
 
   const deleteSubscription = (subscriptionId: string) =>
     api<Stripe.Subscription>(`/subscriptions/${subscriptionId}`, null, { method: 'DELETE' })
-      .then(() =>
+      .then((subscription) => {
         setStatus({
           type: 'success',
-          message: 'Your subscription has been cancelled successfully!',
-        }),
-      )
+          message: `Your subscription has been canceled successfully! Your plan will automatically be downgraded to the free plan on ${dateFromTimestamp(
+            subscription.cancel_at,
+          )}. If you change your mind until then, feel free to reactivate any time.`,
+        })
+      })
       .catch((err) =>
         setStatus({
           type: 'error',
@@ -156,17 +178,19 @@ const PlanSelection: React.FunctionComponent = () => {
 
   const classes = useStyles()
 
-  const items = usps.map(({ heading, body }, index) => ({
-    heading: (
-      <Box display="flex" alignItems="center" textAlign="left">
-        <Box display="flex" alignItems="center" pr={1}>
-          <Check color="primary" />
+  type AccordionItem = { heading: string; body?: string }
+  const getAccordionItems = (items: AccordionItem[]) =>
+    items.map(({ heading, body }) => ({
+      heading: (
+        <Box display="flex" alignItems="center" textAlign="left">
+          <Box display="flex" alignItems="center" pr={1}>
+            <Check color="primary" />
+          </Box>
+          <span className={classes.accordionHeading}>{heading}</span>
         </Box>
-        <span className={classes.accordionHeading}>{heading}</span>
-      </Box>
-    ),
-    body: body,
-  }))
+      ),
+      body: body,
+    }))
 
   if (error) {
     return <PageError error={error} />
@@ -179,14 +203,21 @@ const PlanSelection: React.FunctionComponent = () => {
   return (
     <>
       {['error', 'success'].includes(status.type) && (
-        <Alert severity={status.type as 'error' | 'success'}>{status.message}</Alert>
+        <Box mb={2}>
+          <Alert severity={status.type as 'error' | 'success'}>{status.message}</Alert>
+        </Box>
       )}
       <Grid container spacing={2} justify="center">
         <Grid item xs={12} sm={5}>
-          <Plan title="Free plan" subtitle="Basic features." overline="Downgrade">
-            <Typography variant="h4" component="div">
-              Free
-            </Typography>
+          <Plan title="Free plan" subtitle="The basics." overline="Essentials">
+            <Box display="flex" justifyContent="center">
+              <Typography className={classes.price} variant="h4" component="div">
+                Forever free
+              </Typography>
+            </Box>
+            <Box mb={2}>
+              <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
+            </Box>
           </Plan>
         </Grid>
         {plans?.length &&
@@ -196,9 +227,18 @@ const PlanSelection: React.FunctionComponent = () => {
               <Grid item xs={12} sm={7} key={index}>
                 <Plan
                   title={name}
-                  subtitle={'For professional spies…'}
+                  subtitle={'Includes all basic features.'}
+                  overline={
+                    isSubscriptionBillingIntervalMatch
+                      ? 'Current Plan'
+                      : price?.recurring?.interval === 'year'
+                      ? 'Recommended for you'
+                      : 'Stay flexible'
+                  }
                   isCurrentPlan={
-                    subscription?.status === 'active' && price.product === activePrice?.product
+                    isSubscriptionActive &&
+                    price.product === activePrice?.product &&
+                    isSubscriptionBillingIntervalMatch
                   }
                 >
                   <Box display="flex" justifyContent="center">
@@ -208,39 +248,77 @@ const PlanSelection: React.FunctionComponent = () => {
                     </Typography>
                   </Box>
                   <Box mb={2}>
-                    <SimpleAccordion name="usps" items={items} />
+                    <SimpleAccordion name="premiumUsps" items={getAccordionItems(premiumUsps)} />
                   </Box>
 
-                  {session ? (
-                    <BaseButton
-                      size="large"
-                      variant="contained"
-                      color="primary"
-                      onClick={() => handleSubmit(price.id)}
-                      loading={status?.type === 'loading'}
-                    >
-                      Choose Plan
-                    </BaseButton>
-                  ) : (
-                    <BaseButtonLink
-                      size="large"
-                      variant="contained"
-                      color="primary"
-                      href="/account"
-                    >
-                      Sign up
-                    </BaseButtonLink>
+                  {subscription && isSubscriptionCanceled && (
+                    <Box mb={2}>
+                      <Alert severity="warning">
+                        This plan has been canceled and will get downgraded to the free plan on{' '}
+                        {dateFromTimestamp(subscription.cancel_at)}.
+                      </Alert>
+                    </Box>
                   )}
-                  {subscription?.status === 'active' && (
-                    <BaseButton
-                      variant="text"
-                      color="primary"
-                      onClick={() => deleteSubscription(subscription.id)}
-                      loading={status?.type === 'loading'}
-                    >
-                      Cancel subscription
-                    </BaseButton>
-                  )}
+
+                  <Box display="flex" flexDirection="column" alignItems="center">
+                    {session ? (
+                      <>
+                        {isSubscriptionCanceled || !subscription ? (
+                          <BaseButton
+                            size="large"
+                            variant="contained"
+                            color="primary"
+                            onClick={() => handleSubmit(price.id)}
+                            loading={status?.type === 'loading'}
+                          >
+                            {isSubscriptionCanceled ? 'Reactivate plan' : 'Choose Plan'}
+                          </BaseButton>
+                        ) : (
+                          <>
+                            {!isSubscriptionBillingIntervalMatch && (
+                              <BaseButton
+                                variant="outlined"
+                                color="primary"
+                                onClick={() =>
+                                  handleSubmit(
+                                    activePrice?.recurring?.interval === 'year'
+                                      ? prices.monthly.id
+                                      : prices.yearly.id,
+                                  )
+                                }
+                                loading={status?.type === 'loading'}
+                              >
+                                Switch to{' '}
+                                {activePrice?.recurring?.interval === 'year' ? 'monthly' : 'yearly'}{' '}
+                                billing
+                              </BaseButton>
+                            )}
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <BaseButtonLink
+                        size="large"
+                        variant="contained"
+                        color="primary"
+                        href="/account"
+                      >
+                        Sign up
+                      </BaseButtonLink>
+                    )}
+                    {subscription &&
+                      isSubscriptionActiveNotCanceled &&
+                      isSubscriptionBillingIntervalMatch && (
+                        <BaseButton
+                          variant="outlined"
+                          color="primary"
+                          onClick={() => deleteSubscription(subscription.id)}
+                          loading={status?.type === 'loading'}
+                        >
+                          Cancel subscription
+                        </BaseButton>
+                      )}
+                  </Box>
                 </Plan>
               </Grid>
             )
@@ -248,15 +326,18 @@ const PlanSelection: React.FunctionComponent = () => {
       </Grid>
 
       <Box pt={5}>
-        <Box mb={2}>
-          <Typography component="div" align="center">
-            Get{' '}
-            <Typography variant="inherit" component="strong" color="primary">
-              2 months free
-            </Typography>{' '}
-            with the yearly plan!
-          </Typography>
-        </Box>
+        {(!subscription || (isSubscriptionBillingIntervalMonthly && !showYearlyPrice)) && (
+          <Box mb={2}>
+            <Typography component="div" align="center">
+              Get{' '}
+              <Typography variant="inherit" component="strong" color="primary">
+                2 months free
+              </Typography>{' '}
+              with the yearly plan!
+            </Typography>
+          </Box>
+        )}
+
         <Grid component="label" container alignItems="center" justify="center" spacing={1}>
           <Grid item>Monthly</Grid>
           <Grid item>
@@ -265,14 +346,6 @@ const PlanSelection: React.FunctionComponent = () => {
           <Grid item>Yearly</Grid>
         </Grid>
       </Box>
-      <Alert severity="success">
-        plans = {JSON.stringify(plans, null, 3)}
-        <br />
-        CheckoutSession: <pre>{JSON.stringify(checkoutSession, null, 2)}</pre>
-        Subscription: <pre>{JSON.stringify(subscription, null, 2)}</pre>
-        {/* stripeCustomer: <pre>{JSON.stringify(stripeCustomer, null, 2)}</pre> */}
-        active price: <pre>{JSON.stringify(activePrice, null, 2)}</pre>
-      </Alert>
     </>
   )
 }

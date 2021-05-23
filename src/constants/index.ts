@@ -16,4 +16,13 @@ export const emojiShortUrl = 'https://🤫.st'
 export const shortUrl = 'https://scrt.li'
 
 // Limits
-export const getMaxMessageLength = (hasAccount: boolean) => (hasAccount ? 10000 : 280)
+export const getMaxMessageLength = (isPremium: boolean) => (isPremium ? 10000 : 280)
+
+export const limits = {
+  free: {
+    maxMessageLength: 150,
+  },
+  premium: {
+    maxMessageLength: 10000,
+  },
+}

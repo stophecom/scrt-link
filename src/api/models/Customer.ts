@@ -1,11 +1,16 @@
 import mongoose from 'mongoose'
 
-export type ReadReceipts = 'none' | 'sms' | 'email'
+const readReceipts = ['none', 'sms', 'email']
+export type ReadReceipts = typeof readReceipts[number]
+
+const roles = ['free', 'premium'] as const
+export type Role = typeof roles[number]
+
 export interface CustomerFields {
   userId: string
+  roles: Role[]
   stripe: {
     customerId: string
-    subscription: string
   }
   receiptEmail: string
   receiptPhoneNumber: string
@@ -18,9 +23,12 @@ export interface CustomerFields {
 
 type CustomerDocument = mongoose.Document & CustomerFields
 
+const RolesSchema = new mongoose.Schema({ value: { type: String, enum: roles } })
+
 const CustomerSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Types.ObjectId, required: true },
+    roles: { array: RolesSchema },
     stripe: {
       customerId: String,
       subscription: String,
@@ -28,7 +36,7 @@ const CustomerSchema = new mongoose.Schema(
     name: { type: String, required: false, trim: true },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
-    readReceipts: { type: String, required: false },
+    readReceipts: { type: String, enum: readReceipts, required: false },
     isEmojiShortLinkEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },

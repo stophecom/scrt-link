@@ -11,7 +11,7 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET': {
       try {
-        const customer = await stripe.customers.retrieve(customerId)
+        const customer = await stripe.customers.retrieve(customerId, { expand: ['subscriptions'] })
 
         res.status(200).json(customer)
       } catch (err) {

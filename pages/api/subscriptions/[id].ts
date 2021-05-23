@@ -44,8 +44,6 @@ const handler: NextApiHandler = async (req, res) => {
           },
         )
 
-        await models.Customer.findOneAndUpdate()
-
         res.status(200).json(updatedSubscription)
       } catch (err) {
         throw createError(500, err.message)
@@ -54,9 +52,15 @@ const handler: NextApiHandler = async (req, res) => {
     }
     case 'DELETE': {
       try {
-        const deleted = await stripe.subscriptions.del(subscriptionId)
+        const cancelledSubscription: Stripe.Subscription = await stripe.subscriptions.update(
+          subscriptionId,
+          {
+            cancel_at_period_end: true,
+            // cancel_at: Math.round(Date.now() / 1000) + 30, // For testing
+          },
+        )
 
-        res.status(200).json(deleted)
+        res.status(200).json(cancelledSubscription)
       } catch (err) {
         throw createError(500, err.message)
       }

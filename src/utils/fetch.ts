@@ -100,10 +100,9 @@ export const useCheckoutSession = (checkoutSessionId?: string) => {
   }
 }
 
-export const useStripeCustomer = () => {
-  const { data: customer } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
-  const { data, error } = useSWR(
-    customer?.stripe?.customerId ? `${baseUrl}/api/customers/${customer.stripe.customerId}` : null,
+export const useStripeCustomer = (customerId: string) => {
+  const { data, error } = useSWR<Stripe.Customer>(
+    customerId ? `${baseUrl}/api/customers/${customerId}` : null,
   )
 
   return {
@@ -113,13 +112,9 @@ export const useStripeCustomer = () => {
   }
 }
 
-export const useSubscription = () => {
-  const { data: customer } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
-
+export const useSubscription = (subscriptionId: string) => {
   const { data, error } = useSWR<Stripe.Subscription>(
-    customer?.stripe?.subscription
-      ? `${baseUrl}/api/subscriptions/${customer.stripe.subscription}`
-      : null,
+    `${baseUrl}/api/subscriptions/${subscriptionId}`,
   )
 
   return {

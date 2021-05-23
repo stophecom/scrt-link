@@ -73,6 +73,11 @@ const Layout: React.FC = ({ children }) => {
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
+          <Box mr={1}>
+            <BaseButtonLink href="/pricing" variant="text" size="small" color="default">
+              Pricing
+            </BaseButtonLink>
+          </Box>
           {session && (
             <Box mr={2}>
               <NoSsr>
