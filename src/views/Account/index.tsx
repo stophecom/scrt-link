@@ -22,24 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-export const usps = [
-  'Read receipts via SMS or Email',
-  `Extended message limit: ${getMaxMessageLength(true).toLocaleString()} characters`,
-  `Emoji link to share your secrets: **https://🤫.st**`,
-  `Customizations for Neogram™ messages (custom destruction message, timer)`,
-  `Statistics`,
-]
-
-export const AccountUsps = () => {
-  const classes = useStyles()
-
-  const body = `
-With a free account you get access to the following features:
-${usps.map((item: string) => `- ${item}`)}
-`
-  return <Markdown className={classes.root} source={body} />
-}
-
 const Account = () => {
   const [session, loading] = useSession()
 
@@ -91,10 +73,6 @@ const Account = () => {
           <Typography variant="body2">
             No account yet? Use the same form to sign up and create an account.
           </Typography>
-        </Box>
-        <Box mb={4}>
-          <Typography variant="h2">Why?</Typography>
-          <AccountUsps />
         </Box>
       </Page>
     </NoSsr>

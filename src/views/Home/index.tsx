@@ -33,11 +33,11 @@ import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/cons
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
-import { AccountUsps } from '@/views/Account'
 import { useCustomer } from '@/utils/fetch'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
+const PlanSelection = dynamic(() => import('@/components/PlanSelection'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -401,18 +401,7 @@ const HomeView: React.FunctionComponent = () => {
       {!session && (
         <Box mb={4}>
           <Typography variant="h2">There is more…</Typography>
-          <AccountUsps />
-          <Box pt={1}>
-            <BaseButtonLink
-              href="/account"
-              variant="contained"
-              size="large"
-              color="primary"
-              startIcon={<ArrowForward />}
-            >
-              Get free account
-            </BaseButtonLink>
-          </Box>
+          <PlanSelection />
         </Box>
       )}
     </Page>
