@@ -23,7 +23,6 @@ const handler: NextApiHandler = async (req, res) => {
 
               return {
                 name: item.name,
-                meta: item.metadata,
                 id: item.id,
                 prices: { monthly: priceByInterval('month'), yearly: priceByInterval('year') },
               }

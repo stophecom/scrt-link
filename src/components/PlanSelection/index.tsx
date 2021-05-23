@@ -15,7 +15,7 @@ import { SimpleAccordion } from '@/components/Accordion'
 import { PageError } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
-import { api, useStripeCustomer, useCheckoutSession, usePlans, Plans } from '@/utils/fetch'
+import { api, useStripeCustomer, usePlans } from '@/utils/fetch'
 import Plan from './Plan'
 import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
 

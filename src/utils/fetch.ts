@@ -73,13 +73,12 @@ export const useCustomerStats = (userId?: string) => {
 type Plan = {
   name: string
   id: string
-  meta: Record<string, unknown>
   prices: { monthly: Stripe.Price; yearly: Stripe.Price }
 }
 export type Plans = Plan[]
 
 export const usePlans = () => {
-  const { data, error } = useSWR<Plans>(`${baseUrl}/api/plans`)
+  const { data, error } = useSWR<Plans | undefined>(`${baseUrl}/api/plans`)
 
   return {
     plans: data,
