@@ -99,7 +99,7 @@ export const useCheckoutSession = (checkoutSessionId?: string) => {
   }
 }
 
-export const useStripeCustomer = (customerId: string) => {
+export const useStripeCustomer = (customerId?: string) => {
   const { data, error } = useSWR<Stripe.Customer>(
     customerId ? `${baseUrl}/api/customers/${customerId}` : null,
   )
