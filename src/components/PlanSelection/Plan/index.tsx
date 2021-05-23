@@ -68,7 +68,9 @@ const Plan: React.FunctionComponent<PlanProps> = ({
           {subtitle}
         </Typography>
       </Box>
-      <Box>{children}</Box>
+      <Box display="flex" flexDirection="column" height="100%">
+        {children}
+      </Box>
     </Paper>
   )
 }

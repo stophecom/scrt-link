@@ -218,6 +218,13 @@ const PlanSelection: React.FunctionComponent = () => {
             <Box mb={2}>
               <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
             </Box>
+            <Box display="flex" flexDirection="column" alignItems="center" mt={'auto'}>
+              {session ?? (
+                <BaseButtonLink size="large" variant="contained" color="primary" href="/account">
+                  Sign up
+                </BaseButtonLink>
+              )}
+            </Box>
           </Plan>
         </Grid>
         {plans?.length &&
@@ -299,7 +306,7 @@ const PlanSelection: React.FunctionComponent = () => {
                     ) : (
                       <BaseButtonLink
                         size="large"
-                        variant="contained"
+                        variant="outlined"
                         color="primary"
                         href="/account"
                       >
