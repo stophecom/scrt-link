@@ -4,6 +4,9 @@ import { nolookalikes } from 'nanoid-dictionary'
 import { AES, enc } from 'crypto-js'
 import { sha256 } from 'js-sha256'
 
+import { Role } from '@/api/models/Customer'
+import { limits } from '@/constants'
+
 // https://stackoverflow.com/a/19709846
 export const sanitizeUrl = (url: string) => {
   if (url.startsWith('//')) {
@@ -34,3 +37,5 @@ export const decryptMessage = (message: string, decryptionKey: string) => {
   const bytes = AES.decrypt(message, hash)
   return bytes.toString(enc.Utf8)
 }
+
+export const getLimits = (role: Role = 'free') => limits[role]

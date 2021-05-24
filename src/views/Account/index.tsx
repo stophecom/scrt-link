@@ -1,26 +1,18 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/client'
 import { Box, Typography } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
+import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import SignInForm from '@/components/SignInForm'
 import CustomerForm from '@/components/CustomerForm'
 import Page from '@/components/Page'
 
-import Markdown from '@/components/Markdown'
-import { getMaxMessageLength } from '@/constants'
 import { useCustomer, useCustomerStats } from '@/utils/api'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      fontSize: '1.2rem',
-    },
-  }),
-)
+import { startSession } from 'mongoose'
 
 const Account = () => {
   const [session, loading] = useSession()
@@ -34,6 +26,15 @@ const Account = () => {
   if (session) {
     return (
       <Page title={`Hi ${customer?.name || ''}`} subtitle="Welcome back!">
+        {!!session && (
+          <Box mb={10}>
+            <NoSsr>
+              <BaseButton onClick={() => signOut()} variant="outlined">
+                Sign out
+              </BaseButton>
+            </NoSsr>
+          </Box>
+        )}
         <Box mb={10}>
           <Typography variant="h2">Statistics</Typography>
           <Typography variant="body1">

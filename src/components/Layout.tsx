@@ -1,9 +1,8 @@
 import React from 'react'
-import { Box, Typography } from '@material-ui/core'
+import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { signOut, useSession } from 'next-auth/client'
-import NoSsr from '@material-ui/core/NoSsr'
+
 import CircularProgress from '@material-ui/core/CircularProgress'
 import NextNprogress from 'nextjs-progressbar'
 
@@ -11,7 +10,6 @@ import { Link, BaseButtonLink } from '@/components/Link'
 import { pink } from '@/theme'
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
-import BaseButton from '@/components/BaseButton'
 import Stats from '@/components/Stats'
 import { useCustomer } from '@/utils/api'
 
@@ -65,40 +63,30 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
-  const [session, loading] = useSession()
-  const { customer } = useCustomer()
+  const { customer, isLoading } = useCustomer()
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
-          <Box mr={1}>
-            <BaseButtonLink href="/pricing" variant="text" size="small" color="default">
-              Pricing
-            </BaseButtonLink>
-          </Box>
-          {session && (
-            <Box mr={2}>
-              <NoSsr>
-                <BaseButton onClick={() => signOut()} variant="text" size="small">
-                  Sign out
-                </BaseButton>
-              </NoSsr>
-            </Box>
+          {customer?.role !== 'premium' && (
+            <NoSsr>
+              <Box mr={1}>
+                <BaseButtonLink href="/pricing" variant="text" size="small" color="default">
+                  Pricing
+                </BaseButtonLink>
+              </Box>
+            </NoSsr>
           )}
-          <BaseButtonLink
-            href="/account"
-            color="primary"
-            variant={session ? 'contained' : 'text'}
-            size="small"
-          >
-            {loading ? (
+
+          <BaseButtonLink href="/account" color="primary" variant="text" size="small">
+            {isLoading ? (
               <>
                 <CircularProgress size={12} />
                 &nbsp;
               </>
-            ) : session ? (
+            ) : customer?.userId ? (
               <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
                 {customer?.name || 'My account'}
               </Typography>

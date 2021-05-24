@@ -5,7 +5,6 @@ import { Box, Grid, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 import { Check } from '@material-ui/icons'
-import { useSession } from 'next-auth/client'
 
 import { limits } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
@@ -15,7 +14,7 @@ import { SimpleAccordion } from '@/components/Accordion'
 import { PageError } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
-import { api, useStripeCustomer, usePlans } from '@/utils/api'
+import { api, useStripeCustomer, usePlans, useCustomer } from '@/utils/api'
 import Plan from './Plan'
 import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
 
@@ -86,10 +85,10 @@ type Status = {
 }
 
 const PlanSelection: React.FunctionComponent = () => {
-  const [session] = useSession()
+  const { customer } = useCustomer()
   const { plans, isLoading, error } = usePlans()
   const { stripeCustomer, triggerFetchStripeCustomer } = useStripeCustomer(
-    session?.stripeCustomerId,
+    customer?.stripe?.customerId,
   )
 
   const [status, setStatus] = useState<Status>({ type: 'initial' })
@@ -221,7 +220,7 @@ const PlanSelection: React.FunctionComponent = () => {
             title="Free plan"
             subtitle="The basics."
             overline="Essentials"
-            isCurrentPlan={!!session && !isSubscriptionActive}
+            isCurrentPlan={!!customer?.userId && !isSubscriptionActive}
           >
             <Box display="flex" justifyContent="center">
               <Typography className={classes.price} variant="h4" component="div">
@@ -232,9 +231,9 @@ const PlanSelection: React.FunctionComponent = () => {
               <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" mt={'auto'}>
-              {!session && (
+              {customer?.userId || (
                 <BaseButtonLink size="large" variant="contained" color="primary" href="/account">
-                  Sign up
+                  Sign up free
                 </BaseButtonLink>
               )}
             </Box>
@@ -292,7 +291,7 @@ const PlanSelection: React.FunctionComponent = () => {
                   )}
 
                   <Box display="flex" flexDirection="column" alignItems="center">
-                    {session ? (
+                    {customer?.userId ? (
                       <>
                         {isSubscriptionCanceled || !subscription ? (
                           <>
@@ -336,6 +335,7 @@ const PlanSelection: React.FunctionComponent = () => {
                       </>
                     ) : (
                       <BaseButtonLink
+                        disabled
                         size="large"
                         variant="outlined"
                         color="primary"

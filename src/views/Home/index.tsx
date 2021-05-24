@@ -9,7 +9,6 @@ import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 
-import { useSession } from 'next-auth/client'
 import { ArrowForward } from '@material-ui/icons'
 
 import { Link, BaseButtonLink } from '@/components/Link'
@@ -24,12 +23,12 @@ import TabsMenu from './components/TabsMenu'
 
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
-import { generateNanoId, encryptMessage } from '@/utils'
+import { getLimits, generateNanoId, encryptMessage } from '@/utils'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
-import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/constants'
+import { urlAliasLength, encryptionKeyLength } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
@@ -122,7 +121,6 @@ const tabsMenu = Object.keys(secretTypesMap).map((item) => {
 const reducer = createReducer<State>()
 
 const HomeView: React.FunctionComponent = () => {
-  const [session] = useSession()
   const classes = useStyles()
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -196,7 +194,7 @@ const HomeView: React.FunctionComponent = () => {
     messageLength: number
   }
   const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
-    const charactersLeft = getMaxMessageLength(!!session) - messageLength
+    const charactersLeft = getLimits(customer?.role).maxMessageLength - messageLength
     return (
       <small className={classes.counter}>
         {charactersLeft.toLocaleString()}
@@ -258,7 +256,7 @@ const HomeView: React.FunctionComponent = () => {
         validationSchema={getValidationSchemaByType(
           secretType,
           hasFormOptions,
-          getMaxMessageLength(!!session),
+          getLimits(customer?.role).maxMessageLength,
         )}
         validateOnMount
         onSubmit={handleSubmit}
@@ -398,7 +396,7 @@ const HomeView: React.FunctionComponent = () => {
         </BaseButtonLink>
       </Box>
 
-      {!session && (
+      {customer?.role !== 'premium' && (
         <Box mb={4}>
           <Typography variant="h2">There is more…</Typography>
           <PlanSelection />

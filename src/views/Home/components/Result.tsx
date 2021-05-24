@@ -13,7 +13,6 @@ import { State } from '../index'
 import { isProduction } from '@/config'
 import { CustomerFields } from '@/api/models/Customer'
 import { emojiShortUrl, baseUrl } from '@/constants'
-import { useSession } from 'next-auth/client'
 
 type ResultProps = Pick<State, 'data'> &
   Pick<CustomerFields, 'isEmojiShortLinkEnabled'> & {
@@ -27,7 +26,6 @@ const Result: React.FunctionComponent<ResultProps> = ({
 }) => {
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
-  const [session] = useSession()
   const [hasCopied, setHasCopied] = useState(false)
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = React.useState(isEmojiShortLinkEnabled)
@@ -102,14 +100,12 @@ const Result: React.FunctionComponent<ResultProps> = ({
             </Paper>
           )}
           <Box p={1} display="flex">
-            {session && (
-              <BooleanSwitch
-                label="Use emoji link"
-                name="emojiLink"
-                checked={isEmojiLinkEnabled}
-                onChange={setIsEmojiLinkEnabled}
-              />
-            )}
+            <BooleanSwitch
+              label="Use emoji link"
+              name="emojiLink"
+              checked={isEmojiLinkEnabled}
+              onChange={setIsEmojiLinkEnabled}
+            />
 
             <Box ml="auto" px={1}>
               <Typography color="textSecondary" variant="caption">
