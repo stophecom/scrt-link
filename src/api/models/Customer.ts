@@ -8,7 +8,7 @@ export type Role = typeof roles[number]
 
 export interface CustomerFields {
   userId: string
-  roles: Role[]
+  role: Role
   stripe: {
     customerId: string
   }
@@ -23,12 +23,10 @@ export interface CustomerFields {
 
 type CustomerDocument = mongoose.Document & CustomerFields
 
-const RolesSchema = new mongoose.Schema({ value: { type: String, enum: roles } })
-
 const CustomerSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Types.ObjectId, required: true },
-    roles: { array: RolesSchema },
+    role: { type: String, enum: roles },
     stripe: {
       customerId: String,
     },

@@ -54,27 +54,23 @@ const handler: NextApiHandler = async (req, res) => {
 
         // If payment successful the status changes to active:
         // https://stripe.com/docs/api/subscriptions/object#subscription_object-status
-        if (subscription.status === 'active') {
+        if (['trialing', 'active'].includes(subscription.status)) {
           // We use the role that is stored as metadata on the stripe plan
           await models.Customer.findOneAndUpdate(
             {
               'stripe.customerId': subscription.customer,
             },
-            { $addToSet: { roles: subscription.items.data[0].price.metadata.role as Role } },
+            { role: subscription.items.data[0].price.metadata.role as Role },
           )
           console.log('✅ Subscription active:', event.type)
-        }
-
-        if (subscription.status === 'canceled') {
-          // We use the role that is stored as metadata on the stripe plan
+        } else {
+          // E.g. if canceled, unpaid, etc.
           await models.Customer.findOneAndUpdate(
             {
               'stripe.customerId': subscription.customer,
             },
-            { $pull: { roles: subscription.items.data[0].price.metadata.role as Role } },
+            { role: 'free' },
           )
-
-          console.log('✅ Subscription canceled:', event.type)
         }
 
         break

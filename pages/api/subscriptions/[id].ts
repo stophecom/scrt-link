@@ -57,6 +57,7 @@ const handler: NextApiHandler = async (req, res) => {
           {
             cancel_at_period_end: true,
             trial_end: 'now',
+            // cancel_at: Math.round(Date.now() / 1000) + 20, // For testing
           },
         )
 

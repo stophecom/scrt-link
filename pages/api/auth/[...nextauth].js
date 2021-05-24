@@ -40,6 +40,7 @@ const handler = (req, res) =>
           models.Customer.create({
             userId: user.id,
             stripe: { customerId: stripeCustomer?.id },
+            role: 'free',
           })
 
           models.Stats.create({ userId: user.id })
