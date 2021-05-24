@@ -235,13 +235,7 @@ const PlanSelection: React.FunctionComponent = () => {
                 <Plan
                   title={name}
                   subtitle={'Includes all basic features.'}
-                  overline={
-                    isSubscriptionBillingIntervalMatch
-                      ? 'Current Plan'
-                      : price?.recurring?.interval === 'year'
-                      ? 'Recommended for you'
-                      : 'Stay flexible'
-                  }
+                  overline={isSubscriptionBillingIntervalMatch ? 'Current Plan' : 'Advanced'}
                   isCurrentPlan={
                     isSubscriptionActive &&
                     price.product === activePrice?.product &&
