@@ -100,10 +100,13 @@ export const useCheckoutSession = (checkoutSessionId?: string) => {
 }
 
 export const useStripeCustomer = (customerId?: string) => {
-  const { data, error } = useSWR<Stripe.Customer>(() => `${baseUrl}/api/customers/${customerId}`)
+  const { data, mutate, error } = useSWR<Stripe.Customer>(
+    () => `${baseUrl}/api/customers/${customerId}`,
+  )
 
   return {
     stripeCustomer: data,
+    triggerFetchStripeCustomer: mutate,
     isLoading: !error && !data,
     error: error,
   }

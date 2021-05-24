@@ -86,7 +86,9 @@ type Status = {
 const PlanSelection: React.FunctionComponent = () => {
   const [session] = useSession()
   const { plans, isLoading, error } = usePlans()
-  const { stripeCustomer } = useStripeCustomer(session?.stripeCustomerId)
+  const { stripeCustomer, triggerFetchStripeCustomer } = useStripeCustomer(
+    session?.stripeCustomerId,
+  )
 
   const [status, setStatus] = useState<Status>({ type: 'initial' })
   const [activePrice, setActivePrice] = useState<Stripe.Price>()
@@ -119,6 +121,7 @@ const PlanSelection: React.FunctionComponent = () => {
             subscription.cancel_at,
           )}. If you change your mind until then, feel free to reactivate any time.`,
         })
+        triggerFetchStripeCustomer()
       })
       .catch((err) =>
         setStatus({
@@ -173,6 +176,8 @@ const PlanSelection: React.FunctionComponent = () => {
       }
     } catch (err) {
       setStatus({ type: 'error', message: err.message })
+    } finally {
+      triggerFetchStripeCustomer()
     }
   }
 
@@ -209,10 +214,15 @@ const PlanSelection: React.FunctionComponent = () => {
       )}
       <Grid container spacing={2} justify="center">
         <Grid item xs={12} sm={5}>
-          <Plan title="Free plan" subtitle="The basics." overline="Essentials">
+          <Plan
+            title="Free plan"
+            subtitle="The basics."
+            overline="Essentials"
+            isCurrentPlan={session && !isSubscriptionActive}
+          >
             <Box display="flex" justifyContent="center">
               <Typography className={classes.price} variant="h4" component="div">
-                Forever free
+                Free forever
               </Typography>
             </Box>
             <Box mb={2}>
@@ -252,11 +262,25 @@ const PlanSelection: React.FunctionComponent = () => {
                     <SimpleAccordion name="premiumUsps" items={getAccordionItems(premiumUsps)} />
                   </Box>
 
-                  {subscription && isSubscriptionCanceled && (
+                  {subscription && (
                     <Box mb={2}>
-                      <Alert severity="warning">
-                        This plan has been canceled and will get downgraded to the free plan on{' '}
-                        {dateFromTimestamp(subscription.cancel_at)}.
+                      <Alert
+                        severity={isSubscriptionCanceled ? 'warning' : 'success'}
+                        icon={isSubscriptionActive && false}
+                      >
+                        {isSubscriptionCanceled ? (
+                          <>
+                            This plan has been canceled and will get downgraded to the free plan on{' '}
+                            {dateFromTimestamp(subscription.cancel_at)}.
+                          </>
+                        ) : (
+                          <>
+                            This plan is currently active. You are being billed{' '}
+                            {formatCurrency(Number(activePrice?.unit_amount) / 100)} every{' '}
+                            {activePrice?.recurring?.interval}. You can switch billing cycle or
+                            cancel the subscription anytime.
+                          </>
+                        )}
                       </Alert>
                     </Box>
                   )}
@@ -265,20 +289,23 @@ const PlanSelection: React.FunctionComponent = () => {
                     {session ? (
                       <>
                         {isSubscriptionCanceled || !subscription ? (
-                          <BaseButton
-                            size="large"
-                            variant="contained"
-                            color="primary"
-                            onClick={() => handleSubmit(price.id)}
-                            loading={status?.type === 'loading'}
-                          >
-                            {isSubscriptionCanceled ? 'Reactivate plan' : 'Choose Plan'}
-                          </BaseButton>
+                          <>
+                            <BaseButton
+                              size="large"
+                              variant="contained"
+                              color="primary"
+                              onClick={() => handleSubmit(price.id)}
+                              loading={status?.type === 'loading'}
+                            >
+                              {isSubscriptionCanceled ? 'Reactivate plan' : 'Choose Plan'}
+                            </BaseButton>
+                            {!subscription && <span>Try 30 days</span>}
+                          </>
                         ) : (
                           <>
                             {!isSubscriptionBillingIntervalMatch && (
                               <BaseButton
-                                variant="outlined"
+                                variant="contained"
                                 color="primary"
                                 onClick={() =>
                                   handleSubmit(
@@ -304,7 +331,7 @@ const PlanSelection: React.FunctionComponent = () => {
                         color="primary"
                         href="/account"
                       >
-                        Sign up
+                        Sign up first
                       </BaseButtonLink>
                     )}
                     {subscription &&
@@ -327,7 +354,7 @@ const PlanSelection: React.FunctionComponent = () => {
       </Grid>
 
       <Box pt={5}>
-        {(!subscription || (isSubscriptionBillingIntervalMonthly && !showYearlyPrice)) && (
+        {(!subscription || isSubscriptionBillingIntervalMonthly) && (
           <Box mb={2}>
             <Typography component="div" align="center">
               Get{' '}
