@@ -7,31 +7,36 @@
       
 	<url>
 		<loc>https://scrt.link/contact</loc>
-		<lastmod>2021-05-11</lastmod>
+		<lastmod>2021-05-24</lastmod>
 	</url>
 
 	<url>
 		<loc>https://scrt.link/faq</loc>
-		<lastmod>2021-05-11</lastmod>
+		<lastmod>2021-05-24</lastmod>
 	</url>
 
 	<url>
 		<loc>https://scrt.link/imprint</loc>
-		<lastmod>2021-05-11</lastmod>
+		<lastmod>2021-05-24</lastmod>
 	</url>
 
 	<url>
 		<loc>https://scrt.link/index</loc>
-		<lastmod>2021-05-11</lastmod>
+		<lastmod>2021-05-24</lastmod>
+	</url>
+
+	<url>
+		<loc>https://scrt.link/pricing/index</loc>
+		<lastmod>2021-05-24</lastmod>
 	</url>
 
 	<url>
 		<loc>https://scrt.link/privacy</loc>
-		<lastmod>2021-05-11</lastmod>
+		<lastmod>2021-05-24</lastmod>
 	</url>
 
 	<url>
 		<loc>https://scrt.link/security</loc>
-		<lastmod>2021-05-11</lastmod>
+		<lastmod>2021-05-24</lastmod>
 	</url>
 </urlset>
