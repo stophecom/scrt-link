@@ -13,7 +13,7 @@ import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 import BaseButton from '@/components/BaseButton'
 import Stats from '@/components/Stats'
-import { useCustomer } from '@/utils/fetch'
+import { useCustomer } from '@/utils/api'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'

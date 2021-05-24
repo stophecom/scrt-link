@@ -5,7 +5,7 @@ import { usePusher } from '@/utils/pusher'
 import { StatsFields } from '@/api/models/Stats'
 
 import { UIStore } from '@/store'
-import { useStats } from '@/utils/fetch'
+import { useStats } from '@/utils/api'
 
 const Stats = () => {
   const liveStatsEnabled = UIStore.useState((s) => s.liveStatsEnabled)

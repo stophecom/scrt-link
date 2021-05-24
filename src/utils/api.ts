@@ -100,9 +100,7 @@ export const useCheckoutSession = (checkoutSessionId?: string) => {
 }
 
 export const useStripeCustomer = (customerId?: string) => {
-  const { data, error } = useSWR<Stripe.Customer>(
-    customerId ? `${baseUrl}/api/customers/${customerId}` : null,
-  )
+  const { data, error } = useSWR<Stripe.Customer>(() => `${baseUrl}/api/customers/${customerId}`)
 
   return {
     stripeCustomer: data,

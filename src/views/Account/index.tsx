@@ -12,7 +12,7 @@ import Page from '@/components/Page'
 
 import Markdown from '@/components/Markdown'
 import { getMaxMessageLength } from '@/constants'
-import { useCustomer, useCustomerStats } from '@/utils/fetch'
+import { useCustomer, useCustomerStats } from '@/utils/api'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

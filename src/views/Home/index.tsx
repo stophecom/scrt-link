@@ -33,7 +33,7 @@ import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/cons
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
-import { useCustomer } from '@/utils/fetch'
+import { useCustomer } from '@/utils/api'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))

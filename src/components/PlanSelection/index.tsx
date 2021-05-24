@@ -15,7 +15,7 @@ import { SimpleAccordion } from '@/components/Accordion'
 import { PageError } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
-import { api, useStripeCustomer, usePlans } from '@/utils/fetch'
+import { api, useStripeCustomer, usePlans } from '@/utils/api'
 import Plan from './Plan'
 import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
 
@@ -219,7 +219,7 @@ const PlanSelection: React.FunctionComponent = () => {
               <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" mt={'auto'}>
-              {session ?? (
+              {!session && (
                 <BaseButtonLink size="large" variant="contained" color="primary" href="/account">
                   Sign up
                 </BaseButtonLink>
