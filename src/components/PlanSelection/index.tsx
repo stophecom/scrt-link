@@ -38,44 +38,49 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const premiumUsps = [
   {
+    heading: `All the free features, plus:`,
+  },
+  {
     heading: `${limits.premium.maxMessageLength / 1000}k character limit`,
-    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+    body: `For all the words you'll ever need`,
   },
   {
     heading: 'Read receipts: Email & SMS ',
-    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+    body: 'Fast, convenient. Get read notifications via SMS.',
   },
-  {
-    heading: 'Emoji link 🤫',
-    body: 'Get notification via SMS or Email when a secret has been viewed. ',
-  },
+
   {
     heading: 'Customize Neogram™ messages',
-    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+    body: 'Customize how your secret texts look like.',
   },
   {
     heading: 'Personal support',
-    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+    body: `We help you out if things down't work out as planned.`,
   },
   {
     heading: 'There is more…',
     body:
-      'You get early access to upcoming features. All future updated will be available for you at no extra cost.',
+      'All future updated will be available for you at no extra cost. You get early access to upcoming features.',
   },
 ]
 
 const freeUsps = [
   {
     heading: `${limits.free.maxMessageLength} character limit`,
-    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+    body: 'A tweet worth of characters.',
   },
   {
     heading: 'Read receipts: Email',
-    body: 'Get notification via Email when a secret has been viewed. ',
+    body: 'Get notification via Email whenever a secret has been viewed. ',
+  },
+  {
+    heading: 'Emoji link 🤫',
+    body:
+      'Surprise your confidant. Send your secrets using a fancy emoji domain: **https://🤫.st/…**.',
   },
   {
     heading: 'Statistics',
-    body: 'Get notification via SMS or Email when a secret has been viewed. ',
+    body: 'Get some insights.',
   },
 ]
 
@@ -196,7 +201,7 @@ const PlanSelection: React.FunctionComponent = () => {
           <span className={classes.accordionHeading}>{heading}</span>
         </Box>
       ),
-      body: body,
+      body,
     }))
 
   if (error) {
@@ -231,7 +236,7 @@ const PlanSelection: React.FunctionComponent = () => {
               <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" mt={'auto'}>
-              {customer?.userId || (
+              {!customer?.userId && (
                 <BaseButtonLink size="large" variant="contained" color="primary" href="/account">
                   Sign up free
                 </BaseButtonLink>

@@ -398,7 +398,12 @@ const HomeView: React.FunctionComponent = () => {
 
       {customer?.role !== 'premium' && (
         <Box mb={4}>
-          <Typography variant="h2">There is more…</Typography>
+          <Box mb={5}>
+            <Typography variant="h2">Got a mission impossible?</Typography>
+            <Typography variant="subtitle2">
+              {`We got you covered. Unlock the full potential for less than the price of a coffee!`}
+            </Typography>
+          </Box>
           <PlanSelection />
         </Box>
       )}
