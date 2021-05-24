@@ -20,7 +20,7 @@ export const getMaxMessageLength = (isPremium: boolean) => (isPremium ? 10000 : 
 
 export const limits = {
   free: {
-    maxMessageLength: 150,
+    maxMessageLength: 280,
   },
   premium: {
     maxMessageLength: 10000,

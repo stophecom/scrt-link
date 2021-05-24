@@ -41,6 +41,7 @@ const handler = (req, res) =>
             userId: user.id,
             stripe: { customerId: stripeCustomer?.id },
           })
+
           models.Stats.create({ userId: user.id })
 
           token.stripeCustomerId = stripeCustomer?.id

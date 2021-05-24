@@ -31,7 +31,6 @@ const CustomerSchema = new mongoose.Schema(
     roles: { array: RolesSchema },
     stripe: {
       customerId: String,
-      subscription: String,
     },
     name: { type: String, required: false, trim: true },
     receiptEmail: { type: String, required: false, trim: true },

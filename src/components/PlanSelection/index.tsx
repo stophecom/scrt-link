@@ -24,7 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
-
+    trial: {
+      paddingTop: '.2em',
+    },
     accordionHeading: {
       fontSize: '1.05rem',
       fontWeight: 'bold',
@@ -103,7 +105,8 @@ const PlanSelection: React.FunctionComponent = () => {
   const isSubscriptionBillingIntervalMatch =
     (isSubscriptionBillingIntervalYearly && showYearlyPrice) ||
     (isSubscriptionBillingIntervalMonthly && !showYearlyPrice)
-  const isSubscriptionActive = subscription?.status === 'active'
+  const isSubscriptionTrialing = subscription?.status === 'trialing'
+  const isSubscriptionActive = subscription?.status === 'active' || isSubscriptionTrialing
   const isSubscriptionActiveNotCanceled = isSubscriptionActive && !subscription?.cancel_at
   const isSubscriptionCanceled = isSubscriptionActive && !!subscription?.cancel_at
 
@@ -275,10 +278,13 @@ const PlanSelection: React.FunctionComponent = () => {
                           </>
                         ) : (
                           <>
-                            This plan is currently active. You are being billed{' '}
-                            {formatCurrency(Number(activePrice?.unit_amount) / 100)} every{' '}
-                            {activePrice?.recurring?.interval}. You can switch billing cycle or
-                            cancel the subscription anytime.
+                            This plan is currently active.&nbsp;
+                            {isSubscriptionTrialing
+                              ? `Trial ends on ${dateFromTimestamp(subscription?.trial_end)}.`
+                              : `You are being billed 
+                            ${formatCurrency(Number(activePrice?.unit_amount) / 100)} every 
+                            ${activePrice?.recurring?.interval}.`}
+                            &nbsp;You can switch billing cycle or cancel the subscription anytime.
                           </>
                         )}
                       </Alert>
@@ -297,9 +303,13 @@ const PlanSelection: React.FunctionComponent = () => {
                               onClick={() => handleSubmit(price.id)}
                               loading={status?.type === 'loading'}
                             >
-                              {isSubscriptionCanceled ? 'Reactivate plan' : 'Choose Plan'}
+                              {isSubscriptionCanceled ? 'Reactivate plan' : 'Try it free'}
                             </BaseButton>
-                            {!subscription && <span>Try 30 days</span>}
+                            {!subscription && (
+                              <Typography className={classes.trial} variant="body2">
+                                30 days free trial
+                              </Typography>
+                            )}
                           </>
                         ) : (
                           <>

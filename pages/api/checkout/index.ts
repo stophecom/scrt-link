@@ -35,6 +35,9 @@ const handler: NextApiHandler = async (req, res) => {
               quantity: 1,
             },
           ],
+          subscription_data: {
+            trial_period_days: 30,
+          },
           // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
           // the actual Session ID is returned in the query parameter when your customer
           // is redirected to the success page.
