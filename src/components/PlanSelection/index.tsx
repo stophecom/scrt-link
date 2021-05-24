@@ -85,7 +85,7 @@ type Status = {
 }
 
 const PlanSelection: React.FunctionComponent = () => {
-  const { customer } = useCustomer()
+  const { data: customer } = useCustomer()
   const { plans, isLoading, error } = usePlans()
   const { stripeCustomer, triggerFetchStripeCustomer } = useStripeCustomer(
     customer?.stripe?.customerId,

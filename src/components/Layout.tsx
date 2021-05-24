@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
-  const { customer, isLoading } = useCustomer()
+  const { data: customer, isLoading } = useCustomer()
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">

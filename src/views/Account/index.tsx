@@ -1,9 +1,7 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import { useSession, signOut } from 'next-auth/client'
 import { Box, Typography } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
@@ -12,13 +10,11 @@ import CustomerForm from '@/components/CustomerForm'
 import Page from '@/components/Page'
 
 import { useCustomer, useCustomerStats } from '@/utils/api'
-import { startSession } from 'mongoose'
 
 const Account = () => {
   const [session, loading] = useSession()
 
-  const router = useRouter()
-  const { customer } = useCustomer()
+  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
   const { stats } = useCustomerStats(session?.userId)
 
   if (typeof window !== 'undefined' && loading) return <Spinner />
@@ -58,7 +54,7 @@ const Account = () => {
             <CustomerForm
               receiptEmail={session.user.email as string}
               {...customer}
-              onSuccess={() => router.replace(router.asPath)} // Reloading server side props: https://www.joshwcomeau.com/nextjs/refreshing-server-side-props/
+              onSuccess={triggerFetchCustomer}
             />
           </Box>
         </Box>

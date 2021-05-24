@@ -125,7 +125,7 @@ const HomeView: React.FunctionComponent = () => {
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('message')
-  const { customer } = useCustomer()
+  const { data: customer } = useCustomer()
 
   const initialValues: SecretUrlFormValues = {
     message: '',

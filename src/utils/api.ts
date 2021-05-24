@@ -40,10 +40,11 @@ export async function api<T>(
 }
 
 export const useCustomer = () => {
-  const { data, error } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
+  const { data, mutate, error } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
 
   return {
-    customer: data,
+    data,
+    mutate,
     isLoading: !error && !data,
     error: error,
   }
