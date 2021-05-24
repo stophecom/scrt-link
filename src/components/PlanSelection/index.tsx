@@ -221,7 +221,7 @@ const PlanSelection: React.FunctionComponent = () => {
             title="Free plan"
             subtitle="The basics."
             overline="Essentials"
-            isCurrentPlan={session && !isSubscriptionActive}
+            isCurrentPlan={!!session && !isSubscriptionActive}
           >
             <Box display="flex" justifyContent="center">
               <Typography className={classes.price} variant="h4" component="div">
