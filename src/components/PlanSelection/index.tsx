@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const premiumUsps = [
   {
-    heading: `All the free features, plus:`,
+    heading: `Everything in Free, plus:`,
   },
   {
     heading: `${limits.premium.maxMessageLength / 1000}k character limit`,
@@ -222,8 +222,8 @@ const PlanSelection: React.FunctionComponent = () => {
       <Grid container spacing={2} justify="center">
         <Grid item xs={12} sm={5}>
           <Plan
-            title="Free plan"
-            subtitle="The basics."
+            title="Free"
+            subtitle="Share secrets securely."
             overline="Essentials"
             isCurrentPlan={!!customer?.userId && !isSubscriptionActive}
           >
@@ -251,7 +251,7 @@ const PlanSelection: React.FunctionComponent = () => {
               <Grid item xs={12} sm={7} key={index}>
                 <Plan
                   title={name}
-                  subtitle={'Includes all basic features.'}
+                  subtitle={'Everything a spy needs.'}
                   overline={isSubscriptionBillingIntervalMatch ? 'Current Plan' : 'Advanced'}
                   isCurrentPlan={
                     isSubscriptionActive &&
