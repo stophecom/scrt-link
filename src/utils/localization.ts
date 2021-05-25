@@ -5,6 +5,8 @@ export const formatCurrency = (amount: number) =>
     currencyDisplay: 'narrowSymbol',
   }).format(amount)
 
+export const formatNumber = (amount: number) => new Intl.NumberFormat('us-EN').format(amount)
+
 export const dateFromTimestamp = (timestamp?: number | null) => {
   if (typeof timestamp !== 'number') {
     return

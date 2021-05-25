@@ -6,6 +6,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 import { Check } from '@material-ui/icons'
 
+import { formatNumber } from '@/utils/localization'
 import { limits, trialPeriod } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
@@ -43,7 +44,9 @@ const premiumUsps = [
   },
   {
     heading: `${abbrNum(limits.premium.maxMessageLength, 1)} character limit`,
-    body: `Enough words for the perfect secret love letter, confession or disclosure.`,
+    body: `You can write secret messages with up to ${formatNumber(
+      limits.premium.maxMessageLength,
+    )} characters. Enough words for the perfect secret love letter, confession or disclosure.`,
   },
   {
     heading: 'Read receipts: Email & SMS ',
@@ -52,23 +55,24 @@ const premiumUsps = [
 
   {
     heading: 'Customize Neogram™ messages',
-    body: 'Customize how your secret texts look like.',
+    body: 'Add a note before your message self-destructs.',
   },
   {
-    heading: 'Personal support',
-    body: `We help you out if things down't work out as planned.`,
+    heading: 'Priority support',
+    body: `You'll be first in line if a problem occurs.`,
   },
   {
     heading: 'There is more…',
-    body:
-      'All future updated will be available for you at no extra cost. You get early access to upcoming features.',
+    body: `You'll get all future updates to this service at no extra cost, as well as early access to upcoming features.`,
   },
 ]
 
 const freeUsps = [
   {
     heading: `${abbrNum(limits.free.maxMessageLength, 1)} character limit`,
-    body: 'A tweet worth of characters.',
+    body: `You can write secret messages with up to ${formatNumber(
+      limits.free.maxMessageLength,
+    )} characters.`,
   },
   {
     heading: 'Read receipts: Email',
