@@ -9,25 +9,30 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 
 import BaseRadiosField from '@/components/BaseRadiosField'
-import BaseTextField from '@/components/BaseTextField'
+import BaseTextField, { BaseTextFieldProps } from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
-import BaseSwitch from '@/components/BaseSwitch'
+import BaseSwitchField from '@/components/BaseSwitchField'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
-import { UserSettingsFields } from '@/api/models/UserSettings'
+import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
-import { userSettingsValidationSchema } from '@/utils/validationSchemas'
+import { customerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 
-export const DestructionMessage = () => (
+export const DestructionMessage: React.FunctionComponent<
+  Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
+> = ({ ...props }) => (
   <BaseTextField
     name="neogramDestructionMessage"
     label="Destruction message"
     placeholder="This message will self-destruct in five seconds!"
+    {...props}
   />
 )
 
-export const DestructionTimeout = () => (
+export const DestructionTimeout: React.FunctionComponent<
+  Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
+> = ({ ...props }) => (
   <Box width="60%" minWidth={280}>
     <BaseTextField
       name="neogramDestructionTimeout"
@@ -36,6 +41,7 @@ export const DestructionTimeout = () => (
       InputProps={{
         endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
       }}
+      {...props}
     />
   </Box>
 )
@@ -62,11 +68,11 @@ const initialState: State = {
 
 const reducer = createReducer<State>()
 
-type UserSettings = Partial<UserSettingsFields>
-interface UserSettingsFormProps extends UserSettings {
+type Customer = Partial<CustomerFields>
+interface CustomerFormProps extends Customer {
   onSuccess: () => void
 }
-const UserSettingsForm = ({
+const CustomerForm = ({
   name,
   neogramDestructionMessage,
   neogramDestructionTimeout,
@@ -75,11 +81,11 @@ const UserSettingsForm = ({
   readReceipts,
   isEmojiShortLinkEnabled,
   onSuccess,
-}: UserSettingsFormProps) => {
+}: CustomerFormProps) => {
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const initialValues: UserSettings = {
+  const initialValues: Customer = {
     name: name || '',
     neogramDestructionMessage: neogramDestructionMessage || '',
     neogramDestructionTimeout: neogramDestructionTimeout || 5,
@@ -89,7 +95,7 @@ const UserSettingsForm = ({
     isEmojiShortLinkEnabled,
   }
 
-  const handleSubmit = useCallback<OnSubmit<UserSettings>>(async (values, formikHelpers) => {
+  const handleSubmit = useCallback<OnSubmit<Customer>>(async (values, formikHelpers) => {
     dispatch(doRequest({}))
 
     try {
@@ -116,10 +122,10 @@ const UserSettingsForm = ({
         </NoSsr>
       )}
 
-      <Formik<UserSettings>
+      <Formik<Customer>
         initialValues={initialValues}
         enableReinitialize={true}
-        validationSchema={userSettingsValidationSchema}
+        validationSchema={customerValidationSchema}
         validateOnMount
         onSubmit={handleSubmit}
       >
@@ -185,7 +191,7 @@ const UserSettingsForm = ({
                     (Note that not all chat applications support emoji links: Whatsapp, Telegram,
                     Threema, Twitter, Matrix, Wire, do work. Signal, Slack, Snapchat do not.)
                   </Typography>
-                  <BaseSwitch label="Use emoji link" name="isEmojiShortLinkEnabled" />
+                  <BaseSwitchField label="Use emoji link" name="isEmojiShortLinkEnabled" />
                 </Box>
                 <Box mb={10}>
                   <Typography variant="h3">Neogram™</Typography>
@@ -218,4 +224,4 @@ const UserSettingsForm = ({
   )
 }
 
-export default UserSettingsForm
+export default CustomerForm

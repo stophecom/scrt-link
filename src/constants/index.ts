@@ -3,6 +3,7 @@ import { sanitizeUrl } from '@/utils/index'
 export const appTitle = 'scrt.link'
 export const urlAliasLength = 12
 export const encryptionKeyLength = 14
+export const trialPeriod = 30
 
 export const twitterLink = 'https://twitter.com/ScrtLink'
 export const twitterHandle = '@ScrtLink'
@@ -15,5 +16,15 @@ export const pusherCluster = 'eu'
 export const emojiShortUrl = 'https://🤫.st'
 export const shortUrl = 'https://scrt.li'
 
-// Limits
-export const getMaxMessageLength = (hasAccount: boolean) => (hasAccount ? 10000 : 280)
+// Limits per user role
+export const limits = {
+  visitor: {
+    maxMessageLength: 280,
+  },
+  free: {
+    maxMessageLength: 1000,
+  },
+  premium: {
+    maxMessageLength: 100000,
+  },
+}

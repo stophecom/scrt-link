@@ -1,45 +1,43 @@
 import React, { useState, useCallback, useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
-import { Box, InputAdornment, Typography, Link } from '@material-ui/core'
+import { Box, InputAdornment, Typography } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
-import Alert from '@material-ui/lab/Alert'
-import { GetServerSideProps } from 'next'
-import { useSession, getSession } from 'next-auth/client'
-import NextLink from 'next/link'
+
 import { ArrowForward } from '@material-ui/icons'
 
+import { Link, BaseButtonLink } from '@/components/Link'
+import { PageError } from '@/components/Error'
+import BooleanSwitch from '@/components/BooleanSwitch'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
-import { UserSettingsFields } from '@/api/models/UserSettings'
-import { DestructionMessage, DestructionTimeout } from '@/components/UserSettingsForm'
-import { baseUrl } from '@/constants'
+import { DestructionMessage, DestructionTimeout } from '@/components/CustomerForm'
 import TabsMenu from './components/TabsMenu'
 
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
-import { generateNanoId, encryptMessage } from '@/utils'
+import { getLimits, generateNanoId, encryptMessage } from '@/utils'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
-import { getMaxMessageLength, urlAliasLength, encryptionKeyLength } from '@/constants'
+import { urlAliasLength, encryptionKeyLength } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
-import { AccountUsps } from '@/views/Account'
+import { useCustomer } from '@/utils/api'
 
-const Accordion = dynamic(() => import('./components/Accordion'))
+const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
+const PlanSelection = dynamic(() => import('@/components/PlanSelection'))
+const Neogram = dynamic(() => import('@/components/Neogram'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -123,29 +121,22 @@ const tabsMenu = Object.keys(secretTypesMap).map((item) => {
 
 const reducer = createReducer<State>()
 
-type HomeViewProps = {
-  userSettings: Partial<UserSettingsFields>
-}
-const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
-  const [session] = useSession()
+const HomeView: React.FunctionComponent = () => {
   const classes = useStyles()
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('message')
-
-  const {
-    isEmojiShortLinkEnabled = false,
-    neogramDestructionMessage,
-    neogramDestructionTimeout,
-  } = userSettings
+  const [neogramPreview, setNeogramPreview] = useState(false)
+  const { data: customer } = useCustomer()
 
   const initialValues: SecretUrlFormValues = {
     message: '',
     secretType: 'message',
     alias: '',
     encryptionKey: '',
-    neogramDestructionMessage: neogramDestructionMessage || 'This message will self-destruct in…',
-    neogramDestructionTimeout: neogramDestructionTimeout || 5,
+    neogramDestructionMessage:
+      customer?.neogramDestructionMessage || 'This message will self-destruct in…',
+    neogramDestructionTimeout: customer?.neogramDestructionTimeout || 5,
   }
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
@@ -196,9 +187,6 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
 
   // Form options
   const [hasFormOptions, setHasFormOptions] = React.useState(false)
-  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setHasFormOptions(event.target.checked)
-  }
 
   const getFormFieldConfigBySecretType = (secretType: SecretType) => {
     return secretTypesMap[secretType]
@@ -208,16 +196,14 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
     messageLength: number
   }
   const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
-    const charactersLeft = getMaxMessageLength(!!session) - messageLength
+    const charactersLeft = getLimits(customer?.role).maxMessageLength - messageLength
     return (
       <small className={classes.counter}>
         {charactersLeft.toLocaleString()}
         {charactersLeft < 0 && (
           <>
             &nbsp;|&nbsp; Need more?&nbsp;
-            <NextLink href="/account" passHref>
-              <Link>Get free account</Link>
-            </NextLink>
+            <Link href="/account">Get free account</Link>
           </>
         )}
       </small>
@@ -225,18 +211,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
   }
 
   if (error) {
-    return (
-      <Page title="An error occured!">
-        <Box mb={2}>
-          <Alert severity="error">
-            <Box className={classes.wordBreak}>{error}</Box>
-          </Alert>
-        </Box>
-        <BaseButton href="/" color="primary" variant="contained">
-          Take me home
-        </BaseButton>
-      </Page>
-    )
+    return <PageError error={error} />
   }
 
   if (data) {
@@ -247,7 +222,7 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
       >
         <Result
           data={data}
-          isEmojiShortLinkEnabled={isEmojiShortLinkEnabled}
+          isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
           onReset={() => {
             dispatch(doReset())
             setHasFormOptions(false)
@@ -278,11 +253,12 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
         />
       </Box>
       <Formik<SecretUrlFormValues>
+        enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={getValidationSchemaByType(
           secretType,
           hasFormOptions,
-          getMaxMessageLength(!!session),
+          getLimits(customer?.role).maxMessageLength,
         )}
         validateOnMount
         onSubmit={handleSubmit}
@@ -329,7 +305,14 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                   {secretType === 'neogram' && (
                     <>
                       <Box py={1}>
-                        <DestructionMessage />
+                        <DestructionMessage
+                          {...(customer?.role !== 'premium'
+                            ? {
+                                disabled: true,
+                                helperText: 'Unlock this option with the premium plan.',
+                              }
+                            : {})}
+                        />
                       </Box>
                       <Box py={1}>
                         <DestructionTimeout />
@@ -347,35 +330,31 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                     mb={{ xs: 1, sm: 0 }}
                     pl={1}
                   >
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          checked={hasFormOptions}
-                          onChange={handleSwitchChange}
-                          name="formOptions"
-                          color="primary"
-                          size="small"
-                        />
-                      }
+                    <BooleanSwitch
+                      checked={hasFormOptions}
+                      onChange={setHasFormOptions}
+                      name="formOptions"
                       label="With options"
                     />
+
                     {secretType === 'neogram' && (
                       <Box ml="auto">
                         <BaseButton
-                          href={`/l/preview?preview=${encodeURIComponent(
-                            JSON.stringify({
-                              ...omit(['password', 'encryptionKey'], values),
-                              message: values.message || demoMessage,
-                              secretType,
-                            }),
-                          )}`}
+                          // href={`/l/preview?preview=${encodeURIComponent(
+                          //   JSON.stringify({
+                          //     ...omit(['password', 'encryptionKey'], values),
+                          //     message: values.message || demoMessage,
+                          //     secretType,
+                          //   }),
+                          // )}`}
                           variant="text"
                           target="_blank"
-                          onClick={() =>
+                          onClick={() => {
+                            setNeogramPreview(true)
                             plausible(values?.message ? 'Preview' : 'Demo', {
                               props: { secretType },
                             })
-                          }
+                          }}
                         >
                           {values?.message ? 'Preview' : 'Demo'}
                         </BaseButton>
@@ -406,6 +385,15 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
                   </Box>
                 </Box>
               </Form>
+              {neogramPreview && (
+                <Neogram
+                  message={values.message || demoMessage}
+                  timeout={Number(values.neogramDestructionTimeout)}
+                  destructionMessage={values.neogramDestructionMessage}
+                  onFinished={() => setNeogramPreview(false)}
+                  closable
+                />
+              )}
             </>
           )
         }}
@@ -421,50 +409,25 @@ const HomeView: React.FunctionComponent<HomeViewProps> = ({ userSettings }) => {
         <Box mb={1}>
           <Accordion />
         </Box>
-        <NextLink href="/faq" passHref>
-          <BaseButton variant="text" color="primary" startIcon={<ArrowForward />}>
-            Read more on FAQ page
-          </BaseButton>
-        </NextLink>
+
+        <BaseButtonLink href="/faq" variant="text" color="primary" startIcon={<ArrowForward />}>
+          Read more on FAQ page
+        </BaseButtonLink>
       </Box>
 
-      {!session && (
+      {customer?.role !== 'premium' && (
         <Box mb={4}>
-          <Typography variant="h2">There is more…</Typography>
-          <AccountUsps />
-          <Box pt={1}>
-            <NextLink href="/account" passHref>
-              <BaseButton
-                variant="contained"
-                size="large"
-                color="primary"
-                startIcon={<ArrowForward />}
-              >
-                Get free account
-              </BaseButton>
-            </NextLink>
+          <Box mb={5}>
+            <Typography variant="h2">Top Secret</Typography>
+            <Typography variant="subtitle2">
+              {`Big secrets? Never worry about sharing sensitive information again.`}
+            </Typography>
           </Box>
+          <PlanSelection />
         </Box>
       )}
     </Page>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context)
-
-  let userSettings = {}
-
-  if (session) {
-    const options = { headers: { cookie: context.req.headers.cookie as string } }
-    const res = await fetch(`${baseUrl}/api/me`, options)
-    const json = await res.json()
-    userSettings = json?.userSettings
-  }
-
-  return {
-    props: { userSettings },
-  }
 }
 
 export default HomeView

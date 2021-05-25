@@ -1,8 +1,6 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
+import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { usePlausible } from 'next-plausible'
 
@@ -22,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const SimpleAccordion = () => {
+const FaqAccordion = () => {
   const classes = useStyles()
   const plausible = usePlausible()
 
@@ -53,4 +51,33 @@ const SimpleAccordion = () => {
   )
 }
 
-export default SimpleAccordion
+type SimpleAccordionTypes = { items: { heading: ReactNode; body?: string }[]; name: string }
+export const SimpleAccordion: React.FunctionComponent<SimpleAccordionTypes> = ({ items, name }) => {
+  return (
+    <div>
+      {items.map(({ heading, body }, index) => (
+        <Accordion key={index} elevation={0}>
+          <AccordionSummary
+            expandIcon={!!body && <ExpandMoreIcon />}
+            aria-controls={`aria-${name}-${index}`}
+            id={`${name}-${index}`}
+            style={{ pointerEvents: body ? 'auto' : 'none' }}
+          >
+            {heading}
+          </AccordionSummary>
+          {body && (
+            <AccordionDetails>
+              <Box pl={4}>
+                <Typography variant="body1" align="left" component="div">
+                  <Markdown source={body} />
+                </Typography>
+              </Box>
+            </AccordionDetails>
+          )}
+        </Accordion>
+      ))}
+    </div>
+  )
+}
+
+export default FaqAccordion

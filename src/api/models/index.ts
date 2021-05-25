@@ -1,10 +1,10 @@
 import SecretUrl from './SecretUrl'
-import UserSettings from './UserSettings'
+import Customer from './Customer'
 import Stats from './Stats'
 
 const models = {
   SecretUrl,
-  UserSettings,
+  Customer,
   Stats,
 }
 

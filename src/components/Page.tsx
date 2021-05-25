@@ -3,7 +3,7 @@ import { Box, Typography } from '@material-ui/core'
 
 import Seo, { SeoProps } from '@/components/Seo'
 
-interface PageProps extends SeoProps {
+export interface PageProps extends SeoProps {
   title: string
   subtitle?: ReactNode
   children: ReactNode

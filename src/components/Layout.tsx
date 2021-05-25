@@ -1,18 +1,17 @@
 import React from 'react'
-import { Box, Link, Typography } from '@material-ui/core'
+import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { signOut, useSession } from 'next-auth/client'
-import NoSsr from '@material-ui/core/NoSsr'
-import NextLink from 'next/link'
+
 import CircularProgress from '@material-ui/core/CircularProgress'
 import NextNprogress from 'nextjs-progressbar'
 
+import { Link, BaseButtonLink } from '@/components/Link'
 import { pink } from '@/theme'
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
-import BaseButton from '@/components/BaseButton'
 import Stats from '@/components/Stats'
+import { useCustomer } from '@/utils/api'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
@@ -64,50 +63,43 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
-  const [session, loading] = useSession()
+  const { data: customer, isLoading } = useCustomer()
+
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
-          {session && (
-            <Box mr={2}>
-              <NoSsr>
-                <BaseButton onClick={() => signOut()} variant="text" size="small">
-                  Sign out
-                </BaseButton>
-              </NoSsr>
-            </Box>
+          {customer?.role !== 'premium' && (
+            <NoSsr>
+              <Box mr={1}>
+                <BaseButtonLink href="/pricing" variant="text" size="small" color="default">
+                  Pricing
+                </BaseButtonLink>
+              </Box>
+            </NoSsr>
           )}
-          <NextLink href="/account" passHref>
-            <BaseButton
-              component="a"
-              color="primary"
-              variant={session ? 'contained' : 'text'}
-              size="small"
-            >
-              {loading ? (
-                <>
-                  <CircularProgress size={12} />
-                  &nbsp;
-                </>
-              ) : session ? (
-                <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
-                  {session.user.name || 'My account'}
-                </Typography>
-              ) : (
-                'Sign in'
-              )}
-            </BaseButton>
-          </NextLink>
+
+          <BaseButtonLink href="/account" color="primary" variant="text" size="small">
+            {isLoading ? (
+              <>
+                <CircularProgress size={12} />
+                &nbsp;
+              </>
+            ) : customer?.userId ? (
+              <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
+                {customer?.name || 'My account'}
+              </Typography>
+            ) : (
+              'Sign in'
+            )}
+          </BaseButtonLink>
         </Box>
         <Box mt={3}>
-          <NextLink href="/">
-            <a>
-              <Logo className={classes.logo} />
-              <SROnly>{appTitle}</SROnly>
-            </a>
-          </NextLink>
+          <Link href="/">
+            <Logo className={classes.logo} />
+            <SROnly>{appTitle}</SROnly>
+          </Link>
         </Box>
         {children}
       </Container>
@@ -115,11 +107,9 @@ const Layout: React.FC = ({ children }) => {
         <Container>
           <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
             {menu.map(({ href, label }, index) => (
-              <NextLink key={index} href={href} passHref>
-                <LinkStyled className={classes.linkPadding} color="primary">
-                  {label}
-                </LinkStyled>
-              </NextLink>
+              <LinkStyled key={index} href={href} className={classes.linkPadding} color="primary">
+                {label}
+              </LinkStyled>
             ))}
           </Box>
           <Box display="flex" justifyContent="center" p={2} pt={0}>
@@ -136,11 +126,14 @@ const Layout: React.FC = ({ children }) => {
                   ©{new Date().getFullYear()} SANTiHANS GmbH
                 </span>
                 {about.map(({ href, label }, index) => (
-                  <NextLink key={index} href={href} passHref>
-                    <LinkAbout className={classes.linkPadding} color="inherit">
-                      {label}
-                    </LinkAbout>
-                  </NextLink>
+                  <LinkAbout
+                    key={index}
+                    href={href}
+                    className={classes.linkPadding}
+                    color="inherit"
+                  >
+                    {label}
+                  </LinkAbout>
                 ))}
               </Box>
             </Legal>

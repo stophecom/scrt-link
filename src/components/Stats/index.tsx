@@ -1,14 +1,19 @@
 import React from 'react'
+import { isEmpty } from 'ramda'
 
 import { usePusher } from '@/utils/pusher'
 import { StatsFields } from '@/api/models/Stats'
 
 import { UIStore } from '@/store'
+import { useStats } from '@/utils/api'
 
 const Stats = () => {
   const liveStatsEnabled = UIStore.useState((s) => s.liveStatsEnabled)
 
-  const data = usePusher('/stats', 'stats', 'stats-update', liveStatsEnabled) as StatsFields
+  const { stats } = useStats()
+  const realtimeData = usePusher('stats', 'stats-update', liveStatsEnabled) as StatsFields
+
+  const data = isEmpty(realtimeData) ? stats : realtimeData
 
   if (!data) {
     return null

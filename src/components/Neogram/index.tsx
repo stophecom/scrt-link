@@ -1,9 +1,9 @@
 import React from 'react'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography, IconButton } from '@material-ui/core'
+import { Close } from '@material-ui/icons'
 import { WindupChildren, Pause } from 'windups'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
-import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Layout'
 
@@ -20,6 +20,12 @@ const Backdrop = styled(Box)`
   transition: 700ms;
   width: 100%;
   z-index: 1;
+`
+
+const CloseButton = styled(IconButton)`
+  position: absolute;
+  top: 5px;
+  right: 5px;
 `
 
 const ScrollContainer = styled(Container)`
@@ -39,24 +45,23 @@ type NeogramType = {
   message: string
   timeout?: number
   destructionMessage?: string
+  onFinished: () => void
+  closable?: boolean
 }
 const Neogram: React.FunctionComponent<NeogramType> = ({
   message,
   timeout = 0,
   destructionMessage,
+  onFinished,
+  closable = false,
 }) => {
   const classes = useStyles()
   const countDown = Array.from(Array(timeout).keys()).reverse()
-  const router = useRouter()
 
   return (
     <Backdrop>
       <ScrollContainer>
-        <WindupChildren
-          onFinished={() => {
-            setTimeout(() => router.push('/'), 100)
-          }}
-        >
+        <WindupChildren onFinished={onFinished}>
           <Typography variant="subtitle1" component="div" className={classes.break}>
             {message}
           </Typography>
@@ -81,9 +86,15 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
             <br />
             <Pause ms={1000} />
             {'Booooom 🔥'}
+            <Pause ms={1000} />
           </Typography>
         </WindupChildren>
       </ScrollContainer>
+      {closable && (
+        <CloseButton color="primary" aria-label="Close" onClick={onFinished}>
+          <Close />
+        </CloseButton>
+      )}
     </Backdrop>
   )
 }

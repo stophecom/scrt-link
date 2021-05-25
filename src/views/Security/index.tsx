@@ -12,9 +12,8 @@ const Security = () => (
     <Box mb={6}>
       <Typography variant="h3">Security by design</Typography>
       <Typography variant="h4">Best practices, no extras.</Typography>
-      <Typography variant="body1">
-        <Markdown
-          source={`
+      <Markdown
+        source={`
 - All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. 
 ![Link explanation](/images/link-explanation.svg)
 - If a password is provided, we use it to encrypt your secret **on top** of the standard encryption. The password is not being stored. Even with the most advanced attacks (e.g. man in the middle attack) and **access to all our infrastructure** an attacker couldn't read your message.
@@ -22,13 +21,11 @@ const Security = () => (
 - As little third-party code as possible. No Google, no Facebook, no tracking.
 - All code is open-source on [Gitlab](https://gitlab.com/kingchiller/scrt-link). Dependencies are updated regularly.
 `}
-        />
-      </Typography>
+      />
     </Box>
     <Box mb={6}>
       <Typography variant="h3">Infrastructure</Typography>
       <Typography variant="h4">Trusted players, few dependencies.</Typography>
-
       <Markdown
         source={`
 We chose industry leaders to host our infrastructure:

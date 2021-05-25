@@ -13,19 +13,18 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   const getStats = async () => {
-    const stats = await models.Stats.findOne()
+    const stats = await models.Stats.findOne().lean()
 
     if (!stats) {
       throw createError(500, 'Internal server error! Could not find statistics data.')
     }
 
-    return pick(['totalSecretsCount', 'secretsCount', 'totalSecretsViewCount'])(stats.toJSON())
+    return pick(['totalSecretsCount', 'secretsCount', 'totalSecretsViewCount'])(stats)
   }
 
   switch (req.method) {
-    case 'POST':
+    case 'GET':
       res.json(await getStats())
-
       break
     default:
       throw createError(405, 'Method Not Allowed')

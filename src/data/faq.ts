@@ -1,4 +1,4 @@
-import { baseUrl } from '@/constants'
+import { baseUrl, limits } from '@/constants'
 const why = {
   heading: 'Why should I use this service?',
   body: `
@@ -20,6 +20,13 @@ After you submit the form your secret will be encrypted and stored. You can now 
 For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
 }
 
+const who = {
+  heading: 'Who is it for?',
+  body: `Essentially everybody. Everybody should care about privacy.  
+  The means to transmit sensitive information anonymously is especially crucial for journalists, lawyers, politicians, whistleblowers, people who are being oppressed, etc.
+`,
+}
+
 export const demoMessage = 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘'
 const demoSecretMessageLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
   JSON.stringify({
@@ -35,6 +42,7 @@ const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent
     neogramDestructionTimeout: 3,
   }),
 )}`
+
 const secretTypes = {
   heading: 'What is the difference between *Message*, *URL Redirect* and *Neogram™*?',
   body: `
@@ -66,7 +74,7 @@ const save = {
   body: `Sure. You can always take a screenshot. The idea behind this service is to securely share sensitive information one time. We (obviously) don't have control over what a recepient does with the message.`,
 }
 
-export const shortFaq = [why, how, secretTypes, security, recovery, notification, save]
+export const shortFaq = [why, who, how, secretTypes, security, recovery, notification, save]
 
 export const faq = [
   why,
@@ -94,7 +102,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
   recovery,
   {
     heading: 'What is the maximum message size?',
-    body: `The current limit is 280 characters.`,
+    body: `The current limit is ${limits.visitor.maxMessageLength} characters for visitors. With a premium plan you can get up to ${limits.premium.maxMessageLength} characters.`,
   },
   notification,
   save,

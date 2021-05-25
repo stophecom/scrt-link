@@ -4,6 +4,7 @@ import Providers from 'next-auth/providers'
 import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
+import stripe from '@/api/utils/stripe'
 
 const handler = (req, res) =>
   NextAuth(req, res, {
@@ -29,7 +30,25 @@ const handler = (req, res) =>
       }),
     ],
     callbacks: {
-      async jwt(token, user) {
+      async jwt(token, user, account, profile, isNewUser) {
+        const models = req.models
+
+        if (isNewUser) {
+          const stripeCustomer = await stripe.customers.create({
+            email: user.email,
+          })
+          models.Customer.create({
+            userId: user.id,
+            stripe: { customerId: stripeCustomer?.id },
+            role: 'free',
+          })
+
+          models.Stats.create({ userId: user.id })
+
+          token.stripeCustomerId = stripeCustomer?.id
+        }
+
+        // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
         if (user?.id) {
           token.userId = user.id
         }
@@ -38,16 +57,8 @@ const handler = (req, res) =>
       },
       async session(session, token) {
         session.userId = token.userId
+        session.stripeCustomerId = token.stripeCustomerId
 
-        const models = req.models
-        if (models) {
-          const user = await models.UserSettings.findOne({
-            userId: token.userId || '',
-          })
-          if (user?.name) {
-            session.user.name = decodeURIComponent(user.name)
-          }
-        }
         return session
       },
     },

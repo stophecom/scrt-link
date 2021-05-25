@@ -10,9 +10,9 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import crawlers from 'crawler-user-agents'
-import NextLink from 'next/link'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import { useRouter } from 'next/router'
 
+import { BaseButtonLink } from '@/components/Link'
 import Neogram from '@/components/Neogram'
 import ReplyButton from './components/ReplyButton'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
@@ -20,6 +20,7 @@ import { sanitizeUrl, decryptMessage } from '@/utils/index'
 import { SecretUrlFields } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
+import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 import { baseUrl } from '@/constants'
 
@@ -52,6 +53,7 @@ const AliasView: NextPage<AliasViewProps> = ({
 }) => {
   const classes = useStyles()
 
+  const router = useRouter()
   const [hasCopied, setHasCopied] = useState(false)
   const [decryptedMessage, setDecryptedMessage] = useState(isPreview ? message : '')
   const [success, setSuccess] = useState(false)
@@ -126,6 +128,9 @@ const AliasView: NextPage<AliasViewProps> = ({
         message={decryptedMessage}
         timeout={Number(neogramDestructionTimeout)}
         destructionMessage={neogramDestructionMessage}
+        onFinished={() => {
+          setTimeout(() => router.push('/'), 100)
+        }}
       />
     )
   }
@@ -179,11 +184,9 @@ const AliasView: NextPage<AliasViewProps> = ({
               {decryptedMessage}
               <Box pt={2} display="flex" justifyContent="flex-end">
                 <Box mr={2}>
-                  <NextLink href="/" passHref>
-                    <BaseButton variant="text" color="primary" size="small">
-                      Destroy secret
-                    </BaseButton>
-                  </NextLink>
+                  <BaseButtonLink href="/" variant="text" color="primary" size="small">
+                    Destroy secret
+                  </BaseButtonLink>
                 </Box>
                 <CopyToClipboard
                   text={decryptedMessage}
@@ -215,11 +218,7 @@ const AliasView: NextPage<AliasViewProps> = ({
     )
   }
 
-  return (
-    <Box display="flex" justifyContent="center" mt={8}>
-      <CircularProgress />
-    </Box>
-  )
+  return <Spinner message="Loading secret" />
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
