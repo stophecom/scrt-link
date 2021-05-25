@@ -1,11 +1,12 @@
 import { NextApiHandler } from 'next'
 import Stripe from 'stripe'
+import { getSession } from 'next-auth/client'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
-import { getSession } from 'next-auth/client'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
+import { trialPeriod } from '@/constants'
 
 const handler: NextApiHandler = async (req, res) => {
   const models = req.models
@@ -36,7 +37,7 @@ const handler: NextApiHandler = async (req, res) => {
             },
           ],
           subscription_data: {
-            trial_period_days: 30,
+            trial_period_days: trialPeriod,
           },
           // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
           // the actual Session ID is returned in the query parameter when your customer

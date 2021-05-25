@@ -6,7 +6,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 import { Check } from '@material-ui/icons'
 
-import { limits } from '@/constants'
+import { limits, trialPeriod } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
@@ -311,7 +311,7 @@ const PlanSelection: React.FunctionComponent = () => {
                             </BaseButton>
                             {!subscription && (
                               <Typography className={classes.trial} variant="body2">
-                                30 days free trial
+                                {trialPeriod} days free trial
                               </Typography>
                             )}
                           </>
