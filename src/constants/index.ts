@@ -18,10 +18,13 @@ export const shortUrl = 'https://scrt.li'
 
 // Limits per user role
 export const limits = {
-  free: {
+  visitor: {
     maxMessageLength: 280,
   },
+  free: {
+    maxMessageLength: 1000,
+  },
   premium: {
-    maxMessageLength: 10000,
+    maxMessageLength: 100000,
   },
 }

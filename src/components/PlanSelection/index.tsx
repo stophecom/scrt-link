@@ -14,6 +14,7 @@ import { SimpleAccordion } from '@/components/Accordion'
 import { PageError } from '@/components/Error'
 import { Switch } from '@/components/BooleanSwitch'
 import getStripe from '@/utils/stripe'
+import { abbrNum } from '@/utils/index'
 import { api, useStripeCustomer, usePlans, useCustomer } from '@/utils/api'
 import Plan from './Plan'
 import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
@@ -41,8 +42,8 @@ const premiumUsps = [
     heading: `Everything in Free, plus:`,
   },
   {
-    heading: `${limits.premium.maxMessageLength / 1000}k character limit`,
-    body: `For all the words you'll ever need`,
+    heading: `${abbrNum(limits.premium.maxMessageLength, 1)} character limit`,
+    body: `Enough words for the perfect secret love letter, confession or disclosure.`,
   },
   {
     heading: 'Read receipts: Email & SMS ',
@@ -66,7 +67,7 @@ const premiumUsps = [
 
 const freeUsps = [
   {
-    heading: `${limits.free.maxMessageLength} character limit`,
+    heading: `${abbrNum(limits.free.maxMessageLength, 1)} character limit`,
     body: 'A tweet worth of characters.',
   },
   {

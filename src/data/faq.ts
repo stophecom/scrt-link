@@ -1,4 +1,4 @@
-import { baseUrl } from '@/constants'
+import { baseUrl, limits } from '@/constants'
 const why = {
   heading: 'Why should I use this service?',
   body: `
@@ -35,6 +35,7 @@ const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent
     neogramDestructionTimeout: 3,
   }),
 )}`
+
 const secretTypes = {
   heading: 'What is the difference between *Message*, *URL Redirect* and *Neogram™*?',
   body: `
@@ -94,7 +95,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
   recovery,
   {
     heading: 'What is the maximum message size?',
-    body: `The current limit is 280 characters.`,
+    body: `The current limit is ${limits.visitor.maxMessageLength} characters for visitors. With a premium plan you can get up to ${limits.premium.maxMessageLength} characters.`,
   },
   notification,
   save,
