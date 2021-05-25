@@ -9,7 +9,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 
 import BaseRadiosField from '@/components/BaseRadiosField'
-import BaseTextField from '@/components/BaseTextField'
+import BaseTextField, { BaseTextFieldProps } from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitchField from '@/components/BaseSwitchField'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -19,15 +19,20 @@ import BaseButton from '@/components/BaseButton'
 import { customerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 
-export const DestructionMessage = () => (
+export const DestructionMessage: React.FunctionComponent<
+  Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
+> = ({ ...props }) => (
   <BaseTextField
     name="neogramDestructionMessage"
     label="Destruction message"
     placeholder="This message will self-destruct in five seconds!"
+    {...props}
   />
 )
 
-export const DestructionTimeout = () => (
+export const DestructionTimeout: React.FunctionComponent<
+  Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
+> = ({ ...props }) => (
   <Box width="60%" minWidth={280}>
     <BaseTextField
       name="neogramDestructionTimeout"
@@ -36,6 +41,7 @@ export const DestructionTimeout = () => (
       InputProps={{
         endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
       }}
+      {...props}
     />
   </Box>
 )
