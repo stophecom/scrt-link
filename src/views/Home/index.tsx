@@ -37,6 +37,7 @@ import { useCustomer } from '@/utils/api'
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
 const PlanSelection = dynamic(() => import('@/components/PlanSelection'))
+const Neogram = dynamic(() => import('@/components/Neogram'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -125,6 +126,7 @@ const HomeView: React.FunctionComponent = () => {
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('message')
+  const [neogramPreview, setNeogramPreview] = useState(false)
   const { data: customer } = useCustomer()
 
   const initialValues: SecretUrlFormValues = {
@@ -338,20 +340,21 @@ const HomeView: React.FunctionComponent = () => {
                     {secretType === 'neogram' && (
                       <Box ml="auto">
                         <BaseButton
-                          href={`/l/preview?preview=${encodeURIComponent(
-                            JSON.stringify({
-                              ...omit(['password', 'encryptionKey'], values),
-                              message: values.message || demoMessage,
-                              secretType,
-                            }),
-                          )}`}
+                          // href={`/l/preview?preview=${encodeURIComponent(
+                          //   JSON.stringify({
+                          //     ...omit(['password', 'encryptionKey'], values),
+                          //     message: values.message || demoMessage,
+                          //     secretType,
+                          //   }),
+                          // )}`}
                           variant="text"
                           target="_blank"
-                          onClick={() =>
+                          onClick={() => {
+                            setNeogramPreview(true)
                             plausible(values?.message ? 'Preview' : 'Demo', {
                               props: { secretType },
                             })
-                          }
+                          }}
                         >
                           {values?.message ? 'Preview' : 'Demo'}
                         </BaseButton>
@@ -382,6 +385,15 @@ const HomeView: React.FunctionComponent = () => {
                   </Box>
                 </Box>
               </Form>
+              {neogramPreview && (
+                <Neogram
+                  message={values.message || demoMessage}
+                  timeout={Number(values.neogramDestructionTimeout)}
+                  destructionMessage={values.neogramDestructionMessage}
+                  onFinished={() => setNeogramPreview(false)}
+                  closable
+                />
+              )}
             </>
           )
         }}

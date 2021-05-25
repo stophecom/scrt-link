@@ -10,6 +10,7 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import crawlers from 'crawler-user-agents'
+import { useRouter } from 'next/router'
 
 import { BaseButtonLink } from '@/components/Link'
 import Neogram from '@/components/Neogram'
@@ -52,6 +53,7 @@ const AliasView: NextPage<AliasViewProps> = ({
 }) => {
   const classes = useStyles()
 
+  const router = useRouter()
   const [hasCopied, setHasCopied] = useState(false)
   const [decryptedMessage, setDecryptedMessage] = useState(isPreview ? message : '')
   const [success, setSuccess] = useState(false)
@@ -126,6 +128,9 @@ const AliasView: NextPage<AliasViewProps> = ({
         message={decryptedMessage}
         timeout={Number(neogramDestructionTimeout)}
         destructionMessage={neogramDestructionMessage}
+        onFinished={() => {
+          setTimeout(() => router.push('/'), 100)
+        }}
       />
     )
   }
