@@ -8,6 +8,10 @@ export const menu = [
     label: 'FAQ',
   },
   {
+    href: '/pricing',
+    label: 'Pricing',
+  },
+  {
     href: '/security',
     label: 'Security',
   },
