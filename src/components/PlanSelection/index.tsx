@@ -256,8 +256,8 @@ const PlanSelection: React.FunctionComponent = () => {
               <Grid item xs={12} sm={7} key={index}>
                 <Plan
                   title={name}
-                  subtitle={'Everything a spy needs.'}
-                  overline={isSubscriptionBillingIntervalMatch ? 'Current Plan' : 'Advanced'}
+                  subtitle={<>Everything you need.</>}
+                  overline={isSubscriptionBillingIntervalMatch ? 'Current Plan' : 'Premium'}
                   isCurrentPlan={
                     isSubscriptionActive &&
                     price.product === activePrice?.product &&

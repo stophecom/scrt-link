@@ -19,11 +19,16 @@ type Option = {
 }
 
 export type BaseRadiosFieldProps = FormControlProps &
-  FieldHookConfig<FormControlLabelProps['value']> & { label?: string; options: Option[] }
+  FieldHookConfig<FormControlLabelProps['value']> & {
+    label?: string
+    options: Option[]
+    helperText?: string
+  }
 
 const BaseRadiosField = ({
   label,
   options = [{ value: 'one', label: 'One' }],
+  helperText,
   ...props
 }: BaseRadiosFieldProps) => {
   const [field, meta] = useField(props)
@@ -51,6 +56,7 @@ const BaseRadiosField = ({
           ))}
         </RadioGroup>
         {errorMessage && <FormHelperText id="helper-text">{errorMessage}</FormHelperText>}
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
       </FormControl>
     </div>
   )

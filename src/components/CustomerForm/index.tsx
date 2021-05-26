@@ -18,6 +18,7 @@ import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
 import { customerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
+import { MenuItem } from '@/views/Account'
 
 export const DestructionMessage: React.FunctionComponent<
   Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
@@ -71,29 +72,11 @@ const reducer = createReducer<State>()
 type Customer = Partial<CustomerFields>
 interface CustomerFormProps extends Customer {
   onSuccess: () => void
+  formFieldsSelection: MenuItem['key']
 }
-const CustomerForm = ({
-  name,
-  neogramDestructionMessage,
-  neogramDestructionTimeout,
-  receiptEmail,
-  receiptPhoneNumber,
-  readReceipts,
-  isEmojiShortLinkEnabled,
-  onSuccess,
-}: CustomerFormProps) => {
+const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerFormProps) => {
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
-
-  const initialValues: Customer = {
-    name: name || '',
-    neogramDestructionMessage: neogramDestructionMessage || '',
-    neogramDestructionTimeout: neogramDestructionTimeout || 5,
-    receiptEmail,
-    receiptPhoneNumber,
-    readReceipts,
-    isEmojiShortLinkEnabled,
-  }
 
   const handleSubmit = useCallback<OnSubmit<Customer>>(async (values, formikHelpers) => {
     dispatch(doRequest({}))
@@ -123,7 +106,7 @@ const CustomerForm = ({
       )}
 
       <Formik<Customer>
-        initialValues={initialValues}
+        initialValues={props}
         enableReinitialize={true}
         validationSchema={customerValidationSchema}
         validateOnMount
@@ -147,62 +130,68 @@ const CustomerForm = ({
           return (
             <>
               <Form noValidate>
-                <Box mb={10}>
-                  <Box mb={4}>
-                    <Typography variant="h3">Contact</Typography>
-                    <Typography variant="body1">
-                      The following information is <strong>private</strong> and will never be shown
-                      to anybody. We only use it to send you read receipts.
-                    </Typography>
-                  </Box>
+                {formFieldsSelection === 'contact' && (
+                  <>
+                    <Box mb={5}>
+                      <Typography variant="h3">Contact information</Typography>
+                    </Box>
+                    <Box mb={3}>
+                      <BaseTextField name="name" label="Name" />
+                    </Box>
 
-                  <Box mb={3}>
-                    <BaseTextField name="name" label="Name" />
-                  </Box>
+                    <Box mb={3}>
+                      <BaseTextField name="receiptEmail" label="Email" />
+                    </Box>
 
-                  <Box mb={3}>
-                    <BaseTextField name="receiptEmail" label="Email" value={receiptEmail} />
-                  </Box>
+                    <Box mb={3}>
+                      <BasePhoneField name="receiptPhoneNumber" label="Phone" />
+                    </Box>
+                  </>
+                )}
 
-                  <Box mb={3}>
-                    <BasePhoneField
-                      name="receiptPhoneNumber"
-                      label="Phone"
-                      value={receiptPhoneNumber}
-                    />
-                  </Box>
+                {formFieldsSelection === 'secrets' && (
+                  <>
+                    <Box mb={10}>
+                      <Typography variant="h3">Read receipts</Typography>
+                      <BaseRadiosField
+                        options={readReceiptsOptions}
+                        name="readReceipts"
+                        label="Do you like to get notified after a secret has been viewed?"
+                        helperText={
+                          !values.receiptPhoneNumber || !values.receiptEmail
+                            ? 'You need to add respective contact options to enable this.'
+                            : ''
+                        }
+                      />
+                    </Box>
 
-                  <Box>
-                    <BaseRadiosField
-                      options={readReceiptsOptions}
-                      name="readReceipts"
-                      label="Read receipts:"
-                    />
-                  </Box>
-                </Box>
+                    <Box mb={10}>
+                      <Typography variant="h3">Emoji link 🤫</Typography>
+                      <Typography variant="body1">
+                        You can enable emoji links to share your secrets. Example:{' '}
+                        <Typography noWrap component="span">
+                          <strong>https://🤫.st/nxKFy…</strong>{' '}
+                        </Typography>
+                        (Note that not all chat applications support emoji links: Whatsapp,
+                        Telegram, Threema, Twitter, Matrix, Wire, do work. Signal, Slack, Snapchat
+                        do not.)
+                      </Typography>
+                      <BaseSwitchField label="Use emoji link" name="isEmojiShortLinkEnabled" />
+                    </Box>
 
-                <Box mb={10}>
-                  <Typography variant="h3">Emoji link 🤫</Typography>
-                  <Typography variant="body1">
-                    You can enable emoji links to share your secrets. Example:{' '}
-                    <Typography noWrap component="span">
-                      <strong>https://🤫.st/nxKFy…</strong>{' '}
-                    </Typography>
-                    (Note that not all chat applications support emoji links: Whatsapp, Telegram,
-                    Threema, Twitter, Matrix, Wire, do work. Signal, Slack, Snapchat do not.)
-                  </Typography>
-                  <BaseSwitchField label="Use emoji link" name="isEmojiShortLinkEnabled" />
-                </Box>
-                <Box mb={10}>
-                  <Typography variant="h3">Neogram™</Typography>
-                  <Box mb={3}>
-                    <DestructionMessage />
-                  </Box>
-                  <Box mb={1}>
-                    <DestructionTimeout />
-                  </Box>
-                </Box>
-                <Box mb={1}>
+                    <Box>
+                      <Typography variant="h3">Neogram™</Typography>
+                      <Box mb={3}>
+                        <DestructionMessage />
+                      </Box>
+                      <Box mb={1}>
+                        <DestructionTimeout />
+                      </Box>
+                    </Box>
+                  </>
+                )}
+
+                <Box pt={5}>
                   <BaseButton
                     className={classes.submitButton}
                     type="submit"

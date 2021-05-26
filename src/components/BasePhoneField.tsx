@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: `${theme.palette.background.default} !important`,
       color: `${theme.palette.text.primary} !important`,
 
+      '&.form-control': {
+        width: '250px !important',
+      },
       '&:hover': {
         borderColor: `${theme.palette.text.primary} !important`,
       },
