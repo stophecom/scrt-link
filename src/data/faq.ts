@@ -17,7 +17,7 @@ const how = {
   body: `
 After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recepients clicks the link, the message gets displayed and permanently removed from the database. 
     
-For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel then the link.)`,
+For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel than the link.)`,
 }
 
 const who = {
