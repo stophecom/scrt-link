@@ -1,26 +1,37 @@
 import React, { useState } from 'react'
-import { useSession, signOut } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { Box, Typography, Paper } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
 import Alert from '@material-ui/lab/Alert'
+import styled from 'styled-components'
 
-import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import SignInForm from '@/components/SignInForm'
 import CustomerForm from '@/components/CustomerForm'
+import DeleteAccountForm from '@/components/DeleteAccountForm'
 import { PersonalStats } from '@/components/Stats'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
+import Section from '@/components/Section'
 import { project } from 'ramda'
 
 import { useCustomer } from '@/utils/api'
 import PlanSelection from '@/components/PlanSelection'
 
+const AccountInfo = styled(Box)`
+  opacity: 0.7;
+  text-align: center;
+`
+
+const DangerZone = styled(Paper)`
+  border: 2px solid ${({ theme }) => theme.palette.primary.main};
+`
+
 const menu = [
   { label: 'Contact', key: 'contact' },
   { label: 'Secrets', key: 'secrets' },
   { label: 'Subscription', key: 'subscription' },
-  { label: 'Statistics', key: 'statistics' },
+  { label: 'Danger Zone', key: 'danger' },
 ]
 export type MenuItem = typeof menu[number]
 
@@ -41,84 +52,91 @@ const Account = () => {
   if (session) {
     return (
       <Page title={`Hi ${customer?.name || ''}`} subtitle="Welcome back!">
-        <Box mb={8}>
-          <NoSsr>
-            <Box mb={2}>
-              <Typography variant="body1">You are signed in as {session?.user?.email}.</Typography>
-            </Box>
-            <BaseButton onClick={() => signOut()} variant="outlined">
-              Sign out
-            </BaseButton>
-          </NoSsr>
-        </Box>
-
-        <Typography variant="h2">Account settings</Typography>
-
-        <Box mb={5}>
-          <TabsMenu
-            handleChange={handleMenuChange}
-            value={activeTab}
-            tabsMenu={project(['label', 'key'], menu)}
-            label="Account options"
-          />
-        </Box>
-
-        {activeTab === 'statistics' && (
-          <Box mb={10}>
-            <PersonalStats userId={session?.userId} />
+        <Section title="Account settings">
+          <Box mb={5}>
+            <TabsMenu
+              handleChange={handleMenuChange}
+              value={activeTab}
+              tabsMenu={project(['label', 'key'], menu)}
+              label="Account options"
+            />
           </Box>
-        )}
 
-        {activeTab === 'secrets' && (
-          <>
-            <Box mb={5}>
-              <Alert severity="info">
-                These are default settings. You can overwrite each setting for every secret you
-                create.
-              </Alert>
-            </Box>
-            <Paper square>
-              <Box p={3}>
-                <CustomerForm
-                  {...customer}
-                  formFieldsSelection="secrets"
-                  onSuccess={triggerFetchCustomer}
-                />
+          {activeTab === 'secrets' && (
+            <>
+              <Box mb={5}>
+                <Alert severity="info">
+                  These are default settings. You can overwrite each setting for every secret you
+                  create.
+                </Alert>
               </Box>
-            </Paper>
-          </>
-        )}
-
-        {activeTab === 'subscription' && (
-          <>
-            <Box mb={5}>
-              <Alert severity="info">You are currently on the {customer?.role} plan.</Alert>
-            </Box>
-
-            <PlanSelection />
-          </>
-        )}
-
-        {activeTab === 'contact' && (
-          <>
-            <Box mb={5}>
-              <Alert severity="info">
-                The following information is <strong>private</strong> and will never be shown to
-                anybody. We only use it to send you read receipts.
-              </Alert>
-            </Box>
-
-            <Paper square>
-              <Box p={3}>
-                <CustomerForm
-                  {...customer}
-                  formFieldsSelection="contact"
-                  onSuccess={triggerFetchCustomer}
-                />
+              <Paper square>
+                <Box p={3}>
+                  <CustomerForm
+                    {...customer}
+                    formFieldsSelection="secrets"
+                    onSuccess={triggerFetchCustomer}
+                  />
+                </Box>
+              </Paper>
+            </>
+          )}
+          {activeTab === 'subscription' && (
+            <>
+              <Box mb={5}>
+                <Alert severity="info">You are currently on the {customer?.role} plan.</Alert>
               </Box>
-            </Paper>
-          </>
-        )}
+
+              <PlanSelection />
+            </>
+          )}
+          {activeTab === 'contact' && (
+            <>
+              <Box mb={5}>
+                <Alert severity="info">
+                  The following information is <strong>private</strong> and will never be shown to
+                  anybody. We only use it to send you read receipts.
+                </Alert>
+              </Box>
+
+              <Paper square>
+                <Box p={3}>
+                  <CustomerForm
+                    {...customer}
+                    formFieldsSelection="contact"
+                    onSuccess={triggerFetchCustomer}
+                  />
+                </Box>
+              </Paper>
+            </>
+          )}
+          {activeTab === 'danger' && (
+            <>
+              {customer?.role === 'premium' && (
+                <Box mb={5}>
+                  <Alert severity="info">
+                    You have a running subscription. We highly recommend to cancel it first.
+                  </Alert>
+                </Box>
+              )}
+
+              <DangerZone square>
+                <Box p={3}>
+                  <Box mb={5}>
+                    <Typography variant="h3">Delete your account</Typography>
+                  </Box>
+                  <DeleteAccountForm />
+                </Box>
+              </DangerZone>
+            </>
+          )}
+        </Section>
+        <Section title="Statistics">
+          <PersonalStats userId={session?.userId} />
+        </Section>
+        <AccountInfo pt={5}>
+          <Typography variant="body1">You are signed in as {session?.user?.email}.</Typography>
+        </AccountInfo>
       </Page>
     )
   }

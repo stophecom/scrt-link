@@ -83,6 +83,10 @@ export const customerValidationSchema = Yup.object().shape<Partial<CustomerField
     .trim(),
 })
 
+export const deleteCustomerValidationSchema = Yup.object().shape({
+  isSure: Yup.boolean().label('Are you sure').required().oneOf([true], 'Field must be checked'),
+})
+
 export const signInValidationSchema = Yup.object().shape<{ email: string }>({
   email: Yup.string().label('Email').required().email().trim(),
 })

@@ -40,7 +40,7 @@ const handler: NextApiHandler = async (req, res) => {
       })
       break
     }
-    case 'POST':
+    case 'POST': {
       const data = await extractPostInput(req)
 
       const userId = session.userId || ''
@@ -51,6 +51,14 @@ const handler: NextApiHandler = async (req, res) => {
 
       res.json({ data: customer.toJSON(), message: 'Your settings have been saved!' })
       break
+    }
+    case 'DELETE': {
+      const userId = session.userId || ''
+      await models.Customer.findOneAndDelete({ userId })
+
+      res.json({ message: 'Account has been deleted successfully.' })
+      break
+    }
     default:
       throw createError(405, 'Method Not Allowed')
   }
