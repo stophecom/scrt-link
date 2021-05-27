@@ -80,12 +80,12 @@ const freeUsps = [
   },
   {
     heading: 'Emoji link 🤫',
-    body:
-      'Surprise your confidant. Send your secrets using a fancy emoji domain: **https://🤫.st/…**.',
+    body: `Send your secrets using a fancy emoji domain:  
+**https://🤫.st/xyz**.`,
   },
   {
     heading: 'Statistics',
-    body: 'Get some insights.',
+    body: 'Track your secrets.',
   },
 ]
 
