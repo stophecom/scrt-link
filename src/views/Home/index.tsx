@@ -197,7 +197,7 @@ const HomeView: React.FunctionComponent = () => {
     messageLength: number
   }
   const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
-    const charactersLeft = getLimits(customer?.role).maxMessageLength - messageLength
+    const charactersLeft = getLimits(customer?.role || 'visitor').maxMessageLength - messageLength
     return (
       <small className={classes.counter}>
         {charactersLeft.toLocaleString()}

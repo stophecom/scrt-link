@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const readReceipts = ['none', 'sms', 'email']
 export type ReadReceipts = typeof readReceipts[number]
 
-const roles = ['free', 'premium'] as const
+const roles = ['free', 'premium', 'visitor'] as const
 export type Role = typeof roles[number]
 
 export interface CustomerFields {
