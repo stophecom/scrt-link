@@ -2,10 +2,12 @@ import React from 'react'
 import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+import { useSession, signOut } from 'next-auth/client'
+import { Face } from '@material-ui/icons'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 import NextNprogress from 'nextjs-progressbar'
-
+import BaseButton from '@/components/BaseButton'
 import { Link, BaseButtonLink } from '@/components/Link'
 import { pink } from '@/theme'
 import { appTitle } from '@/constants'
@@ -63,33 +65,38 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
-  const { data: customer, isLoading } = useCustomer()
+  const { data: customer } = useCustomer()
+  const [session, loading] = useSession()
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
-          {customer?.role !== 'premium' && (
+          {session && (
             <NoSsr>
               <Box mr={1}>
-                <BaseButtonLink href="/pricing" variant="text" size="small" color="default">
-                  Pricing
-                </BaseButtonLink>
+                <BaseButton onClick={() => signOut()} variant="text" size="small">
+                  Sign out
+                </BaseButton>
               </Box>
             </NoSsr>
           )}
 
           <BaseButtonLink href="/account" color="primary" variant="text" size="small">
-            {isLoading ? (
+            {loading ? (
               <>
                 <CircularProgress size={12} />
                 &nbsp;
               </>
-            ) : customer?.userId ? (
-              <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
-                {customer?.name || 'My account'}
-              </Typography>
+            ) : session ? (
+              <>
+                <Face fontSize="small" />
+                &nbsp;
+                <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
+                  {customer?.name || 'My account'}
+                </Typography>
+              </>
             ) : (
               'Sign in'
             )}
