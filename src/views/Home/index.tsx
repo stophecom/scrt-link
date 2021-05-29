@@ -95,13 +95,13 @@ type ObjKey = { [key: string]: SecretTypeConfig }
 
 export const secretTypesMap = {
   message: {
-    label: 'Secret Message',
+    label: 'Your secret',
     tabLabel: 'Message',
-    placeholder: 'Your secret message, password, private key, etc.',
+    placeholder: 'Secret message, password, private key, etc.',
   },
   url: {
     label: 'URL',
-    tabLabel: 'Redirect URL',
+    tabLabel: 'Redirect',
     placeholder: 'e.g. https://www.example.com',
   },
   neogram: {
@@ -277,7 +277,7 @@ const HomeView: React.FunctionComponent = () => {
                         label="URL"
                         required
                         InputLabelProps={{
-                          shrink: false,
+                          shrink: undefined,
                         }}
                         InputProps={{
                           startAdornment: (
@@ -299,7 +299,7 @@ const HomeView: React.FunctionComponent = () => {
                           label={getFormFieldConfigBySecretType(secretType).label}
                           placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                           InputLabelProps={{
-                            shrink: false,
+                            shrink: undefined,
                           }}
                         />
                         <Counter messageLength={values.message.length} />
@@ -349,13 +349,6 @@ const HomeView: React.FunctionComponent = () => {
                       {secretType === 'neogram' && (
                         <Box ml="auto">
                           <BaseButton
-                            // href={`/l/preview?preview=${encodeURIComponent(
-                            //   JSON.stringify({
-                            //     ...omit(['password', 'encryptionKey'], values),
-                            //     message: values.message || demoMessage,
-                            //     secretType,
-                            //   }),
-                            // )}`}
                             variant="text"
                             target="_blank"
                             onClick={() => {
