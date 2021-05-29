@@ -51,7 +51,7 @@ const Account = () => {
 
   if (session) {
     return (
-      <Page title={`Account`} subtitle={`Hi ${customer?.name || ''}, welcome back!`}>
+      <Page title={`Account`} subtitle={`Hi ${customer?.name || 'X'}, welcome back!`}>
         <TabsMenu
           handleChange={handleMenuChange}
           value={activeTab}
