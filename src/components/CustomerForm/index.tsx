@@ -1,6 +1,6 @@
 import React, { useCallback, useReducer } from 'react'
 import axios from 'axios'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography, FormLabel } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
 
@@ -96,15 +96,6 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
 
   return (
     <>
-      {(error || data?.message) && (
-        <NoSsr>
-          <Box mb={5}>
-            {error && <Alert severity="error">{error}</Alert>}
-            {data?.message && <Alert severity="success">{data.message}</Alert>}
-          </Box>
-        </NoSsr>
-      )}
-
       <Formik<Customer>
         initialValues={props}
         enableReinitialize={true}
@@ -136,11 +127,15 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                       <Typography variant="h3">Contact information</Typography>
                     </Box>
                     <Box mb={3}>
-                      <BaseTextField name="name" label="Name" />
+                      <BaseTextField name="name" label="Name" placeholder="John Doe" />
                     </Box>
 
                     <Box mb={3}>
-                      <BaseTextField name="receiptEmail" label="Email" />
+                      <BaseTextField
+                        name="receiptEmail"
+                        label="Email"
+                        placeholder="example@gmail.com"
+                      />
                     </Box>
 
                     <Box mb={3}>
@@ -152,24 +147,28 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                 {formFieldsSelection === 'secrets' && (
                   <>
                     <Box mb={10}>
-                      <Typography variant="h3">Read receipts</Typography>
+                      <Box mb={5}>
+                        <Typography variant="h3">General settings</Typography>
+                      </Box>
                       <BaseRadiosField
                         options={readReceiptsOptions}
                         name="readReceipts"
-                        label="Do you like to get notified after a secret has been viewed?"
+                        label="Read receipts"
                         helperText={
                           !values.receiptPhoneNumber || !values.receiptEmail
-                            ? 'You need to add respective contact options to enable this.'
+                            ? `To enable, you need to add corresponding contact options first.`
                             : ''
                         }
                       />
                     </Box>
 
                     <Box mb={10}>
-                      <Typography variant="h3">Emoji link 🤫</Typography>
-                      <Typography variant="body1">
+                      <Box mb={2}>
+                        <FormLabel component="legend">Emoji link 🤫</FormLabel>
+                      </Box>
+                      <Typography variant="body2">
                         You can enable emoji links to share your secrets. Example:{' '}
-                        <Typography noWrap component="span">
+                        <Typography variant="body2" noWrap component="span">
                           <strong>https://🤫.st/nxKFy…</strong>{' '}
                         </Typography>
                         (Note that not all chat applications support emoji links: Whatsapp,
@@ -203,6 +202,14 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                   >
                     Save
                   </BaseButton>
+                  {(error || data?.message) && (
+                    <NoSsr>
+                      <Box mt={1}>
+                        {error && <Alert severity="error">{error}</Alert>}
+                        {data?.message && <Alert severity="success">{data.message}</Alert>}
+                      </Box>
+                    </NoSsr>
+                  )}
                 </Box>
               </Form>
             </>

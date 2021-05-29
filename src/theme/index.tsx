@@ -20,7 +20,13 @@ let theme = createMuiTheme({
       main: '#9e9e9e',
     },
   },
-
+  overrides: {
+    MuiFormLabel: {
+      root: {
+        fontWeight: 'bold',
+      },
+    },
+  },
   typography: {
     fontFamily: 'IBM Plex Sans, sans-serif',
     h1: { fontFamily: 'Poppins, sans-serif', lineHeight: 1.3, fontSize: '70%', color: pink },

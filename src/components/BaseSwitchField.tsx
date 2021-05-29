@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useField, FieldHookConfig } from 'formik'
 import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import Switch, { SwitchProps } from '@material-ui/core/Switch'
@@ -6,7 +6,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import { FormControl } from '@material-ui/core'
 
 export type BaseSwitchProps = Partial<FormControlLabelProps> &
-  FieldHookConfig<SwitchProps> & { helperText?: string }
+  FieldHookConfig<SwitchProps> & { helperText?: ReactNode }
 
 function BaseSwitchField({ label, helperText, ...props }: BaseSwitchProps) {
   const [field, meta] = useField(props)

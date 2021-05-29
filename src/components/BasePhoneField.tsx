@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
       '& .special-label': { display: 'none !important' },
     },
     label: {
-      backgroundColor: `${theme.palette.background.default} !important`,
+      backgroundColor: `${theme.palette.background.paper} !important`,
       paddingLeft: '5px',
       paddingRight: '5px',
       marginLeft: '-5px',
     },
     input: {
       borderColor: `rgba(255, 255, 255, 0.23) !important`,
-      backgroundColor: `${theme.palette.background.default} !important`,
+      backgroundColor: `${theme.palette.background.paper} !important`,
       color: `${theme.palette.text.primary} !important`,
 
       '&.form-control': {

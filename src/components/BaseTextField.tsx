@@ -23,6 +23,9 @@ function BaseTextField(props: BaseTextFieldProps) {
 
   return (
     <TextField
+      InputLabelProps={{
+        shrink: true,
+      }}
       {...{ ...props, ...field, variant: props.variant ?? 'outlined' }}
       inputRef={inputRef}
       // To be able to set the value as "undefined"

@@ -40,9 +40,7 @@ const BaseRadiosField = ({
     <div>
       <FormControl component="fieldset" error={hasError} {...props}>
         <Box mb={1}>
-          <FormLabel component="legend">
-            <strong>{label}</strong>
-          </FormLabel>
+          <FormLabel component="legend">{label}</FormLabel>
         </Box>
         <RadioGroup row aria-label={field.name} {...field} defaultValue={options[0].value}>
           {options.map(({ value, label, disabled }, index) => (

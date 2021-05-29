@@ -51,20 +51,37 @@ const Account = () => {
 
   if (session) {
     return (
-      <Page title={`Hi ${customer?.name || ''}`} subtitle="Welcome back!">
-        <Section title="Account settings">
-          <Box mb={5}>
-            <TabsMenu
-              handleChange={handleMenuChange}
-              value={activeTab}
-              tabsMenu={project(['label', 'key'], menu)}
-              label="Account options"
-            />
-          </Box>
+      <Page title={`Account`} subtitle={`Hi ${customer?.name || ''}, welcome back!`}>
+        <TabsMenu
+          handleChange={handleMenuChange}
+          value={activeTab}
+          tabsMenu={project(['label', 'key'], menu)}
+          label="Account options"
+        />
+        <Section pt={0}>
+          {activeTab === 'contact' && (
+            <>
+              <Box mb={1}>
+                <Alert severity="info">
+                  The following information is <strong>private</strong> and will never be shown to
+                  anybody. We only use it to send you read receipts.
+                </Alert>
+              </Box>
 
+              <Paper square>
+                <Box p={3}>
+                  <CustomerForm
+                    {...customer}
+                    formFieldsSelection="contact"
+                    onSuccess={triggerFetchCustomer}
+                  />
+                </Box>
+              </Paper>
+            </>
+          )}
           {activeTab === 'secrets' && (
             <>
-              <Box mb={5}>
+              <Box mb={1}>
                 <Alert severity="info">
                   These are default settings. You can overwrite each setting for every secret you
                   create.
@@ -83,39 +100,20 @@ const Account = () => {
           )}
           {activeTab === 'subscription' && (
             <>
-              <Box mb={5}>
+              <Box mb={1}>
                 <Alert severity="info">You are currently on the {customer?.role} plan.</Alert>
               </Box>
 
               <PlanSelection />
             </>
           )}
-          {activeTab === 'contact' && (
-            <>
-              <Box mb={5}>
-                <Alert severity="info">
-                  The following information is <strong>private</strong> and will never be shown to
-                  anybody. We only use it to send you read receipts.
-                </Alert>
-              </Box>
 
-              <Paper square>
-                <Box p={3}>
-                  <CustomerForm
-                    {...customer}
-                    formFieldsSelection="contact"
-                    onSuccess={triggerFetchCustomer}
-                  />
-                </Box>
-              </Paper>
-            </>
-          )}
           {activeTab === 'danger' && (
             <>
               {customer?.role === 'premium' && (
                 <Box mb={5}>
                   <Alert severity="info">
-                    You have a running subscription. We highly recommend to cancel it first.
+                    You have a running subscription. We recommend to cancel it first.
                   </Alert>
                 </Box>
               )}

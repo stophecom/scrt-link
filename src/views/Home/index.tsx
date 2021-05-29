@@ -276,6 +276,9 @@ const HomeView: React.FunctionComponent = () => {
                         name="message"
                         label="URL"
                         required
+                        InputLabelProps={{
+                          shrink: false,
+                        }}
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
@@ -295,6 +298,9 @@ const HomeView: React.FunctionComponent = () => {
                           rowsMax={7}
                           label={getFormFieldConfigBySecretType(secretType).label}
                           placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
+                          InputLabelProps={{
+                            shrink: false,
+                          }}
                         />
                         <Counter messageLength={values.message.length} />
                       </>
