@@ -66,7 +66,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
             {message}
           </Typography>
           <Typography variant="subtitle1" component="div" color="primary">
-            <Pause ms={2000} />
+            <Pause ms={1000} />
             <br />
             {destructionMessage && (
               <>
@@ -74,7 +74,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
                 <br />
               </>
             )}
-            <Pause ms={1000} />
+            <Pause ms={100} />
             {countDown.map((item, index) => {
               return (
                 <span key={index}>
