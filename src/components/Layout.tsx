@@ -44,12 +44,12 @@ const LinkAbout = styled(Link)`
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     logo: {
-      width: '100px',
-      height: '100px',
+      width: '80px',
+      height: '80px',
 
       [theme.breakpoints.up('md')]: {
-        width: '150px',
-        height: '150px',
+        width: '120px',
+        height: '120px',
       },
     },
     linkPadding: {
