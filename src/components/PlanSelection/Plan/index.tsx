@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: '.4em',
     },
     check: {
-      width: '2em',
-      height: '2em',
+      width: '2.4rem',
+      height: '2.4rem',
       position: 'absolute',
       borderRadius: '50%',
       backgroundColor: `${theme.palette.primary.main}`,
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '1.4rem',
       right: '0',
       top: '0',
-      transform: 'translate(20%, -20%)',
+      transform: 'translate(15%, -15%)',
     },
   }),
 )

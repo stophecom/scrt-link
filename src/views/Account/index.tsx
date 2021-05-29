@@ -100,7 +100,7 @@ const Account = () => {
           )}
           {activeTab === 'subscription' && (
             <>
-              <Box mb={1}>
+              <Box mb={2}>
                 <Alert severity="info">You are currently on the {customer?.role} plan.</Alert>
               </Box>
 
