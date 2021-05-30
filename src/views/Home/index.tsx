@@ -180,7 +180,7 @@ const HomeView: React.FunctionComponent = () => {
       isEncryptedWithUserPassword: !!password,
     }
     try {
-      const response = await axios.post('/api', data)
+      const response = await axios.post('/api/secret', data)
       response.data['encryptionKey'] = encryptionKey
       dispatch(doSuccess(response))
 

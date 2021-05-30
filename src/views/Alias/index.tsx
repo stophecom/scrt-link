@@ -247,7 +247,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let error
   try {
-    const response = await axios.get(`${baseUrl}/api?alias=${alias}`)
+    const response = await axios.get(`${baseUrl}/api/secret?alias=${alias}`)
     const { data } = response
     const { message } = data
 
