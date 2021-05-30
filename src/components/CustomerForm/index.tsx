@@ -47,6 +47,42 @@ export const DestructionTimeout: React.FunctionComponent<
   </Box>
 )
 
+type ReadReceiptsOptionsProps = {
+  isSMSDisabled: boolean
+  isEmailDisabled: boolean
+}
+
+export const ReadReceiptsOptions: React.FunctionComponent<ReadReceiptsOptionsProps> = ({
+  isEmailDisabled,
+  isSMSDisabled,
+}) => {
+  const readReceiptsOptions = [
+    { value: 'none', label: 'None' },
+    {
+      value: 'sms',
+      label: 'Via SMS',
+      disabled: isSMSDisabled,
+    },
+    {
+      value: 'email',
+      label: 'Via email',
+      disabled: isEmailDisabled,
+    },
+  ]
+  return (
+    <BaseRadiosField
+      options={readReceiptsOptions}
+      name="readReceipts"
+      label="Read receipts"
+      helperText={
+        !isSMSDisabled || !isEmailDisabled
+          ? `To enable, you need to add corresponding contact options first.`
+          : ''
+      }
+    />
+  )
+}
+
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
 interface State {
@@ -104,20 +140,6 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
         onSubmit={handleSubmit}
       >
         {({ isValid, isSubmitting, values, errors }) => {
-          const readReceiptsOptions = [
-            { value: 'none', label: 'None' },
-            {
-              value: 'sms',
-              label: 'Via SMS',
-              disabled: !values.receiptPhoneNumber || !!errors.receiptPhoneNumber,
-            },
-            {
-              value: 'email',
-              label: 'Via email',
-              disabled: !values.receiptEmail || !!errors.receiptEmail,
-            },
-          ]
-
           return (
             <>
               <Form noValidate>
@@ -150,15 +172,9 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                       <Box mb={5}>
                         <Typography variant="h3">General settings</Typography>
                       </Box>
-                      <BaseRadiosField
-                        options={readReceiptsOptions}
-                        name="readReceipts"
-                        label="Read receipts"
-                        helperText={
-                          !values.receiptPhoneNumber || !values.receiptEmail
-                            ? `To enable, you need to add corresponding contact options first.`
-                            : ''
-                        }
+                      <ReadReceiptsOptions
+                        isSMSDisabled={!values.receiptPhoneNumber || !!errors.receiptPhoneNumber}
+                        isEmailDisabled={!values.receiptEmail || !!errors.receiptEmail}
                       />
                     </Box>
 

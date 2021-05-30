@@ -8,17 +8,20 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
-
-import { ArrowForward } from '@material-ui/icons'
+import { ArrowForward, ExpandLess, ExpandMore } from '@material-ui/icons'
+import LinkIcon from '@material-ui/icons/Link'
 
 import { Link, BaseButtonLink } from '@/components/Link'
 import { PageError } from '@/components/Error'
-import BooleanSwitch from '@/components/BooleanSwitch'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { Maybe } from '@/types'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
-import { DestructionMessage, DestructionTimeout } from '@/components/CustomerForm'
+import {
+  DestructionMessage,
+  DestructionTimeout,
+  ReadReceiptsOptions,
+} from '@/components/CustomerForm'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
 
@@ -26,7 +29,6 @@ import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 import { getLimits, generateNanoId, encryptMessage } from '@/utils'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
-import LinkIcon from '@material-ui/icons/Link'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
 import { urlAliasLength, encryptionKeyLength } from '@/constants'
@@ -34,6 +36,7 @@ import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/a
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
 import { useCustomer } from '@/utils/api'
+import { ReadReceipts } from '@/api/models/Customer'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
@@ -42,9 +45,10 @@ const Neogram = dynamic(() => import('@/components/Neogram'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-type SecretUrlFormValues = Omit<SecretUrlFields, 'userId' | 'isEncryptedWithUserPassword'> & {
+type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> & {
   password?: string
   encryptionKey: string
+  readReceipts: ReadReceipts
 }
 
 export interface State {
@@ -138,10 +142,21 @@ const HomeView: React.FunctionComponent = () => {
     neogramDestructionMessage:
       customer?.neogramDestructionMessage || 'This message will self-destruct in…',
     neogramDestructionTimeout: customer?.neogramDestructionTimeout || 5,
+    receiptEmail: customer?.receiptEmail || '',
+    receiptPhoneNumber: customer?.receiptPhoneNumber || '',
+    readReceipts: (customer?.readReceipts as ReadReceipts) || 'none',
   }
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
-    const { password, secretType, alias, encryptionKey } = values
+    const {
+      password,
+      secretType,
+      alias,
+      encryptionKey,
+      readReceipts,
+      receiptEmail,
+      receiptPhoneNumber,
+    } = values
     let { message } = values
 
     if (password) {
@@ -155,10 +170,13 @@ const HomeView: React.FunctionComponent = () => {
     window.scrollTo(0, 0)
 
     const data = {
-      ...omit(['password', 'encryptionKey'], values),
+      ...omit(['password', 'encryptionKey', 'readReceipts'], values),
       alias,
       message,
       secretType,
+      receiptEmail: readReceipts === 'email' && receiptEmail ? receiptEmail : undefined,
+      receiptPhoneNumber:
+        readReceipts === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
       isEncryptedWithUserPassword: !!password,
     }
     try {
@@ -312,6 +330,13 @@ const HomeView: React.FunctionComponent = () => {
                       <Box py={1}>
                         <BasePasswordField className={clsx(classes.root)} name="password" />
                       </Box>
+                      <Box pl={1} pt={3} pb={6}>
+                        <ReadReceiptsOptions
+                          isSMSDisabled={!customer?.receiptPhoneNumber}
+                          isEmailDisabled={!customer?.receiptEmail}
+                        />
+                      </Box>
+
                       {secretType === 'neogram' && (
                         <>
                           <Box py={1}>
@@ -338,14 +363,13 @@ const HomeView: React.FunctionComponent = () => {
                         flexGrow={1}
                         py={{ xs: 1, sm: 0 }}
                         mb={{ xs: 1, sm: 0 }}
-                        pl={1}
                       >
-                        <BooleanSwitch
-                          checked={hasFormOptions}
-                          onChange={setHasFormOptions}
-                          name="formOptions"
-                          label="With options"
-                        />
+                        <BaseButton
+                          startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
+                          onClick={() => setHasFormOptions(!hasFormOptions)}
+                        >
+                          {hasFormOptions ? 'Less options' : 'More options'}
+                        </BaseButton>
 
                         {secretType === 'neogram' && (
                           <Box ml="auto">

@@ -11,7 +11,7 @@ const ReplyButton = () => {
     <BaseButtonLink
       href="/"
       color="primary"
-      variant="contained"
+      variant="text"
       size="large"
       startIcon={<ReplyIcon />}
       onClick={() => plausible('ReplyButton')}

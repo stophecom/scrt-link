@@ -1,7 +1,7 @@
 import { NextApiHandler, NextApiRequest } from 'next'
 import * as Yup from 'yup'
 import { pick } from 'ramda'
-import { AES, enc } from 'crypto-js'
+
 import { getSession } from 'next-auth/client'
 import Pusher from 'pusher'
 
@@ -10,9 +10,9 @@ import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
-import { CustomerFields } from '@/api/models/Customer'
 import mailjet, { mailjetSms } from '@/api/utils/mailjet'
 import { pusherCluster } from '@/constants'
+import { encryptAES, decryptAES } from '@/utils/db'
 
 const pusher = new Pusher({
   appId: process.env.PUSHER_APP_ID,
@@ -41,7 +41,7 @@ const extractGetInput = async (req: NextApiRequest) => {
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    await apiValidationSchemaByType.validate(req.body)
+    await apiValidationSchemaByType.validate(req.body) // Improve
   } catch (err) {
     throw createError(422, err.message)
   }
@@ -71,11 +71,12 @@ const handler: NextApiHandler = async (req, res) => {
       const secretUrl = decodeStringsFromDB(secretUrlRaw?.toJSON())
 
       const {
-        userId,
         secretType,
         isEncryptedWithUserPassword,
         neogramDestructionMessage,
         neogramDestructionTimeout,
+        receiptEmail,
+        receiptPhoneNumber,
         message,
       } = secretUrl
 
@@ -93,56 +94,31 @@ const handler: NextApiHandler = async (req, res) => {
         { new: true },
       )
 
-      if (userId) {
-        let privateMeta = {} as Pick<
-          CustomerFields,
-          'readReceipts' | 'receiptEmail' | 'receiptPhoneNumber'
-        >
-        const customerRaw = await models.Customer.findOne({
-          userId,
+      if (receiptPhoneNumber) {
+        mailjetSms({
+          To: `+${decryptAES(receiptPhoneNumber)}`,
+          Text: `Your secret ${alias} has been viewed!🔥 Reply with a secret: https://scrt.link`,
         })
-
-        const customer = decodeStringsFromDB(customerRaw?.toJSON()) as CustomerFields
-
-        privateMeta = pick(['receiptEmail', 'readReceipts', 'receiptPhoneNumber'], customer)
-
-        const name = customer?.name || 'Anonymous'
-
-        switch (privateMeta?.readReceipts) {
-          case 'sms': {
-            mailjetSms({
-              To: `+${privateMeta.receiptPhoneNumber}`,
-              Text: `Your secret ${alias} has been viewed!🔥 Reply with a secret: https://scrt.link`,
-            })
-            break
-          }
-          case 'email': {
-            mailjet({
-              To: [{ Email: privateMeta.receiptEmail, Name: name }],
-              Subject: 'Secret has been viewed 🔥',
-              TemplateID: 2818166,
-              TemplateLanguage: true,
-              Variables: {
-                name,
-                alias,
-              },
-            })
-            break
-          }
-        }
       }
 
-      // Decrypt essage
-      const decryptAES = (string: string) => {
-        const bytes = AES.decrypt(string, `${process.env.AES_KEY_512}`)
-        return bytes.toString(enc.Utf8)
+      if (receiptEmail) {
+        mailjet({
+          To: [{ Email: decryptAES(receiptEmail), Name: 'Scrt.link' }],
+          Subject: 'Secret has been viewed 🔥',
+          TemplateID: 2818166,
+          TemplateLanguage: true,
+          Variables: {
+            name: '',
+            alias,
+          },
+        })
       }
 
       res.json({
         secretType,
         message: decryptAES(message),
+        neogramDestructionMessage: decryptAES(neogramDestructionMessage),
         isEncryptedWithUserPassword,
-        neogramDestructionMessage,
         neogramDestructionTimeout,
       })
       break
@@ -153,13 +129,11 @@ const handler: NextApiHandler = async (req, res) => {
         message,
         isEncryptedWithUserPassword,
         alias,
+        receiptEmail,
+        receiptPhoneNumber,
         neogramDestructionMessage,
         neogramDestructionTimeout,
       } = await extractPostInput(req)
-
-      // Encrypt sensitive information
-      const encryptAES = (string: string) =>
-        AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
 
       // Stats
       const stats = await models.Stats.findOneAndUpdate(
@@ -197,13 +171,14 @@ const handler: NextApiHandler = async (req, res) => {
       }
 
       const shortened = new models.SecretUrl({
-        userId: session?.userId,
         secretType,
         message: encryptAES(message),
         alias,
-        neogramDestructionMessage,
+        neogramDestructionMessage: encryptAES(neogramDestructionMessage),
         neogramDestructionTimeout,
         isEncryptedWithUserPassword,
+        ...(receiptEmail ? { receiptEmail: encryptAES(receiptEmail) } : {}),
+        ...(receiptPhoneNumber ? { receiptPhoneNumber: encryptAES(receiptPhoneNumber) } : {}),
       })
 
       await shortened.save()

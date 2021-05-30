@@ -6,13 +6,14 @@ import { BaseDocumentData } from './types'
 
 export type SecretType = 'message' | 'url' | 'neogram'
 export interface SecretUrlFields {
-  userId?: string
   secretType: SecretType
   alias: string
   message: string
   isEncryptedWithUserPassword: boolean
   neogramDestructionMessage?: string
   neogramDestructionTimeout?: number
+  receiptEmail: string
+  receiptPhoneNumber: string
 }
 
 export type SecretUrlData = BaseDocumentData & SecretUrlFields
@@ -21,7 +22,6 @@ type SecretUrlDocument = mongoose.Document & SecretUrlFields
 
 const SecretUrlSchema = new mongoose.Schema(
   {
-    userId: { type: mongoose.Types.ObjectId, required: false },
     secretType: { type: String, required: true, trim: true },
     alias: {
       type: String,
@@ -34,6 +34,8 @@ const SecretUrlSchema = new mongoose.Schema(
     isEncryptedWithUserPassword: { type: Boolean, required: true, default: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },
+    receiptEmail: { type: String, required: false, trim: true },
+    receiptPhoneNumber: { type: String, required: false, trim: true },
   },
   { timestamps: true },
 )
