@@ -6,6 +6,7 @@ import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
+// @todo
 const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 const readReceipts = ['none' as ReadReceipt, 'sms' as ReadReceipt, 'email' as ReadReceipt]
 
