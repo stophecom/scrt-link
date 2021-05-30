@@ -1,13 +1,13 @@
 import * as Yup from 'yup'
 import validator from 'validator'
 
-import { CustomerFields, ReadReceipts } from '@/api/models/Customer'
+import { CustomerFields, ReadReceipt } from '@/api/models/Customer'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
-const readReceipts = ['none' as ReadReceipts, 'sms' as ReadReceipts, 'email' as ReadReceipts]
+const readReceipts = ['none' as ReadReceipt, 'sms' as ReadReceipt, 'email' as ReadReceipt]
 
 const messageValidation = (maxLength: number) => ({
   message: Yup.string().label('Message').required().min(1).max(maxLength).trim(),
@@ -74,7 +74,7 @@ export const customerValidationSchema = Yup.object().shape<Partial<CustomerField
   name: Yup.string().label('Name').max(200).trim(),
   ...neogramDestructionMessageValidation,
   ...neogramDestructionTimeoutValidation,
-  readReceipts: Yup.mixed<ReadReceipts>().oneOf(readReceipts).label('Read receipts'),
+  readReceipts: Yup.mixed<ReadReceipt>().oneOf(readReceipts).label('Read receipts'),
   isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
   receiptEmail: Yup.string().label('Email').email().max(200).trim(),
   receiptPhoneNumber: Yup.string()

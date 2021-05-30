@@ -36,7 +36,7 @@ import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/a
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
 import { useCustomer } from '@/utils/api'
-import { ReadReceipts } from '@/api/models/Customer'
+import { ReadReceipt } from '@/api/models/Customer'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
@@ -48,7 +48,7 @@ type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> & {
   password?: string
   encryptionKey: string
-  readReceipts: ReadReceipts
+  readReceipts: ReadReceipt
 }
 
 export interface State {
@@ -144,7 +144,7 @@ const HomeView: React.FunctionComponent = () => {
     neogramDestructionTimeout: customer?.neogramDestructionTimeout || 3,
     receiptEmail: customer?.receiptEmail || '',
     receiptPhoneNumber: customer?.receiptPhoneNumber || '',
-    readReceipts: (customer?.readReceipts as ReadReceipts) || 'none',
+    readReceipts: (customer?.readReceipts as ReadReceipt) || 'none',
   }
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
