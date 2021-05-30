@@ -85,7 +85,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
             })}
             <br />
             <Pause ms={1000} />
-            {'Booooom 🔥'}
+            {'🔥'}
             <Pause ms={1000} />
           </Typography>
         </WindupChildren>

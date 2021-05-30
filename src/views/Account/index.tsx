@@ -111,7 +111,7 @@ const Account = () => {
           {activeTab === 'danger' && (
             <>
               {customer?.role === 'premium' && (
-                <Box mb={5}>
+                <Box mb={1}>
                   <Alert severity="info">
                     You have a running subscription. We recommend to cancel it first.
                   </Alert>

@@ -141,7 +141,7 @@ const HomeView: React.FunctionComponent = () => {
     encryptionKey: '',
     neogramDestructionMessage:
       customer?.neogramDestructionMessage || 'This message will self-destruct in…',
-    neogramDestructionTimeout: customer?.neogramDestructionTimeout || 5,
+    neogramDestructionTimeout: customer?.neogramDestructionTimeout || 3,
     receiptEmail: customer?.receiptEmail || '',
     receiptPhoneNumber: customer?.receiptPhoneNumber || '',
     readReceipts: (customer?.readReceipts as ReadReceipts) || 'none',
