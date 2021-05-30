@@ -86,7 +86,7 @@ const handler: NextApiHandler = async (req, res) => {
         {
           $inc: {
             totalSecretsViewCount: 1,
-            'secretsViewCount.message': Number(secretType === 'message'),
+            'secretsViewCount.text': Number(secretType === 'text'),
             'secretsViewCount.url': Number(secretType === 'url'),
             'secretsViewCount.neogram': Number(secretType === 'neogram'),
           },
@@ -141,7 +141,7 @@ const handler: NextApiHandler = async (req, res) => {
         {
           $inc: {
             totalSecretsCount: 1,
-            'secretsCount.message': Number(secretType === 'message'),
+            'secretsCount.text': Number(secretType === 'text'),
             'secretsCount.url': Number(secretType === 'url'),
             'secretsCount.neogram': Number(secretType === 'neogram'),
           },
@@ -161,7 +161,7 @@ const handler: NextApiHandler = async (req, res) => {
           {
             $inc: {
               totalSecretsCount: 1,
-              'secretsCount.message': Number(secretType === 'message'),
+              'secretsCount.text': Number(secretType === 'text'),
               'secretsCount.url': Number(secretType === 'url'),
               'secretsCount.neogram': Number(secretType === 'neogram'),
             },

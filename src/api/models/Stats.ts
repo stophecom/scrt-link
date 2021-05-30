@@ -4,13 +4,13 @@ export interface StatsFields {
   userId?: string
   totalSecretsCount: number
   secretsCount: {
-    message: number
+    text: number
     url: number
     neogram: number
   }
   totalSecretsViewCount: number
   secretsViewCount: {
-    message: number
+    text: number
     url: number
     neogram: number
   }
@@ -23,13 +23,13 @@ const StatsSchema = new mongoose.Schema(
     userId: { type: mongoose.Types.ObjectId, required: false },
     totalSecretsCount: { type: Number, required: true, default: 0 },
     secretsCount: {
-      message: { type: Number, required: false, default: 0 },
+      text: { type: Number, required: false, default: 0 },
       url: { type: Number, required: false, default: 0 },
       neogram: { type: Number, required: false, default: 0 },
     },
     totalSecretsViewCount: { type: Number, required: false, default: 0 },
     secretsViewCount: {
-      message: { type: Number, required: false, default: 0 },
+      text: { type: Number, required: false, default: 0 },
       url: { type: Number, required: false, default: 0 },
       neogram: { type: Number, required: false, default: 0 },
     },

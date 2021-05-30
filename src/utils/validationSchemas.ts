@@ -6,7 +6,7 @@ import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
-const secretTypes = ['message' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
+const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
 const readReceipts = ['none' as ReadReceipts, 'sms' as ReadReceipts, 'email' as ReadReceipts]
 
 const messageValidation = (maxLength: number) => ({
@@ -42,7 +42,7 @@ export const getValidationSchemaByType = (
 ) => {
   const schemataMap = {
     url: urlValidation,
-    message: messageValidation(maxMessageLength),
+    text: messageValidation(maxMessageLength),
     neogram: {
       ...messageValidation(maxMessageLength),
       ...neogramDestructionMessageValidation,

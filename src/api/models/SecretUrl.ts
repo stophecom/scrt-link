@@ -4,7 +4,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 import { urlAliasLength } from '@/constants'
 import { BaseDocumentData } from './types'
 
-export type SecretType = 'message' | 'url' | 'neogram'
+export type SecretType = 'text' | 'url' | 'neogram'
 export interface SecretUrlFields {
   secretType: SecretType
   alias: string

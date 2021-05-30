@@ -31,7 +31,7 @@ export const demoMessage = 'Hi there…\nThis is just a demo!\n\nEnjoy sharing s
 const demoSecretMessageLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
   JSON.stringify({
     message: demoMessage,
-    secretType: 'message',
+    secretType: 'text',
   }),
 )}`
 const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
@@ -44,11 +44,11 @@ const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent
 )}`
 
 const secretTypes = {
-  heading: 'What is the difference between *Message*, *URL Redirect* and *Neogram™*?',
+  heading: 'What is the difference between *Text*, *Redirect* and *Neogram™*?',
   body: `
-- **Message**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recepient has the option to copy the secret.
+- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recepient has the option to copy the secret.
 [Demo](${demoSecretMessageLink})
-- **URL Redirect**: Think about it as a URL-shortener where the generated link only works once.
+- **Redirect**: Think about it as a URL-shortener where the generated link only works once.
 - **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo](${demoSecretNeogramLink})
     `,
 }

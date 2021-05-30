@@ -98,9 +98,9 @@ type SecretTypeConfig = {
 type ObjKey = { [key: string]: SecretTypeConfig }
 
 export const secretTypesMap = {
-  message: {
+  text: {
     label: 'Your secret',
-    tabLabel: 'Message',
+    tabLabel: 'Text',
     placeholder: 'Secret message, password, private key, etc.',
   },
   url: {
@@ -130,13 +130,13 @@ const HomeView: React.FunctionComponent = () => {
   const classes = useStyles()
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [secretType, setSecretType] = useState<SecretType>('message')
+  const [secretType, setSecretType] = useState<SecretType>('text')
   const [neogramPreview, setNeogramPreview] = useState(false)
   const { data: customer } = useCustomer()
 
   const initialValues: SecretUrlFormValues = {
     message: '',
-    secretType: 'message',
+    secretType: 'text',
     alias: '',
     encryptionKey: '',
     neogramDestructionMessage:
@@ -307,7 +307,7 @@ const HomeView: React.FunctionComponent = () => {
                           }}
                         />
                       )}
-                      {['message', 'neogram'].includes(secretType) && (
+                      {['text', 'neogram'].includes(secretType) && (
                         <>
                           <BaseTextField
                             name="message"

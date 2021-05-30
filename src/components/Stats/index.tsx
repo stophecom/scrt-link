@@ -41,7 +41,7 @@ export const PersonalStats: React.FunctionComponent<PersonalStatsProps> = ({ use
     <Typography variant="body1">
       <strong>Total secrets created: {stats?.totalSecretsCount ?? 0}</strong>
       <br />
-      Message:&nbsp;{stats?.secretsCount?.message ?? 0}
+      Text:&nbsp;{stats?.secretsCount?.text ?? 0}
       <br />
       URL:&nbsp;{stats?.secretsCount?.url ?? 0}
       <br />
