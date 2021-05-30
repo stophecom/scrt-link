@@ -1,14 +1,19 @@
 import * as Yup from 'yup'
 import validator from 'validator'
 
-import { CustomerFields, ReadReceipt } from '@/api/models/Customer'
+import { Role, CustomerFields, ReadReceiptType } from '@/api/models/Customer'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
+import { getLimits } from '@/utils'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 // @todo
 const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
-const readReceipts = ['none' as ReadReceipt, 'sms' as ReadReceipt, 'email' as ReadReceipt]
+const readReceipts = [
+  'none' as ReadReceiptType,
+  'sms' as ReadReceiptType,
+  'email' as ReadReceiptType,
+]
 
 const messageValidation = (maxLength: number) => ({
   message: Yup.string().label('Message').required().min(1).max(maxLength).trim(),
@@ -21,6 +26,13 @@ const neogramDestructionMessageValidation = {
 }
 const neogramDestructionTimeoutValidation = {
   neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
+}
+const receiptEmailValidation = { receiptEmail: Yup.string().label('Email').email().max(200).trim() }
+const receiptPhoneNumberValidation = {
+  receiptPhoneNumber: Yup.string()
+    .label('Phone')
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .trim(),
 }
 
 const urlValidation = {
@@ -35,13 +47,20 @@ const urlValidation = {
     .trim(),
 }
 
-type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & { password?: string }
+type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & {
+  password?: string
+  readReceipts?: ReadReceiptType
+}
 export const getValidationSchemaByType = (
   secretType: SecretType,
-  hasPassword = false,
-  maxMessageLength = 280,
+  readReceiptType: ReadReceiptType,
+  role: Role = 'visitor',
 ) => {
-  const schemataMap = {
+  const maxMessageLength = getLimits(role).maxMessageLength
+  const isEmailReceiptAllowed = ['free', 'premium'].includes(role)
+  const isSMSReceiptAllowed = role === 'premium'
+
+  const schemataBySecretTypeMap = {
     url: urlValidation,
     text: messageValidation(maxMessageLength),
     neogram: {
@@ -51,14 +70,29 @@ export const getValidationSchemaByType = (
     },
   }
 
+  const schemataByReadReceiptMap = {
+    none: {},
+    sms: receiptPhoneNumberValidation,
+    email: receiptEmailValidation,
+  }
+
   return Yup.object().shape<SecretFormInput>({
-    ...schemataMap[secretType],
-    ...(hasPassword
-      ? {
-          password: Yup.string().label('Password').min(5).max(50).trim(),
-        }
-      : {}),
+    ...schemataBySecretTypeMap[secretType],
+    ...schemataByReadReceiptMap[readReceiptType],
     ...typeValidation,
+    password: Yup.string().label('Password').min(5).max(50).trim(),
+    readReceipts: Yup.mixed<ReadReceiptType>()
+      .oneOf(
+        [
+          'none',
+          ...(isEmailReceiptAllowed ? ['email' as ReadReceiptType] : []),
+          ...(isSMSReceiptAllowed ? ['sms' as ReadReceiptType] : []),
+        ],
+        !isEmailReceiptAllowed && !isSMSReceiptAllowed
+          ? 'You need an account to enable read receipts.'
+          : 'Subscribe to premium for the SMS option.',
+      )
+      .label('Read receipts'),
   })
 }
 
@@ -75,13 +109,10 @@ export const customerValidationSchema = Yup.object().shape<Partial<CustomerField
   name: Yup.string().label('Name').max(200).trim(),
   ...neogramDestructionMessageValidation,
   ...neogramDestructionTimeoutValidation,
-  readReceipts: Yup.mixed<ReadReceipt>().oneOf(readReceipts).label('Read receipts'),
+  readReceipts: Yup.mixed<ReadReceiptType>().oneOf(readReceipts).label('Read receipts'),
   isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
-  receiptEmail: Yup.string().label('Email').email().max(200).trim(),
-  receiptPhoneNumber: Yup.string()
-    .label('Phone')
-    .matches(phoneRegExp, 'Phone number is not valid')
-    .trim(),
+  ...receiptEmailValidation,
+  ...receiptPhoneNumberValidation,
 })
 
 export const deleteCustomerValidationSchema = Yup.object().shape({

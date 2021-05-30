@@ -47,41 +47,17 @@ export const DestructionTimeout: React.FunctionComponent<
   </Box>
 )
 
-type ReadReceiptsOptionsProps = {
-  isSMSDisabled: boolean
-  isEmailDisabled: boolean
-}
-
-export const ReadReceiptsOptions: React.FunctionComponent<ReadReceiptsOptionsProps> = ({
-  isEmailDisabled,
-  isSMSDisabled,
-}) => {
-  const readReceiptsOptions = [
-    { value: 'none', label: 'None' },
-    {
-      value: 'sms',
-      label: 'Via SMS',
-      disabled: isSMSDisabled,
-    },
-    {
-      value: 'email',
-      label: 'Via email',
-      disabled: isEmailDisabled,
-    },
-  ]
-  return (
-    <BaseRadiosField
-      options={readReceiptsOptions}
-      name="readReceipts"
-      label="Read receipts"
-      helperText={
-        !isSMSDisabled || !isEmailDisabled
-          ? `To enable, you need to add corresponding contact options first.`
-          : ''
-      }
-    />
-  )
-}
+export const readReceiptsOptions = [
+  { value: 'none', label: 'None' },
+  {
+    value: 'email',
+    label: 'Via Email',
+  },
+  {
+    value: 'sms',
+    label: 'Via SMS',
+  },
+]
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -172,9 +148,18 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                       <Box mb={5}>
                         <Typography variant="h3">General settings</Typography>
                       </Box>
-                      <ReadReceiptsOptions
-                        isSMSDisabled={!values.receiptPhoneNumber || !!errors.receiptPhoneNumber}
-                        isEmailDisabled={!values.receiptEmail || !!errors.receiptEmail}
+                      <BaseRadiosField
+                        options={readReceiptsOptions}
+                        name="readReceipts"
+                        label="Read receipts"
+                        helperText={
+                          !values.receiptPhoneNumber ||
+                          !!errors.receiptPhoneNumber ||
+                          !values.receiptEmail ||
+                          !!errors.receiptEmail
+                            ? `To enable, you need to add corresponding contact options first.`
+                            : ''
+                        }
                       />
                     </Box>
 

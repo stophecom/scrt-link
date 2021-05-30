@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
-import { Box, InputAdornment, Paper } from '@material-ui/core'
+import { Box, InputAdornment, Paper, FormControlProps } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
@@ -20,11 +20,12 @@ import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import {
   DestructionMessage,
   DestructionTimeout,
-  ReadReceiptsOptions,
+  readReceiptsOptions,
 } from '@/components/CustomerForm'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
-
+import BaseRadiosField from '@/components/BaseRadiosField'
+import BasePhoneField from '@/components/BasePhoneField'
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 import { getLimits, generateNanoId, encryptMessage } from '@/utils'
@@ -36,7 +37,7 @@ import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/a
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
 import { useCustomer } from '@/utils/api'
-import { ReadReceipt } from '@/api/models/Customer'
+import { ReadReceiptType } from '@/api/models/Customer'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
@@ -48,7 +49,7 @@ type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> & {
   password?: string
   encryptionKey: string
-  readReceipts: ReadReceipt
+  readReceipts: ReadReceiptType
 }
 
 export interface State {
@@ -131,6 +132,7 @@ const HomeView: React.FunctionComponent = () => {
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('text')
+  const [readReceiptType, setReadReceiptType] = useState<ReadReceiptType>('none')
   const [neogramPreview, setNeogramPreview] = useState(false)
   const { data: customer } = useCustomer()
 
@@ -144,7 +146,7 @@ const HomeView: React.FunctionComponent = () => {
     neogramDestructionTimeout: customer?.neogramDestructionTimeout || 3,
     receiptEmail: customer?.receiptEmail || '',
     receiptPhoneNumber: customer?.receiptPhoneNumber || '',
-    readReceipts: (customer?.readReceipts as ReadReceipt) || 'none',
+    readReceipts: (customer?.readReceipts as ReadReceiptType) || 'none',
   }
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
@@ -279,13 +281,13 @@ const HomeView: React.FunctionComponent = () => {
             initialValues={initialValues}
             validationSchema={getValidationSchemaByType(
               secretType,
-              hasFormOptions,
-              getLimits(customer?.role).maxMessageLength,
+              readReceiptType,
+              customer?.role,
             )}
             validateOnMount
             onSubmit={handleSubmit}
           >
-            {({ isValid, isSubmitting, setFieldValue, values }) => {
+            {({ isValid, isSubmitting, setFieldValue, validateField, values }) => {
               return (
                 <>
                   <Form noValidate>
@@ -331,10 +333,29 @@ const HomeView: React.FunctionComponent = () => {
                         <BasePasswordField className={clsx(classes.root)} name="password" />
                       </Box>
                       <Box pl={1} pt={3} pb={6}>
-                        <ReadReceiptsOptions
-                          isSMSDisabled={!customer?.receiptPhoneNumber}
-                          isEmailDisabled={!customer?.receiptEmail}
+                        <BaseRadiosField
+                          options={readReceiptsOptions}
+                          name="readReceipts"
+                          label="Read receipts"
+                          onChange={(e: any) => {
+                            setReadReceiptType(e.target.value)
+                          }}
                         />
+                        {values?.readReceipts === 'email' &&
+                          ['free', 'premium'].includes(customer?.role || '') && (
+                            <Box py={1}>
+                              <BaseTextField
+                                name="receiptEmail"
+                                label="Email"
+                                placeholder="example@gmail.com"
+                              />
+                            </Box>
+                          )}
+                        {values?.readReceipts === 'sms' && customer?.role === 'premium' && (
+                          <Box py={1}>
+                            <BasePhoneField name="receiptPhoneNumber" label="Phone" />
+                          </Box>
+                        )}
                       </Box>
 
                       {secretType === 'neogram' && (

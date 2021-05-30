@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 export const readReceiptOptions = ['none', 'sms', 'email'] as const
-export type ReadReceipt = typeof readReceiptOptions[number]
+export type ReadReceiptType = typeof readReceiptOptions[number]
 
 const roles = ['free', 'premium', 'visitor'] as const
 export type Role = typeof roles[number]
@@ -18,7 +18,7 @@ export interface CustomerFields {
   neogramDestructionTimeout: number
   isEmojiShortLinkEnabled: boolean
   name: string
-  readReceipts: ReadReceipt
+  readReceipts: ReadReceiptType
 }
 
 type CustomerDocument = mongoose.Document & CustomerFields

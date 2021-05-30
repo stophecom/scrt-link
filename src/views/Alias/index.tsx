@@ -249,12 +249,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const response = await axios.get(`${baseUrl}/api/secret?alias=${alias}`)
     const { data } = response
-    const { message } = data
 
     return {
       props: {
         ...data,
-        message: decodeURIComponent(message),
       },
     }
   } catch (err) {

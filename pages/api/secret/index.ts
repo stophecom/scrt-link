@@ -9,7 +9,6 @@ import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
-import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 import mailjet, { mailjetSms } from '@/api/utils/mailjet'
 import { pusherCluster } from '@/constants'
 import { encryptAES, decryptAES } from '@/utils/db'
@@ -46,7 +45,7 @@ const extractPostInput = async (req: NextApiRequest) => {
     throw createError(422, err.message)
   }
 
-  return encodeStringsForDB(req.body)
+  return req.body
 }
 
 const handler: NextApiHandler = async (req, res) => {
@@ -68,7 +67,7 @@ const handler: NextApiHandler = async (req, res) => {
         )
       }
 
-      const secretUrl = decodeStringsFromDB(secretUrlRaw?.toJSON())
+      const secretUrl = secretUrlRaw.toJSON()
 
       const {
         secretType,
@@ -81,7 +80,7 @@ const handler: NextApiHandler = async (req, res) => {
       } = secretUrl
 
       // Update global stats
-      await models.Stats.findOneAndUpdate(
+      models.Stats.findOneAndUpdate(
         {},
         {
           $inc: {
@@ -108,7 +107,6 @@ const handler: NextApiHandler = async (req, res) => {
           TemplateID: 2818166,
           TemplateLanguage: true,
           Variables: {
-            name: '',
             alias,
           },
         })
@@ -117,7 +115,9 @@ const handler: NextApiHandler = async (req, res) => {
       res.json({
         secretType,
         message: decryptAES(message),
-        neogramDestructionMessage: decryptAES(neogramDestructionMessage),
+        neogramDestructionMessage: neogramDestructionMessage
+          ? decryptAES(neogramDestructionMessage)
+          : '',
         isEncryptedWithUserPassword,
         neogramDestructionTimeout,
       })
