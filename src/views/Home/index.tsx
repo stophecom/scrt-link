@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
-import { Box, InputAdornment, Paper, FormControlProps } from '@material-ui/core'
+import { Box, InputAdornment, Paper } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
