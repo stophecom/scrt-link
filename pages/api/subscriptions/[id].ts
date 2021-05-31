@@ -52,7 +52,7 @@ const handler: NextApiHandler = async (req, res) => {
     }
     case 'DELETE': {
       try {
-        const cancelledSubscription: Stripe.Subscription = await stripe.subscriptions.update(
+        const canceledSubscription: Stripe.Subscription = await stripe.subscriptions.update(
           subscriptionId,
           {
             cancel_at_period_end: true,
@@ -61,7 +61,7 @@ const handler: NextApiHandler = async (req, res) => {
           },
         )
 
-        res.status(200).json(cancelledSubscription)
+        res.status(200).json(canceledSubscription)
       } catch (err) {
         throw createError(500, err.message)
       }
