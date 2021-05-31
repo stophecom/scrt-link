@@ -19,6 +19,7 @@ import BaseButton from '@/components/BaseButton'
 import { customerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { MenuItem } from '@/views/Account'
+import { emailPlaceholder } from '@/constants'
 
 export const DestructionMessage: React.FunctionComponent<
   Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
@@ -132,7 +133,7 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                       <BaseTextField
                         name="receiptEmail"
                         label="Email"
-                        placeholder="example@gmail.com"
+                        placeholder={emailPlaceholder}
                       />
                     </Box>
 

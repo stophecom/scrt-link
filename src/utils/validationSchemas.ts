@@ -119,6 +119,15 @@ export const deleteCustomerValidationSchema = Yup.object().shape({
   isSure: Yup.boolean().label('Are you sure').required().oneOf([true], 'Field must be checked'),
 })
 
-export const signInValidationSchema = Yup.object().shape<{ email: string }>({
-  email: Yup.string().label('Email').required().email().trim(),
-})
+export const getSignInValidationSchema = (isSignUp?: boolean) =>
+  Yup.object().shape<{ email: string }>({
+    email: Yup.string().label('Email').required().email().trim(),
+    ...(isSignUp
+      ? {
+          isConsentToTermsGiven: Yup.boolean()
+            .label('Are you sure')
+            .required()
+            .oneOf([true], 'Your consent is required.'),
+        }
+      : {}),
+  })

@@ -32,7 +32,7 @@ import { getLimits, generateNanoId, encryptMessage } from '@/utils'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
-import { urlAliasLength, encryptionKeyLength } from '@/constants'
+import { urlAliasLength, encryptionKeyLength, emailPlaceholder } from '@/constants'
 import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
@@ -347,7 +347,7 @@ const HomeView: React.FunctionComponent = () => {
                               <BaseTextField
                                 name="receiptEmail"
                                 label="Email"
-                                placeholder="example@gmail.com"
+                                placeholder={emailPlaceholder}
                               />
                             </Box>
                           )}

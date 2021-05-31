@@ -29,7 +29,14 @@ export const menu = [
   },
 ]
 
-export const legal = [
+export const terms = [
+  {
+    href: '/terms-of-service',
+    label: 'Terms of Service',
+  },
+]
+
+export const policies = [
   {
     href: '/acceptable-use-policy',
     label: 'Acceptable Use Policy',
@@ -41,10 +48,6 @@ export const legal = [
   {
     href: '/privacy-policy',
     label: 'Privacy Policy',
-  },
-  {
-    href: '/terms-of-service',
-    label: 'Terms of Service',
   },
 ]
 

@@ -5,13 +5,16 @@ import { signIn } from 'next-auth/client'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import VpnKeyIcon from '@material-ui/icons/VpnKey'
 
+import BaseCheckboxField from '@/components/BaseCheckboxField'
 import Alert from '@material-ui/lab/Alert'
 
 import BaseTextField from '@/components/BaseTextField'
 import { SignIn } from '@/types'
 
 import BaseButton from '@/components/BaseButton'
-import { signInValidationSchema } from '@/utils/validationSchemas'
+import ExternalLink from '@/components/ExternalLink'
+import { getSignInValidationSchema } from '@/utils/validationSchemas'
+import { emailPlaceholder } from '@/constants'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -45,6 +48,7 @@ const initialState: State = {
 const SignInForm = () => {
   const classes = useStyles()
   const [state, setState] = useState(initialState)
+  const [isSignUp, setIsSignUp] = useState(false)
 
   const handleSubmit = useCallback<OnSubmit<SignIn>>(async (values, formikHelpers) => {
     try {
@@ -73,7 +77,7 @@ const SignInForm = () => {
   return (
     <Formik<SignIn>
       initialValues={initialValues}
-      validationSchema={signInValidationSchema}
+      validationSchema={getSignInValidationSchema(isSignUp)}
       validateOnMount
       onSubmit={handleSubmit}
     >
@@ -81,10 +85,25 @@ const SignInForm = () => {
         return (
           <>
             <Form noValidate>
-              <Box mb={2}>
-                <BaseTextField name="email" label="Email" required />
+              <Box py={1}>
+                <BaseTextField name="email" label="Email" placeholder={emailPlaceholder} required />
               </Box>
-              <Box mb={1}>
+              {isSignUp && (
+                <Box py={1}>
+                  <BaseCheckboxField
+                    label={
+                      <>
+                        I agree to the{' '}
+                        <ExternalLink href="/terms-of-service">Terms Of Service</ExternalLink> and
+                        the associated policies.
+                      </>
+                    }
+                    name="isConsentToTermsGiven"
+                  />
+                </Box>
+              )}
+
+              <Box py={1}>
                 <BaseButton
                   className={classes.submitButton}
                   type="submit"
@@ -95,10 +114,19 @@ const SignInForm = () => {
                   disabled={!isValid}
                   startIcon={<VpnKeyIcon />}
                 >
-                  Sign In
+                  {isSignUp ? 'Sign up' : 'Sign in'}
                 </BaseButton>
               </Box>
             </Form>
+            {isSignUp ? 'Already got an account?' : 'No Account yet?'}{' '}
+            <BaseButton
+              variant="text"
+              size="small"
+              color="primary"
+              onClick={() => setIsSignUp(!isSignUp)}
+            >
+              {isSignUp ? 'Sign in' : 'Sign up'}
+            </BaseButton>
           </>
         )
       }}

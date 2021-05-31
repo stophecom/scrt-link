@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Typography, Box } from '@material-ui/core'
 import styled from 'styled-components'
 
@@ -6,11 +6,23 @@ import { Link } from '@/components/Link'
 import Page from '@/components/Page'
 
 import { emailSantihans } from '@/constants'
-import { legal } from '@/data/menu'
+import { policies, terms } from '@/data/menu'
 
 const LinkStyled = styled(Link)`
   font-size: 1rem;
 `
+type MenuProps = { menu: { href: string; label: string }[] }
+export const Menu: React.FunctionComponent<MenuProps> = ({ menu }) => (
+  <Box component="ul">
+    {menu.map(({ href, label }, index) => (
+      <li key={index}>
+        <LinkStyled href={href} color="primary">
+          {label}
+        </LinkStyled>
+      </li>
+    ))}
+  </Box>
+)
 
 export const ImprintInfo = () => (
   <Typography>
@@ -30,15 +42,7 @@ const Imprint = () => (
     </Box>
     <Box mb={4}>
       <Typography variant="h3">Policies and Terms</Typography>
-      <Box component="ul">
-        {legal.map(({ href, label }, index) => (
-          <li key={index}>
-            <LinkStyled href={href} color="primary">
-              {label}
-            </LinkStyled>
-          </li>
-        ))}
-      </Box>
+      <Menu menu={[...policies, ...terms]} />
     </Box>
   </Page>
 )

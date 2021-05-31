@@ -16,6 +16,8 @@ export const pusherCluster = 'eu'
 export const emojiShortUrl = 'https://🤫.st'
 export const shortUrl = 'https://scrt.li'
 
+export const emailPlaceholder = 'example@gmail.com'
+
 // Limits per user role
 export const limits = {
   visitor: {

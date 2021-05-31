@@ -141,13 +141,8 @@ const Account = () => {
 
   return (
     <NoSsr>
-      <Page title="Scrt account" subtitle="Sign in with your email.">
+      <Page title="Scrt account" subtitle="Great things start here…">
         <SignInForm />
-        <Box pt={2} mb={10}>
-          <Typography variant="body2">
-            No account yet? Use the same form to sign up and create an account.
-          </Typography>
-        </Box>
       </Page>
     </NoSsr>
   )
