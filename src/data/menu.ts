@@ -29,6 +29,25 @@ export const menu = [
   },
 ]
 
+export const legal = [
+  {
+    href: '/acceptable-use-policy',
+    label: 'Acceptable Use Policy',
+  },
+  {
+    href: '/cookie-policy',
+    label: 'Cookie Policy',
+  },
+  {
+    href: '/privacy-policy',
+    label: 'Privacy Policy',
+  },
+  {
+    href: '/terms-of-service',
+    label: 'Terms of Service',
+  },
+]
+
 export const about = [
   {
     href: '/imprint',

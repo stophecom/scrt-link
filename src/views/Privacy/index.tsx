@@ -1,11 +1,12 @@
 import React from 'react'
 import { Typography, Box } from '@material-ui/core'
-import Markdown from '@/components/Markdown'
 
+import Markdown from '@/components/Markdown'
+import { BaseButtonLink } from '@/components/Link'
 import Page from '@/components/Page'
 
 const Privacy = () => (
-  <Page title="Privacy" subtitle={`No ads, no cookies, no tracking, no bullshit.`}>
+  <Page title="Privacy" subtitle={`No ads, no cookies*, no tracking, no bullshit.`}>
     <Box mb={6}>
       <Typography variant="h3">Philosophy</Typography>
       <Typography variant="body1">
@@ -32,6 +33,23 @@ We do basic web traffic analytics with [Plausible.io](https://plausible.io/) -  
 `}
         />
       </Typography>
+    </Box>
+
+    <Box mb={6}>
+      <Typography variant="h3">*Cookies</Typography>
+
+      <Typography variant="body1">
+        <Markdown
+          source={`
+For people visiting our website, we don't use cookies whatsoever. However, for people who create an account, the use of esssential cookies is necessary to handle authentication states.
+
+You can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. Read more in our Privacy Policy.
+`}
+        />
+      </Typography>
+      <BaseButtonLink href="/privacy-policy" variant="outlined">
+        Privacy Policy
+      </BaseButtonLink>
     </Box>
   </Page>
 )

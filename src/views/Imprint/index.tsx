@@ -1,39 +1,44 @@
 import React from 'react'
 import { Typography, Box } from '@material-ui/core'
-import { Link } from '@material-ui/core'
+import styled from 'styled-components'
 
+import { Link } from '@/components/Link'
 import Page from '@/components/Page'
 
 import { emailSantihans } from '@/constants'
+import { legal } from '@/data/menu'
+
+const LinkStyled = styled(Link)`
+  font-size: 1rem;
+`
+
+export const ImprintInfo = () => (
+  <Typography>
+    SANTiHANS GmbH (The Company)
+    <br />
+    CH-4056 Basel <br />
+    UID: CHE-244.875.499
+    <br />
+    <Link href={`mailto:${emailSantihans}`}>{emailSantihans}</Link>
+  </Typography>
+)
 
 const Imprint = () => (
-  <Page title="Imprint" subtitle={`Tl;dr: No liability whatsoever.`}>
+  <Page title="Imprint" subtitle={`Tl;dr: Limited liability.`}>
     <Box mb={4}>
-      <Typography>
-        SANTiHANS GmbH (The Company)
-        <br />
-        CH-4056 Basel <br />
-        UID: CHE-244.875.499
-        <br />
-        <Link href={`mailto:${emailSantihans}`}>{emailSantihans}</Link>
-        <br />
-      </Typography>
+      <ImprintInfo />
     </Box>
     <Box mb={4}>
-      <Typography variant="h3">Disclaimer</Typography>
-      <Typography>
-        The content included in this website has been compiled from a variety of sources and is
-        subject to change without notice as are any products, programs, offerings, or technical
-        information described in this website. The Company makes no representation or warranty
-        whatsoever regarding the completeness, quality, or adequacy of the website or content, or
-        the suitability, functionality, or operation of this website or its content. By using this
-        website, you assume the risk that the content on this website may be inaccurate, incomplete,
-        or offensive or may not meet your needs and requirements. The Company specifically disclaims
-        all warranties, express or implied, including without limitation the warranties of
-        merchantability, fitness for a particular purpose, and non-infringement with respect to this
-        website. In no event will the Company be liable for any special, indirect, incidental or
-        consequential damages even if company has been advised of the possibility of such damages.
-      </Typography>
+      <Typography variant="h3">Policies and Terms</Typography>
+      <Box component="ul">
+        {legal.map(({ href, label }, index) => (
+          <li key={index}>
+            <LinkStyled href={href} color="primary">
+              {label}
+            </LinkStyled>
+          </li>
+        ))}
+      </Box>
     </Box>
   </Page>
 )
