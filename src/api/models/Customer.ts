@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 export const readReceiptOptions = ['none', 'sms', 'email'] as const
-export type ReadReceiptType = typeof readReceiptOptions[number]
+export type ReadReceiptMethod = typeof readReceiptOptions[number]
 
 const roles = ['free', 'premium', 'visitor'] as const
 export type Role = typeof roles[number]
@@ -18,7 +18,7 @@ export interface CustomerFields {
   neogramDestructionTimeout: number
   isEmojiShortLinkEnabled: boolean
   name: string
-  readReceipts: ReadReceiptType
+  readReceiptMethod: ReadReceiptMethod
 }
 
 type CustomerDocument = mongoose.Document & CustomerFields
@@ -33,7 +33,7 @@ const CustomerSchema = new mongoose.Schema(
     name: { type: String, required: false, trim: true },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
-    readReceipts: { type: String, enum: readReceiptOptions, required: false },
+    readReceiptMethod: { type: String, enum: readReceiptOptions, required: false },
     isEmojiShortLinkEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },

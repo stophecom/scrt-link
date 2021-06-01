@@ -151,7 +151,7 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                       </Box>
                       <BaseRadiosField
                         options={readReceiptsOptions}
-                        name="readReceipts"
+                        name="readReceiptMethod"
                         label="Read receipts"
                         helperText={
                           !values.receiptPhoneNumber ||

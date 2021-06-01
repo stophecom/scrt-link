@@ -38,7 +38,7 @@ import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
 import { useCustomer } from '@/utils/api'
 import { scrollIntoView } from '@/utils/browser'
-import { ReadReceiptType } from '@/api/models/Customer'
+import { ReadReceiptMethod } from '@/api/models/Customer'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
@@ -49,7 +49,7 @@ type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> & {
   password?: string
   encryptionKey: string
-  readReceipts: ReadReceiptType
+  readReceiptMethod: ReadReceiptMethod
 }
 
 export interface State {
@@ -132,7 +132,7 @@ const HomeView: React.FunctionComponent = () => {
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('text')
-  const [readReceiptType, setReadReceiptType] = useState<ReadReceiptType>('none')
+  const [readReceiptMethod, setReadReceiptType] = useState<ReadReceiptMethod>('none')
   const [neogramPreview, setNeogramPreview] = useState(false)
   const { data: customer } = useCustomer()
 
@@ -146,7 +146,7 @@ const HomeView: React.FunctionComponent = () => {
     neogramDestructionTimeout: customer?.neogramDestructionTimeout || 3,
     receiptEmail: customer?.receiptEmail || '',
     receiptPhoneNumber: customer?.receiptPhoneNumber || '',
-    readReceipts: (customer?.readReceipts as ReadReceiptType) || 'none',
+    readReceiptMethod: (customer?.readReceiptMethod as ReadReceiptMethod) || 'none',
   }
 
   const handleSubmit = useCallback<OnSubmit<SecretUrlFormValues>>(async (values, formikHelpers) => {
@@ -155,7 +155,7 @@ const HomeView: React.FunctionComponent = () => {
       secretType,
       alias,
       encryptionKey,
-      readReceipts,
+      readReceiptMethod,
       receiptEmail,
       receiptPhoneNumber,
     } = values
@@ -172,18 +172,19 @@ const HomeView: React.FunctionComponent = () => {
     window.scrollTo(0, 0)
 
     const data = {
-      ...omit(['password', 'encryptionKey', 'readReceipts'], values),
+      ...omit(['password', 'encryptionKey', 'readReceiptMethod'], values),
       alias,
       message,
       secretType,
-      receiptEmail: readReceipts === 'email' && receiptEmail ? receiptEmail : undefined,
+      receiptEmail: readReceiptMethod === 'email' && receiptEmail ? receiptEmail : undefined,
       receiptPhoneNumber:
-        readReceipts === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
+        readReceiptMethod === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
       isEncryptedWithUserPassword: !!password,
     }
     try {
       const response = await axios.post('/api/secret', data)
       response.data['encryptionKey'] = encryptionKey
+      response.data['readReceiptMethod'] = readReceiptMethod
       dispatch(doSuccess(response))
 
       plausible('SecretCreation', {
@@ -281,7 +282,7 @@ const HomeView: React.FunctionComponent = () => {
             initialValues={initialValues}
             validationSchema={getValidationSchemaByType(
               secretType,
-              readReceiptType,
+              readReceiptMethod,
               customer?.role,
             )}
             validateOnMount
@@ -289,8 +290,8 @@ const HomeView: React.FunctionComponent = () => {
           >
             {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
               // Workaround to validate field initially onChange, not onBlur
-              if (!touched['readReceipts']) {
-                setFieldTouched('readReceipts')
+              if (!touched['readReceiptMethod']) {
+                setFieldTouched('readReceiptMethod')
               }
               return (
                 <>
@@ -339,13 +340,13 @@ const HomeView: React.FunctionComponent = () => {
                       <Box pl={1} pt={3} pb={6}>
                         <BaseRadiosField
                           options={readReceiptsOptions}
-                          name="readReceipts"
+                          name="readReceiptMethod"
                           label="Read receipts"
-                          onChange={(e: any) => {
-                            setReadReceiptType(e.target.value)
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setReadReceiptType(e.target.value as ReadReceiptMethod)
                           }}
                         />
-                        {values?.readReceipts === 'email' &&
+                        {values?.readReceiptMethod === 'email' &&
                           ['free', 'premium'].includes(customer?.role || '') && (
                             <Box pt={2}>
                               <BaseTextField
@@ -355,7 +356,7 @@ const HomeView: React.FunctionComponent = () => {
                               />
                             </Box>
                           )}
-                        {values?.readReceipts === 'sms' && customer?.role === 'premium' && (
+                        {values?.readReceiptMethod === 'sms' && customer?.role === 'premium' && (
                           <Box pt={2}>
                             <BasePhoneField name="receiptPhoneNumber" label="Phone" />
                           </Box>

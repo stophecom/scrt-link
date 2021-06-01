@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 import validator from 'validator'
 
-import { Role, CustomerFields, ReadReceiptType } from '@/api/models/Customer'
+import { Role, CustomerFields, ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import { getLimits } from '@/utils'
 
@@ -9,10 +9,10 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 // @todo
 const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
-const readReceipts = [
-  'none' as ReadReceiptType,
-  'sms' as ReadReceiptType,
-  'email' as ReadReceiptType,
+const readReceiptMethod = [
+  'none' as ReadReceiptMethod,
+  'sms' as ReadReceiptMethod,
+  'email' as ReadReceiptMethod,
 ]
 
 const messageValidation = (maxLength: number) => ({
@@ -49,11 +49,11 @@ const urlValidation = {
 
 type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & {
   password?: string
-  readReceipts?: ReadReceiptType
+  readReceiptMethod?: ReadReceiptMethod
 }
 export const getValidationSchemaByType = (
   secretType: SecretType,
-  readReceiptType: ReadReceiptType,
+  readReceiptMethod: ReadReceiptMethod,
   role: Role = 'visitor',
 ) => {
   const maxMessageLength = getLimits(role).maxMessageLength
@@ -78,15 +78,15 @@ export const getValidationSchemaByType = (
 
   return Yup.object().shape<SecretFormInput>({
     ...schemataBySecretTypeMap[secretType],
-    ...schemataByReadReceiptMap[readReceiptType],
+    ...schemataByReadReceiptMap[readReceiptMethod],
     ...typeValidation,
     password: Yup.string().label('Password').min(5).max(50).trim(),
-    readReceipts: Yup.mixed<ReadReceiptType>()
+    readReceiptMethod: Yup.mixed<ReadReceiptMethod>()
       .oneOf(
         [
           'none',
-          ...(isEmailReceiptAllowed ? ['email' as ReadReceiptType] : []),
-          ...(isSMSReceiptAllowed ? ['sms' as ReadReceiptType] : []),
+          ...(isEmailReceiptAllowed ? ['email' as ReadReceiptMethod] : []),
+          ...(isSMSReceiptAllowed ? ['sms' as ReadReceiptMethod] : []),
         ],
         !isEmailReceiptAllowed && !isSMSReceiptAllowed
           ? 'You need an account to enable read receipts.'
@@ -109,7 +109,7 @@ export const customerValidationSchema = Yup.object().shape<Partial<CustomerField
   name: Yup.string().label('Name').max(200).trim(),
   ...neogramDestructionMessageValidation,
   ...neogramDestructionTimeoutValidation,
-  readReceipts: Yup.mixed<ReadReceiptType>().oneOf(readReceipts).label('Read receipts'),
+  readReceiptMethod: Yup.mixed<ReadReceiptMethod>().oneOf(readReceiptMethod).label('Read receipts'),
   isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
   ...receiptEmailValidation,
   ...receiptPhoneNumberValidation,
