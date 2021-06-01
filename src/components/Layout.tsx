@@ -113,8 +113,14 @@ const Layout: React.FC = ({ children }) => {
       <Box component="footer" className={classes.footer}>
         <Container>
           <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
-            {menu.map(({ href, label }, index) => (
-              <LinkStyled key={index} href={href} className={classes.linkPadding} color="primary">
+            {menu.map(({ href, label, prefetch }, index) => (
+              <LinkStyled
+                key={index}
+                href={href}
+                prefetch={prefetch}
+                className={classes.linkPadding}
+                color="primary"
+              >
                 {label}
               </LinkStyled>
             ))}

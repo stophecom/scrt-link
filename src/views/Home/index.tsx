@@ -37,6 +37,7 @@ import { doReset, doRequest, doSuccess, doError, createReducer } from '@/utils/a
 import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
 import { useCustomer } from '@/utils/api'
+import { scrollIntoView } from '@/utils/browser'
 import { ReadReceiptType } from '@/api/models/Customer'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
@@ -470,7 +471,13 @@ const HomeView: React.FunctionComponent = () => {
       </Section>
 
       <Box display="flex" justifyContent="center">
-        <BaseButtonLink href="#create" size="large" variant="contained" color="primary">
+        <BaseButtonLink
+          href="#create"
+          size="large"
+          variant="contained"
+          color="primary"
+          onClick={scrollIntoView}
+        >
           Share a secret
         </BaseButtonLink>
       </Box>

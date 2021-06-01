@@ -4,9 +4,14 @@ import { Link as MUILink, LinkProps as MUILinkProps } from '@material-ui/core'
 import BaseButton, { BaseButtonProps } from '@/components/BaseButton'
 
 type LinkProps = NextLinkProps & MUILinkProps
-export const Link: React.FunctionComponent<LinkProps> = ({ href, children, ...props }) => {
+export const Link: React.FunctionComponent<LinkProps> = ({
+  href,
+  prefetch,
+  children,
+  ...props
+}) => {
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href} prefetch={prefetch} passHref>
       <MUILink {...props}>{children}</MUILink>
     </NextLink>
   )

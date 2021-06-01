@@ -10,6 +10,7 @@ export const menu = [
   {
     href: '/pricing',
     label: 'Pricing',
+    prefetch: false,
   },
   {
     href: '/security',
@@ -26,6 +27,7 @@ export const menu = [
   {
     href: '/account',
     label: 'Account',
+    prefetch: false,
   },
 ]
 
