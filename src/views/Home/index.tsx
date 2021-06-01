@@ -356,7 +356,7 @@ const HomeView: React.FunctionComponent = () => {
                             </Box>
                           )}
                         {values?.readReceipts === 'sms' && customer?.role === 'premium' && (
-                          <Box py={1}>
+                          <Box pt={2}>
                             <BasePhoneField name="receiptPhoneNumber" label="Phone" />
                           </Box>
                         )}
