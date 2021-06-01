@@ -347,7 +347,7 @@ const HomeView: React.FunctionComponent = () => {
                         />
                         {values?.readReceipts === 'email' &&
                           ['free', 'premium'].includes(customer?.role || '') && (
-                            <Box py={1}>
+                            <Box pt={2}>
                               <BaseTextField
                                 name="receiptEmail"
                                 label="Email"
