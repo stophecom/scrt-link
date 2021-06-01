@@ -287,7 +287,11 @@ const HomeView: React.FunctionComponent = () => {
             validateOnMount
             onSubmit={handleSubmit}
           >
-            {({ isValid, isSubmitting, setFieldValue, validateField, values }) => {
+            {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
+              // Workaround to validate field initially onChange, not onBlur
+              if (!touched['readReceipts']) {
+                setFieldTouched('readReceipts')
+              }
               return (
                 <>
                   <Form noValidate>
