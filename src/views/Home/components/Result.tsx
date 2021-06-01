@@ -98,7 +98,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     </CopyToClipboard>
                   </Box>
                 </Box>
-                {['email', 'sms'].includes(readReceiptMethod) && (
+                {['email', 'sms'].includes(readReceiptMethod || '') && (
                   <Box pt={3}>
                     <Alert severity="info">
                       <Typography variant="body2">
