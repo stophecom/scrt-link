@@ -53,7 +53,13 @@ type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> 
 }
 
 export interface State {
-  data: Maybe<Pick<SecretUrlFields, 'alias'> & { message: string; encryptionKey: string }>
+  data: Maybe<
+    Pick<SecretUrlFields, 'alias'> & {
+      message: string
+      encryptionKey: string
+      readReceiptMethod: ReadReceiptMethod
+    }
+  >
   error: Maybe<string>
 }
 
