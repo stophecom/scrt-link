@@ -43,7 +43,7 @@ We do basic web traffic analytics with [Plausible.io](https://plausible.io/) -  
           source={`
 For power users, we offer user accounts that require authentification. Since privacy is a top concern, we only ask for the bare minimum. In fact, you can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. 
 
-For people visiting our website, we only ever use essenital cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy.
+For people visiting our website, we only ever use essential cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy.
 `}
         />
       </Typography>
