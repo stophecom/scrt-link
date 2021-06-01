@@ -28,6 +28,7 @@ import BaseRadiosField from '@/components/BaseRadiosField'
 import BasePhoneField from '@/components/BasePhoneField'
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
+import Trust from './components/Trust'
 import { getLimits, generateNanoId, encryptMessage } from '@/utils'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
@@ -273,197 +274,200 @@ const HomeView: React.FunctionComponent = () => {
       }
       keywords="end-to-end encrypted, secret messages, one-time links, neogram, private note"
     >
-      <Paper elevation={1} id="create" style={{ scrollMarginTop: '70px' }}>
-        <Box px={2} pt={1} pb={1}>
-          <TabsMenu
-            handleChange={handleMenuChange}
-            value={secretType}
-            tabsMenu={Object.values(tabsMenu)}
-            label="Select secret type"
-          />
-        </Box>
-        <Box px={2} pb={2} mb={5}>
-          <Formik<SecretUrlFormValues>
-            enableReinitialize={true}
-            initialValues={initialValues}
-            validationSchema={getValidationSchemaByType(
-              secretType,
-              readReceiptMethod,
-              customer?.role,
-            )}
-            validateOnMount
-            onSubmit={handleSubmit}
-          >
-            {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
-              // Workaround to validate field initially onChange, not onBlur
-              if (!touched['readReceiptMethod']) {
-                setFieldTouched('readReceiptMethod')
-              }
-              return (
-                <>
-                  <Form noValidate>
-                    <Box position="relative" py={1}>
-                      {secretType === 'url' && (
-                        <BaseTextField
-                          name="message"
-                          label="URL"
-                          required
-                          InputLabelProps={{
-                            shrink: undefined,
-                          }}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <LinkIcon />
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
-                      )}
-                      {['text', 'neogram'].includes(secretType) && (
-                        <>
+      <Box mb={5}>
+        <Paper elevation={1} id="create" style={{ scrollMarginTop: '70px' }}>
+          <Box px={2} pt={1} pb={1}>
+            <TabsMenu
+              handleChange={handleMenuChange}
+              value={secretType}
+              tabsMenu={Object.values(tabsMenu)}
+              label="Select secret type"
+            />
+          </Box>
+          <Box px={2} pb={2}>
+            <Formik<SecretUrlFormValues>
+              enableReinitialize={true}
+              initialValues={initialValues}
+              validationSchema={getValidationSchemaByType(
+                secretType,
+                readReceiptMethod,
+                customer?.role,
+              )}
+              validateOnMount
+              onSubmit={handleSubmit}
+            >
+              {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
+                // Workaround to validate field initially onChange, not onBlur
+                if (!touched['readReceiptMethod']) {
+                  setFieldTouched('readReceiptMethod')
+                }
+                return (
+                  <>
+                    <Form noValidate>
+                      <Box position="relative" py={1}>
+                        {secretType === 'url' && (
                           <BaseTextField
                             name="message"
-                            multiline
+                            label="URL"
                             required
-                            rows={3}
-                            rowsMax={7}
-                            label={getFormFieldConfigBySecretType(secretType).label}
-                            placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                             InputLabelProps={{
                               shrink: undefined,
                             }}
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <LinkIcon />
+                                </InputAdornment>
+                              ),
+                            }}
                           />
-                          <Counter messageLength={values.message.length} />
-                        </>
-                      )}
-                    </Box>
-
-                    <Collapse in={hasFormOptions}>
-                      <Box py={1}>
-                        <BasePasswordField className={clsx(classes.root)} name="password" />
+                        )}
+                        {['text', 'neogram'].includes(secretType) && (
+                          <>
+                            <BaseTextField
+                              name="message"
+                              multiline
+                              required
+                              rows={3}
+                              rowsMax={7}
+                              label={getFormFieldConfigBySecretType(secretType).label}
+                              placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
+                              InputLabelProps={{
+                                shrink: undefined,
+                              }}
+                            />
+                            <Counter messageLength={values.message.length} />
+                          </>
+                        )}
                       </Box>
-                      <Box pl={1} pt={3} pb={6}>
-                        <BaseRadiosField
-                          options={readReceiptsOptions}
-                          name="readReceiptMethod"
-                          label="Read receipts"
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setReadReceiptType(e.target.value as ReadReceiptMethod)
-                          }}
-                        />
-                        {values?.readReceiptMethod === 'email' &&
-                          ['free', 'premium'].includes(customer?.role || '') && (
+
+                      <Collapse in={hasFormOptions}>
+                        <Box py={1}>
+                          <BasePasswordField className={clsx(classes.root)} name="password" />
+                        </Box>
+                        <Box pl={1} pt={3} pb={6}>
+                          <BaseRadiosField
+                            options={readReceiptsOptions}
+                            name="readReceiptMethod"
+                            label="Read receipts"
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                              setReadReceiptType(e.target.value as ReadReceiptMethod)
+                            }}
+                          />
+                          {values?.readReceiptMethod === 'email' &&
+                            ['free', 'premium'].includes(customer?.role || '') && (
+                              <Box pt={2}>
+                                <BaseTextField
+                                  name="receiptEmail"
+                                  label="Email"
+                                  placeholder={emailPlaceholder}
+                                />
+                              </Box>
+                            )}
+                          {values?.readReceiptMethod === 'sms' && customer?.role === 'premium' && (
                             <Box pt={2}>
-                              <BaseTextField
-                                name="receiptEmail"
-                                label="Email"
-                                placeholder={emailPlaceholder}
-                              />
+                              <BasePhoneField name="receiptPhoneNumber" label="Phone" />
                             </Box>
                           )}
-                        {values?.readReceiptMethod === 'sms' && customer?.role === 'premium' && (
-                          <Box pt={2}>
-                            <BasePhoneField name="receiptPhoneNumber" label="Phone" />
-                          </Box>
-                        )}
-                      </Box>
-
-                      {secretType === 'neogram' && (
-                        <>
-                          <Box py={1}>
-                            <DestructionMessage
-                              {...(customer?.role !== 'premium'
-                                ? {
-                                    disabled: true,
-                                    helperText: 'Unlock this option with the premium plan.',
-                                  }
-                                : {})}
-                            />
-                          </Box>
-                          <Box py={1}>
-                            <DestructionTimeout />
-                          </Box>
-                        </>
-                      )}
-                    </Collapse>
-                    <Box display="flex" className={classes.formFooter}>
-                      <Box
-                        key="formControls"
-                        display="flex"
-                        alignItems="center"
-                        flexGrow={1}
-                        py={{ xs: 1, sm: 0 }}
-                        mb={{ xs: 1, sm: 0 }}
-                      >
-                        <BaseButton
-                          startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
-                          onClick={() => setHasFormOptions(!hasFormOptions)}
-                        >
-                          {hasFormOptions ? 'Less options' : 'More options'}
-                        </BaseButton>
+                        </Box>
 
                         {secretType === 'neogram' && (
-                          <Box ml="auto">
-                            <BaseButton
-                              variant="text"
-                              target="_blank"
-                              onClick={() => {
-                                setNeogramPreview(true)
-                                plausible(values?.message ? 'Preview' : 'Demo', {
-                                  props: { secretType },
-                                })
-                              }}
-                            >
-                              {values?.message ? 'Preview' : 'Demo'}
-                            </BaseButton>
-                          </Box>
+                          <>
+                            <Box py={1}>
+                              <DestructionMessage
+                                {...(customer?.role !== 'premium'
+                                  ? {
+                                      disabled: true,
+                                      helperText: 'Unlock this option with the premium plan.',
+                                    }
+                                  : {})}
+                              />
+                            </Box>
+                            <Box py={1}>
+                              <DestructionTimeout />
+                            </Box>
+                          </>
                         )}
-                      </Box>
-                      <Box
-                        key="formSubmit"
-                        ml={{ xs: 0, sm: 1 }}
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <BaseButton
-                          className={classes.submitButton}
-                          onClick={() => {
-                            setFieldValue('secretType', secretType)
-                            setFieldValue('alias', generateNanoId(urlAliasLength))
-                            setFieldValue('encryptionKey', generateNanoId(encryptionKeyLength))
-
-                            UIStore.update((s) => {
-                              s.liveStatsEnabled = true
-                            })
-                          }}
-                          type="submit"
-                          color="primary"
-                          variant="contained"
-                          size="large"
-                          loading={isSubmitting}
-                          disabled={!isValid}
+                      </Collapse>
+                      <Box display="flex" className={classes.formFooter}>
+                        <Box
+                          key="formControls"
+                          display="flex"
+                          alignItems="center"
+                          flexGrow={1}
+                          py={{ xs: 1, sm: 0 }}
+                          mb={{ xs: 1, sm: 0 }}
                         >
-                          Create secret link
-                        </BaseButton>
+                          <BaseButton
+                            startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
+                            onClick={() => setHasFormOptions(!hasFormOptions)}
+                          >
+                            {hasFormOptions ? 'Less options' : 'More options'}
+                          </BaseButton>
+
+                          {secretType === 'neogram' && (
+                            <Box ml="auto">
+                              <BaseButton
+                                variant="text"
+                                target="_blank"
+                                onClick={() => {
+                                  setNeogramPreview(true)
+                                  plausible(values?.message ? 'Preview' : 'Demo', {
+                                    props: { secretType },
+                                  })
+                                }}
+                              >
+                                {values?.message ? 'Preview' : 'Demo'}
+                              </BaseButton>
+                            </Box>
+                          )}
+                        </Box>
+                        <Box
+                          key="formSubmit"
+                          ml={{ xs: 0, sm: 1 }}
+                          display="flex"
+                          alignItems="center"
+                        >
+                          <BaseButton
+                            className={classes.submitButton}
+                            onClick={() => {
+                              setFieldValue('secretType', secretType)
+                              setFieldValue('alias', generateNanoId(urlAliasLength))
+                              setFieldValue('encryptionKey', generateNanoId(encryptionKeyLength))
+
+                              UIStore.update((s) => {
+                                s.liveStatsEnabled = true
+                              })
+                            }}
+                            type="submit"
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            loading={isSubmitting}
+                            disabled={!isValid}
+                          >
+                            Create secret link
+                          </BaseButton>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Form>
-                  {neogramPreview && (
-                    <Neogram
-                      message={values.message || demoMessage}
-                      timeout={Number(values.neogramDestructionTimeout)}
-                      destructionMessage={values.neogramDestructionMessage}
-                      onFinished={() => setNeogramPreview(false)}
-                      closable
-                    />
-                  )}
-                </>
-              )
-            }}
-          </Formik>
-        </Box>
-      </Paper>
+                    </Form>
+                    {neogramPreview && (
+                      <Neogram
+                        message={values.message || demoMessage}
+                        timeout={Number(values.neogramDestructionTimeout)}
+                        destructionMessage={values.neogramDestructionMessage}
+                        onFinished={() => setNeogramPreview(false)}
+                        closable
+                      />
+                    )}
+                  </>
+                )
+              }}
+            </Formik>
+          </Box>
+        </Paper>
+        <Trust />
+      </Box>
 
       <Section
         title={'How it works'}
@@ -471,7 +475,6 @@ const HomeView: React.FunctionComponent = () => {
       >
         <HowItWorks />
       </Section>
-
       <Section title={'FAQ'} subtitle="Frequently asked questions.">
         <Box mb={1}>
           <Accordion />
@@ -480,7 +483,6 @@ const HomeView: React.FunctionComponent = () => {
           Read more on FAQ page
         </BaseButtonLink>
       </Section>
-
       <Box display="flex" justifyContent="center">
         <BaseButtonLink
           href="#create"

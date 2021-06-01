@@ -22,12 +22,17 @@ const Stats = () => {
   }
 
   return (
-    <span>
-      <strong>Secrets</strong> created:&nbsp;
-      {new Intl.NumberFormat('en-US').format(data?.totalSecretsCount || 0)} | viewed:&nbsp;
-      {new Intl.NumberFormat('en-US').format(data?.totalSecretsViewCount || 0)} |
-      compromised:&nbsp;0
-    </span>
+    <>
+      <div>
+        <strong>Secrets</strong>&nbsp;
+      </div>
+      <div>
+        created:&nbsp;
+        {new Intl.NumberFormat('en-US').format(data?.totalSecretsCount || 0)} | viewed:&nbsp;
+        {new Intl.NumberFormat('en-US').format(data?.totalSecretsViewCount || 0)} |
+        compromised:&nbsp;0
+      </div>
+    </>
   )
 }
 

@@ -125,7 +125,7 @@ const Layout: React.FC = ({ children }) => {
               </LinkStyled>
             ))}
           </Box>
-          <Box display="flex" justifyContent="center" p={2} pt={0}>
+          <Box display="flex" flexWrap="wrap" justifyContent="center" p={2} pt={0}>
             <Stats />
           </Box>
           <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
