@@ -5,6 +5,7 @@ import { Box, CircularProgress, Paper, Typography } from '@material-ui/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ArrowBack, Share } from '@material-ui/icons'
 import { RWebShare } from 'react-web-share'
+import Alert from '@material-ui/lab/Alert'
 
 import BooleanSwitch from '@/components/BooleanSwitch'
 import BaseButton from '@/components/BaseButton'
@@ -26,6 +27,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
 }) => {
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
+  const readReceiptMethod = data?.readReceiptMethod
   const [hasCopied, setHasCopied] = useState(false)
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = React.useState(isEmojiShortLinkEnabled)
@@ -55,7 +57,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
           </Box>
           {shortenedUrl && (
             <Paper elevation={3}>
-              <Box px={4} pt={4} pb={3}>
+              <Box px={{ xs: 2, sm: 4 }} pt={4} pb={3} key="paper-inner">
                 <Box mb={4} display="flex" flexDirection="column">
                   <Typography variant="h4" align="center" component="div" noWrap>
                     {shortenedUrl}
@@ -96,6 +98,16 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     </CopyToClipboard>
                   </Box>
                 </Box>
+                {['email', 'sms'].includes(readReceiptMethod) && (
+                  <Box pt={3}>
+                    <Alert severity="info">
+                      <Typography variant="body2">
+                        Your Secret ID is <strong>{alias}</strong>. <br />
+                        Remember it, we use it for the read receipt.
+                      </Typography>
+                    </Alert>
+                  </Box>
+                )}
               </Box>
             </Paper>
           )}
