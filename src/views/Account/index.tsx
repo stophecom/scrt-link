@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
 import { Box, Typography, Paper } from '@material-ui/core'
 import NoSsr from '@material-ui/core/NoSsr'
@@ -16,7 +17,8 @@ import Section from '@/components/Section'
 import { project } from 'ramda'
 
 import { useCustomer } from '@/utils/api'
-import PlanSelection from '@/components/PlanSelection'
+
+const PlanSelection = dynamic(() => import('@/components/PlanSelection'))
 
 const AccountInfo = styled(Box)`
   opacity: 0.7;
@@ -140,11 +142,19 @@ const Account = () => {
   }
 
   return (
-    <NoSsr>
-      <Page title="Scrt account" subtitle="Great things start here…">
+    <Page title="Scrt account" subtitle="Great things start here…">
+      <Box mb={10}>
         <SignInForm />
-      </Page>
-    </NoSsr>
+      </Box>
+      {customer?.role !== 'premium' && (
+        <Section
+          title={'Do more with an account'}
+          subtitle={`Do you have big secrets? Never worry about sharing sensitive information again.`}
+        >
+          <PlanSelection />
+        </Section>
+      )}
+    </Page>
   )
 }
 

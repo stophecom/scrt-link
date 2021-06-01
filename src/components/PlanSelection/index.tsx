@@ -55,14 +55,14 @@ const premiumUsps = [
 
   {
     heading: 'Customize Neogram™ messages',
-    body: 'Add a note before your message self-destructs.',
+    body: 'Add a special note before your message self-destructs.',
   },
   {
     heading: 'Priority support',
-    body: `You'll be first in line if a problem occurs.`,
+    body: `You'll be first in line if you need help.`,
   },
   {
-    heading: 'There is more…',
+    heading: 'More to come…',
     body: `You'll get all future updates to this service at no extra cost, as well as early access to upcoming features.`,
   },
 ]

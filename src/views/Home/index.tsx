@@ -41,7 +41,6 @@ import { ReadReceiptType } from '@/api/models/Customer'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('./components/Result'))
-const PlanSelection = dynamic(() => import('@/components/PlanSelection'))
 const Neogram = dynamic(() => import('@/components/Neogram'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
@@ -469,15 +468,6 @@ const HomeView: React.FunctionComponent = () => {
           Read more on FAQ page
         </BaseButtonLink>
       </Section>
-
-      {customer?.role !== 'premium' && (
-        <Section
-          title={'Top Secret'}
-          subtitle={`Do you have bigger secrets? Never worry about sharing sensitive information again.`}
-        >
-          <PlanSelection />
-        </Section>
-      )}
 
       <Box display="flex" justifyContent="center">
         <BaseButtonLink href="#create" size="large" variant="contained" color="primary">

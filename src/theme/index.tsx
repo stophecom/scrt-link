@@ -41,13 +41,6 @@ let theme = createMuiTheme({
     subtitle2: { fontSize: '20%', lineHeight: '1.55', marginBottom: '1em' },
   },
   overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        html: {
-          scrollBehavior: 'smooth',
-        },
-      },
-    },
     MuiFormLabel: {
       root: {
         fontWeight: 'bold',

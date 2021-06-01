@@ -98,7 +98,7 @@ const Layout: React.FC = ({ children }) => {
                 </Typography>
               </>
             ) : (
-              'Sign in'
+              'Account'
             )}
           </BaseButtonLink>
         </Box>
