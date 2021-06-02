@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import { Lock, Security, SupervisedUserCircle } from '@material-ui/icons'
+import { Lock, VerifiedUser } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,20 +30,20 @@ const HowItWorks = () => {
   const gridContent = [
     {
       illustration: <Lock className={classes.illustration} />,
-      title: 'End-to-end encryption (AES)',
+      title: 'End-to-end Encryption (AES)',
     },
     {
-      illustration: <Security className={classes.illustration} />,
-      title: 'Protected Privacy',
+      illustration: <VerifiedUser className={classes.illustration} />,
+      title: '100% Privacy Protection',
     },
-    {
-      illustration: <SupervisedUserCircle className={classes.illustration} />,
-      title: '100% Anonymous',
-    },
+    // {
+    //   illustration: <SupervisedUserCircle className={classes.illustration} />,
+    //   title: '100% Anonymous',
+    // },
   ]
 
   return (
-    <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} p={1}>
+    <Box display="flex" py={1}>
       {gridContent.map(({ illustration, title }, index) => {
         return (
           <Box key={index} p={1} className={classes.box}>
