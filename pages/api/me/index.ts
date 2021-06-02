@@ -3,14 +3,14 @@ import { NextApiHandler, NextApiRequest } from 'next'
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
-import { customerValidationSchema } from '@/utils/validationSchemas'
+import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 
 import { getSession } from 'next-auth/client'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    await customerValidationSchema.validate(req.body)
+    await getCustomerValidationSchema('none').validate(req.body)
   } catch (err) {
     throw createError(422, err.message)
   }
