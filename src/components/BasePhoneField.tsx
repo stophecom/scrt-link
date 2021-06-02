@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
 import InputLabel from '@material-ui/core/InputLabel'
 import FormHelperText from '@material-ui/core/FormHelperText'
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const BasePhoneField = ({ label, ...props }: BasePhoneFieldProps) => {
+const BasePhoneField = ({ label, helperText, ...props }: BasePhoneFieldProps) => {
   const classes = useStyles()
   const [field, meta, helpers] = useField(props)
   const [focused, setFocused] = useState(false)
@@ -84,6 +84,7 @@ const BasePhoneField = ({ label, ...props }: BasePhoneFieldProps) => {
         />
 
         {error && <FormHelperText id="helper-text">{error}</FormHelperText>}
+        {helperText && <FormHelperText error={false}>{helperText}</FormHelperText>}
       </FormControl>
     </div>
   )

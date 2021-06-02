@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
 import { Box, Typography, Paper } from '@material-ui/core'
-import NoSsr from '@material-ui/core/NoSsr'
 import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 
@@ -30,8 +29,7 @@ const DangerZone = styled(Paper)`
 `
 
 const menu = [
-  { label: 'Contact', key: 'contact' },
-  { label: 'Secrets', key: 'secrets' },
+  { label: 'Settings', key: 'settings' },
   { label: 'Subscription', key: 'subscription' },
   { label: 'Danger Zone', key: 'danger' },
 ]
@@ -61,32 +59,12 @@ const Account = () => {
           label="Account options"
         />
         <Section pt={0}>
-          {activeTab === 'contact' && (
+          {activeTab === 'settings' && (
             <>
               <Box mb={1}>
                 <Alert severity="info">
-                  The following information is <strong>private</strong> and will never be shown to
-                  anybody. We only use it to send you read receipts.
-                </Alert>
-              </Box>
-
-              <Paper square>
-                <Box p={3}>
-                  <CustomerForm
-                    {...customer}
-                    formFieldsSelection="contact"
-                    onSuccess={triggerFetchCustomer}
-                  />
-                </Box>
-              </Paper>
-            </>
-          )}
-          {activeTab === 'secrets' && (
-            <>
-              <Box mb={1}>
-                <Alert severity="info">
-                  These are default settings. You can overwrite each setting for every secret you
-                  create.
+                  The following are default settings. You can overwrite each setting for every
+                  secret you create.
                 </Alert>
               </Box>
               <Paper square>

@@ -139,7 +139,7 @@ const HomeView: React.FunctionComponent = () => {
   const plausible = usePlausible()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [secretType, setSecretType] = useState<SecretType>('text')
-  const [readReceiptMethod, setReadReceiptType] = useState<ReadReceiptMethod>('none')
+  const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
   const [neogramPreview, setNeogramPreview] = useState(false)
   const { data: customer } = useCustomer()
 
@@ -351,7 +351,7 @@ const HomeView: React.FunctionComponent = () => {
                             name="readReceiptMethod"
                             label="Read receipts"
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              setReadReceiptType(e.target.value as ReadReceiptMethod)
+                              setReadReceiptMethod(e.target.value as ReadReceiptMethod)
                             }}
                           />
                           {values?.readReceiptMethod === 'email' &&
@@ -360,13 +360,14 @@ const HomeView: React.FunctionComponent = () => {
                                 <BaseTextField
                                   name="receiptEmail"
                                   label="Email"
+                                  required
                                   placeholder={emailPlaceholder}
                                 />
                               </Box>
                             )}
                           {values?.readReceiptMethod === 'sms' && customer?.role === 'premium' && (
                             <Box pt={2}>
-                              <BasePhoneField name="receiptPhoneNumber" label="Phone" />
+                              <BasePhoneField name="receiptPhoneNumber" required label="Phone" />
                             </Box>
                           )}
                         </Box>

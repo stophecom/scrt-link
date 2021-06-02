@@ -9,7 +9,7 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 // @todo
 const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
-const readReceiptMethod = [
+const readReceiptMethods = [
   'none' as ReadReceiptMethod,
   'sms' as ReadReceiptMethod,
   'email' as ReadReceiptMethod,
@@ -27,11 +27,14 @@ const neogramDestructionMessageValidation = {
 const neogramDestructionTimeoutValidation = {
   neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
 }
-const receiptEmailValidation = { receiptEmail: Yup.string().label('Email').email().max(200).trim() }
+const receiptEmailValidation = {
+  receiptEmail: Yup.string().label('Email').email().required().max(200).trim(),
+}
 const receiptPhoneNumberValidation = {
   receiptPhoneNumber: Yup.string()
     .label('Phone')
     .matches(phoneRegExp, 'Phone number is not valid')
+    .required()
     .trim(),
 }
 
@@ -105,15 +108,18 @@ export const passwordValidationSchema = Yup.object().shape<{ password: string }>
   password: Yup.string().label('Password').required().min(5).max(50).trim(),
 })
 
-export const customerValidationSchema = Yup.object().shape<Partial<CustomerFields>>({
-  name: Yup.string().label('Name').max(200).trim(),
-  ...neogramDestructionMessageValidation,
-  ...neogramDestructionTimeoutValidation,
-  readReceiptMethod: Yup.mixed<ReadReceiptMethod>().oneOf(readReceiptMethod).label('Read receipts'),
-  isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
-  ...receiptEmailValidation,
-  ...receiptPhoneNumberValidation,
-})
+export const getCustomerValidationSchema = (readReceiptMethod: ReadReceiptMethod) =>
+  Yup.object().shape<Partial<CustomerFields>>({
+    name: Yup.string().label('Name').max(200).trim(),
+    ...neogramDestructionMessageValidation,
+    ...neogramDestructionTimeoutValidation,
+    readReceiptMethod: Yup.mixed<ReadReceiptMethod>()
+      .oneOf(readReceiptMethods)
+      .label('Read receipts'),
+    isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
+    ...(readReceiptMethod === 'email' ? receiptEmailValidation : {}),
+    ...(readReceiptMethod === 'sms' ? receiptPhoneNumberValidation : {}),
+  })
 
 export const deleteCustomerValidationSchema = Yup.object().shape({
   isSure: Yup.boolean().label('Are you sure').required().oneOf([true], 'Field must be checked'),

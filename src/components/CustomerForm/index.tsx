@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from 'react'
+import React, { useCallback, useReducer, useState } from 'react'
 import axios from 'axios'
 import { Box, Typography, FormLabel } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
@@ -16,10 +16,11 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
 import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
-import { customerValidationSchema } from '@/utils/validationSchemas'
+import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { MenuItem } from '@/views/Account'
 import { emailPlaceholder } from '@/constants'
+import { ReadReceiptMethod } from '@/api/models/Customer'
 
 export const DestructionMessage: React.FunctionComponent<
   Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
@@ -60,6 +61,13 @@ export const readReceiptsOptions = [
   },
 ]
 
+const PrivacyNotice = () => (
+  <>
+    This information is <strong>private</strong> and will never be shown to anybody. We only use it
+    to send you read receipts.
+  </>
+)
+
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
 interface State {
@@ -90,6 +98,7 @@ interface CustomerFormProps extends Customer {
 const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerFormProps) => {
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
 
   const handleSubmit = useCallback<OnSubmit<Customer>>(async (values, formikHelpers) => {
     dispatch(doRequest({}))
@@ -112,7 +121,7 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
       <Formik<Customer>
         initialValues={props}
         enableReinitialize={true}
-        validationSchema={customerValidationSchema}
+        validationSchema={getCustomerValidationSchema(readReceiptMethod)}
         validateOnMount
         onSubmit={handleSubmit}
       >
@@ -120,77 +129,80 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
           return (
             <>
               <Form noValidate>
-                {formFieldsSelection === 'contact' && (
-                  <>
-                    <Box mb={5}>
-                      <Typography variant="h3">Contact information</Typography>
+                <Box mb={10}>
+                  <Box mb={5}>
+                    <Typography variant="h3">General settings</Typography>
+                  </Box>
+                  <Box mb={7}>
+                    <BaseTextField
+                      name="name"
+                      label="Name"
+                      placeholder="Jane Doe"
+                      helperText={
+                        <>
+                          This information is <strong>private</strong> and will never be shown to
+                          anybody. We only use it give you a personalized experience.
+                        </>
+                      }
+                    />
+                  </Box>
+                  <BaseRadiosField
+                    options={readReceiptsOptions}
+                    name="readReceiptMethod"
+                    label="Read receipts"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setReadReceiptMethod(e.target.value as ReadReceiptMethod)
+                    }}
+                  />
+                  {values?.readReceiptMethod !== 'none' && (
+                    <Box pt={2}>
+                      {values?.readReceiptMethod === 'email' && (
+                        <BaseTextField
+                          name="receiptEmail"
+                          label="Email"
+                          required
+                          placeholder={emailPlaceholder}
+                          helperText={<PrivacyNotice />}
+                        />
+                      )}
+                      {values?.readReceiptMethod === 'sms' && (
+                        <BasePhoneField
+                          name="receiptPhoneNumber"
+                          label="Phone"
+                          required
+                          helperText={<PrivacyNotice />}
+                        />
+                      )}
                     </Box>
-                    <Box mb={3}>
-                      <BaseTextField name="name" label="Name" placeholder="John Doe" />
-                    </Box>
+                  )}
+                </Box>
 
-                    <Box mb={3}>
-                      <BaseTextField
-                        name="receiptEmail"
-                        label="Email"
-                        placeholder={emailPlaceholder}
-                      />
-                    </Box>
+                <Box mb={10}>
+                  <Box mb={2}>
+                    <FormLabel component="legend">Emoji link 🤫</FormLabel>
+                  </Box>
+                  <Typography variant="body2">
+                    Add some fun with a special emoji link. Example:{' '}
+                    <Typography variant="body2" noWrap component="span">
+                      <strong>https://🤫.st/nxKFy…</strong>{' '}
+                    </Typography>
+                    <br />
+                    <strong>Be aware.</strong> Emoji links are supported in:{' '}
+                    <em>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</em>. <br />
+                    Currently not supported in: <em>Signal, Slack, Snapchat</em>.
+                  </Typography>
+                  <BaseSwitchField label="Use emoji link" name="isEmojiShortLinkEnabled" />
+                </Box>
 
-                    <Box mb={3}>
-                      <BasePhoneField name="receiptPhoneNumber" label="Phone" />
-                    </Box>
-                  </>
-                )}
-
-                {formFieldsSelection === 'secrets' && (
-                  <>
-                    <Box mb={10}>
-                      <Box mb={5}>
-                        <Typography variant="h3">General settings</Typography>
-                      </Box>
-                      <BaseRadiosField
-                        options={readReceiptsOptions}
-                        name="readReceiptMethod"
-                        label="Read receipts"
-                        helperText={
-                          !values.receiptPhoneNumber ||
-                          !!errors.receiptPhoneNumber ||
-                          !values.receiptEmail ||
-                          !!errors.receiptEmail
-                            ? `To enable, you need to add corresponding contact options first.`
-                            : ''
-                        }
-                      />
-                    </Box>
-
-                    <Box mb={10}>
-                      <Box mb={2}>
-                        <FormLabel component="legend">Emoji link 🤫</FormLabel>
-                      </Box>
-                      <Typography variant="body2">
-                        You can enable emoji links to share your secrets. Example:{' '}
-                        <Typography variant="body2" noWrap component="span">
-                          <strong>https://🤫.st/nxKFy…</strong>{' '}
-                        </Typography>
-                        (Note that not all chat applications support emoji links: Whatsapp,
-                        Telegram, Threema, Twitter, Matrix, Wire, do work. Signal, Slack, Snapchat
-                        do not.)
-                      </Typography>
-                      <BaseSwitchField label="Use emoji link" name="isEmojiShortLinkEnabled" />
-                    </Box>
-
-                    <Box>
-                      <Typography variant="h3">Neogram™</Typography>
-                      <Box mb={3}>
-                        <DestructionMessage />
-                      </Box>
-                      <Box mb={1}>
-                        <DestructionTimeout />
-                      </Box>
-                    </Box>
-                  </>
-                )}
+                <Box>
+                  <Typography variant="h3">Neogram™</Typography>
+                  <Box mb={3}>
+                    <DestructionMessage />
+                  </Box>
+                  <Box mb={1}>
+                    <DestructionTimeout />
+                  </Box>
+                </Box>
 
                 <Box pt={5}>
                   <BaseButton

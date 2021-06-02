@@ -16,7 +16,11 @@ const Section: React.FunctionComponent<SectionProps & BoxProps> = ({
     <Box py={9} {...rest}>
       <Box mb={5} maxWidth="min(100%, 600px)">
         {title && <Typography variant="h2">{title}</Typography>}
-        {subtitle && <Typography variant="subtitle2">{subtitle}</Typography>}
+        {subtitle && (
+          <Typography variant="subtitle2" component="div">
+            {subtitle}
+          </Typography>
+        )}
       </Box>
       {children}
     </Box>
