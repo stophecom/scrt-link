@@ -60,16 +60,6 @@ export const useStats = () => {
   }
 }
 
-export const useCustomerStats = (userId?: string) => {
-  const { data, error } = useSWR<StatsFields>(`${baseUrl}/api/stats/${userId}`)
-
-  return {
-    stats: data,
-    isLoading: !error && !data,
-    error: error,
-  }
-}
-
 // Stripe
 type Plan = {
   name: string

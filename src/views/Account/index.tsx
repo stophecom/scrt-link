@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/client'
-import { Box, Typography, Paper } from '@material-ui/core'
+import { Box, Typography, Paper, NoSsr } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 
@@ -9,7 +9,6 @@ import { Spinner } from '@/components/Spinner'
 import SignInForm from '@/components/SignInForm'
 import CustomerForm from '@/components/CustomerForm'
 import DeleteAccountForm from '@/components/DeleteAccountForm'
-import { PersonalStats } from '@/components/Stats'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
@@ -109,9 +108,6 @@ const Account = () => {
             </>
           )}
         </Section>
-        <Section title="Statistics">
-          <PersonalStats userId={session?.userId} />
-        </Section>
         <AccountInfo pt={5}>
           <Typography variant="body1">You are signed in as {session?.user?.email}.</Typography>
         </AccountInfo>
@@ -120,19 +116,21 @@ const Account = () => {
   }
 
   return (
-    <Page title="Scrt account" subtitle="Great things start here…">
-      <Box mb={10}>
-        <SignInForm />
-      </Box>
-      {customer?.role !== 'premium' && (
-        <Section
-          title={'Do more with an account'}
-          subtitle={`Do you have big secrets? Never worry about sharing sensitive information again.`}
-        >
-          <PlanSelection />
-        </Section>
-      )}
-    </Page>
+    <NoSsr>
+      <Page title="Scrt account" subtitle="Great things start here…">
+        <Box mb={10}>
+          <SignInForm />
+        </Box>
+        {customer?.role !== 'premium' && (
+          <Section
+            title={'Do more with an account'}
+            subtitle={`Do you have big secrets? Never worry about sharing sensitive information again.`}
+          >
+            <PlanSelection />
+          </Section>
+        )}
+      </Page>
+    </NoSsr>
   )
 }
 

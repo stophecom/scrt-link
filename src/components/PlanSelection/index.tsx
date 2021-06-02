@@ -83,10 +83,6 @@ const freeUsps = [
     body: `Send your secrets using a fancy emoji domain:  
 **https://🤫.st/xyz**.`,
   },
-  {
-    heading: 'Statistics',
-    body: 'Track your secrets.',
-  },
 ]
 
 type Status = {

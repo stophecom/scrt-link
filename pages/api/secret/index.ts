@@ -2,7 +2,6 @@ import { NextApiHandler, NextApiRequest } from 'next'
 import * as Yup from 'yup'
 import { pick } from 'ramda'
 
-import { getSession } from 'next-auth/client'
 import Pusher from 'pusher'
 
 import withDb from '@/api/middlewares/withDb'
@@ -50,7 +49,6 @@ const extractPostInput = async (req: NextApiRequest) => {
 
 const handler: NextApiHandler = async (req, res) => {
   const models = req.models
-  const session = await getSession({ req })
 
   if (!models) {
     throw createError(500, 'Could not find db connection')
@@ -135,7 +133,7 @@ const handler: NextApiHandler = async (req, res) => {
         neogramDestructionTimeout,
       } = await extractPostInput(req)
 
-      // Stats
+      // Update global stats
       const stats = await models.Stats.findOneAndUpdate(
         {},
         {
@@ -154,21 +152,6 @@ const handler: NextApiHandler = async (req, res) => {
         'stats-update',
         pick(['totalSecretsCount', 'secretsCount', 'totalSecretsViewCount'])(stats.toJSON()),
       )
-
-      if (session?.userId) {
-        await models.Stats.findOneAndUpdate(
-          { userId: session.userId },
-          {
-            $inc: {
-              totalSecretsCount: 1,
-              'secretsCount.text': Number(secretType === 'text'),
-              'secretsCount.url': Number(secretType === 'url'),
-              'secretsCount.neogram': Number(secretType === 'neogram'),
-            },
-          },
-          { new: true, upsert: true },
-        )
-      }
 
       const shortened = new models.SecretUrl({
         secretType,
