@@ -12,9 +12,10 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       color: theme.palette.text.secondary,
       opacity: 0.7,
+      paddingTop: '.1rem',
     },
     illustration: {
-      fontSize: '1rem',
+      fontSize: '.9rem',
       marginRight: '.3rem',
     },
     title: {
@@ -30,11 +31,11 @@ const HowItWorks = () => {
   const gridContent = [
     {
       illustration: <Lock className={classes.illustration} />,
-      title: 'End-to-end Encryption (AES)',
+      title: 'End-to-end encrypted (AES)',
     },
     {
       illustration: <VerifiedUser className={classes.illustration} />,
-      title: '100% Privacy Protection',
+      title: '100% Privacy protected',
     },
   ]
 
@@ -42,7 +43,7 @@ const HowItWorks = () => {
     <Box display="flex" py={1}>
       {gridContent.map(({ illustration, title }, index) => {
         return (
-          <Box key={index} p={1} className={classes.box}>
+          <Box key={`trust-${index}`} px={1} className={classes.box}>
             {illustration}
             <Typography className={classes.title}>{title}</Typography>
           </Box>

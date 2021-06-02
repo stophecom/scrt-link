@@ -272,7 +272,6 @@ const HomeView: React.FunctionComponent = () => {
           </Box>
         </>
       }
-      keywords="end-to-end encrypted, secret messages, one-time links, neogram, private note"
     >
       <Box mb={5}>
         <Paper elevation={1} id="create" style={{ scrollMarginTop: '70px' }}>
