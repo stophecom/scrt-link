@@ -19,7 +19,11 @@ import BaseButton from '@/components/BaseButton'
 import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { MenuItem } from '@/views/Account'
-import { emailPlaceholder } from '@/constants'
+import {
+  emailPlaceholder,
+  neogramDestructionMessageDefault,
+  neogramDestructionTimeoutDefault,
+} from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 
 export const DestructionMessage: React.FunctionComponent<
@@ -28,7 +32,7 @@ export const DestructionMessage: React.FunctionComponent<
   <BaseTextField
     name="neogramDestructionMessage"
     label="Destruction message"
-    placeholder="This message will self-destruct in five seconds!"
+    placeholder={neogramDestructionMessageDefault}
     {...props}
   />
 )
@@ -119,13 +123,19 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
   return (
     <>
       <Formik<Customer>
-        initialValues={props}
+        initialValues={{
+          ...props,
+          neogramDestructionMessage:
+            props?.neogramDestructionMessage || neogramDestructionMessageDefault,
+          neogramDestructionTimeout:
+            props?.neogramDestructionTimeout || neogramDestructionTimeoutDefault,
+        }}
         enableReinitialize={true}
         validationSchema={getCustomerValidationSchema(readReceiptMethod)}
         validateOnMount
         onSubmit={handleSubmit}
       >
-        {({ isValid, isSubmitting, values, errors }) => {
+        {({ isValid, isSubmitting, values }) => {
           return (
             <>
               <Form noValidate>
