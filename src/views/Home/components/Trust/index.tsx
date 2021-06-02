@@ -36,10 +36,6 @@ const HowItWorks = () => {
       illustration: <VerifiedUser className={classes.illustration} />,
       title: '100% Privacy Protection',
     },
-    // {
-    //   illustration: <SupervisedUserCircle className={classes.illustration} />,
-    //   title: '100% Anonymous',
-    // },
   ]
 
   return (
