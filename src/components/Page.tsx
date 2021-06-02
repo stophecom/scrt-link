@@ -20,7 +20,7 @@ const Page = ({ title, subtitle, children, ...seoProps }: PageProps) => {
           </Typography>
         </Box>
         {subtitle && (
-          <Typography variant="subtitle1" component="h2">
+          <Typography variant="subtitle1" component="div">
             {subtitle}
           </Typography>
         )}

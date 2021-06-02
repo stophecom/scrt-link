@@ -140,8 +140,8 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
             <>
               <Form noValidate>
                 <Box mb={10}>
-                  <Box mb={5}>
-                    <Typography variant="h3">General settings</Typography>
+                  <Box mb={8}>
+                    <Typography variant="h2">General settings</Typography>
                   </Box>
                   <Box mb={7}>
                     <BaseTextField

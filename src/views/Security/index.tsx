@@ -1,17 +1,15 @@
 import React from 'react'
-import { Typography, Box } from '@material-ui/core'
 import Markdown from '@/components/Markdown'
 
 import Page from '@/components/Page'
+import Section from '@/components/Section'
 
 const Security = () => (
   <Page
     title="Security"
     subtitle={`The whole project is based on a simple premise: The less we know, the better.`}
   >
-    <Box mb={6}>
-      <Typography variant="h3">Security by design</Typography>
-      <Typography variant="h4">Best practices, no extras.</Typography>
+    <Section title={'Security by design'} subtitle={`Best practices, no extras.`}>
       <Markdown
         source={`
 - All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. 
@@ -22,10 +20,9 @@ const Security = () => (
 - All code is open-source on [Gitlab](https://gitlab.com/kingchiller/scrt-link). Dependencies are updated regularly.
 `}
       />
-    </Box>
-    <Box mb={6}>
-      <Typography variant="h3">Infrastructure</Typography>
-      <Typography variant="h4">Trusted players, few dependencies.</Typography>
+    </Section>
+
+    <Section title={'Infrastructure'} subtitle={`Trusted players, few dependencies.`}>
       <Markdown
         source={`
 We chose industry leaders to host our infrastructure:
@@ -35,7 +32,7 @@ We chose industry leaders to host our infrastructure:
 - All code on [Gitlab](https://gitlab.com/kingchiller/scrt-link)
 `}
       />
-    </Box>
+    </Section>
   </Page>
 )
 

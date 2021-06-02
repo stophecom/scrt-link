@@ -3,6 +3,7 @@ import { Typography, Box } from '@material-ui/core'
 import { Link } from '@material-ui/core'
 
 import Page from '@/components/Page'
+import Section from '@/components/Section'
 import ExternalLink from '@/components/ExternalLink'
 
 import { emailEmoji, email, twitterLink, twitterHandle } from '@/constants'
@@ -18,13 +19,13 @@ const jsonLd = {
 
 const Contact = () => (
   <Page title="Contact" subtitle={`Get in touch!`} jsonLd={jsonLd}>
-    <Box mb={4}>
-      <Typography variant="h3">Email</Typography>
+    <Section title="Email">
       <Typography>
-        For hackers: <Link href={`mailto:${emailEmoji}`}>{emailEmoji}</Link>, for eveybody else:{' '}
-        <Link href={`mailto:${email}`}>{email}</Link>
+        For hackers: <Link href={`mailto:${emailEmoji}`}>{emailEmoji}</Link>
+        <br />
+        For everybody else: <Link href={`mailto:${email}`}>{email}</Link>
       </Typography>
-    </Box>
+    </Section>
 
     <Typography variant="h3">Twitter</Typography>
     <Typography>

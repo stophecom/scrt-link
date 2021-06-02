@@ -38,7 +38,7 @@ let theme = createMuiTheme({
       marginBottom: '.5em',
     },
     subtitle1: { fontSize: '34%', lineHeight: '1.55' },
-    subtitle2: { fontSize: '20%', lineHeight: '1.55', marginBottom: '1em' },
+    subtitle2: { fontSize: '22%', lineHeight: '1.55', marginBottom: '1em' },
   },
   overrides: {
     MuiFormLabel: {
