@@ -296,10 +296,6 @@ const HomeView: React.FunctionComponent = () => {
               onSubmit={handleSubmit}
             >
               {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
-                // Workaround to validate field initially onChange, not onBlur
-                if (!touched['readReceiptMethod']) {
-                  setFieldTouched('readReceiptMethod')
-                }
                 return (
                   <>
                     <Form noValidate>
@@ -400,7 +396,13 @@ const HomeView: React.FunctionComponent = () => {
                         >
                           <BaseButton
                             startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
-                            onClick={() => setHasFormOptions(!hasFormOptions)}
+                            onClick={() => {
+                              // Workaround to validate field initially onChange, not onBlur
+                              if (!touched.readReceiptMethod) {
+                                setFieldTouched('readReceiptMethod')
+                              }
+                              setHasFormOptions(!hasFormOptions)
+                            }}
                           >
                             {hasFormOptions ? 'Less options' : 'More options'}
                           </BaseButton>
