@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       color: theme.palette.text.secondary,
       opacity: 0.7,
-      paddingTop: '.1rem',
+      paddingTop: '.15rem',
+      paddingBottom: '.15rem',
     },
     illustration: {
       fontSize: '.9rem',
@@ -40,7 +41,7 @@ const HowItWorks = () => {
   ]
 
   return (
-    <Box display="flex" py={1}>
+    <Box display="flex" flexWrap="wrap" py={1}>
       {gridContent.map(({ illustration, title }, index) => {
         return (
           <Box key={`trust-${index}`} px={1} className={classes.box}>

@@ -273,7 +273,7 @@ const HomeView: React.FunctionComponent = () => {
         </>
       }
     >
-      <Box mb={5}>
+      <Box mb={7}>
         <Paper elevation={1} id="create" style={{ scrollMarginTop: '70px' }}>
           <Box px={2} pt={1} pb={1}>
             <TabsMenu
@@ -470,11 +470,13 @@ const HomeView: React.FunctionComponent = () => {
       </Box>
 
       <Section
+        mb={3}
         title={'How it works'}
         subtitle={`Add your message, create a secret link and share it with your confidant. That's it. We do the magic in between.`}
       >
         <HowItWorks />
       </Section>
+
       <Section title={'FAQ'} subtitle="Frequently asked questions.">
         <Box mb={1}>
           <Accordion />
@@ -483,6 +485,7 @@ const HomeView: React.FunctionComponent = () => {
           Read more on FAQ page
         </BaseButtonLink>
       </Section>
+
       <Box display="flex" justifyContent="center">
         <BaseButtonLink
           href="#create"
