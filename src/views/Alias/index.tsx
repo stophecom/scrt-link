@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
-import axios from 'axios'
 import { Box } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
@@ -22,7 +21,7 @@ import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
-import { baseUrl } from '@/constants'
+import { useSecret } from '@/utils/api'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -37,25 +36,31 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
-interface AliasViewProps extends SecretUrlFields {
-  error?: string
-  isPreview?: boolean
-  decryptionKey: string
+interface AliasViewProps {
+  preview?: Partial<SecretUrlFields>
 }
-const AliasView: NextPage<AliasViewProps> = ({
-  error,
-  message = '',
-  isPreview = false,
-  isEncryptedWithUserPassword = false,
-  secretType,
-  neogramDestructionTimeout,
-  neogramDestructionMessage,
+const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
+  alias,
+  preview = {},
 }) => {
   const classes = useStyles()
-
   const router = useRouter()
+
+  const { data, error } = useSecret(alias)
+
+  // If preview mode
+  const secret = preview?.secretType ? preview : data || {}
+
+  const {
+    message = '',
+    isEncryptedWithUserPassword = false,
+    secretType = 'text',
+    neogramDestructionTimeout,
+    neogramDestructionMessage,
+  } = secret
+
   const [hasCopied, setHasCopied] = useState(false)
-  const [decryptedMessage, setDecryptedMessage] = useState(isPreview ? message : '')
+  const [decryptedMessage, setDecryptedMessage] = useState(message)
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
@@ -233,8 +238,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
       props: {
-        isPreview: true,
-        ...JSON.parse(obj),
+        preview: JSON.parse(obj),
       },
     }
   }
@@ -242,30 +246,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // Block crawlers
   const userAgent = req?.headers['user-agent']
   if (userAgent && crawlers.some(({ pattern }) => RegExp(pattern).test(userAgent))) {
-    return { props: {} }
+    return { notFound: true }
   }
 
-  let error
-  try {
-    const response = await axios.get(`${baseUrl}/api/secret?alias=${alias}`)
-    const { data } = response
-
-    return {
-      props: {
-        ...data,
-      },
-    }
-  } catch (err) {
-    const { response } = err
-    if (response) {
-      const { data } = response
-      error = `${data.statusCode}: ${data.message}`
-    } else {
-      error =
-        'If you see 🔥 in the address bar you have most likely tried to revisit a burned link.'
-    }
-    return { props: { error } }
-  }
+  return { props: { alias } }
 }
 
 export default AliasView

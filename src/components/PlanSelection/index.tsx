@@ -121,7 +121,7 @@ const PlanSelection: React.FunctionComponent = () => {
   }, [subscription])
 
   const deleteSubscription = (subscriptionId: string) =>
-    api<Stripe.Subscription>(`/subscriptions/${subscriptionId}`, null, { method: 'DELETE' })
+    api<Stripe.Subscription>(`/subscriptions/${subscriptionId}`, { method: 'DELETE' })
       .then((subscription) => {
         setStatus({
           type: 'success',
@@ -150,10 +150,10 @@ const PlanSelection: React.FunctionComponent = () => {
       if (subscription?.status === 'active') {
         const response = await api<Stripe.Subscription>(
           `/subscriptions/${subscription.id}`,
+          { method: 'PUT' },
           {
             priceId: priceId,
           },
-          { method: 'PUT' },
         )
 
         setActivePrice(response?.items.data[0].price ?? {})
@@ -161,9 +161,13 @@ const PlanSelection: React.FunctionComponent = () => {
         setStatus({ type: 'success', message: 'You successfully changed your subscription!' })
       } else {
         // Create a Checkout Session.
-        const response = await api<Stripe.Subscription>(`/checkout`, {
-          priceId: priceId,
-        })
+        const response = await api<Stripe.Subscription>(
+          `/checkout`,
+          { method: 'POST' },
+          {
+            priceId: priceId,
+          },
+        )
         // Redirect to Checkout.
         const stripe = await getStripe()
         const { error } = await stripe!.redirectToCheckout({

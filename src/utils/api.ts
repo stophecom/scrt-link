@@ -3,18 +3,19 @@ import { Stripe } from 'stripe'
 
 import { baseUrl } from '@/constants'
 import { CustomerFields } from '@/api/models/Customer'
+import { SecretUrlFields } from '@/api/models/SecretUrl'
 import { StatsFields } from '@/api/models/Stats'
 import { CustomError } from '@/api/utils/createError'
 
 export async function api<T>(
   url: string,
-  data?: Record<string, unknown> | null,
   options?: Record<string, unknown>,
+  data?: Record<string, unknown> | null,
 ): Promise<T> {
   try {
     // Default options are marked with *
     const response = await fetch(`${baseUrl}/api${url}`, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
@@ -25,7 +26,7 @@ export async function api<T>(
       redirect: 'follow', // manual, *follow, error
       referrerPolicy: 'no-referrer', // no-referrer, *client
       ...options,
-      body: JSON.stringify(data || {}), // body data type must match "Content-Type" header
+      ...(data ? { body: JSON.stringify(data) } : {}), // body data type must match "Content-Type" header
     })
 
     if (!response.ok) {
@@ -57,6 +58,16 @@ export const useStats = () => {
     stats: data,
     isLoading: !error && !data,
     error: error,
+  }
+}
+
+export const useSecret = (alias: string) => {
+  const { data, error } = useSWR<Partial<SecretUrlFields>>(`/secret?alias=${alias}`, api)
+
+  return {
+    data,
+    isLoading: !error && !data,
+    error: error?.message,
   }
 }
 

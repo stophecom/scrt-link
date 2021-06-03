@@ -12,8 +12,8 @@ export interface SecretUrlFields {
   isEncryptedWithUserPassword: boolean
   neogramDestructionMessage?: string
   neogramDestructionTimeout?: number
-  receiptEmail: string
-  receiptPhoneNumber: string
+  receiptEmail?: string
+  receiptPhoneNumber?: string
 }
 
 export type SecretUrlData = BaseDocumentData & SecretUrlFields
