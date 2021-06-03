@@ -57,7 +57,7 @@ const Account = () => {
           tabsMenu={project(['label', 'key'], menu)}
           label="Account options"
         />
-        <Section pt={0}>
+        <Section pt={{ xs: 0, sm: 0 }}>
           {activeTab === 'settings' && (
             <>
               <Box mb={1}>
