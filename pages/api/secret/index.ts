@@ -113,11 +113,16 @@ const handler: NextApiHandler = async (req, res) => {
       res.json({
         secretType,
         message: decryptAES(message),
-        neogramDestructionMessage: neogramDestructionMessage
-          ? decryptAES(neogramDestructionMessage)
-          : '',
+        ...(secretType === 'neogram'
+          ? {
+              neogramDestructionMessage: neogramDestructionMessage
+                ? decryptAES(neogramDestructionMessage)
+                : '',
+              neogramDestructionTimeout,
+            }
+          : {}),
+
         isEncryptedWithUserPassword,
-        neogramDestructionTimeout,
       })
       break
     }

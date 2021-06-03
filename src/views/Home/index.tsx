@@ -8,7 +8,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Collapse from '@material-ui/core/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
-import { ArrowForward, ExpandLess, ExpandMore } from '@material-ui/icons'
+import { ArrowForward, ExpandLess, ExpandMore, LiveTvRounded } from '@material-ui/icons'
 import LinkIcon from '@material-ui/icons/Link'
 
 import { Link, BaseButtonLink } from '@/components/Link'
@@ -178,7 +178,7 @@ const HomeView: React.FunctionComponent = () => {
     dispatch(doRequest({ alias, encryptionKey }))
     window.scrollTo(0, 0)
 
-    const data = {
+    let data = {
       ...omit(['password', 'encryptionKey', 'readReceiptMethod'], values),
       alias,
       message,
@@ -188,6 +188,11 @@ const HomeView: React.FunctionComponent = () => {
         readReceiptMethod === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
       isEncryptedWithUserPassword: !!password,
     }
+
+    if (secretType !== 'neogram') {
+      data = omit(['neogramDestructionMessage', 'neogramDestructionTimeout'], data)
+    }
+
     try {
       const response = await axios.post('/api/secret', data)
       response.data['encryptionKey'] = encryptionKey

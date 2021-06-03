@@ -46,13 +46,13 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
   const classes = useStyles()
   const router = useRouter()
 
-  const { data, error } = useSecret(alias)
+  const { data = {}, error } = useSecret(alias)
 
   // If preview mode
-  const secret = preview?.secretType ? preview : data || {}
+  const secret = preview?.secretType ? preview : data
 
   const {
-    message = '',
+    message,
     isEncryptedWithUserPassword = false,
     secretType = 'text',
     neogramDestructionTimeout,
@@ -60,11 +60,17 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
   } = secret
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [decryptedMessage, setDecryptedMessage] = useState(message)
-  const [success, setSuccess] = useState(false)
+  const [decryptedMessage, setDecryptedMessage] = useState('')
+  const [passwordSuccess, setPasswordSuccess] = useState(false)
+  const [decryptionSuccess, setDecryptionSuccess] = useState(false)
+
+  const needsPassword = isEncryptedWithUserPassword && !passwordSuccess
 
   useEffect(() => {
     // Decrypt message
+    if (!message || passwordSuccess || decryptionSuccess) {
+      return
+    }
     const decryptionKey = window.location.hash.substring(1)
     if (decryptionKey) {
       const result = decryptMessage(message, decryptionKey)
@@ -73,12 +79,12 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
         window.location.replace(sanitizeUrl(result))
         return
       }
-
       setDecryptedMessage(result)
+      setDecryptionSuccess(true)
     }
 
     // eslint-disable-next-line no-restricted-globals
-    history.pushState(null, 'Secret destroyed', '🔥')
+    // history.pushState(null, 'Secret destroyed', '🔥')
   }, [message])
 
   interface PasswordForm {
@@ -98,7 +104,7 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
       if (!result) {
         throw new Error('Wrong Password')
       } else {
-        setSuccess(true)
+        setPasswordSuccess(true)
         setDecryptedMessage(result)
 
         if (secretType === 'url') {
@@ -114,9 +120,7 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
     }
   }, [])
 
-  const needsPassword = isEncryptedWithUserPassword && !success
-
-  if (error) {
+  if (error && !needsPassword && !decryptedMessage) {
     return (
       <Page title="Error occured" noindex>
         <Alert severity="error">{error}</Alert>
