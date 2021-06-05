@@ -117,6 +117,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
               name="emojiLink"
               checked={isEmojiLinkEnabled}
               onChange={setIsEmojiLinkEnabled}
+              size="small"
             />
 
             <Box ml="auto" px={1}>
