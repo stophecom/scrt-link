@@ -31,17 +31,17 @@ const handler: NextApiHandler = async (req, res) => {
 
   switch (req.method) {
     case 'POST': {
-      const { secretUrl, message, recipientEmail, recepientName = '' } = await extractPostInput(req)
+      const { secretUrl, message, recipientEmail, recipientName = '' } = await extractPostInput(req)
 
       mailjet({
-        To: [{ Email: recipientEmail, Name: recepientName }],
+        To: [{ Email: recipientEmail, Name: recipientName }],
         Subject: 'You received a secret ',
         TemplateID: 2939535,
         TemplateLanguage: true,
         Variables: {
           secretUrl,
           message,
-          name: recepientName,
+          name: recipientName,
         },
       })
 

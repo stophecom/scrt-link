@@ -15,7 +15,7 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
 const how = {
   heading: 'How does the service work?',
   body: `
-After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recepients clicks the link, the message gets displayed and permanently removed from the database. 
+After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recipients clicks the link, the message gets displayed and permanently removed from the database. 
     
 For **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel than the link.)`,
 }
@@ -46,7 +46,7 @@ const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent
 const secretTypes = {
   heading: 'What is the difference between *Text*, *Redirect* and *Neogram™*?',
   body: `
-- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recepient has the option to copy the secret.
+- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.
 [Demo](${demoSecretMessageLink})
 - **Redirect**: Think about it as a URL-shortener where the generated link only works once.
 - **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo](${demoSecretNeogramLink})
@@ -70,8 +70,8 @@ const notification = {
 }
 
 const save = {
-  heading: 'Can the recepient save the message?',
-  body: `Sure. You can always take a screenshot. The idea behind this service is to securely share sensitive information one time. We (obviously) don't have control over what a recepient does with the message.`,
+  heading: 'Can the recipient save the message?',
+  body: `Sure. You can always take a screenshot. The idea behind this service is to securely share sensitive information one time. We (obviously) don't have control over what a recipient does with the message.`,
 }
 
 export const shortFaq = [why, who, how, secretTypes, security, recovery, notification, save]

@@ -19,7 +19,7 @@ export type Response = {
 export interface ShareSecretFormProps {
   recipientEmail: string
   secretUrl: string
-  recepientName?: string
+  recipientName?: string
   message?: string
 }
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
@@ -64,7 +64,7 @@ const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>)
       initialValues={{
         recipientEmail: '',
         secretUrl,
-        recepientName: '',
+        recipientName: '',
         message: '',
       }}
       validationSchema={shareSecretViaEmailSchema}
@@ -84,7 +84,7 @@ const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>)
                 />
               </Box>
               <Box py={1}>
-                <BaseTextField name="recepientName" label="Recepient name" placeholder="Jane Doe" />
+                <BaseTextField name="recipientName" label="recipient name" placeholder="Jane Doe" />
               </Box>
               <Box py={1}>
                 <BaseTextField
@@ -94,7 +94,7 @@ const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>)
                   rowsMax={7}
                   label="Message"
                   placeholder="Message to be included in the email…"
-                  helperText="We recommend to add a hint about who you are. Otherwise the recepient might mistake the email for spam."
+                  helperText="We recommend to add a hint about who you are. Otherwise the recipient might mistake the email for spam."
                 />
               </Box>
 
