@@ -117,10 +117,12 @@ const Result: React.FunctionComponent<ResultProps> = ({
                   </Box>
                 )}
                 <Collapse in={isEmailServiceEnabled}>
-                  <Box mt={4} pt={2} borderTop={1} borderColor="grey.700">
+                  <Box mt={4} pt={4} borderTop={1} borderColor="grey.800">
                     <Box mb={2}>
                       <Typography variant="h4">Email service</Typography>
-                      <Typography variant="body1">Let us send your secret link for you.</Typography>
+                      <Typography variant="body1">
+                        Let us deliver your secret link for you.
+                      </Typography>
                     </Box>
                     {role === 'premium' ? (
                       <ShareSecretForm secretUrl={shortenedUrlEmailService} />
