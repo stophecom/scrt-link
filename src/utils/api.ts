@@ -62,7 +62,12 @@ export const useStats = () => {
 }
 
 export const useSecret = (alias: string) => {
-  const { data, error } = useSWR<Partial<SecretUrlFields>>(`/secret?alias=${alias}`, api)
+  //https://stackoverflow.com/questions/62771896/can-i-fetch-data-only-once-when-using-swr
+  const settings = {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  }
+  const { data, error } = useSWR<Partial<SecretUrlFields>>(`/secret?alias=${alias}`, api, settings)
 
   return {
     data,
