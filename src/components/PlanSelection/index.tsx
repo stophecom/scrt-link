@@ -54,13 +54,11 @@ const premiumUsps = [
   },
   {
     heading: 'Customize Neogram™ messages',
-    body: 'Add a special note before your message self-destructs.',
+    body: 'Add a special touch to your secrets.',
   },
-
   {
     heading: 'Email delivery service',
-    body:
-      'No need to share the secret yourself. You have the option to secrets via Email directly from our platform.',
+    body: 'No more app switching: Send secret links directly from our platform.',
   },
   {
     heading: 'Priority support',
@@ -68,7 +66,7 @@ const premiumUsps = [
   },
   {
     heading: 'More to come…',
-    body: `You'll get all future updates to this service at no extra cost, as well as early access to upcoming features.`,
+    body: `You'll get all future updates at no extra cost. Plus, early access to upcoming features.`,
   },
 ]
 
