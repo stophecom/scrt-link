@@ -91,7 +91,7 @@ const Layout: React.FC = ({ children }) => {
           <BaseButtonLink href="/account" color="primary" variant="text" size="small">
             {loading ? (
               <>
-                <CircularProgress size={12} />
+                <CircularProgress color="secondary" size={12} />
                 &nbsp;
               </>
             ) : session ? (
