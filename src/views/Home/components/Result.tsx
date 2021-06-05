@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
 
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
-import { Box, CircularProgress, Paper, Typography } from '@material-ui/core'
+import { Box, CircularProgress, Paper, Typography, Collapse, IconButton } from '@material-ui/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { ArrowBack, Share } from '@material-ui/icons'
+import {
+  ArrowBack,
+  Share,
+  ExpandLess,
+  ExpandMore,
+  FileCopyOutlined,
+  EmojiEmotions,
+} from '@material-ui/icons'
 import { RWebShare } from 'react-web-share'
 import Alert from '@material-ui/lab/Alert'
 
-import BooleanSwitch from '@/components/BooleanSwitch'
 import ShareSecretForm from '@/components/ShareSecretForm'
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
-import { isProduction } from '@/config'
 import { CustomerFields } from '@/api/models/Customer'
 import { upgradeNotice, emojiShortUrl, baseUrl } from '@/constants'
 
@@ -32,11 +36,12 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const readReceiptMethod = data?.readReceiptMethod
   const [hasCopied, setHasCopied] = useState(false)
   // Form options
-  const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = React.useState(isEmojiShortLinkEnabled)
-  const [isEmailServiceEnabled, setIsEmailServiceEnabled] = React.useState(false)
+  const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = useState(isEmojiShortLinkEnabled)
+  const [isEmailServiceEnabled, setIsEmailServiceEnabled] = useState(false)
 
-  const origin = isProduction && isEmojiLinkEnabled ? emojiShortUrl : `${baseUrl}/l`
+  const origin = isEmojiLinkEnabled ? emojiShortUrl : `${baseUrl}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
+  const shortenedUrlEmailService = `${baseUrl}/l/${alias}#${encryptionKey}`
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
@@ -91,7 +96,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                       }}
                     >
                       <BaseButton
-                        startIcon={<FileCopyOutlinedIcon />}
+                        startIcon={<FileCopyOutlined />}
                         variant="contained"
                         color="primary"
                         size="large"
@@ -111,40 +116,50 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     </Alert>
                   </Box>
                 )}
-                {isEmailServiceEnabled ? (
+                <Collapse in={isEmailServiceEnabled}>
                   <Box mt={4} pt={2} borderTop={1} borderColor="grey.700">
                     <Box mb={2}>
                       <Typography variant="h4">Email service</Typography>
-                      <Typography variant="body1">Let us send your secret via Email.</Typography>
+                      <Typography variant="body1">Let us send your secret link for you.</Typography>
                     </Box>
                     {role === 'premium' ? (
-                      <ShareSecretForm secretUrl={shortenedUrl} />
+                      <ShareSecretForm secretUrl={shortenedUrlEmailService} />
                     ) : (
                       <em>{upgradeNotice}</em>
                     )}
                   </Box>
-                ) : null}
+                </Collapse>
               </Box>
             </Paper>
           )}
           <Box p={1} display="flex">
-            <Box display="flex" flexWrap="wrap">
-              <BooleanSwitch
-                label="Use emoji link"
-                name="emojiLink"
-                checked={isEmojiLinkEnabled}
-                onChange={setIsEmojiLinkEnabled}
+            <Box display="flex" alignItems="center">
+              <Box mr={1}>
+                <IconButton
+                  aria-label="Toggle emoji link"
+                  title="Toggle emoji link"
+                  size="small"
+                  onClick={() => {
+                    setIsEmojiLinkEnabled(!isEmojiLinkEnabled)
+                  }}
+                >
+                  <EmojiEmotions
+                    fontSize="inherit"
+                    color={isEmojiLinkEnabled ? 'primary' : 'inherit'}
+                    style={{ opacity: isEmojiLinkEnabled ? 1 : 0.5 }}
+                  />
+                </IconButton>
+              </Box>
+              <BaseButton
+                endIcon={isEmailServiceEnabled ? <ExpandLess /> : <ExpandMore />}
                 size="small"
-              />
-              <BooleanSwitch
-                label="Email service"
-                name="emailService"
-                checked={isEmailServiceEnabled}
-                onChange={setIsEmailServiceEnabled}
-                size="small"
-              />
+                onClick={() => {
+                  setIsEmailServiceEnabled(!isEmailServiceEnabled)
+                }}
+              >
+                Email service
+              </BaseButton>
             </Box>
-
             <Box ml="auto" px={1} flexShrink={0}>
               <Typography color="textSecondary" variant="caption">
                 {data?.message || (
