@@ -226,7 +226,7 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                 <Box pt={5}>
                   {(error || data?.message) && (
                     <NoSsr>
-                      <Box mt={1}>
+                      <Box mb={1}>
                         {error && <Alert severity="error">{error}</Alert>}
                         {data?.message && <Alert severity="success">{data.message}</Alert>}
                       </Box>
