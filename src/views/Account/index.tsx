@@ -123,7 +123,7 @@ const Account = () => {
         </Box>
         {customer?.role !== 'premium' && (
           <Section
-            title={'Do more with an account'}
+            title={'Account benefits'}
             subtitle={`Do you have big secrets? Never worry about sharing sensitive information again.`}
           >
             <PlanSelection />
