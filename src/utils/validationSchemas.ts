@@ -25,7 +25,7 @@ const neogramDestructionMessageValidation = {
   neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
 }
 const neogramDestructionTimeoutValidation = {
-  neogramDestructionTimeout: Yup.number().label('Destruction timeout').max(30),
+  neogramDestructionTimeout: Yup.number().label('Destruction timeout').required().min(1).max(200),
 }
 const receiptEmailValidation = {
   receiptEmail: Yup.string().label('Email').email().required().max(200).trim(),

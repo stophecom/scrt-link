@@ -375,14 +375,7 @@ const HomeView: React.FunctionComponent = () => {
                         {secretType === 'neogram' && (
                           <>
                             <Box py={1}>
-                              <DestructionMessage
-                                {...(customer?.role !== 'premium'
-                                  ? {
-                                      disabled: true,
-                                      helperText: 'Unlock this option with the premium plan.',
-                                    }
-                                  : {})}
-                              />
+                              <DestructionMessage />
                             </Box>
                             <Box py={1}>
                               <DestructionTimeout />

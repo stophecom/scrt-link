@@ -25,17 +25,25 @@ import {
   neogramDestructionTimeoutDefault,
 } from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
+import { useCustomer } from '@/utils/api'
 
-export const DestructionMessage: React.FunctionComponent<
-  Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
-> = ({ ...props }) => (
-  <BaseTextField
-    name="neogramDestructionMessage"
-    label="Destruction message"
-    placeholder={neogramDestructionMessageDefault}
-    {...props}
-  />
-)
+export const DestructionMessage = () => {
+  const { data: customer } = useCustomer()
+
+  return (
+    <BaseTextField
+      name="neogramDestructionMessage"
+      label="Destruction message"
+      placeholder={neogramDestructionMessageDefault}
+      {...(customer?.role !== 'premium'
+        ? {
+            disabled: true,
+            helperText: 'Unlock this option with the premium plan.',
+          }
+        : {})}
+    />
+  )
+}
 
 export const DestructionTimeout: React.FunctionComponent<
   Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
@@ -215,6 +223,14 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                 </Box>
 
                 <Box pt={5}>
+                  {(error || data?.message) && (
+                    <NoSsr>
+                      <Box mt={1}>
+                        {error && <Alert severity="error">{error}</Alert>}
+                        {data?.message && <Alert severity="success">{data.message}</Alert>}
+                      </Box>
+                    </NoSsr>
+                  )}
                   <BaseButton
                     className={classes.submitButton}
                     type="submit"
@@ -226,14 +242,6 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                   >
                     Save
                   </BaseButton>
-                  {(error || data?.message) && (
-                    <NoSsr>
-                      <Box mt={1}>
-                        {error && <Alert severity="error">{error}</Alert>}
-                        {data?.message && <Alert severity="success">{data.message}</Alert>}
-                      </Box>
-                    </NoSsr>
-                  )}
                 </Box>
               </Form>
             </>
