@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import { signIn } from 'next-auth/client'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import VpnKeyIcon from '@material-ui/icons/VpnKey'
+import { useRouter } from 'next/router'
 
 import BaseCheckboxField from '@/components/BaseCheckboxField'
 import Alert from '@material-ui/lab/Alert'
@@ -49,6 +50,13 @@ const SignInForm = () => {
   const classes = useStyles()
   const [state, setState] = useState(initialState)
   const [isSignUp, setIsSignUp] = useState(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router?.query?.signup) {
+      setIsSignUp(true)
+    }
+  }, [router])
 
   const handleSubmit = useCallback<OnSubmit<SignIn>>(async (values, formikHelpers) => {
     try {

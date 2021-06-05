@@ -245,7 +245,12 @@ const PlanSelection: React.FunctionComponent = () => {
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" mt={'auto'}>
               {!customer?.userId && (
-                <BaseButtonLink size="large" variant="contained" color="primary" href="/account">
+                <BaseButtonLink
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  href="/account?signup=true"
+                >
                   Sign up free
                 </BaseButtonLink>
               )}
