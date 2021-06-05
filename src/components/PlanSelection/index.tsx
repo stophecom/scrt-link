@@ -52,10 +52,15 @@ const premiumUsps = [
     heading: 'Read receipts: Email & SMS ',
     body: 'Fast, convenient. Get read notifications via SMS.',
   },
-
   {
     heading: 'Customize Neogram™ messages',
     body: 'Add a special note before your message self-destructs.',
+  },
+
+  {
+    heading: 'Email delivery service',
+    body:
+      'No need to share the secret yourself. You have the option to secrets via Email directly from our platform.',
   },
   {
     heading: 'Priority support',
