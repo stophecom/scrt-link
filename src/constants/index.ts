@@ -18,7 +18,7 @@ export const shortUrl = 'https://scrt.li'
 
 // Form defaults
 export const emailPlaceholder = 'example@gmail.com'
-export const neogramDestructionMessageDefault = 'This message will self-destruct in five seconds!'
+export const neogramDestructionMessageDefault = 'This message will self-destruct in…'
 export const neogramDestructionTimeoutDefault = 3
 
 // Limits per user role
