@@ -257,6 +257,7 @@ const HomeView: React.FunctionComponent = () => {
         <Result
           data={data}
           isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
+          role={customer?.role || 'visitor'}
           onReset={() => {
             dispatch(doReset())
             setHasFormOptions(false)
