@@ -33,7 +33,7 @@ const handler: NextApiHandler = async (req, res) => {
     case 'POST': {
       const { secretUrl, message, recipientEmail, recipientName = '' } = await extractPostInput(req)
 
-      mailjet({
+      await mailjet({
         To: [{ Email: recipientEmail, Name: recipientName }],
         Subject: 'You received a secret ',
         TemplateID: 2939535,

@@ -84,7 +84,7 @@ const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>)
                 />
               </Box>
               <Box py={1}>
-                <BaseTextField name="recipientName" label="recipient name" placeholder="Jane Doe" />
+                <BaseTextField name="recipientName" label="Recipient name" placeholder="Jane Doe" />
               </Box>
               <Box py={1}>
                 <BaseTextField
