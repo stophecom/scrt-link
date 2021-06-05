@@ -20,6 +20,7 @@ import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { MenuItem } from '@/views/Account'
 import {
+  upgradeNotice,
   emailPlaceholder,
   neogramDestructionMessageDefault,
   neogramDestructionTimeoutDefault,
@@ -38,7 +39,7 @@ export const DestructionMessage = () => {
       {...(customer?.role !== 'premium'
         ? {
             disabled: true,
-            helperText: 'Unlock this option with the premium plan.',
+            helperText: upgradeNotice,
           }
         : {})}
     />

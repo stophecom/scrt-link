@@ -1,0 +1,121 @@
+import React, { useState } from 'react'
+import { Box } from '@material-ui/core'
+import { Formik, Form, FormikConfig } from 'formik'
+
+import Alert from '@material-ui/lab/Alert'
+
+import BaseTextField from '@/components/BaseTextField'
+
+import BaseButton from '@/components/BaseButton'
+import { shareSecretViaEmailSchema } from '@/utils/validationSchemas'
+import { emailPlaceholder } from '@/constants'
+import { api } from '@/utils/api'
+
+// @todo move this to types
+export type Response = {
+  message: string
+}
+
+export interface ShareSecretFormProps {
+  recepientEmail: string
+  secretUrl: string
+  recepientName?: string
+  message?: string
+}
+type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
+
+interface State {
+  error?: string
+  message?: string
+}
+
+const initialState: State = {
+  message: '',
+  error: undefined,
+}
+
+const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>) => {
+  const [state, setState] = useState(initialState)
+
+  const handleSubmit: OnSubmit<ShareSecretFormProps> = async (values, formikHelpers) => {
+    try {
+      const response = await api<Response>(`/sendmail`, { method: 'POST' }, { ...values })
+      setState(response)
+      formikHelpers.resetForm()
+    } catch (err) {
+      setState({ error: err.message })
+    } finally {
+      formikHelpers.setSubmitting(false)
+    }
+  }
+
+  const { message, error } = state
+
+  if (error) {
+    return <Alert severity="error">{error}</Alert>
+  }
+
+  if (message) {
+    return <Alert severity="success">{message}</Alert>
+  }
+
+  return (
+    <Formik<ShareSecretFormProps>
+      initialValues={{
+        recepientEmail: '',
+        secretUrl,
+        recepientName: '',
+        message: '',
+      }}
+      validationSchema={shareSecretViaEmailSchema}
+      validateOnMount
+      onSubmit={handleSubmit}
+    >
+      {({ isValid, errors, isSubmitting }) => {
+        return (
+          <>
+            <Form noValidate>
+              <Box py={1}>
+                <BaseTextField
+                  name="recepientEmail"
+                  label="Email"
+                  placeholder={emailPlaceholder}
+                  required
+                />
+              </Box>
+              <Box py={1}>
+                <BaseTextField name="recepientName" label="Recepient name" placeholder="Jane Doe" />
+              </Box>
+              <Box py={1}>
+                <BaseTextField
+                  name="message"
+                  multiline
+                  rows={3}
+                  rowsMax={7}
+                  label="Message"
+                  placeholder="We recommend add a hint about the sender. Otherwise the recepient might mistake your message for spam."
+                />
+              </Box>
+
+              <Box py={1}>
+                <BaseButton
+                  fullWidth
+                  type="submit"
+                  color="primary"
+                  variant="contained"
+                  size="large"
+                  loading={isSubmitting}
+                  disabled={!isValid}
+                >
+                  Send
+                </BaseButton>
+              </Box>
+            </Form>
+          </>
+        )
+      }}
+    </Formik>
+  )
+}
+
+export default ShareSecretForm

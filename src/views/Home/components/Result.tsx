@@ -8,15 +8,16 @@ import { RWebShare } from 'react-web-share'
 import Alert from '@material-ui/lab/Alert'
 
 import BooleanSwitch from '@/components/BooleanSwitch'
+import ShareSecretForm from '@/components/ShareSecretForm'
 import BaseButton from '@/components/BaseButton'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
 import { isProduction } from '@/config'
 import { CustomerFields } from '@/api/models/Customer'
-import { emojiShortUrl, baseUrl } from '@/constants'
+import { upgradeNotice, emojiShortUrl, baseUrl } from '@/constants'
 
 type ResultProps = Pick<State, 'data'> &
-  Pick<CustomerFields, 'isEmojiShortLinkEnabled'> & {
+  Pick<CustomerFields, 'isEmojiShortLinkEnabled' | 'role'> & {
     onReset: () => void
   }
 
@@ -24,6 +25,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   data,
   onReset,
   isEmojiShortLinkEnabled,
+  role,
 }) => {
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
@@ -31,6 +33,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const [hasCopied, setHasCopied] = useState(false)
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = React.useState(isEmojiShortLinkEnabled)
+  const [isEmailServiceEnabled, setIsEmailServiceEnabled] = React.useState(false)
 
   const origin = isProduction && isEmojiLinkEnabled ? emojiShortUrl : `${baseUrl}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
@@ -108,19 +111,41 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     </Alert>
                   </Box>
                 )}
+                {isEmailServiceEnabled ? (
+                  <Box mt={4} pt={2} borderTop={1} borderColor="grey.700">
+                    <Box mb={2}>
+                      <Typography variant="h4">Email service</Typography>
+                      <Typography variant="body1">Let us send your secret via Email.</Typography>
+                    </Box>
+                    {role === 'premium' ? (
+                      <ShareSecretForm secretUrl={shortenedUrl} />
+                    ) : (
+                      <em>{upgradeNotice}</em>
+                    )}
+                  </Box>
+                ) : null}
               </Box>
             </Paper>
           )}
           <Box p={1} display="flex">
-            <BooleanSwitch
-              label="Use emoji link"
-              name="emojiLink"
-              checked={isEmojiLinkEnabled}
-              onChange={setIsEmojiLinkEnabled}
-              size="small"
-            />
+            <Box display="flex" flexWrap="wrap">
+              <BooleanSwitch
+                label="Use emoji link"
+                name="emojiLink"
+                checked={isEmojiLinkEnabled}
+                onChange={setIsEmojiLinkEnabled}
+                size="small"
+              />
+              <BooleanSwitch
+                label="Email service"
+                name="emailService"
+                checked={isEmailServiceEnabled}
+                onChange={setIsEmailServiceEnabled}
+                size="small"
+              />
+            </Box>
 
-            <Box ml="auto" px={1}>
+            <Box ml="auto" px={1} flexShrink={0}>
               <Typography color="textSecondary" variant="caption">
                 {data?.message || (
                   <>

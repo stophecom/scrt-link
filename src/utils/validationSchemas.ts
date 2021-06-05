@@ -137,3 +137,10 @@ export const getSignInValidationSchema = (isSignUp?: boolean) =>
         }
       : {}),
   })
+
+export const shareSecretViaEmailSchema = Yup.object().shape({
+  message: Yup.string().label('Message').max(280).trim(),
+  recepientName: Yup.string().label('Name').max(280).trim(),
+  secretUrl: Yup.string().label('Secret URL').required().trim(),
+  recepientEmail: Yup.string().label('Email').required().email().trim(),
+})
