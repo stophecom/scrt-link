@@ -61,7 +61,7 @@ export const useStats = () => {
   }
 }
 
-export const useSecret = (alias: string) => {
+export const useSecret = (alias?: string) => {
   //https://stackoverflow.com/questions/62771896/can-i-fetch-data-only-once-when-using-swr
   const settings = {
     revalidateOnFocus: false,

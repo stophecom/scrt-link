@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NextPage, GetServerSideProps } from 'next'
 import { Box } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
@@ -36,20 +36,22 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
-interface AliasViewProps {
+type AliasViewProps = {
   preview?: Partial<SecretUrlFields>
+  alias?: SecretUrlFields['alias']
 }
-const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
-  alias,
-  preview = {},
-}) => {
+const AliasView: NextPage<AliasViewProps> = ({ alias, preview = {} }) => {
   const classes = useStyles()
   const router = useRouter()
 
   const { data = {}, error } = useSecret(alias)
 
-  // If preview mode
-  const secret = preview?.secretType ? preview : data
+  // Use preview mode if data if passed via URL params
+  const isPreview = preview?.secretType
+  const secretRaw = isPreview ? preview : data
+
+  const [hasCopied, setHasCopied] = useState(false)
+  const [secret, setSecret] = useState({} as Partial<SecretUrlFields>)
 
   const {
     message,
@@ -59,33 +61,26 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
     neogramDestructionMessage,
   } = secret
 
-  const [hasCopied, setHasCopied] = useState(false)
-  const [decryptedMessage, setDecryptedMessage] = useState('')
-  const [passwordSuccess, setPasswordSuccess] = useState(false)
-  const [decryptionSuccess, setDecryptionSuccess] = useState(false)
-
-  const needsPassword = isEncryptedWithUserPassword && !passwordSuccess
-
   useEffect(() => {
-    // Decrypt message
-    if (!message || passwordSuccess || decryptionSuccess) {
+    // Decrypt message once
+    if (message || !secretRaw?.message) {
       return
     }
+
+    // No need for decryption in preview mode
+    if (isPreview) {
+      setSecret(secretRaw)
+    }
+
     const decryptionKey = window.location.hash.substring(1)
     if (decryptionKey) {
-      const result = decryptMessage(message, decryptionKey)
-
-      if (!isEncryptedWithUserPassword && secretType === 'url') {
-        window.location.replace(sanitizeUrl(result))
-        return
-      }
-      setDecryptedMessage(result)
-      setDecryptionSuccess(true)
+      const result = decryptMessage(secretRaw.message, decryptionKey)
+      setSecret({ ...secretRaw, message: result })
     }
 
     // eslint-disable-next-line no-restricted-globals
-    // history.pushState(null, 'Secret destroyed', '🔥')
-  }, [message])
+    history.pushState(null, 'Secret destroyed', '🔥')
+  }, [secretRaw])
 
   interface PasswordForm {
     message: string
@@ -96,7 +91,7 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
     password: '',
   }
 
-  const handleSubmit = useCallback<OnSubmit<PasswordForm>>(async (values, formikHelpers) => {
+  const handleSubmit: OnSubmit<PasswordForm> = async (values, formikHelpers) => {
     try {
       const { message, password } = values
       const result = decryptMessage(message, password)
@@ -104,12 +99,11 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
       if (!result) {
         throw new Error('Wrong Password')
       } else {
-        setPasswordSuccess(true)
-        setDecryptedMessage(result)
-
-        if (secretType === 'url') {
-          window.location.replace(sanitizeUrl(result))
-        }
+        setSecret((previousState) => ({
+          ...previousState,
+          message: result,
+          isEncryptedWithUserPassword: undefined,
+        }))
       }
 
       formikHelpers.resetForm()
@@ -118,113 +112,120 @@ const AliasView: NextPage<AliasViewProps & Pick<SecretUrlFields, 'alias'>> = ({
     } finally {
       formikHelpers.setSubmitting(false)
     }
-  }, [])
-
-  if (error && !needsPassword && !decryptedMessage) {
-    return (
-      <Page title="Error occured" noindex>
-        <Alert severity="error">{error}</Alert>
-        <Box mt={3}>
-          <ReplyButton />
-        </Box>
-      </Page>
-    )
   }
 
-  if (!needsPassword && secretType === 'neogram') {
-    return (
-      <Neogram
-        message={decryptedMessage}
-        timeout={Number(neogramDestructionTimeout)}
-        destructionMessage={neogramDestructionMessage}
-        onFinished={() => {
-          setTimeout(() => router.push('/'), 100)
-        }}
-      />
-    )
-  }
-
-  if (needsPassword) {
-    return (
-      <Page title="Password required" subtitle="Enter password to decrypt your secret:" noindex>
-        <Formik<PasswordForm>
-          initialValues={initialValues}
-          validationSchema={passwordValidationSchema}
-          validateOnMount
-          onSubmit={handleSubmit}
-        >
-          {({ isValid, isSubmitting, setFieldValue }) => {
-            return (
-              <>
-                <Form noValidate>
-                  <Box mb={2}>
-                    <BasePasswordField required name="password" />
+  if (message) {
+    if (isEncryptedWithUserPassword) {
+      return (
+        <Page title="Password required" subtitle="Enter password to decrypt your secret:" noindex>
+          <Formik<PasswordForm>
+            initialValues={initialValues}
+            validationSchema={passwordValidationSchema}
+            validateOnMount
+            onSubmit={handleSubmit}
+          >
+            {({ isValid, isSubmitting, setFieldValue }) => {
+              return (
+                <>
+                  <Form noValidate>
+                    <Box mb={2}>
+                      <BasePasswordField required name="password" />
+                    </Box>
+                    <Box mb={1}>
+                      <BaseButton
+                        type="submit"
+                        color="primary"
+                        variant="contained"
+                        size="large"
+                        loading={isSubmitting}
+                        disabled={!isValid}
+                        onClick={() => {
+                          setFieldValue('message', message)
+                        }}
+                      >
+                        Decrypt Message
+                      </BaseButton>
+                    </Box>
+                  </Form>
+                </>
+              )
+            }}
+          </Formik>
+        </Page>
+      )
+    } else {
+      switch (secretType) {
+        case 'url': {
+          window.location.replace(sanitizeUrl(message))
+          return null
+        }
+        case 'neogram': {
+          return (
+            <Neogram
+              message={message}
+              timeout={Number(neogramDestructionTimeout)}
+              destructionMessage={neogramDestructionMessage}
+              onFinished={() => {
+                setTimeout(() => router.push('/'), 100)
+              }}
+            />
+          )
+        }
+        default: {
+          return (
+            <Page title="Shhh" subtitle="You received a secret:" noindex>
+              <Box mb={3}>
+                <Paper elevation={3} className={clsx(classes.break, classes.message)}>
+                  <Box px={4} pt={4} pb={2}>
+                    {message}
+                    <Box pt={2} display="flex" justifyContent="flex-end">
+                      <Box mr={2}>
+                        <BaseButtonLink href="/" variant="text" color="primary" size="small">
+                          Destroy secret
+                        </BaseButtonLink>
+                      </Box>
+                      <CopyToClipboard
+                        text={message}
+                        onCopy={() => {
+                          setHasCopied(true)
+                          setTimeout(() => {
+                            setHasCopied(false)
+                          }, 2000)
+                        }}
+                      >
+                        <BaseButton
+                          startIcon={<FileCopyOutlinedIcon />}
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                        >
+                          {hasCopied ? 'Copied' : 'Copy'}
+                        </BaseButton>
+                      </CopyToClipboard>
+                    </Box>
                   </Box>
-                  <Box mb={1}>
-                    <BaseButton
-                      type="submit"
-                      color="primary"
-                      variant="contained"
-                      size="large"
-                      loading={isSubmitting}
-                      disabled={!isValid}
-                      onClick={() => {
-                        setFieldValue('message', decryptedMessage)
-                      }}
-                    >
-                      Decrypt Message
-                    </BaseButton>
-                  </Box>
-                </Form>
-              </>
-            )
-          }}
-        </Formik>
-      </Page>
-    )
-  }
+                </Paper>
 
-  if (decryptedMessage) {
-    return (
-      <Page title="Shhh" subtitle="You received a secret:" noindex>
-        <Box mb={3}>
-          <Paper elevation={3} className={clsx(classes.break, classes.message)}>
-            <Box px={4} pt={4} pb={2}>
-              {decryptedMessage}
-              <Box pt={2} display="flex" justifyContent="flex-end">
-                <Box mr={2}>
-                  <BaseButtonLink href="/" variant="text" color="primary" size="small">
-                    Destroy secret
-                  </BaseButtonLink>
+                <Box mt={3}>
+                  <ReplyButton />
                 </Box>
-                <CopyToClipboard
-                  text={decryptedMessage}
-                  onCopy={() => {
-                    setHasCopied(true)
-                    setTimeout(() => {
-                      setHasCopied(false)
-                    }, 2000)
-                  }}
-                >
-                  <BaseButton
-                    startIcon={<FileCopyOutlinedIcon />}
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                  >
-                    {hasCopied ? 'Copied' : 'Copy'}
-                  </BaseButton>
-                </CopyToClipboard>
               </Box>
-            </Box>
-          </Paper>
-
+            </Page>
+          )
+        }
+      }
+    }
+  } else {
+    if (error && !isPreview) {
+      return (
+        <Page title="Error occured" noindex>
+          <Alert severity="error">{error}</Alert>
           <Box mt={3}>
             <ReplyButton />
           </Box>
-        </Box>
-      </Page>
-    )
+        </Page>
+      )
+    }
   }
 
   return <Spinner message="Loading secret" />
