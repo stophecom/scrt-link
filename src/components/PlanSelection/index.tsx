@@ -57,10 +57,6 @@ const premiumUsps = [
     body: 'Add a special touch to your secrets.',
   },
   {
-    heading: 'Email delivery service',
-    body: 'No more app switching: Send secret links directly from our platform.',
-  },
-  {
     heading: 'Priority support',
     body: `You'll be first in line if you need help.`,
   },
@@ -80,6 +76,10 @@ const freeUsps = [
   {
     heading: 'Read receipts: Email',
     body: 'Get notification via Email whenever a secret has been viewed. ',
+  },
+  {
+    heading: 'Email delivery service',
+    body: 'No more app switching: Send secret links directly from our platform.',
   },
   {
     heading: 'Emoji link 🤫',

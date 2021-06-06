@@ -33,5 +33,3 @@ export const limits = {
     maxMessageLength: 100000,
   },
 }
-
-export const upgradeNotice = 'Unlock this option with the premium plan.'

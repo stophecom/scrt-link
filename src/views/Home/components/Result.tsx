@@ -15,10 +15,11 @@ import Alert from '@material-ui/lab/Alert'
 
 import ShareSecretForm from '@/components/ShareSecretForm'
 import BaseButton from '@/components/BaseButton'
+import UpgradeNotice from '@/components/UpgradeNotice'
 import Spacer from '@/components/Spacer'
 import { State } from '../index'
 import { CustomerFields } from '@/api/models/Customer'
-import { upgradeNotice, emojiShortUrl, baseUrl } from '@/constants'
+import { emojiShortUrl, baseUrl } from '@/constants'
 
 type ResultProps = Pick<State, 'data'> &
   Pick<CustomerFields, 'isEmojiShortLinkEnabled' | 'role'> & {
@@ -124,10 +125,10 @@ const Result: React.FunctionComponent<ResultProps> = ({
                         Let us deliver your secret link for you.
                       </Typography>
                     </Box>
-                    {role === 'premium' ? (
+                    {['premium', 'free'].includes(role) ? (
                       <ShareSecretForm secretUrl={shortenedUrlEmailService} />
                     ) : (
-                      <em>{upgradeNotice}</em>
+                      <UpgradeNotice requiredRole={'free'} />
                     )}
                   </Box>
                 </Collapse>

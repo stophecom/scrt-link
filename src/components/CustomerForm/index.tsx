@@ -16,11 +16,11 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import { Maybe } from '@/types'
 import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
+import UpgradeNotice from '@/components/UpgradeNotice'
 import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { MenuItem } from '@/views/Account'
 import {
-  upgradeNotice,
   emailPlaceholder,
   neogramDestructionMessageDefault,
   neogramDestructionTimeoutDefault,
@@ -39,7 +39,7 @@ export const DestructionMessage = () => {
       {...(customer?.role !== 'premium'
         ? {
             disabled: true,
-            helperText: upgradeNotice,
+            helperText: <UpgradeNotice requiredRole="premium" />,
           }
         : {})}
     />
