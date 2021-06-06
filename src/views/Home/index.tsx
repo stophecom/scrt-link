@@ -238,7 +238,7 @@ const HomeView: React.FunctionComponent = () => {
         {charactersLeft < 0 && (
           <>
             &nbsp;|&nbsp; Need more?&nbsp;
-            <Link href="/account">Get free account</Link>
+            <Link href="/account?signup=true">Get free account</Link>
           </>
         )}
       </small>
