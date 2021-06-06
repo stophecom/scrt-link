@@ -91,9 +91,7 @@ export const getValidationSchemaByType = (
           ...(isEmailReceiptAllowed ? ['email' as ReadReceiptMethod] : []),
           ...(isSMSReceiptAllowed ? ['sms' as ReadReceiptMethod] : []),
         ],
-        !isEmailReceiptAllowed && !isSMSReceiptAllowed
-          ? 'You need an account to enable read receipts.'
-          : 'Subscribe to premium for the SMS option.',
+        'Not allowed.',
       )
       .label('Read receipts'),
   })

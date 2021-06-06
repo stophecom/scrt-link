@@ -26,6 +26,7 @@ import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
 import BaseRadiosField from '@/components/BaseRadiosField'
 import BasePhoneField from '@/components/BasePhoneField'
+import UpgradeNotice from '@/components/UpgradeNotice'
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 import Trust from './components/Trust'
@@ -356,7 +357,7 @@ const HomeView: React.FunctionComponent = () => {
                             }}
                           />
                           {values?.readReceiptMethod === 'email' &&
-                            ['free', 'premium'].includes(customer?.role || '') && (
+                            (['free', 'premium'].includes(customer?.role || '') ? (
                               <Box pt={2}>
                                 <BaseTextField
                                   name="receiptEmail"
@@ -365,12 +366,22 @@ const HomeView: React.FunctionComponent = () => {
                                   placeholder={emailPlaceholder}
                                 />
                               </Box>
-                            )}
-                          {values?.readReceiptMethod === 'sms' && customer?.role === 'premium' && (
-                            <Box pt={2}>
-                              <BasePhoneField name="receiptPhoneNumber" required label="Phone" />
-                            </Box>
-                          )}
+                            ) : (
+                              <Box pt={1}>
+                                <UpgradeNotice requiredRole="free" />
+                              </Box>
+                            ))}
+
+                          {values?.readReceiptMethod === 'sms' &&
+                            (customer?.role === 'premium' ? (
+                              <Box pt={2}>
+                                <BasePhoneField name="receiptPhoneNumber" required label="Phone" />
+                              </Box>
+                            ) : (
+                              <Box pt={1}>
+                                <UpgradeNotice requiredRole="premium" />
+                              </Box>
+                            ))}
                         </Box>
 
                         {secretType === 'neogram' && (

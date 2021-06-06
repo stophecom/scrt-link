@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const BasePhoneField = ({ label, helperText, ...props }: BasePhoneFieldProps) => {
+const BasePhoneField = ({ label, helperText, disabled, ...props }: BasePhoneFieldProps) => {
   const classes = useStyles()
   const [field, meta, helpers] = useField(props)
   const [focused, setFocused] = useState(false)
@@ -59,7 +59,13 @@ const BasePhoneField = ({ label, helperText, ...props }: BasePhoneFieldProps) =>
 
   return (
     <div>
-      <FormControl variant="outlined" error={!!error} focused={focused} {...props}>
+      <FormControl
+        variant="outlined"
+        error={!!error}
+        focused={focused}
+        disabled={disabled}
+        {...props}
+      >
         <InputLabel className={classes.label} htmlFor="phone-input" shrink>
           {label}
         </InputLabel>
@@ -81,6 +87,7 @@ const BasePhoneField = ({ label, helperText, ...props }: BasePhoneFieldProps) =>
           }}
           onChange={(value) => setValue(value)}
           value={(field.value ?? '') as string}
+          disabled={disabled}
         />
 
         {error && <FormHelperText id="helper-text">{error}</FormHelperText>}

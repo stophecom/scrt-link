@@ -103,17 +103,18 @@ const initialState: State = {
 
 const reducer = createReducer<State>()
 
-type Customer = Partial<CustomerFields>
-interface CustomerFormProps extends Customer {
+type CustomerProps = Partial<CustomerFields>
+interface CustomerFormProps extends CustomerProps {
   onSuccess: () => void
   formFieldsSelection: MenuItem['key']
 }
 const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerFormProps) => {
+  const { data: customer } = useCustomer()
   const classes = useStyles()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
 
-  const handleSubmit = useCallback<OnSubmit<Customer>>(async (values, formikHelpers) => {
+  const handleSubmit = useCallback<OnSubmit<CustomerProps>>(async (values, formikHelpers) => {
     dispatch(doRequest({}))
 
     try {
@@ -131,7 +132,7 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
 
   return (
     <>
-      <Formik<Customer>
+      <Formik<CustomerProps>
         initialValues={{
           ...props,
           neogramDestructionMessage:
@@ -185,12 +186,21 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
                         />
                       )}
                       {values?.readReceiptMethod === 'sms' && (
-                        <BasePhoneField
-                          name="receiptPhoneNumber"
-                          label="Phone"
-                          required
-                          helperText={<PrivacyNotice />}
-                        />
+                        <>
+                          <BasePhoneField
+                            name="receiptPhoneNumber"
+                            label="Phone"
+                            required
+                            disabled={customer?.role !== 'premium'}
+                            helperText={
+                              customer?.role !== 'premium' ? (
+                                <UpgradeNotice requiredRole="premium" />
+                              ) : (
+                                <PrivacyNotice />
+                              )
+                            }
+                          />
+                        </>
                       )}
                     </Box>
                   )}
