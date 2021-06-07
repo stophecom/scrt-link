@@ -137,8 +137,8 @@ const Layout: React.FC = ({ children }) => {
             <Legal>
               <strong>Scrt.link</strong> lets you share sensitive information online. Keep
               confidential information out of email, Slack, Teams, Whatsapp or any other
-              communication channel. A one-time, disposable link guarantees your secrets can only
-              ever be accessed one time - before being destroyed for good.
+              communication channel. A one-time disposable link guarantees your secrets can only
+              ever be accessed once - before being destroyed forever.
               <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
                 <span className={classes.linkPadding}>
                   ©{new Date().getFullYear()} SANTiHANS GmbH
