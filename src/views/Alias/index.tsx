@@ -45,7 +45,7 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
   const classes = useStyles()
   const router = useRouter()
 
-  const { data = {}, error } = useSecret(alias, userAgent)
+  const { data = {}, error: apiErrorMessage } = useSecret(alias, userAgent)
 
   // Use preview mode if data if passed via URL params
   const isPreview = preview?.secretType
@@ -53,6 +53,7 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
 
   const [hasCopied, setHasCopied] = useState(false)
   const [secret, setSecret] = useState({} as Partial<SecretUrlFields>)
+  const [error, setError] = useState('' as Error['message'])
 
   const {
     message,
@@ -72,16 +73,30 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
     if (isPreview) {
       setSecret(secretRaw)
     }
-
-    const decryptionKey = window.location.hash.substring(1)
-    if (decryptionKey) {
-      const result = decryptMessage(secretRaw.message, decryptionKey)
-      setSecret({ ...secretRaw, message: result })
+    try {
+      const decryptionKey = window.location.hash.substring(1)
+      if (decryptionKey) {
+        const result = decryptMessage(secretRaw.message, decryptionKey)
+        if (!result) {
+          throw new Error('Decryption failed.')
+        }
+        setSecret({ ...secretRaw, message: result })
+      }
+    } catch (error) {
+      setError(error.message)
     }
 
     // eslint-disable-next-line no-restricted-globals
     history.pushState(null, 'Secret destroyed', '🔥')
   }, [secretRaw])
+
+  // Catch error
+  useEffect(() => {
+    console.log('foo')
+    if (apiErrorMessage) {
+      setError(apiErrorMessage)
+    }
+  }, [apiErrorMessage])
 
   interface PasswordForm {
     message: string
@@ -216,17 +231,17 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
         }
       }
     }
-  } else {
-    if (error && !isPreview) {
-      return (
-        <Page title="Error occured" noindex>
-          <Alert severity="error">{error}</Alert>
-          <Box mt={3}>
-            <ReplyButton />
-          </Box>
-        </Page>
-      )
-    }
+  }
+
+  if (error && !isPreview) {
+    return (
+      <Page title="Error occured" noindex>
+        <Alert severity="error">{error}</Alert>
+        <Box mt={3}>
+          <ReplyButton />
+        </Box>
+      </Page>
+    )
   }
 
   return <Spinner message="Loading secret" />
