@@ -78,34 +78,38 @@ const Layout: React.FC = ({ children }) => {
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" justifyContent="flex-end" alignItems="center">
-          {session && (
+          {session ? (
             <NoSsr>
               <Box mr={1}>
                 <BaseButton onClick={() => signOut()} variant="text" size="small">
                   Sign out
                 </BaseButton>
               </Box>
-            </NoSsr>
-          )}
-
-          <BaseButtonLink href="/account" color="primary" variant="text" size="small">
-            {loading ? (
-              <>
-                <CircularProgress color="secondary" size={12} />
-                &nbsp;
-              </>
-            ) : session ? (
-              <>
+              <BaseButtonLink href="/account" color="primary" variant="text" size="small">
                 <Face fontSize="small" />
                 &nbsp;
                 <Typography component="span" variant="button" style={{ maxWidth: '150px' }} noWrap>
                   {customer?.name || 'My account'}
                 </Typography>
-              </>
-            ) : (
-              'Account'
-            )}
-          </BaseButtonLink>
+              </BaseButtonLink>
+            </NoSsr>
+          ) : (
+            <NoSsr>
+              <Box mr={1}>
+                <BaseButton href="/account" variant="text" size="small">
+                  Sign in
+                </BaseButton>
+              </Box>
+              <BaseButtonLink
+                href="/account?signup=true"
+                color="primary"
+                variant="text"
+                size="small"
+              >
+                Get account
+              </BaseButtonLink>
+            </NoSsr>
+          )}
         </Box>
         <Box mt={3}>
           <Link href="/">
