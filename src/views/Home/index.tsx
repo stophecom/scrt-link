@@ -114,7 +114,7 @@ export const secretTypesMap = {
   },
   url: {
     label: 'URL',
-    tabLabel: 'Redirect',
+    tabLabel: 'Link',
     placeholder: 'e.g. https://www.example.com',
   },
   neogram: {
@@ -310,7 +310,7 @@ const HomeView: React.FunctionComponent = () => {
                         {secretType === 'url' && (
                           <BaseTextField
                             name="message"
-                            label="URL"
+                            label="Secret URL"
                             required
                             InputLabelProps={{
                               shrink: undefined,
