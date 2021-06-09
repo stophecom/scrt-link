@@ -1,16 +1,16 @@
 import React from 'react'
-import { Box, NoSsr, Typography } from '@material-ui/core'
+import { Box, NoSsr, Typography, IconButton } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { useSession, signOut } from 'next-auth/client'
-import { Face } from '@material-ui/icons'
+import { Face, Twitter } from '@material-ui/icons'
 
-import CircularProgress from '@material-ui/core/CircularProgress'
 import NextNprogress from 'nextjs-progressbar'
+
 import BaseButton from '@/components/BaseButton'
 import { Link, BaseButtonLink } from '@/components/Link'
 import { pink } from '@/theme'
-import { appTitle } from '@/constants'
+import { appTitle, twitterLink, twitterHandle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 import Stats from '@/components/Stats'
 import { useCustomer } from '@/utils/api'
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
   const { data: customer } = useCustomer()
-  const [session, loading] = useSession()
+  const [session] = useSession()
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -136,6 +136,16 @@ const Layout: React.FC = ({ children }) => {
           </Box>
           <Box key="stats1" display="flex" flexWrap="wrap" justifyContent="center" p={2} pt={0}>
             <Stats />
+          </Box>
+          <Box display="flex" justifyContent="center">
+            <IconButton
+              target="_blank"
+              href={twitterLink}
+              aria-label={twitterHandle}
+              title={twitterHandle}
+            >
+              <Twitter fontSize="inherit" />
+            </IconButton>
           </Box>
           <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
             <Legal>
