@@ -1,7 +1,7 @@
 import { NextApiHandler, NextApiRequest } from 'next'
 import * as Yup from 'yup'
 import { pick } from 'ramda'
-
+import crawlers from 'crawler-user-agents'
 import Pusher from 'pusher'
 
 import withDb from '@/api/middlewares/withDb'
@@ -20,21 +20,15 @@ const pusher = new Pusher({
   useTLS: true,
 })
 
-const getInputValidationSchema = Yup.object().shape({
-  alias: Yup.string().label('Alias').required().trim(),
-})
-
 const extractGetInput = async (req: NextApiRequest) => {
-  try {
-    await getInputValidationSchema.validate(req.query)
-  } catch (err) {
-    throw createError(422, err.message)
-  }
-  const { alias } = req.query
+  const { alias, userAgent } = req.query
   if (typeof alias !== 'string') {
     throw createError(422, 'Invalid URL')
   }
-  return alias
+  if (userAgent && typeof userAgent !== 'string') {
+    throw createError(422, 'User Agent not valid.')
+  }
+  return { alias, userAgent }
 }
 
 const extractPostInput = async (req: NextApiRequest) => {
@@ -56,7 +50,15 @@ const handler: NextApiHandler = async (req, res) => {
 
   switch (req.method) {
     case 'GET': {
-      const alias = await extractGetInput(req)
+      const { alias, userAgent } = await extractGetInput(req)
+
+      if (userAgent && crawlers.some(({ pattern }) => RegExp(pattern).test(userAgent))) {
+        throw createError(
+          404,
+          `User Agent recognised as a bot. If you think this is an error, please contact support.`,
+        )
+      }
+
       const secretUrlRaw = await models.SecretUrl.findOneAndDelete({ alias })
       if (!secretUrlRaw) {
         throw createError(

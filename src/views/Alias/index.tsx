@@ -8,7 +8,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
-import crawlers from 'crawler-user-agents'
+
 import { useRouter } from 'next/router'
 
 import { BaseButtonLink } from '@/components/Link'
@@ -39,12 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
 type AliasViewProps = {
   preview?: Partial<SecretUrlFields>
   alias?: SecretUrlFields['alias']
+  userAgent?: string
 }
-const AliasView: NextPage<AliasViewProps> = ({ alias, preview = {} }) => {
+const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} }) => {
   const classes = useStyles()
   const router = useRouter()
 
-  const { data = {}, error } = useSecret(alias)
+  const { data = {}, error } = useSecret(alias, userAgent)
 
   // Use preview mode if data if passed via URL params
   const isPreview = preview?.secretType
@@ -248,13 +249,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  // Block crawlers
+  // Pass user agent to backend
   const userAgent = req?.headers['user-agent']
-  if (userAgent && crawlers.some(({ pattern }) => RegExp(pattern).test(userAgent))) {
-    return { notFound: true }
-  }
 
-  return { props: { alias } }
+  return { props: { alias, userAgent } }
 }
 
 export default AliasView
