@@ -311,10 +311,12 @@ const HomeView: React.FunctionComponent = () => {
                           <BaseTextField
                             name="message"
                             label="Secret URL"
+                            placeholder="example.com"
                             required
                             InputLabelProps={{
                               shrink: undefined,
                             }}
+                            helperText="The URL to get redirected to (one time)."
                             InputProps={{
                               startAdornment: (
                                 <InputAdornment position="start">
