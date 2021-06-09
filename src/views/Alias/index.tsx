@@ -222,7 +222,7 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
                   </Box>
                 </Paper>
 
-                <Box mt={3}>
+                <Box mt={2}>
                   <ReplyButton />
                 </Box>
               </Box>
@@ -237,7 +237,7 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
     return (
       <Page title="Error occured" noindex>
         <Alert severity="error">{error}</Alert>
-        <Box mt={3}>
+        <Box mt={2}>
           <ReplyButton />
         </Box>
       </Page>

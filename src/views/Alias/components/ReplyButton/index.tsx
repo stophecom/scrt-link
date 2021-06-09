@@ -10,9 +10,8 @@ const ReplyButton = () => {
   return (
     <BaseButtonLink
       href="/"
-      color="primary"
+      color="default"
       variant="text"
-      size="large"
       startIcon={<ReplyIcon />}
       onClick={() => plausible('ReplyButton')}
     >
