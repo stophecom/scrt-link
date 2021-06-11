@@ -1,50 +1,37 @@
 ## Scrt.link
 
-**Scrt.link** lets you share one-time secrets with a link that self-destructs after first visit.
+**Scrt.link** lets you share one-time secrets with a link that self-destructs after the first visit.
 
 Live: **[scrt.link](https://scrt.link)**.
 
 ### Development
 
-First, you need to set a MongoDB connection string for `DB` in `.env.development`.  
-To run it in development mode:
+First, add `.env.development` with ENV variables listed  in `.env.example`.  
+
 
 ```js
 // Install
-yarn install
+yarn
 
 // Development server
-yarn run dev
+yarn dev
 
 // Build and static export
 yarn build
 yarn export
 
-// Deploy
-vercel
 ```
 
-### Stack
+### Credits/Inspiration
+- [PrivateBin](https://github.com/PrivateBin/PrivateBin)
+- [OneTimeSecret](https://github.com/onetimesecret/onetimesecret)
+- [Yopass](https://github.com/jhaals/yopass)
+- [hat.sh](https://github.com/sh-dv/hat.sh)
+- [OnURL](https://github.com/onderonur/onurl)
 
-- Framework: [Next.js](https://nextjs.org/)
-- UI Components: [Material-UI](https://material-ui.com/)
-- Styling: [styled-components](https://styled-components.com/)
-- Forms: [Formik](https://jaredpalmer.com/formik)
-- Form Validations: [Yup](https://github.com/jquense/yup)
-- Icons: [Material Icons](https://material-ui.com/components/material-icons/)
-- SEO: [Next SEO](https://github.com/garmeeh/next-seo)
-- Database: [MongoDB](https://www.mongodb.com/)
-- ODM: [Mongoose](https://mongoosejs.com/)
-- Linting: [ESLint](https://eslint.org/)
-- Code Formatting: [Prettier](https://prettier.io/)
-
-### Licence & Acknowledgement
+### Licences
 
 MIT
 
-#### Creatives:
-
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 
-This project has been heavily influenced by [OnURL](https://github.com/onderonur/onurl) and
-[OneTimeSecret](https://github.com/onetimesecret/onetimesecret) Thank you!`
