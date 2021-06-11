@@ -81,7 +81,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       // Update global stats
       models.Stats.findOneAndUpdate(
-        {},
+        { master: true },
         {
           $inc: {
             totalSecretsViewCount: 1,
@@ -142,7 +142,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       // Update global stats
       const stats = await models.Stats.findOneAndUpdate(
-        {},
+        { master: true },
         {
           $inc: {
             totalSecretsCount: 1,

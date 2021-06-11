@@ -13,7 +13,7 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   const getStats = async () => {
-    const stats = await models.Stats.findOne().lean()
+    const stats = await models.Stats.findOne({ master: true }).lean()
 
     if (!stats) {
       throw createError(500, 'Internal server error! Could not find statistics data.')

@@ -44,8 +44,6 @@ const handler = (req, res) =>
             role: 'free',
           })
 
-          models.Stats.create({ userId: user.id })
-
           token.stripeCustomerId = stripeCustomer?.id
         }
 

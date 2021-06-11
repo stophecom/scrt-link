@@ -14,6 +14,7 @@ export interface StatsFields {
     url: number
     neogram: number
   }
+  master?: boolean
 }
 
 type StatsDocument = mongoose.Document & StatsFields
@@ -33,6 +34,7 @@ const StatsSchema = new mongoose.Schema(
       url: { type: Number, required: false, default: 0 },
       neogram: { type: Number, required: false, default: 0 },
     },
+    master: { type: Boolean },
   },
   { timestamps: true },
 )
