@@ -79,8 +79,8 @@ const handler: NextApiHandler = async (req, res) => {
         message,
       } = secretUrl
 
-      // Update global stats
-      models.Stats.findOneAndUpdate(
+      // Update global view count stats
+      await models.Stats.findOneAndUpdate(
         { master: true },
         {
           $inc: {
