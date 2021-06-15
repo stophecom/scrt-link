@@ -1,5 +1,5 @@
 import React from 'react'
-import Tabs, { TabsProps } from '@material-ui/core/Tabs'
+import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
 export type TabsMenuItem = { label: string; key: string }

@@ -16,7 +16,7 @@ export type Response = {
   message: string
 }
 
-export interface ShareSecretFormProps {
+export interface ShareSecretLinkFormProps {
   recipientEmail: string
   secretUrl: string
   recipientName?: string
@@ -34,10 +34,10 @@ const initialState: State = {
   error: undefined,
 }
 
-const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>) => {
+const ShareSecretLinkForm = ({ secretUrl }: Pick<ShareSecretLinkFormProps, 'secretUrl'>) => {
   const [state, setState] = useState(initialState)
 
-  const handleSubmit: OnSubmit<ShareSecretFormProps> = async (values, formikHelpers) => {
+  const handleSubmit: OnSubmit<ShareSecretLinkFormProps> = async (values, formikHelpers) => {
     try {
       const response = await api<Response>(`/sendmail`, { method: 'POST' }, { ...values })
       setState(response)
@@ -60,7 +60,7 @@ const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>)
   }
 
   return (
-    <Formik<ShareSecretFormProps>
+    <Formik<ShareSecretLinkFormProps>
       initialValues={{
         recipientEmail: '',
         secretUrl,
@@ -119,4 +119,4 @@ const ShareSecretForm = ({ secretUrl }: Pick<ShareSecretFormProps, 'secretUrl'>)
   )
 }
 
-export default ShareSecretForm
+export default ShareSecretLinkForm

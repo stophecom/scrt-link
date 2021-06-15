@@ -43,7 +43,7 @@ import { scrollIntoView } from '@/utils/browser'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 
 const Accordion = dynamic(() => import('@/components/Accordion'))
-const Result = dynamic(() => import('./components/Result'))
+const Result = dynamic(() => import('@/components/ShareSecretResult'))
 const Neogram = dynamic(() => import('@/components/Neogram'))
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
