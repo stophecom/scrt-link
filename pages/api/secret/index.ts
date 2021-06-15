@@ -1,5 +1,4 @@
 import { NextApiHandler, NextApiRequest } from 'next'
-import * as Yup from 'yup'
 import { pick } from 'ramda'
 import crawlers from 'crawler-user-agents'
 import Pusher from 'pusher'
