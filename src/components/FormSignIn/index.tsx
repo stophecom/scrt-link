@@ -46,7 +46,7 @@ const initialState: State = {
   error: undefined,
 }
 
-const SignInForm = () => {
+const FormSignIn = () => {
   const classes = useStyles()
   const [state, setState] = useState(initialState)
   const [isSignUp, setIsSignUp] = useState(false)
@@ -142,4 +142,4 @@ const SignInForm = () => {
   )
 }
 
-export default SignInForm
+export default FormSignIn

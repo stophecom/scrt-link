@@ -6,9 +6,9 @@ import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 
 import { Spinner } from '@/components/Spinner'
-import SignInForm from '@/components/SignInForm'
-import CustomerForm from '@/components/CustomerForm'
-import DeleteAccountForm from '@/components/DeleteAccountForm'
+import FormSignIn from '@/components/FormSignIn'
+import FormCustomer from '@/components/FormCustomer'
+import FormDeleteAccount from '@/components/FormDeleteAccount'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
@@ -68,7 +68,7 @@ const Account = () => {
               </Box>
               <Paper square>
                 <Box p={3}>
-                  <CustomerForm
+                  <FormCustomer
                     {...customer}
                     formFieldsSelection="secrets"
                     onSuccess={triggerFetchCustomer}
@@ -102,7 +102,7 @@ const Account = () => {
                   <Box mb={5}>
                     <Typography variant="h3">Delete your account</Typography>
                   </Box>
-                  <DeleteAccountForm />
+                  <FormDeleteAccount />
                 </Box>
               </DangerZone>
             </>
@@ -119,7 +119,7 @@ const Account = () => {
     <NoSsr>
       <Page title="Scrt account" subtitle="Great things start here…">
         <Box mb={10}>
-          <SignInForm />
+          <FormSignIn />
         </Box>
         {customer?.role !== 'premium' && (
           <Section

@@ -13,7 +13,7 @@ import {
 import { RWebShare } from 'react-web-share'
 import Alert from '@material-ui/lab/Alert'
 
-import ShareSecretLinkForm from '@/components/ShareSecretLinkForm'
+import FormShareSecretLink from '@/components/FormShareSecretLink'
 import BaseButton from '@/components/BaseButton'
 import UpgradeNotice from '@/components/UpgradeNotice'
 import Spacer from '@/components/Spacer'
@@ -126,7 +126,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                       </Typography>
                     </Box>
                     {['premium', 'free'].includes(role) ? (
-                      <ShareSecretLinkForm secretUrl={shortenedUrlEmailService} />
+                      <FormShareSecretLink secretUrl={shortenedUrlEmailService} />
                     ) : (
                       <UpgradeNotice requiredRole={'free'} />
                     )}

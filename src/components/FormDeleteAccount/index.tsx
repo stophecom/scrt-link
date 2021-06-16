@@ -25,7 +25,7 @@ type DeleteAccountProps = {
   isSure: boolean
 }
 
-const DeleteAccountForm = () => {
+const FormDeleteAccount = () => {
   const [session] = useSession()
   const [state, setState] = useState<State>({})
 
@@ -91,4 +91,4 @@ const DeleteAccountForm = () => {
   )
 }
 
-export default DeleteAccountForm
+export default FormDeleteAccount

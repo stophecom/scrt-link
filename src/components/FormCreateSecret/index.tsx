@@ -18,7 +18,7 @@ import {
   DestructionMessage,
   DestructionTimeout,
   readReceiptsOptions,
-} from '@/components/CustomerForm'
+} from '@/components/FormCustomer'
 import TabsMenu from '@/components/TabsMenu'
 import BaseRadiosField from '@/components/BaseRadiosField'
 import BasePhoneField from '@/components/BasePhoneField'
@@ -379,7 +379,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
                     </Box>
                     <Box key="formSubmit" ml={{ xs: 0, sm: 1 }} display="flex" alignItems="center">
                       <BaseButton
-                        className={classes.submitButton}
+                        fullWidth={true}
                         onClick={() => {
                           setFieldValue('secretType', secretType)
                           setFieldValue('alias', generateNanoId(urlAliasLength))

@@ -102,11 +102,11 @@ const initialState: State = {
 }
 
 type CustomerProps = Partial<CustomerFields>
-interface CustomerFormProps extends CustomerProps {
+interface FormCustomerProps extends CustomerProps {
   onSuccess: () => void
   formFieldsSelection: MenuItem['key']
 }
-const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerFormProps) => {
+const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomerProps) => {
   const { data: customer } = useCustomer()
   const classes = useStyles()
   const [state, setState] = useState<State>(initialState)
@@ -259,4 +259,4 @@ const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerForm
   )
 }
 
-export default CustomerForm
+export default FormCustomer
