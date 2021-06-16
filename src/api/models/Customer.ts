@@ -21,6 +21,17 @@ export interface CustomerFields {
   readReceiptMethod: ReadReceiptMethod
 }
 
+// User editable data
+export const customerData = [
+  'receiptEmail',
+  'receiptPhoneNumber',
+  'neogramDestructionMessage',
+  'neogramDestructionTimeout',
+  'isEmojiShortLinkEnabled',
+  'name',
+  'readReceiptMethod',
+]
+
 type CustomerDocument = mongoose.Document & CustomerFields
 
 const CustomerSchema = new mongoose.Schema(

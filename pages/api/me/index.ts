@@ -1,16 +1,19 @@
 import { NextApiHandler, NextApiRequest } from 'next'
+import { getSession } from 'next-auth/client'
+import { pick } from 'ramda'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
-
-import { getSession } from 'next-auth/client'
+import { customerData } from '@/api/models/Customer'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    await getCustomerValidationSchema('none').validate(req.body)
+    const editableData = pick(customerData, req.body)
+
+    await getCustomerValidationSchema('none').validate(editableData)
   } catch (err) {
     throw createError(422, err.message)
   }
@@ -35,8 +38,10 @@ const handler: NextApiHandler = async (req, res) => {
         userId: session.userId || '',
       })
 
+      const editableData = pick(customerData, customer?.toJSON())
+
       res.json({
-        ...decodeStringsFromDB(customer?.toJSON()),
+        ...decodeStringsFromDB(editableData),
       })
       break
     }

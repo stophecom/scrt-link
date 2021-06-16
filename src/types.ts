@@ -28,4 +28,10 @@ export interface SignIn {
   email: string
 }
 
+// Api Responses
+export type SecretPost = Maybe<{
+  alias: string
+  message: string
+}>
+
 export {}

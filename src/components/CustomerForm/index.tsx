@@ -1,5 +1,4 @@
-import React, { useCallback, useReducer, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 import { Box, Typography, FormLabel } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
@@ -18,7 +17,6 @@ import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
 import UpgradeNotice from '@/components/UpgradeNotice'
 import { getCustomerValidationSchema } from '@/utils/validationSchemas'
-import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
 import { MenuItem } from '@/views/Account'
 import {
   emailPlaceholder,
@@ -26,7 +24,7 @@ import {
   neogramDestructionTimeoutDefault,
 } from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
-import { useCustomer } from '@/utils/api'
+import { useCustomer, api } from '@/utils/api'
 
 export const DestructionMessage = () => {
   const { data: customer } = useCustomer()
@@ -81,13 +79,6 @@ const PrivacyNotice = () => (
   </>
 )
 
-type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
-
-interface State {
-  data: Maybe<{ message: string }>
-  error: Maybe<string>
-}
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     submitButton: {
@@ -96,12 +87,19 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
+type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
+
+type ResponsePost = Maybe<{ message: string }>
+
+type State = {
+  data?: ResponsePost
+  error?: string
+}
+
 const initialState: State = {
   data: undefined,
   error: undefined,
 }
-
-const reducer = createReducer<State>()
 
 type CustomerProps = Partial<CustomerFields>
 interface CustomerFormProps extends CustomerProps {
@@ -111,22 +109,20 @@ interface CustomerFormProps extends CustomerProps {
 const CustomerForm = ({ onSuccess, formFieldsSelection, ...props }: CustomerFormProps) => {
   const { data: customer } = useCustomer()
   const classes = useStyles()
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, setState] = useState<State>(initialState)
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
 
-  const handleSubmit = useCallback<OnSubmit<CustomerProps>>(async (values, formikHelpers) => {
-    dispatch(doRequest({}))
-
+  const handleSubmit: OnSubmit<CustomerProps> = async (values, formikHelpers) => {
     try {
-      const response = await axios.post('/api/me', values)
-      dispatch(doSuccess(response))
+      const response = await api<ResponsePost>('/me', { method: 'POST' }, values)
+      setState({ data: response })
       onSuccess()
     } catch (error) {
-      dispatch(doError(error))
+      setState({ error: error.message })
     } finally {
       formikHelpers.setSubmitting(false)
     }
-  }, [])
+  }
 
   const { data, error } = state
 

@@ -1,5 +1,4 @@
-import React, { useCallback, useReducer } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
@@ -11,43 +10,36 @@ import BaseSwitchField from '@/components/BaseSwitchField'
 import { Maybe } from '@/types'
 import BaseButton from '@/components/BaseButton'
 import { deleteCustomerValidationSchema } from '@/utils/validationSchemas'
-import { doRequest, doSuccess, doError, createReducer } from '@/utils/axios'
+import { api } from '@/utils/api'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
-interface State {
-  data: Maybe<{ message: string }>
-  error: Maybe<string>
-}
+type ResponseDelete = Maybe<{ message: string }>
 
-const initialState: State = {
-  data: undefined,
-  error: undefined,
+type State = {
+  data?: ResponseDelete
+  error?: string
 }
-
-const reducer = createReducer<State>()
 
 type DeleteAccountProps = {
   isSure: boolean
 }
 
 const DeleteAccountForm = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
   const [session] = useSession()
+  const [state, setState] = useState<State>({})
 
-  const handleSubmit = useCallback<OnSubmit<DeleteAccountProps>>(async (_values, formikHelpers) => {
-    dispatch(doRequest({}))
-
+  const handleSubmit: OnSubmit<DeleteAccountProps> = async (_values, formikHelpers) => {
     try {
-      const response = await axios.delete('/api/me')
-      dispatch(doSuccess(response))
+      const response = await api<ResponseDelete>('/me', { method: 'DELETE' })
+      setState({ data: response })
     } catch (error) {
-      dispatch(doError(error))
+      setState({ error: error.message })
     } finally {
-      signOut()
       formikHelpers.setSubmitting(false)
+      signOut()
     }
-  }, [])
+  }
 
   const { data, error } = state
 
