@@ -4,5 +4,5 @@ require('dotenv').config({ path: __dirname + '/.env.production' })
 module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://scrt.link',
   generateRobotsTxt: false, // (optional)
-  exclude: ['/l/*', '/api/*', '/404', '/500', '/account'],
+  exclude: ['/l/*', '/api/*', '/404', '/500', '/account', '/widget'],
 }
