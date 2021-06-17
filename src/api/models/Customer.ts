@@ -22,7 +22,7 @@ export interface CustomerFields {
 }
 
 // User editable data
-export const customerData = [
+export const customerWriteData = [
   'receiptEmail',
   'receiptPhoneNumber',
   'neogramDestructionMessage',
@@ -31,6 +31,8 @@ export const customerData = [
   'name',
   'readReceiptMethod',
 ]
+
+export const customerReadData = ['userId', 'stripe', 'role', ...customerWriteData]
 
 type CustomerDocument = mongoose.Document & CustomerFields
 

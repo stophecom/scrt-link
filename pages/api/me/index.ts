@@ -7,11 +7,11 @@ import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
-import { customerData } from '@/api/models/Customer'
+import { customerWriteData, customerReadData } from '@/api/models/Customer'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    const editableData = pick(customerData, req.body)
+    const editableData = pick(customerWriteData, req.body)
 
     await getCustomerValidationSchema('none').validate(editableData)
   } catch (err) {
@@ -36,12 +36,10 @@ const handler: NextApiHandler = async (req, res) => {
     case 'GET': {
       const customer = await models.Customer.findOne({
         userId: session.userId || '',
-      })
-
-      const editableData = pick(customerData, customer?.toJSON())
+      }).lean()
 
       res.json({
-        ...decodeStringsFromDB(editableData),
+        ...decodeStringsFromDB(pick(customerReadData, customer)),
       })
       break
     }

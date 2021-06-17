@@ -173,14 +173,16 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
 
       if (response) {
         dispatch(doSuccess({ ...response, encryptionKey, readReceiptMethod }))
+
+        plausible('SecretCreation', {
+          props: {
+            secretType: secretType,
+            messageLength: message.length,
+            withPassword: !!password,
+          },
+        })
       }
-      plausible('SecretCreation', {
-        props: {
-          secretType: secretType,
-          messageLength: message.length,
-          withPassword: !!password,
-        },
-      })
+
       formikHelpers.resetForm()
     } catch (error) {
       dispatch(doError(error))
