@@ -32,7 +32,7 @@ type Success = SecretPost & {
   readReceiptMethod: ReadReceiptMethod
 }
 export interface State {
-  data: Maybe<Success> | Request
+  data: Maybe<Partial<Success & Request>>
   error: Maybe<string>
 }
 
