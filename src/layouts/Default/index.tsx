@@ -113,6 +113,7 @@ const Layout: React.FC = ({ children }) => {
         </Box>
         <Box mt={3}>
           <Link href="/">
+            {/* @ts-ignore */}
             <Logo className={classes.logo} />
             <SROnly>{appTitle}</SROnly>
           </Link>

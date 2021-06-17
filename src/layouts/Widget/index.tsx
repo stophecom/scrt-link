@@ -44,6 +44,7 @@ const Layout: React.FC = ({ children }) => {
       <Container>
         <Box display="flex" alignItems="center" p={2} mb={5}>
           <Link href="/">
+            {/* @ts-ignore */}
             <Logo className={classes.logo} />
             <SROnly>{appTitle}</SROnly>
           </Link>

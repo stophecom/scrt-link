@@ -70,16 +70,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const gridContent = [
   {
+    // @ts-ignore
     illustration: <Create />,
     title: 'Write',
     text: `Compose your secret message, submit and you'll receive a one-time link.`,
   },
   {
+    // @ts-ignore
     illustration: <Share />,
     title: 'Share',
     text: 'Share your secret link using your preferred communication channel.',
   },
   {
+    // @ts-ignore
     illustration: <Burn />,
     title: 'Burn',
     text: 'The secret link can be accessed one time. Afterwards it gets destroyed.',
