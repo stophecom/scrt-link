@@ -130,6 +130,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
     <>
       <Formik<CustomerProps>
         initialValues={{
+          readReceiptMethod: 'none',
           ...props,
           neogramDestructionMessage:
             props?.neogramDestructionMessage || neogramDestructionMessageDefault,
