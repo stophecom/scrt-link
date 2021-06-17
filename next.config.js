@@ -32,6 +32,18 @@ module.exports = withPWA({
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/p/js/script.js', // Using p for plausible
+        destination: 'https://plausible.io/js/plausible.js',
+      },
+      {
+        source: '/p/api/event',
+        destination: 'https://plausible.io/api/event',
+      },
+    ]
+  },
 
   webpack: (config) => {
     config.module.rules.push({
