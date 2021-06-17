@@ -2,9 +2,7 @@
 const withPWA = require('next-pwa')
 
 module.exports = withPWA({
-  future: {
-    webpack5: true,
-  },
+  webpack5: true,
   pwa: {
     disable: process.env.NODE_ENV === 'development',
     dest: 'public',
@@ -35,11 +33,11 @@ module.exports = withPWA({
   async rewrites() {
     return [
       {
-        source: '/p/js/script.js', // Using p for plausible
-        destination: 'https://plausible.io/js/plausible.js',
+        source: '/js/plausible.exclusions.js', // Proxy plausible script
+        destination: 'https://plausible.io/js/plausible.exclusions.js',
       },
       {
-        source: '/p/api/event',
+        source: '/api/event',
         destination: 'https://plausible.io/api/event',
       },
     ]

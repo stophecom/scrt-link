@@ -78,8 +78,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
     <Provider session={pageProps.session}>
       <PlausibleProvider
         domain="scrt.link"
-        selfHosted={true}
-        customDomain="/p/js/script.js"
+        customDomain={process.env.NEXT_PUBLIC_BASE_URL}
         exclude="/l/*"
       >
         <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
@@ -104,6 +103,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
             rel="stylesheet"
           />
         </Head>
+
         <BaseThemeProvider>
           <Layout>
             <Component {...pageProps} />
