@@ -7,7 +7,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 import Alert from '@material-ui/lab/Alert'
 
-import BaseRadiosField from '@/components/BaseRadiosField'
+import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BaseTextField, { BaseTextFieldProps } from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitchField from '@/components/BaseSwitchField'
@@ -162,7 +162,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                       }
                     />
                   </Box>
-                  <BaseRadiosField
+                  <BaseRadioGroupField
                     options={readReceiptsOptions}
                     name="readReceiptMethod"
                     label="Read receipts"

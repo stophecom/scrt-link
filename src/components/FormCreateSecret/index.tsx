@@ -20,7 +20,7 @@ import {
   readReceiptsOptions,
 } from '@/components/FormCustomer'
 import TabsMenu from '@/components/TabsMenu'
-import BaseRadiosField from '@/components/BaseRadiosField'
+import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BasePhoneField from '@/components/BasePhoneField'
 import UpgradeNotice from '@/components/UpgradeNotice'
 
@@ -293,7 +293,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
                       <BasePasswordField className={clsx(classes.root)} name="password" />
                     </Box>
                     <Box pl={1} pt={3} pb={6}>
-                      <BaseRadiosField
+                      <BaseRadioGroupField
                         options={readReceiptsOptions}
                         name="readReceiptMethod"
                         label="Read receipts"

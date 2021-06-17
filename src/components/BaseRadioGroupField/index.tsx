@@ -18,19 +18,19 @@ type Option = {
   disabled?: boolean
 }
 
-export type BaseRadiosFieldProps = FormControlProps &
+export type BaseRadioGroupFieldProps = FormControlProps &
   FieldHookConfig<FormControlLabelProps['value']> & {
     label?: string
     options: Option[]
     helperText?: string
   }
 
-const BaseRadiosField = ({
+const BaseRadioGroupField = ({
   label,
   options = [{ value: 'one', label: 'One' }],
   helperText,
   ...props
-}: BaseRadiosFieldProps) => {
+}: BaseRadioGroupFieldProps) => {
   const [field, meta] = useField(props)
   const { error, touched } = meta
   const hasError = Boolean(error && touched)
@@ -60,4 +60,4 @@ const BaseRadiosField = ({
   )
 }
 
-export default BaseRadiosField
+export default BaseRadioGroupField
