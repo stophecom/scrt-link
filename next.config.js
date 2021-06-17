@@ -33,7 +33,7 @@ module.exports = withPWA({
   async rewrites() {
     return [
       {
-        source: '/js/plausible.exclusions.js', // Proxy plausible script
+        source: '/js/index.exclusions.js', // Proxy plausible script
         destination: 'https://plausible.io/js/plausible.exclusions.js',
       },
       {
