@@ -1,3 +1,10 @@
+import { NextPage } from 'next'
+import { ComponentType } from 'react'
+
+export type CustomPage<P = Record<string, unknown>> = NextPage<P> & {
+  layout?: ComponentType
+}
+
 export type Maybe<T> = T | undefined | null
 
 declare global {

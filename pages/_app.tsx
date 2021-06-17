@@ -7,7 +7,8 @@ import Head from 'next/head'
 import PlausibleProvider from 'next-plausible'
 import { Provider } from 'next-auth/client'
 
-import Layout from '@/components/Layout'
+import { CustomPage } from '@/types'
+import DefaultLayout from '@/layouts/Default'
 import { appTitle, twitterHandle } from '@/constants'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
@@ -56,8 +57,14 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   }
 }
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+type Props = AppProps & {
+  Component: CustomPage
+}
+
+const MyApp = ({ Component, pageProps }: Props) => {
   const router = useRouter()
+
+  const Layout = Component.layout ?? DefaultLayout
 
   useEffect(() => {
     // Remove the server-side injected CSS.

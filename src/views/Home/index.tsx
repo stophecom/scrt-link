@@ -3,7 +3,9 @@ import dynamic from 'next/dynamic'
 import { Box, Paper } from '@material-ui/core'
 import { ArrowForward } from '@material-ui/icons'
 
-import { Maybe } from '@/types'
+import WidgetLayout from '@/layouts/Widget'
+
+import { Maybe, CustomPage } from '@/types'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { PageError } from '@/components/Error'
@@ -85,7 +87,7 @@ const initialState: State = {
   error: undefined,
 }
 
-const HomeView: React.FunctionComponent = () => {
+const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const { data: customer } = useCustomer()
@@ -170,5 +172,39 @@ const HomeView: React.FunctionComponent = () => {
     </Page>
   )
 }
+
+export const Widget: CustomPage = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const { data: customer } = useCustomer()
+
+  const { data, error } = state
+
+  if (error) {
+    return (
+      <PageError error={error}>
+        <BaseButton onClick={() => dispatch(doReset())} color="primary" variant="contained">
+          Try again
+        </BaseButton>
+      </PageError>
+    )
+  }
+
+  if (data) {
+    return (
+      <Result
+        data={data}
+        isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
+        role={customer?.role || 'visitor'}
+        onReset={() => {
+          dispatch(doReset())
+        }}
+      />
+    )
+  }
+
+  return <FormCreateSecret dispatch={dispatch} />
+}
+Widget.layout = WidgetLayout
 
 export default HomeView

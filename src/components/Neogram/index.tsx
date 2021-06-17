@@ -5,7 +5,7 @@ import { WindupChildren, Pause } from 'windups'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
-import { Container } from '@/components/Layout'
+import { Container } from '@/layouts/Default'
 
 const Backdrop = styled(Box)`
   background-color: ${({ theme }) => theme.palette.background.paper};
