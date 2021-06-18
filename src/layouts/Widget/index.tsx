@@ -42,50 +42,52 @@ const Layout: React.FC = ({ children }) => {
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
-        <Box display="flex" alignItems="center" p={2} mb={5}>
+        <Box display="flex" alignItems="center" p={2} mb={3}>
           <Link href="/">
             {/* @ts-ignore */}
             <Logo className={classes.logo} />
             <SROnly>{appTitle}</SROnly>
           </Link>
           <Box ml="auto" display="flex" alignItems="center">
-            {session ? (
-              <NoSsr>
-                <Box mr={1}>
-                  <BaseButton onClick={() => signOut()} variant="text" size="small">
-                    Sign out
-                  </BaseButton>
-                </Box>
-                <BaseButtonLink href="/account" color="primary" variant="text" size="small">
-                  <Face fontSize="small" />
-                  &nbsp;
-                  <Typography
-                    component="span"
-                    variant="button"
-                    style={{ maxWidth: '150px' }}
-                    noWrap
+            <NoSsr>
+              {session ? (
+                <>
+                  <Box mr={1}>
+                    <BaseButton onClick={() => signOut()} variant="text" size="small">
+                      Sign out
+                    </BaseButton>
+                  </Box>
+                  <BaseButtonLink href="/account" color="primary" variant="text" size="small">
+                    <Face fontSize="small" />
+                    &nbsp;
+                    <Typography
+                      component="span"
+                      variant="button"
+                      style={{ maxWidth: '150px' }}
+                      noWrap
+                    >
+                      {customer?.name || 'My account'}
+                    </Typography>
+                  </BaseButtonLink>
+                </>
+              ) : (
+                <>
+                  <Box mr={1}>
+                    <BaseButton href="/account" variant="text" size="small">
+                      Sign in
+                    </BaseButton>
+                  </Box>
+                  <BaseButtonLink
+                    href="/account?signup=true"
+                    color="primary"
+                    variant="text"
+                    size="small"
                   >
-                    {customer?.name || 'My account'}
-                  </Typography>
-                </BaseButtonLink>
-              </NoSsr>
-            ) : (
-              <NoSsr>
-                <Box mr={1}>
-                  <BaseButton href="/account" variant="text" size="small">
-                    Sign in
-                  </BaseButton>
-                </Box>
-                <BaseButtonLink
-                  href="/account?signup=true"
-                  color="primary"
-                  variant="text"
-                  size="small"
-                >
-                  Get account
-                </BaseButtonLink>
-              </NoSsr>
-            )}
+                    Get account
+                  </BaseButtonLink>
+                </>
+              )}
+            </NoSsr>
           </Box>
         </Box>
         {children}

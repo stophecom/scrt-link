@@ -204,7 +204,11 @@ export const Widget: CustomPage = () => {
     )
   }
 
-  return <FormCreateSecret dispatch={dispatch} />
+  return (
+    <NoSsr>
+      <FormCreateSecret dispatch={dispatch} />
+    </NoSsr>
+  )
 }
 Widget.layout = WidgetLayout
 
