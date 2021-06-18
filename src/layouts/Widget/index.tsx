@@ -43,7 +43,7 @@ const Layout: React.FC = ({ children }) => {
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" alignItems="center" p={2} mb={3}>
-          <Link href="/widget">
+          <Link className="logo" href="/widget">
             {/* @ts-ignore */}
             <Logo className={classes.logo} />
             <SROnly>{appTitle}</SROnly>
@@ -57,7 +57,13 @@ const Layout: React.FC = ({ children }) => {
                       Sign out
                     </BaseButton>
                   </Box>
-                  <BaseButtonLink href="/account" color="primary" variant="text" size="small">
+                  <BaseButton
+                    href="/account"
+                    target="_blank"
+                    color="primary"
+                    variant="text"
+                    size="small"
+                  >
                     <Face fontSize="small" />
                     &nbsp;
                     <Typography
@@ -68,23 +74,24 @@ const Layout: React.FC = ({ children }) => {
                     >
                       {customer?.name || 'My account'}
                     </Typography>
-                  </BaseButtonLink>
+                  </BaseButton>
                 </>
               ) : (
                 <>
                   <Box mr={1}>
-                    <BaseButton href="/account" variant="text" size="small">
+                    <BaseButton href="/account" target="_blank" variant="text" size="small">
                       Sign in
                     </BaseButton>
                   </Box>
-                  <BaseButtonLink
+                  <BaseButton
                     href="/account?signup=true"
                     color="primary"
                     variant="text"
                     size="small"
+                    target="_blank"
                   >
                     Get account
-                  </BaseButtonLink>
+                  </BaseButton>
                 </>
               )}
             </NoSsr>
