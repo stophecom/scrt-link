@@ -43,7 +43,7 @@ const Layout: React.FC = ({ children }) => {
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" alignItems="center" p={2} mb={3}>
-          <Link href="/">
+          <Link href="/widget">
             {/* @ts-ignore */}
             <Logo className={classes.logo} />
             <SROnly>{appTitle}</SROnly>

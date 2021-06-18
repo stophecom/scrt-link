@@ -124,7 +124,7 @@ const Account = () => {
         {customer?.role !== 'premium' && (
           <Section
             title={'What you get'}
-            subtitle={`Do you have big secrets? Never worry about sharing sensitive information again.`}
+            subtitle={`Never worry about sharing sensitive information again.`}
           >
             <PlanSelection />
           </Section>
