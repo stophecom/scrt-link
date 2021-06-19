@@ -46,7 +46,7 @@ const BaseRadioGroupField = ({
           {options.map(({ value, label, disabled }, index) => (
             <FormControlLabel
               key={index}
-              control={<Radio color="primary" />}
+              control={<Radio color="primary" size="small" />}
               label={label}
               value={value}
               disabled={disabled}

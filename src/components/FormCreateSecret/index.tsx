@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, InputAdornment } from '@material-ui/core'
+import { Box, InputAdornment, NoSsr } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import clsx from 'clsx'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
@@ -225,7 +225,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
 
   return (
     <>
-      <Box px={2} pt={1} pb={1}>
+      <Box pt={1} pb={1}>
         <TabsMenu
           handleChange={handleMenuChange}
           value={secretType}
@@ -233,7 +233,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
           label="Select secret type"
         />
       </Box>
-      <Box px={2} pb={2}>
+      <Box pb={2}>
         <Formik<SecretUrlFormValues>
           enableReinitialize={true}
           initialValues={initialValues}
@@ -287,58 +287,59 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
                       </>
                     )}
                   </Box>
-
                   <Collapse in={hasFormOptions}>
-                    <Box py={1}>
-                      <BasePasswordField className={clsx(classes.root)} name="password" />
-                    </Box>
-                    <Box pl={1} pt={3} pb={6}>
-                      <BaseRadioGroupField
-                        options={readReceiptsOptions}
-                        name="readReceiptMethod"
-                        label="Read receipts"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                          setReadReceiptMethod(e.target.value as ReadReceiptMethod)
-                        }}
-                      />
-                      {values?.readReceiptMethod === 'email' &&
-                        (['free', 'premium'].includes(customer?.role || '') ? (
-                          <Box pt={2}>
-                            <BaseTextField
-                              name="receiptEmail"
-                              label="Email"
-                              required
-                              placeholder={emailPlaceholder}
-                            />
-                          </Box>
-                        ) : (
-                          <Box pt={1}>
-                            <UpgradeNotice requiredRole="free" />
-                          </Box>
-                        ))}
+                    <NoSsr>
+                      <Box py={1}>
+                        <BasePasswordField className={clsx(classes.root)} name="password" />
+                      </Box>
+                      <Box pl={1} pt={3} pb={6}>
+                        <BaseRadioGroupField
+                          options={readReceiptsOptions}
+                          name="readReceiptMethod"
+                          label="Read receipts"
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setReadReceiptMethod(e.target.value as ReadReceiptMethod)
+                          }}
+                        />
+                        {values?.readReceiptMethod === 'email' &&
+                          (['free', 'premium'].includes(customer?.role || '') ? (
+                            <Box pt={2}>
+                              <BaseTextField
+                                name="receiptEmail"
+                                label="Email"
+                                required
+                                placeholder={emailPlaceholder}
+                              />
+                            </Box>
+                          ) : (
+                            <Box pt={1}>
+                              <UpgradeNotice requiredRole="free" />
+                            </Box>
+                          ))}
 
-                      {values?.readReceiptMethod === 'sms' &&
-                        (customer?.role === 'premium' ? (
-                          <Box pt={2}>
-                            <BasePhoneField name="receiptPhoneNumber" required label="Phone" />
-                          </Box>
-                        ) : (
-                          <Box pt={1}>
-                            <UpgradeNotice requiredRole="premium" />
-                          </Box>
-                        ))}
-                    </Box>
+                        {values?.readReceiptMethod === 'sms' &&
+                          (customer?.role === 'premium' ? (
+                            <Box pt={2}>
+                              <BasePhoneField name="receiptPhoneNumber" required label="Phone" />
+                            </Box>
+                          ) : (
+                            <Box pt={1}>
+                              <UpgradeNotice requiredRole="premium" />
+                            </Box>
+                          ))}
+                      </Box>
 
-                    {secretType === 'neogram' && (
-                      <>
-                        <Box py={1}>
-                          <DestructionMessage />
-                        </Box>
-                        <Box py={1}>
-                          <DestructionTimeout />
-                        </Box>
-                      </>
-                    )}
+                      {secretType === 'neogram' && (
+                        <>
+                          <Box py={1}>
+                            <DestructionMessage />
+                          </Box>
+                          <Box py={1}>
+                            <DestructionTimeout />
+                          </Box>
+                        </>
+                      )}
+                    </NoSsr>
                   </Collapse>
                   <Box display="flex" className={classes.formFooter}>
                     <Box

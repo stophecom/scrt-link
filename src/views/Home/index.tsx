@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Paper, NoSsr } from '@material-ui/core'
+import { Box, Paper } from '@material-ui/core'
 import { ArrowForward } from '@material-ui/icons'
 import WidgetLayout from '@/layouts/Widget'
 
@@ -135,9 +135,9 @@ const HomeView: CustomPage = () => {
     >
       <Box mb={7}>
         <Paper elevation={1} id="create" style={{ scrollMarginTop: '70px' }}>
-          <NoSsr>
+          <Box px={2}>
             <FormCreateSecret dispatch={dispatch} />
-          </NoSsr>
+          </Box>
         </Paper>
         <Trust />
       </Box>
@@ -204,11 +204,7 @@ export const Widget: CustomPage = () => {
     )
   }
 
-  return (
-    <NoSsr>
-      <FormCreateSecret dispatch={dispatch} />
-    </NoSsr>
-  )
+  return <FormCreateSecret dispatch={dispatch} />
 }
 Widget.layout = WidgetLayout
 

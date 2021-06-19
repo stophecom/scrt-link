@@ -46,10 +46,17 @@ const initialState: State = {
   error: undefined,
 }
 
-const FormSignIn = () => {
+type FormSignInProps = {
+  callbackUrl?: string
+  showSignUp?: boolean
+}
+const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
+  callbackUrl,
+  showSignUp = false,
+}) => {
   const classes = useStyles()
   const [state, setState] = useState(initialState)
-  const [isSignUp, setIsSignUp] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(showSignUp)
   const router = useRouter()
 
   useEffect(() => {
@@ -60,7 +67,7 @@ const FormSignIn = () => {
 
   const handleSubmit = useCallback<OnSubmit<SignIn>>(async (values, formikHelpers) => {
     try {
-      const response = await signIn('email', { ...values, redirect: false })
+      const response = await signIn('email', { ...values, callbackUrl, redirect: false })
       setState(response)
       formikHelpers.resetForm()
     } finally {
