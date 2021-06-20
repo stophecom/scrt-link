@@ -200,11 +200,12 @@ export const Widget: CustomPage = () => {
         onReset={() => {
           dispatch(doReset())
         }}
+        isStandalone={true}
       />
     )
   }
 
-  return <FormCreateSecret dispatch={dispatch} />
+  return <FormCreateSecret dispatch={dispatch} isStandalone={true} />
 }
 Widget.layout = WidgetLayout
 

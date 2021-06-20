@@ -24,6 +24,7 @@ import { emojiShortUrl, baseUrl } from '@/constants'
 type ResultProps = Pick<State, 'data'> &
   Pick<CustomerFields, 'isEmojiShortLinkEnabled' | 'role'> & {
     onReset: () => void
+    isStandalone?: boolean
   }
 
 const Result: React.FunctionComponent<ResultProps> = ({
@@ -31,6 +32,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   onReset,
   isEmojiShortLinkEnabled,
   role,
+  isStandalone,
 }) => {
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
@@ -128,7 +130,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     {['premium', 'free'].includes(role) ? (
                       <FormShareSecretLink secretUrl={shortenedUrlEmailService} />
                     ) : (
-                      <UpgradeNotice requiredRole={'free'} />
+                      <UpgradeNotice requiredRole={'free'} openLinksInNewTab={isStandalone} />
                     )}
                   </Box>
                 </Collapse>

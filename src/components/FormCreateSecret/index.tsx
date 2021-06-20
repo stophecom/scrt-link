@@ -109,8 +109,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type FormCreateSecretProps = {
   dispatch: React.Dispatch<Action>
+  isStandalone?: boolean
 }
-const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ dispatch }) => {
+const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
+  dispatch,
+  isStandalone,
+}) => {
   const classes = useStyles()
   const plausible = usePlausible()
   const [secretType, setSecretType] = useState<SecretType>('text')
@@ -313,7 +317,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
                             </Box>
                           ) : (
                             <Box pt={1}>
-                              <UpgradeNotice requiredRole="free" />
+                              <UpgradeNotice requiredRole="free" openLinksInNewTab={isStandalone} />
                             </Box>
                           ))}
 
@@ -324,7 +328,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({ disp
                             </Box>
                           ) : (
                             <Box pt={1}>
-                              <UpgradeNotice requiredRole="premium" />
+                              <UpgradeNotice
+                                requiredRole="premium"
+                                openLinksInNewTab={isStandalone}
+                              />
                             </Box>
                           ))}
                       </Box>
