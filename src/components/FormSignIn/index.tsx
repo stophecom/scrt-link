@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import { signIn } from 'next-auth/client'
@@ -65,7 +65,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
     }
   }, [router])
 
-  const handleSubmit = useCallback<OnSubmit<SignIn>>(async (values, formikHelpers) => {
+  const handleSubmit: OnSubmit<SignIn> = async (values, formikHelpers) => {
     try {
       const response = await signIn('email', { ...values, callbackUrl, redirect: false })
       setState(response)
@@ -73,7 +73,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
     } finally {
       formikHelpers.setSubmitting(false)
     }
-  }, [])
+  }
 
   const { ok, error } = state
 
