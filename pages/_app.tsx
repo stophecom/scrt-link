@@ -76,11 +76,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
 
   return (
     <Provider session={pageProps.session}>
-      <PlausibleProvider
-        domain="scrt.link"
-        customDomain={process.env.NEXT_PUBLIC_BASE_URL}
-        exclude="/l/*"
-      >
+      <PlausibleProvider domain="scrt.link" exclude="/l/*">
         <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
         <Head>
           <meta name="twitter:card" content="summary" key="twitter:card" />

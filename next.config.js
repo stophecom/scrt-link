@@ -1,14 +1,25 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withPWA = require('next-pwa')
+const withPlugins = require('next-compose-plugins')
+const { withPlausibleProxy } = require('next-plausible')
 
-module.exports = withPWA({
+const plugins = [
+  [
+    withPWA,
+    {
+      pwa: {
+        disable: process.env.NODE_ENV === 'development',
+        dest: 'public',
+        clientsClaim: false,
+        register: false, // Disable for now
+      },
+    },
+  ],
+  withPlausibleProxy,
+]
+
+const config = {
   webpack5: true,
-  pwa: {
-    disable: process.env.NODE_ENV === 'development',
-    dest: 'public',
-    clientsClaim: false,
-    register: false, // Disable for now
-  },
   async headers() {
     return [
       {
@@ -22,19 +33,6 @@ module.exports = withPWA({
       },
     ]
   },
-  async rewrites() {
-    return [
-      {
-        source: '/js/index.exclusions.js', // Proxy plausible script
-        destination: 'https://plausible.io/js/plausible.exclusions.js',
-      },
-      {
-        source: '/api/event',
-        destination: 'https://plausible.io/api/event',
-      },
-    ]
-  },
-
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
@@ -43,4 +41,5 @@ module.exports = withPWA({
 
     return config
   },
-})
+}
+module.exports = withPlugins(plugins, config)
