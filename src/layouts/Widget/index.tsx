@@ -45,7 +45,7 @@ const Layout: React.FC = ({ children }) => {
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
-        <Box display="flex" alignItems="center" py={2} mb={3}>
+        <Box display="flex" alignItems="center" pb={2} mb={3}>
           <Link className="logo" href="/widget">
             {/* @ts-ignore */}
             <Logo className={classes.logo} />
