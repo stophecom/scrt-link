@@ -34,7 +34,7 @@
     "next": "^11.0.0",
     "next-auth": "^3.13.3",
     "next-compose-plugins": "^2.2.1",
-    "next-plausible": "1.7.0-beta.6",
+    "next-plausible": "^1.7.0",
     "next-pwa": "^5.2.21",
     "next-seo": "^4.17.0",
     "nextjs-cors": "^1.0.5",
