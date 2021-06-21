@@ -148,6 +148,17 @@ const HomeView: CustomPage = () => {
         subtitle={`Add your message, create a secret link and share it with your confidant. That's it. We do the magic in between.`}
       >
         <HowItWorks />
+        <Box display="flex" justifyContent="center" pt={5}>
+          <BaseButtonLink
+            href="#create"
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={scrollIntoView}
+          >
+            Create a secret
+          </BaseButtonLink>
+        </Box>
       </Section>
 
       <Section title={'FAQ'} subtitle="Frequently asked questions.">
@@ -159,17 +170,21 @@ const HomeView: CustomPage = () => {
         </BaseButtonLink>
       </Section>
 
-      <Box display="flex" justifyContent="center">
-        <BaseButtonLink
-          href="#create"
-          size="large"
-          variant="contained"
-          color="primary"
-          onClick={scrollIntoView}
-        >
-          Share a secret
-        </BaseButtonLink>
-      </Box>
+      <Section
+        title={'Love it?'}
+        subtitle="Support this project with a premium subscription: It's only one dollar a month. That's right - one dollar and you never have to worry about sharing sensitive information again."
+      >
+        <Box display="flex" justifyContent="start">
+          <Box mr={2}>
+            <BaseButtonLink href="/account" size="large" variant="contained" color="primary">
+              Get account
+            </BaseButtonLink>
+          </Box>
+          <BaseButtonLink href="/pricing" size="large" variant="text" color="primary">
+            Pricing
+          </BaseButtonLink>
+        </Box>
+      </Section>
     </Page>
   )
 }
