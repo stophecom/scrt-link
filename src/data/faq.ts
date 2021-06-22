@@ -112,6 +112,10 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
     body: `Until the end of times. Seriously, there is no maximum time limit set. But you can always destroy your secret by visiting the secret link.`,
   },
   {
+    heading: 'Where can I get the Chrome Extension',
+    body: `The scrt.link chrome extension is available in the ![chrome web store](https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip)`,
+  },
+  {
     heading: 'Who is behind this service?',
     body: `Hi, it's [@stophecom](https://twitter.com/stophecom), web developer and designer who cares about privacy and the open web.`,
   },

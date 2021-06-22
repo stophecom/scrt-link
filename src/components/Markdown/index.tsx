@@ -9,13 +9,7 @@ type MarkdownProps = {
 }
 const Markdown: React.FunctionComponent<MarkdownProps> = ({ source, className }) => (
   <Typography component="div">
-    <ReactMarkdown
-      source={source}
-      renderers={{
-        image: (props) => <img loading="lazy" alt="" {...props} />,
-      }}
-      className={className}
-    />
+    <ReactMarkdown className={className}>{source}</ReactMarkdown>
   </Typography>
 )
 
