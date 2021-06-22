@@ -181,7 +181,7 @@ const HomeView: CustomPage = () => {
           <Box display="flex" justifyContent="start" mt={4}>
             <Box mr={2}>
               <BaseButtonLink
-                href="/account"
+                href="/account?signup=true"
                 prefetch={false}
                 size="large"
                 variant="contained"
