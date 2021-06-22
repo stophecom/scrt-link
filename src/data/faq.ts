@@ -113,7 +113,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
   },
   {
     heading: 'Where can I get the Chrome Extension',
-    body: `The scrt.link chrome extension is available in the ![chrome web store](https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip)`,
+    body: `The scrt.link chrome extension is available in the [chrome web store](https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip).`,
   },
   {
     heading: 'Who is behind this service?',
