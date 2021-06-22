@@ -19,20 +19,6 @@ const plugins = [
 ]
 
 const config = {
-  webpack5: true,
-  async headers() {
-    return [
-      {
-        source: '/l/:alias',
-        headers: [
-          {
-            key: 'DNT',
-            value: '1',
-          },
-        ],
-      },
-    ]
-  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
