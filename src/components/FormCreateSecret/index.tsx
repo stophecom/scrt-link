@@ -147,6 +147,8 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     } = values
     let { message } = values
 
+    const messageLength = message.length
+
     if (password) {
       message = encryptMessage(message, password)
     }
@@ -181,7 +183,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         plausible('SecretCreation', {
           props: {
             secretType: secretType,
-            messageLength: message.length,
+            messageLength: messageLength,
             withPassword: !!password,
           },
         })
