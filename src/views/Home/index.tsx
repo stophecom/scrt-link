@@ -174,8 +174,8 @@ const HomeView: CustomPage = () => {
 
       {customer?.role !== 'premium' && (
         <Section
-          title={'Love it?'}
-          subtitle="Get a free or premium account to unlock all features. Never worry about sharing sensitive information again."
+          title={'There is more…'}
+          subtitle="Like it? Get a free or premium account to unlock all features. Never worry about sharing sensitive information again."
         >
           <AccountTeaser />
           <Box display="flex" justifyContent="start" mt={4}>
