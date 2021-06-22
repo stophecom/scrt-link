@@ -27,7 +27,8 @@ const who = {
 `,
 }
 
-export const demoMessage = 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘'
+export const demoMessage =
+  'Hi there…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘'
 const demoSecretMessageLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
   JSON.stringify({
     message: demoMessage,
