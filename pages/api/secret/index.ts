@@ -93,14 +93,14 @@ const handler: NextApiHandler = async (req, res) => {
       )
 
       if (receiptPhoneNumber) {
-        mailjetSms({
+        await mailjetSms({
           To: `+${decryptAES(receiptPhoneNumber)}`,
           Text: `Your secret ${alias} has been viewed!🔥 Reply with a secret: https://scrt.link`,
         })
       }
 
       if (receiptEmail) {
-        mailjet({
+        await mailjet({
           To: [{ Email: decryptAES(receiptEmail), Name: 'Scrt.link' }],
           Subject: 'Secret has been viewed 🔥',
           TemplateID: 2818166,
