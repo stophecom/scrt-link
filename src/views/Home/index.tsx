@@ -2,8 +2,8 @@ import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Paper } from '@material-ui/core'
 import { ArrowForward } from '@material-ui/icons'
-import WidgetLayout from '@/layouts/Widget'
 
+import WidgetLayout from '@/layouts/Widget'
 import { Maybe, CustomPage } from '@/types'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
@@ -12,8 +12,10 @@ import { SecretUrlFields } from '@/api/models/SecretUrl'
 
 import Page from '@/components/Page'
 import Section from '@/components/Section'
+
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
+import AccountTeaser from './components/AccountTeaser'
 import Trust from './components/Trust'
 
 import { useCustomer } from '@/utils/api'
@@ -170,21 +172,36 @@ const HomeView: CustomPage = () => {
         </BaseButtonLink>
       </Section>
 
-      <Section
-        title={'Love it?'}
-        subtitle="Support this project with a premium subscription: It's only one dollar a month. That's right - one dollar and you never have to worry about sharing sensitive information again."
-      >
-        <Box display="flex" justifyContent="start">
-          <Box mr={2}>
-            <BaseButtonLink href="/account" size="large" variant="contained" color="primary">
-              Get account
+      {customer?.role !== 'premium' && (
+        <Section
+          title={'Love it?'}
+          subtitle="Get a free account to unlock more features. Need more? With a premium account you never have to worry about sharing sensitive information again."
+        >
+          <AccountTeaser />
+          <Box display="flex" justifyContent="start" mt={4}>
+            <Box mr={2}>
+              <BaseButtonLink
+                href="/account"
+                prefetch={false}
+                size="large"
+                variant="contained"
+                color="primary"
+              >
+                Get free account
+              </BaseButtonLink>
+            </Box>
+            <BaseButtonLink
+              prefetch={false}
+              href="/pricing"
+              size="large"
+              variant="text"
+              color="primary"
+            >
+              Plans
             </BaseButtonLink>
           </Box>
-          <BaseButtonLink href="/pricing" size="large" variant="text" color="primary">
-            Pricing
-          </BaseButtonLink>
-        </Box>
-      </Section>
+        </Section>
+      )}
     </Page>
   )
 }

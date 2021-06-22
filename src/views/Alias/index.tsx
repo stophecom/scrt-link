@@ -92,7 +92,6 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
 
   // Catch error
   useEffect(() => {
-    console.log('foo')
     if (apiErrorMessage) {
       setError(apiErrorMessage)
     }
