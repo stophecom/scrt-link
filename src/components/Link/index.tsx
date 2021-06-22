@@ -20,11 +20,12 @@ export const Link: React.FunctionComponent<LinkProps> = ({
 type BaseButtonLinkProps = NextLinkProps & BaseButtonProps
 export const BaseButtonLink: React.FunctionComponent<BaseButtonLinkProps> = ({
   href,
+  prefetch,
   children,
   ...props
 }) => {
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href} prefetch={prefetch} passHref>
       <BaseButton variant="contained" color="primary" {...props}>
         {children}
       </BaseButton>
