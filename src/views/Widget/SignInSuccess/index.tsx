@@ -5,7 +5,7 @@ import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'
 
 const SignInSuccess = () => (
-  <Page title="Success" subtitle={`You are signed in! Open Chrome Extension.`}>
+  <Page title="Success" subtitle={`You are signed in! Open the scrt.link browser extension…`}>
     <Box>
       <BaseButton href="/" color="primary" variant="contained" size="large">
         Home
