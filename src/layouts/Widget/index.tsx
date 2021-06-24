@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { useSession, signOut } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { Face } from '@material-ui/icons'
 import NextNprogress from 'nextjs-progressbar'
 
@@ -55,15 +55,6 @@ const Layout: React.FC = ({ children }) => {
             <NoSsr>
               {session ? (
                 <>
-                  <Box mr={1}>
-                    <BaseButton
-                      onClick={() => signOut({ callbackUrl: `${baseUrl}/widget` })}
-                      variant="text"
-                      size="small"
-                    >
-                      Sign out
-                    </BaseButton>
-                  </Box>
                   <BaseButton
                     href="/account"
                     target="_blank"
@@ -94,14 +85,6 @@ const Layout: React.FC = ({ children }) => {
                       Sign in
                     </BaseButton>
                   </Box>
-                  <BaseButton
-                    onClick={() => setState('signup')}
-                    color="primary"
-                    variant="text"
-                    size="small"
-                  >
-                    Get account
-                  </BaseButton>
                 </>
               )}
             </NoSsr>
