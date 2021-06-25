@@ -94,7 +94,7 @@ const Layout: React.FC = ({ children }) => {
               </BaseButtonLink>
             </NoSsr>
           ) : (
-            <NoSsr>
+            <>
               <Box mr={1}>
                 <BaseButton href="/account" variant="text" size="small">
                   Sign in
@@ -108,7 +108,7 @@ const Layout: React.FC = ({ children }) => {
               >
                 Get account
               </BaseButtonLink>
-            </NoSsr>
+            </>
           )}
         </Box>
         <Box mt={3}>
