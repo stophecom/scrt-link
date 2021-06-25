@@ -21,6 +21,10 @@ export const emailPlaceholder = 'example@gmail.com'
 export const neogramDestructionMessageDefault = 'This message will self-destruct in…'
 export const neogramDestructionTimeoutDefault = 3
 
+export const chromeExtensionLink =
+  'https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip'
+export const firefoxExtensionLink = 'https://addons.mozilla.org/en-US/firefox/addon/scrt-link'
+
 // Limits per user role
 export const limits = {
   visitor: {

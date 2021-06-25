@@ -3,6 +3,7 @@ import Markdown from '@/components/Markdown'
 
 import Page from '@/components/Page'
 import Section from '@/components/Section'
+import { chromeExtensionLink, firefoxExtensionLink } from '@/constants'
 
 const About = () => (
   <Page
@@ -43,8 +44,8 @@ Paid premium accounts are meant for power users and people who like to [support 
       <Markdown
         source={`
 To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.
-- [Chrome](https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip)
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/scrt-link)
+- [Google Chrome](${chromeExtensionLink})
+- [Mozilla Firefox](${firefoxExtensionLink})
 - Microsoft Edge (coming soon)
 `}
       />
