@@ -42,7 +42,7 @@ Paid premium accounts are meant for power users and people who like to [support 
     <Section title={'Browser Extensions'} subtitle={`Share secrets from within your browser.`}>
       <Markdown
         source={`
-To make this service easy and convenient, there are browser extensions available for [Chrome](https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip), Firefox (coming soon) and Microsoft Edge (coming soon).
+To make this service easy and convenient, there are browser extensions available for [Chrome](https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip),  [Firefox](https://addons.mozilla.org/en-US/firefox/addon/scrt-link) and Microsoft Edge (coming soon).
 `}
       />
     </Section>
