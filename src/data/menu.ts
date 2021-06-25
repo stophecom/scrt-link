@@ -4,13 +4,8 @@ export const menu = [
     label: 'Home',
   },
   {
-    href: '/faq',
-    label: 'FAQ',
-  },
-  {
-    href: '/pricing',
-    label: 'Pricing',
-    prefetch: false,
+    href: '/about',
+    label: 'About',
   },
   {
     href: '/security',
@@ -21,13 +16,17 @@ export const menu = [
     label: 'Privacy',
   },
   {
-    href: '/contact',
-    label: 'Contact',
+    href: '/faq',
+    label: 'FAQ',
   },
   {
-    href: '/account',
-    label: 'Account',
+    href: '/pricing',
+    label: 'Pricing',
     prefetch: false,
+  },
+  {
+    href: '/contact',
+    label: 'Contact',
   },
 ]
 
@@ -57,5 +56,10 @@ export const about = [
   {
     href: '/imprint',
     label: 'Imprint & Legal',
+  },
+  {
+    href: '/account',
+    label: 'Account',
+    prefetch: false,
   },
 ]

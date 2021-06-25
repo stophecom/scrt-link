@@ -14,6 +14,8 @@ const Markdown: React.FunctionComponent<MarkdownProps> = ({ source, className })
 )
 
 const StyledMarkdown = styled(Markdown)`
+  font-size: ${({ theme }) => theme.typography.body1.fontSize};
+
   p {
     margin-top: 0;
   }

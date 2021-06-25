@@ -21,6 +21,9 @@ let theme = createMuiTheme({
     },
   },
   typography: {
+    body1: {
+      fontSize: 17,
+    },
     fontFamily: 'IBM Plex Sans, sans-serif',
     h1: { fontFamily: 'Poppins, sans-serif', lineHeight: 1.3, fontSize: '66%', color: pink },
     h2: { fontFamily: 'Poppins, sans-serif', fontSize: '44%', marginBottom: '.7em' },
