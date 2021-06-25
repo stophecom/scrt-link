@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/client'
 import { Box, Typography, Paper, NoSsr } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
+import { project } from 'ramda'
 
 import { Spinner } from '@/components/Spinner'
 import FormSignIn from '@/components/FormSignIn'
@@ -12,7 +13,7 @@ import FormDeleteAccount from '@/components/FormDeleteAccount'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
-import { project } from 'ramda'
+import UnorderedList from '@/components/UnorderedList'
 
 import { useCustomer } from '@/utils/api'
 
@@ -123,10 +124,23 @@ const Account = () => {
         </Box>
         {customer?.role !== 'premium' && (
           <Section
-            title={'What you get'}
-            subtitle={`Never worry about sharing sensitive information again.`}
+            title={`That's inside`}
+            subtitle={`With a free account you get access to a rich feature set. Want more? Support this project with a subscription and get full access.`}
           >
             <PlanSelection />
+
+            <Box pt={15}>
+              <Typography variant="h3">…on top of all standard features:</Typography>
+              <UnorderedList
+                items={[
+                  'Unlimited secrets',
+                  'Optional password protection',
+                  'Emoji links 🤫',
+                  'Extension for all major browsers',
+                  '100% privacy protection',
+                ]}
+              />
+            </Box>
           </Section>
         )}
       </Page>

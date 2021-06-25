@@ -81,11 +81,6 @@ const freeUsps = [
     heading: 'Email delivery service',
     body: 'No more app switching: Send secret links directly from our platform.',
   },
-  {
-    heading: 'Emoji link 🤫',
-    body: `Send your secrets using a fancy emoji domain:  
-**https://🤫.st/xyz**.`,
-  },
 ]
 
 type Status = {

@@ -18,7 +18,7 @@ Freedom of speech, freedom of the press, and the right to privacy are among the 
       />
     </Section>
 
-    <Section title={'Security by Design'} subtitle={`True end-to-end encryption`}>
+    <Section title={'Security'} subtitle={`End-to-end encryption in your browser`}>
       <Markdown
         source={`
 Your secret never leaves the browser unencrypted. That's the beauty of secret links - the link itself holds the encryption key that is necessary to decrypt your secret. Only with the link you will ever be able to retrieve the secret message and reveal the original content. After the first visit, the database entry gets deleted for good. Read more on our [Security page](/security).
@@ -49,16 +49,6 @@ To make this service easy and convenient, there are browser extensions available
 `}
       />
     </Section>
-
-    {/* <Section title={'Credits'} subtitle={`This project would not have been possible without:`}>
-      <Markdown
-        source={`
-- One time secret
-- Yopass
-- foo
-`}
-      />
-    </Section> */}
   </Page>
 )
 
