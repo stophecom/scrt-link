@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useSession } from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/client'
 import { Box, Typography, Paper, NoSsr } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 import { project } from 'ramda'
 
+import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import FormSignIn from '@/components/FormSignIn'
 import FormCustomer from '@/components/FormCustomer'
@@ -111,6 +112,11 @@ const Account = () => {
         </Section>
         <AccountInfo pt={5}>
           <Typography variant="body1">You are signed in as {session?.user?.email}.</Typography>
+          <Box mt={1}>
+            <BaseButton onClick={() => signOut()} variant="outlined" color="primary">
+              Sign out
+            </BaseButton>
+          </Box>
         </AccountInfo>
       </Page>
     )

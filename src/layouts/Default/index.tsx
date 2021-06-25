@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, NoSsr, Typography, IconButton } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { useSession, signOut } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { Face, Twitter } from '@material-ui/icons'
 
 import NextNprogress from 'nextjs-progressbar'
@@ -80,11 +80,6 @@ const Layout: React.FC = ({ children }) => {
         <Box display="flex" justifyContent="flex-end" alignItems="center">
           {session ? (
             <NoSsr>
-              <Box mr={1}>
-                <BaseButton onClick={() => signOut()} variant="text" size="small">
-                  Sign out
-                </BaseButton>
-              </Box>
               <BaseButtonLink href="/account" color="primary" variant="text" size="small">
                 <Face fontSize="small" />
                 &nbsp;
