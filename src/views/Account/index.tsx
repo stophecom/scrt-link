@@ -131,7 +131,7 @@ const Account = () => {
         {customer?.role !== 'premium' && (
           <Section
             title={`That's inside`}
-            subtitle={`With a free account you get access to a rich feature set. Want more? Support this project with a subscription and get full access.`}
+            subtitle={`With a free account you get access to a rich feature set. Want more? Support this project with a subscription.`}
           >
             <PlanSelection />
 
@@ -140,7 +140,7 @@ const Account = () => {
               <UnorderedList
                 items={[
                   'Unlimited secrets',
-                  'Optional password protection',
+                  'Optional password',
                   'Emoji links 🤫',
                   'Extension for all major browsers',
                   '100% privacy protection',
