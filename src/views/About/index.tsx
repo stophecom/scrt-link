@@ -19,16 +19,16 @@ Freedom of speech, freedom of the press, and the right to privacy are among the 
       />
     </Section>
 
-    <Section title={'Security'} subtitle={`End-to-end encryption in your browser`}>
+    <Section title={'Security'}>
       <Markdown
         source={`
-Your secret never leaves the browser unencrypted. That's the beauty of secret links - the link itself holds the encryption key that is necessary to decrypt your secret. Only with the link you will ever be able to retrieve the secret message and reveal the original content. After the first visit, the database entry gets deleted for good. Read more on our [Security page](/security).
+True end-to-end encryption: Your secret never leaves the browser unencrypted. That's the beauty of secret links - the link itself holds the encryption key that is necessary to decrypt your secret. Only with the link you will ever be able to retrieve the secret message and reveal the original content. After the first visit, the database entry gets deleted for good. Read more on our [Security page](/security).
 ![Link explanation](/images/link-explanation.svg)
 `}
       />
     </Section>
 
-    <Section title={'User Accounts'} subtitle={`On why we offer free and premium accounts.`}>
+    <Section title={'User Accounts'} subtitle={`On why we offer free and premium accounts`}>
       <Markdown
         source={`
 The main reason we offer accounts is to prevent spam and fraud. All core features are free of charge and don't require an account.

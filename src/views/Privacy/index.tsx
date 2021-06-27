@@ -9,7 +9,7 @@ const Privacy = () => (
   <Page
     title="Privacy"
     subtitle={`No ads, no tracking, no bullshit.`}
-    intro="For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. Needless to say that all data is stored encrypted. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to an individual."
+    intro="For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to an individual."
   >
     <Section title={'Analytics'}>
       <Markdown
@@ -28,7 +28,7 @@ We do basic web traffic analytics with [Plausible.io](https://plausible.io/) -  
     <Section title={'Account & Cookies'}>
       <Markdown
         source={`
-For power users, we offer user accounts that require authentication. Since privacy is a top concern, we only ask for the bare minimum. In fact, you can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. 
+For power users, we offer user accounts that require authentication. You can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. 
 
 For people visiting our website, we only ever use essential cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy.
 `}
