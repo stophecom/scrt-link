@@ -44,6 +44,13 @@ const Imprint = () => (
       <Typography variant="h3">Policies and Terms</Typography>
       <Menu menu={[...policies, ...terms]} />
     </Box>
+    <Box mb={4}>
+      <Typography variant="h3">Credits</Typography>
+    </Box>
+    <Typography variant="body2">
+      Pexels - Photo by: Ba Tik, Sound On, Radu Florin, Victoria Borodinova, cottonbro, Gustavo
+      Fring
+    </Typography>
   </Page>
 )
 
