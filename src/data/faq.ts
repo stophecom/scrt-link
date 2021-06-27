@@ -97,7 +97,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
   security,
   {
     heading: 'How is end-to-end encryption achieved?',
-    body: `We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to descrypt the secret.
+    body: `We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.
 ![Link explanation](/images/link-explanation.svg)
 `,
   },
