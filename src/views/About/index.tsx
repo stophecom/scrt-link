@@ -3,7 +3,7 @@ import Markdown from '@/components/Markdown'
 
 import Page from '@/components/Page'
 import Section from '@/components/Section'
-import { chromeExtensionLink, firefoxExtensionLink } from '@/constants'
+import { chromeExtensionLink, firefoxExtensionLink, microsoftEdgeExtensionLink } from '@/constants'
 
 const About = () => (
   <Page
@@ -46,7 +46,7 @@ Paid premium accounts are meant for power users and people who like to [support 
 To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.
 - [Google Chrome](${chromeExtensionLink})
 - [Mozilla Firefox](${firefoxExtensionLink})
-- Microsoft Edge (coming soon)
+- [Microsoft Edge](${microsoftEdgeExtensionLink})
 `}
       />
     </Section>

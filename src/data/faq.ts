@@ -1,4 +1,10 @@
-import { baseUrl, limits, chromeExtensionLink, firefoxExtensionLink } from '@/constants'
+import {
+  baseUrl,
+  limits,
+  chromeExtensionLink,
+  firefoxExtensionLink,
+  microsoftEdgeExtensionLink,
+} from '@/constants'
 
 const why = {
   heading: 'Why should I use this service?',
@@ -117,6 +123,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
     body: `The scrt.link browser extensions are available here:
 - [Google Chrome](${chromeExtensionLink})
 - [Mozilla Firefox](${firefoxExtensionLink})
+- [Microsoft Edge](${microsoftEdgeExtensionLink})
 `,
   },
   {
