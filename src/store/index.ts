@@ -1,5 +1,3 @@
 import { Store } from 'pullstate'
 
-export const UIStore = new Store({
-  liveStatsEnabled: false,
-})
+export const UIStore = new Store({})

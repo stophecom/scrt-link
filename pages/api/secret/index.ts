@@ -1,23 +1,12 @@
 import { NextApiHandler, NextApiRequest } from 'next'
-import { pick } from 'ramda'
 import crawlers from 'crawler-user-agents'
-import Pusher from 'pusher'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { apiValidationSchemaByType } from '@/utils/validationSchemas'
 import mailjet, { mailjetSms } from '@/api/utils/mailjet'
-import { pusherCluster } from '@/constants'
 import { encryptAES, decryptAES } from '@/utils/db'
-
-const pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
-  key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
-  secret: process.env.PUSHER_SECRET,
-  cluster: pusherCluster,
-  useTLS: true,
-})
 
 const extractGetInput = async (req: NextApiRequest) => {
   const { alias, userAgent } = req.query
@@ -140,7 +129,7 @@ const handler: NextApiHandler = async (req, res) => {
       } = await extractPostInput(req)
 
       // Update global stats
-      const stats = await models.Stats.findOneAndUpdate(
+      await models.Stats.findOneAndUpdate(
         { master: true },
         {
           $inc: {
@@ -151,12 +140,6 @@ const handler: NextApiHandler = async (req, res) => {
           },
         },
         { new: true, upsert: true },
-      )
-
-      pusher.trigger(
-        'stats',
-        'stats-update',
-        pick(['totalSecretsCount', 'secretsCount', 'totalSecretsViewCount'])(stats.toJSON()),
       )
 
       const shortened = new models.SecretUrl({

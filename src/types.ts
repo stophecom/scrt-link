@@ -19,10 +19,6 @@ declare global {
       NEXTAUTH_URL: string
       JWT_SECRET: string
       NEXT_AUTH_SECRET: string
-      NEXT_PUBLIC_PUSHER_APP_KEY: string
-      NEXT_PUBLIC_PUSHER_CLUSTER: string
-      PUSHER_SECRET: string
-      PUSHER_APP_ID: string
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string
       STRIPE_SECRET_KEY: string
       STRIPE_WEBHOOK_SECRET: string
