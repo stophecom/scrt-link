@@ -29,7 +29,6 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 
 import { urlAliasLength, encryptionKeyLength, emailPlaceholder } from '@/constants'
-import { UIStore } from '@/store'
 import { demoMessage } from '@/data/faq'
 import { api, useCustomer } from '@/utils/api'
 import { SecretPost } from '@/types'
@@ -396,10 +395,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           setFieldValue('secretType', secretType)
                           setFieldValue('alias', generateNanoId(urlAliasLength))
                           setFieldValue('encryptionKey', generateNanoId(encryptionKeyLength))
-
-                          UIStore.update((s) => {
-                            s.liveStatsEnabled = true
-                          })
                         }}
                         type="submit"
                         color="primary"
