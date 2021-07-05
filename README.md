@@ -6,8 +6,7 @@ Live: **[scrt.link](https://scrt.link)**.
 
 ### Development
 
-First, add `.env.development` with ENV variables listed  in `.env.example`.  
-
+First, add `.env.development` with ENV variables listed in `.env.example`.
 
 ```js
 // Install
@@ -23,9 +22,11 @@ yarn export
 ```
 
 ### Credits/Inspiration
+
 - [PrivateBin](https://github.com/PrivateBin/PrivateBin)
 - [OneTimeSecret](https://github.com/onetimesecret/onetimesecret)
 - [Yopass](https://github.com/jhaals/yopass)
+- [Saltify](https://www.saltify.io/)
 - [hat.sh](https://github.com/sh-dv/hat.sh)
 - [OnURL](https://github.com/onderonur/onurl)
 
@@ -34,4 +35,3 @@ yarn export
 MIT
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
-
