@@ -3,7 +3,6 @@ import { Stripe } from 'stripe'
 
 import { baseUrl } from '@/constants'
 import { CustomerFields } from '@/api/models/Customer'
-import { SecretUrlFields } from '@/api/models/SecretUrl'
 import { StatsFields } from '@/api/models/Stats'
 import { CustomError } from '@/api/utils/createError'
 
@@ -58,25 +57,6 @@ export const useStats = () => {
     stats: data,
     isLoading: !error && !data,
     error: error,
-  }
-}
-
-export const useSecret = (alias?: string, userAgent?: string) => {
-  //https://stackoverflow.com/questions/62771896/can-i-fetch-data-only-once-when-using-swr
-  const settings = {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-  }
-  const { data, error } = useSWR<Partial<SecretUrlFields>>(
-    `/secret?alias=${alias}&userAgent=${userAgent}`,
-    api,
-    settings,
-  )
-
-  return {
-    data,
-    isLoading: !error && !data,
-    error: error?.message,
   }
 }
 

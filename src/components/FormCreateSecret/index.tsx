@@ -29,7 +29,7 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 
 import { urlAliasLength, encryptionKeyLength, emailPlaceholder } from '@/constants'
-import { demoMessage } from '@/data/faq'
+import { demoNeogramMessage } from '@/data/faq'
 import { api, useCustomer } from '@/utils/api'
 import { SecretPost } from '@/types'
 
@@ -174,7 +174,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     }
 
     try {
-      const response = await api<SecretPost>('/secret', { method: 'POST' }, data)
+      const response = await api<SecretPost>('/secrets', { method: 'POST' }, data)
 
       if (response) {
         dispatch(doSuccess({ ...response, encryptionKey, readReceiptMethod }))
@@ -410,7 +410,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                 </Form>
                 {neogramPreview && (
                   <Neogram
-                    message={values.message || demoMessage}
+                    message={values.message || demoNeogramMessage}
                     timeout={Number(values.neogramDestructionTimeout)}
                     destructionMessage={values.neogramDestructionMessage}
                     onFinished={() => setNeogramPreview(false)}
