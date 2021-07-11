@@ -100,7 +100,7 @@ const AliasView: NextPage = () => {
           setSecret({ ...secretRaw, message: result })
 
           // eslint-disable-next-line no-restricted-globals
-          history.pushState(null, 'Secret destroyed', '🔥')
+          history.replaceState(null, 'Secret destroyed', '🔥')
         } else {
           throw new Error('Decryption key missing.')
         }
