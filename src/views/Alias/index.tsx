@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NextPage, GetServerSideProps } from 'next'
+import { NextPage } from 'next'
 import { Box } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
@@ -21,7 +21,7 @@ import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
-import { useSecret } from '@/utils/api'
+import { api } from '@/utils/api'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -36,20 +36,20 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
-type AliasViewProps = {
-  preview?: Partial<SecretUrlFields>
-  alias?: SecretUrlFields['alias']
-  userAgent?: string
-}
-const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} }) => {
+
+const AliasView: NextPage = () => {
   const classes = useStyles()
   const router = useRouter()
 
-  const { data = {}, error: apiErrorMessage } = useSecret(alias, userAgent)
+  const { alias, preview } = router.query
 
   // Use preview mode if data if passed via URL params
-  const isPreview = preview?.secretType
-  const secretRaw = isPreview ? preview : data
+  let previewData = {} as Partial<SecretUrlFields>
+  if (preview) {
+    const obj = decodeURIComponent(preview as string)
+    previewData = JSON.parse(obj)
+  }
+  const isPreview = previewData?.secretType
 
   const [hasCopied, setHasCopied] = useState(false)
   const [secret, setSecret] = useState({} as Partial<SecretUrlFields>)
@@ -63,39 +63,58 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
     neogramDestructionMessage,
   } = secret
 
+  // Cleanup state
   useEffect(() => {
-    // Decrypt message once
-    if (message || !secretRaw?.message) {
-      return
+    const handleRouteChange = () => {
+      setSecret({})
     }
 
-    // No need for decryption in preview mode
-    if (isPreview) {
-      setSecret(secretRaw)
+    router.events.on('routeChangeStart', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
     }
-    try {
-      const decryptionKey = window.location.hash.substring(1)
-      if (decryptionKey) {
-        const result = decryptMessage(secretRaw.message, decryptionKey)
-        if (!result) {
-          throw new Error('Decryption failed.')
-        }
-        setSecret({ ...secretRaw, message: result })
+  }, [])
+
+  useEffect(() => {
+    const fetchSecret = async () => {
+      if (!alias || message) {
+        return
       }
-    } catch (error) {
-      setError(error.message)
+
+      try {
+        const secretRaw = await api<Partial<SecretUrlFields>>(`/secrets/${alias}`, {
+          method: 'DELETE',
+        })
+
+        if (!secretRaw.message) {
+          throw new Error(`Couldn't retrieve secret message.`)
+        }
+
+        const decryptionKey = window.location.hash.substring(1)
+        if (decryptionKey) {
+          const result = decryptMessage(secretRaw.message, decryptionKey)
+          if (!result) {
+            throw new Error('Decryption failed.')
+          }
+          setSecret({ ...secretRaw, message: result })
+
+          // eslint-disable-next-line no-restricted-globals
+          history.replaceState(null, 'Secret destroyed', '🔥')
+        } else {
+          throw new Error('Decryption key missing.')
+        }
+      } catch (error) {
+        setError(error.message)
+      }
     }
 
-    // eslint-disable-next-line no-restricted-globals
-    history.pushState(null, 'Secret destroyed', '🔥')
-  }, [secretRaw])
-
-  // Catch error
-  useEffect(() => {
-    if (apiErrorMessage) {
-      setError(apiErrorMessage)
+    if (isPreview) {
+      setSecret(previewData)
+    } else {
+      fetchSecret()
     }
-  }, [apiErrorMessage])
+  }, [alias])
 
   interface PasswordForm {
     message: string
@@ -244,29 +263,6 @@ const AliasView: NextPage<AliasViewProps> = ({ alias, userAgent, preview = {} })
   }
 
   return <Spinner message="Loading secret" />
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req, query } = context
-  const {
-    alias,
-    preview, // This is for previews/demo only
-  } = query
-
-  if (preview) {
-    const obj = decodeURIComponent(preview as string)
-
-    return {
-      props: {
-        preview: JSON.parse(obj),
-      },
-    }
-  }
-
-  // Pass user agent to backend
-  const userAgent = req?.headers['user-agent']
-
-  return { props: { alias, userAgent } }
 }
 
 export default AliasView
