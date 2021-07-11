@@ -26,7 +26,7 @@ export const Menu: React.FunctionComponent<MenuProps> = ({ menu }) => (
 
 export const ImprintInfo = () => (
   <Typography>
-    SANTiHANS GmbH (The Company)
+    SANTiHANS GmbH
     <br />
     CH-4056 Basel <br />
     UID: CHE-244.875.499
@@ -48,7 +48,10 @@ const Imprint = () => (
       <Typography variant="h3">Credits</Typography>
     </Box>
     <Typography variant="body2">
-      Pexels - Photo by: Ba Tik, Sound On, Radu Florin, Victoria Borodinova, cottonbro, Gustavo
+      Inspiration: PrivateBin, OneTimeSecret, Yopass, Saltify, hat.sh, OnURL
+    </Typography>
+    <Typography variant="body2">
+      Photographs (Pexels): Ba Tik, Sound On, Radu Florin, Victoria Borodinova, cottonbro, Gustavo
       Fring
     </Typography>
   </Page>
