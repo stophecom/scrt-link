@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://scrt.link</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.923Z</lastmod></url>
-<url><loc>https://scrt.link/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/acceptable-use-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/cookie-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/imprint</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/pricing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/pricing/canceled</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/privacy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/privacy-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/security</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/terms-of-service</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
-<url><loc>https://scrt.link/widget/sign-in-success</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-06-25T07:23:07.924Z</lastmod></url>
+<url><loc>https://scrt.link</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.630Z</lastmod></url>
+<url><loc>https://scrt.link/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/acceptable-use-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/cookie-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/imprint</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/pricing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/pricing/canceled</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/privacy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/privacy-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/security</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
+<url><loc>https://scrt.link/terms-of-service</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-07-11T19:17:19.631Z</lastmod></url>
 </urlset>
