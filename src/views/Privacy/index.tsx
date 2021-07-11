@@ -9,7 +9,7 @@ const Privacy = () => (
   <Page
     title="Privacy"
     subtitle={`No ads, no tracking, no bullshit.`}
-    intro="For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to an individual."
+    intro="For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to you."
   >
     <Section title={'Analytics'}>
       <Markdown

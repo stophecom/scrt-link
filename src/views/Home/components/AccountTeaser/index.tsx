@@ -4,8 +4,8 @@ import { Grid } from '@material-ui/core'
 import UnorderedList from '@/components/UnorderedList'
 
 const items = [
-  ['Unlimited secrets', 'Increased character limit', 'Read receipts', 'Secret delivery service'],
-  ['Browser extension', 'Secret files (late 2021)', 'And much more…'],
+  ['Unlimited secrets', 'Increased character limit', 'Read receipts', 'Email service'],
+  ['Browser extensions', 'Secret files (late 2021)', 'And much more…'],
 ]
 
 export const AccountTeaser = () => (

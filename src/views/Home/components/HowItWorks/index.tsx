@@ -73,19 +73,19 @@ const gridContent = [
     // @ts-ignore
     illustration: <Create />,
     title: 'Write',
-    text: `Compose your secret message, submit and you'll receive a one-time link.`,
+    text: `Compose your secret and get a one-time link.`,
   },
   {
     // @ts-ignore
     illustration: <Share />,
     title: 'Share',
-    text: 'Share your secret link using your preferred communication channel.',
+    text: 'Send the generated link to your confidant.',
   },
   {
     // @ts-ignore
     illustration: <Burn />,
     title: 'Burn',
-    text: 'The secret link can be accessed one time. Afterwards it gets destroyed.',
+    text: 'After the secret has been viewed, it gets destroyed.',
   },
 ]
 
