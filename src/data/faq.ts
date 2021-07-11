@@ -34,17 +34,20 @@ const who = {
 `,
 }
 
-export const demoMessage =
+export const demoTextMessage = 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘'
+
+export const demoNeogramMessage =
   'Hi there…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘'
+
 const demoSecretMessageLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
   JSON.stringify({
-    message: demoMessage,
+    message: demoTextMessage,
     secretType: 'text',
   }),
 )}`
 const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
   JSON.stringify({
-    message: demoMessage,
+    message: demoNeogramMessage,
     secretType: 'neogram',
     neogramDestructionMessage: 'This message self-destructs in …',
     neogramDestructionTimeout: 3,
