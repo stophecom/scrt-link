@@ -52,11 +52,11 @@ const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent
 )}`
 
 const secretTypes = {
-  heading: 'What is the difference between *Text*, *Redirect* and *Neogram™*?',
+  heading: 'What is the difference between *Text*, *Link* and *Neogram™*?',
   body: `
 - **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.
 [Demo](${demoSecretMessageLink})
-- **Redirect**: Think about it as a URL-shortener where the generated link only works once.
+- **Link**: Think about it as a URL-shortener where the generated link only works once.
 - **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo](${demoSecretNeogramLink})
     `,
 }
