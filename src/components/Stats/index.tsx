@@ -5,10 +5,6 @@ import { useStats } from '@/utils/api'
 const Stats = () => {
   const { stats } = useStats()
 
-  if (!stats) {
-    return null
-  }
-
   return (
     <>
       <div>

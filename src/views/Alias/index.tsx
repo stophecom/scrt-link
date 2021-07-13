@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { NextPage } from 'next'
 import { Box } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
@@ -8,9 +7,10 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
-
 import { useRouter } from 'next/router'
 
+import { CustomPage } from '@/types'
+import { LayoutMinimal } from '@/layouts/Default'
 import { BaseButtonLink } from '@/components/Link'
 import Neogram from '@/components/Neogram'
 import ReplyButton from './components/ReplyButton'
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const AliasView: NextPage = () => {
+const AliasView: CustomPage = () => {
   const classes = useStyles()
   const router = useRouter()
 
@@ -265,4 +265,5 @@ const AliasView: NextPage = () => {
   return <Spinner message="Loading secret" />
 }
 
+AliasView.layout = LayoutMinimal
 export default AliasView
