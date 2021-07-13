@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { useSession } from 'next-auth/client'
 import { Face } from '@material-ui/icons'
 import clsx from 'clsx'
@@ -105,19 +104,16 @@ const HeaderBar = styled.div`
   }
 
   &.HeaderBar--scrolled ${LogoHeader} {
-    animation: 500ms logo 700ms;
+    animation: 300ms logo 900ms;
     animation-fill-mode: forwards;
   }
 `
-
-const useStyles = makeStyles((theme: Theme) => createStyles({}))
 
 type LayoutProps = {
   hideFooter?: boolean
   hideHeader?: boolean
 }
 const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => {
-  const classes = useStyles()
   const { data: customer } = useCustomer()
   const [session] = useSession()
 
