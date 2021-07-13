@@ -96,6 +96,7 @@ export const Nav = styled.nav`
     list-style-type: none;
     margin: 0;
     padding: 2em 0;
+    text-align: center;
   }
 
   a {
