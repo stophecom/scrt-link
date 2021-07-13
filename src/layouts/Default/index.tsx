@@ -8,13 +8,13 @@ import NextNprogress from 'nextjs-progressbar'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 
+import { pink } from '@/theme'
+import SROnly from '@/components/ScreenreaderOnly'
 import BaseButton from '@/components/BaseButton'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { Link, BaseButtonLink } from '@/components/Link'
-import { pink } from '@/theme'
 import { appTitle } from '@/constants'
-import SROnly from '@/components/ScreenreaderOnly'
 import { useCustomer } from '@/utils/api'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
