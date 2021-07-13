@@ -28,6 +28,7 @@ export const Hamburger = styled.button`
 
   margin-left: 1rem;
   position: relative;
+  top: -1px;
   height: 30px;
   transition: opacity 0.32s 0.4s;
   width: 40px;

@@ -42,19 +42,48 @@ const HeaderBarReserveSpace = styled.main`
   height: 60px;
 `
 
-const LogoLink = styled(Link)`
+const LogoHeader = styled(Link)`
   width: 36px;
   height: 36px;
-  transform: translate(0, 60px) scale(2.2);
-  transform-origin: top left;
-  transition: 100ms;
+  opacity: 0;
+  transition: 200ms;
+
+  @keyframes logo {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+
+    20% {
+      opacity: 1;
+      transform: scale(0.5);
+    }
+
+    70% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+`
+
+const LogoPage = styled(Link)`
+  display: block;
+  width: 80px;
+  height: 80px;
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
-    transform: translate(0, 70px) scale(2.8);
+    width: 100px;
+    height: 100px;
   }
 
   ${({ theme }) => theme.breakpoints.up('md')} {
-    transform: translate(0, 80px) scale(3.5);
+    width: 120px;
+    height: 120px;
   }
 `
 
@@ -75,29 +104,13 @@ const HeaderBar = styled.div`
     background-color: ${({ theme }) => theme.palette.background.paper};
   }
 
-  &.HeaderBar--scrolled ${LogoLink} {
-    transform: translate(0, 0) scale(1);
+  &.HeaderBar--scrolled ${LogoHeader} {
+    animation: 500ms logo 700ms;
+    animation-fill-mode: forwards;
   }
 `
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      paddingTop: '110px !important',
-
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: '160px !important',
-      },
-
-      [theme.breakpoints.up('md')]: {
-        paddingTop: '180px !important',
-      },
-    },
-    button: {
-      lineHeight: 1,
-    },
-  }),
-)
+const useStyles = makeStyles((theme: Theme) => createStyles({}))
 
 type LayoutProps = {
   hideFooter?: boolean
@@ -118,22 +131,16 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
       <HeaderBarReserveSpace ref={ref}>
         <HeaderBar className={clsx({ 'HeaderBar--scrolled': !inView })}>
           <HeaderBarInner>
-            <LogoLink href="/">
+            <LogoHeader href="/">
               <Image src={logoSource} alt={appTitle} />
               <SROnly>{appTitle}</SROnly>
-            </LogoLink>
+            </LogoHeader>
             <Box display="flex" marginLeft="auto" alignItems="center">
               {hideHeader || (
                 <>
                   {session ? (
                     <NoSsr>
-                      <BaseButtonLink
-                        className={classes.button}
-                        href="/account"
-                        color="primary"
-                        variant="text"
-                        size="small"
-                      >
+                      <BaseButtonLink href="/account" color="primary" variant="text" size="small">
                         <Face fontSize="small" />
                         &nbsp;
                         <Typography
@@ -149,17 +156,11 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
                   ) : (
                     <>
                       <Box mr={1}>
-                        <BaseButton
-                          className={classes.button}
-                          href="/account"
-                          variant="text"
-                          size="small"
-                        >
+                        <BaseButton href="/account" variant="text" size="small">
                           Sign in
                         </BaseButton>
                       </Box>
                       <BaseButtonLink
-                        className={classes.button}
                         href="/account?signup=true"
                         color="primary"
                         variant="text"
@@ -176,7 +177,14 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
           </HeaderBarInner>
         </HeaderBar>
       </HeaderBarReserveSpace>
-      <Container className={classes.container}>{children}</Container>
+      <Container>
+        <LogoPage href="/">
+          <Image src={logoSource} alt={appTitle} />
+          <SROnly>{appTitle}</SROnly>
+        </LogoPage>
+
+        {children}
+      </Container>
       {hideFooter || <Footer />}
     </Box>
   )
