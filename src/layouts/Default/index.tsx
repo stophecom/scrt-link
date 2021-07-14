@@ -114,7 +114,7 @@ type LayoutProps = {
   hideHeader?: boolean
 }
 const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => {
-  const { data: customer } = useCustomer()
+  const { data: customer, isLoading } = useCustomer()
   const [session] = useSession()
 
   const { ref, inView } = useInView({
@@ -134,11 +134,9 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
             <Box display="flex" marginLeft="auto" alignItems="center">
               {hideHeader || (
                 <>
-                  {session ? (
+                  {session && !isLoading ? (
                     <NoSsr>
                       <BaseButtonLink href="/account" color="primary" variant="text" size="small">
-                        <Face fontSize="small" />
-                        &nbsp;
                         <Typography
                           component="span"
                           variant="button"
