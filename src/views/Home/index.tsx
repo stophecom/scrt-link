@@ -197,7 +197,7 @@ const HomeView: CustomPage = () => {
               variant="text"
               color="primary"
             >
-              Plans
+              Pricing
             </BaseButtonLink>
           </Box>
         </Section>

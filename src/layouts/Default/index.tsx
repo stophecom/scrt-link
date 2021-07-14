@@ -99,12 +99,13 @@ const HeaderBar = styled.div`
   z-index: 100;
 
   &.HeaderBar--scrolled {
-    transition-delay: 400ms;
+    transition-delay: 200ms;
     background-color: ${({ theme }) => theme.palette.background.paper};
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
   }
 
   &.HeaderBar--scrolled ${LogoHeader} {
-    animation: 300ms logo 900ms;
+    animation: 200ms logo 100ms;
     animation-fill-mode: forwards;
   }
 `
@@ -118,7 +119,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
   const [session] = useSession()
 
   const { ref, inView } = useInView({
-    threshold: 0.9,
+    threshold: 0.1,
   })
 
   return (

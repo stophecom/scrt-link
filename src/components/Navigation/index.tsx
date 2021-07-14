@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
+import { Box, Divider } from '@material-ui/core'
 
 import { Link } from '@/components/Link'
 import SROnly from '@/components/ScreenreaderOnly'
@@ -103,7 +104,7 @@ export const Nav = styled.nav`
     display: block;
     font-size: clamp(1.5rem, 5vw, 2rem);
     color: ${({ theme }) => theme.palette.text.primary};
-    padding: 0.1em 1em;
+    padding: 0.12em 1em;
     text-decoration: none;
 
     &:hover {
@@ -120,16 +121,24 @@ export const NavigationMenu: React.FunctionComponent = () => {
   const router = useRouter()
 
   return (
-    <Nav>
+    <Nav role="navigation" id="navigation" aria-label="Main navigation menu">
       <ul>
         {menu.map(({ href, label }, index) => (
           <li key={index}>
-            <Link href={href} key={index}>
-              <a className={clsx({ 'Nav--active': router.pathname === href })}>{label}</a>
+            <Link
+              href={href}
+              key={index}
+              className={clsx({ 'Nav--active': router.pathname === href })}
+            >
+              {label}
             </Link>
           </li>
         ))}
       </ul>
+      <Divider />
+      <Box pt={2}>
+        <Link href="/account">Account</Link>
+      </Box>
     </Nav>
   )
 }
@@ -182,12 +191,14 @@ const Navigation = () => {
         <NavigationMenu />
       </NavigationInner>
       <Hamburger
+        aria-label={isActive ? 'Close menu' : 'Open menu'}
+        aria-controls="navigation"
         onClick={isActive ? closeNavigation : showNavigation}
         className={clsx({
           'Hamburger--active': isActive,
         })}
       >
-        <SROnly>Open Menu</SROnly>
+        <SROnly>{isActive ? 'Close menu' : 'Open menu'}</SROnly>
       </Hamburger>
     </div>
   )
