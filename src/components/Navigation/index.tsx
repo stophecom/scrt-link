@@ -5,12 +5,14 @@ import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
 import { Box, Divider } from '@material-ui/core'
 import { usePlausible } from 'next-plausible'
+import { useSession } from 'next-auth/client'
 
 import { Link } from '@/components/Link'
+import BaseButton from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
 import { menu } from '@/data/menu'
 
-export const Hamburger = styled.button`
+const Hamburger = styled.button`
   -webkit-appearance: none;
   background-color: transparent;
   border: 0;
@@ -30,7 +32,6 @@ export const Hamburger = styled.button`
 
   margin-left: 1rem;
   position: relative;
-  top: -1px;
   height: 30px;
   transition: opacity 0.32s 0.4s;
   width: 40px;
@@ -70,16 +71,16 @@ export const Hamburger = styled.button`
     }
   }
 `
-export const NavigationInner = styled.div`
+const NavigationInner = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.palette.background.paper};
   border: 5px solid ${({ theme }) => theme.palette.primary.main};
   display: flex;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
   left: 0;
   opacity: 0;
-  overflow-y: scroll;
   pointer-events: none;
   position: fixed;
   top: 0;
@@ -93,7 +94,13 @@ export const NavigationInner = styled.div`
   }
 `
 
-export const Nav = styled.nav`
+const Nav = styled.nav`
+  align-items: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -103,9 +110,9 @@ export const Nav = styled.nav`
 
   a {
     display: block;
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.6rem, 5vw, 2rem);
     color: ${({ theme }) => theme.palette.text.primary};
-    padding: 0.12em 1em;
+    padding: 0.15em 1em;
     text-decoration: none;
 
     &:hover {
@@ -118,8 +125,17 @@ export const Nav = styled.nav`
   }
 `
 
-export const NavigationMenu: React.FunctionComponent = () => {
+const NavigationWrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
+`
+
+const NavigationMenu: React.FunctionComponent = () => {
   const router = useRouter()
+  const [session] = useSession()
 
   return (
     <Nav role="navigation" id="navigation" aria-label="Main navigation menu">
@@ -136,9 +152,15 @@ export const NavigationMenu: React.FunctionComponent = () => {
           </li>
         ))}
       </ul>
-      <Divider />
-      <Box pt={2}>
-        <Link href="/account">Account</Link>
+      <Box>
+        <Divider />
+        <Box pt={2}>
+          {session ? (
+            <Link href="/account">Account</Link>
+          ) : (
+            <Link href="/account?signup=true">Get Account</Link>
+          )}
+        </Box>
       </Box>
     </Nav>
   )
@@ -191,7 +213,14 @@ const Navigation = () => {
           'Navigation--active': isActive,
         })}
       >
-        <NavigationMenu />
+        <NavigationWrapper>
+          <NavigationMenu />
+        </NavigationWrapper>
+        <Box p={1}>
+          <BaseButton color="primary" onClick={closeNavigation}>
+            Close
+          </BaseButton>
+        </Box>
       </NavigationInner>
       <Hamburger
         aria-label={isActive ? 'Close menu' : 'Open menu'}

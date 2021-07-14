@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import { useSession } from 'next-auth/client'
-import { Face } from '@material-ui/icons'
 import clsx from 'clsx'
 import NextNprogress from 'nextjs-progressbar'
 import Image from 'next/image'
@@ -149,21 +148,9 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
                       </BaseButtonLink>
                     </NoSsr>
                   ) : (
-                    <>
-                      <Box mr={1}>
-                        <BaseButton href="/account" variant="text" size="small">
-                          Sign in
-                        </BaseButton>
-                      </Box>
-                      <BaseButtonLink
-                        href="/account?signup=true"
-                        color="primary"
-                        variant="text"
-                        size="small"
-                      >
-                        Get account
-                      </BaseButtonLink>
-                    </>
+                    <BaseButton href="/account" variant="text" size="small">
+                      Sign in
+                    </BaseButton>
                   )}
                 </>
               )}
