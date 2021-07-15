@@ -91,7 +91,7 @@ const initialState: State = {
 const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const { data: customer } = useCustomer()
+  const { data: customer, isLoading } = useCustomer()
 
   const { data, error } = state
 
@@ -172,10 +172,10 @@ const HomeView: CustomPage = () => {
         </BaseButtonLink>
       </Section>
 
-      {customer?.role !== 'premium' && (
+      {!isLoading && customer?.role !== 'premium' && (
         <Section
           title={'There is more…'}
-          subtitle="Like it? Get a free or premium account to unlock all features. Never worry about sharing sensitive information again."
+          subtitle="Get an account to unlock more features. Like it? Support this project with a subscription."
         >
           <AccountTeaser />
           <Box display="flex" justifyContent="start" mt={4}>

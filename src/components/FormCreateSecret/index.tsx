@@ -66,7 +66,7 @@ export const secretTypesMap = {
     placeholder: 'e.g. https://www.example.com',
   },
   neogram: {
-    label: 'Neogram',
+    label: 'Your secret',
     tabLabel: 'Neogram™',
     placeholder: 'Wake up Neo…',
   },
