@@ -178,7 +178,7 @@ const Navigation = () => {
     body.style.position = 'fixed'
     body.style.width = '100%'
     body.style.top = `-${scrollY}`
-    plausible('Open Navigation')
+    plausible('OpenNavigation')
   }
 
   const closeNavigation = () => {
