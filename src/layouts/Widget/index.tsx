@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 type State = 'default' | 'signin' | 'signup'
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
-  const { data: customer } = useCustomer()
+  const { data: customer, isLoading } = useCustomer()
   const [session] = useSession()
   const [state, setState] = useState<State>('default')
 
@@ -53,7 +53,7 @@ const Layout: React.FC = ({ children }) => {
           </Link>
           <Box ml="auto" display="flex" alignItems="center">
             <NoSsr>
-              {session ? (
+              {session && !isLoading ? (
                 <>
                   <BaseButton
                     href="/account"
