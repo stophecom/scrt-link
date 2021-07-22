@@ -2,19 +2,18 @@ import React from 'react'
 import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import { useSession } from 'next-auth/client'
-import { Face } from '@material-ui/icons'
 import clsx from 'clsx'
-import { useInView } from 'react-intersection-observer'
 import NextNprogress from 'nextjs-progressbar'
 import Image from 'next/image'
+import { useInView } from 'react-intersection-observer'
 
+import { pink } from '@/theme'
+import SROnly from '@/components/ScreenreaderOnly'
 import BaseButton from '@/components/BaseButton'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { Link, BaseButtonLink } from '@/components/Link'
-import { pink } from '@/theme'
 import { appTitle } from '@/constants'
-import SROnly from '@/components/ScreenreaderOnly'
 import { useCustomer } from '@/utils/api'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -99,12 +98,13 @@ const HeaderBar = styled.div`
   z-index: 100;
 
   &.HeaderBar--scrolled {
-    transition-delay: 400ms;
+    transition-delay: 200ms;
     background-color: ${({ theme }) => theme.palette.background.paper};
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
   }
 
   &.HeaderBar--scrolled ${LogoHeader} {
-    animation: 300ms logo 900ms;
+    animation: 200ms logo 100ms;
     animation-fill-mode: forwards;
   }
 `
@@ -114,11 +114,11 @@ type LayoutProps = {
   hideHeader?: boolean
 }
 const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => {
-  const { data: customer } = useCustomer()
+  const { data: customer, isLoading } = useCustomer()
   const [session] = useSession()
 
   const { ref, inView } = useInView({
-    threshold: 0.9,
+    threshold: 0.1,
   })
 
   return (
@@ -134,11 +134,9 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
             <Box display="flex" marginLeft="auto" alignItems="center">
               {hideHeader || (
                 <>
-                  {session ? (
+                  {session && !isLoading ? (
                     <NoSsr>
                       <BaseButtonLink href="/account" color="primary" variant="text" size="small">
-                        <Face fontSize="small" />
-                        &nbsp;
                         <Typography
                           component="span"
                           variant="button"
@@ -150,21 +148,9 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
                       </BaseButtonLink>
                     </NoSsr>
                   ) : (
-                    <>
-                      <Box mr={1}>
-                        <BaseButton href="/account" variant="text" size="small">
-                          Sign in
-                        </BaseButton>
-                      </Box>
-                      <BaseButtonLink
-                        href="/account?signup=true"
-                        color="primary"
-                        variant="text"
-                        size="small"
-                      >
-                        Get account
-                      </BaseButtonLink>
-                    </>
+                    <BaseButton href="/account" variant="text" size="small">
+                      Sign in
+                    </BaseButton>
                   )}
                 </>
               )}

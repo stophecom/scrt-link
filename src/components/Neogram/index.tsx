@@ -19,7 +19,7 @@ const Backdrop = styled(Box)`
   top: 0;
   transition: 700ms;
   width: 100%;
-  z-index: 1;
+  z-index: 400;
 `
 
 const CloseButton = styled(IconButton)`

@@ -5,7 +5,7 @@ import UnorderedList from '@/components/UnorderedList'
 
 const items = [
   ['Unlimited secrets', 'Increased character limit', 'Read receipts', 'Email service'],
-  ['Browser extensions', 'Secret files (late 2021)', 'And much more…'],
+  ['Browser extensions', 'Secret files (late 2021)', 'More to come…'],
 ]
 
 export const AccountTeaser = () => (

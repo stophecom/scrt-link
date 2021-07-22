@@ -16,13 +16,13 @@ export const menu = [
     label: 'Privacy',
   },
   {
-    href: '/faq',
-    label: 'FAQ',
-  },
-  {
     href: '/pricing',
     label: 'Pricing',
     prefetch: false,
+  },
+  {
+    href: '/faq',
+    label: 'FAQ',
   },
   {
     href: '/contact',

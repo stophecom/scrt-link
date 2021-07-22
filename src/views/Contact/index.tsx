@@ -1,12 +1,12 @@
 import React from 'react'
-import { Typography, Box } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { Link } from '@material-ui/core'
 
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 import ExternalLink from '@/components/ExternalLink'
 
-import { emailEmoji, email, twitterLink, twitterHandle } from '@/constants'
+import { emailEmoji, email, emailSupport, twitterLink, twitterHandle } from '@/constants'
 
 const jsonLd = {
   '@context': 'https://www.schema.org',
@@ -20,14 +20,17 @@ const jsonLd = {
 const Contact = () => (
   <Page title="Contact" subtitle={`Get in touch!`} jsonLd={jsonLd}>
     <Section title="Email">
-      <Typography>
-        For hackers: <Link href={`mailto:${emailEmoji}`}>{emailEmoji}</Link>
+      <Typography variant="body1">
+        General inquiries: <Link href={`mailto:${email}`}>{email}</Link>
         <br />
-        For everybody else: <Link href={`mailto:${email}`}>{email}</Link>
+        Support: <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
+        <br />
+        Tech: <Link href={`mailto:${emailEmoji}`}>{emailEmoji}</Link>
+        <br />
       </Typography>
     </Section>
 
-    <Typography variant="h3">Twitter</Typography>
+    <Typography variant="h2">Twitter</Typography>
     <Typography>
       <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
     </Typography>

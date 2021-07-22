@@ -13,7 +13,7 @@ const Section: React.FunctionComponent<SectionProps & BoxProps> = ({
   ...rest
 }) => {
   return (
-    <Box key="section" py={{ xs: 4, sm: 7 }} {...rest}>
+    <Box key="section" py={{ xs: 6, sm: 8 }} {...rest}>
       <Box mb={5} maxWidth="min(100%, 600px)">
         {title && <Typography variant="h2">{title}</Typography>}
         {subtitle && (
