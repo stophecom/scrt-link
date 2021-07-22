@@ -1,8 +1,6 @@
 import { sanitizeUrl } from '@/utils/index'
 
 export const appTitle = 'scrt.link'
-export const urlAliasLength = 12
-export const encryptionKeyLength = 14
 export const trialPeriod = 5
 
 export const twitterLink = 'https://twitter.com/ScrtLink'

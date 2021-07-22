@@ -1,6 +1,4 @@
 import { parse } from 'uri-js'
-import { customAlphabet } from 'nanoid'
-import { nolookalikes } from 'nanoid-dictionary'
 import { AES, enc } from 'crypto-js'
 import { sha256 } from 'js-sha256'
 
@@ -22,17 +20,8 @@ export const shortenString = (str: string, length: number) => {
   return str.length > threshold ? `${str.substring(0, length)}…` : str
 }
 
-export const generateNanoId = (length: number) => {
-  const nanoid = customAlphabet(nolookalikes, length)
-  return nanoid()
-}
-
-export const encryptMessage = (message: string, encryptionKey: string) => {
-  const hash = sha256(encryptionKey)
-  return AES.encrypt(message, hash).toString()
-}
-
-export const decryptMessage = (message: string, decryptionKey: string) => {
+// Deprecated as of 2021-07-22
+export const _deprecated_decryptMessage = (message: string, decryptionKey: string) => {
   const hash = sha256(decryptionKey)
   const bytes = AES.decrypt(message, hash)
   return bytes.toString(enc.Utf8)
