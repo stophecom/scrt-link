@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
-import { urlAliasLength } from '@/constants'
 import { BaseDocumentData } from './types'
 
 export type SecretType = 'text' | 'url' | 'neogram'
@@ -28,7 +27,6 @@ const SecretUrlSchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
-      maxlength: urlAliasLength,
     },
     message: { type: String, required: false, default: '' },
     isEncryptedWithUserPassword: { type: Boolean, required: true, default: false },
