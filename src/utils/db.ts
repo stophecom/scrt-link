@@ -20,7 +20,7 @@ export const decodeStringsFromDB = <T>(obj: T = {} as T): Record<string, T[keyof
 export const encryptAES = (string: string) =>
   AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
 
-// Decrypt essage
+// Decrypt message
 export const decryptAES = (string: string) => {
   const bytes = AES.decrypt(string, `${process.env.AES_KEY_512}`)
   return bytes.toString(enc.Utf8)
