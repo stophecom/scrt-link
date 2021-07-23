@@ -9,13 +9,15 @@ import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 
+import { decryptMessage } from 'scrt-link-core'
+
 import { CustomPage } from '@/types'
 import { LayoutMinimal } from '@/layouts/Default'
 import { BaseButtonLink } from '@/components/Link'
 import Neogram from '@/components/Neogram'
 import ReplyButton from './components/ReplyButton'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
-import { sanitizeUrl, decryptMessage } from '@/utils/index'
+import { sanitizeUrl } from '@/utils/index'
 import { SecretUrlFields } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
@@ -82,6 +84,13 @@ const AliasView: CustomPage = () => {
         return
       }
 
+      // Handle legacy implementation
+      if (alias.length === 12) {
+        window.location.replace(
+          `https://legacy.scrt.link${window.location.pathname}${window.location.hash}`,
+        )
+      }
+
       try {
         const secretRaw = await api<Partial<SecretUrlFields>>(`/secrets/${alias}`, {
           method: 'DELETE',
@@ -92,6 +101,7 @@ const AliasView: CustomPage = () => {
         }
 
         const decryptionKey = window.location.hash.substring(1)
+
         if (decryptionKey) {
           const result = decryptMessage(secretRaw.message, decryptionKey)
           if (!result) {
