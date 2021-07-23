@@ -20,7 +20,6 @@
     "@types/ramda": "^0.27.38",
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/styled-components": "^5.1.5",
-    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "formik": "^2.2.6",
     "js-sha256": "^0.9.0",
@@ -49,6 +48,7 @@
     "react-share": "^4.3.1",
     "react-web-share": "^1.0.18",
     "remark": "^13.0.0",
+    "scrt-link-core": "^0.1.1",
     "strip-markdown": "^4.0.0",
     "stripe": "^8.148.0",
     "styled-components": "^5.2.1",
@@ -61,7 +61,6 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@types/crypto-js": "^4.0.1",
     "@types/file-saver": "^2.0.1",
     "@types/micro": "^7.3.4",
     "@types/mongoose": "^5.10.2",
