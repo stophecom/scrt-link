@@ -159,7 +159,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       receiptEmail: readReceiptMethod === 'email' && receiptEmail ? receiptEmail : undefined,
       receiptPhoneNumber:
         readReceiptMethod === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
-      isEncryptedWithUserPassword: !!password,
     }
 
     if (secretType !== 'neogram') {
