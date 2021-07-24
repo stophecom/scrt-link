@@ -101,7 +101,7 @@ const AliasView: CustomPage = () => {
         // eslint-disable-next-line no-restricted-globals
         history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (error) {
-        setError(`${error.message} \nThere is something wrong with the link you received.`)
+        setError(`${error.message}`)
       }
     }
 
