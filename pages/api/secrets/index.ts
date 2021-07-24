@@ -1,4 +1,5 @@
 import { NextApiHandler, NextApiRequest } from 'next'
+import NextCors from 'nextjs-cors'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
@@ -17,8 +18,13 @@ const extractPostInput = async (req: NextApiRequest) => {
 }
 
 const handler: NextApiHandler = async (req, res) => {
-  const models = req.models
+  // Run the middleware
+  await NextCors(req, res, {
+    methods: ['HEAD', 'POST'],
+    origin: '*',
+  })
 
+  const models = req.models
   if (!models) {
     throw createError(500, 'Could not find db connection')
   }

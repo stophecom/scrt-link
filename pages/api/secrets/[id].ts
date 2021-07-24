@@ -1,4 +1,5 @@
 import { NextApiHandler } from 'next'
+import NextCors from 'nextjs-cors'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
@@ -7,6 +8,12 @@ import mailjet, { mailjetSms } from '@/api/utils/mailjet'
 import { decryptAES } from '@/utils/db'
 
 const handler: NextApiHandler = async (req, res) => {
+  // Run the middleware
+  await NextCors(req, res, {
+    methods: ['GET', 'HEAD', 'OPTIONS', 'POST', 'DELETE'],
+    origin: '*',
+  })
+
   const models = req.models
 
   if (!models) {
