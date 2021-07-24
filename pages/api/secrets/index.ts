@@ -24,6 +24,11 @@ const handler: NextApiHandler = async (req, res) => {
     origin: '*',
   })
 
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+
   const models = req.models
   if (!models) {
     throw createError(500, 'Could not find db connection')
