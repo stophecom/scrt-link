@@ -6318,16 +6318,15 @@ schema-utils@^3.0.0:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
-scrt-link-core@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/scrt-link-core/-/scrt-link-core-0.1.3.tgz#e50d24cd14434b18c18d2651a69abc1383d0737a"
-  integrity sha512-FX74N83Wq2K5BkpfJApVnRTak6DSc/X+iWj8KEApus7VS9GAERU6MbyDt931F4z9XL7NpnGG09G73Zhyx9gdCw==
+scrt-link-core@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/scrt-link-core/-/scrt-link-core-0.1.4.tgz#928550a1b9fc4ae12b2c2740e4e546663eb10ae3"
+  integrity sha512-dNe5i/AbizF8+v9l9K624B1EtK+G5aE5SYQypXKUFq1z1rvA76OKxGNEPsMqnmaehA0Fx6pfFbEKQhRk71wmQA==
   dependencies:
     cross-fetch "^3.1.4"
     crypto-js "^4.0.0"
     nanoid "^3.1.23"
     nanoid-dictionary "^4.3.0"
-    unfetch "^4.2.0"
 
 "semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.6.0:
   version "5.7.1"
@@ -7159,11 +7158,6 @@ unbox-primitive@^1.0.1:
     has-bigints "^1.0.1"
     has-symbols "^1.0.2"
     which-boxed-primitive "^1.0.2"
-
-unfetch@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-4.2.0.tgz#7e21b0ef7d363d8d9af0fb929a5555f6ef97a3be"
-  integrity sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
