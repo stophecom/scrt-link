@@ -20,7 +20,7 @@ const extractPostInput = async (req: NextApiRequest) => {
 const handler: NextApiHandler = async (req, res) => {
   // Run the middleware
   await NextCors(req, res, {
-    methods: ['HEAD', 'POST'],
+    methods: ['HEAD', 'POST', 'OPTIONS'],
     origin: '*',
   })
 
