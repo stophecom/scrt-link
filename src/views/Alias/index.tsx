@@ -84,17 +84,17 @@ const AliasView: CustomPage = () => {
         return
       }
 
-      // Handle legacy implementation
-      if (alias.length === 12) {
-        window.location.replace(
-          `https://legacy.scrt.link${window.location.pathname}${window.location.hash}`,
-        )
-      }
-
       try {
         const secretRaw = await api<Partial<SecretUrlFields>>(`/secrets/${alias}`, {
           method: 'DELETE',
         })
+
+        // Handle legacy implementation
+        if (alias.length === 12) {
+          throw new Error(
+            `Oops, this shouldn't have happened. This link appears to be in a legacy format that is no longer supported. Please ask to the sender to re-send the secret. Sorry for the inconvenience.`,
+          )
+        }
 
         if (!secretRaw.message) {
           throw new Error(`Couldn't retrieve secret message.`)
