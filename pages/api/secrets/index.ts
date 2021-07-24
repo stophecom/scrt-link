@@ -60,9 +60,13 @@ const handler: NextApiHandler = async (req, res) => {
         secretType,
         message: encryptAES(message),
         alias,
-        neogramDestructionMessage: encryptAES(neogramDestructionMessage),
-        neogramDestructionTimeout,
         isEncryptedWithUserPassword,
+        ...(secretType === 'neogram'
+          ? {
+              neogramDestructionMessage: encryptAES(neogramDestructionMessage),
+              neogramDestructionTimeout,
+            }
+          : {}),
         ...(receiptEmail ? { receiptEmail: encryptAES(receiptEmail) } : {}),
         ...(receiptPhoneNumber ? { receiptPhoneNumber: encryptAES(receiptPhoneNumber) } : {}),
       })

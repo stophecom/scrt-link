@@ -10,6 +10,9 @@ import { usePlausible } from 'next-plausible'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import LinkIcon from '@material-ui/icons/Link'
 
+import { createSecret, generateAlias, generateEncryptionKey } from 'scrt-link-core'
+
+import { getLimits } from '@/utils'
 import { Link } from '@/components/Link'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
@@ -24,14 +27,12 @@ import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BasePhoneField from '@/components/BasePhoneField'
 import UpgradeNotice from '@/components/UpgradeNotice'
 
-import { getLimits, generateNanoId, encryptMessage } from '@/utils'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 
-import { urlAliasLength, encryptionKeyLength, emailPlaceholder } from '@/constants'
+import { baseUrl, emailPlaceholder } from '@/constants'
 import { demoNeogramMessage } from '@/data/faq'
-import { api, useCustomer } from '@/utils/api'
-import { SecretPost } from '@/types'
+import { useCustomer } from '@/utils/api'
 
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { Action, doRequest, doSuccess, doError } from '@/views/Home'
@@ -137,6 +138,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const handleSubmit: OnSubmit<SecretUrlFormValues> = async (values, formikHelpers) => {
     const {
       password,
+      message,
       secretType,
       alias,
       encryptionKey,
@@ -144,29 +146,19 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       receiptEmail,
       receiptPhoneNumber,
     } = values
-    let { message } = values
-
     const messageLength = message.length
-
-    if (password) {
-      message = encryptMessage(message, password)
-    }
-
-    // Default encryption
-    message = encryptMessage(message, encryptionKey)
 
     dispatch(doRequest({ alias, encryptionKey }))
     window.scrollTo(0, 0)
 
     let data = {
-      ...omit(['password', 'encryptionKey', 'readReceiptMethod'], values),
+      ...omit(['readReceiptMethod', 'message'], values),
       alias,
-      message,
+      encryptionKey,
       secretType,
       receiptEmail: readReceiptMethod === 'email' && receiptEmail ? receiptEmail : undefined,
       receiptPhoneNumber:
         readReceiptMethod === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
-      isEncryptedWithUserPassword: !!password,
     }
 
     if (secretType !== 'neogram') {
@@ -174,10 +166,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     }
 
     try {
-      const response = await api<SecretPost>('/secrets', { method: 'POST' }, data)
+      const response = await createSecret(message, data, baseUrl)
 
       if (response) {
-        dispatch(doSuccess({ ...response, encryptionKey, readReceiptMethod }))
+        dispatch(doSuccess({ message: 'Secret saved!', alias, encryptionKey, readReceiptMethod }))
 
         plausible('SecretCreation', {
           props: {
@@ -393,8 +385,8 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         fullWidth={true}
                         onClick={() => {
                           setFieldValue('secretType', secretType)
-                          setFieldValue('alias', generateNanoId(urlAliasLength))
-                          setFieldValue('encryptionKey', generateNanoId(encryptionKeyLength))
+                          setFieldValue('alias', generateAlias())
+                          setFieldValue('encryptionKey', generateEncryptionKey())
                         }}
                         type="submit"
                         color="primary"

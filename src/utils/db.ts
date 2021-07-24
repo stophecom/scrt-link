@@ -1,4 +1,4 @@
-import { AES, enc } from 'crypto-js'
+import { encryptMessage, decryptMessage } from 'scrt-link-core'
 
 export const encodeStringsForDB = <T>(obj: T = {} as T): Record<string, T[keyof T]> => {
   const result = {} as Record<string, T[keyof T]>
@@ -16,12 +16,6 @@ export const decodeStringsFromDB = <T>(obj: T = {} as T): Record<string, T[keyof
   return result
 }
 
-// Encrypt sensitive information
-export const encryptAES = (string: string) =>
-  AES.encrypt(string, `${process.env.AES_KEY_512}`).toString()
-
-// Decrypt essage
-export const decryptAES = (string: string) => {
-  const bytes = AES.decrypt(string, `${process.env.AES_KEY_512}`)
-  return bytes.toString(enc.Utf8)
-}
+// Encrypt/decrypt sensitive information for DB
+export const encryptAES = (string: string) => encryptMessage(string, `${process.env.AES_KEY_512}`)
+export const decryptAES = (string: string) => decryptMessage(string, `${process.env.AES_KEY_512}`)

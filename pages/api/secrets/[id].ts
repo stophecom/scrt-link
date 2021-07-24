@@ -28,7 +28,6 @@ const handler: NextApiHandler = async (req, res) => {
         throw createError(422, 'Invalid URL')
       }
 
-      // const secretUrlRaw = await models.SecretUrl.findOneAndDelete({ alias })
       const secretUrlRaw = await models.SecretUrl.findOneAndDelete({ alias })
 
       if (!secretUrlRaw) {
@@ -86,6 +85,7 @@ const handler: NextApiHandler = async (req, res) => {
       res.json({
         secretType,
         message: decryptAES(message),
+        isEncryptedWithUserPassword,
         ...(secretType === 'neogram'
           ? {
               neogramDestructionMessage: neogramDestructionMessage
@@ -94,8 +94,6 @@ const handler: NextApiHandler = async (req, res) => {
               neogramDestructionTimeout,
             }
           : {}),
-
-        isEncryptedWithUserPassword,
       })
       break
     }

@@ -9,19 +9,21 @@ import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 
+import { decryptMessage, retrieveSecret } from 'scrt-link-core'
+
+import { baseUrl } from '@/constants'
 import { CustomPage } from '@/types'
 import { LayoutMinimal } from '@/layouts/Default'
 import { BaseButtonLink } from '@/components/Link'
 import Neogram from '@/components/Neogram'
 import ReplyButton from './components/ReplyButton'
 import { passwordValidationSchema } from '@/utils/validationSchemas'
-import { sanitizeUrl, decryptMessage } from '@/utils/index'
+import { sanitizeUrl } from '@/utils/index'
 import { SecretUrlFields } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
-import { api } from '@/utils/api'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
@@ -83,29 +85,23 @@ const AliasView: CustomPage = () => {
       }
 
       try {
-        const secretRaw = await api<Partial<SecretUrlFields>>(`/secrets/${alias}`, {
-          method: 'DELETE',
-        })
-
-        if (!secretRaw.message) {
-          throw new Error(`Couldn't retrieve secret message.`)
-        }
-
         const decryptionKey = window.location.hash.substring(1)
-        if (decryptionKey) {
-          const result = decryptMessage(secretRaw.message, decryptionKey)
-          if (!result) {
-            throw new Error('Decryption failed.')
-          }
-          setSecret({ ...secretRaw, message: result })
 
-          // eslint-disable-next-line no-restricted-globals
-          history.replaceState(null, 'Secret destroyed', '🔥')
-        } else {
+        if (!decryptionKey) {
           throw new Error('Decryption key missing.')
         }
+
+        if (typeof alias !== 'string') {
+          throw new Error('Invalid alias.')
+        }
+
+        const secret = await retrieveSecret(alias, decryptionKey, baseUrl)
+        setSecret({ ...secret })
+
+        // eslint-disable-next-line no-restricted-globals
+        history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (error) {
-        setError(error.message)
+        setError(`${error.message} \nThere is something wrong with the link you received.`)
       }
     }
 
