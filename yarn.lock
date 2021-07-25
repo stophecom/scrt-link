@@ -6318,10 +6318,10 @@ schema-utils@^3.0.0:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
-scrt-link-core@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/scrt-link-core/-/scrt-link-core-0.1.5.tgz#8cbb0d464b2d7706a53448bf547b2c8cdf37ba28"
-  integrity sha512-Et9Ol2C0hkgCdYGlvIbHFdeGrhEnYnoidgEl8c/VR2wfSGhQ2i9nt4N6n/+DTWi+J31AZzwiUxvIjVO0gqzMoQ==
+scrt-link-core@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/scrt-link-core/-/scrt-link-core-0.1.11.tgz#14c203bdfe73624425b0a53774ed5cbe2e667a02"
+  integrity sha512-nBamnAt3iTVeAf6NVV6ZrgHgUrFji8BhSHiuxHdywUzJAbzneD9YU+P1VvVEA/YGjLFDbSVEN2OO3ZFb9g6Kig==
   dependencies:
     cross-fetch "^3.1.4"
     crypto-js "^4.0.0"
