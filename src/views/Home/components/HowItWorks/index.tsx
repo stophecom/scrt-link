@@ -92,7 +92,7 @@ const gridContent = [
 const HowItWorks = () => {
   const classes = useStyles()
   return (
-    <Grid container spacing={2} justify="center">
+    <Grid container spacing={2} justifyContent="center">
       {gridContent.map(({ illustration, title, text }, index) => {
         return (
           <Grid item xs={12} sm={4} key={index}>

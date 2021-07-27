@@ -1,9 +1,9 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles'
 
 export const pink = '#ff0083'
 const bg = '#1b242e'
 
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     type: 'dark',
     background: { paper: '#151c24', default: bg },

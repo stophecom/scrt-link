@@ -41,6 +41,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = useState(isEmojiShortLinkEnabled)
   const [isEmailServiceEnabled, setIsEmailServiceEnabled] = useState(false)
+  const [wrap, setWrap] = useState(false)
 
   const origin = isEmojiLinkEnabled ? emojiShortUrl : `${baseUrl}/l`
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
@@ -70,7 +71,14 @@ const Result: React.FunctionComponent<ResultProps> = ({
             <Paper elevation={3}>
               <Box px={{ xs: 2, sm: 4 }} pt={4} pb={3} key="paper-inner">
                 <Box mb={4} display="flex" flexDirection="column">
-                  <Typography variant="h4" align="center" component="div" noWrap>
+                  <Typography
+                    variant="h4"
+                    align="center"
+                    component="div"
+                    noWrap={!wrap}
+                    style={{ wordBreak: 'break-all' }}
+                    onClick={() => setWrap(true)}
+                  >
                     {shortenedUrl}
                   </Typography>
                 </Box>

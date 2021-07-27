@@ -272,8 +272,8 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           name="message"
                           multiline
                           required
-                          rows={3}
-                          rowsMax={7}
+                          minRows={3}
+                          maxRows={7}
                           label={getFormFieldConfigBySecretType(secretType).label}
                           placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                           InputLabelProps={{

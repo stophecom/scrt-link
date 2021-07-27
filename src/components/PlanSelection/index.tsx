@@ -222,7 +222,7 @@ const PlanSelection: React.FunctionComponent = () => {
           <Alert severity={status.type as 'error' | 'success'}>{status.message}</Alert>
         </Box>
       )}
-      <Grid container spacing={2} justify="center">
+      <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={5}>
           <Plan
             title="Free"
@@ -389,7 +389,7 @@ const PlanSelection: React.FunctionComponent = () => {
           </Box>
         )}
 
-        <Grid component="label" container alignItems="center" justify="center" spacing={1}>
+        <Grid component="label" container alignItems="center" justifyContent="center" spacing={1}>
           <Grid item>Monthly</Grid>
           <Grid item>
             <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />

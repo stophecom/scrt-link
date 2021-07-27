@@ -90,8 +90,8 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
                 <BaseTextField
                   name="message"
                   multiline
-                  rows={3}
-                  rowsMax={7}
+                  minRows={3}
+                  maxRows={7}
                   label="Message"
                   placeholder="Message to be included in the email…"
                   helperText="We recommend to add a hint about who you are. Otherwise the recipient might mistake the email for spam."
