@@ -69,10 +69,12 @@ const Footer: React.FC = () => {
         </Box>
         <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
           <Legal>
-            <strong>Scrt.link</strong> lets you share sensitive information online. Keep
-            confidential information out of email, Slack, Teams, Whatsapp or any other communication
-            channel. A one-time disposable link guarantees your secrets can only ever be accessed
-            once - before being destroyed forever.
+            <strong>Scrt.link</strong> lets you share sensitive information online. End-to-end
+            encrypted. One time.
+            <br />
+            Keep confidential information out of email, Slack, Teams, Whatsapp or any other
+            communication channel. A one-time disposable link guarantees your secrets can only ever
+            be accessed once - before being destroyed forever.
             <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
               <span className={classes.linkPadding}>
                 ©{new Date().getFullYear()} SANTiHANS GmbH

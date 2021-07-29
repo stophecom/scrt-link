@@ -18,7 +18,6 @@ Freedom of speech, freedom of the press, and the right to privacy are among the 
 `}
       />
     </Section>
-
     <Section title={'Security'}>
       <Markdown
         source={`
@@ -27,8 +26,7 @@ True end-to-end encryption: Your secret never leaves the browser unencrypted. Th
 `}
       />
     </Section>
-
-    <Section title={'User Accounts'} subtitle={`On why we offer free and premium accounts`}>
+    <Section title={'User Accounts'} subtitle={`On why we offer free and premium accounts.`}>
       <Markdown
         source={`
 The main reason we offer accounts is to prevent spam and fraud. All core features are free of charge and don't require an account.
@@ -39,14 +37,24 @@ Paid premium accounts are meant for power users and people who like to [support 
 `}
       />
     </Section>
-
-    <Section title={'Browser Extension'} subtitle={`Share secrets from within your browser.`}>
+    <Section title={'Browser Extensions'} subtitle={`Share secrets from within your browser.`}>
       <Markdown
         source={`
 To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.
 - [Google Chrome](${chromeExtensionLink})
 - [Mozilla Firefox](${firefoxExtensionLink})
 - [Microsoft Edge](${microsoftEdgeExtensionLink})
+`}
+      />
+    </Section>
+    <Section title={'Developer Tools'} subtitle={`Create secrets programmatically via API.`}>
+      <Markdown
+        source={`
+With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.
+
+- [scrt-link-core](https://www.npmjs.com/package/scrt-link-core) Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)
+- [scrt-link-cli](https://www.npmjs.com/package/scrt-link-cli) lets you create secret links right from the command line.
+
 `}
       />
     </Section>
