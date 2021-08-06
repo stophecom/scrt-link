@@ -49,6 +49,7 @@ const handler: NextApiHandler = async (req, res) => {
     console.log('✅ Success:', event.id)
 
     switch (event.type) {
+      case 'customer.subscription.created':
       case 'customer.subscription.updated': {
         const subscription = event.data.object as Stripe.Subscription
 
