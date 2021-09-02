@@ -71,9 +71,13 @@ const handler: NextApiHandler = async (req, res) => {
         ...(receiptPhoneNumber ? { receiptPhoneNumber: encryptAES(receiptPhoneNumber) } : {}),
       })
 
-      await shortened.save()
+      try {
+        await shortened.save()
+        res.status(200).json({ alias, message: 'Secret saved!' })
+      } catch (err) {
+        throw createError(500, 'Database error: ' + err.message)
+      }
 
-      res.status(200).json({ alias, message: 'Secret saved!' })
       break
     }
     default:
