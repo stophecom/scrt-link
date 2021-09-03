@@ -54,7 +54,6 @@
     "styled-components": "^5.2.1",
     "swr": "^0.5.6",
     "throttle-debounce": "^3.0.1",
-    "uri-js": "^4.4.0",
     "validator": "^13.5.2",
     "windups": "^1.1.9",
     "yup": "^0.29.3"

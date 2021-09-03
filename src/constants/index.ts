@@ -1,5 +1,3 @@
-import { sanitizeUrl } from '@/utils/index'
-
 export const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'development'
 export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
@@ -13,9 +11,7 @@ export const email = 'shhh@scrt.link'
 export const emailSupport = 'support@scrt.link'
 export const emailSantihans = 'info@santihans.com'
 export const gitlab = 'https://gitlab.com/kingchiller'
-export const baseUrl = isDevelopment
-  ? process.env.NEXT_PUBLIC_BASE_URL
-  : sanitizeUrl(process.env.NEXT_PUBLIC_BASE_URL) // Vercel preview links don't include host
+export const baseUrl = process?.env?.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 export const emojiShortUrl = 'https://🤫.st'
 export const shortUrl = 'https://scrt.li'
 

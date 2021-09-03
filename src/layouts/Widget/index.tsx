@@ -10,9 +10,10 @@ import BaseButton from '@/components/BaseButton'
 import { Link } from '@/components/Link'
 import FormSignIn from '@/components/FormSignIn'
 import { pink } from '@/theme'
-import { appTitle, baseUrl } from '@/constants'
+import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 import { useCustomer } from '@/utils/api'
+import { getBaseURL } from '@/utils'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
@@ -92,7 +93,7 @@ const Layout: React.FC = ({ children }) => {
         </Box>
         {['signin', 'signup'].includes(state) ? (
           <FormSignIn
-            callbackUrl={`${baseUrl}/widget/sign-in-success`}
+            callbackUrl={`${getBaseURL()}/widget/sign-in-success`}
             showSignUp={state === 'signup'}
           />
         ) : (

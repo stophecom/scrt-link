@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
 
-import { baseUrl } from '@/constants'
+import { getBaseURL } from '@/utils'
 import { CustomPage } from '@/types'
 import { LayoutMinimal } from '@/layouts/Default'
 import { BaseButtonLink } from '@/components/Link'
@@ -95,7 +95,7 @@ const AliasView: CustomPage = () => {
           throw new Error('Invalid alias.')
         }
 
-        const secret = await retrieveSecret(alias, decryptionKey, baseUrl)
+        const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
         setSecret({ ...secret })
 
         // eslint-disable-next-line no-restricted-globals

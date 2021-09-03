@@ -1,17 +1,10 @@
-import { parse } from 'uri-js'
-
 import { Role } from '@/api/models/Customer'
-import { limits } from '@/constants'
+import { limits, baseUrl } from '@/constants'
 
-// https://stackoverflow.com/a/19709846
-export const sanitizeUrl = (url: string) => {
-  if (url.startsWith('//')) {
-    return url
-  }
+export const sanitizeUrl = (url: string) => (url.startsWith('http') ? url : `https://${url}`)
 
-  const uri = parse(url)
-  return uri.scheme ? url : `https://${url}`
-}
+// Vercel preview links don't include host.
+export const getBaseURL = () => sanitizeUrl(baseUrl)
 
 export const shortenString = (str: string, length: number) => {
   const threshold = length + 3
