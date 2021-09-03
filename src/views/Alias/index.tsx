@@ -85,16 +85,7 @@ const AliasView: CustomPage = () => {
       }
 
       try {
-        const secretRaw = await api<Partial<SecretUrlFields>>(`/secrets/${alias}`, {
-          method: 'DELETE',
-        })
-
-        if (!secretRaw.message) {
-          throw new Error(`Couldn't retrieve secret message.`)
-        }
-
-        const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
-        setSecret({ ...secret })
+        const decryptionKey = window.location.hash.substring(1)
 
         if (!decryptionKey) {
           throw new Error('Decryption key missing.')
@@ -104,7 +95,7 @@ const AliasView: CustomPage = () => {
           throw new Error('Invalid alias.')
         }
 
-        const secret = await retrieveSecret(alias, decryptionKey, baseUrl)
+        const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
         setSecret({ ...secret })
 
         // eslint-disable-next-line no-restricted-globals
