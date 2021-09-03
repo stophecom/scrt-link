@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
 
-import { baseUrl } from '@/constants'
+import { getBaseURL } from '@/utils'
 import { CustomPage } from '@/types'
 import { LayoutMinimal } from '@/layouts/Default'
 import { BaseButtonLink } from '@/components/Link'
@@ -85,7 +85,16 @@ const AliasView: CustomPage = () => {
       }
 
       try {
-        const decryptionKey = window.location.hash.substring(1)
+        const secretRaw = await api<Partial<SecretUrlFields>>(`/secrets/${alias}`, {
+          method: 'DELETE',
+        })
+
+        if (!secretRaw.message) {
+          throw new Error(`Couldn't retrieve secret message.`)
+        }
+
+        const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
+        setSecret({ ...secret })
 
         if (!decryptionKey) {
           throw new Error('Decryption key missing.')

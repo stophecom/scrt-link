@@ -1,11 +1,12 @@
 import useSWR from 'swr'
 import { Stripe } from 'stripe'
 
-import { baseUrl } from '@/constants'
+import { getBaseURL } from '@/utils'
 import { CustomerFields } from '@/api/models/Customer'
 import { StatsFields } from '@/api/models/Stats'
 import { CustomError } from '@/api/utils/createError'
 
+const baseUrl = getBaseURL()
 export async function api<T>(
   url: string,
   options?: Record<string, unknown>,

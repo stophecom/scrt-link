@@ -30,9 +30,10 @@ import UpgradeNotice from '@/components/UpgradeNotice'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 
-import { baseUrl, emailPlaceholder } from '@/constants'
+import { emailPlaceholder } from '@/constants'
 import { demoNeogramMessage } from '@/data/faq'
 import { useCustomer } from '@/utils/api'
+import { getBaseURL } from '@/utils'
 
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { Action, doRequest, doSuccess, doError } from '@/views/Home'
@@ -166,7 +167,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     }
 
     try {
-      const response = await createSecret(message, data, baseUrl)
+      const response = await createSecret(message, data, getBaseURL())
 
       if (response) {
         dispatch(doSuccess({ message: 'Secret saved!', alias, encryptionKey, readReceiptMethod }))
