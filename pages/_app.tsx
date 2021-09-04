@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
+import { SWRConfig } from 'swr'
 
 import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
@@ -77,34 +78,36 @@ const MyApp = ({ Component, pageProps }: Props) => {
   return (
     <Provider session={pageProps.session}>
       <PlausibleProvider domain="scrt.link" exclude="/l/*">
-        <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
-        <Head>
-          <meta name="twitter:card" content="summary" key="twitter:card" />
-          <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
+        <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
+          <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
+          <Head>
+            <meta name="twitter:card" content="summary" key="twitter:card" />
+            <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
 
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-          <link rel="manifest" href="/manifest.json" />
-          <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
-          <meta
-            name="keywords"
-            content="scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
-            key="keywords"
-          />
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@700&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+            <link rel="manifest" href="/manifest.json" />
+            <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
+            <meta
+              name="keywords"
+              content="scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
+              key="keywords"
+            />
+            <meta name="theme-color" content={theme.palette.primary.main} />
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@700&display=swap"
+              rel="stylesheet"
+            />
+          </Head>
 
-        <BaseThemeProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </BaseThemeProvider>
+          <BaseThemeProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </BaseThemeProvider>
+        </SWRConfig>
       </PlausibleProvider>
     </Provider>
   )
