@@ -43,6 +43,7 @@ const withDb = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiR
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
+    // sslValidate: false,
   })
 
   try {
