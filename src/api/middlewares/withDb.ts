@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import { Maybe } from '@/types'
 import models from '../models'
-
 declare module 'http' {
   interface IncomingMessage {
     models: Maybe<typeof models>
