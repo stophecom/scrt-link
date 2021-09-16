@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import { Maybe } from '@/types'
 import models from '../models'
-
 declare module 'http' {
   interface IncomingMessage {
     models: Maybe<typeof models>
@@ -43,7 +42,7 @@ const withDb = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiR
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    // sslValidate: false,
+    tlsInsecure: true, // @todo Implement proper certificate
   })
 
   try {
