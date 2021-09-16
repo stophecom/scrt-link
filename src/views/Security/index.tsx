@@ -32,7 +32,7 @@ If a password is provided, we use it to encrypt your secret **on top** of the st
 We chose industry leaders to host our infrastructure:
 
 - Website/API on [Vercel](https://vercel.com)
-- Cloud Database on [MongoDB](https://cloud.mongodb.com)
+- Cloud Database with [Scalegrid](https://scalegrid.io/)
 - All code on [Gitlab](https://gitlab.com/kingchiller/scrt-link)
 `}
       />
