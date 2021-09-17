@@ -71,7 +71,7 @@ const security = {
 }
 
 const recovery = {
-  heading: 'Can I retrieve a secret that has already been shared?',
+  heading: 'Can I retrieve a secret that has already been visited?',
   body: `Nope. It's a one time secret. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.`,
 }
 
