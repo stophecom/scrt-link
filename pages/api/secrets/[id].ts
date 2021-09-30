@@ -1,5 +1,6 @@
 import { NextApiHandler } from 'next'
 import NextCors from 'nextjs-cors'
+import * as Sentry from '@sentry/node'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
@@ -67,7 +68,7 @@ const handler: NextApiHandler = async (req, res) => {
         await mailjetSms({
           To: `+${decryptAES(receiptPhoneNumber)}`,
           Text: `Your secret ${alias} has been viewed!🔥 Reply with a secret: https://scrt.link`,
-        })
+        }).catch(Sentry.captureException)
       }
 
       if (receiptEmail) {
@@ -79,7 +80,7 @@ const handler: NextApiHandler = async (req, res) => {
           Variables: {
             alias,
           },
-        })
+        }).catch(Sentry.captureException)
       }
 
       res.json({
