@@ -121,7 +121,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
   {
     heading: 'How do read receipts work?',
     body: `
-For each secret, we generate a secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you by the chosen method. In the notification we only include that secret ID, so be sure to store/remember it. The contact information (email/phone number) is **never exposed to the recipient**.
+For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.
 
 **Email**: You'll receive an email from *${email}*.
 
