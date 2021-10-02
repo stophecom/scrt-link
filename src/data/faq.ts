@@ -4,6 +4,8 @@ import {
   chromeExtensionLink,
   firefoxExtensionLink,
   microsoftEdgeExtensionLink,
+  email,
+  twilioSenderPhoneNumber,
 } from '@/constants'
 
 const why = {
@@ -116,6 +118,16 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
     body: `The current limit is ${limits.visitor.maxMessageLength} characters for visitors. With a premium plan you can get up to ${limits.premium.maxMessageLength} characters.`,
   },
   notification,
+  {
+    heading: 'How do read receipts work?',
+    body: `
+For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.
+
+**Email**: You'll receive an email from *${email}*.
+
+**SMS**: You'll receive an SMS notification from *${twilioSenderPhoneNumber}*.
+    `,
+  },
   save,
   {
     heading: 'How long do you keep non-viewed secrets?',
@@ -123,7 +135,7 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
   },
   {
     heading: 'Where can I get the browser extension?',
-    body: `The scrt.link browser extensions are available here:
+    body: `The scrt.link browser extensions are available for all mayor browsers:
 - [Google Chrome](${chromeExtensionLink})
 - [Mozilla Firefox](${firefoxExtensionLink})
 - [Microsoft Edge](${microsoftEdgeExtensionLink})
@@ -131,6 +143,6 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
   },
   {
     heading: 'Who is behind this service?',
-    body: `Hi, it's [@stophecom](https://twitter.com/stophecom), web developer and designer. [SANTiHANS GmbH](https://santihans.com) is the legal entity.`,
+    body: `[SANTiHANS GmbH](https://santihans.com), founded by [@stophecom](https://twitter.com/stophecom), is a Swiss based company that builds great things for the web. We operate under Swiss jurisdiction which provides an extra layer of protection: Switzerland has one of the world's strongest data and privacy protection regulations in place, the [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945).`,
   },
 ]

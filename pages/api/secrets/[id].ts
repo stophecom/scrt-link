@@ -5,7 +5,8 @@ import * as Sentry from '@sentry/node'
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
-import mailjet, { mailjetSms } from '@/api/utils/mailjet'
+import mailjet from '@/api/utils/mailjet'
+import { twilioSms } from '@/api/utils/twilio'
 import { decryptAES } from '@/utils/db'
 
 const handler: NextApiHandler = async (req, res) => {
@@ -65,9 +66,9 @@ const handler: NextApiHandler = async (req, res) => {
       )
 
       if (receiptPhoneNumber) {
-        await mailjetSms({
-          To: `+${decryptAES(receiptPhoneNumber)}`,
-          Text: `Your secret ${alias} has been viewed!🔥 Reply with a secret: https://scrt.link`,
+        await twilioSms({
+          to: `+${decryptAES(receiptPhoneNumber)}`,
+          body: `scrt.link: The following secret has been viewed and destroyed🔥: ${alias}\n\nReply with a secret: https://scrt.link`,
         }).catch(Sentry.captureException)
       }
 

@@ -51,6 +51,7 @@
     "styled-components": "^5.3.1",
     "swr": "^1.0.0",
     "throttle-debounce": "^3.0.1",
+    "twilio": "^3.68.0",
     "validator": "^13.5.2",
     "windups": "^1.1.9",
     "yup": "^0.29.3"
