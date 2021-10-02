@@ -3,6 +3,7 @@ export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
 export const appTitle = 'scrt.link'
 export const trialPeriod = 5
+export const twilioSenderPhoneNumber = '+17744694525'
 
 export const twitterLink = 'https://twitter.com/ScrtLink'
 export const twitterHandle = '@ScrtLink'

@@ -4,6 +4,8 @@ import {
   chromeExtensionLink,
   firefoxExtensionLink,
   microsoftEdgeExtensionLink,
+  email,
+  twilioSenderPhoneNumber,
 } from '@/constants'
 
 const why = {
@@ -116,6 +118,16 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
     body: `The current limit is ${limits.visitor.maxMessageLength} characters for visitors. With a premium plan you can get up to ${limits.premium.maxMessageLength} characters.`,
   },
   notification,
+  {
+    heading: 'How do read receipts work?',
+    body: `
+For each secret, we generate a secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you by the chosen method. In the notification we only include that secret ID, so be sure to store/remember it. The contact information (email/phone number) is **never exposed to the recipient**.
+
+**Email**: You'll receive an email from *${email}*.
+
+**SMS**: You'll receive an SMS notification from *${twilioSenderPhoneNumber}*.
+    `,
+  },
   save,
   {
     heading: 'How long do you keep non-viewed secrets?',
