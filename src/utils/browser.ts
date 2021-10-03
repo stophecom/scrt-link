@@ -20,5 +20,8 @@ export const scrollIntoView = (event: React.MouseEvent) => {
     )
   }
 
-  return element.scrollIntoView({ block: 'start', behavior: 'smooth' })
+  const yOffset = -80 // Fixed header plus some padding
+  const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+
+  return window.scrollTo({ top: y, behavior: 'smooth' })
 }
