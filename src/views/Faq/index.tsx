@@ -18,10 +18,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     unorderedList: {
-      margin: 0,
-      padding: 0,
-      listStyleType: 'none',
-      fontSize: '1.2em',
+      '& a': { paddingTop: '.2em', paddingBottom: '.2em', display: 'inline-flex' },
     },
   }),
 )
