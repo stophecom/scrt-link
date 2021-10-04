@@ -127,7 +127,7 @@ We take a number of steps to protect your privacy, detailed on the [privacy page
     id: 'recovery',
     category: 'securityAndPrivacy',
     heading: 'Can I retrieve a secret that has already been visited?',
-    body: `Nope. It's a one time secret. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.`,
+    body: `Nope. It's a **one time secret**. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.`,
   },
   {
     id: 'message-size',
@@ -143,14 +143,14 @@ We take a number of steps to protect your privacy, detailed on the [privacy page
     id: 'notification',
     category: 'product',
     heading: 'Can I get notified when a secret has been viewed?',
-    body: `Yes, you can get SMS or Email notifications with an account. [Go to Account](/account)`,
+    body: `Yes, you can get **SMS or Email notifications** with an account. [Go to Account](/account)`,
   },
   {
     id: 'read-receipts-info',
     category: 'product',
     heading: 'How do read receipts work?',
     body: `
-For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.
+For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.
 
 **Email**: You'll receive an email from *${email}*.
 
@@ -191,18 +191,18 @@ For each secret, we generate a Secret ID (a random string) which is the only ref
     id: 'trial',
     category: 'accountAndBilling',
     heading: 'How do trials work?',
-    body: `**Try before you buy**: You can test all premium features for a **${trialPeriod} day trial period**. Once the trial ends you will be billed based on your chosen plan. Cancellations during the trial period result in immediate end of the subscription - **no billing** will be made in such case.`,
+    body: `**Try before you buy**: You can test all premium features for a **${trialPeriod} day trial period**. Once the trial ends you will be billed based on your chosen plan. Cancellations during the trial period result in the immediate termination of the subscription - **no billing** will be made in such case.`,
   },
   {
     id: 'end-subscription',
     category: 'accountAndBilling',
-    heading: 'How can I cancel a subscription?',
-    body: `Go to your [account page](/account). Under the "Subscription" tab you can cancel your subscription anytime, **no questions asked**.`,
+    heading: 'How do I cancel a subscription?',
+    body: `Sign in to the [account page](/account). Under the "Subscription" tab you can cancel your subscription anytime, **no questions asked**.`,
   },
   {
     id: 'browser-extensions',
     category: 'product',
-    heading: 'Where can I find the browser extension?',
+    heading: 'Where can I find the browser extensions?',
     body: `The scrt.link browser extensions are available for all major browsers:
 - [Google Chrome](${chromeExtensionLink})
 - [Mozilla Firefox](${firefoxExtensionLink})
