@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography, Divider } from '@material-ui/core'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { FAQPage, WithContext } from 'schema-dts'
@@ -8,7 +8,7 @@ import { Link } from '@/components/Link'
 import { scrollIntoView } from '@/utils/browser'
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
-import { faq } from '@/data/faq'
+import { faq, faqCategories } from '@/data/faq'
 
 import remark from 'remark'
 import strip from 'strip-markdown'
@@ -18,6 +18,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     unorderedList: {
+      paddingLeft: '2em',
       '& a': { paddingTop: '.2em', paddingBottom: '.2em', display: 'inline-flex' },
     },
   }),
@@ -25,13 +26,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type FaqProps = {
   jsonLd: WithContext<FAQPage>
-  faq: {
-    id: string
-    heading: string
-    body: string
+  faqByCategory: {
+    title: string
+    contents: {
+      id: string
+      heading: string
+      body: string
+    }[]
   }[]
 }
-const Faq = ({ faq, jsonLd }: FaqProps) => {
+const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   const classes = useStyles()
   return (
     <Page title="FAQ" subtitle="Frequently Asked Questions">
@@ -42,23 +46,41 @@ const Faq = ({ faq, jsonLd }: FaqProps) => {
         />
       </Head>
       <Box mb={5}>
-        <ul className={classes.unorderedList}>
-          {faq.map(({ id, heading }, index) => (
-            <li key={index}>
-              <Typography component={Link} href={`#${id}`} onClick={scrollIntoView}>
-                {heading}
-              </Typography>
-            </li>
-          ))}
-        </ul>
+        {faqByCategory.map(({ title, contents }, index) => (
+          <Box key={index} mb={4}>
+            <Typography variant="h5">{title}</Typography>
+            <ul className={classes.unorderedList}>
+              {contents.map(({ id, heading }, index) => (
+                <li key={index}>
+                  <Typography component={Link} href={`#${id}`} onClick={scrollIntoView}>
+                    {heading}
+                  </Typography>
+                </li>
+              ))}
+            </ul>
+          </Box>
+        ))}
       </Box>
 
-      {faq.map(({ id, heading, body }, index) => (
-        <Box key={index} py={3}>
-          <Typography id={id} variant="h3">
-            {heading}
-          </Typography>
-          <Markdown source={body} />
+      <Box mb={5}>
+        <Divider />
+      </Box>
+
+      {faqByCategory.map(({ title, contents }, index) => (
+        <Box key={index} mb={4}>
+          <Typography variant="h3">{title}</Typography>
+
+          {contents.map(({ id, heading, body }, index) => (
+            <Box key={index} py={3}>
+              <Typography id={id} variant="h4">
+                {heading}
+              </Typography>
+              <Markdown source={body} />
+            </Box>
+          ))}
+          <Box pt={5}>
+            <Divider />
+          </Box>
         </Box>
       ))}
     </Page>
@@ -104,8 +126,17 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     }),
   }
+
+  const faqByCategory = faqCategories.map(({ id, ...props }) => {
+    const faqList = stripFaq().filter(({ category }) => category === id)
+
+    return {
+      ...props,
+      contents: faqList,
+    }
+  })
   return {
-    props: { faq: stripFaq(), jsonLd },
+    props: { faqByCategory, jsonLd },
   }
 }
 export default Faq
