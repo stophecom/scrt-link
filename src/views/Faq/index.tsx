@@ -3,6 +3,9 @@ import { Box, Typography, Divider } from '@material-ui/core'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { FAQPage, WithContext } from 'schema-dts'
+import remark from 'remark'
+import strip from 'strip-markdown'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 import { Link } from '@/components/Link'
 import { scrollIntoView } from '@/utils/browser'
@@ -10,11 +13,6 @@ import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import { faq, faqCategories } from '@/data/faq'
 import { emailSupport } from '@/constants'
-
-import remark from 'remark'
-import strip from 'strip-markdown'
-
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
