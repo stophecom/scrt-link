@@ -9,6 +9,7 @@ import { scrollIntoView } from '@/utils/browser'
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import { faq, faqCategories } from '@/data/faq'
+import { emailSupport } from '@/constants'
 
 import remark from 'remark'
 import strip from 'strip-markdown'
@@ -61,11 +62,9 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
           </Box>
         ))}
       </Box>
-
       <Box mb={5}>
         <Divider />
       </Box>
-
       {faqByCategory.map(({ title, contents }, index) => (
         <Box key={index} mb={4}>
           <Typography variant="h3">{title}</Typography>
@@ -83,6 +82,12 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
           </Box>
         </Box>
       ))}
+      <Box mb={5}>
+        <Typography>
+          {`Didn't find the answer you were looking for? Contact support: `}
+          <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
+        </Typography>
+      </Box>
     </Page>
   )
 }

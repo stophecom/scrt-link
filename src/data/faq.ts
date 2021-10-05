@@ -49,6 +49,7 @@ Sharing secrets is delicate. You don't want sensitive information (confidential 
 **Use this service in case you want to…**
 - Share your Netflix password with a family member.
 - Send a private message from a public computer.
+- Send access tokens, API keys, PIN codes to a coworker.
 - Confess to a secret crush.
 - Transmit information that could be used against you.
 `,
@@ -74,7 +75,7 @@ For **extra security**, you can include a password that will be needed to decryp
     id: 'difference-to-disappearing-messages',
     category: 'general',
     heading: `What is the difference to disappearing messages on Signal or Whatsapp?`,
-    body: `Anonymity, privacy and security. Plain text messages within a chat log can always get tracked back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level.  With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content.
+    body: `Anonymity, privacy and security. Plain text messages within a chat log can always get traced back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level. With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content.
 `,
   },
   {
@@ -109,10 +110,10 @@ However, it is fine to share a generated secret link using Snapchat, Facebook, I
     category: 'securityAndPrivacy',
     heading: 'How is my privacy protected?',
     body: `
-We take a number of steps to protect your privacy, detailed on the [privacy page](/privacy) - however some of the features require third party services that may have access to personal identifiable information (PII). If you want to further protect your privacy, we recommend following steps:
+We take a number of steps to protect your privacy, detailed on the [privacy page](/privacy) - however some of the features require third party services that may have access to personal identifiable information (PII). If you want to further protect your privacy, we recommend the following:
 
 - Connect to our service via a virtual private network (VPN): This way you never expose your personal IP address. We recommend [ProtonVPN](https://protonvpn.com/).
-- Use masked emails and phone numbers: If you choose to create an account, you can use a service such as [Abine Blur](https://www.abine.com/) to hide your personal email address, phone number and/or credit card information.
+- Use a service such as [Abine Blur](https://www.abine.com/) to hide your personal email address, phone number and/or credit card information.
     `,
   },
   {
@@ -158,6 +159,18 @@ For each secret, we generate a Secret ID (a random string) which is the only ref
     `,
   },
   {
+    id: 'secret-not-found',
+    category: 'product',
+    heading: 'Why do I get "Secret not found" error?',
+    body: `
+This means that the secret link has already been visited. If this happens unexpectedly:
+- Check with the sender to make sure the link hasn't been visited by mistake.
+- The secret was accessed via brut-force attack or there is an issue with the server infrastructure (don't worry, the contents of the secrets would still be encrypted) - both cases are very unlikely.
+- **Worst case**: A third party accessed the link, which ultimately means, your communication channel and/or either party's device has been compromised. 
+    `,
+  },
+
+  {
     id: 'save',
     category: 'securityAndPrivacy',
     heading: 'Can the recipient save the message?',
@@ -179,13 +192,13 @@ For each secret, we generate a Secret ID (a random string) which is the only ref
     id: 'payment-methods',
     category: 'accountAndBilling',
     heading: 'What payment methods are supported? ',
-    body: `Our payment provider [Stripe](https://stripe.com/) offers a variety of payment options, Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) among many others. Once you choose a premium plan you get redirected to Stripe where you can select your preferred method.`,
+    body: `Our payment provider [Stripe](https://stripe.com/) offers a variety of payment options: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) among many others. Once you choose a premium plan you get redirected to Stripe where you can select your preferred method.`,
   },
   {
     id: 'subscriptions',
     category: 'accountAndBilling',
     heading: 'How do subscriptions work?',
-    body: `Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval.`,
+    body: `Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval. A subscription can be cancelled anytime.`,
   },
   {
     id: 'trial',
