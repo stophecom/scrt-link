@@ -40,9 +40,10 @@ const handler: NextApiHandler = async (req, res) => {
     try {
       event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret)
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unexpected error'
       // On error, log and return the error message.
-      console.warn(`❌ Error message: ${err.message}`)
-      throw createError(400, `Webhook Error: ${err.message}`)
+      console.warn(`❌ Error message: ${errorMessage}`)
+      throw createError(400, `Webhook Error: ${errorMessage}`)
     }
 
     // Successfully constructed event.

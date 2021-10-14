@@ -6,6 +6,7 @@ import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 import { project } from 'ramda'
 
+import { Link } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import FormSignIn from '@/components/FormSignIn'
@@ -16,7 +17,7 @@ import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
 import UnorderedList from '@/components/UnorderedList'
 
-import { useCustomer } from '@/utils/api'
+import { api, useCustomer } from '@/utils/api'
 
 const PlanSelection = dynamic(() => import('@/components/PlanSelection'))
 
@@ -35,6 +36,37 @@ const menu = [
   { label: 'Danger Zone', key: 'danger' },
 ]
 export type MenuItem = typeof menu[number]
+
+type ResponseCreatePortalLink = { url: string }
+
+const ManageSubscriptionButton = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const redirectToCustomerPortal = async () => {
+    setIsLoading(true)
+    return api<ResponseCreatePortalLink>(`/subscriptions/create-portal-link`, { method: 'POST' })
+      .then(({ url }) => {
+        window.location.assign(url)
+      })
+      .catch((error) => {
+        return alert(error.message)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  return (
+    <BaseButton
+      variant="outlined"
+      color="primary"
+      onClick={redirectToCustomerPortal}
+      loading={isLoading}
+    >
+      Manage subscription on Stripe
+    </BaseButton>
+  )
+}
 
 const Account = () => {
   const [session, loading] = useSession()
@@ -82,7 +114,14 @@ const Account = () => {
           {activeTab === 'subscription' && (
             <>
               <Box mb={2}>
-                <Alert severity="info">You are currently on the {customer?.role} plan.</Alert>
+                <Alert severity="info">
+                  You are currently on the <strong>{customer?.role}</strong> plan.
+                  {customer?.role === 'premium' && (
+                    <Box mt={1}>
+                      <ManageSubscriptionButton />
+                    </Box>
+                  )}
+                </Alert>
               </Box>
 
               <PlanSelection />
@@ -95,6 +134,9 @@ const Account = () => {
                 <Box mb={1}>
                   <Alert severity="info">
                     You have a running subscription. We recommend to cancel it first.
+                    <Box mt={1}>
+                      <ManageSubscriptionButton />
+                    </Box>
                   </Alert>
                 </Box>
               )}

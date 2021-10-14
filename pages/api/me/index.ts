@@ -15,7 +15,7 @@ const extractPostInput = async (req: NextApiRequest) => {
 
     await getCustomerValidationSchema('none').validate(editableData)
   } catch (err) {
-    throw createError(422, err.message)
+    throw createError(422, err instanceof Error ? err.message : 'Unexpected error')
   }
 
   return encodeStringsForDB(req.body)

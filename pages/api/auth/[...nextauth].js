@@ -43,8 +43,6 @@ const handler = (req, res) =>
             receiptEmail: user.email,
             role: 'free',
           })
-
-          token.stripeCustomerId = stripeCustomer?.id
         }
 
         // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
@@ -56,7 +54,6 @@ const handler = (req, res) =>
       },
       async session(session, token) {
         session.userId = token.userId
-        session.stripeCustomerId = token.stripeCustomerId
 
         return session
       },

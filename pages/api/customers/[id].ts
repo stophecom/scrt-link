@@ -15,7 +15,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         res.status(200).json(customer)
       } catch (err) {
-        throw createError(500, err.message)
+        throw createError(500, err instanceof Error ? err.message : 'Unexpected error')
       }
       break
     }

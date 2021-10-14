@@ -185,7 +185,7 @@ const PlanSelection: React.FunctionComponent = () => {
         })
       }
     } catch (err) {
-      setStatus({ type: 'error', message: err.message })
+      setStatus({ type: 'error', message: err instanceof Error ? err.message : 'Unexpected error' })
     } finally {
       triggerFetchStripeCustomer()
     }

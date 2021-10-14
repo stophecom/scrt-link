@@ -24,11 +24,15 @@ const handler: NextApiHandler = async (req, res) => {
       const { priceId } = req.body
 
       try {
+        const customer = await models.Customer.findOne({
+          userId: session.userId || '',
+        }).lean()
+
         // Create Checkout Sessions from body params.
         const params: Stripe.Checkout.SessionCreateParams = {
           mode: 'subscription',
           payment_method_types: ['card'],
-          customer: session.stripeCustomerId,
+          customer: customer?.stripe?.customerId,
           line_items: [
             {
               price: priceId,
@@ -52,7 +56,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         res.status(200).json(checkoutSession)
       } catch (err) {
-        throw createError(500, err.message)
+        throw createError(500, err instanceof Error ? err.message : 'Unexpected error')
       }
       break
     }

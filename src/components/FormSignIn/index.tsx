@@ -56,6 +56,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
 }) => {
   const classes = useStyles()
   const [state, setState] = useState(initialState)
+  const [email, setEmail] = useState('')
   const [isSignUp, setIsSignUp] = useState(showSignUp)
   const router = useRouter()
 
@@ -69,6 +70,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
     try {
       const response = await signIn('email', { ...values, callbackUrl, redirect: false })
       setState(response)
+      setEmail(values.email)
       formikHelpers.resetForm()
     } finally {
       formikHelpers.setSubmitting(false)
@@ -84,7 +86,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   if (ok) {
     return (
       <Alert severity="success">
-        Check your email! A sign in link has been sent to your email address.
+        Check your email! A sign in link has been sent to <em>{email}</em>.
       </Alert>
     )
   }

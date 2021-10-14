@@ -36,7 +36,7 @@ export async function api<T>(
 
     return response.json() as Promise<T>
   } catch (err) {
-    throw new Error(err.message)
+    throw new Error(err instanceof Error ? err.message : 'Unexpected error')
   }
 }
 
