@@ -11,7 +11,7 @@ const extractPostInput = async (req: NextApiRequest) => {
   try {
     await apiValidationSchemaByType.validate(req.body) // Improve
   } catch (err) {
-    throw createError(422, err.message)
+    throw createError(422, err instanceof Error ? err.message : 'Unexpected error')
   }
 
   return req.body
@@ -75,7 +75,10 @@ const handler: NextApiHandler = async (req, res) => {
         await shortened.save()
         res.status(200).json({ alias, message: 'Secret saved!' })
       } catch (err) {
-        throw createError(500, 'Database error: ' + err.message)
+        throw createError(
+          500,
+          err instanceof Error ? 'Database error: ' + err.message : 'Unexpected error',
+        )
       }
 
       break

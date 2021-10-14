@@ -21,7 +21,7 @@ const handler: NextApiHandler = async (req, res) => {
         const subscription = await stripe.subscriptions.retrieve(subscriptionId)
         res.status(200).json(subscription)
       } catch (err) {
-        throw createError(500, err.message)
+        throw createError(500, err instanceof Error ? err.message : 'Unexpected error')
       }
       break
     }
@@ -46,7 +46,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         res.status(200).json(updatedSubscription)
       } catch (err) {
-        throw createError(500, err.message)
+        throw createError(500, err instanceof Error ? err.message : 'Unexpected error')
       }
       break
     }
@@ -63,7 +63,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         res.status(200).json(canceledSubscription)
       } catch (err) {
-        throw createError(500, err.message)
+        throw createError(500, err instanceof Error ? err.message : 'Unexpected error')
       }
       break
     }

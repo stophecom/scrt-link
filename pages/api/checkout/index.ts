@@ -37,7 +37,7 @@ const handler: NextApiHandler = async (req, res) => {
             },
           ],
           subscription_data: {
-            trial_period_days: trialPeriod,
+            // trial_period_days: trialPeriod,
           },
           // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
           // the actual Session ID is returned in the query parameter when your customer
@@ -52,7 +52,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         res.status(200).json(checkoutSession)
       } catch (err) {
-        throw createError(500, err.message)
+        throw createError(500, err instanceof Error ? err.message : 'Unexpected error')
       }
       break
     }
