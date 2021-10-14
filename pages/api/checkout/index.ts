@@ -24,11 +24,15 @@ const handler: NextApiHandler = async (req, res) => {
       const { priceId } = req.body
 
       try {
+        const customer = await models.Customer.findOne({
+          userId: session.userId || '',
+        }).lean()
+
         // Create Checkout Sessions from body params.
         const params: Stripe.Checkout.SessionCreateParams = {
           mode: 'subscription',
           payment_method_types: ['card'],
-          customer: session.stripeCustomerId,
+          customer: customer?.stripe.customerId,
           line_items: [
             {
               price: priceId,
@@ -37,7 +41,7 @@ const handler: NextApiHandler = async (req, res) => {
             },
           ],
           subscription_data: {
-            // trial_period_days: trialPeriod,
+            trial_period_days: trialPeriod,
           },
           // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
           // the actual Session ID is returned in the query parameter when your customer

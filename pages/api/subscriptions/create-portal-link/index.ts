@@ -22,8 +22,16 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'POST': {
       try {
+        const customer = await models.Customer.findOne({
+          userId: session.userId || '',
+        }).lean()
+
+        if (!customer?.stripe?.customerId) {
+          throw createError(500, 'No Stripe customer attached to this user.')
+        }
+
         const { url } = await stripe.billingPortal.sessions.create({
-          customer: session.stripeCustomerId,
+          customer: customer.stripe.customerId,
           return_url: `${getBaseURL()}/account`,
         })
 
