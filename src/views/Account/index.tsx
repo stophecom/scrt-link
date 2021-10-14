@@ -116,9 +116,11 @@ const Account = () => {
               <Box mb={2}>
                 <Alert severity="info">
                   You are currently on the <strong>{customer?.role}</strong> plan.
-                  <Box mt={1}>
-                    <ManageSubscriptionButton />
-                  </Box>
+                  {customer?.role === 'premium' && (
+                    <Box mt={1}>
+                      <ManageSubscriptionButton />
+                    </Box>
+                  )}
                 </Alert>
               </Box>
 
