@@ -6,7 +6,6 @@ import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 import { project } from 'ramda'
 
-import { Link } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import FormSignIn from '@/components/FormSignIn'
