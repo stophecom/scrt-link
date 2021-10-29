@@ -6783,10 +6783,10 @@ scmp@^2.1.0:
   resolved "https://registry.yarnpkg.com/scmp/-/scmp-2.1.0.tgz#37b8e197c425bdeb570ab91cc356b311a11f9c9a"
   integrity sha512-o/mRQGk9Rcer/jEEw/yw4mwo3EU/NvYvp577/Btqrym9Qy5/MdWGBqipbALgd2lrdWTJ5/gqDusxfnQBxOxT2Q==
 
-scrt-link-core@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/scrt-link-core/-/scrt-link-core-0.2.0.tgz#54eb279f84b1a8aa3358d5cccb5ca2d8900c9b47"
-  integrity sha512-Vz+mKUw/6vU5Wn1iHVCDDxc1KRF1OxjQ10day8iH8z2GJ0oSXEDQDGVtt6OTLS7o3B75A72F8qVEn9xWaOiR2A==
+scrt-link-core@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/scrt-link-core/-/scrt-link-core-0.2.1.tgz#44e4b37ed684d285958108cff39efcd8a0f0d42c"
+  integrity sha512-0HoB55eLImVEH2AmppytFqcV+UUSNUHRfdJJhbnpJnx19xtqqv/bFskoI7VRzH4ghr/auN5WyDl+HX8KR/3ssg==
   dependencies:
     cross-fetch "^3.1.4"
     crypto-js "^4.1.1"
