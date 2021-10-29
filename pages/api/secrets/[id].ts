@@ -1,7 +1,6 @@
 import { NextApiHandler } from 'next'
 import NextCors from 'nextjs-cors'
 import * as Sentry from '@sentry/node'
-import fetch from 'node-fetch'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
