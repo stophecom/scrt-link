@@ -1,6 +1,7 @@
 import { NextApiHandler } from 'next'
 import NextCors from 'nextjs-cors'
 import * as Sentry from '@sentry/node'
+import fetch from 'node-fetch'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
@@ -46,6 +47,7 @@ const handler: NextApiHandler = async (req, res) => {
         isEncryptedWithUserPassword,
         neogramDestructionMessage,
         neogramDestructionTimeout,
+        receiptApi,
         receiptEmail,
         receiptPhoneNumber,
         message,
@@ -81,6 +83,18 @@ const handler: NextApiHandler = async (req, res) => {
           Variables: {
             alias,
           },
+        }).catch(Sentry.captureException)
+      }
+
+      // Here we send receiptId to slack app endpoint. See https://gitlab.com/kingchiller/scrt-link-slack for more info.
+      if (receiptApi?.slack) {
+        await fetch(`${process.env.SLACK_APP_API_URL}/receipts`, {
+          method: 'POST',
+          headers: {
+            'X-API-KEY': process.env.SLACK_APP_API_KEY,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ receiptId: receiptApi.slack }),
         }).catch(Sentry.captureException)
       }
 

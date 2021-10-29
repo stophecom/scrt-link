@@ -38,6 +38,7 @@ const handler: NextApiHandler = async (req, res) => {
         alias,
         receiptEmail,
         receiptPhoneNumber,
+        receiptApi,
         neogramDestructionMessage,
         neogramDestructionTimeout,
       } = await extractPostInput(req)
@@ -67,6 +68,7 @@ const handler: NextApiHandler = async (req, res) => {
               neogramDestructionTimeout,
             }
           : {}),
+        receiptApi,
         ...(receiptEmail ? { receiptEmail: encryptAES(receiptEmail) } : {}),
         ...(receiptPhoneNumber ? { receiptPhoneNumber: encryptAES(receiptPhoneNumber) } : {}),
       })

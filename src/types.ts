@@ -25,6 +25,8 @@ declare global {
       STRIPE_WEBHOOK_SECRET: string
       TWILIO_ACCOUNT_SID: string
       TWILIO_AUTH_TOKEN: string
+      SLACK_APP_API_URL: string
+      SLACK_APP_API_KEY: string
     }
   }
 }
