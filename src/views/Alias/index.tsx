@@ -26,7 +26,7 @@ import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
-
+type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'>
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     break: {
@@ -46,7 +46,7 @@ const AliasView: CustomPage = () => {
   const { alias, preview } = router.query
 
   // Use preview mode if data if passed via URL params
-  let previewData = {} as Partial<SecretUrlFields>
+  let previewData = {} as Partial<SecretState>
   if (preview) {
     const obj = decodeURIComponent(preview as string)
     previewData = JSON.parse(obj)
@@ -54,7 +54,7 @@ const AliasView: CustomPage = () => {
   const isPreview = previewData?.secretType
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [secret, setSecret] = useState({} as Partial<SecretUrlFields>)
+  const [secret, setSecret] = useState({} as Partial<SecretState>)
   const [error, setError] = useState('' as Error['message'])
 
   const {
@@ -101,7 +101,7 @@ const AliasView: CustomPage = () => {
         // eslint-disable-next-line no-restricted-globals
         history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (error) {
-        setError(`${error.message}`)
+        setError(`${error instanceof Error && error.message}`)
       }
     }
 
