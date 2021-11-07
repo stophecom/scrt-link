@@ -26,6 +26,7 @@ export const chromeExtensionLink =
 export const firefoxExtensionLink = 'https://addons.mozilla.org/en-US/firefox/addon/scrt-link'
 export const microsoftEdgeExtensionLink =
   'https://microsoftedge.microsoft.com/addons/detail/scrtlink-share-a-secre/ijchnpicofdgjjnedmdnhodglbnfmgih'
+export const slackAppInstallLink = 'https://slack.scrt.link/slack/install'
 
 // Limits per user role
 export const limits = {
