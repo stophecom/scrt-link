@@ -4,6 +4,7 @@ import {
   chromeExtensionLink,
   firefoxExtensionLink,
   microsoftEdgeExtensionLink,
+  slackAppInstallLink,
   email,
   twilioSenderPhoneNumber,
   trialPeriod,
@@ -220,6 +221,14 @@ This means that the secret link has already been visited. If this happens unexpe
 - [Google Chrome](${chromeExtensionLink})
 - [Mozilla Firefox](${firefoxExtensionLink})
 - [Microsoft Edge](${microsoftEdgeExtensionLink})
+`,
+  },
+  {
+    id: 'slack-app',
+    category: 'product',
+    heading: 'Where can I get the Slack App?',
+    body: `👉 [Get Slack App](${slackAppInstallLink})  
+**Important notice:** There are limitations when using the Slack Application. Due to the nature of how these apps are designed, full end-to-end encryption is not possible. In most cases this is not a problem and a risk worth taking - however, if you need advanced protection, create secrets on the website instead.
 `,
   },
   {
