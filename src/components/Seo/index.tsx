@@ -3,9 +3,8 @@ import Head from 'next/head'
 import { is } from 'ramda'
 import { appTitle } from '@/constants'
 
-export interface JsonLd {
+export interface JsonLd extends Record<string, unknown> {
   '@type': string
-  [prop: string]: any
 }
 
 export interface SeoProps {

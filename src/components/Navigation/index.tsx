@@ -204,7 +204,7 @@ const Navigation = () => {
     return () => {
       window.removeEventListener('scroll', scrollHandler)
     }
-  }, [])
+  })
 
   return (
     <div>
