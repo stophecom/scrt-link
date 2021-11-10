@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>http://localhost:3000</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.237Z</lastmod></url>
-<url><loc>http://localhost:3000/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.237Z</lastmod></url>
-<url><loc>http://localhost:3000/acceptable-use-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/cookie-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/imprint</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/pricing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/pricing/canceled</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/privacy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/privacy-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/security</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/slack</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
-<url><loc>http://localhost:3000/terms-of-service</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:26:28.238Z</lastmod></url>
+<url><loc>http://localhost:3000</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/acceptable-use-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/cookie-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/imprint</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/pricing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/pricing/canceled</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/privacy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/privacy-policy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.048Z</lastmod></url>
+<url><loc>http://localhost:3000/security</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.049Z</lastmod></url>
+<url><loc>http://localhost:3000/slack</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.049Z</lastmod></url>
+<url><loc>http://localhost:3000/terms-of-service</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-10T20:55:17.049Z</lastmod></url>
 </urlset>
