@@ -126,7 +126,7 @@ const Slack = () => {
 - **Encrypted, disposable messages** that are stored outside of Slack.
 - **Burn notification** after a secret has been viewed. 
 - No logs, no backup, no trace.
-- Minimal user data, full privacy protection  
+- Minimal data required, full privacy protection.  
     
   👉 [Install now](${slackAppInstallLink})
 ---
