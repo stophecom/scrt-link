@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const withPWA = require('next-pwa')
 const withPlugins = require('next-compose-plugins')
 const { withPlausibleProxy } = require('next-plausible')
