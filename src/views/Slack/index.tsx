@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { Box } from '@material-ui/core'
 import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+import { useInView } from 'react-intersection-observer'
+import clsx from 'clsx'
 
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
@@ -19,12 +21,13 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.default,
       position: 'absolute',
       bottom: -50,
-      left: '-100px',
-      marginRight: '-100px',
       paddingTop: '46px',
       paddingBottom: '60px',
-      width: 'calc(100% + 200px)',
+      width: '100vw',
+      left: '50%',
+      transform: 'translateX(-50%)',
       boxShadow: '0 -12px 10px -10px #00000047, 0 -35px 20px -30px #00000027',
+      maxWidth: theme.breakpoints.values.md,
     },
     shadow: {
       display: 'inline-flex',
@@ -53,7 +56,7 @@ const SlackInstallButton: React.FC<SlackInstallButtonProps> = ({ className }) =>
   return (
     <Box className={className} display="flex" justifyContent="center" py={3}>
       <a className={classes.shadow} href={slackAppInstallLink}>
-        <img
+        <Image
           className={classes.image}
           width={1.5 * 140}
           height={1.5 * 41}
@@ -70,18 +73,33 @@ const HoverBox = styled.div`
   transform: translateY(0);
 
   & > .screenshot {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 0 80px rgba(255, 0, 131, 0.2), 0px 0px 22px rgba(255, 0, 131, 0.2),
+        0 0 1px rgba(255, 0, 131, 1);
+      opacity: 0.1;
+      border-radius: 12px;
+      transition: 1000ms;
+    }
     transition: 700ms;
   }
 
-  &:hover .screenshot {
+  &.screenshot--in-view > .screenshot {
     transform: translateY(-15px);
+
+    &::after {
+      opacity: 1;
+    }
   }
 `
 const BoxShadowImage = styled.div`
-  transform: translateY(0);
-  box-shadow: 0 0 80px rgba(255, 0, 131, 0.2), 0px 0px 22px rgba(255, 0, 131, 0.2),
-    0 0 1px rgba(255, 0, 131, 1);
-  border-radius: 12px;
   margin-top: 1em;
 
   & img {
@@ -91,6 +109,9 @@ const BoxShadowImage = styled.div`
 
 const Slack = () => {
   const classes = useStyles()
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+  })
 
   return (
     <Page
@@ -100,7 +121,7 @@ const Slack = () => {
         'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the Scrt.link App you can now protect sensitive information within your Slack conversation.'
       }
     >
-      <HoverBox>
+      <HoverBox className={clsx({ 'screenshot--in-view': inView })}>
         <BoxShadowImage className="screenshot">
           <Image
             className={classes.image}
@@ -112,7 +133,9 @@ const Slack = () => {
             objectPosition="top"
           />
         </BoxShadowImage>
-        <SlackInstallButton className={classes.cta} />
+        <div ref={ref}>
+          <SlackInstallButton className={classes.cta} />
+        </div>
       </HoverBox>
 
       <Section
