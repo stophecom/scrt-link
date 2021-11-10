@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Typography, Box } from '@material-ui/core'
 import styled from 'styled-components'
 
