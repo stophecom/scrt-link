@@ -9,7 +9,7 @@ import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 import { slackAppInstallLink } from '@/constants'
-import { slackAppFaq } from '@/data/faq'
+import slackAppFaq from '@/data/faq/slack'
 
 const FaqAccordion = dynamic(() => import('@/components/Accordion'))
 
