@@ -183,7 +183,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
 
       formikHelpers.resetForm()
     } catch (error) {
-      dispatch(doError(error))
+      dispatch(doError(error instanceof Error ? error : new Error('Secret creation failed.')))
     } finally {
       formikHelpers.setSubmitting(false)
     }
