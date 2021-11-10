@@ -3,19 +3,20 @@ const slackAppFaq = [
     id: 'slack-security',
     category: 'slack',
     heading: 'Is the Slack App secure?',
-    body: `Yes, for 99% of use cases it's safe to use. As mentioned above, it's important to know that **Slack is proprietary software**. We don't know what's going on behind the curtain. In case you need to be 100% sure, create secrets via the website instead.`,
+    body: `The honest answer: We can't know for sure. It's important to understand that **end-to-end-encryption is not possible** with Slack apps. However, the communication between our app server and Slack is encrypted and we therefore believe that for 99% of use cases it's safe to use. Still, please be aware that **Slack is proprietary software** and we don't have control over code that runs your Slack instance. **In case you need to be 100% sure, create secrets via the website instead.**`,
   },
   {
     id: 'slack-trust',
     category: 'slack',
     heading: 'Why should I trust you?',
-    body: `Short answer: Don't. Long answer: We believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on [Gitlab](https://gitlab.com/kingchiller/scrt-link-slack). Feel free to launch your own private Slack App.`,
+    body: `Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on [Gitlab](https://gitlab.com/kingchiller/scrt-link-slack). Feel free to launch your own private Slack App.`,
   },
   {
     id: 'slack-data-collection',
     category: 'slack',
     heading: 'What data do you collect?',
-    body: `When you install the app, you grant us specific access rights (permission scopes) that are necessary to run the app (e.g. the right to post a secret link in your name). We store this installation data. The data includes basic user information as well as the individual authorization tokens. Additionally, we temporarily store data required for read receipts. We don't store any other data. We do not use data for any other purpose, nor do we sell or distribute any data.`,
+    body: `We only store data that is necessary to run the app. When you install the app, you grant us specific access rights (e.g. the right to post a secret link in your name). This data includes basic user information as well as the individual authorization tokens. Additionally, we temporarily store data required for read receipts.  
+    **We don't store any other data. We do not use data for any other purpose, nor do we sell or distribute any of that.**`,
   },
   {
     id: 'slack-not-approved',
@@ -39,7 +40,7 @@ const slackAppFaq = [
     id: 'slack-premium-account',
     category: 'slack',
     heading: 'Do I need a premium subscription to use the Slack app?',
-    body: `No. You are very welcome welcome. (Paid subscriptions help us to keep it that way)`,
+    body: `No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless 🤓.`,
   },
 ]
 
