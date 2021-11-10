@@ -42,8 +42,10 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
       const response = await api<Response>(`/sendmail`, { method: 'POST' }, { ...values })
       setState(response)
       formikHelpers.resetForm()
-    } catch (err) {
-      setState({ error: err.message })
+    } catch (error) {
+      setState({
+        error: error instanceof Error ? error.message : 'FormShareSecretLink submit failed.',
+      })
     } finally {
       formikHelpers.setSubmitting(false)
     }
