@@ -40,7 +40,9 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
   const handleSubmit: OnSubmit<FormShareSecretLinkProps> = async (values, formikHelpers) => {
     try {
       const response = await api<Response>(`/sendmail`, { method: 'POST' }, { ...values })
-      setState(response)
+      if (response){
+        setState(response)
+      }
       formikHelpers.resetForm()
     } catch (error) {
       setState({
