@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const withPWA = require('next-pwa')
 const withPlugins = require('next-compose-plugins')
 const { withPlausibleProxy } = require('next-plausible')
@@ -26,6 +25,7 @@ const plugins = [
 ]
 
 const config = {
+  // swcMinify: true, // Wait for nextjs 12
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
@@ -52,4 +52,7 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions)
+module.exports =
+  process.env.NEXT_PUBLIC_ENV === 'development'
+    ? moduleExports
+    : withSentryConfig(moduleExports, SentryWebpackPluginOptions)

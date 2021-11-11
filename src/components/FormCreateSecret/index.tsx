@@ -31,7 +31,7 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 
 import { emailPlaceholder } from '@/constants'
-import { demoNeogramMessage } from '@/data/faq'
+import { demoNeogramMessage } from '@/data/faq/product'
 import { useCustomer } from '@/utils/api'
 import { getBaseURL } from '@/utils'
 

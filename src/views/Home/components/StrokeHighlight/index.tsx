@@ -40,7 +40,11 @@ type StrokeHighlightProps = {
 const StrokeHighlight = ({ children }: StrokeHighlightProps) => {
   const [ready, setReady] = useState(false)
   useEffect(() => {
-    setTimeout(() => setReady(true), 1000)
+    const timeout = setTimeout(() => setReady(true), 1000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [])
   return (
     <Highlight>

@@ -12,7 +12,10 @@ const extractPostInput = async (req: NextApiRequest) => {
   try {
     await shareSecretViaEmailSchema.validate(req.body)
   } catch (err) {
-    throw createError(422, err.message)
+    throw createError(
+      422,
+      err instanceof Error ? err.message : `Couldn't extract data from POST request.`,
+    )
   }
 
   return req.body

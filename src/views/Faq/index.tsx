@@ -7,9 +7,10 @@ import remark from 'remark'
 import strip from 'strip-markdown'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
-import { Link } from '@/components/Link'
 import { scrollIntoView } from '@/utils/browser'
-import Markdown from '@/components/Markdown'
+import FaqAccordion from '@/components/Accordion'
+import { Link } from '@/components/Link'
+
 import Page from '@/components/Page'
 import { faq, faqCategories } from '@/data/faq'
 import { emailSupport } from '@/constants'
@@ -27,6 +28,7 @@ type FaqProps = {
   jsonLd: WithContext<FAQPage>
   faqByCategory: {
     title: string
+    id: string
     contents: {
       id: string
       heading: string
@@ -44,40 +46,28 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
           type="application/ld+json"
         />
       </Head>
-      <Box mb={5}>
-        {faqByCategory.map(({ title, contents }, index) => (
-          <Box key={index} mb={4}>
-            <Typography variant="h5">{title}</Typography>
-            <ul className={classes.unorderedList}>
-              {contents.map(({ id, heading }, index) => (
-                <li key={index}>
-                  <Typography component={Link} href={`#${id}`} onClick={scrollIntoView}>
-                    {heading}
-                  </Typography>
-                </li>
-              ))}
-            </ul>
-          </Box>
+      <Typography>
+        <strong>What topic can we help you with?</strong>
+      </Typography>
+      <ul className={classes.unorderedList}>
+        {faqByCategory.map(({ title, id }, index) => (
+          <li key={index}>
+            <Typography component={Link} href={`#${id}`} onClick={scrollIntoView}>
+              {title}
+            </Typography>
+          </li>
         ))}
-      </Box>
-      <Box mb={5}>
+      </ul>
+      <Box my={7}>
         <Divider />
       </Box>
-      {faqByCategory.map(({ title, contents }, index) => (
-        <Box key={index} mb={4}>
-          <Typography variant="h3">{title}</Typography>
 
-          {contents.map(({ id, heading, body }, index) => (
-            <Box key={index} py={3}>
-              <Typography id={id} variant="h4">
-                {heading}
-              </Typography>
-              <Markdown source={body} />
-            </Box>
-          ))}
-          <Box pt={5}>
-            <Divider />
-          </Box>
+      {faqByCategory.map(({ title, id, contents }, index) => (
+        <Box key={index} mb={10}>
+          <Typography id={id} variant="h3">
+            {title}
+          </Typography>
+          <FaqAccordion items={contents} />
         </Box>
       ))}
       <Box mb={5}>
@@ -135,6 +125,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return {
       ...props,
+      id,
       contents: faqList,
     }
   })
