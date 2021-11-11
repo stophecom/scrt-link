@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     slackButton: {
       '& .slack-button': {
-        transform: 'scale(0.6)',
+        transform: 'scale(0.8)',
       },
 
       [theme.breakpoints.up('sm')]: {
@@ -170,7 +170,6 @@ const Slack = () => {
 - **Encrypted, disposable messages** that are stored outside of Slack.
 - **Burn notification** after a secret has been viewed. 
 - No logs, no backup, no trace.
-- Minimal data required, full privacy protection.  
     
   👉 [Install now](${slackAppInstallLink})
 ---
