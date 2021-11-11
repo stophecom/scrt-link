@@ -25,7 +25,7 @@ const plugins = [
 ]
 
 const config = {
-  swcMinify: true,
+  // swcMinify: true, // Wait for nextjs 12
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
