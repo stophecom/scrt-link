@@ -69,7 +69,9 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   const handleSubmit: OnSubmit<SignIn> = async (values, formikHelpers) => {
     try {
       const response = await signIn('email', { ...values, callbackUrl, redirect: false })
-      setState(response)
+      if (response) {
+        setState(response)
+      }
       setEmail(values.email)
       formikHelpers.resetForm()
     } finally {

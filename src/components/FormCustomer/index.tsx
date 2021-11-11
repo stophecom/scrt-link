@@ -118,7 +118,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
       setState({ data: response })
       onSuccess()
     } catch (error) {
-      setState({ error: error.message })
+      setState({ error: error instanceof Error ? error.message : 'FormCustomer submit failed.' })
     } finally {
       formikHelpers.setSubmitting(false)
     }
