@@ -17,17 +17,33 @@ const FaqAccordion = dynamic(() => import('@/components/Accordion'))
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    slackButton: {
+      '& .slack-button': {
+        transform: 'scale(0.6)',
+      },
+
+      [theme.breakpoints.up('sm')]: {
+        '& .slack-button': {
+          transform: 'scale(1)',
+        },
+      },
+    },
     cta: {
       backgroundColor: theme.palette.background.default,
       position: 'absolute',
       bottom: -50,
-      paddingTop: '46px',
-      paddingBottom: '60px',
+      paddingTop: '16px',
+      paddingBottom: '40px',
       width: '100vw',
       left: '50%',
       transform: 'translateX(-50%)',
       boxShadow: '0 -12px 10px -10px #00000047, 0 -35px 20px -30px #00000027',
       maxWidth: theme.breakpoints.values.md,
+
+      [theme.breakpoints.up('sm')]: {
+        paddingTop: '46px',
+        paddingBottom: '60px',
+      },
     },
     shadow: {
       display: 'inline-flex',
@@ -54,12 +70,17 @@ const SlackInstallButton: React.FC<SlackInstallButtonProps> = ({ className }) =>
   const classes = useStyles()
 
   return (
-    <Box className={className} display="flex" justifyContent="center" py={3}>
-      <a className={classes.shadow} href={slackAppInstallLink}>
+    <Box
+      className={clsx(classes.slackButton, className)}
+      display="flex"
+      justifyContent="center"
+      py={3}
+    >
+      <a className={clsx(classes.shadow, 'slack-button')} href={slackAppInstallLink}>
         <Image
           className={classes.image}
-          width={1.5 * 140}
-          height={1.5 * 41}
+          width={1.3 * 140}
+          height={1.3 * 41}
           src="/images/slack/btn-add-to-slack.svg"
           alt="Add to Slack"
         />
