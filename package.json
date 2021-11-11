@@ -48,7 +48,7 @@
     "scrt-link-core": "^0.2.1",
     "strip-markdown": "^4.0.0",
     "stripe": "^8.148.0",
-    "styled-components": "^5.3.1",
+    "styled-components": "^5.3.3",
     "swr": "^1.0.0",
     "throttle-debounce": "^3.0.1",
     "twilio": "^3.68.0",
