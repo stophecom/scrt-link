@@ -1,9 +1,17 @@
 import React from 'react'
-import Markdown from '@/components/Markdown'
+import { Box } from '@material-ui/core'
 
+import Image from 'next/image'
+import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
-import { chromeExtensionLink, firefoxExtensionLink, microsoftEdgeExtensionLink } from '@/constants'
+import { BaseButtonLink } from '@/components/Link'
+import {
+  chromeExtensionLink,
+  firefoxExtensionLink,
+  microsoftEdgeExtensionLink,
+  slackAppInstallLink,
+} from '@/constants'
 
 const About = () => (
   <Page
@@ -46,6 +54,21 @@ To make this service easy and convenient, there are browser extensions available
 - [Microsoft Edge](${microsoftEdgeExtensionLink})
 `}
       />
+    </Section>
+    <Section
+      title={'Slack Application'}
+      subtitle={`No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.`}
+    >
+      <Box mb={3} width={200}>
+        <Image width={420} height={124} src="/images/slack/Slack_RGB_White.svg" alt="Slack" />
+      </Box>
+      <BaseButtonLink variant="contained" href={slackAppInstallLink}>
+        Install now
+      </BaseButtonLink>
+      &nbsp;&nbsp;
+      <BaseButtonLink variant="text" href="/slack">
+        Learn more
+      </BaseButtonLink>
     </Section>
     <Section title={'Developer Tools'} subtitle={`Create secrets programmatically via API.`}>
       <Markdown

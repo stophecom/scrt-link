@@ -31,7 +31,7 @@ import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 
 import { emailPlaceholder } from '@/constants'
-import { demoNeogramMessage } from '@/data/faq'
+import { demoNeogramMessage } from '@/data/faq/product'
 import { useCustomer } from '@/utils/api'
 import { getBaseURL } from '@/utils'
 
@@ -183,7 +183,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
 
       formikHelpers.resetForm()
     } catch (error) {
-      dispatch(doError(error))
+      dispatch(doError(error instanceof Error ? error : new Error('Secret creation failed.')))
     } finally {
       formikHelpers.setSubmitting(false)
     }

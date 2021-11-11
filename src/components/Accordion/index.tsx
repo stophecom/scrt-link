@@ -6,8 +6,6 @@ import { usePlausible } from 'next-plausible'
 
 import Markdown from '@/components/Markdown'
 
-import { shortFaq } from '@/data/faq'
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     heading: {
@@ -19,14 +17,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
-
-const FaqAccordion = () => {
+type FaqAccordionProps = { items: { heading: string; body: string }[]; name?: string }
+const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, name }) => {
   const classes = useStyles()
   const plausible = usePlausible()
 
   return (
-    <div>
-      {shortFaq.map(({ heading, body }, index) => (
+    <div id={name}>
+      {items.map(({ heading, body }, index) => (
         <Accordion
           key={index}
           onChange={(_event, expanded) => {

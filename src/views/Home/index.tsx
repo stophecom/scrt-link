@@ -22,8 +22,9 @@ import { useCustomer } from '@/utils/api'
 import { scrollIntoView } from '@/utils/browser'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretPost } from '@/types'
+import { shortFaq } from '@/data/faq'
 
-const Accordion = dynamic(() => import('@/components/Accordion'))
+const FaqAccordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('@/components/ShareSecretResult'))
 const FormCreateSecret = dynamic(() => import('@/components/FormCreateSecret'))
 
@@ -165,7 +166,7 @@ const HomeView: CustomPage = () => {
 
       <Section title={'FAQ'} subtitle="Frequently asked questions.">
         <Box mb={1}>
-          <Accordion />
+          <FaqAccordion items={shortFaq} />
         </Box>
         <BaseButtonLink href="/faq" variant="text" color="primary" startIcon={<ArrowForward />}>
           Read more on FAQ page

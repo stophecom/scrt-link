@@ -1,4 +1,5 @@
 import React from 'react'
+import { Box } from '@material-ui/core'
 
 import Markdown from '@/components/Markdown'
 import { BaseButtonLink } from '@/components/Link'
@@ -26,13 +27,15 @@ We do basic web traffic analytics with [Plausible.io](https://plausible.io/) -  
     </Section>
 
     <Section title={'Account & Cookies'}>
-      <Markdown
-        source={`
+      <Box mb={3}>
+        <Markdown
+          source={`
 For power users, we offer user accounts that require authentication. You can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. 
 
 For people visiting our website, we only ever use essential cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy.
 `}
-      />
+        />
+      </Box>
       <BaseButtonLink href="/privacy-policy" variant="outlined">
         Privacy Policy
       </BaseButtonLink>

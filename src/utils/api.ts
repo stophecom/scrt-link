@@ -8,8 +8,8 @@ import { CustomError } from '@/api/utils/createError'
 
 const baseUrl = getBaseURL()
 export async function api<T>(
-  url: string,
-  options?: Record<string, unknown>,
+  url: RequestInfo,
+  options?: RequestInit,
   data?: Record<string, unknown> | null,
 ): Promise<T> {
   try {
@@ -21,6 +21,7 @@ export async function api<T>(
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
         'Content-Type': 'application/json',
+        ...options?.headers,
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow', // manual, *follow, error

@@ -55,11 +55,14 @@ export const policies = [
 export const about = [
   {
     href: '/imprint',
-    label: 'Imprint & Legal',
+    label: 'Imprint',
   },
   {
-    href: '/account',
-    label: 'Account',
-    prefetch: false,
+    href: '/privacy-policy',
+    label: 'Privacy Policy',
+  },
+  {
+    href: '/cookie-policy',
+    label: 'Cookie Policy',
   },
 ]

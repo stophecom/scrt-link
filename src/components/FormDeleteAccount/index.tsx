@@ -34,7 +34,9 @@ const FormDeleteAccount = () => {
       const response = await api<ResponseDelete>('/me', { method: 'DELETE' })
       setState({ data: response })
     } catch (error) {
-      setState({ error: error.message })
+      setState({
+        error: error instanceof Error ? error.message : 'FormDeleteAccount submit failed.',
+      })
     } finally {
       formikHelpers.setSubmitting(false)
       signOut()

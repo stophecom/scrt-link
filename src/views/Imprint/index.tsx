@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Typography, Box } from '@material-ui/core'
 import styled from 'styled-components'
 
@@ -49,10 +49,6 @@ const Imprint = () => (
     </Box>
     <Typography variant="body2">
       Inspiration: PrivateBin, OneTimeSecret, Yopass, Saltify, hat.sh, OnURL
-    </Typography>
-    <Typography variant="body2">
-      Photographs (Pexels): Ba Tik, Sound On, Radu Florin, Victoria Borodinova, cottonbro, Gustavo
-      Fring
     </Typography>
   </Page>
 )

@@ -181,7 +181,7 @@ const PlanSelection: React.FunctionComponent = () => {
 
         setStatus({
           type: 'success',
-          message: 'Misson accomplished! Your subscription is active. ',
+          message: 'Mission accomplished! Your subscription is active. ',
         })
       }
     } catch (err) {
