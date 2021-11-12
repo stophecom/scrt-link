@@ -10,7 +10,7 @@ import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { PageError } from '@/components/Error'
 import { SecretUrlFields } from '@/api/models/SecretUrl'
-
+import { formatCurrency } from '@/utils/localization'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 
@@ -193,8 +193,10 @@ const HomeView: CustomPage = () => {
 
       {!isLoading && customer?.role !== 'premium' && (
         <Section
-          title={'There is more…'}
-          subtitle="Get an account to unlock more features. Like it? Support this project with a subscription."
+          title={'Support us'}
+          subtitle={`For only ${formatCurrency(
+            1,
+          )} a month you get full access to all current and upcoming features. What you get:`}
         >
           <AccountTeaser />
           <Box display="flex" justifyContent="start" mt={4}>

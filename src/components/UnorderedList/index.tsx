@@ -1,4 +1,4 @@
-import React, { FunctionComponentElement } from 'react'
+import React, { ReactNode, FunctionComponentElement } from 'react'
 import { Check, SvgIconComponent } from '@material-ui/icons'
 import clsx from 'clsx'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -23,9 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
+type Item = string | ReactNode
 type UnorderedListProps = {
   className?: string
-  items: string[]
+  items: Item[]
   icon?: FunctionComponentElement<SvgIconComponent>
   iconClass?: string
 }

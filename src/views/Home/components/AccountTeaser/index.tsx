@@ -1,11 +1,18 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 import UnorderedList from '@/components/UnorderedList'
-
+const Slack = () => (
+  <>
+    Slack App&nbsp;
+    <Typography color="primary">
+      <sup>NEW</sup>
+    </Typography>
+  </>
+)
 const items = [
-  ['Unlimited secrets', 'Increased character limit', 'Read receipts', 'Email service'],
-  ['Browser extensions', 'Slack App', 'Secret files (late 2021)', 'More to come…'],
+  ['Unlimited secrets', 'Increased character limit', 'SMS read receipts', 'Email service'],
+  [<Slack key="slack" />, 'Browser extensions', 'Secret files (late 2021)', 'More to come…'],
 ]
 
 export const AccountTeaser = () => (
