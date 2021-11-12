@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@material-ui/core'
-
 import Image from 'next/image'
+
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
@@ -23,14 +23,6 @@ const About = () => (
       <Markdown
         source={`
 Freedom of speech, freedom of the press, and the right to privacy are among the most important civil liberties in a free society. With this project we empower you to exchange information over the internet in truly secure and private way. This product is made in a way that respects people's integrity and privacy all the way. We have no interest in you! Not in you as a person, nor in your secrets. Read more on our [Privacy page](/privacy).
-`}
-      />
-    </Section>
-    <Section title={'Security'}>
-      <Markdown
-        source={`
-True end-to-end encryption: Your secret never leaves the browser unencrypted. That's the beauty of secret links - the link itself holds the encryption key that is necessary to decrypt your secret. Only with the link you will ever be able to retrieve the secret message and reveal the original content. After the first visit, the database entry gets deleted for good. Read more on our [Security page](/security).
-![Link explanation](/images/link-explanation.svg)
 `}
       />
     </Section>

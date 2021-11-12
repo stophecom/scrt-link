@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Paper } from '@material-ui/core'
 import { ArrowForward } from '@material-ui/icons'
+import Image from 'next/image'
 
 import WidgetLayout from '@/layouts/Widget'
 import { Maybe, CustomPage } from '@/types'
@@ -162,6 +163,23 @@ const HomeView: CustomPage = () => {
             Create a secret
           </BaseButtonLink>
         </Box>
+      </Section>
+
+      <Section
+        title={'Security'}
+        subtitle="End-to-end encrypted, one-time messages. The link itself holds the key to decrypt your secret message and reveal the original content. The link works only one time!"
+      >
+        <Box mb={0}>
+          <Image width={1036} height={273} src="/images/link-explanation.svg" alt="Security" />
+        </Box>
+        <BaseButtonLink
+          href="/security"
+          variant="text"
+          color="primary"
+          startIcon={<ArrowForward />}
+        >
+          Learn more about security
+        </BaseButtonLink>
       </Section>
 
       <Section title={'FAQ'} subtitle="Frequently asked questions.">
