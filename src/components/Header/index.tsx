@@ -118,7 +118,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
               <>
                 {session && !isLoading ? (
                   <NoSsr>
-                    <BaseButtonLink href="/account" color="primary" variant="text" size="small">
+                    <BaseButtonLink href="/account" color="primary" variant="text">
                       <Typography
                         component="span"
                         variant="button"
@@ -130,7 +130,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                     </BaseButtonLink>
                   </NoSsr>
                 ) : (
-                  <BaseButton href="/account" variant="text" size="small">
+                  <BaseButton href="/account" color="primary" variant="text">
                     Sign in
                   </BaseButton>
                 )}

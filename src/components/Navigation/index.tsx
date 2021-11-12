@@ -3,16 +3,17 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
-import { Box, Divider } from '@material-ui/core'
+import { Box, Divider, Typography } from '@material-ui/core'
 import { usePlausible } from 'next-plausible'
 import { useSession } from 'next-auth/client'
 
 import { Link } from '@/components/Link'
-import BaseButton from '@/components/BaseButton'
+import BaseButton, { BaseButtonProps } from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
 import { menu } from '@/data/menu'
 
-const Hamburger = styled.button`
+const NavigationButton = styled(BaseButton)<BaseButtonProps>`
+  align-items: center;
   -webkit-appearance: none;
   background-color: transparent;
   border: 0;
@@ -21,6 +22,13 @@ const Hamburger = styled.button`
   font: inherit;
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
+  display: flex;
+  margin-left: 1rem;
+  position: relative;
+  z-index: 300;
+`
+
+const Hamburger = styled.div`
   line-height: inherit;
   margin: 0;
   max-width: 100%;
@@ -30,12 +38,11 @@ const Hamburger = styled.button`
   text-rendering: inherit;
   vertical-align: inherit;
 
-  margin-left: 1rem;
+  margin-left: 0.4rem;
   position: relative;
   height: 30px;
   transition: opacity 0.32s 0.4s;
-  width: 40px;
-  z-index: 300;
+  width: 30px;
 
   &::before,
   &::after {
@@ -47,7 +54,7 @@ const Hamburger = styled.button`
     position: absolute;
     top: 50%;
     transition: 0.29s cubic-bezier(0.52, 0.01, 0.16, 1);
-    width: 60%;
+    width: 80%;
   }
 
   &::before {
@@ -222,16 +229,20 @@ const Navigation = () => {
           </BaseButton>
         </Box>
       </NavigationInner>
-      <Hamburger
+      <NavigationButton
         aria-label={isActive ? 'Close menu' : 'Open menu'}
         aria-controls="navigation"
         onClick={isActive ? closeNavigation : showNavigation}
-        className={clsx({
-          'Hamburger--active': isActive,
-        })}
       >
-        <SROnly>{isActive ? 'Close menu' : 'Open menu'}</SROnly>
-      </Hamburger>
+        <Typography variant="button">Menu</Typography>
+        <Hamburger
+          className={clsx({
+            'Hamburger--active': isActive,
+          })}
+        >
+          <SROnly>{isActive ? 'Close menu' : 'Open menu'}</SROnly>
+        </Hamburger>
+      </NavigationButton>
     </div>
   )
 }
