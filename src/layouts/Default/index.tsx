@@ -48,7 +48,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
       <Header hideHeader={hideHeader} />
       <Container>
         <LogoPage href="/">
-          <Image width={80} height={80} src="/logo-transparent.svg" alt={appTitle} />
+          <Image width={'100%'} height={'100%'} src="/logo-transparent.svg" alt={appTitle} />
           <SROnly>{appTitle}</SROnly>
         </LogoPage>
 
