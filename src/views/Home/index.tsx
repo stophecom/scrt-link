@@ -196,30 +196,32 @@ const HomeView: CustomPage = () => {
           title={'Support us'}
           subtitle={`For only ${formatCurrency(
             1,
-          )} a month you get full access to all current and upcoming features. What you get:`}
+          )} a month you get full access to all current and upcoming features. A free account gets you the essentials.`}
         >
           <AccountTeaser />
           <Box display="flex" justifyContent="start" mt={4}>
-            <Box mr={2}>
-              <BaseButtonLink
-                href="/account?signup=true"
-                prefetch={false}
-                size="large"
-                variant="contained"
-                color="primary"
-              >
-                Get free account
-              </BaseButtonLink>
-            </Box>
             <BaseButtonLink
               prefetch={false}
               href="/pricing"
               size="large"
-              variant="text"
+              variant="contained"
               color="primary"
             >
-              Pricing
+              View plans
             </BaseButtonLink>
+            {!customer?.role && (
+              <Box ml={2}>
+                <BaseButtonLink
+                  href="/account?signup=true"
+                  prefetch={false}
+                  size="large"
+                  variant="text"
+                  color="primary"
+                >
+                  Get free account
+                </BaseButtonLink>
+              </Box>
+            )}
           </Box>
         </Section>
       )}
