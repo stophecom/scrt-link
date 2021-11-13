@@ -2,14 +2,13 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Box } from '@material-ui/core'
-import styled from 'styled-components'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { useInView } from 'react-intersection-observer'
 import clsx from 'clsx'
 
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
+import BoxShadowWrapper from '@/components/BoxShadowWrapper'
 import { slackAppInstallLink } from '@/constants'
 import slackAppFaq from '@/data/faq/slack'
 
@@ -28,6 +27,16 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
+    screenshot: {
+      '& > .image ': {
+        transform: 'translateY(0)',
+        transition: '700ms',
+      },
+
+      '&.image--in-view > .image ': {
+        transform: 'translateY(-15px)',
+      },
+    },
     cta: {
       backgroundColor: theme.palette.background.default,
       position: 'absolute',
@@ -39,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
       transform: 'translateX(-50%)',
       boxShadow: '0 -12px 10px -10px #00000047, 0 -35px 20px -30px #00000027',
       maxWidth: theme.breakpoints.values.md,
+      zIndex: 1,
 
       [theme.breakpoints.up('sm')]: {
         paddingTop: '46px',
@@ -89,61 +99,19 @@ const SlackInstallButton: React.FC<SlackInstallButtonProps> = ({ className }) =>
   )
 }
 
-const HoverBox = styled.div`
-  position: relative;
-  transform: translateY(0);
-
-  & > .screenshot {
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      box-shadow: 0 0 80px rgba(255, 0, 131, 0.2), 0px 0px 22px rgba(255, 0, 131, 0.2),
-        0 0 1px rgba(255, 0, 131, 1);
-      opacity: 0.1;
-      border-radius: 12px;
-      transition: 1000ms;
-    }
-    transition: 700ms;
-  }
-
-  &.screenshot--in-view > .screenshot {
-    transform: translateY(-15px);
-
-    &::after {
-      opacity: 1;
-    }
-  }
-`
-const BoxShadowImage = styled.div`
-  margin-top: 1em;
-
-  & img {
-    border-radius: 12px;
-  }
-`
-
 const Slack = () => {
   const classes = useStyles()
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-  })
 
   return (
     <Page
       title="The Slack App"
       subtitle={`Some things better not stay in your chat history.`}
       intro={
-        'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the Scrt.link App you can now protect sensitive information within your Slack conversation.'
+        'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.'
       }
     >
-      <HoverBox className={clsx({ 'screenshot--in-view': inView })}>
-        <BoxShadowImage className="screenshot">
+      <Box position="relative">
+        <BoxShadowWrapper className={classes.screenshot}>
           <Image
             className={classes.image}
             src="/images/slack/slack-screenshot-command.png"
@@ -153,11 +121,9 @@ const Slack = () => {
             objectFit="cover"
             objectPosition="top"
           />
-        </BoxShadowImage>
-        <div ref={ref}>
-          <SlackInstallButton className={classes.cta} />
-        </div>
-      </HoverBox>
+        </BoxShadowWrapper>
+        <SlackInstallButton className={classes.cta} />
+      </Box>
 
       <Section
         title={'Secrets for Slack'}
@@ -198,7 +164,7 @@ _Example:_
 
 ### Slack Shortcuts
 There are global and message level shortcuts available.
-- Click ⚡️ to access global shortcuts and choose **Scrt.link**.
+- Click ⚡️ to access global shortcuts and choose **scrt.link**.
 - Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**.
 
 ![Image](/images/slack/slack-screenshot-shortcut-detail.png)

@@ -1,4 +1,4 @@
-## Scrt.link
+## scrt.link
 
 **Scrt.link** lets you share one-time secrets with a link that self-destructs after the first visit.
 

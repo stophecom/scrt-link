@@ -75,7 +75,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       if (receiptEmail) {
         await mailjet({
-          To: [{ Email: decryptAES(receiptEmail), Name: 'Scrt.link' }],
+          To: [{ Email: decryptAES(receiptEmail), Name: 'scrt.link' }],
           Subject: 'Secret has been viewed 🔥',
           TemplateID: 2818166,
           TemplateLanguage: true,

@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Paper } from '@material-ui/core'
+import { Box, Paper, Typography } from '@material-ui/core'
 import { ArrowForward } from '@material-ui/icons'
 import Image from 'next/image'
 
@@ -13,12 +13,14 @@ import { SecretUrlFields } from '@/api/models/SecretUrl'
 import { formatCurrency } from '@/utils/localization'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
+import BoxShadowWrapper from '@/components/BoxShadowWrapper'
+import UnorderedList from '@/components/UnorderedList'
 
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 import AccountTeaser from './components/AccountTeaser'
 import Trust from './components/Trust'
-
+import { slackAppInstallLink } from '@/constants'
 import { useCustomer } from '@/utils/api'
 import { scrollIntoView } from '@/utils/browser'
 import { ReadReceiptMethod } from '@/api/models/Customer'
@@ -182,8 +184,55 @@ const HomeView: CustomPage = () => {
         </BaseButtonLink>
       </Section>
 
+      <Section
+        title={
+          <>
+            The Slack App&nbsp;
+            <Typography component="span" variant="h3" color="primary">
+              <sup>NEW</sup>
+            </Typography>
+          </>
+        }
+        subtitle="Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience."
+      >
+        <Box mb={5}>
+          <BoxShadowWrapper>
+            <Image
+              width={800}
+              height={420}
+              src="/images/slack/slack-illustration.svg"
+              alt="Slack"
+            />
+          </BoxShadowWrapper>
+        </Box>
+        <Box>
+          <UnorderedList
+            items={[
+              'Encrypted, disposable messages, stored outside of Slack',
+              'Create one-time-secrets via shortcut or slash command',
+              'Burn notification after a secret has been viewed.',
+            ]}
+          />
+          <Box display="flex" justifyContent="start" mt={4}>
+            <BaseButtonLink href="/slack" variant="contained" color="primary">
+              Learn more
+            </BaseButtonLink>
+            <Box ml={2}>
+              <BaseButtonLink
+                href={slackAppInstallLink}
+                size="large"
+                variant="text"
+                color="primary"
+              >
+                Add to Slack
+              </BaseButtonLink>
+            </Box>
+          </Box>
+        </Box>
+      </Section>
+
       <Section title={'FAQ'} subtitle="Frequently asked questions.">
-        <Box mb={1}>
+        <Box mb={3}>
           <FaqAccordion items={shortFaq} />
         </Box>
         <BaseButtonLink href="/faq" variant="text" color="primary" startIcon={<ArrowForward />}>

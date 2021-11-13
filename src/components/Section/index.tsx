@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react'
 import { Box, BoxProps, Typography } from '@material-ui/core'
 
 type SectionProps = {
-  title?: string
+  title?: string | ReactNode
   subtitle?: string
   children: ReactNode
 }
-const Section: React.FunctionComponent<SectionProps & BoxProps> = ({
+const Section: React.FunctionComponent<Omit<BoxProps, 'title'> & SectionProps> = ({
   title,
   subtitle,
   children,
