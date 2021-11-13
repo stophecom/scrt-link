@@ -132,7 +132,7 @@ const Slack = () => {
         <Markdown
           source={`
 ### Key Features
-- Create one-time-secrets via **shortcut** or **slash command**.
+- Create one-time secrets via **shortcut** or **slash command**.
 - **Encrypted, disposable messages** that are stored outside of Slack.
 - **Burn notification** after a secret has been viewed. 
 - No logs, no backup, no trace.

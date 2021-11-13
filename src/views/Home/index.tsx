@@ -208,8 +208,8 @@ const HomeView: CustomPage = () => {
         <Box>
           <UnorderedList
             items={[
-              'Encrypted, disposable messages, stored outside of Slack',
-              'Create one-time-secrets via shortcut or slash command',
+              'Encrypted, disposable messages, stored outside of Slack.',
+              'Create one-time secrets via shortcut or slash command.',
               'Burn notification after a secret has been viewed.',
             ]}
           />
