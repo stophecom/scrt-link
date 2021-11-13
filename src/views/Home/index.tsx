@@ -149,7 +149,7 @@ const HomeView: CustomPage = () => {
       <Section
         mb={3}
         title={'How it works'}
-        subtitle={`Add your message, create a secret link and share it with your confidant. That's it. We do the magic in between.`}
+        subtitle={`Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant.`}
       >
         <HowItWorks />
         <Box display="flex" justifyContent="center" pt={5}>
@@ -166,8 +166,8 @@ const HomeView: CustomPage = () => {
       </Section>
 
       <Section
-        title={'Security'}
-        subtitle="End-to-end encrypted, one-time messages. The link itself holds the key to decrypt your secret message and reveal the original content. The link works only one time!"
+        title={'Secret links explained'}
+        subtitle="We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret."
       >
         <Box mb={0}>
           <Image width={1036} height={273} src="/images/link-explanation.svg" alt="Security" />

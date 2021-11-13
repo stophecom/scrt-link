@@ -8,9 +8,9 @@ import accountAndBilling from './accountAndBilling'
 export const faqCategories = [
   { id: 'general', title: 'General' },
   { id: 'product', title: 'Product and Service' },
-  { id: 'slack', title: 'Slack App' },
   { id: 'securityAndPrivacy', title: 'Security and Privacy' },
   { id: 'accountAndBilling', title: 'Account and Billing' },
+  { id: 'slack', title: 'Slack App' },
   { id: 'nerdZone', title: 'Nerd Zone' },
 ]
 
