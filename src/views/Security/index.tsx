@@ -33,6 +33,7 @@ We chose industry leaders to host our infrastructure:
 
 - Website/API on [Vercel](https://vercel.com)
 - Cloud Database with [Scalegrid](https://scalegrid.io/)
+- Slack App on [Heroku](https://heroku.com/)
 - All code on [Gitlab](https://gitlab.com/kingchiller/scrt-link)
 `}
       />
