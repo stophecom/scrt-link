@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { Box, Paper, Typography } from '@material-ui/core'
 import { ArrowForward } from '@material-ui/icons'
 import Image from 'next/image'
+import { useTranslation, Trans } from 'next-i18next'
 
 import WidgetLayout from '@/layouts/Widget'
 import { Maybe, CustomPage } from '@/types'
@@ -94,6 +95,7 @@ const initialState: State = {
 
 const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const { t } = useTranslation('common')
 
   const { data: customer, isLoading } = useCustomer()
 
@@ -103,7 +105,7 @@ const HomeView: CustomPage = () => {
     return (
       <PageError error={error}>
         <BaseButton onClick={() => dispatch(doReset())} color="primary" variant="contained">
-          Try again
+          {t('common:button.tryAgain', 'Try again')}
         </BaseButton>
       </PageError>
     )
@@ -112,8 +114,11 @@ const HomeView: CustomPage = () => {
   if (data) {
     return (
       <Page
-        title="Success!"
-        subtitle="Your secret link has been created - now share it with your confidant."
+        title={t('common:views.Home.success.title', 'Success!')}
+        subtitle={t(
+          'common:views.Home.success.subtitle',
+          'Your secret link has been created - now share it with your confidant.',
+        )}
       >
         <Result
           data={data}
@@ -129,14 +134,14 @@ const HomeView: CustomPage = () => {
 
   return (
     <Page
-      title="Share a secret"
+      title={t('common:views.Home.default.title', 'Share a secret')}
       subtitle={
-        <>
+        <Trans i18nKey="common:views.Home.default.subtitle">
           …with a link that only works <StrokeHighlight>one time</StrokeHighlight> and then{' '}
           <Box component="span" whiteSpace="nowrap">
             self-destructs.
           </Box>
-        </>
+        </Trans>
       }
     >
       <Box mb={7}>
@@ -149,9 +154,13 @@ const HomeView: CustomPage = () => {
       </Box>
 
       <Section
+        id="HowItWorks"
         mb={3}
-        title={'How it works'}
-        subtitle={`Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant.`}
+        title={t('common:views.Home.HowItWorks.title', 'How it works')}
+        subtitle={t(
+          'common:views.Home.HowItWorks.subtitle',
+          `Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant.`,
+        )}
       >
         <HowItWorks />
         <Box display="flex" justifyContent="center" pt={5}>
@@ -162,14 +171,18 @@ const HomeView: CustomPage = () => {
             color="primary"
             onClick={scrollIntoView}
           >
-            Create a secret
+            {t('common:button.createSecret', 'Create a secret')}
           </BaseButtonLink>
         </Box>
       </Section>
 
       <Section
-        title={'Secret links explained'}
-        subtitle="We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret."
+        id="SecretLinksExplained"
+        title={t('common:views.Home.SecretLinksExplained.title', 'Secret links explained')}
+        subtitle={t(
+          'common:views.Home.SecretLinksExplained.subtitle',
+          'We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.',
+        )}
       >
         <Box mb={0}>
           <Image width={1036} height={273} src="/images/link-explanation.svg" alt="Security" />
@@ -180,20 +193,24 @@ const HomeView: CustomPage = () => {
           color="primary"
           startIcon={<ArrowForward />}
         >
-          Learn more about security
+          {t('common:views.Home.SecretLinksExplained.button', 'Learn more about security')}
         </BaseButtonLink>
       </Section>
 
       <Section
+        id="SlackApp"
         title={
-          <>
+          <Trans i18nKey="common:views.Home.SlackApp.title">
             The Slack App&nbsp;
             <Typography component="span" variant="h3" color="primary">
               <sup>NEW</sup>
             </Typography>
-          </>
+          </Trans>
         }
-        subtitle="Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience."
+        subtitle={t(
+          'common:views.Home.SlackApp.subtitle',
+          'Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.',
+        )}
       >
         <Box mb={5}>
           <BoxShadowWrapper>
@@ -207,15 +224,18 @@ const HomeView: CustomPage = () => {
         </Box>
         <Box>
           <UnorderedList
-            items={[
-              'Encrypted, disposable messages, stored outside of Slack.',
-              'Create one-time secrets via shortcut or slash command.',
-              'Burn notification after a secret has been viewed.',
-            ]}
+            items={t('common:views.Home.SlackApp.usps', {
+              returnObjects: true,
+              defaultValue: [
+                'Encrypted, disposable messages, stored outside of Slack.',
+                'Create one-time secrets via shortcut or slash command.',
+                'Burn notification after a secret has been viewed.',
+              ],
+            })}
           />
           <Box display="flex" justifyContent="start" mt={4}>
             <BaseButtonLink href="/slack" variant="contained" color="primary">
-              Learn more
+              {t('common:button.learnMore', 'Learn more')}
             </BaseButtonLink>
             <Box ml={2}>
               <BaseButtonLink
@@ -224,28 +244,34 @@ const HomeView: CustomPage = () => {
                 variant="text"
                 color="primary"
               >
-                Add to Slack
+                {t('common:button.addToSlack', 'Add to Slack')}
               </BaseButtonLink>
             </Box>
           </Box>
         </Box>
       </Section>
 
-      <Section title={'FAQ'} subtitle="Frequently asked questions.">
+      <Section
+        id="FAQ"
+        title={'FAQ'}
+        subtitle={t('common:abbreviations.faq', 'Frequently asked questions.')}
+      >
         <Box mb={3}>
           <FaqAccordion items={shortFaq} />
         </Box>
         <BaseButtonLink href="/faq" variant="text" color="primary" startIcon={<ArrowForward />}>
-          Read more on FAQ page
+          {t('common:button.readMoreFaq', 'Read more on FAQ page')}
         </BaseButtonLink>
       </Section>
 
       {!isLoading && customer?.role !== 'premium' && (
         <Section
-          title={'Support us'}
-          subtitle={`For only ${formatCurrency(
-            1,
-          )} a month you get full access to all current and upcoming features. A free account gets you the essentials.`}
+          id="Upsell"
+          title={t('common:views.Home.Upsell.title', 'Support us')}
+          subtitle={t('common:views.Home.Upsell.subtitle', {
+            defaultValue: `For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials.`,
+            price: formatCurrency(1),
+          })}
         >
           <AccountTeaser />
           <Box display="flex" justifyContent="start" mt={4}>
@@ -256,7 +282,7 @@ const HomeView: CustomPage = () => {
               variant="contained"
               color="primary"
             >
-              View plans
+              {t('common:button.viewPlans', 'View plans')}
             </BaseButtonLink>
             {!customer?.role && (
               <Box ml={2}>
@@ -267,7 +293,7 @@ const HomeView: CustomPage = () => {
                   variant="text"
                   color="primary"
                 >
-                  Get free account
+                  {t('common:button.getFreeAccount', 'Get free account')}
                 </BaseButtonLink>
               </Box>
             )}
@@ -279,8 +305,8 @@ const HomeView: CustomPage = () => {
 }
 
 export const Widget: CustomPage = () => {
+  const { t } = useTranslation('common')
   const [state, dispatch] = useReducer(reducer, initialState)
-
   const { data: customer } = useCustomer()
 
   const { data, error } = state
@@ -289,7 +315,7 @@ export const Widget: CustomPage = () => {
     return (
       <PageError error={error}>
         <BaseButton onClick={() => dispatch(doReset())} color="primary" variant="contained">
-          Try again
+          {t('common:button.tryAgain', 'Try again')}
         </BaseButton>
       </PageError>
     )

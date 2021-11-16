@@ -1,0 +1,80 @@
+{
+  "views": {
+    "Home": {
+      "default": {
+        "title": "Teile ein Geheimnis",
+        "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
+      },
+      "HowItWorks": {
+        "title": "So funktioniert's",
+        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's.. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
+      },
+      "SecretLinksExplained": {
+        "button": "Mehr über Sicherheit erfahren",
+        "title": "Geheime Links erklärt",
+        "subtitle": "We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret."
+      },
+      "SlackApp": {
+        "button": "Zu Slack hinzufügen",
+        "usps": [
+          "Verschlüsselte Einwegnachrichten, die außerhalb von Slack gespeichert werden.",
+          "Erstelle Geheimnisse via Shortcut oder Slash Befehl.",
+          "Empfangsbenachrichtigung nachdem ein Geheimnis gelesen wurde."
+        ],
+        "subtitle": "Manche Dinge sollten besser nicht in deinem Chat-Verlauf bleiben. Wenn du nächstes Mal von einem Mitarbeiter nach einem Zugangstoken, API-Schlüssel oder Passwort gefragt wirst, kannst du mit guten Gewissens antworten.",
+        "title": "Die Slack App <1><0>NEU</0></1>"
+      }
+    }
+  },
+  "button": {
+    "createSecret": "Geheimnis erstellen",
+    "learnMore": "Mehr erfahren",
+    "readMoreFaq": "Mehr auf FAQ Seite",
+    "addToSlack": "Zu Slack hinzufügen",
+    "moreOptions": "Mehr Optionen",
+    "lessOptions": "Weniger Optionen",
+    "createSecretLink": "Geheimen Link erstellen"
+  },
+  "abbreviations": {
+    "faq": "Häufig gestellte Fragen."
+  },
+  "secretType": {
+    "text": {
+      "label": "Dein Geheimnis",
+      "tabLabel": "Text",
+      "placeholder": "Geheimnachricht, Password, private key, etc."
+    },
+    "url": {
+      "label": "URL",
+      "tabLabel": "Link",
+      "placeholder": "z.B. https://www.example.com"
+    },
+    "neogram": {
+      "label": "Dein Geheimnis",
+      "tabLabel": "Neogram™",
+      "placeholder": "Wach auf Neo…"
+    }
+  },
+  "FormField": {
+    "neogramDestructionMessage": {
+      "placeholder": "Diese Nachricht zerstört sich selbst in…"
+    },
+    "readReceiptsOptions": {
+      "none": "None",
+      "email": "Via E-Mail",
+      "sms": "Via SMS"
+    },
+    "readReceiptMethod": {
+      "label": "Empfangsbestätigung"
+    }
+  },
+  "component": {
+    "FormCreateSecret": {
+      "selectSecretType": "Geheimnistyp auswählen"
+    },
+    "Trust": {
+      "encryption": "Ende-zu-Ende-verschlüsselt (AES)",
+      "privacy": "100% geschützte Privatsphäre"
+    }
+  }
+}

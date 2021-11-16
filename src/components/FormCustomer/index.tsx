@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Box, Typography, FormLabel } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
-
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { useTranslation, TFunction } from 'next-i18next'
 
 import Alert from '@material-ui/lab/Alert'
 
@@ -18,22 +18,22 @@ import BaseButton from '@/components/BaseButton'
 import UpgradeNotice from '@/components/UpgradeNotice'
 import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { MenuItem } from '@/views/Account'
-import {
-  emailPlaceholder,
-  neogramDestructionMessageDefault,
-  neogramDestructionTimeoutDefault,
-} from '@/constants'
+import { emailPlaceholder, neogramDestructionTimeoutDefault } from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { useCustomer, api } from '@/utils/api'
 
 export const DestructionMessage = () => {
+  const { t } = useTranslation()
   const { data: customer } = useCustomer()
 
   return (
     <BaseTextField
       name="neogramDestructionMessage"
-      label="Destruction message"
-      placeholder={neogramDestructionMessageDefault}
+      label={t('common:FormField.neogramDestructionMessage.label', 'Destruction message')}
+      placeholder={t(
+        'common:FormField.neogramDestructionMessage.placeholder',
+        'This message will self-destruct in…',
+      )}
       {...(customer?.role !== 'premium'
         ? {
             disabled: true,
@@ -46,29 +46,37 @@ export const DestructionMessage = () => {
 
 export const DestructionTimeout: React.FunctionComponent<
   Pick<BaseTextFieldProps, 'disabled' | 'helperText'>
-> = ({ ...props }) => (
-  <Box width="60%" minWidth={280}>
-    <BaseTextField
-      name="neogramDestructionTimeout"
-      label="Destruction countdown"
-      type="number"
-      InputProps={{
-        endAdornment: <InputAdornment position="end">seconds</InputAdornment>,
-      }}
-      {...props}
-    />
-  </Box>
-)
+> = ({ ...props }) => {
+  const { t } = useTranslation()
 
-export const readReceiptsOptions = [
-  { value: 'none', label: 'None' },
+  return (
+    <Box width="60%" minWidth={280}>
+      <BaseTextField
+        name="neogramDestructionTimeout"
+        label={t('common:FormField.neogramDestructionTimeout.label', 'Destruction countdown')}
+        type="number"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              {t('common:FormField.neogramDestructionTimeout.endAdornment', 'seconds')}
+            </InputAdornment>
+          ),
+        }}
+        {...props}
+      />
+    </Box>
+  )
+}
+
+export const readReceiptsOptions = (t: TFunction) => [
+  { value: 'none', label: t('common:FormField.readReceiptsOptions.none', 'None') },
   {
     value: 'email',
-    label: 'Via Email',
+    label: t('common:FormField.readReceiptsOptions.email', 'Via Email'),
   },
   {
     value: 'sms',
-    label: 'Via SMS',
+    label: t('common:FormField.readReceiptsOptions.sms', 'Via SMS'),
   },
 ]
 
@@ -107,6 +115,7 @@ interface FormCustomerProps extends CustomerProps {
   formFieldsSelection: MenuItem['key']
 }
 const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomerProps) => {
+  const { t } = useTranslation()
   const { data: customer } = useCustomer()
   const classes = useStyles()
   const [state, setState] = useState<State>(initialState)
@@ -133,7 +142,11 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
           readReceiptMethod: 'none',
           ...props,
           neogramDestructionMessage:
-            props?.neogramDestructionMessage || neogramDestructionMessageDefault,
+            props?.neogramDestructionMessage ||
+            t(
+              'common:FormField.neogramDestructionMessage.placeholder',
+              'This message will self-destruct in…',
+            ),
           neogramDestructionTimeout:
             props?.neogramDestructionTimeout || neogramDestructionTimeoutDefault,
         }}
@@ -164,7 +177,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                     />
                   </Box>
                   <BaseRadioGroupField
-                    options={readReceiptsOptions}
+                    options={readReceiptsOptions(t)}
                     name="readReceiptMethod"
                     label="Read receipts"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,0 +1,79 @@
+{
+  "views": {
+    "Home": {
+      "default": {
+        "title": "Share a secret",
+        "subtitle": "…with a link that only works <1>one time</1> and then <4>self-destructs.</4>"
+      },
+      "HowItWorks": {
+        "title": "How it works",
+        "subtitle": "Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant."
+      },
+      "SecretLinksExplained": {
+        "title": "Secret links explained",
+        "subtitle": "We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.",
+        "button": "Learn more about security"
+      },
+      "SlackApp": {
+        "button": "Add to Slack",
+        "usps": [
+          "Encrypted, disposable messages, stored outside of Slack.",
+          "Create one-time secrets via shortcut or slash command.",
+          "Burn notification after a secret has been viewed."
+        ],
+        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
+        "title": "The Slack App <1><0>NEW</0></1>"
+      }
+    }
+  },
+  "button": {
+    "createSecret": "Create a secret",
+    "learnMore": "Learn more",
+    "readMoreFaq": "Read more on FAQ page",
+    "addToSlack": "Add to Slack",
+    "moreOptions": "More options",
+    "createSecretLink": "Create secret link"
+  },
+  "abbreviations": {
+    "faq": "Frequently asked questions."
+  },
+  "secretType": {
+    "text": {
+      "label": "Your secret",
+      "tabLabel": "Text",
+      "placeholder": "Secret message, password, private key, etc."
+    },
+    "url": {
+      "label": "URL",
+      "tabLabel": "Link",
+      "placeholder": "e.g. https://www.example.com"
+    },
+    "neogram": {
+      "label": "Your secret",
+      "tabLabel": "Neogram™",
+      "placeholder": "Wake up Neo…"
+    }
+  },
+  "FormField": {
+    "neogramDestructionMessage": {
+      "placeholder": "This message will self-destruct in…"
+    },
+    "readReceiptsOptions": {
+      "none": "None",
+      "email": "Via Email",
+      "sms": "Via SMS"
+    },
+    "readReceiptMethod": {
+      "label": "Read receipts"
+    }
+  },
+  "component": {
+    "FormCreateSecret": {
+      "selectSecretType": "Select secret type"
+    },
+    "Trust": {
+      "encryption": "End-to-end encrypted (AES)",
+      "privacy": "100% Privacy protected"
+    }
+  }
+}

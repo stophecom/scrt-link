@@ -9,6 +9,7 @@ import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import LinkIcon from '@material-ui/icons/Link'
+import { useTranslation, TFunction } from 'next-i18next'
 
 import { createSecret, generateAlias, generateEncryptionKey } from 'scrt-link-core'
 
@@ -56,32 +57,27 @@ type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> 
 
 type ObjKey = { [key: string]: SecretTypeConfig }
 
-export const secretTypesMap = {
-  text: {
-    label: 'Your secret',
-    tabLabel: 'Text',
-    placeholder: 'Secret message, password, private key, etc.',
-  },
-  url: {
-    label: 'URL',
-    tabLabel: 'Link',
-    placeholder: 'e.g. https://www.example.com',
-  },
-  neogram: {
-    label: 'Your secret',
-    tabLabel: 'Neogram™',
-    placeholder: 'Wake up Neo…',
-  },
-} as ObjKey
-
-const tabsMenu = Object.keys(secretTypesMap).map((item) => {
-  const secretTypeItem = secretTypesMap[item]
-
-  return {
-    label: secretTypeItem.tabLabel as string,
-    key: item,
-  }
-})
+export const secretTypesMap = (t: TFunction) =>
+  ({
+    text: {
+      label: t('common:secretType.text.label', 'Your secret'),
+      tabLabel: t('common:secretType.text.tabLabel', 'Text'),
+      placeholder: t(
+        'common:secretType.text.placeholder',
+        'Secret message, password, private key, etc.',
+      ),
+    },
+    url: {
+      label: t('common:secretType.url.label', 'URL'),
+      tabLabel: t('common:secretType.url.tabLabel', 'Link'),
+      placeholder: t('common:secretType.url.placeholder', 'e.g. https://www.example.com'),
+    },
+    neogram: {
+      label: t('common:secretType.neogram.label', 'Your secret'),
+      tabLabel: t('common:secretType.neogram.tabLabel', 'Neogram™'),
+      placeholder: t('common:secretType.neogram.placeholder', 'Wake up Neo…'),
+    },
+  } as ObjKey)
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -116,6 +112,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   dispatch,
   isStandalone,
 }) => {
+  const { t } = useTranslation('common')
   const classes = useStyles()
   const plausible = usePlausible()
   const [secretType, setSecretType] = useState<SecretType>('text')
@@ -123,13 +120,27 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const [neogramPreview, setNeogramPreview] = useState(false)
   const { data: customer } = useCustomer()
 
+  const secretMap = secretTypesMap(t)
+  const tabsMenu = Object.keys(secretMap).map((item) => {
+    const secretTypeItem = secretMap[item]
+
+    return {
+      label: secretTypeItem.tabLabel as string,
+      key: item,
+    }
+  })
+
   const initialValues: SecretUrlFormValues = {
     message: '',
     secretType: 'text',
     alias: '',
     encryptionKey: '',
     neogramDestructionMessage:
-      customer?.neogramDestructionMessage || 'This message will self-destruct in…',
+      customer?.neogramDestructionMessage ||
+      t(
+        'common:FormField.neogramDestructionMessage.placeholder',
+        'This message will self-destruct in…',
+      ),
     neogramDestructionTimeout: customer?.neogramDestructionTimeout || 3,
     receiptEmail: customer?.receiptEmail || '',
     receiptPhoneNumber: customer?.receiptPhoneNumber || '',
@@ -170,7 +181,14 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       const response = await createSecret(message, data, getBaseURL())
 
       if (response) {
-        dispatch(doSuccess({ message: 'Secret saved!', alias, encryptionKey, readReceiptMethod }))
+        dispatch(
+          doSuccess({
+            message: t('common:component.FormCreateSecret.secretSaved', 'Secret saved!'),
+            alias,
+            encryptionKey,
+            readReceiptMethod,
+          }),
+        )
 
         plausible('SecretCreation', {
           props: {
@@ -200,7 +218,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const [hasFormOptions, setHasFormOptions] = React.useState(false)
 
   const getFormFieldConfigBySecretType = (secretType: SecretType) => {
-    return secretTypesMap[secretType]
+    return secretMap[secretType]
   }
 
   type CounterProps = {
@@ -213,8 +231,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         {charactersLeft.toLocaleString()}
         {charactersLeft < 0 && (
           <>
-            &nbsp;|&nbsp; Need more?&nbsp;
-            <Link href="/account?signup=true">Get free account</Link>
+            &nbsp;|&nbsp; {t('common:component.FormCreateSecret.needMore', 'Need more?')}
+            &nbsp;
+            <Link href="/account?signup=true">
+              {t('common:component.FormCreateSecret.getFreeAccount', 'Get free account')}
+            </Link>
           </>
         )}
       </small>
@@ -228,7 +249,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           handleChange={handleMenuChange}
           value={secretType}
           tabsMenu={Object.values(tabsMenu)}
-          label="Select secret type"
+          label={t('common:component.FormCreateSecret.selectSecretType', 'Select secret type')}
         />
       </Box>
       <Box pb={2}>
@@ -251,13 +272,16 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     {secretType === 'url' && (
                       <BaseTextField
                         name="message"
-                        label="Secret URL"
+                        label={t('common:FormField.url.label', 'Secret URL')}
                         placeholder="example.com"
                         required
                         InputLabelProps={{
                           shrink: undefined,
                         }}
-                        helperText="The URL to get redirected to (one time)."
+                        helperText={t(
+                          'common:FormField.url.helperText',
+                          'The URL to get redirected to (one time).',
+                        )}
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
@@ -292,9 +316,9 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       </Box>
                       <Box pl={1} pt={3} pb={6}>
                         <BaseRadioGroupField
-                          options={readReceiptsOptions}
+                          options={readReceiptsOptions(t)}
                           name="readReceiptMethod"
-                          label="Read receipts"
+                          label={t('common:FormField.readReceiptMethod.label', 'Read receipts')}
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             setReadReceiptMethod(e.target.value as ReadReceiptMethod)
                           }}
@@ -304,7 +328,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                             <Box pt={2}>
                               <BaseTextField
                                 name="receiptEmail"
-                                label="Email"
+                                label={t('common:FormField.receiptEmail.label', 'Email')}
                                 required
                                 placeholder={emailPlaceholder}
                               />
@@ -318,7 +342,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         {values?.readReceiptMethod === 'sms' &&
                           (customer?.role === 'premium' ? (
                             <Box pt={2}>
-                              <BasePhoneField name="receiptPhoneNumber" required label="Phone" />
+                              <BasePhoneField
+                                name="receiptPhoneNumber"
+                                required
+                                label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
+                              />
                             </Box>
                           ) : (
                             <Box pt={1}>
@@ -361,7 +389,9 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           setHasFormOptions(!hasFormOptions)
                         }}
                       >
-                        {hasFormOptions ? 'Less options' : 'More options'}
+                        {hasFormOptions
+                          ? t('common:button.lessOptions', 'Less options')
+                          : t('common:button.moreOptions', 'More options')}
                       </BaseButton>
 
                       {secretType === 'neogram' && (
@@ -376,7 +406,9 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                               })
                             }}
                           >
-                            {values?.message ? 'Preview' : 'Demo'}
+                            {values?.message
+                              ? t('common:button.preview', 'Preview')
+                              : t('common:button.preview', 'Demo')}
                           </BaseButton>
                         </Box>
                       )}
@@ -396,7 +428,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         loading={isSubmitting}
                         disabled={!isValid}
                       >
-                        Create secret link
+                        {t('common:button.createSecretLink', 'Create secret link')}
                       </BaseButton>
                     </Box>
                   </Box>

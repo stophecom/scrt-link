@@ -1,6 +1,8 @@
 export const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'development'
 export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
+
+export const supportedLanguages = ['de', 'en']
 export const appTitle = 'scrt.link'
 export const trialPeriod = 5
 export const twilioSenderPhoneNumber = '+17744694525'
@@ -18,7 +20,6 @@ export const shortUrl = 'https://scrt.li' // Currently not used
 
 // Form defaults
 export const emailPlaceholder = 'example@gmail.com'
-export const neogramDestructionMessageDefault = 'This message will self-destruct in…'
 export const neogramDestructionTimeoutDefault = 3
 
 export const chromeExtensionLink =
