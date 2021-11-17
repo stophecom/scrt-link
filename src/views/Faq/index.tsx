@@ -1,7 +1,8 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
+
 import { Box, Typography, Divider } from '@material-ui/core'
 import Head from 'next/head'
-import { GetStaticProps } from 'next'
 import { FAQPage, WithContext } from 'schema-dts'
 import remark from 'remark'
 import strip from 'strip-markdown'
@@ -80,7 +81,7 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   const stripFaq = (isBodyStripped?: boolean) =>
     faq.map(({ heading, body, ...props }) => {
       let question = heading

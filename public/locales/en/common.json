@@ -1,4 +1,31 @@
 {
+  "button": {
+    "signIn": "Sign in",
+    "getAccount": "Get Account",
+    "createSecret": "Create a secret",
+    "learnMore": "Learn more",
+    "addToSlack": "Add to Slack",
+    "readMoreFaq": "Read more on FAQ page",
+    "moreOptions": "More options",
+    "createSecretLink": "Create secret link",
+    "viewPlans": "View plans",
+    "getFreeAccount": "Get free account",
+    "close": "Close",
+    "openMenu": "Open menu",
+    "menu": "Menu"
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "security": "Security",
+    "privacy": "Privacy",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "imprint": "Imprint",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
+  },
   "views": {
     "Home": {
       "default": {
@@ -15,24 +42,19 @@
         "button": "Learn more about security"
       },
       "SlackApp": {
-        "button": "Add to Slack",
+        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
         "usps": [
           "Encrypted, disposable messages, stored outside of Slack.",
           "Create one-time secrets via shortcut or slash command.",
           "Burn notification after a secret has been viewed."
         ],
-        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
         "title": "The Slack App <1><0>NEW</0></1>"
+      },
+      "Upsell": {
+        "title": "Support us",
+        "subtitle": "For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials."
       }
     }
-  },
-  "button": {
-    "createSecret": "Create a secret",
-    "learnMore": "Learn more",
-    "readMoreFaq": "Read more on FAQ page",
-    "addToSlack": "Add to Slack",
-    "moreOptions": "More options",
-    "createSecretLink": "Create secret link"
   },
   "abbreviations": {
     "faq": "Frequently asked questions."
@@ -67,13 +89,31 @@
       "label": "Read receipts"
     }
   },
-  "component": {
+  "components": {
     "FormCreateSecret": {
       "selectSecretType": "Select secret type"
     },
     "Trust": {
       "encryption": "End-to-end encrypted (AES)",
       "privacy": "100% Privacy protected"
+    },
+    "Footer": {
+      "abstract": "<strong>Scrt.link</strong> lets you share sensitive information online. End-to-end encrypted. One time.<br/>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
+    },
+    "AccountTeaser": {
+      "items1": [
+        "Unlimited secrets",
+        "Increased character limit",
+        "SMS read receipts",
+        "Email service"
+      ],
+      "items2": ["Browser extensions", "Secret files (late 2021)", "More to come…"]
+    },
+    "Stats": {
+      "title": "Secrets",
+      "created": "created:",
+      "viewed": "viewed:",
+      "compromised": "compromised:"
     }
   }
 }

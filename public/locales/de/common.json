@@ -33,7 +33,12 @@
     "addToSlack": "Zu Slack hinzufügen",
     "moreOptions": "Mehr Optionen",
     "lessOptions": "Weniger Optionen",
-    "createSecretLink": "Geheimen Link erstellen"
+    "createSecretLink": "Geheimen Link erstellen",
+    "signIn": "Anmelden",
+    "getAccount": "Konto erstellen",
+    "close": "Schliessen",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü"
   },
   "abbreviations": {
     "faq": "Häufig gestellte Fragen."
@@ -60,7 +65,7 @@
       "placeholder": "Diese Nachricht zerstört sich selbst in…"
     },
     "readReceiptsOptions": {
-      "none": "None",
+      "none": "Keine",
       "email": "Via E-Mail",
       "sms": "Via SMS"
     },
@@ -68,13 +73,34 @@
       "label": "Empfangsbestätigung"
     }
   },
-  "component": {
+  "menu": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "security": "Sicherheit",
+    "privacy": "Privatsphäre",
+    "pricing": "Preise",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "imprint": "Impressum",
+    "privacyPolicy": "Datenschutzbestimmungen",
+    "cookiePolicy": "Cookie-Richtlinien"
+  },
+  "components": {
     "FormCreateSecret": {
       "selectSecretType": "Geheimnistyp auswählen"
     },
     "Trust": {
       "encryption": "Ende-zu-Ende-verschlüsselt (AES)",
       "privacy": "100% geschützte Privatsphäre"
+    },
+    "Footer": {
+      "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmal.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
+    },
+    "Stats": {
+      "title": "Geheimnisse",
+      "created": "erstellt:",
+      "viewed": "gesehen:",
+      "compromised": "kompromittiert:"
     }
   }
 }

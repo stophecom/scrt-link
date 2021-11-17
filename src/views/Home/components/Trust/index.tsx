@@ -34,11 +34,11 @@ const Trust = () => {
   const gridContent = [
     {
       illustration: <Lock className={classes.illustration} />,
-      title: t('common:component.Trust.encryption', 'End-to-end encrypted (AES)'),
+      title: t('common:components.Trust.encryption', 'End-to-end encrypted (AES)'),
     },
     {
       illustration: <VerifiedUser className={classes.illustration} />,
-      title: t('common:component.Trust.privacy', '100% Privacy protected'),
+      title: t('common:components.Trust.privacy', '100% Privacy protected'),
     },
   ]
 

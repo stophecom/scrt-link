@@ -6,11 +6,12 @@ import { throttle } from 'throttle-debounce'
 import { Box, Divider, Typography } from '@material-ui/core'
 import { usePlausible } from 'next-plausible'
 import { useSession } from 'next-auth/client'
+import { useTranslation } from 'next-i18next'
 
 import { Link } from '@/components/Link'
 import BaseButton, { BaseButtonProps } from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
-import { menu } from '@/data/menu'
+import { main } from '@/data/menu'
 
 const NavigationButton = styled(BaseButton)<BaseButtonProps>`
   align-items: center;
@@ -143,11 +144,12 @@ const NavigationWrapper = styled.div`
 const NavigationMenu: React.FunctionComponent = () => {
   const router = useRouter()
   const [session] = useSession()
+  const { t } = useTranslation()
 
   return (
     <Nav role="navigation" id="navigation" aria-label="Main navigation menu">
       <ul>
-        {menu.map(({ href, label }, index) => (
+        {main(t).map(({ href, label }, index) => (
           <li key={index}>
             <Link
               href={href}
@@ -163,9 +165,9 @@ const NavigationMenu: React.FunctionComponent = () => {
         <Divider />
         <Box pt={2}>
           {session ? (
-            <Link href="/account">Account</Link>
+            <Link href="/account">{t('common:button.account', 'Account')}</Link>
           ) : (
-            <Link href="/account?signup=true">Get Account</Link>
+            <Link href="/account?signup=true">{t('common:button.getAccount', 'Get Account')}</Link>
           )}
         </Box>
       </Box>
@@ -177,6 +179,7 @@ const Navigation = () => {
   const router = useRouter()
   const [isActive, setIsActive] = useState(false)
   const plausible = usePlausible()
+  const { t } = useTranslation()
 
   const showNavigation = () => {
     setIsActive(true)
@@ -225,22 +228,30 @@ const Navigation = () => {
         </NavigationWrapper>
         <Box p={1}>
           <BaseButton color="primary" onClick={closeNavigation}>
-            Close
+            {t('common:button.close', 'Close')}
           </BaseButton>
         </Box>
       </NavigationInner>
       <NavigationButton
-        aria-label={isActive ? 'Close menu' : 'Open menu'}
+        aria-label={
+          isActive
+            ? t('common:button.closeMenu', 'Close menu')
+            : t('common:button.openMenu', 'Open menu')
+        }
         aria-controls="navigation"
         onClick={isActive ? closeNavigation : showNavigation}
       >
-        <Typography variant="button">Menu</Typography>
+        <Typography variant="button">{t('common:button.menu', 'Menu')}</Typography>
         <Hamburger
           className={clsx({
             'Hamburger--active': isActive,
           })}
         >
-          <SROnly>{isActive ? 'Close menu' : 'Open menu'}</SROnly>
+          <SROnly>
+            {isActive
+              ? t('common:button.closeMenu', 'Close menu')
+              : t('common:button.openMenu', 'Open menu')}
+          </SROnly>
         </Hamburger>
       </NavigationButton>
     </div>

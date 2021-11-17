@@ -3,7 +3,7 @@ import { Box, Typography, FormLabel } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import { useTranslation, TFunction } from 'next-i18next'
+import { useTranslation, TFunction, Trans } from 'next-i18next'
 
 import Alert from '@material-ui/lab/Alert'
 
@@ -81,10 +81,10 @@ export const readReceiptsOptions = (t: TFunction) => [
 ]
 
 const PrivacyNotice = () => (
-  <>
+  <Trans i18nKey="common:components.FormCustomer.privacyNotice">
     This information is <strong>private</strong> and will never be shown to anybody. We only use it
     to send you read receipts.
-  </>
+  </Trans>
 )
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -161,7 +161,9 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
               <Form noValidate>
                 <Box mb={10}>
                   <Box mb={8}>
-                    <Typography variant="h2">General settings</Typography>
+                    <Typography variant="h2">
+                      {t('common:components.FormCustomer.generalSettings', 'General settings')}
+                    </Typography>
                   </Box>
                   <Box mb={7}>
                     <BaseTextField
@@ -169,17 +171,17 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                       label="Name"
                       placeholder="Jane Doe"
                       helperText={
-                        <>
+                        <Trans i18nKey="common:FormField.name.helperText">
                           This information is <strong>private</strong> and will never be shown to
                           anybody. We only use it give you a personalized experience.
-                        </>
+                        </Trans>
                       }
                     />
                   </Box>
                   <BaseRadioGroupField
                     options={readReceiptsOptions(t)}
                     name="readReceiptMethod"
-                    label="Read receipts"
+                    label={t('common:FormField.readReceiptMethod.label', 'Read receipts')}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setReadReceiptMethod(e.target.value as ReadReceiptMethod)
                     }}
@@ -189,7 +191,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                       {values?.readReceiptMethod === 'email' && (
                         <BaseTextField
                           name="receiptEmail"
-                          label="Email"
+                          label={t('common:FormField.receiptEmail.label', 'Email')}
                           required
                           placeholder={emailPlaceholder}
                           helperText={<PrivacyNotice />}
@@ -199,7 +201,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                         <>
                           <BasePhoneField
                             name="receiptPhoneNumber"
-                            label="Phone"
+                            label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
                             required
                             disabled={customer?.role !== 'premium'}
                             helperText={
@@ -218,19 +220,26 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
 
                 <Box mb={10}>
                   <Box mb={2}>
-                    <FormLabel component="legend">Emoji link 🤫</FormLabel>
+                    <FormLabel component="legend">
+                      {t('common:components.FormCustomer.emojiLink.title', 'Emoji link')} 🤫
+                    </FormLabel>
                   </Box>
                   <Typography variant="body2">
-                    Add some fun with a special emoji link. Example:{' '}
-                    <Typography variant="body2" noWrap component="span">
-                      <strong>https://🤫.st/nxKFy…</strong>{' '}
-                    </Typography>
-                    <br />
-                    <strong>Be aware.</strong> Emoji links are supported in:{' '}
-                    <em>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</em>. <br />
-                    Currently not supported in: <em>Signal, Slack, Snapchat</em>.
+                    <Trans i18nKey="common:components.FormCustomer.emojiLink.description">
+                      Add some fun with a special emoji link. Example:{' '}
+                      <Typography variant="body2" noWrap component="span">
+                        <strong>https://🤫.st/nxKFy…</strong>{' '}
+                      </Typography>
+                      <br />
+                      <strong>Be aware.</strong> Emoji links are supported in:{' '}
+                      <em>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</em>. <br />
+                      Currently not supported in: <em>Signal, Slack, Snapchat</em>.
+                    </Trans>
                   </Typography>
-                  <BaseSwitchField label="Use emoji link" name="isEmojiShortLinkEnabled" />
+                  <BaseSwitchField
+                    label={t('common:FormField.isEmojiShortLinkEnabled.label', 'Use emoji link')}
+                    name="isEmojiShortLinkEnabled"
+                  />
                 </Box>
 
                 <Box>
@@ -261,7 +270,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                     loading={isSubmitting}
                     disabled={!isValid}
                   >
-                    Save
+                    {t('common:button.save', 'Save')}
                   </BaseButton>
                 </Box>
               </Form>

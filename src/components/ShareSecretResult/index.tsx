@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation, Trans } from 'next-i18next'
 
 import { Box, CircularProgress, Paper, Typography, Collapse, IconButton } from '@material-ui/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -35,6 +36,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   role,
   isStandalone,
 }) => {
+  const { t } = useTranslation()
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
   const readReceiptMethod = data?.readReceiptMethod
@@ -66,7 +68,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
               color="secondary"
               onClick={onReset}
             >
-              Create new secret
+              {t('common:button.createNewSecret', 'Create new secret')}
             </BaseButton>
           </Box>
           {shortenedUrl && (
@@ -88,12 +90,18 @@ const Result: React.FunctionComponent<ResultProps> = ({
                   <Box mx={1}>
                     <RWebShare
                       data={{
-                        text: `You received a secret: ${shortenedUrl} \n \nReply with a secret:`,
-                        title: 'Share your secret link:',
+                        text: t('common:components.ShareSecretResult.webShare.text', {
+                          defaultValue: `You received a secret: {{shortenedUrl}} \n \nReply with a secret:`,
+                          shortenedUrl,
+                        }),
+                        title: t(
+                          'common:components.ShareSecretResult.webShare.title',
+                          'Share your secret link:',
+                        ),
                       }}
                     >
                       <BaseButton startIcon={<Share />} color="primary" size="large">
-                        Share
+                        {t('common:button.share', 'Share')}
                       </BaseButton>
                     </RWebShare>
                   </Box>
@@ -114,7 +122,9 @@ const Result: React.FunctionComponent<ResultProps> = ({
                         color="primary"
                         size="large"
                       >
-                        {hasCopied ? 'Copied' : 'Copy'}
+                        {hasCopied
+                          ? t('common:button.copied', 'Copied')
+                          : t('common:button.copy', 'Copy')}
                       </BaseButton>
                     </CopyToClipboard>
                   </Box>
@@ -123,8 +133,10 @@ const Result: React.FunctionComponent<ResultProps> = ({
                   <Box pt={3}>
                     <Alert severity="info">
                       <Typography variant="body2">
-                        Your Secret ID is <strong>{alias}</strong>. <br />
-                        Remember it, we use it for the read receipt.
+                        <Trans i18nKey="common:components.ShareSecretResult.secretIdInfo">
+                          Your Secret ID is <strong>{alias}</strong>. <br />
+                          Remember it, we use it for the read receipt.
+                        </Trans>
                       </Typography>
                     </Alert>
                   </Box>
@@ -132,9 +144,17 @@ const Result: React.FunctionComponent<ResultProps> = ({
                 <Collapse in={isEmailServiceEnabled}>
                   <Box mt={4} pt={4} borderTop={1} borderColor="grey.800">
                     <Box mb={2}>
-                      <Typography variant="h4">Email service</Typography>
+                      <Typography variant="h4">
+                        {t(
+                          'common:components.ShareSecretResult.emailService.title',
+                          'Email service',
+                        )}
+                      </Typography>
                       <Typography variant="body1">
-                        Let us deliver your secret link for you.
+                        {t(
+                          'common:components.ShareSecretResult.emailService.subtitle',
+                          'Let us deliver your secret link for you.',
+                        )}
                       </Typography>
                     </Box>
                     {['premium', 'free'].includes(role) ? (
@@ -151,8 +171,14 @@ const Result: React.FunctionComponent<ResultProps> = ({
             <Box display="flex" alignItems="center">
               <Box mr={1}>
                 <IconButton
-                  aria-label="Toggle emoji link"
-                  title="Toggle emoji link"
+                  aria-label={t(
+                    'common:components.ShareSecretResult.emojiLink.ariaLabel',
+                    'Toggle emoji link',
+                  )}
+                  title={t(
+                    'common:components.ShareSecretResult.emojiLink.title',
+                    'Toggle emoji link',
+                  )}
                   size="small"
                   onClick={() => {
                     setIsEmojiLinkEnabled(!isEmojiLinkEnabled)
@@ -172,14 +198,15 @@ const Result: React.FunctionComponent<ResultProps> = ({
                   setIsEmailServiceEnabled(!isEmailServiceEnabled)
                 }}
               >
-                Email service
+                {t('common:components.ShareSecretResult.emailService.title', 'Email service')}
               </BaseButton>
             </Box>
             <Box ml="auto" px={1} flexShrink={0}>
               <Typography color="textSecondary" variant="caption">
                 {data?.message || (
                   <>
-                    <CircularProgress size=".8em" color="inherit" /> Encrypt and save…
+                    <CircularProgress size=".8em" color="inherit" />{' '}
+                    {t('common:components.ShareSecretResult.loading', 'Encrypt and save…')}
                   </>
                 )}
               </Typography>

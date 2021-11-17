@@ -183,7 +183,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       if (response) {
         dispatch(
           doSuccess({
-            message: t('common:component.FormCreateSecret.secretSaved', 'Secret saved!'),
+            message: t('common:components.FormCreateSecret.secretSaved', 'Secret saved!'),
             alias,
             encryptionKey,
             readReceiptMethod,
@@ -231,10 +231,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         {charactersLeft.toLocaleString()}
         {charactersLeft < 0 && (
           <>
-            &nbsp;|&nbsp; {t('common:component.FormCreateSecret.needMore', 'Need more?')}
+            &nbsp;|&nbsp; {t('common:components.FormCreateSecret.needMore', 'Need more?')}
             &nbsp;
             <Link href="/account?signup=true">
-              {t('common:component.FormCreateSecret.getFreeAccount', 'Get free account')}
+              {t('common:components.FormCreateSecret.getFreeAccount', 'Get free account')}
             </Link>
           </>
         )}
@@ -249,7 +249,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           handleChange={handleMenuChange}
           value={secretType}
           tabsMenu={Object.values(tabsMenu)}
-          label={t('common:component.FormCreateSecret.selectSecretType', 'Select secret type')}
+          label={t('common:components.FormCreateSecret.selectSecretType', 'Select secret type')}
         />
       </Box>
       <Box pb={2}>
