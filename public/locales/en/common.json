@@ -1,63 +1,61 @@
 {
-  "button": {
-    "signIn": "Sign in",
-    "getAccount": "Get Account",
-    "createSecret": "Create a secret",
-    "learnMore": "Learn more",
-    "addToSlack": "Add to Slack",
-    "readMoreFaq": "Read more on FAQ page",
-    "moreOptions": "More options",
-    "createSecretLink": "Create secret link",
-    "viewPlans": "View plans",
-    "getFreeAccount": "Get free account",
-    "close": "Close",
-    "openMenu": "Open menu",
-    "menu": "Menu"
-  },
-  "menu": {
-    "home": "Home",
-    "about": "About",
-    "security": "Security",
-    "privacy": "Privacy",
-    "pricing": "Pricing",
-    "faq": "FAQ",
-    "contact": "Contact",
-    "imprint": "Imprint",
-    "privacyPolicy": "Privacy Policy",
-    "cookiePolicy": "Cookie Policy"
-  },
-  "views": {
-    "Home": {
-      "default": {
-        "title": "Share a secret",
-        "subtitle": "…with a link that only works <1>one time</1> and then <4>self-destructs.</4>"
-      },
-      "HowItWorks": {
-        "title": "How it works",
-        "subtitle": "Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant."
-      },
-      "SecretLinksExplained": {
-        "title": "Secret links explained",
-        "subtitle": "We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.",
-        "button": "Learn more about security"
-      },
-      "SlackApp": {
-        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
-        "usps": [
-          "Encrypted, disposable messages, stored outside of Slack.",
-          "Create one-time secrets via shortcut or slash command.",
-          "Burn notification after a secret has been viewed."
-        ],
-        "title": "The Slack App <1><0>NEW</0></1>"
-      },
-      "Upsell": {
-        "title": "Support us",
-        "subtitle": "For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials."
+  "components": {
+    "Footer": {
+      "abstract": "<strong>Scrt.link</strong> lets you share sensitive information online. End-to-end encrypted. One time.<br/>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
+    },
+    "FormCreateSecret": {
+      "secretSaved": "Secret saved!",
+      "needMore": "Need more?",
+      "getFreeAccount": "Get free account",
+      "selectSecretType": "Select secret type"
+    },
+    "FormCustomer": {
+      "privacyNotice": "This information is <1>private</1> and will never be shown to anybody. We only use it to send you read receipts.",
+      "generalSettings": "General settings",
+      "emojiLink": {
+        "title": "Emoji link",
+        "description": "Add some fun with a special emoji link. Example: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>."
       }
+    },
+    "ShareSecretResult": {
+      "webShare": {
+        "text": "You received a secret: {{shortenedUrl}} \n \nReply with a secret:",
+        "title": "Share your secret link:"
+      },
+      "secretIdInfo": "Your Secret ID is <1>{alias}</1>. <3></3>Remember it, we use it for the read receipt.",
+      "emailService": {
+        "title": "Email service",
+        "subtitle": "Let us deliver your secret link for you."
+      },
+      "emojiLink": {
+        "ariaLabel": "Toggle emoji link",
+        "title": "Toggle emoji link"
+      },
+      "loading": "Encrypt and save…"
+    },
+    "Stats": {
+      "title": "Secrets",
+      "created": "created:",
+      "viewed": "viewed:",
+      "compromised": "compromised:"
+    },
+    "AccountTeaser": {
+      "items1": {
+        "0": "Unlimited secrets",
+        "1": "Increased character limit",
+        "2": "SMS read receipts",
+        "3": "Email service"
+      },
+      "items2": {
+        "0": "Browser extensions",
+        "1": "Secret files (late 2021)",
+        "2": "More to come…"
+      }
+    },
+    "Trust": {
+      "encryption": "End-to-end encrypted (AES)",
+      "privacy": "100% Privacy protected"
     }
-  },
-  "abbreviations": {
-    "faq": "Frequently asked questions."
   },
   "secretType": {
     "text": {
@@ -78,42 +76,121 @@
   },
   "FormField": {
     "neogramDestructionMessage": {
-      "placeholder": "This message will self-destruct in…"
+      "placeholder": "This message will self-destruct in…",
+      "label": "Destruction message"
+    },
+    "url": {
+      "label": "Secret URL",
+      "helperText": "The URL to get redirected to (one time)."
+    },
+    "readReceiptMethod": {
+      "label": "Read receipts"
+    },
+    "receiptEmail": {
+      "label": "Email"
+    },
+    "receiptPhoneNumber": {
+      "label": "Phone"
+    },
+    "neogramDestructionTimeout": {
+      "label": "Destruction countdown",
+      "endAdornment": "seconds"
     },
     "readReceiptsOptions": {
       "none": "None",
       "email": "Via Email",
       "sms": "Via SMS"
     },
-    "readReceiptMethod": {
-      "label": "Read receipts"
+    "name": {
+      "helperText": "This information is <1>private</1> and will never be shown to anybody. We only use it give you a personalized experience."
+    },
+    "isEmojiShortLinkEnabled": {
+      "label": "Use emoji link"
     }
   },
-  "components": {
-    "FormCreateSecret": {
-      "selectSecretType": "Select secret type"
+  "button": {
+    "lessOptions": "Less options",
+    "moreOptions": "More options",
+    "preview": "Preview",
+    "demo": "Demo",
+    "createSecretLink": "Create secret link",
+    "save": "Save",
+    "myAccount": "My account",
+    "signIn": "Sign in",
+    "account": "Account",
+    "getAccount": "Get Account",
+    "close": "Close",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "menu": "Menu",
+    "createNewSecret": "Create new secret",
+    "share": "Share",
+    "copied": "Copied",
+    "copy": "Copy",
+    "tryAgain": "Try again",
+    "createSecret": "Create a secret",
+    "learnMore": "Learn more",
+    "addToSlack": "Add to Slack",
+    "readMoreFaq": "Read more on FAQ page",
+    "viewPlans": "View plans",
+    "getFreeAccount": "Get free account"
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "security": "Security",
+    "privacy": "Privacy",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "termsOfService": "Terms of Service",
+    "acceptableUsePolicy": "Acceptable Use Policy",
+    "cookiePolicy": "Cookie Policy",
+    "privacyPolicy": "Privacy Policy",
+    "imprint": "Imprint"
+  },
+  "views": {
+    "Home": {
+      "success": {
+        "title": "Success!",
+        "subtitle": "Your secret link has been created - now share it with your confidant."
+      },
+      "default": {
+        "title": "Share a secret",
+        "subtitle": "…with a link that only works <1>one time</1> and then <4>self-destructs.</4>"
+      },
+      "HowItWorks": {
+        "title": "How it works",
+        "subtitle": "Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant."
+      },
+      "SecretLinksExplained": {
+        "title": "Secret links explained",
+        "subtitle": "We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.",
+        "button": "Learn more about security"
+      },
+      "SlackApp": {
+        "title": "The Slack App\u00a0<1><0>NEW</0></1>",
+        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
+        "usps": {
+          "0": "Encrypted, disposable messages, stored outside of Slack.",
+          "1": "Create one-time secrets via shortcut or slash command.",
+          "2": "Burn notification after a secret has been viewed."
+        }
+      },
+      "Upsell": {
+        "title": "Support us",
+        "subtitle": "For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials."
+      }
     },
-    "Trust": {
-      "encryption": "End-to-end encrypted (AES)",
-      "privacy": "100% Privacy protected"
-    },
-    "Footer": {
-      "abstract": "<strong>Scrt.link</strong> lets you share sensitive information online. End-to-end encrypted. One time.<br/>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
-    },
-    "AccountTeaser": {
-      "items1": [
-        "Unlimited secrets",
-        "Increased character limit",
-        "SMS read receipts",
-        "Email service"
-      ],
-      "items2": ["Browser extensions", "Secret files (late 2021)", "More to come…"]
-    },
-    "Stats": {
-      "title": "Secrets",
-      "created": "created:",
-      "viewed": "viewed:",
-      "compromised": "compromised:"
+    "Imprint": {
+      "title": "Imprint",
+      "subtitle": "Tl;dr: Limited liability.",
+      "policiesAndTerms": "Policies and Terms",
+      "credits": "Credits",
+      "inspiration": "Inspiration"
     }
+  },
+  "abbreviations": {
+    "faq": "Frequently asked questions."
   }
 }

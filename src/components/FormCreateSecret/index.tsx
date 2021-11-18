@@ -408,7 +408,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           >
                             {values?.message
                               ? t('common:button.preview', 'Preview')
-                              : t('common:button.preview', 'Demo')}
+                              : t('common:button.demo', 'Demo')}
                           </BaseButton>
                         </Box>
                       )}

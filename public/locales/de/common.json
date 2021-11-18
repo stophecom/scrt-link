@@ -1,47 +1,61 @@
 {
-  "views": {
-    "Home": {
-      "default": {
-        "title": "Teile ein Geheimnis",
-        "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
-      },
-      "HowItWorks": {
-        "title": "So funktioniert's",
-        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's.. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
-      },
-      "SecretLinksExplained": {
-        "button": "Mehr über Sicherheit erfahren",
-        "title": "Geheime Links erklärt",
-        "subtitle": "We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret."
-      },
-      "SlackApp": {
-        "button": "Zu Slack hinzufügen",
-        "usps": [
-          "Verschlüsselte Einwegnachrichten, die außerhalb von Slack gespeichert werden.",
-          "Erstelle Geheimnisse via Shortcut oder Slash Befehl.",
-          "Empfangsbenachrichtigung nachdem ein Geheimnis gelesen wurde."
-        ],
-        "subtitle": "Manche Dinge sollten besser nicht in deinem Chat-Verlauf bleiben. Wenn du nächstes Mal von einem Mitarbeiter nach einem Zugangstoken, API-Schlüssel oder Passwort gefragt wirst, kannst du mit guten Gewissens antworten.",
-        "title": "Die Slack App <1><0>NEU</0></1>"
+  "components": {
+    "Footer": {
+      "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmal.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
+    },
+    "FormCreateSecret": {
+      "secretSaved": "Geheimnis gespeichert!",
+      "needMore": "Brauchst du mehr?",
+      "getFreeAccount": "Gratis Konto erstellen",
+      "selectSecretType": "Geheimnistyp auswählen"
+    },
+    "FormCustomer": {
+      "privacyNotice": "Diese Information ist <1>privat</1> und kannst nur du sehen. Wir benötigen sie ausschliesslich für Empfangsbestätigungen.",
+      "generalSettings": "Einstellungen",
+      "emojiLink": {
+        "title": "Emoji Link",
+        "description": "Add some fun with a special emoji link. Beispiel: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>."
       }
+    },
+    "ShareSecretResult": {
+      "webShare": {
+        "text": "Du hast ein Geheimnis erhalten: {{shortenedUrl}} \n \nAntworte mit einem Geheimnis:",
+        "title": "Teile dein Geheim-Link:"
+      },
+      "secretIdInfo": "Deine Geheim ID ist <1>{alias}</1>. <3></3>Wir verwenden sie für die Empfangsbestätigung. Merk sie dir.",
+      "emailService": {
+        "title": "E-Mail Service",
+        "subtitle": "Lass uns dein Geheimnis für dich schicken."
+      },
+      "emojiLink": {
+        "ariaLabel": "Emoji Link ein-/ausschalten",
+        "title": "Emoji Link ein-/ausschalten"
+      },
+      "loading": "Verschlüsseln und speichern…"
+    },
+    "Stats": {
+      "title": "Geheimnisse",
+      "created": "erstellt:",
+      "viewed": "gesehen:",
+      "compromised": "kompromittiert:"
+    },
+    "AccountTeaser": {
+      "items1": {
+        "0": "Unlimitiert Geheimnisse",
+        "1": "Mehr Zeichen",
+        "2": "SMS Empfangsbestätigungen",
+        "3": "E-Mail Service"
+      },
+      "items2": {
+        "0": "Browser extensions",
+        "1": "Secret files (late 2021)",
+        "2": "More to come…"
+      }
+    },
+    "Trust": {
+      "encryption": "Ende-zu-Ende-verschlüsselt (AES)",
+      "privacy": "100% geschützte Privatsphäre"
     }
-  },
-  "button": {
-    "createSecret": "Geheimnis erstellen",
-    "learnMore": "Mehr erfahren",
-    "readMoreFaq": "Mehr auf FAQ Seite",
-    "addToSlack": "Zu Slack hinzufügen",
-    "moreOptions": "Mehr Optionen",
-    "lessOptions": "Weniger Optionen",
-    "createSecretLink": "Geheimen Link erstellen",
-    "signIn": "Anmelden",
-    "getAccount": "Konto erstellen",
-    "close": "Schliessen",
-    "openMenu": "Menü öffnen",
-    "menu": "Menü"
-  },
-  "abbreviations": {
-    "faq": "Häufig gestellte Fragen."
   },
   "secretType": {
     "text": {
@@ -62,16 +76,64 @@
   },
   "FormField": {
     "neogramDestructionMessage": {
-      "placeholder": "Diese Nachricht zerstört sich selbst in…"
+      "placeholder": "Diese Nachricht zerstört sich selbst in…",
+      "label": "Zerstörungsmeldung"
+    },
+    "url": {
+      "label": "Geheime URL",
+      "helperText": "Die URL, zu der umgeleitet werden soll (einmalig)."
+    },
+    "readReceiptMethod": {
+      "label": "Empfangsbestätigung"
+    },
+    "receiptEmail": {
+      "label": "E-Mail"
+    },
+    "receiptPhoneNumber": {
+      "label": "Mobile-Nummer"
+    },
+    "neogramDestructionTimeout": {
+      "label": "Countdown bis zur Zerstörung",
+      "endAdornment": "Sekunden"
     },
     "readReceiptsOptions": {
       "none": "Keine",
       "email": "Via E-Mail",
       "sms": "Via SMS"
     },
-    "readReceiptMethod": {
-      "label": "Empfangsbestätigung"
+    "name": {
+      "helperText": "Diese Informationen sind <1>privat</1> und werden niemals an Dritte weitergegeben. Wir verwenden sie nur, um Ihnen ein personalisiertes Erlebnis zu bieten."
+    },
+    "isEmojiShortLinkEnabled": {
+      "label": "Emoji Link verwenden"
     }
+  },
+  "button": {
+    "lessOptions": "Weniger Optionen",
+    "moreOptions": "Mehr Optionen",
+    "preview": "Vorschau",
+    "demo": "Demo",
+    "createSecretLink": "Geheimen Link erstellen",
+    "save": "Speichen",
+    "myAccount": "Mein Konto",
+    "signIn": "Anmelden",
+    "account": "Konto",
+    "getAccount": "Konto erstellen",
+    "close": "Schliessen",
+    "closeMenu": "Menü schliessen",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü",
+    "createNewSecret": "Neues Geheimnis erstellen",
+    "share": "Teilen",
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "tryAgain": "Nochmals versuchen",
+    "createSecret": "Geheimnis erstellen",
+    "learnMore": "Mehr erfahren",
+    "addToSlack": "Zu Slack hinzufügen",
+    "readMoreFaq": "Mehr auf FAQ Seite",
+    "viewPlans": "Pläne ansehen",
+    "getFreeAccount": "Kostenloses Konto erstellen"
   },
   "menu": {
     "home": "Startseite",
@@ -81,26 +143,54 @@
     "pricing": "Preise",
     "faq": "FAQ",
     "contact": "Kontakt",
-    "imprint": "Impressum",
+    "termsOfService": "Nutzungsbedingungen",
+    "acceptableUsePolicy": "Richtlinie zur akzeptablen Nutzung",
+    "cookiePolicy": "Cookie-Richtlinien",
     "privacyPolicy": "Datenschutzbestimmungen",
-    "cookiePolicy": "Cookie-Richtlinien"
+    "imprint": "Impressum"
   },
-  "components": {
-    "FormCreateSecret": {
-      "selectSecretType": "Geheimnistyp auswählen"
+  "views": {
+    "Home": {
+      "success": {
+        "title": "Erfolg!",
+        "subtitle": "Ihr Geheimlink wurde erstellt - teilen es nun mit deiner Vertrauensperson."
+      },
+      "default": {
+        "title": "Teile ein Geheimnis",
+        "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
+      },
+      "HowItWorks": {
+        "title": "So funktioniert's",
+        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's.. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
+      },
+      "SecretLinksExplained": {
+        "title": "Geheime Links erklärt",
+        "subtitle": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung deines Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht im Browser. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
+        "button": "Mehr über Sicherheit erfahren"
+      },
+      "SlackApp": {
+        "title": "Die Slack App\u00a0<1><0>NEU</0></1>",
+        "subtitle": "Manche Dinge sollten besser nicht in deinem Chat-Verlauf bleiben. Wenn du nächstes Mal von einem Mitarbeiter nach einem Zugangstoken, API-Schlüssel oder Passwort gefragt wirst, kannst du mit guten Gewissens antworten.",
+        "usps": {
+          "0": "Verschlüsselte Einwegnachrichten, die außerhalb von Slack gespeichert werden.",
+          "1": "Erstelle Geheimnisse via Shortcut oder Slash Befehl.",
+          "2": "Empfangsbenachrichtigung nachdem ein Geheimnis gelesen wurde."
+        }
+      },
+      "Upsell": {
+        "title": "Unterstütze uns",
+        "subtitle": "Für nur {{price}} im Monat erhältst du vollen Zugang zu allen aktuellen und zukünftigen Funktionen. Mit einem kostenlosen Konto gibt es die Basisfunktionen."
+      }
     },
-    "Trust": {
-      "encryption": "Ende-zu-Ende-verschlüsselt (AES)",
-      "privacy": "100% geschützte Privatsphäre"
-    },
-    "Footer": {
-      "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmal.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
-    },
-    "Stats": {
-      "title": "Geheimnisse",
-      "created": "erstellt:",
-      "viewed": "gesehen:",
-      "compromised": "kompromittiert:"
+    "Imprint": {
+      "title": "Impressum",
+      "subtitle": "Tl;dr: Beschränkte Haftung.",
+      "policiesAndTerms": "Richtlinien und Bedingungen",
+      "credits": "Credits",
+      "inspiration": "Inspiration"
     }
+  },
+  "abbreviations": {
+    "faq": "Häufig gestellte Fragen."
   }
 }

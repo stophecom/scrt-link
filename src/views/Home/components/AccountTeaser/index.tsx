@@ -16,21 +16,17 @@ export const AccountTeaser = () => {
   const { t } = useTranslation()
 
   const items = [
-    t('common:components.AccountTeaser.items1', {
-      returnObjects: true,
-      defaultValue: [
-        'Unlimited secrets',
-        'Increased character limit',
-        'SMS read receipts',
-        'Email service',
-      ],
-    }) as string[],
+    [
+      t('common:components.AccountTeaser.items1.0', 'Unlimited secrets'),
+      t('common:components.AccountTeaser.items1.1', 'Increased character limit'),
+      t('common:components.AccountTeaser.items1.2', 'SMS read receipts'),
+      t('common:components.AccountTeaser.items1.3', 'Email service'),
+    ],
     [
       <Slack key="slack" />,
-      ...(t('common:components.AccountTeaser.items2', {
-        returnObjects: true,
-        defaultValue: ['Browser extensions', 'Secret files (late 2021)', 'More to come…'],
-      }) as string[]),
+      t('common:components.AccountTeaser.items2.0', 'Browser extensions'),
+      t('common:components.AccountTeaser.items2.1', 'Secret files (late 2021)'),
+      t('common:components.AccountTeaser.items2.2', 'More to come…'),
     ],
   ]
 

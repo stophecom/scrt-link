@@ -224,14 +224,20 @@ const HomeView: CustomPage = () => {
         </Box>
         <Box>
           <UnorderedList
-            items={t('common:views.Home.SlackApp.usps', {
-              returnObjects: true,
-              defaultValue: [
+            items={[
+              t(
+                'common:views.Home.SlackApp.usps.0',
                 'Encrypted, disposable messages, stored outside of Slack.',
+              ),
+              t(
+                'common:views.Home.SlackApp.usps.1',
                 'Create one-time secrets via shortcut or slash command.',
+              ),
+              t(
+                'common:views.Home.SlackApp.usps.2',
                 'Burn notification after a secret has been viewed.',
-              ],
-            })}
+              ),
+            ]}
           />
           <Box display="flex" justifyContent="start" mt={4}>
             <BaseButtonLink href="/slack" variant="contained" color="primary">

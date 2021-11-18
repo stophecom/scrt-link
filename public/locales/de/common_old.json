@@ -1,0 +1,9 @@
+{
+  "views": {
+    "Home": {
+      "SlackApp": {
+        "button": "Zu Slack hinzufügen"
+      }
+    }
+  }
+}
