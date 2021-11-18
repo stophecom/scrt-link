@@ -151,6 +151,22 @@
   },
   "views": {
     "Home": {
+      "HowItWorks": {
+        "create": {
+          "title": "Schreiben",
+          "text": "Verfasse dein Geheimnis und erhalte einen einmaligen Link."
+        },
+        "share": {
+          "title": "Teilen",
+          "text": "Sende den generierten Link an deine Vertrauensperson."
+        },
+        "burn": {
+          "title": "Zerstören",
+          "text": "Nachdem das Geheimnis gesehen wurde, wird es vernichtet."
+        },
+        "title": "So funktioniert's",
+        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's.. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
+      },
       "success": {
         "title": "Erfolg!",
         "subtitle": "Ihr Geheimlink wurde erstellt - teilen es nun mit deiner Vertrauensperson."
@@ -158,10 +174,6 @@
       "default": {
         "title": "Teile ein Geheimnis",
         "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
-      },
-      "HowItWorks": {
-        "title": "So funktioniert's",
-        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's.. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
       },
       "SecretLinksExplained": {
         "title": "Geheime Links erklärt",

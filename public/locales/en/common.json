@@ -151,6 +151,22 @@
   },
   "views": {
     "Home": {
+      "HowItWorks": {
+        "create": {
+          "title": "Write",
+          "text": "Compose your secret and get a one-time link."
+        },
+        "share": {
+          "title": "Share",
+          "text": "Send the generated link to your confidant."
+        },
+        "burn": {
+          "title": "Burn",
+          "text": "After the secret has been viewed, it gets destroyed."
+        },
+        "title": "How it works",
+        "subtitle": "Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant."
+      },
       "success": {
         "title": "Success!",
         "subtitle": "Your secret link has been created - now share it with your confidant."
@@ -158,10 +174,6 @@
       "default": {
         "title": "Share a secret",
         "subtitle": "…with a link that only works <1>one time</1> and then <4>self-destructs.</4>"
-      },
-      "HowItWorks": {
-        "title": "How it works",
-        "subtitle": "Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant."
       },
       "SecretLinksExplained": {
         "title": "Secret links explained",
