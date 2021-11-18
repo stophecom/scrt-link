@@ -150,6 +150,11 @@
     "imprint": "Imprint"
   },
   "views": {
+    "About": {
+      "title": "About",
+      "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
+      "intro": "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!"
+    },
     "Home": {
       "HowItWorks": {
         "create": {
@@ -181,7 +186,7 @@
         "button": "Learn more about security"
       },
       "SlackApp": {
-        "title": "The Slack App\u00a0<1><0>NEW</0></1>",
+        "title": "The Slack App <1><0>NEW</0></1>",
         "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
         "usps": {
           "0": "Encrypted, disposable messages, stored outside of Slack.",

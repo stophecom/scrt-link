@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box } from '@material-ui/core'
 import Image from 'next/image'
+import { useTranslation, Trans } from 'next-i18next'
 
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
@@ -13,67 +14,77 @@ import {
   slackAppInstallLink,
 } from '@/constants'
 
-const About = () => (
-  <Page
-    title="About"
-    subtitle={`The whole project is based on a simple premise: The less we know, the better.`}
-    intro={`It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as "Sharing secrets as a service". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!`}
-  >
-    <Section title={'Philosophy'}>
-      <Markdown
-        source={`
+const About = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Page
+      title={t('common:views.About.title', 'About')}
+      subtitle={t(
+        'common:views.About.subtitle',
+        'The whole project is based on a simple premise: The less we know, the better.',
+      )}
+      intro={t(
+        'common:views.About.intro',
+        `It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as "Sharing secrets as a service". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!`,
+      )}
+    >
+      <Section title={'Philosophy'}>
+        <Markdown
+          source={`
 Freedom of speech, freedom of the press, and the right to privacy are among the most important civil liberties in a free society. With this project we empower you to exchange information over the internet in truly secure and private way. This product is made in a way that respects people's integrity and privacy all the way. We have no interest in you! Not in you as a person, nor in your secrets. Read more on our [Privacy page](/privacy).
 `}
-      />
-    </Section>
-    <Section title={'User Accounts'} subtitle={`On why we offer free and premium accounts.`}>
-      <Markdown
-        source={`
+        />
+      </Section>
+      <Section title={'User Accounts'} subtitle={`On why we offer free and premium accounts.`}>
+        <Markdown
+          source={`
 The main reason we offer accounts is to prevent spam and fraud. All core features are free of charge and don't require an account.
 
 That said, some features do require basic authentication  (We just ask for an email address - we don't mind you using a temporary email address). These features include sending information via email or SMS. Accounts help us prevent abuse of the underlying systems. 
 
 Paid premium accounts are meant for power users and people who like to [support this project](/pricing).
 `}
-      />
-    </Section>
-    <Section title={'Browser Extensions'} subtitle={`Share secrets from within your browser.`}>
-      <Markdown
-        source={`
+        />
+      </Section>
+      <Section title={'Browser Extensions'} subtitle={`Share secrets from within your browser.`}>
+        <Markdown
+          source={`
 To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.
 - [Google Chrome](${chromeExtensionLink})
 - [Mozilla Firefox](${firefoxExtensionLink})
 - [Microsoft Edge](${microsoftEdgeExtensionLink})
 `}
-      />
-    </Section>
-    <Section
-      title={'Slack Application'}
-      subtitle={`No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.`}
-    >
-      <Box mb={3} width={200}>
-        <Image width={420} height={124} src="/images/slack/Slack_RGB_White.svg" alt="Slack" />
-      </Box>
-      <BaseButtonLink variant="contained" href={slackAppInstallLink}>
-        Install now
-      </BaseButtonLink>
-      &nbsp;&nbsp;
-      <BaseButtonLink variant="text" href="/slack">
-        Learn more
-      </BaseButtonLink>
-    </Section>
-    <Section title={'Developer Tools'} subtitle={`Create secrets programmatically via API.`}>
-      <Markdown
-        source={`
+        />
+      </Section>
+      <Section
+        title={'Slack Application'}
+        subtitle={`No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.`}
+      >
+        <Box mb={3} width={200}>
+          <Image width={420} height={124} src="/images/slack/Slack_RGB_White.svg" alt="Slack" />
+        </Box>
+        <BaseButtonLink variant="contained" href={slackAppInstallLink}>
+          Install now
+        </BaseButtonLink>
+        &nbsp;&nbsp;
+        <BaseButtonLink variant="text" href="/slack">
+          Learn more
+        </BaseButtonLink>
+      </Section>
+      <Section title={'Developer Tools'} subtitle={`Create secrets programmatically via API.`}>
+        <Markdown
+          source={`
 With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.
 
 - [scrt-link-core](https://www.npmjs.com/package/scrt-link-core) Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)
 - [scrt-link-cli](https://www.npmjs.com/package/scrt-link-cli) lets you create secret links right from the command line.
 
 `}
-      />
-    </Section>
-  </Page>
-)
+        />
+      </Section>
+    </Page>
+  )
+}
 
 export default About
