@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography, Box } from '@material-ui/core'
+import { useTranslation } from 'next-i18next'
 
 import data from '@/data/TermsOfService.md'
 import Page from '@/components/Page'
@@ -7,15 +8,22 @@ import Markdown from '@/components/Markdown'
 import { Menu } from '@/views/Imprint'
 import { policies } from '@/data/menu'
 
-const TermsOfService = () => (
-  <Page title="Terms Of Service" subtitle={`Tl;dr: Pretty much standard.`}>
-    <Box mb={10}>
-      <Markdown source={data} />
-    </Box>
+const TermsOfService = () => {
+  const { t } = useTranslation()
 
-    <Typography variant="h2">Policies</Typography>
-    <Menu menu={policies} />
-  </Page>
-)
+  return (
+    <Page
+      title={t('common:views.TermsOfService.title', 'Terms Of Service')}
+      subtitle={t('common:views.TermsOfService.subtitle', `Tl;dr: Pretty much standard.`)}
+    >
+      <Box mb={10}>
+        <Markdown source={data} />
+      </Box>
+
+      <Typography variant="h2">{t('common:views.TermsOfService.policies', 'Policies')}</Typography>
+      <Menu menu={policies(t)} />
+    </Page>
+  )
+}
 
 export default TermsOfService
