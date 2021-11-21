@@ -1,5 +1,5 @@
 import React from 'react'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation, i18n } from 'next-i18next'
 
@@ -86,12 +86,13 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
-  if (!i18n?.t) {
+export const getServerSideProps: GetServerSideProps = async ({ locale = 'en' }) => {
+  const t = i18n?.t
+  if (!t) {
     throw Error('TFunction not defined.')
   }
   const stripFaq = (isBodyStripped?: boolean) =>
-    faq(i18n.t).map(({ heading, body, ...props }) => {
+    faq(t).map(({ heading, body, ...props }) => {
       let question = heading
       let answer = body
 
@@ -129,7 +130,7 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
     }),
   }
 
-  const faqByCategory = faqCategories(i18n.t).map(({ id, ...props }) => {
+  const faqByCategory = faqCategories(t).map(({ id, ...props }) => {
     const faqList = stripFaq().filter(({ category }) => category === id)
 
     return {
