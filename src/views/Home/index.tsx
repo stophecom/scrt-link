@@ -263,7 +263,7 @@ const HomeView: CustomPage = () => {
         subtitle={t('common:abbreviations.faq', 'Frequently asked questions.')}
       >
         <Box mb={3}>
-          <FaqAccordion items={shortFaq} />
+          <FaqAccordion items={shortFaq(t)} />
         </Box>
         <BaseButtonLink href="/faq" variant="text" color="primary" startIcon={<ArrowForward />}>
           {t('common:button.readMoreFaq', 'Read more on FAQ page')}

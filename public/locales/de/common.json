@@ -135,6 +135,36 @@
     "viewPlans": "Pläne ansehen",
     "getFreeAccount": "Kostenloses Konto erstellen"
   },
+  "faq": {
+    "why": {
+      "heading": "Warum sollte ich diesen Dienst nutzen?",
+      "body": "Der Austausch von Geheimnissen im Internet ist heikel. Du möchtest nicht, dass sensible Informationen (vertrauliche Informationen wie Passwörter, API-Schlüssel, Zugriffstoken, PIN Codes, Geständnisse usw.) in deinem Slack-Kanal, Whatsapp-Chatprotokoll, Posteingang oder einem anderen Kommunikationskanal bleiben. Ein Einweg-Link garantiert, dass dein Geheimnis nur ein einziges Mal eingesehen wird, bevor es dauerhaft zerstört wird.\n\n**Nutze diesen Dienst, wenn du...**\n- Dein Netflix-Passwort einem Familienmitglied mitteilen möchtest.\n- eine private Nachricht von einem öffentlichen Computer aus senden möchtest.\n- Zugangstoken, API-Schlüssel, PIN-Codes an einen Kollegen senden möchtest.\n- eine geheime Schwärmerei gestehen möchten.\n- Informationen weitergeben möchtest, die gegen dich verwendet werden könnte."
+    },
+    "who": {
+      "heading": "Für wen ist der Service gedacht?",
+      "body": "Im Grunde genommen jede und jeder. Alle sollten sich um die Privatsphäre kümmern.  \n Die Möglichkeit, sensible Informationen anonym zu übermitteln, ist vor allem für Journalisten, Anwälte, Politiker, Whistleblower, Menschen, die unterdrückt werden, usw. wichtig."
+    },
+    "how": {
+      "heading": "Wie funktioniert dieser Service",
+      "body": "Nachdem du das Formular abgeschickt hast, wird dein Geheimnis verschlüsselt und gespeichert. Du kannst nun den generierten Kurzlink per SMS, E-Mail oder einem anderen Dienst deines Vertrauens weitergeben. (Wir empfehlen Signal, Threema oder Matrix.) Nachdem der Empfänger auf den Link geklickt hat, wird die Nachricht angezeigt und dauerhaft aus der Datenbank entfernt. \n \nFür **zusätzliche Sicherheit** kannst du ein Passwort angeben, das zur Entschlüsselung der Nachricht benötigt wird. (Wir empfehlen, das Kennwort über einen anderen Kanal als den Link weiterzugeben)."
+    },
+    "difference-to-disappearing-messages": {
+      "heading": "Was ist der Unterschied zu verschwindenden Nachrichten auf Signal oder Whatsapp?",
+      "body": "Anonymität und Sicherheit. Nachrichten in einem Chatprotokoll können immer zu dir zurückverfolgt werden. Dank scrt.link wird immer nur ein Link in deinem Gesprächsverlauf bleiben. Nachdem der Link einmal besucht wurde, führt er zu einer 404-Fehlerseite. Es gibt keine Möglichkeit, auf den ursprünglichen Inhalt zuzugreifen."
+    },
+    "difference-to-snapchat": {
+      "heading": "Was ist der Unterschied zu Snapchat?",
+      "body": "Dieselbe Antwort wie bei der vorherigen Frage. Außerdem widerspricht das Geschäftsmodell hinter Snapchat und jeder anderen großen Social-Media-Plattform der Idee von Privatsphäre und Anonymität. Social-Media-Unternehmen müssen ihre Nutzer kennen, um Werbung verkaufen zu können. \n \nEs ist jedoch in Ordnung, einen generierten Geheimlink über Snapchat, Facebook, Instagram, Telegram usw. zu teilen."
+    },
+    "category": {
+      "general": "Allgemein",
+      "product": "Produkt und Dienstleistungen",
+      "securityAndPrivacy": "Sicherheit und Privatsphäre",
+      "accountAndBilling": "Konto und Bezahlung",
+      "slack": "Slack App",
+      "nerdZone": "Nerd Zone"
+    }
+  },
   "menu": {
     "home": "Startseite",
     "about": "Über uns",
@@ -155,6 +185,10 @@
       "subtitle": "Das gesamte Projekt beruht auf einer einfachen Prämisse: Je weniger wir wissen, desto besser.",
       "intro": "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleiben Sie dran - es kommt noch mehr!"
     },
+    "FAQ": {
+      "subtitle": "Häufig gestellte Fragen",
+      "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?"
+    },
     "Home": {
       "HowItWorks": {
         "create": {
@@ -174,7 +208,7 @@
       },
       "success": {
         "title": "Erfolg!",
-        "subtitle": "Ihr Geheimlink wurde erstellt - teilen es nun mit deiner Vertrauensperson."
+        "subtitle": "Dein Geheimlink wurde erstellt - teile ihn nun mit deiner Vertrauensperson."
       },
       "default": {
         "title": "Teile ein Geheimnis",
@@ -205,6 +239,11 @@
       "policiesAndTerms": "Richtlinien und Bedingungen",
       "credits": "Credits",
       "inspiration": "Inspiration"
+    },
+    "TermsOfService": {
+      "title": "Terms Of Service",
+      "subtitle": "Tl;dr: Pretty much standard.",
+      "policies": "Policies"
     }
   },
   "abbreviations": {

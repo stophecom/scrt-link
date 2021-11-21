@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { GetServerSideProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Box } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
@@ -10,7 +12,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
-
+import { getI18nConfig } from '@/utils/localization'
 import { getBaseURL } from '@/utils'
 import { CustomPage } from '@/types'
 import { LayoutMinimal } from '@/layouts/Default'
@@ -249,7 +251,7 @@ const AliasView: CustomPage = () => {
 
   if (error && !isPreview) {
     return (
-      <Page title="Error occured" noindex>
+      <Page title="Error occurred" noindex>
         <Alert severity="error">{error}</Alert>
         <Box mt={2}>
           <ReplyButton />
@@ -263,3 +265,11 @@ const AliasView: CustomPage = () => {
 
 AliasView.layout = LayoutMinimal
 export default AliasView
+
+export const getServerSideProps: GetServerSideProps = async ({ locale = 'en' }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'], getI18nConfig())),
+    },
+  }
+}

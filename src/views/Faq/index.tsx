@@ -1,6 +1,9 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation, i18n } from 'next-i18next'
 
+import { getI18nConfig } from '@/utils/localization'
 import { Box, Typography, Divider } from '@material-ui/core'
 import Head from 'next/head'
 import { FAQPage, WithContext } from 'schema-dts'
@@ -39,8 +42,10 @@ type FaqProps = {
 }
 const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   const classes = useStyles()
+  const { t } = useTranslation()
+
   return (
-    <Page title="FAQ" subtitle="Frequently Asked Questions">
+    <Page title="FAQ" subtitle={t('common:views.FAQ.subtitle', 'Frequently Asked Questions')}>
       <Head>
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -48,7 +53,7 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
         />
       </Head>
       <Typography>
-        <strong>What topic can we help you with?</strong>
+        <strong>{t('common:views.FAQ.introQuestion', 'What topic can we help you with?')}</strong>
       </Typography>
       <ul className={classes.unorderedList}>
         {faqByCategory.map(({ title, id }, index) => (
@@ -82,8 +87,11 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
+  if (!i18n?.t) {
+    throw Error('TFunction not defined.')
+  }
   const stripFaq = (isBodyStripped?: boolean) =>
-    faq.map(({ heading, body, ...props }) => {
+    faq(i18n.t).map(({ heading, body, ...props }) => {
       let question = heading
       let answer = body
 
@@ -121,7 +129,7 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
     }),
   }
 
-  const faqByCategory = faqCategories.map(({ id, ...props }) => {
+  const faqByCategory = faqCategories(i18n.t).map(({ id, ...props }) => {
     const faqList = stripFaq().filter(({ category }) => category === id)
 
     return {
@@ -131,7 +139,11 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
     }
   })
   return {
-    props: { faqByCategory, jsonLd },
+    props: {
+      faqByCategory,
+      jsonLd,
+      ...(await serverSideTranslations(locale, ['common'], getI18nConfig())),
+    },
   }
 }
 export default Faq

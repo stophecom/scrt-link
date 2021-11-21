@@ -24,13 +24,14 @@ export const dateFromTimestamp = (timestamp?: number | null) => {
   return new Intl.DateTimeFormat('en-US').format(dateObject)
 }
 
-export const getI18nConfig = (locale: string) => ({
+export const getI18nConfig = () => ({
   i18n: {
     defaultLocale: 'en',
     locales: supportedLanguages,
   },
   ns: ['common'],
   supportedLngs: supportedLanguages,
+  nonExplicitSupportedLngs: true,
   initImmediate: false,
   use: [Backend],
 
@@ -45,10 +46,10 @@ export const getI18nConfig = (locale: string) => ({
   debug: true,
 
   // Save missing keys
-  fallbackLng: (false as any) as string, //'en',
-  saveMissing: true,
-  saveMissingTo: 'all' as 'all',
-  lng: locale,
+  // fallbackLng: false as any as string, //'en',
+  // saveMissing: true,
+  // saveMissingTo: 'all' as 'all',
+  // lng: locale,
 
   interpolation: {
     escapeValue: false, // not needed for react!!
@@ -59,7 +60,7 @@ export const getI18nConfig = (locale: string) => ({
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'], getI18nConfig(locale))),
+      ...(await serverSideTranslations(locale, ['common'], getI18nConfig())),
     },
   }
 }
