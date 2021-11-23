@@ -1,5 +1,5 @@
 import React from 'react'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation, i18n } from 'next-i18next'
 
@@ -86,7 +86,7 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale = 'en' }) => {
+export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   const t = i18n?.t
   if (!t) {
     throw Error('TFunction not defined.')

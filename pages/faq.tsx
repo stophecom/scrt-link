@@ -1,1 +1,1 @@
-export { default, getServerSideProps } from '@/views/Faq'
+export { default, getStaticProps } from '@/views/Faq'
