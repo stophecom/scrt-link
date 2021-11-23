@@ -54,8 +54,9 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
       <select
         className={classes.select}
         onChange={(e) => {
-          const lang = e.currentTarget.value
-          router.push({ pathname, query }, asPath, { locale: lang })
+          const language = e.currentTarget.value
+          setLocaleCookie(language)
+          router.push({ pathname, query }, asPath, { locale: language })
         }}
       >
         {nextI18NextConfig.i18n.locales.map((language) => (
