@@ -11,6 +11,7 @@ import { useTranslation } from 'next-i18next'
 import { Link } from '@/components/Link'
 import BaseButton, { BaseButtonProps } from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
+import { LanguageSelector } from '@/components/LanguageSwitcher'
 import { main } from '@/data/menu'
 
 const NavigationButton = styled(BaseButton)<BaseButtonProps>`
@@ -141,6 +142,14 @@ const NavigationWrapper = styled.div`
   width: 100%;
 `
 
+const LanguageSwitcherWrapper = styled.div`
+  position: absolute;
+  left: 6px;
+  top: 14px;
+  display: flex;
+  justify-content: center;
+`
+
 const NavigationMenu: React.FunctionComponent = () => {
   const router = useRouter()
   const [session] = useSession()
@@ -225,6 +234,9 @@ const Navigation = () => {
       >
         <NavigationWrapper>
           <NavigationMenu />
+          <LanguageSwitcherWrapper>
+            <LanguageSelector />
+          </LanguageSwitcherWrapper>
         </NavigationWrapper>
         <Box p={1}>
           <BaseButton color="primary" onClick={closeNavigation}>

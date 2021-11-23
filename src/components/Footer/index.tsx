@@ -5,6 +5,7 @@ import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { Twitter } from '@material-ui/icons'
 import { useTranslation, Trans } from 'next-i18next'
 
+import { LanguageSelector } from '@/components/LanguageSwitcher'
 import { Link } from '@/components/Link'
 import { twitterLink, twitterHandle } from '@/constants'
 import Stats from '@/components/Stats'
@@ -88,6 +89,7 @@ const Footer: React.FC = () => {
                   {label}
                 </LinkAbout>
               ))}
+              <LanguageSelector />
             </Box>
           </Legal>
         </Box>
