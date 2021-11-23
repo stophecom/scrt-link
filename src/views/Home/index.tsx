@@ -239,16 +239,23 @@ const HomeView: CustomPage = () => {
               ),
             ]}
           />
-          <Box display="flex" justifyContent="start" mt={4}>
+          <Box
+            display="flex"
+            justifyContent="start"
+            alignItems="center"
+            mt={4}
+            flexDirection={{ xs: 'column', sm: 'row' }}
+          >
             <BaseButtonLink href="/slack" variant="contained" color="primary">
               {t('common:button.learnMore', 'Learn more')}
             </BaseButtonLink>
-            <Box ml={2}>
+            <Box ml={{ sm: 2 }} mt={{ xs: 1, sm: 0 }}>
               <BaseButtonLink
                 href={slackAppInstallLink}
                 size="large"
                 variant="text"
                 color="primary"
+                fullWidth
               >
                 {t('common:button.addToSlack', 'Add to Slack')}
               </BaseButtonLink>
@@ -280,7 +287,13 @@ const HomeView: CustomPage = () => {
           })}
         >
           <AccountTeaser />
-          <Box display="flex" justifyContent="start" mt={4}>
+          <Box
+            display="flex"
+            justifyContent="start"
+            alignItems={{ sm: 'center' }}
+            mt={4}
+            flexDirection={{ xs: 'column', sm: 'row' }}
+          >
             <BaseButtonLink
               prefetch={false}
               href="/pricing"
@@ -291,8 +304,9 @@ const HomeView: CustomPage = () => {
               {t('common:button.viewPlans', 'View plans')}
             </BaseButtonLink>
             {!customer?.role && (
-              <Box ml={2}>
+              <Box ml={{ sm: 2 }} pt={{ xs: 1, sm: 0 }}>
                 <BaseButtonLink
+                  fullWidth
                   href="/account?signup=true"
                   prefetch={false}
                   size="large"
