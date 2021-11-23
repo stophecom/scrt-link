@@ -242,14 +242,14 @@ const HomeView: CustomPage = () => {
           <Box
             display="flex"
             justifyContent="start"
-            alignItems="center"
+            alignItems={{ sm: 'center' }}
             mt={4}
             flexDirection={{ xs: 'column', sm: 'row' }}
           >
             <BaseButtonLink href="/slack" variant="contained" color="primary">
               {t('common:button.learnMore', 'Learn more')}
             </BaseButtonLink>
-            <Box ml={{ sm: 2 }} mt={{ xs: 1, sm: 0 }}>
+            <Box ml={{ sm: 2 }} pt={{ xs: 1, sm: 0 }}>
               <BaseButtonLink
                 href={slackAppInstallLink}
                 size="large"
