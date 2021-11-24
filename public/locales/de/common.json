@@ -222,7 +222,7 @@
     },
     "slack-app": {
       "heading": "Wo kann ich die Slack-App bekommen?",
-      "body": "Mit der Slack-App kannst du Geheimnisse direkt erstellen. Gehe auf die [Slack App Seite](/slack) für weitere Informationen. Oder hole dir die App gleich hier:  \n\n👉 [Slack App installieren]({{ slackAppInstallLink }}) \n\n_**Wichtiger Hinweis:** Es gibt Einschränkungen bei der Verwendung der Slack-Anwendung. Aufgrund der Art, wie diese Apps konzipiert sind, ist eine vollständige Ende-zu-Ende-Verschlüsselung nicht möglich. In den meisten Fällen ist dies kein Problem und ein Risiko, das es wert ist, eingegangen zu werden - wenn du jedoch einen erweiterten Schutz benötigst, erstelle stattdessen Geheimnisse auf der Website."
+      "body": "Mit der Slack-App kannst du Geheimnisse direkt erstellen. Gehe auf die [Slack App Seite](/slack) für weitere Informationen. Oder hole dir die App gleich hier:  \n\n👉 [Slack App installieren]({{ slackAppInstallLink }}) \n\n_**Wichtiger Hinweis:** Es gibt Einschränkungen bei der Verwendung der Slack-Anwendung. Aufgrund der Art, wie diese Apps konzipiert sind, ist eine vollständige Ende-zu-Ende-Verschlüsselung nicht möglich. In den meisten Fällen ist dies kein Problem und ein Risiko, das es wert ist, eingegangen zu werden - wenn du jedoch einen erweiterten Schutz benötigst, erstelle stattdessen Geheimnisse auf der Website._"
     },
     "security": {
       "heading": "Wie sicher ist dieser Dienst?",
@@ -230,7 +230,7 @@
     },
     "anonymity": {
       "heading": "Wie wird meine Privatsphäre geschützt?",
-      "body": "Wir unternehmen eine Reihe von Schritten, um deine Privatsphäre zu schützen, die auf der [Datenschutzseite](/Privacy) detailliert beschrieben sind - einige der Funktionen erfordern jedoch Dienste von Drittanbietern, die Zugang zu personenbezogenen Daten (PII) haben können. Wenn du deine Privatsphäre weiter schützen möchtest, empfehlen wir dir Folgendes: Verbinden dich mit unserem Dienst über ein virtuelles privates Netzwerk (VPN): Auf diese Weise gibst niemals deine persönliche IP-Adresse preis. Wir empfehlen [ProtonVPN](https://protonvpn.com/).\n- Verwende einen Dienst wie [Abine Blur](https://www.abine.com/), um deine persönliche E-Mail-Adresse, Telefonnummer und/oder Kreditkarteninformationen zu verbergen."
+      "body": "Wir unternehmen eine Reihe von Schritten, um deine Privatsphäre zu schützen, die auf der [Datenschutzseite](/Privacy) detailliert beschrieben sind - einige der Funktionen erfordern jedoch Dienste von Drittanbietern, die Zugang zu personenbezogenen Daten (PII) haben können. Wenn du deine Privatsphäre weiter schützen möchtest, empfehlen wir dir Folgendes:\n\n-Verbinde dich mit unserem Dienst über ein virtuelles privates Netzwerk (VPN): Auf diese Weise gibst niemals deine persönliche IP-Adresse preis. Wir empfehlen [ProtonVPN](https://protonvpn.com/).\n- Verwende einen Dienst wie [Abine Blur](https://www.abine.com/), um deine persönliche E-Mail-Adresse, Telefonnummer und/oder Kreditkarteninformationen zu verbergen."
     },
     "end-to-end-encryption-info": {
       "heading": "Wie wird die Ende-zu-Ende-Verschlüsselung erreicht?",
@@ -250,7 +250,7 @@
     },
     "slack-security": {
       "heading": "Ist die Slack-App sicher?",
-      "body": "Die ehrliche Antwort: Wir können es nicht mit Sicherheit wissen. Es ist wichtig zu verstehen, dass eine **Ende-zu-Ende-Verschlüsselung** mit Slack-Apps nicht möglich ist. Die Kommunikation zwischen unserem App-Server und Slack ist jedoch verschlüsselt und wir glauben daher, dass es für 99% der Anwendungsfälle sicher genug ist. Bitte beachte jedoch, dass **Slack eine proprietäre Software** ist und wir keine Kontrolle über den Code haben. **Falls du 100% sicher sein wisst, erstelle stattdessen Geheimnisse über die Website."
+      "body": "Die ehrliche Antwort: Wir können es nicht mit Sicherheit wissen. Es ist wichtig zu verstehen, dass eine **Ende-zu-Ende-Verschlüsselung** mit Slack-Apps nicht möglich ist. Die Kommunikation zwischen unserem App-Server und Slack ist jedoch verschlüsselt und wir glauben daher, dass es für 99% der Anwendungsfälle sicher genug ist. Bitte beachte jedoch, dass **Slack eine proprietäre Software** ist und wir keine Kontrolle über den Code haben. **Falls du 100% sicher sein wisst, erstelle stattdessen Geheimnisse über die Website.**"
     },
     "slack-trust": {
       "heading": "Warum sollte ich euch vertrauen?",
