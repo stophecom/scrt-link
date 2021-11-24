@@ -58,9 +58,10 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
           setLocaleCookie(language)
           router.push({ pathname, query }, asPath, { locale: language })
         }}
+        value={locale}
       >
         {nextI18NextConfig.i18n.locales.map((language) => (
-          <option key={language} value={language} selected={language === locale}>
+          <option key={language} value={language}>
             {languageMap[language as LanguageKeys] || language.toUpperCase()}
           </option>
         ))}
