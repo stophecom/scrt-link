@@ -46,7 +46,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
   const router = useRouter()
   const classes = useStyles()
 
-  const { pathname, asPath, query } = router
+  const { pathname, asPath, query, locale } = router
 
   return (
     <Box display="inline-flex" alignItems="center">
@@ -60,7 +60,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
         }}
       >
         {nextI18NextConfig.i18n.locales.map((language) => (
-          <option key={language} value={language}>
+          <option key={language} value={language} selected={language === locale}>
             {languageMap[language as LanguageKeys] || language.toUpperCase()}
           </option>
         ))}
