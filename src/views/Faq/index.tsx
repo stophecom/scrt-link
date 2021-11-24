@@ -78,7 +78,10 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
       ))}
       <Box mb={5}>
         <Typography>
-          {`Didn't find the answer you were looking for? Contact support: `}
+          {t(
+            'common:views.FAQ.noAnswer',
+            `Didn't find the answer you were looking for? Contact support:`,
+          )}{' '}
           <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
         </Typography>
       </Box>

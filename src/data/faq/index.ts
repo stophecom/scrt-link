@@ -24,11 +24,11 @@ export const faqCategories = (t: TFunction) => [
 
 export const faq = (t: TFunction) => [
   ...general(t),
-  ...product,
-  ...securityAndPrivacy,
-  ...accountAndBilling,
-  ...slack,
-  ...nerdZone,
+  ...product(t),
+  ...securityAndPrivacy(t),
+  ...accountAndBilling(t),
+  ...slack(t),
+  ...nerdZone(t),
 ]
 
 export const shortFaq = (t: TFunction) =>

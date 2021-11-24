@@ -60,6 +60,15 @@ For **extra security**, you can include a password that will be needed to decryp
 However, it is fine to share a generated secret link using Snapchat, Facebook, Instagram, Telegram, etc.`,
     ),
   },
+  {
+    id: 'service-provider',
+    category: 'general',
+    heading: t('common:faq.service-provider.heading', 'Who is behind this service?'),
+    body: t(
+      'common:faq.service-provider.body',
+      `Scrt.link is a service by [SANTiHANS GmbH](https://santihans.com), a Swiss based tech company with a mission to advance the web. We operate under Swiss law. As a customer you profit from one of the world's strongest data and privacy protection regulation, the [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). This product has been created and is operated by [@stophecom](https://twitter.com/stophecom).`,
+    ),
+  },
 ]
 
 export default general
