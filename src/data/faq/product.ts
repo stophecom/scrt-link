@@ -11,25 +11,34 @@ import {
 } from '@/constants'
 import { TFunction } from 'next-i18next'
 
-const demoTextMessage = 'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘'
+export const demoNeogramMessage = (t: TFunction) =>
+  t(
+    'common:demoNeogramMessage',
+    'Hi there…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘',
+  )
 
-export const demoNeogramMessage =
-  'Hi there…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘'
-
-const demoSecretMessageLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
-  JSON.stringify({
-    message: demoTextMessage,
-    secretType: 'text',
-  }),
-)}`
-const demoSecretNeogramLink = `${baseUrl}/l/preview?preview=${encodeURIComponent(
-  JSON.stringify({
-    message: demoNeogramMessage,
-    secretType: 'neogram',
-    neogramDestructionMessage: 'This message self-destructs in …',
-    neogramDestructionTimeout: 3,
-  }),
-)}`
+const demoSecretMessageLink = (t: TFunction) =>
+  `${baseUrl}/l/preview?preview=${encodeURIComponent(
+    JSON.stringify({
+      message: t(
+        'common:demoTextMessage',
+        'Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘',
+      ),
+      secretType: 'text',
+    }),
+  )}`
+const demoSecretNeogramLink = (t: TFunction) =>
+  `${baseUrl}/l/preview?preview=${encodeURIComponent(
+    JSON.stringify({
+      message: demoNeogramMessage(t),
+      secretType: 'neogram',
+      neogramDestructionMessage: t(
+        'common:demoNeogramDestructionMessage',
+        'This message self-destructs in …',
+      ),
+      neogramDestructionTimeout: 3,
+    }),
+  )}`
 
 const product = (t: TFunction) => [
   {
@@ -44,8 +53,8 @@ const product = (t: TFunction) => [
 [Demo]({{ demoSecretMessageLink }})
 - **Link**: Think about it as a URL-shortener where the generated link only works once.
 - **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})`,
-      demoSecretMessageLink,
-      demoSecretNeogramLink,
+      demoSecretMessageLink: demoSecretMessageLink(t),
+      demoSecretNeogramLink: demoSecretNeogramLink(t),
     }),
   },
 

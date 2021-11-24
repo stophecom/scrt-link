@@ -277,6 +277,9 @@
       "body": "Nein. Bitteschön. Aber, du kannst dieses Projekt natürlich trotzdem mit einem bezahlten Abonnement unterstützen 🤓."
     }
   },
+  "demoNeogramMessage": "Hallo…\nDies ist nur eine Demo! Neogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spass beim Geheimnisse teilen 😘",
+  "demoTextMessage": "Hallo…\nDies ist nur eine Demo!\n\nViel Spass beim Geheimnisse teilen 😘",
+  "demoNeogramDestructionMessage": "Diese Nachricht zerstört sich selbst in …",
   "menu": {
     "home": "Startseite",
     "about": "Über uns",
