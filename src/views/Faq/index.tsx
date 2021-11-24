@@ -87,7 +87,8 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
-  const t = i18n?.t
+  const t = i18n?.getFixedT(locale)
+
   if (!t) {
     throw Error('TFunction not defined.')
   }
