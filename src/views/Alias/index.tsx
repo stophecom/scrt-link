@@ -78,7 +78,7 @@ const AliasView: CustomPage = () => {
     return () => {
       router.events.off('routeChangeStart', handleRouteChange)
     }
-  }, [])
+  })
 
   useEffect(() => {
     const fetchSecret = async () => {

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Box } from '@material-ui/core'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
+import { useTranslation } from 'next-i18next'
 
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
@@ -101,6 +102,7 @@ const SlackInstallButton: React.FC<SlackInstallButtonProps> = ({ className }) =>
 
 const Slack = () => {
   const classes = useStyles()
+  const { t } = useTranslation()
 
   return (
     <Page
@@ -177,7 +179,7 @@ This is a built in feature. You get notified when a secret has been viewed. We u
       </Section>
 
       <Section title={'FAQ'} subtitle="Frequently asked questions about the Slack App.">
-        <FaqAccordion items={slackAppFaq} />
+        <FaqAccordion items={slackAppFaq(t)} />
       </Section>
       <SlackInstallButton />
     </Page>
