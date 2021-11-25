@@ -127,6 +127,9 @@
     "share": "Share",
     "copied": "Copied",
     "copy": "Copy",
+    "replyWithSecret": "Reply with a secret",
+    "decryptMessage": "Decrypt Message",
+    "destroySecret": "Destroy secret",
     "tryAgain": "Try again",
     "createSecret": "Create a secret",
     "learnMore": "Learn more",
@@ -300,6 +303,14 @@
       "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
       "intro": "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!"
     },
+    "Alias": {
+      "passwordRequired": "Password required",
+      "enterPassword": "Enter password to decrypt your secret:",
+      "title": "Shhh",
+      "subtitle": "You received a secret:",
+      "errorOccurred": "Error occurred",
+      "loadingSecret": "Loading secret"
+    },
     "FAQ": {
       "subtitle": "Frequently Asked Questions",
       "introQuestion": "What topic can we help you with?",
@@ -361,6 +372,11 @@
       "subtitle": "Tl;dr: Pretty much standard.",
       "policies": "Policies"
     }
+  },
+  "error": {
+    "missingDecryptionKey": "Invalid alias.",
+    "invalidAlias": "Invalid alias.",
+    "wrongPassword": "Wrong Password"
   },
   "abbreviations": {
     "faq": "Frequently asked questions."

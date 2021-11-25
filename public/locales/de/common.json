@@ -127,6 +127,9 @@
     "share": "Teilen",
     "copied": "Kopiert",
     "copy": "Kopieren",
+    "replyWithSecret": "Mit einem Geheimnis antworten",
+    "decryptMessage": "Nachricht entschlüsseln",
+    "destroySecret": "Nachricht zerstören",
     "tryAgain": "Nochmals versuchen",
     "createSecret": "Geheimnis erstellen",
     "learnMore": "Mehr erfahren",
@@ -300,6 +303,14 @@
       "subtitle": "Das gesamte Projekt beruht auf einer einfachen Prämisse: Je weniger wir wissen, desto besser.",
       "intro": "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleiben Sie dran - es kommt noch mehr!"
     },
+    "Alias": {
+      "passwordRequired": "Passwort notwendig",
+      "enterPassword": "Gebe das Passwort ein um die Nachricht zu entschlüsseln:",
+      "title": "Pssst",
+      "subtitle": "Du hast eine geheime Nachricht bekommen:",
+      "errorOccurred": "Fehler aufgetreten",
+      "loadingSecret": "Geheimnis wird geladen"
+    },
     "FAQ": {
       "subtitle": "Häufig gestellte Fragen",
       "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?",
@@ -361,6 +372,11 @@
       "subtitle": "Tl;dr: Pretty much standard.",
       "policies": "Policies"
     }
+  },
+  "error": {
+    "missingDecryptionKey": "Entschlüsselungscode fehlt",
+    "invalidAlias": "Alias ungültig.",
+    "wrongPassword": "Falsches Passwort"
   },
   "abbreviations": {
     "faq": "Häufig gestellte Fragen."
