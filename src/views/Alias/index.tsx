@@ -12,6 +12,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import { CustomError } from '@/api/utils/createError'
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
 import { getI18nConfig } from '@/utils/localization'
 import { getBaseURL } from '@/utils'
@@ -105,7 +106,9 @@ const AliasView: CustomPage = () => {
         // eslint-disable-next-line no-restricted-globals
         history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (error) {
-        setError(`${error instanceof Error && error.message}`)
+        let err = error as CustomError
+        // t('common:error.SECRET_NOT_FOUND')
+        setError(`${err?.i18nErrorKey ? t(`common:error.${err.i18nErrorKey}`) : err.message}`)
       }
     }
 

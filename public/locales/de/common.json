@@ -376,6 +376,7 @@
   "error": {
     "missingDecryptionKey": "Entschlüsselungscode fehlt",
     "invalidAlias": "Alias ungültig.",
+    "SECRET_NOT_FOUND": "Geheimnis nicht gefunden - Dies bedeutet normalerweise, dass der geheime Link bereits besucht wurde und daher nicht mehr existiert.",
     "wrongPassword": "Falsches Passwort"
   },
   "abbreviations": {
