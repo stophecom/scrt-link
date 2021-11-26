@@ -39,6 +39,10 @@
       "viewed": "viewed:",
       "compromised": "compromised:"
     },
+    "UpgradeNotice": {
+      "premium": "Get a <1>premium account</1> to enable this feature.",
+      "free": "Get a <1>free account</1> to enable this feature."
+    },
     "AccountTeaser": {
       "items1": {
         "0": "Unlimited secrets",

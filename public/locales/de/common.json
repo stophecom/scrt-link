@@ -39,6 +39,10 @@
       "viewed": "gesehen:",
       "compromised": "kompromittiert:"
     },
+    "UpgradeNotice": {
+      "premium": "Besorge dir ein <1>Premium-Konto</1>, um diese Funktion zu aktivieren.",
+      "free": "<1>Melde dich an</1>, um diese Funktion zu nutzen."
+    },
     "AccountTeaser": {
       "items1": {
         "0": "Unlimitiert Geheimnisse",
