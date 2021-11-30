@@ -135,7 +135,7 @@ export const getCustomerValidationSchema = (t: TFunction, readReceiptMethod: Rea
     ...neogramDestructionMessageValidation,
     ...neogramDestructionTimeoutValidation,
     readReceiptMethod: Yup.mixed<ReadReceiptMethod>()
-      .oneOf(readReceiptOptions)
+      .oneOf(readReceiptMethods)
       .label(t('common:validation.readReceipts', 'Read receipts')),
     isEmojiShortLinkEnabled: Yup.boolean().label(
       t('common:validation.emojiLink', 'Emoji short link'),
