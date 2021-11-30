@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { Typography } from '@material-ui/core'
-import { useTranslation, Trans } from 'next-i18next'
+import { Trans } from 'next-i18next'
 
 import { Role } from '@/api/models/Customer'
 import { Link } from '@/components/Link'

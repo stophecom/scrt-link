@@ -22,8 +22,8 @@
       "label": "Ich möchte mein Konto schliessen."
     },
     "FormSignIn": {
-      "success": "Schau in deine Mailbox. Wir haben dir einen Link geschickt. <1>{email}</1>.",
-      "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und Datenschutzrichtlinien zu.",
+      "success": "Check your email! A sign in link has been sent to <1>{{email}}</1>.",
+      "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu. (Englisch)",
       "gotAccount": "Du hast bereits ein Konto?",
       "noAccountYet": "Noch kein Konto?"
     },
@@ -130,7 +130,7 @@
     "createSecretLink": "Geheimen Link erstellen",
     "save": "Speichen",
     "deleteAccount": "Delete Account",
-    "signUp": "Sign up",
+    "signUp": "Registrieren",
     "signIn": "Anmelden",
     "myAccount": "Mein Konto",
     "account": "Konto",
@@ -143,6 +143,7 @@
     "share": "Teilen",
     "copied": "Kopiert",
     "copy": "Kopieren",
+    "signOut": "Abmelden",
     "replyWithSecret": "Mit einem Geheimnis antworten",
     "decryptMessage": "Nachricht entschlüsseln",
     "destroySecret": "Nachricht zerstören",
@@ -326,6 +327,37 @@
       "title": "Über uns",
       "subtitle": "Das gesamte Projekt beruht auf einer einfachen Prämisse: Je weniger wir wissen, desto besser.",
       "intro": "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleiben Sie dran - es kommt noch mehr!"
+    },
+    "Account": {
+      "ManageSubscriptionButton": {
+        "button": "Abo auf Stripe verwalten"
+      },
+      "title": "Konto",
+      "subtitle": "Hallo {{name}}, willkommen zurück!",
+      "tabsMenu": {
+        "label": "Konto Optionen"
+      },
+      "settingsDisclaimer": "Die folgenden Angaben sind Standardeinstellungen. Du kannst jede Einstellung für jedes erstellte Geheimnis überschreiben.",
+      "subscriptionInfo": "Du hast den <1>{{customerRole}}</1> Plan abonniert.",
+      "activeSubscriptionWarning": "Du hast ein laufendes Abonnement. Wir empfehlen diese zuerst zu kündigen.",
+      "accountDeletion": "Konto löschen",
+      "signedInAs": "Du bist angemeldet als {{email}}."
+    },
+    "SignIn": {
+      "title": "Scrt Konto",
+      "subtitle": "Große Dinge beginnen hier…",
+      "FreeAccount": {
+        "title": "Deine Gratis-Konto Vorteile",
+        "Usps": {
+          "0": "Mehr Zeichen für deine Geheimnisse",
+          "1": "E-Mail-Lesebestätigungen",
+          "2": "Slack App",
+          "3": "Browsererweiterungen",
+          "4": "Persönlicher Support",
+          "5": "Emoji Links 🤫"
+        },
+        "upsell": "Du brauchst mehr? <1>Hier gibts mehr</1>."
+      }
     },
     "Alias": {
       "passwordRequired": "Passwort notwendig",

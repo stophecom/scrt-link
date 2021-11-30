@@ -91,7 +91,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
     return (
       <Alert severity="success">
         <Trans i18nKey="common:components.FormSignIn.success">
-          Check your email! A sign in link has been sent to <em>{email}</em>.
+          Check your email! A sign in link has been sent to <em>{{ email }}</em>.
         </Trans>
       </Alert>
     )

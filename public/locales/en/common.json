@@ -22,7 +22,7 @@
       "label": "I want to delete my account."
     },
     "FormSignIn": {
-      "success": "Check your email! A sign in link has been sent to <1>{email}</1>.",
+      "success": "Check your email! A sign in link has been sent to <1>{{email}}</1>.",
       "agreement": "I agree to the <2>Terms Of Service</2> and the associated policies.",
       "gotAccount": "Already got an account?",
       "noAccountYet": "No Account yet?"
@@ -143,6 +143,7 @@
     "share": "Share",
     "copied": "Copied",
     "copy": "Copy",
+    "signOut": "Sign out",
     "replyWithSecret": "Reply with a secret",
     "decryptMessage": "Decrypt Message",
     "destroySecret": "Destroy secret",
@@ -326,6 +327,37 @@
       "title": "About",
       "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
       "intro": "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!"
+    },
+    "Account": {
+      "ManageSubscriptionButton": {
+        "button": "Manage subscription on Stripe"
+      },
+      "title": "Account",
+      "subtitle": "Hi {{name}}, welcome back!",
+      "tabsMenu": {
+        "label": "Account options"
+      },
+      "settingsDisclaimer": "The following are default settings. You can overwrite each setting for every secret you create.",
+      "subscriptionInfo": "You are currently on the <1>{{customerRole}}</1> plan.",
+      "activeSubscriptionWarning": "You have a running subscription. We recommend to cancel it first.",
+      "accountDeletion": "Delete your account",
+      "signedInAs": "You are signed in as {{email}}."
+    },
+    "SignIn": {
+      "title": "Scrt account",
+      "subtitle": "Great things start here…",
+      "FreeAccount": {
+        "title": "Free Account Benefits",
+        "Usps": {
+          "0": "More characters for your secrets",
+          "1": "Email read receipts",
+          "2": "Slack App",
+          "3": "Browser extensions",
+          "4": "Personal support",
+          "5": "Emoji links 🤫"
+        },
+        "upsell": "Need more? <1>There is more</1>."
+      }
     },
     "Alias": {
       "passwordRequired": "Password required",

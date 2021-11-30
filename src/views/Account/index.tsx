@@ -5,6 +5,8 @@ import { Box, Typography, Paper, NoSsr } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 import { project } from 'ramda'
+import { useTranslation, Trans } from 'react-i18next'
+import { Link } from '@/components/Link'
 
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
@@ -40,6 +42,7 @@ type ResponseCreatePortalLink = { url: string }
 
 const ManageSubscriptionButton = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const { t } = useTranslation()
 
   const redirectToCustomerPortal = async () => {
     setIsLoading(true)
@@ -62,7 +65,7 @@ const ManageSubscriptionButton = () => {
       onClick={redirectToCustomerPortal}
       loading={isLoading}
     >
-      Manage subscription on Stripe
+      {t('common:views.Account.ManageSubscriptionButton.button', 'Manage subscription on Stripe')}
     </BaseButton>
   )
 }
@@ -71,6 +74,7 @@ const Account = () => {
   const [session, loading] = useSession()
   const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu[0].key)
   const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
+  const { t } = useTranslation()
 
   const handleMenuChange = (
     _event: React.ChangeEvent<Record<string, unknown>>,
@@ -78,25 +82,33 @@ const Account = () => {
   ) => {
     setActiveTab(newValue)
   }
+  const customerRole = customer?.role
 
   if (typeof window !== 'undefined' && loading) return <Spinner />
-
   if (session) {
     return (
-      <Page title={`Account`} subtitle={`Hi ${customer?.name || 'X'}, welcome back!`}>
+      <Page
+        title={t('common:views.Account.title', `Account`)}
+        subtitle={t('common:views.Account.subtitle', {
+          defaultValue: `Hi {{name}}, welcome back!`,
+          name: customer?.name || 'X',
+        })}
+      >
         <TabsMenu
           handleChange={handleMenuChange}
           value={activeTab}
           tabsMenu={project(['label', 'key'], menu)}
-          label="Account options"
+          label={t('common:views.Account.tabsMenu.label', 'Account options')}
         />
         <Section pt={{ xs: 0, sm: 0 }}>
           {activeTab === 'settings' && (
             <>
               <Box mb={1}>
                 <Alert severity="info">
-                  The following are default settings. You can overwrite each setting for every
-                  secret you create.
+                  {t(
+                    'common:views.Account.settingsDisclaimer',
+                    'The following are default settings. You can overwrite each setting for every secret you create.',
+                  )}
                 </Alert>
               </Box>
               <Paper square>
@@ -114,8 +126,10 @@ const Account = () => {
             <>
               <Box mb={2}>
                 <Alert severity="info">
-                  You are currently on the <strong>{customer?.role}</strong> plan.
-                  {customer?.role === 'premium' && (
+                  <Trans i18nKey="common:views.Account.subscriptionInfo">
+                    You are currently on the <strong>{{ customerRole }}</strong> plan.
+                  </Trans>
+                  {customerRole === 'premium' && (
                     <Box mt={1}>
                       <ManageSubscriptionButton />
                     </Box>
@@ -129,10 +143,13 @@ const Account = () => {
 
           {activeTab === 'danger' && (
             <>
-              {customer?.role === 'premium' && (
+              {customerRole === 'premium' && (
                 <Box mb={1}>
                   <Alert severity="info">
-                    You have a running subscription. We recommend to cancel it first.
+                    {t(
+                      'common:views.Account.activeSubscriptionWarning',
+                      'You have a running subscription. We recommend to cancel it first.',
+                    )}
                     <Box mt={1}>
                       <ManageSubscriptionButton />
                     </Box>
@@ -143,7 +160,9 @@ const Account = () => {
               <DangerZone square>
                 <Box p={3}>
                   <Box mb={5}>
-                    <Typography variant="h3">Delete your account</Typography>
+                    <Typography variant="h3">
+                      {t('common:views.Account.accountDeletion', 'Delete your account')}
+                    </Typography>
                   </Box>
                   <FormDeleteAccount />
                 </Box>
@@ -152,10 +171,15 @@ const Account = () => {
           )}
         </Section>
         <AccountInfo pt={5}>
-          <Typography variant="body1">You are signed in as {session?.user?.email}.</Typography>
+          <Typography variant="body1">
+            {t('common:views.Account.signedInAs', {
+              defaultValue: 'You are signed in as {{email}}.',
+              email: session?.user?.email,
+            })}
+          </Typography>
           <Box mt={1}>
             <BaseButton onClick={() => signOut()} variant="outlined" color="primary">
-              Sign out
+              {t('common:button.signOut', 'Sign out')}
             </BaseButton>
           </Box>
         </AccountInfo>
@@ -165,29 +189,32 @@ const Account = () => {
 
   return (
     <NoSsr>
-      <Page title="Scrt account" subtitle="Great things start here…">
+      <Page
+        title={t('common:views.SignIn.title', 'Scrt account')}
+        subtitle={t('common:views.SignIn.subtitle', 'Great things start here…')}
+      >
         <Box mb={10}>
           <FormSignIn />
         </Box>
-        {customer?.role !== 'premium' && (
-          <Section
-            title={`That's inside`}
-            subtitle={`With a free account you get access to a rich feature set. Want more? Support this project with a subscription.`}
-          >
-            <PlanSelection />
-
-            <Box pt={15}>
-              <Typography variant="h3">…on top of all standard features:</Typography>
+        {customerRole !== 'premium' && (
+          <Section title={t('common:views.SignIn.FreeAccount.title', `Free Account Benefits`)}>
+            <Box pb={1}>
               <UnorderedList
                 items={[
-                  'Unlimited secrets',
-                  'Optional password',
-                  'Emoji links 🤫',
-                  'Extension for all major browsers',
-                  '100% privacy protection',
+                  t('common:views.SignIn.FreeAccount.Usps.0', 'More characters for your secrets'),
+                  t('common:views.SignIn.FreeAccount.Usps.1', 'Email read receipts'),
+                  t('common:views.SignIn.FreeAccount.Usps.2', 'Slack App'),
+                  t('common:views.SignIn.FreeAccount.Usps.3', 'Browser extensions'),
+                  t('common:views.SignIn.FreeAccount.Usps.4', 'Personal support'),
+                  t('common:views.SignIn.FreeAccount.Usps.5', 'Emoji links 🤫'),
                 ]}
               />
             </Box>
+            <Typography variant="body1">
+              <Trans i18nKey="common:views.SignIn.FreeAccount.upsell">
+                Need more? <Link href="/pricing">There is more</Link>.
+              </Trans>
+            </Typography>
           </Section>
         )}
       </Page>
