@@ -1,26 +1,18 @@
 import * as Yup from 'yup'
 import validator from 'validator'
 
-import { Role, CustomerFields, ReadReceiptMethod } from '@/api/models/Customer'
-import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
+import { Role, CustomerFields, readReceiptOptions, ReadReceiptMethod } from '@/api/models/Customer'
+import { SecretUrlFields, secretTypes, SecretType } from '@/api/models/SecretUrl'
 import { getLimits } from '@/utils'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
-// @todo
-const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
-const readReceiptMethods = [
-  'none' as ReadReceiptMethod,
-  'sms' as ReadReceiptMethod,
-  'email' as ReadReceiptMethod,
-]
-
 const messageValidation = (maxLength: number) => ({
   message: Yup.string().label('Message').required().min(1).max(maxLength).trim(),
 })
 const typeValidation = {
-  secretType: Yup.mixed<SecretType>().oneOf(secretTypes),
+  secretType: Yup.mixed().oneOf(secretTypes),
 }
 const neogramDestructionMessageValidation = {
   neogramDestructionMessage: Yup.string().label('Destruction message').max(200).trim(),
@@ -80,7 +72,7 @@ export const getValidationSchemaByType = (
     email: receiptEmailValidation,
   }
 
-  return Yup.object().shape<SecretFormInput>({
+  return Yup.object().shape({
     ...schemataBySecretTypeMap[secretType],
     ...schemataByReadReceiptMap[readReceiptMethod],
     ...typeValidation,
@@ -98,7 +90,7 @@ export const getValidationSchemaByType = (
   })
 }
 
-export const apiValidationSchemaByType = Yup.object().shape<SecretFormInput>({
+export const apiValidationSchemaByType = Yup.object().shape({
   message: Yup.string().label('Message').required().trim(),
   ...typeValidation,
 })
@@ -113,7 +105,7 @@ export const getCustomerValidationSchema = (readReceiptMethod: ReadReceiptMethod
     ...neogramDestructionMessageValidation,
     ...neogramDestructionTimeoutValidation,
     readReceiptMethod: Yup.mixed<ReadReceiptMethod>()
-      .oneOf(readReceiptMethods)
+      .oneOf(readReceiptOptions)
       .label('Read receipts'),
     isEmojiShortLinkEnabled: Yup.boolean().label('Emoji short link'),
     ...(readReceiptMethod === 'email' ? receiptEmailValidation : {}),

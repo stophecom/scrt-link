@@ -3,7 +3,9 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 import { BaseDocumentData } from './types'
 
-export type SecretType = 'text' | 'url' | 'neogram'
+export const secretTypes = ['text', 'url', 'neogram'] as const
+export type SecretType = typeof secretTypes[number]
+
 export interface SecretUrlFields {
   secretType: SecretType
   alias: string
