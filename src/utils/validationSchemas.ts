@@ -4,6 +4,7 @@ import validator from 'validator'
 import { Role, CustomerFields, readReceiptOptions, ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretUrlFields, secretTypes, SecretType } from '@/api/models/SecretUrl'
 import { getLimits } from '@/utils'
+import { TFunction } from 'next-i18next'
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -48,6 +49,7 @@ type SecretFormInput = Pick<SecretUrlFields, 'secretType' | 'message'> & {
   readReceiptMethod?: ReadReceiptMethod
 }
 export const getValidationSchemaByType = (
+  t: TFunction,
   secretType: SecretType,
   readReceiptMethod: ReadReceiptMethod,
   role: Role = 'visitor',
@@ -76,7 +78,7 @@ export const getValidationSchemaByType = (
     ...schemataBySecretTypeMap[secretType],
     ...schemataByReadReceiptMap[readReceiptMethod],
     ...typeValidation,
-    password: Yup.string().label('Password').min(5).max(50).trim(),
+    password: Yup.string().label(t('common:validation.password', 'Password')).min(5).max(50).trim(),
     readReceiptMethod: Yup.mixed<ReadReceiptMethod>()
       .oneOf(
         [
@@ -84,9 +86,9 @@ export const getValidationSchemaByType = (
           ...(isEmailReceiptAllowed ? ['email' as ReadReceiptMethod] : []),
           ...(isSMSReceiptAllowed ? ['sms' as ReadReceiptMethod] : []),
         ],
-        'Not allowed.',
+        t('common:validation.notAllowed', 'Not allowed.'),
       )
-      .label('Read receipts'),
+      .label(t('common:validation.readReceipts', 'Read receipts')),
   })
 }
 
@@ -95,11 +97,18 @@ export const apiValidationSchemaByType = Yup.object().shape({
   ...typeValidation,
 })
 
-export const passwordValidationSchema = Yup.object().shape<{ password: string }>({
-  password: Yup.string().label('Password').required().min(5).max(50).trim(),
-})
+export const passwordValidationSchema = (t: TFunction) =>
+  Yup.object().shape<{ password: string }>({
+    password: Yup.string()
+      .label(t('common:validation.password', 'Password'))
+      .required()
+      .min(5)
+      .max(50)
+      .trim(),
+  })
 
-export const getCustomerValidationSchema = (readReceiptMethod: ReadReceiptMethod) =>
+// This is essentially the same as below, without translations
+export const getCustomerValidationSchemaServer = (readReceiptMethod: ReadReceiptMethod) =>
   Yup.object().shape<Partial<CustomerFields>>({
     name: Yup.string().label('Name').max(200).trim(),
     ...neogramDestructionMessageValidation,
@@ -112,9 +121,28 @@ export const getCustomerValidationSchema = (readReceiptMethod: ReadReceiptMethod
     ...(readReceiptMethod === 'sms' ? receiptPhoneNumberValidation : {}),
   })
 
-export const deleteCustomerValidationSchema = Yup.object().shape({
-  isSure: Yup.boolean().label('Are you sure').required().oneOf([true], 'Field must be checked'),
-})
+export const getCustomerValidationSchema = (t: TFunction, readReceiptMethod: ReadReceiptMethod) =>
+  Yup.object().shape<Partial<CustomerFields>>({
+    name: Yup.string().label(t('common:validation.name', 'Name')).max(200).trim(),
+    ...neogramDestructionMessageValidation,
+    ...neogramDestructionTimeoutValidation,
+    readReceiptMethod: Yup.mixed<ReadReceiptMethod>()
+      .oneOf(readReceiptOptions)
+      .label(t('common:validation.readReceipts', 'Read receipts')),
+    isEmojiShortLinkEnabled: Yup.boolean().label(
+      t('common:validation.emojiLink', 'Emoji short link'),
+    ),
+    ...(readReceiptMethod === 'email' ? receiptEmailValidation : {}),
+    ...(readReceiptMethod === 'sms' ? receiptPhoneNumberValidation : {}),
+  })
+
+export const deleteCustomerValidationSchema = (t: TFunction) =>
+  Yup.object().shape({
+    isSure: Yup.boolean()
+      .label('Are you sure')
+      .required()
+      .oneOf([true], t('common:validation.confirmationRequired', 'Field must be checked')),
+  })
 
 export const getSignInValidationSchema = (isSignUp?: boolean) =>
   Yup.object().shape<{ email: string }>({

@@ -5,7 +5,7 @@ import { pick } from 'ramda'
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
-import { getCustomerValidationSchema } from '@/utils/validationSchemas'
+import { getCustomerValidationSchemaServer } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 import { customerWriteData, customerReadData } from '@/api/models/Customer'
 
@@ -13,7 +13,7 @@ const extractPostInput = async (req: NextApiRequest) => {
   try {
     const editableData = pick(customerWriteData, req.body)
 
-    await getCustomerValidationSchema('none').validate(editableData)
+    await getCustomerValidationSchemaServer('none').validate(editableData)
   } catch (err) {
     throw createError(422, err instanceof Error ? err.message : 'Unexpected error')
   }

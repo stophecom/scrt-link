@@ -1,4 +1,5 @@
 {
+  "password": "Password",
   "components": {
     "Footer": {
       "abstract": "<strong>Scrt.link</strong> lets you share sensitive information online. End-to-end encrypted. One time.<br/>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
@@ -16,6 +17,15 @@
         "title": "Emoji link",
         "description": "Add some fun with a special emoji link. Example: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>."
       }
+    },
+    "FormDeleteAccount": {
+      "label": "I want to delete my account."
+    },
+    "FormSignIn": {
+      "success": "Check your email! A sign in link has been sent to <1>{email}</1>.",
+      "agreement": "I agree to the <2>Terms Of Service</2> and the associated policies.",
+      "gotAccount": "Already got an account?",
+      "noAccountYet": "No Account yet?"
     },
     "ShareSecretResult": {
       "webShare": {
@@ -119,8 +129,10 @@
     "demo": "Demo",
     "createSecretLink": "Create secret link",
     "save": "Save",
-    "myAccount": "My account",
+    "deleteAccount": "Delete Account",
+    "signUp": "Sign up",
     "signIn": "Sign in",
+    "myAccount": "My account",
     "account": "Account",
     "getAccount": "Get Account",
     "close": "Close",
@@ -300,6 +312,14 @@
     "cookiePolicy": "Cookie Policy",
     "privacyPolicy": "Privacy Policy",
     "imprint": "Imprint"
+  },
+  "validation": {
+    "password": "Password",
+    "notAllowed": "Not allowed.",
+    "readReceipts": "Read receipts",
+    "name": "Name",
+    "emojiLink": "Emoji short link",
+    "confirmationRequired": "Field must be checked"
   },
   "views": {
     "About": {

@@ -3,6 +3,7 @@ import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
 import { useSession, signOut } from 'next-auth/client'
+import { useTranslation } from 'react-i18next'
 
 import Alert from '@material-ui/lab/Alert'
 
@@ -28,6 +29,7 @@ type DeleteAccountProps = {
 const FormDeleteAccount = () => {
   const [session] = useSession()
   const [state, setState] = useState<State>({})
+  const { t } = useTranslation()
 
   const handleSubmit: OnSubmit<DeleteAccountProps> = async (_values, formikHelpers) => {
     try {
@@ -62,7 +64,7 @@ const FormDeleteAccount = () => {
 
       <Formik<DeleteAccountProps>
         initialValues={{ isSure: false }}
-        validationSchema={deleteCustomerValidationSchema}
+        validationSchema={deleteCustomerValidationSchema(t)}
         validateOnMount
         onSubmit={handleSubmit}
       >
@@ -70,7 +72,13 @@ const FormDeleteAccount = () => {
           return (
             <>
               <Form noValidate>
-                <BaseSwitchField label="I want to delete my account." name="isSure" />
+                <BaseSwitchField
+                  label={t(
+                    'common:components.FormDeleteAccount.label',
+                    'I want to delete my account.',
+                  )}
+                  name="isSure"
+                />
 
                 <Box pt={5}>
                   <BaseButton
@@ -81,7 +89,7 @@ const FormDeleteAccount = () => {
                     loading={isSubmitting}
                     disabled={!isValid}
                   >
-                    Delete Account
+                    {t('common:button.deleteAccount', 'Delete Account')}
                   </BaseButton>
                 </Box>
               </Form>

@@ -1,4 +1,5 @@
 {
+  "password": "Password",
   "components": {
     "Footer": {
       "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmal.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
@@ -16,6 +17,15 @@
         "title": "Emoji Link",
         "description": "Add some fun with a special emoji link. Beispiel: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>."
       }
+    },
+    "FormDeleteAccount": {
+      "label": "I want to delete my account."
+    },
+    "FormSignIn": {
+      "success": "Check your email! A sign in link has been sent to <1>{email}</1>.",
+      "agreement": "I agree to the <2>Terms Of Service</2> and the associated policies.",
+      "gotAccount": "Already got an account?",
+      "noAccountYet": "No Account yet?"
     },
     "ShareSecretResult": {
       "webShare": {
@@ -119,8 +129,10 @@
     "demo": "Demo",
     "createSecretLink": "Geheimen Link erstellen",
     "save": "Speichen",
-    "myAccount": "Mein Konto",
+    "deleteAccount": "Delete Account",
+    "signUp": "Sign up",
     "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
     "account": "Konto",
     "getAccount": "Konto erstellen",
     "close": "Schliessen",
@@ -300,6 +312,14 @@
     "cookiePolicy": "Cookie-Richtlinien",
     "privacyPolicy": "Datenschutzbestimmungen",
     "imprint": "Impressum"
+  },
+  "validation": {
+    "password": "Password",
+    "notAllowed": "Not allowed.",
+    "readReceipts": "Read receipts",
+    "name": "Name",
+    "emojiLink": "Emoji short link",
+    "confirmationRequired": "Field must be checked"
   },
   "views": {
     "About": {

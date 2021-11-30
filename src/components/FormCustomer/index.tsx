@@ -151,7 +151,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
             props?.neogramDestructionTimeout || neogramDestructionTimeoutDefault,
         }}
         enableReinitialize={true}
-        validationSchema={getCustomerValidationSchema(readReceiptMethod)}
+        validationSchema={getCustomerValidationSchema(t, readReceiptMethod)}
         validateOnMount
         onSubmit={handleSubmit}
       >

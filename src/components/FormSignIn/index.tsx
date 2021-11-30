@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/client'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import VpnKeyIcon from '@material-ui/icons/VpnKey'
 import { useRouter } from 'next/router'
+import { Trans, useTranslation } from 'react-i18next'
 
 import BaseCheckboxField from '@/components/BaseCheckboxField'
 import Alert from '@material-ui/lab/Alert'
@@ -59,6 +60,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   const [email, setEmail] = useState('')
   const [isSignUp, setIsSignUp] = useState(showSignUp)
   const router = useRouter()
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (router?.query?.signup) {
@@ -88,7 +90,9 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   if (ok) {
     return (
       <Alert severity="success">
-        Check your email! A sign in link has been sent to <em>{email}</em>.
+        <Trans i18nKey="common:components.FormSignIn.success">
+          Check your email! A sign in link has been sent to <em>{email}</em>.
+        </Trans>
       </Alert>
     )
   }
@@ -111,11 +115,11 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
                 <Box py={1}>
                   <BaseCheckboxField
                     label={
-                      <>
+                      <Trans i18nKey="common:components.FormSignIn.agreement">
                         I agree to the{' '}
                         <ExternalLink href="/terms-of-service">Terms Of Service</ExternalLink> and
                         the associated policies.
-                      </>
+                      </Trans>
                     }
                     name="isConsentToTermsGiven"
                   />
@@ -133,18 +137,24 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
                   disabled={!isValid}
                   startIcon={<VpnKeyIcon />}
                 >
-                  {isSignUp ? 'Sign up' : 'Sign in'}
+                  {isSignUp
+                    ? t('common:button.signUp', 'Sign up')
+                    : t('common:button.signIn', 'Sign in')}
                 </BaseButton>
               </Box>
             </Form>
-            {isSignUp ? 'Already got an account?' : 'No Account yet?'}{' '}
+            {isSignUp
+              ? t('common:components.FormSignIn.gotAccount', 'Already got an account?')
+              : t('common:components.FormSignIn.noAccountYet', 'No Account yet?')}{' '}
             <BaseButton
               variant="text"
               size="small"
               color="primary"
               onClick={() => setIsSignUp(!isSignUp)}
             >
-              {isSignUp ? 'Sign in' : 'Sign up'}
+              {isSignUp
+                ? t('common:button.signIn', 'Sign in')
+                : t('common:button.signUp', 'Sign up')}
             </BaseButton>
           </>
         )

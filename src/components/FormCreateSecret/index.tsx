@@ -257,6 +257,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           enableReinitialize={true}
           initialValues={initialValues}
           validationSchema={getValidationSchemaByType(
+            t,
             secretType,
             readReceiptMethod,
             customer?.role,
