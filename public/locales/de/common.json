@@ -1,5 +1,5 @@
 {
-  "password": "Password",
+  "password": "Passwort",
   "components": {
     "Footer": {
       "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmal.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
@@ -19,13 +19,13 @@
       }
     },
     "FormDeleteAccount": {
-      "label": "I want to delete my account."
+      "label": "Ich möchte mein Konto schliessen."
     },
     "FormSignIn": {
-      "success": "Check your email! A sign in link has been sent to <1>{email}</1>.",
-      "agreement": "I agree to the <2>Terms Of Service</2> and the associated policies.",
-      "gotAccount": "Already got an account?",
-      "noAccountYet": "No Account yet?"
+      "success": "Schau in deine Mailbox. Wir haben dir einen Link geschickt. <1>{email}</1>.",
+      "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und Datenschutzrichtlinien zu.",
+      "gotAccount": "Du hast bereits ein Konto?",
+      "noAccountYet": "Noch kein Konto?"
     },
     "ShareSecretResult": {
       "webShare": {
@@ -314,12 +314,12 @@
     "imprint": "Impressum"
   },
   "validation": {
-    "password": "Password",
-    "notAllowed": "Not allowed.",
-    "readReceipts": "Read receipts",
+    "password": "Passwort",
+    "notAllowed": "Nicht möglich.",
+    "readReceipts": "Empfangsbestätigungen",
     "name": "Name",
-    "emojiLink": "Emoji short link",
-    "confirmationRequired": "Field must be checked"
+    "emojiLink": "Emoji Kurzlink",
+    "confirmationRequired": "Dieses Feld ist obligatorisch."
   },
   "views": {
     "About": {
@@ -392,9 +392,9 @@
       "inspiration": "Inspiration"
     },
     "TermsOfService": {
-      "title": "Terms Of Service",
-      "subtitle": "Tl;dr: Pretty much standard.",
-      "policies": "Policies"
+      "title": "Nutzungsbedingungen",
+      "subtitle": "Tl;dr: Nichts Besonderes",
+      "policies": "Richtlinien"
     }
   },
   "error": {
