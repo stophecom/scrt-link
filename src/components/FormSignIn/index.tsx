@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/client'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import VpnKeyIcon from '@material-ui/icons/VpnKey'
 import { useRouter } from 'next/router'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 
 import BaseCheckboxField from '@/components/BaseCheckboxField'
 import Alert from '@material-ui/lab/Alert'

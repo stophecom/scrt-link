@@ -312,7 +312,10 @@
     "acceptableUsePolicy": "Richtlinie zur akzeptablen Nutzung",
     "cookiePolicy": "Cookie-Richtlinien",
     "privacyPolicy": "Datenschutzbestimmungen",
-    "imprint": "Impressum"
+    "imprint": "Impressum",
+    "settings": "Einstellungen",
+    "subscription": "Abo",
+    "dangerZone": "Danger Zone"
   },
   "validation": {
     "password": "Passwort",

@@ -3,7 +3,7 @@ import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
 import { useSession, signOut } from 'next-auth/client'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 import Alert from '@material-ui/lab/Alert'
 

@@ -5,7 +5,7 @@ import { Box, Typography, Paper, NoSsr } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 import { project } from 'ramda'
-import { useTranslation, Trans } from 'react-i18next'
+import { useTranslation, Trans, TFunction } from 'next-i18next'
 import { Link } from '@/components/Link'
 
 import BaseButton from '@/components/BaseButton'
@@ -30,13 +30,12 @@ const AccountInfo = styled(Box)`
 const DangerZone = styled(Paper)`
   border: 2px solid ${({ theme }) => theme.palette.primary.main};
 `
-
-const menu = [
-  { label: 'Settings', key: 'settings' },
-  { label: 'Subscription', key: 'subscription' },
-  { label: 'Danger Zone', key: 'danger' },
+export type MenuItem = { label: string; key: string }
+const menu = (t: TFunction): MenuItem[] => [
+  { label: t('common:menu.settings', 'Settings'), key: 'settings' },
+  { label: t('common:menu.subscription', 'Subscription'), key: 'subscription' },
+  { label: t('common:menu.dangerZone', 'Danger Zone'), key: 'danger' },
 ]
-export type MenuItem = typeof menu[number]
 
 type ResponseCreatePortalLink = { url: string }
 
@@ -71,10 +70,10 @@ const ManageSubscriptionButton = () => {
 }
 
 const Account = () => {
-  const [session, loading] = useSession()
-  const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu[0].key)
-  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
   const { t } = useTranslation()
+  const [session, loading] = useSession()
+  const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu(t)[0].key)
+  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
 
   const handleMenuChange = (
     _event: React.ChangeEvent<Record<string, unknown>>,
@@ -97,7 +96,7 @@ const Account = () => {
         <TabsMenu
           handleChange={handleMenuChange}
           value={activeTab}
-          tabsMenu={project(['label', 'key'], menu)}
+          tabsMenu={project(['label', 'key'], menu(t))}
           label={t('common:views.Account.tabsMenu.label', 'Account options')}
         />
         <Section pt={{ xs: 0, sm: 0 }}>

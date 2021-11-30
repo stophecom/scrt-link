@@ -8,8 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import { useTranslation } from 'react-i18next'
-
+import { useTranslation } from 'next-i18next'
 import { TextFieldProps } from '@material-ui/core'
 import { useField, FieldHookConfig } from 'formik'
 

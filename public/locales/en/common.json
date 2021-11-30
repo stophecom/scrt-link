@@ -312,7 +312,10 @@
     "acceptableUsePolicy": "Acceptable Use Policy",
     "cookiePolicy": "Cookie Policy",
     "privacyPolicy": "Privacy Policy",
-    "imprint": "Imprint"
+    "imprint": "Imprint",
+    "settings": "Settings",
+    "subscription": "Subscription",
+    "dangerZone": "Danger Zone"
   },
   "validation": {
     "password": "Password",
