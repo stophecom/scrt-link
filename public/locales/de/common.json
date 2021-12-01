@@ -154,7 +154,8 @@
     "addToSlack": "Zu Slack hinzufügen",
     "readMoreFaq": "Mehr auf FAQ Seite",
     "viewPlans": "Pläne ansehen",
-    "getFreeAccount": "Kostenloses Konto erstellen"
+    "getFreeAccount": "Kostenloses Konto erstellen",
+    "privacyPolicy": "Datenschutzbestimmungen"
   },
   "faq": {
     "payment-provider": {
@@ -195,7 +196,7 @@
     },
     "difference-to-snapchat": {
       "heading": "Was ist der Unterschied zu Snapchat?",
-      "body": "Dieselbe Antwort wie bei der vorherigen Frage. Außerdem widerspricht das Geschäftsmodell hinter Snapchat und jeder anderen großen Social-Media-Plattform der Idee von Privatsphäre und Anonymität. Social-Media-Unternehmen müssen ihre Nutzer kennen, um Werbung verkaufen zu können. \n \nEs ist jedoch in Ordnung, einen generierten Geheimlink über Snapchat, Facebook, Instagram, Telegram usw. zu teilen."
+      "body": "Dieselbe Antwort wie bei der vorherigen Frage. Außerdem widerspricht das Geschäftsmodell hinter Snapchat und jeder anderen großen Social-Media-Plattform der Idee von Privatsphäre und Anonymität. Social-Media-Unternehmen müssen ihre Nutzer:innen kennen, um Werbung verkaufen zu können. \n \nEs ist jedoch in Ordnung, einen generierten Geheimlink über Snapchat, Facebook, Instagram, Telegram usw. zu teilen."
     },
     "service-provider": {
       "heading": "Wer steckt hinter diesem Dienst?",
@@ -287,7 +288,7 @@
     },
     "slack-scopes": {
       "heading": "Welche Genehmigungen sind erforderlich?",
-      "body": "Die App benötigt grundlegende Informationen über den Benutzer, die Kanäle und Unterhaltungen. Außerdem benötigt die App die Erlaubnis, in deinem Namen zu posten, einer Konversation beizutreten und _slash commands_ und _shortcuts_ zu verwenden. Genauere Informationen zu den Berechtigungsbereichen erhältst du während der Installation der App."
+      "body": "Die App benötigt grundlegende Informationen über dich (Slack Nutzer:in), die Kanäle und Unterhaltungen. Außerdem benötigt die App die Erlaubnis, in deinem Namen zu posten, einer Konversation beizutreten und _slash commands_ und _shortcuts_ zu verwenden. Genauere Informationen zu den Berechtigungsbereichen erhältst du während der Installation der App."
     },
     "slack-user-account": {
       "heading": "Brauche ich ein Konto, um die Slack-App zu nutzen?",
@@ -295,7 +296,7 @@
     },
     "slack-premium-account": {
       "heading": "Benötige ich ein Premium-Abonnement, um die Slack-App zu nutzen?",
-      "body": "Nein. Bitteschön. Aber, du kannst dieses Projekt natürlich trotzdem mit einem bezahlten Abonnement unterstützen 🤓."
+      "body": "Nein. Aber, du kannst dieses Projekt natürlich trotzdem mit einem bezahlten Abonnement unterstützen 🤓."
     }
   },
   "demoNeogramMessage": "Hallo…\nDies ist nur eine Demo! Neogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spass beim Geheimnisse teilen 😘",
@@ -449,6 +450,19 @@
       "policiesAndTerms": "Richtlinien und Bedingungen",
       "credits": "Credits",
       "inspiration": "Inspiration"
+    },
+    "Privacy": {
+      "title": "Privatsphäre",
+      "subtitle": "Keine Werbung, kein Tracking, kein BS.",
+      "intro": "Für uns ist die Privatsphäre nicht verhandelbar. Wir wählen unsere Werkzeuge sorgfältig aus, um das Recht eines jeden auf Privatsphäre zu schützen. Wir schalten keine Werbung, wir verzichten auf Tracking, wir verkaufen keine Daten und wir beschränken die Anforderungen an persönliche Daten auf das absolute Minimum. Selbst mit einem Konto würden wir niemals ohne triftigen Grund nach persönlich identifizierbaren Informationen (PII) fragen. Darüber hinaus wenden wir \"Privacy by Design\" Grundsätze an: Wir haben unsere Datenbank so strukturiert, dass ein einzelnes Geheimnis eine völlig unabhängige Einheit bleibt - selbst wenn du ein Benutzerkonto verwendest, kann ein Geheimnis niemals zu dir zurückverfolgt werden.",
+      "Analytics": {
+        "title": "Analytics",
+        "markdown": "Wir verwenden {{linkPlausible}},der einfachen und datenschutzfreundlichen Alternative zu Google Analytics, für elementare Web-Traffic-Analysen.\n\n- Keine Verwendung von Cookies\n- Vollständig konform mit den Datenschutzbestimmungen GDPR, CCPA und PECR\n- Keine Erhebung von personenbezogenen Daten\n- Das Projekt ist Open Source\n- Alle Analysedaten sind **öffentlich verfügbar**: {{linkDashboard}}"
+      },
+      "Account": {
+        "title": "Konto & Cookies",
+        "markdown": "Für Power-User bieten wir Benutzerkonten an, die eine Authentifizierung erfordern. Eine E-Mail-Adresse ist ausreichend für die Erstellung eines Kontos. (Du kannst eine temporäre oder maskierte E-Mail verwenden)\n\nFür Besucher:innen unserer Website verwenden wir nur essentielle Cookies. Mit anderen Worten: Cookies, die für die Bereitstellung von Kernfunktionen erforderlich sind: Z.B. die Verwaltung der sicheren Authentifizierung. Mehr dazu in unseren Datenschutzrichtlinien."
+      }
     },
     "Security": {
       "title": "Sicherheit",

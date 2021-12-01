@@ -154,7 +154,8 @@
     "addToSlack": "Add to Slack",
     "readMoreFaq": "Read more on FAQ page",
     "viewPlans": "View plans",
-    "getFreeAccount": "Get free account"
+    "getFreeAccount": "Get free account",
+    "privacyPolicy": "Privacy Policy"
   },
   "faq": {
     "payment-provider": {
@@ -449,6 +450,19 @@
       "policiesAndTerms": "Policies and Terms",
       "credits": "Credits",
       "inspiration": "Inspiration"
+    },
+    "Privacy": {
+      "title": "Privacy",
+      "subtitle": "No ads, no tracking, no bullshit.",
+      "intro": "For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to you.",
+      "Analytics": {
+        "title": "Analytics",
+        "markdown": "We do basic web traffic analytics with {{linkPlausible}} -  the simple and privacy-friendly alternative to Google Analytics.\n\n- No use of cookies\n- Fully compliant with privacy regulations GDPR, CCPA and PECR\n- No collection of personal data\n- The project is open source\n- All analytics data is **publicly available**: {{linkDashboard}}"
+      },
+      "Account": {
+        "title": "Account & Cookies",
+        "markdown": "For power users, we offer user accounts that require authentication. You can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. \n\nFor people visiting our website, we only ever use essential cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy."
+      }
     },
     "Security": {
       "title": "Security",
