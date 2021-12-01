@@ -395,6 +395,15 @@
       "errorOccurred": "Fehler aufgetreten",
       "loadingSecret": "Geheimnis wird geladen"
     },
+    "Contact": {
+      "title": "Kontakt",
+      "subtitle": "Hast du eine Frage oder brauchst du Unterstützung? Wir helfen dir gerne weiter!",
+      "topic": {
+        "general": "Allgemeine Anfragen",
+        "support": "Support",
+        "tech": "Tech"
+      }
+    },
     "FAQ": {
       "subtitle": "Häufig gestellte Fragen",
       "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?",
@@ -486,6 +495,7 @@
     "invalidAlias": "Alias ungültig.",
     "wrongPassword": "Falsches Passwort"
   },
+  "email": "E-Mail",
   "abbreviations": {
     "faq": "Häufig gestellte Fragen."
   }

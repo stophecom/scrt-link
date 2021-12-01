@@ -395,6 +395,15 @@
       "errorOccurred": "Error occurred",
       "loadingSecret": "Loading secret"
     },
+    "Contact": {
+      "title": "Contact",
+      "subtitle": "Do you have a question or need support? Get in touch!",
+      "topic": {
+        "general": "General inquiries",
+        "support": "Support",
+        "tech": "Tech"
+      }
+    },
     "FAQ": {
       "subtitle": "Frequently Asked Questions",
       "introQuestion": "What topic can we help you with?",
@@ -486,6 +495,7 @@
     "invalidAlias": "Invalid alias.",
     "wrongPassword": "Wrong Password"
   },
+  "email": "Email",
   "abbreviations": {
     "faq": "Frequently asked questions."
   }

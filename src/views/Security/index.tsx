@@ -1,7 +1,7 @@
 import React from 'react'
-import Markdown from '@/components/Markdown'
 import { useTranslation } from 'next-i18next'
 
+import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 

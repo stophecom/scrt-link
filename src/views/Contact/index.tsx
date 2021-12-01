@@ -1,11 +1,11 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
+import { Typography, Box } from '@material-ui/core'
 import { Link } from '@material-ui/core'
+import { useTranslation } from 'next-i18next'
 
 import Page from '@/components/Page'
-import Section from '@/components/Section'
 import ExternalLink from '@/components/ExternalLink'
-
+import { ImprintInfo } from '@/views/Imprint'
 import { emailEmoji, email, emailSupport, twitterLink, twitterHandle } from '@/constants'
 
 const jsonLd = {
@@ -17,24 +17,36 @@ const jsonLd = {
   url: 'https://santihans.com',
 }
 
-const Contact = () => (
-  <Page title="Contact" subtitle={`Get in touch!`} jsonLd={jsonLd}>
-    <Section title="Email">
+const Contact = () => {
+  const { t } = useTranslation()
+  return (
+    <Page
+      title={t('common:views.Contact.title', 'Contact')}
+      subtitle={t(
+        'common:views.Contact.subtitle',
+        'Do you have a question or need support? Get in touch!',
+      )}
+      jsonLd={jsonLd}
+    >
       <Typography variant="body1">
-        General inquiries: <Link href={`mailto:${email}`}>{email}</Link>
+        {t('common:views.Contact.topic.general', 'General inquiries')}:{' '}
+        <Link href={`mailto:${email}`}>{email}</Link>
         <br />
-        Support: <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
+        {t('common:views.Contact.topic.support', 'Support')}:{' '}
+        <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
         <br />
-        Tech: <Link href={`mailto:${emailEmoji}`}>{emailEmoji}</Link>
+        {t('common:views.Contact.topic.tech', 'Tech')}:{' '}
+        <Link href={`mailto:${emailEmoji}`}>{emailEmoji}</Link>
+        <br />
+        <br />
+        Twitter: <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
+        <br />
         <br />
       </Typography>
-    </Section>
 
-    <Typography variant="h2">Twitter</Typography>
-    <Typography>
-      <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
-    </Typography>
-  </Page>
-)
+      <ImprintInfo />
+    </Page>
+  )
+}
 
 export default Contact
