@@ -450,6 +450,16 @@
       "credits": "Credits",
       "inspiration": "Inspiration"
     },
+    "Security": {
+      "title": "Security",
+      "subtitle": "Best practices, no extras.",
+      "markdown": "All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. \n\nIf a password is provided, we use it to encrypt your secret **on top** of the standard encryption. The password is not being stored. Even with **access to all our infrastructure** an attacker couldn't read your message. After a secret has been viewed, we delete it permanently from our database. There is no backup.\n![Link explanation](/images/link-explanation.svg)\n\n### Security by design\n- All connections are secured via HTTPS\n- All data is stored encrypted (not only secrets)\n- As little third-party code as possible\n- Dependencies are checked and updated regularly\n- All code is open-source on {{gitlabLink}}",
+      "Infrastructure": {
+        "title": "Infrastructure",
+        "subtitle": "Trusted players, few dependencies.",
+        "markdown": "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}"
+      }
+    },
     "TermsOfService": {
       "title": "Terms Of Service",
       "subtitle": "Tl;dr: Pretty much standard.",
@@ -457,9 +467,9 @@
     }
   },
   "error": {
+    "SECRET_NOT_FOUND": "",
     "missingDecryptionKey": "Decryption key missing.",
     "invalidAlias": "Invalid alias.",
-    "SECRET_NOT_FOUND": "",
     "wrongPassword": "Wrong Password"
   },
   "abbreviations": {
