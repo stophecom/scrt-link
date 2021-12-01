@@ -2,7 +2,7 @@
   "password": "Passwort",
   "components": {
     "Footer": {
-      "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmal.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
+      "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmalig.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
     },
     "FormCreateSecret": {
       "secretSaved": "Geheimnis gespeichert!",
@@ -95,7 +95,7 @@
     },
     "url": {
       "label": "Geheime URL",
-      "helperText": "Die URL, zu der umgeleitet werden soll (einmalig)."
+      "helperText": "Die URL, zu der einmalig umgeleitet werden soll."
     },
     "readReceiptMethod": {
       "label": "Empfangsbestätigung"
@@ -143,13 +143,14 @@
     "share": "Teilen",
     "copied": "Kopiert",
     "copy": "Kopieren",
+    "installNow": "Jetzt installieren",
+    "learnMore": "Mehr erfahren",
     "signOut": "Abmelden",
     "replyWithSecret": "Mit einem Geheimnis antworten",
     "decryptMessage": "Nachricht entschlüsseln",
     "destroySecret": "Nachricht zerstören",
     "tryAgain": "Nochmals versuchen",
     "createSecret": "Geheimnis erstellen",
-    "learnMore": "Mehr erfahren",
     "addToSlack": "Zu Slack hinzufügen",
     "readMoreFaq": "Mehr auf FAQ Seite",
     "viewPlans": "Pläne ansehen",
@@ -210,7 +211,7 @@
     },
     "developer": {
       "heading": "Wo kann ich den Quellcode finden?",
-      "body": "Der Quellcode ist frei zugänglich unter [Gitlab](https://gitlab.com/kingchiller/scrt-link)."
+      "body": "Der Quellcode ist frei zugänglich unter {{gitlabLink}}."
     },
     "developer-tools": {
       "heading": "Wie kann ich dieses Tool in mein Projekt integrieren?",
@@ -274,7 +275,7 @@
     },
     "slack-trust": {
       "heading": "Warum sollte ich euch vertrauen?",
-      "body": "Kurze Antwort: Tue es nicht. Wir glauben jedoch an Vertrauen durch Transparenz. Während du vielleicht etwas zu verbergen hast - wir haben es nicht. Aus diesem Grund ist der gesamte Code quelloffen und auf [Gitlab](https://gitlab.com/kingchiller/scrt-link-slack) verfügbar. Du kannst damit gerne deine eigene private Slack-App starten."
+      "body": "Kurze Antwort: Tue es nicht. Wir glauben jedoch an Vertrauen durch Transparenz. Während du vielleicht etwas zu verbergen hast - wir haben es nicht. Aus diesem Grund ist der gesamte Code quelloffen und auf {{gitlabLink}} verfügbar. Du kannst damit gerne deine eigene private Slack-App starten."
     },
     "slack-data-collection": {
       "heading": "Welche Daten werden erhoben?",
@@ -329,7 +330,30 @@
     "About": {
       "title": "Über uns",
       "subtitle": "Das gesamte Projekt beruht auf einer einfachen Prämisse: Je weniger wir wissen, desto besser.",
-      "intro": "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleiben Sie dran - es kommt noch mehr!"
+      "intro": "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleiben Sie dran - es kommt noch mehr!",
+      "Philosophy": {
+        "title": "Philosophie",
+        "markdown": "Meinungsfreiheit, Pressefreiheit und das Recht auf Privatsphäre gehören zu den wichtigsten Freiheitsrechten in einer freien Gesellschaft. Mit diesem Projekt unterstützen wir dich, Informationen über das Internet auf wirklich sichere und private Weise auszutauschen. Dieses Produkt ist so konzipiert, dass die Integrität und die Privatsphäre in jeder Hinsicht respektiert werden. Wir haben kein Interesse an dir! Weder an dir als Person, noch an deinen Geheimnissen. Erfahre mehr auf unserer [Datenschutzseite](/de/privacy)."
+      },
+      "Accounts": {
+        "title": "Nutzerkonten",
+        "subtitle": "Warum wir kostenlose und premium Konten anbieten.",
+        "markdown": "Der Hauptgrund, warum wir Konten anbieten, ist der Schutz vor Spam und Betrug. Alle Hauptfunktionen sind kostenlos und erfordern kein Konto.\n\n Allerdings erfordern einige Funktionen eine grundlegende Authentifizierung (wir fragen nur nach einer E-Mail-Adresse - es macht uns nichts aus, wenn eine temporäre E-Mail-Adresse verwendet wird). Zu diesen Funktionen gehört das Senden von Informationen per E-Mail oder SMS. Konten helfen uns, den Missbrauch der zugrunde liegenden Systeme zu verhindern. \n\nBezahlte Premium-Accounts sind für Power-User und Leute gedacht, die [dieses Projekt unterstützen](/de/pricing) möchten."
+      },
+      "BrowserExtensions": {
+        "title": "Browser-Erweiterungen",
+        "subtitle": "Teile Geheimnisse ohne den Tab zu wechseln.",
+        "markdown": "Um diesen Dienst einfach und bequem zu gestalten, gibt es Browser-Erweiterungen für alle modernen Browser. Alle Erweiterungen verfügen über die gleichen Sicherheits- und Datenschutzfunktionen."
+      },
+      "SlackApp": {
+        "title": "Slack Applikation",
+        "subtitle": "Kein Wechseln der App nötig: Dank der Slack-App kannst du einmalige Geheimnisse direkt innerhalb deiner Slack-Unterhaltungen erstellen."
+      },
+      "Developers": {
+        "title": "Für Entwickler und Nerds",
+        "subtitle": "Der gesamte Code ist quelloffen. Du kannst die folgenden Pakete verwenden, um deinen eigenen Dienst zu erstellen oder um unseren Dienst programmatisch über die öffentliche API zu nutzen.",
+        "markdown": "Mit unseren Entwickler-Tools kannst du diesen Dienst einfach in deine eigenen Projekte integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App."
+      }
     },
     "Account": {
       "ManageSubscriptionButton": {

@@ -2,7 +2,7 @@
   "password": "Password",
   "components": {
     "Footer": {
-      "abstract": "<strong>Scrt.link</strong> lets you share sensitive information online. End-to-end encrypted. One time.<br/>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
+      "abstract": "<0>Scrt.link</0> lets you share sensitive information online. End-to-end encrypted. One time.<2></2>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
     },
     "FormCreateSecret": {
       "secretSaved": "Secret saved!",
@@ -143,13 +143,14 @@
     "share": "Share",
     "copied": "Copied",
     "copy": "Copy",
+    "installNow": "Install now",
+    "learnMore": "Learn more",
     "signOut": "Sign out",
     "replyWithSecret": "Reply with a secret",
     "decryptMessage": "Decrypt Message",
     "destroySecret": "Destroy secret",
     "tryAgain": "Try again",
     "createSecret": "Create a secret",
-    "learnMore": "Learn more",
     "addToSlack": "Add to Slack",
     "readMoreFaq": "Read more on FAQ page",
     "viewPlans": "View plans",
@@ -190,7 +191,7 @@
     },
     "difference-to-disappearing-messages": {
       "heading": "What is the difference to disappearing messages on Signal or Whatsapp?",
-      "body": "Anonymity and security. Plain text messages within a chat log can always get traced back to you. With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content."
+      "body": "Anonymity, privacy and security. Plain text messages within a chat log can always get traced back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level. With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content."
     },
     "difference-to-snapchat": {
       "heading": "What is the difference to Snapchat?",
@@ -210,7 +211,7 @@
     },
     "developer": {
       "heading": "Where can I find the source code?",
-      "body": "All code is open-source on [Gitlab](https://gitlab.com/kingchiller/scrt-link)."
+      "body": "All code is open-source on {{gitlabLink}}"
     },
     "developer-tools": {
       "heading": "How can integrate this tool in my project?",
@@ -274,7 +275,7 @@
     },
     "slack-trust": {
       "heading": "Why should I trust you?",
-      "body": "Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on [Gitlab](https://gitlab.com/kingchiller/scrt-link-slack). Feel free to launch your own private Slack App."
+      "body": "Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on {{gitlabLink}}. Feel free to launch your own private Slack App."
     },
     "slack-data-collection": {
       "heading": "What data do you collect?",
@@ -329,7 +330,30 @@
     "About": {
       "title": "About",
       "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
-      "intro": "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!"
+      "intro": "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!",
+      "Philosophy": {
+        "title": "Philosophy",
+        "markdown": "Freedom of speech, freedom of the press, and the right to privacy are among the most important civil liberties in a free society. With this project we empower you to exchange information over the internet in truly secure and private way. This product is made in a way that respects people's integrity and privacy all the way. We have no interest in you! Not in you as a person, nor in your secrets. Read more on our [Privacy page](/privacy)."
+      },
+      "Accounts": {
+        "title": "User Accounts",
+        "subtitle": "On why we offer free and premium accounts.",
+        "markdown": "The main reason we offer accounts is to prevent spam and fraud. All core features are free of charge and don't require an account.\n\nThat said, some features do require basic authentication  (We just ask for an email address - we don't mind you using a temporary email address). These features include sending information via email or SMS. Accounts help us prevent abuse of the underlying systems. \n\nPaid premium accounts are meant for power users and people who like to [support this project](/pricing)."
+      },
+      "BrowserExtensions": {
+        "title": "Browser Extensions",
+        "subtitle": "Share secrets from within your browser.",
+        "markdown": "To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features."
+      },
+      "SlackApp": {
+        "title": "Slack Application",
+        "subtitle": "No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations."
+      },
+      "Developers": {
+        "title": "For Developers",
+        "subtitle": "All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.",
+        "markdown": "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App."
+      }
     },
     "Account": {
       "ManageSubscriptionButton": {
@@ -406,7 +430,7 @@
         "button": "Learn more about security"
       },
       "SlackApp": {
-        "title": "The Slack App\u00a0<1><0>NEW</0></1>",
+        "title": "The Slack App&nbsp;<1><0>NEW</0></1>",
         "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
         "usps": {
           "0": "Encrypted, disposable messages, stored outside of Slack.",
@@ -433,9 +457,9 @@
     }
   },
   "error": {
-    "missingDecryptionKey": "Invalid alias.",
+    "missingDecryptionKey": "Decryption key missing.",
     "invalidAlias": "Invalid alias.",
-    "SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
+    "SECRET_NOT_FOUND": "",
     "wrongPassword": "Wrong Password"
   },
   "abbreviations": {

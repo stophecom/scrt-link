@@ -14,10 +14,10 @@ const slackAppFaq = (t: TFunction) => [
     id: 'slack-trust',
     category: 'slack',
     heading: t('common:faq.slack-trust.heading', 'Why should I trust you?'),
-    body: t(
-      'common:faq.slack-trust.body',
-      `Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on [Gitlab](https://gitlab.com/kingchiller/scrt-link-slack). Feel free to launch your own private Slack App.`,
-    ),
+    body: t('common:faq.slack-trust.body', {
+      defaultValue: `Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on {{gitlabLink}}. Feel free to launch your own private Slack App.`,
+      gitlabLink: '[Gitlab](https://gitlab.com/kingchiller/scrt-link-slack)',
+    }),
   },
   {
     id: 'slack-data-collection',

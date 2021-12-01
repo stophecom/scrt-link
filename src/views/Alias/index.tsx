@@ -29,6 +29,8 @@ import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 
+// t('common:error.SECRET_NOT_FOUND')
+
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'>
 const useStyles = makeStyles((theme: Theme) =>
@@ -107,7 +109,7 @@ const AliasView: CustomPage = () => {
         history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (error) {
         let err = error as CustomError
-        // t('common:error.SECRET_NOT_FOUND')
+
         setError(`${err?.i18nErrorKey ? t(`common:error.${err.i18nErrorKey}`) : err.message}`)
       }
     }

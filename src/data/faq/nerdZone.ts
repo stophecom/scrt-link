@@ -5,10 +5,10 @@ const nerdZoneFaq = (t: TFunction) => [
     id: 'developer',
     category: 'nerdZone',
     heading: t('common:faq.developer.heading', 'Where can I find the source code?'),
-    body: t(
-      'common:faq.developer.body',
-      `All code is open-source on [Gitlab](https://gitlab.com/kingchiller/scrt-link).`,
-    ),
+    body: t('common:faq.developer.body', {
+      defaultValue: `All code is open-source on {{gitlabLink}}`,
+      gitlabLink: '[Gitlab](https://gitlab.com/kingchiller/scrt-link).',
+    }),
   },
   {
     id: 'developer-tools',
