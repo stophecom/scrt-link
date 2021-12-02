@@ -132,6 +132,9 @@
           "2": "Burn notification after a secret has been viewed."
         }
       },
+      "FAQ": {
+        "subtitle": "Frequently asked questions."
+      },
       "Upsell": {
         "title": "Support us",
         "subtitle": "For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials."
@@ -173,6 +176,24 @@
         "title": "Infrastructure",
         "subtitle": "Trusted players, few dependencies.",
         "markdown": "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}"
+      }
+    },
+    "Slack": {
+      "title": "The Slack App",
+      "subtitle": "Some things better not stay in your chat history.",
+      "intro": "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.",
+      "missingTranslationsNotice": "Dear customer, the Slack App is currently only available in English.",
+      "Introduction": {
+        "title": "Secrets for Slack",
+        "subtitle": "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.",
+        "markdown": "### Key Features\n- Create one-time secrets via **shortcut** or **slash command**.\n- **Encrypted, disposable messages** that are stored outside of Slack.\n- **Burn notification** after a secret has been viewed. \n- No logs, no backup, no trace.\n    \n  👉 [Install now]({{slackAppInstallLink}})\n---\n#### _Important information about security limitations_\n_Due to the nature of\nhow Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is\nfine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets\non the website instead._"
+      },
+      "HowToUse": {
+        "title": "How to use",
+        "markdown": "### Slash Command \nThe easiest and most versatile option is to use a slash command (**`/scrt`**)\n\n_Example:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** opens a dialog to create a secret.\n- **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**).\n- **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret.\n- **`/scrt help`**: opens a help dialog.\n\n### Slack Shortcuts\nThere are global and message level shortcuts available.\n- Click ⚡️ to access global shortcuts and choose **scrt.link**.\n- Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Read Receipts\nThis is a built in feature. You get notified when a secret has been viewed. We use a 🔥 emoji to indicate when a secret has been burned and the link is therefore no longer available.\n![Image](/images/slack/slack-screenshot-read-receipt.png)"
+      },
+      "FAQ": {
+        "subtitle": "Frequently asked questions about the Slack App."
       }
     },
     "TermsOfService": {
@@ -604,6 +625,6 @@
     "confirmationRequired": "Field must be checked"
   },
   "abbreviations": {
-    "faq": "Frequently asked questions."
+    "faq": "FAQ"
   }
 }

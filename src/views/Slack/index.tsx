@@ -5,6 +5,7 @@ import { Box } from '@material-ui/core'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import { useTranslation } from 'next-i18next'
+import Alert from '@material-ui/lab/Alert'
 
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
@@ -28,22 +29,12 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
-    screenshot: {
-      '& > .image ': {
-        transform: 'translateY(0)',
-        transition: '700ms',
-      },
-
-      '&.image--in-view > .image ': {
-        transform: 'translateY(-15px)',
-      },
-    },
     cta: {
       backgroundColor: theme.palette.background.default,
       position: 'absolute',
       bottom: -50,
-      paddingTop: '16px',
-      paddingBottom: '40px',
+      paddingTop: '20px',
+      paddingBottom: '20px',
       width: '100vw',
       left: '50%',
       transform: 'translateX(-50%)',
@@ -53,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
       [theme.breakpoints.up('sm')]: {
         paddingTop: '46px',
-        paddingBottom: '60px',
+        paddingBottom: '30px',
       },
     },
     shadow: {
@@ -102,18 +93,22 @@ const SlackInstallButton: React.FC<SlackInstallButtonProps> = ({ className }) =>
 
 const Slack = () => {
   const classes = useStyles()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <Page
-      title="The Slack App"
-      subtitle={`Some things better not stay in your chat history.`}
-      intro={
-        'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.'
-      }
+      title={t('common:views.Slack.title', 'The Slack App')}
+      subtitle={t(
+        'common:views.Slack.subtitle',
+        `Some things better not stay in your chat history.`,
+      )}
+      intro={t(
+        'common:views.Slack.intro',
+        'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.',
+      )}
     >
-      <Box position="relative">
-        <BoxShadowWrapper className={classes.screenshot}>
+      <Box mb={4} position="relative">
+        <BoxShadowWrapper>
           <Image
             className={classes.image}
             src="/images/slack/slack-screenshot-command.png"
@@ -126,34 +121,47 @@ const Slack = () => {
         </BoxShadowWrapper>
         <SlackInstallButton className={classes.cta} />
       </Box>
-
+      {i18n.language !== 'en' && (
+        <Box mt={8} mb={1}>
+          <Alert severity="info">
+            {t(
+              'common:views.Slack.missingTranslationsNotice',
+              'Dear customer, the Slack App is currently only available in English.',
+            )}
+          </Alert>
+        </Box>
+      )}
       <Section
-        title={'Secrets for Slack'}
-        subtitle="It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond."
+        title={t('common:views.Slack.Introduction.title', 'Secrets for Slack')}
+        subtitle={t(
+          'common:views.Slack.Introduction.subtitle',
+          "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.",
+        )}
       >
         <Markdown
-          source={`
-### Key Features
+          source={t('common:views.Slack.Introduction.markdown', {
+            defaultValue: `### Key Features
 - Create one-time secrets via **shortcut** or **slash command**.
 - **Encrypted, disposable messages** that are stored outside of Slack.
 - **Burn notification** after a secret has been viewed. 
 - No logs, no backup, no trace.
     
-  👉 [Install now](${slackAppInstallLink})
+  👉 [Install now]({{slackAppInstallLink}})
 ---
 #### _Important information about security limitations_
 _Due to the nature of
 how Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is
 fine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets
-on the website instead._
-`}
+on the website instead._`,
+            slackAppInstallLink,
+          })}
         />
       </Section>
-
-      <Section title={'How to use'} subtitle="">
+      <Section title={t('common:views.Slack.HowToUse.title', 'How to use')}>
         <Markdown
-          source={`
-### Slash Command 
+          source={t(
+            'common:views.Slack.HowToUse.markdown',
+            `### Slash Command 
 The easiest and most versatile option is to use a slash command (**\`/scrt\`**)
 
 _Example:_
@@ -173,12 +181,17 @@ There are global and message level shortcuts available.
 
 ### Read Receipts
 This is a built in feature. You get notified when a secret has been viewed. We use a 🔥 emoji to indicate when a secret has been burned and the link is therefore no longer available.
-![Image](/images/slack/slack-screenshot-read-receipt.png)
-`}
+![Image](/images/slack/slack-screenshot-read-receipt.png)`,
+          )}
         />
       </Section>
-
-      <Section title={'FAQ'} subtitle="Frequently asked questions about the Slack App.">
+      <Section
+        title={t('common:abbreviations.faq', 'FAQ')}
+        subtitle={t(
+          'common:views.Slack.FAQ.subtitle',
+          'Frequently asked questions about the Slack App.',
+        )}
+      >
         <FaqAccordion items={slackAppFaq(t)} />
       </Section>
       <SlackInstallButton />

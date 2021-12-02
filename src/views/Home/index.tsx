@@ -266,8 +266,8 @@ const HomeView: CustomPage = () => {
 
       <Section
         id="FAQ"
-        title={'FAQ'}
-        subtitle={t('common:abbreviations.faq', 'Frequently asked questions.')}
+        title={t('common:abbreviations.faq', 'FAQ')}
+        subtitle={t('common:views.Home.FAQ.subtitle', 'Frequently asked questions.')}
       >
         <Box mb={3}>
           <FaqAccordion items={shortFaq(t)} />

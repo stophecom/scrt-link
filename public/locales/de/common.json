@@ -132,6 +132,9 @@
           "2": "Empfangsbenachrichtigung nachdem ein Geheimnis gelesen wurde."
         }
       },
+      "FAQ": {
+        "subtitle": "Häufig gestellte Fragen."
+      },
       "Upsell": {
         "title": "Unterstütze uns",
         "subtitle": "Für nur {{price}} im Monat erhältst du vollen Zugang zu allen aktuellen und zukünftigen Funktionen. Mit einem kostenlosen Konto gibt es die Basisfunktionen."
@@ -173,6 +176,24 @@
         "title": "Infrastruktur",
         "subtitle": "Vertrauenswürdige Akteure, wenige Abhängigkeiten.",
         "markdown": "Wir haben uns für branchenführende Anbieter entschieden, um unsere Infrastruktur zu hosten:\n\n- Website/API auf {{linkVercel}}\n- Cloud Database mit {{linkScaleGrid}}\n- Slack App auf {{linkHeroku}}\n- Sämtlicher Code auf {{linkGitlab}}"
+      }
+    },
+    "Slack": {
+      "title": "Die Slack App",
+      "subtitle": "Manche Dinge sollten besser nicht in deinem Chatverlauf bleiben.",
+      "intro": "Slack-Unterhaltungen sind nie ganz privat. Wusstest du, dass ein Systemadministrator oder dein Chef möglicherweise deine Slack-Nachrichten mitlesen kann? Mit der scrt.link App kannst du sensible Informationen innerhalb deiner Slack-Konversation schützen.",
+      "missingTranslationsNotice": "Bitte beachte, dass die Slack App derzeit nur auf Englisch verfügbar ist.",
+      "Introduction": {
+        "title": "Geheimnisse für Slack",
+        "subtitle": "Es ist ein sehr häufiges Szenario: Ein Mitarbeiter fragt dich nach einem Zugangs-Token, API-Schlüssel oder Passwort. Jetzt kannst du mit gutem Gefühl antworten.",
+        "markdown": "### Hauptmerkmale\n- Erstelle einmalige Geheimnisse per **Shortcut** oder **Slash-Befehl**.\n- **Verschlüsselte Einwegnachrichten**, die außerhalb von Slack gespeichert werden.\n- **Benachrichtigung**, nachdem ein Geheimnis eingesehen wurde. \n- Keine Protokolle, kein Backup, keine Rückverfolgung.\n \n👉 [Jetzt installieren]({{slackAppInstallLink}})\n\n---\n\n#### _Wichtige Informationen über Sicherheitseinschränkungen_\n_Die Art und Weise, wie Slack-Apps konzipiert sind, macht eine vollständige **Ende-zu-Ende-Verschlüsselung** unmöglich. Wir unternehmen eine Reihe von Schritten, um sicherzustellen, dass deine Geheimnisse sicher sind, einschließlich verschlüsselter Verbindungen, Sandbox-Anwendungsserver, eingeschränkter Zugang zur Infrastruktur usw. In 99% der Anwendungsfälle ist das kein Problem und ein Risiko, das es wert ist, eingegangen zu werden - dennoch ist Slack eine proprietäre Software, über die wir keine Kontrolle haben. Mit anderen Worten: Wenn du erweiterten Schutz benötigst, erstelle stattdessen Geheimnisse auf der Website._"
+      },
+      "HowToUse": {
+        "title": "So funktioniert's",
+        "markdown": "### Slash-Befehl \nDie einfachste und vielseitigste Möglichkeit ist die Verwendung eines Slash-Befehls (**`/scrt`**)\n:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** öffnet einen Dialog zum Erstellen eines Geheimnisses. \n- **`/scrt` _`[secret goes here...]`_** erstellt sofort einen geheimen Link (vom Typ **Text**).\n- **`/scrt [text|link|neogram]`** öffnet einen Dialog, um einen bestimmten Typ von Geheimnis zu erstellen. \n- **`/scrt Hilfe`**: öffnet einen Hilfedialog.\n\n### Slack Shortcuts\n Es gibt globale und nachrichtenbezogene Shortcuts.\n- Klicke  auf ⚡️, um auf globale Shortcuts zuzugreifen und wähle **scrt.link**. \n- Klicke innerhalb einer Unterhaltung auf das Kontextmenü-Symbol (3 Punkte) und wähle **Reply with a secret**.\n\n![Bild](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Lesebestätigungen\nDies ist eine automatisierte Funktion. Du wirst benachrichtigt, wenn ein Geheimnis angesehen wurde. Wir verwenden ein 🔥 Emoji, um anzuzeigen, dass ein Geheimnis zerstört wurde und der Link daher nicht mehr verfügbar ist.\n![Bild](/images/slack/slack-screenshot-read-receipt.png)"
+      },
+      "FAQ": {
+        "subtitle": "Häufig gestellte Fragen zur Slack-App."
       }
     },
     "TermsOfService": {
@@ -604,6 +625,6 @@
     "confirmationRequired": "Dieses Feld ist obligatorisch."
   },
   "abbreviations": {
-    "faq": "Häufig gestellte Fragen."
+    "faq": "FAQ"
   }
 }
