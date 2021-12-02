@@ -35,7 +35,7 @@ export const PageError: React.FunctionComponent<ErrorProps & Partial<PageProps>>
 }) => {
   const { t } = useTranslation()
   return (
-    <Page title={t('common:views.Error.defaultTitle', 'An error occurred!')} {...props}>
+    <Page title={t('common:components.Error.defaultTitle', 'An error occurred!')} {...props}>
       <Box mb={2}>
         <Error error={error} />
       </Box>

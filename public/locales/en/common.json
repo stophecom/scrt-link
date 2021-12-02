@@ -1,249 +1,9 @@
 {
   "password": "Password",
-  "views": {
+  "components": {
     "Error": {
       "defaultTitle": "An error occurred!"
     },
-    "About": {
-      "title": "About",
-      "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
-      "intro": "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!",
-      "Philosophy": {
-        "title": "Philosophy",
-        "markdown": "Freedom of speech, freedom of the press, and the right to privacy are among the most important civil liberties in a free society. With this project we empower you to exchange information over the internet in truly secure and private way. This product is made in a way that respects people's integrity and privacy all the way. We have no interest in you! Not in you as a person, nor in your secrets. Read more on our [Privacy page](/privacy)."
-      },
-      "Accounts": {
-        "title": "User Accounts",
-        "subtitle": "On why we offer free and premium accounts.",
-        "markdown": "The main reason we offer accounts is to prevent spam and fraud. All core features are free of charge and don't require an account.\n\nThat said, some features do require basic authentication  (We just ask for an email address - we don't mind you using a temporary email address). These features include sending information via email or SMS. Accounts help us prevent abuse of the underlying systems. \n\nPaid premium accounts are meant for power users and people who like to [support this project](/pricing)."
-      },
-      "BrowserExtensions": {
-        "title": "Browser Extensions",
-        "subtitle": "Share secrets from within your browser.",
-        "markdown": "To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features."
-      },
-      "SlackApp": {
-        "title": "Slack Application",
-        "subtitle": "No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations."
-      },
-      "Developers": {
-        "title": "For Developers",
-        "subtitle": "All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.",
-        "markdown": "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App."
-      }
-    },
-    "AcceptableUsePolicy": {
-      "title": "Acceptable Use Policy",
-      "subtitle": "Tl;dr: Play fair."
-    },
-    "Account": {
-      "ManageSubscriptionButton": {
-        "button": "Manage subscription on Stripe"
-      },
-      "title": "Account",
-      "subtitle": "Hi {{name}}, welcome back!",
-      "tabsMenu": {
-        "label": "Account options"
-      },
-      "settingsDisclaimer": "The following are default settings. You can overwrite each setting for every secret you create.",
-      "subscriptionInfo": "You are currently on the <1>{{customerRole}}</1> plan.",
-      "activeSubscriptionWarning": "You have a running subscription. We recommend to cancel it first.",
-      "accountDeletion": "Delete your account",
-      "signedInAs": "You are signed in as {{email}}."
-    },
-    "SignIn": {
-      "title": "Scrt account",
-      "subtitle": "Great things start here…",
-      "FreeAccount": {
-        "title": "Free Account Benefits",
-        "Usps": {
-          "0": "More characters for your secrets",
-          "1": "Email read receipts",
-          "2": "Slack App",
-          "3": "Browser extensions",
-          "4": "Personal support",
-          "5": "Emoji links 🤫"
-        },
-        "upsell": "Need more? <1>There is more</1>."
-      }
-    },
-    "Alias": {
-      "passwordRequired": "Password required",
-      "enterPassword": "Enter password to decrypt your secret:",
-      "title": "Shhh",
-      "subtitle": "You received a secret:",
-      "errorOccurred": "Error occurred",
-      "loadingSecret": "Loading secret"
-    },
-    "Contact": {
-      "title": "Contact",
-      "subtitle": "Do you have a question or need support? Get in touch!",
-      "topic": {
-        "general": "General inquiries",
-        "support": "Support",
-        "tech": "Tech"
-      }
-    },
-    "CookiePolicy": {
-      "title": "Cookie Policy",
-      "subtitle": "Tl;dr: only essentials, no tracking."
-    },
-    "FAQ": {
-      "subtitle": "Frequently Asked Questions",
-      "introQuestion": "What topic can we help you with?",
-      "noAnswer": "Didn't find the answer you were looking for? Contact support:"
-    },
-    "Home": {
-      "HowItWorks": {
-        "create": {
-          "title": "Write",
-          "text": "Compose your secret and get a one-time link."
-        },
-        "share": {
-          "title": "Share",
-          "text": "Send the generated link to your confidant."
-        },
-        "burn": {
-          "title": "Burn",
-          "text": "After the secret has been viewed, it gets destroyed."
-        },
-        "title": "How it works",
-        "subtitle": "Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant."
-      },
-      "success": {
-        "title": "Success!",
-        "subtitle": "Your secret link has been created - now share it with your confidant."
-      },
-      "default": {
-        "title": "Share a secret",
-        "subtitle": "…with a link that only works <1>one time</1> and then <4>self-destructs.</4>"
-      },
-      "SecretLinksExplained": {
-        "title": "Secret links explained",
-        "subtitle": "We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.",
-        "button": "Learn more about security"
-      },
-      "SlackApp": {
-        "title": "The Slack App&nbsp;<1><0>NEW</0></1>",
-        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
-        "usps": {
-          "0": "Encrypted, disposable messages, stored outside of Slack.",
-          "1": "Create one-time secrets via shortcut or slash command.",
-          "2": "Burn notification after a secret has been viewed."
-        }
-      },
-      "FAQ": {
-        "subtitle": "Frequently asked questions."
-      },
-      "Upsell": {
-        "title": "Support us",
-        "subtitle": "For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials."
-      }
-    },
-    "Imprint": {
-      "title": "Imprint",
-      "subtitle": "Tl;dr: Limited liability.",
-      "policiesAndTerms": "Policies and Terms",
-      "credits": "Credits",
-      "inspiration": "Inspiration"
-    },
-    "Pricing": {
-      "title": "Pricing",
-      "subtitle": "Simple plans, fair pricing."
-    },
-    "Privacy": {
-      "title": "Privacy",
-      "subtitle": "No ads, no tracking, no bullshit.",
-      "intro": "For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to you.",
-      "Analytics": {
-        "title": "Analytics",
-        "markdown": "We do basic web traffic analytics with {{linkPlausible}} -  the simple and privacy-friendly alternative to Google Analytics.\n\n- No use of cookies\n- Fully compliant with privacy regulations GDPR, CCPA and PECR\n- No collection of personal data\n- The project is open source\n- All analytics data is **publicly available**: {{linkDashboard}}"
-      },
-      "Account": {
-        "title": "Account & Cookies",
-        "markdown": "For power users, we offer user accounts that require authentication. You can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. \n\nFor people visiting our website, we only ever use essential cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy."
-      }
-    },
-    "PrivacyPolicy": {
-      "title": "Privacy Policy",
-      "subtitle": "Tl;dr: Privacy matters."
-    },
-    "Security": {
-      "title": "Security",
-      "subtitle": "Best practices, no extras.",
-      "markdown": "All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. \n\nIf a password is provided, we use it to encrypt your secret **on top** of the standard encryption. The password is not being stored. Even with **access to all our infrastructure** an attacker couldn't read your message. After a secret has been viewed, we delete it permanently from our database. There is no backup.\n![Link explanation](/images/link-explanation.svg)\n\n### Security by design\n- All connections are secured via HTTPS\n- All data is stored encrypted (not only secrets)\n- As little third-party code as possible\n- Dependencies are checked and updated regularly\n- All code is open-source on {{gitlabLink}}",
-      "Infrastructure": {
-        "title": "Infrastructure",
-        "subtitle": "Trusted players, few dependencies.",
-        "markdown": "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}"
-      }
-    },
-    "Slack": {
-      "title": "The Slack App",
-      "subtitle": "Some things better not stay in your chat history.",
-      "intro": "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.",
-      "missingTranslationsNotice": "Dear customer, the Slack App is currently only available in English.",
-      "Introduction": {
-        "title": "Secrets for Slack",
-        "subtitle": "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.",
-        "markdown": "### Key Features\n- Create one-time secrets via **shortcut** or **slash command**.\n- **Encrypted, disposable messages** that are stored outside of Slack.\n- **Burn notification** after a secret has been viewed. \n- No logs, no backup, no trace.\n    \n  👉 [Install now]({{slackAppInstallLink}})\n---\n#### _Important information about security limitations_\n_Due to the nature of\nhow Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is\nfine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets\non the website instead._"
-      },
-      "HowToUse": {
-        "title": "How to use",
-        "markdown": "### Slash Command \nThe easiest and most versatile option is to use a slash command (**`/scrt`**)\n\n_Example:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** opens a dialog to create a secret.\n- **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**).\n- **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret.\n- **`/scrt help`**: opens a help dialog.\n\n### Slack Shortcuts\nThere are global and message level shortcuts available.\n- Click ⚡️ to access global shortcuts and choose **scrt.link**.\n- Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Read Receipts\nThis is a built in feature. You get notified when a secret has been viewed. We use a 🔥 emoji to indicate when a secret has been burned and the link is therefore no longer available.\n![Image](/images/slack/slack-screenshot-read-receipt.png)"
-      },
-      "FAQ": {
-        "subtitle": "Frequently asked questions about the Slack App."
-      }
-    },
-    "TermsOfService": {
-      "title": "Terms Of Service",
-      "subtitle": "Tl;dr: Pretty much standard.",
-      "policies": "Policies"
-    }
-  },
-  "button": {
-    "takeMeHome": "Take me home",
-    "lessOptions": "Less options",
-    "moreOptions": "More options",
-    "preview": "Preview",
-    "demo": "Demo",
-    "createSecretLink": "Create secret link",
-    "save": "Save",
-    "deleteAccount": "Delete Account",
-    "signUp": "Sign up",
-    "signIn": "Sign in",
-    "myAccount": "My account",
-    "account": "Account",
-    "getAccount": "Get Account",
-    "close": "Close",
-    "closeMenu": "Close menu",
-    "openMenu": "Open menu",
-    "menu": "Menu",
-    "signUpFree": "Sign up free",
-    "reactivatePlan": "Reactivate plan",
-    "tryFree": "Try it free",
-    "signUpFirst": "Sign up first",
-    "cancelSubscription": "Cancel subscription",
-    "createNewSecret": "Create new secret",
-    "share": "Share",
-    "copied": "Copied",
-    "copy": "Copy",
-    "installNow": "Install now",
-    "learnMore": "Learn more",
-    "signOut": "Sign out",
-    "replyWithSecret": "Reply with a secret",
-    "decryptMessage": "Decrypt Message",
-    "destroySecret": "Destroy secret",
-    "tryAgain": "Try again",
-    "createSecret": "Create a secret",
-    "addToSlack": "Add to Slack",
-    "readMoreFaq": "Read more on FAQ page",
-    "viewPlans": "View plans",
-    "getFreeAccount": "Get free account",
-    "privacyPolicy": "Privacy Policy"
-  },
-  "components": {
     "Footer": {
       "abstract": "<0>Scrt.link</0> lets you share sensitive information online. End-to-end encrypted. One time.<2></2>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
     },
@@ -385,6 +145,48 @@
       "encryption": "End-to-end encrypted (AES)",
       "privacy": "100% Privacy protected"
     }
+  },
+  "button": {
+    "takeMeHome": "Take me home",
+    "lessOptions": "Less options",
+    "moreOptions": "More options",
+    "preview": "Preview",
+    "demo": "Demo",
+    "createSecretLink": "Create secret link",
+    "save": "Save",
+    "deleteAccount": "Delete Account",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "myAccount": "My account",
+    "account": "Account",
+    "getAccount": "Get Account",
+    "close": "Close",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "menu": "Menu",
+    "signUpFree": "Sign up free",
+    "reactivatePlan": "Reactivate plan",
+    "tryFree": "Try it free",
+    "signUpFirst": "Sign up first",
+    "cancelSubscription": "Cancel subscription",
+    "createNewSecret": "Create new secret",
+    "share": "Share",
+    "copied": "Copied",
+    "copy": "Copy",
+    "installNow": "Install now",
+    "learnMore": "Learn more",
+    "signOut": "Sign out",
+    "replyWithSecret": "Reply with a secret",
+    "decryptMessage": "Decrypt Message",
+    "destroySecret": "Destroy secret",
+    "home": "Home",
+    "tryAgain": "Try again",
+    "createSecret": "Create a secret",
+    "addToSlack": "Add to Slack",
+    "readMoreFaq": "Read more on FAQ page",
+    "viewPlans": "View plans",
+    "getFreeAccount": "Get free account",
+    "privacyPolicy": "Privacy Policy"
   },
   "secretType": {
     "text": {
@@ -622,6 +424,209 @@
     "name": "Name",
     "emojiLink": "Emoji short link",
     "confirmationRequired": "Field must be checked"
+  },
+  "views": {
+    "About": {
+      "title": "About",
+      "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
+      "intro": "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!",
+      "Philosophy": {
+        "title": "Philosophy",
+        "markdown": "Freedom of speech, freedom of the press, and the right to privacy are among the most important civil liberties in a free society. With this project we empower you to exchange information over the internet in truly secure and private way. This product is made in a way that respects people's integrity and privacy all the way. We have no interest in you! Not in you as a person, nor in your secrets. Read more on our [Privacy page](/privacy)."
+      },
+      "Accounts": {
+        "title": "User Accounts",
+        "subtitle": "On why we offer free and premium accounts.",
+        "markdown": "The main reason we offer accounts is to prevent spam and fraud. All core features are free of charge and don't require an account.\n\nThat said, some features do require basic authentication  (We just ask for an email address - we don't mind you using a temporary email address). These features include sending information via email or SMS. Accounts help us prevent abuse of the underlying systems. \n\nPaid premium accounts are meant for power users and people who like to [support this project](/pricing)."
+      },
+      "BrowserExtensions": {
+        "title": "Browser Extensions",
+        "subtitle": "Share secrets from within your browser.",
+        "markdown": "To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features."
+      },
+      "SlackApp": {
+        "title": "Slack Application",
+        "subtitle": "No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations."
+      },
+      "Developers": {
+        "title": "For Developers",
+        "subtitle": "All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.",
+        "markdown": "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App."
+      }
+    },
+    "AcceptableUsePolicy": {
+      "title": "Acceptable Use Policy",
+      "subtitle": "Tl;dr: Play fair."
+    },
+    "Account": {
+      "ManageSubscriptionButton": {
+        "button": "Manage subscription on Stripe"
+      },
+      "title": "Account",
+      "subtitle": "Hi {{name}}, welcome back!",
+      "tabsMenu": {
+        "label": "Account options"
+      },
+      "settingsDisclaimer": "The following are default settings. You can overwrite each setting for every secret you create.",
+      "subscriptionInfo": "You are currently on the <1>{{customerRole}}</1> plan.",
+      "activeSubscriptionWarning": "You have a running subscription. We recommend to cancel it first.",
+      "accountDeletion": "Delete your account",
+      "signedInAs": "You are signed in as {{email}}."
+    },
+    "SignIn": {
+      "title": "Scrt account",
+      "subtitle": "Great things start here…",
+      "FreeAccount": {
+        "title": "Free Account Benefits",
+        "Usps": {
+          "0": "More characters for your secrets",
+          "1": "Email read receipts",
+          "2": "Slack App",
+          "3": "Browser extensions",
+          "4": "Personal support",
+          "5": "Emoji links 🤫"
+        },
+        "upsell": "Need more? <1>There is more</1>."
+      }
+    },
+    "Alias": {
+      "passwordRequired": "Password required",
+      "enterPassword": "Enter password to decrypt your secret:",
+      "title": "Shhh",
+      "subtitle": "You received a secret:",
+      "errorOccurred": "Error occurred",
+      "loadingSecret": "Loading secret"
+    },
+    "Contact": {
+      "title": "Contact",
+      "subtitle": "Do you have a question or need support? Get in touch!",
+      "topic": {
+        "general": "General inquiries",
+        "support": "Support",
+        "tech": "Tech"
+      }
+    },
+    "CookiePolicy": {
+      "title": "Cookie Policy",
+      "subtitle": "Tl;dr: only essentials, no tracking."
+    },
+    "Error": {
+      "title": "Error {{statusCode}}",
+      "subtitle": "Sorry, something went wrong."
+    },
+    "FAQ": {
+      "subtitle": "Frequently Asked Questions",
+      "introQuestion": "What topic can we help you with?",
+      "noAnswer": "Didn't find the answer you were looking for? Contact support:"
+    },
+    "Home": {
+      "HowItWorks": {
+        "create": {
+          "title": "Write",
+          "text": "Compose your secret and get a one-time link."
+        },
+        "share": {
+          "title": "Share",
+          "text": "Send the generated link to your confidant."
+        },
+        "burn": {
+          "title": "Burn",
+          "text": "After the secret has been viewed, it gets destroyed."
+        },
+        "title": "How it works",
+        "subtitle": "Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant."
+      },
+      "success": {
+        "title": "Success!",
+        "subtitle": "Your secret link has been created - now share it with your confidant."
+      },
+      "default": {
+        "title": "Share a secret",
+        "subtitle": "…with a link that only works <1>one time</1> and then <4>self-destructs.</4>"
+      },
+      "SecretLinksExplained": {
+        "title": "Secret links explained",
+        "subtitle": "We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.",
+        "button": "Learn more about security"
+      },
+      "SlackApp": {
+        "title": "The Slack App&nbsp;<1><0>NEW</0></1>",
+        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
+        "usps": {
+          "0": "Encrypted, disposable messages, stored outside of Slack.",
+          "1": "Create one-time secrets via shortcut or slash command.",
+          "2": "Burn notification after a secret has been viewed."
+        }
+      },
+      "FAQ": {
+        "subtitle": "Frequently asked questions."
+      },
+      "Upsell": {
+        "title": "Support us",
+        "subtitle": "For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials."
+      }
+    },
+    "Imprint": {
+      "title": "Imprint",
+      "subtitle": "Tl;dr: Limited liability.",
+      "policiesAndTerms": "Policies and Terms",
+      "credits": "Credits",
+      "inspiration": "Inspiration"
+    },
+    "Pricing": {
+      "title": "Pricing",
+      "subtitle": "Simple plans, fair pricing."
+    },
+    "Privacy": {
+      "title": "Privacy",
+      "subtitle": "No ads, no tracking, no bullshit.",
+      "intro": "For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to you.",
+      "Analytics": {
+        "title": "Analytics",
+        "markdown": "We do basic web traffic analytics with {{linkPlausible}} -  the simple and privacy-friendly alternative to Google Analytics.\n\n- No use of cookies\n- Fully compliant with privacy regulations GDPR, CCPA and PECR\n- No collection of personal data\n- The project is open source\n- All analytics data is **publicly available**: {{linkDashboard}}"
+      },
+      "Account": {
+        "title": "Account & Cookies",
+        "markdown": "For power users, we offer user accounts that require authentication. You can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. \n\nFor people visiting our website, we only ever use essential cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy."
+      }
+    },
+    "PrivacyPolicy": {
+      "title": "Privacy Policy",
+      "subtitle": "Tl;dr: Privacy matters."
+    },
+    "Security": {
+      "title": "Security",
+      "subtitle": "Best practices, no extras.",
+      "markdown": "All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. \n\nIf a password is provided, we use it to encrypt your secret **on top** of the standard encryption. The password is not being stored. Even with **access to all our infrastructure** an attacker couldn't read your message. After a secret has been viewed, we delete it permanently from our database. There is no backup.\n![Link explanation](/images/link-explanation.svg)\n\n### Security by design\n- All connections are secured via HTTPS\n- All data is stored encrypted (not only secrets)\n- As little third-party code as possible\n- Dependencies are checked and updated regularly\n- All code is open-source on {{gitlabLink}}",
+      "Infrastructure": {
+        "title": "Infrastructure",
+        "subtitle": "Trusted players, few dependencies.",
+        "markdown": "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}"
+      }
+    },
+    "Slack": {
+      "title": "The Slack App",
+      "subtitle": "Some things better not stay in your chat history.",
+      "intro": "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.",
+      "missingTranslationsNotice": "Dear customer, the Slack App is currently only available in English.",
+      "Introduction": {
+        "title": "Secrets for Slack",
+        "subtitle": "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.",
+        "markdown": "### Key Features\n- Create one-time secrets via **shortcut** or **slash command**.\n- **Encrypted, disposable messages** that are stored outside of Slack.\n- **Burn notification** after a secret has been viewed. \n- No logs, no backup, no trace.\n    \n  👉 [Install now]({{slackAppInstallLink}})\n---\n#### _Important information about security limitations_\n_Due to the nature of\nhow Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is\nfine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets\non the website instead._"
+      },
+      "HowToUse": {
+        "title": "How to use",
+        "markdown": "### Slash Command \nThe easiest and most versatile option is to use a slash command (**`/scrt`**)\n\n_Example:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** opens a dialog to create a secret.\n- **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**).\n- **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret.\n- **`/scrt help`**: opens a help dialog.\n\n### Slack Shortcuts\nThere are global and message level shortcuts available.\n- Click ⚡️ to access global shortcuts and choose **scrt.link**.\n- Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Read Receipts\nThis is a built in feature. You get notified when a secret has been viewed. We use a 🔥 emoji to indicate when a secret has been burned and the link is therefore no longer available.\n![Image](/images/slack/slack-screenshot-read-receipt.png)"
+      },
+      "FAQ": {
+        "subtitle": "Frequently asked questions about the Slack App."
+      }
+    },
+    "TermsOfService": {
+      "title": "Terms Of Service",
+      "subtitle": "Tl;dr: Pretty much standard.",
+      "policies": "Policies"
+    }
   },
   "abbreviations": {
     "faq": "FAQ"
