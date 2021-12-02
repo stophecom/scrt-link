@@ -1,5 +1,215 @@
 {
   "password": "Passwort",
+  "views": {
+    "Error": {
+      "defaultTitle": "Es ist ein Fehler aufgetreten!"
+    },
+    "About": {
+      "title": "Über uns",
+      "subtitle": "Das gesamte Projekt beruht auf einer einfachen Prämisse: Je weniger wir wissen, desto besser.",
+      "intro": "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleiben Sie dran - es kommt noch mehr!",
+      "Philosophy": {
+        "title": "Philosophie",
+        "markdown": "Meinungsfreiheit, Pressefreiheit und das Recht auf Privatsphäre gehören zu den wichtigsten Freiheitsrechten in einer freien Gesellschaft. Mit diesem Projekt unterstützen wir dich, Informationen über das Internet auf wirklich sichere und private Weise auszutauschen. Dieses Produkt ist so konzipiert, dass die Integrität und die Privatsphäre in jeder Hinsicht respektiert werden. Wir haben kein Interesse an dir! Weder an dir als Person, noch an deinen Geheimnissen. Erfahre mehr auf unserer [Datenschutzseite](/de/privacy)."
+      },
+      "Accounts": {
+        "title": "Nutzerkonten",
+        "subtitle": "Warum wir kostenlose und premium Konten anbieten.",
+        "markdown": "Der Hauptgrund, warum wir Konten anbieten, ist der Schutz vor Spam und Betrug. Alle Hauptfunktionen sind kostenlos und erfordern kein Konto.\n\n Allerdings erfordern einige Funktionen eine grundlegende Authentifizierung (wir fragen nur nach einer E-Mail-Adresse - es macht uns nichts aus, wenn eine temporäre E-Mail-Adresse verwendet wird). Zu diesen Funktionen gehört das Senden von Informationen per E-Mail oder SMS. Konten helfen uns, den Missbrauch der zugrunde liegenden Systeme zu verhindern. \n\nBezahlte Premium-Accounts sind für Power-User und Leute gedacht, die [dieses Projekt unterstützen](/de/pricing) möchten."
+      },
+      "BrowserExtensions": {
+        "title": "Browser-Erweiterungen",
+        "subtitle": "Teile Geheimnisse ohne den Tab zu wechseln.",
+        "markdown": "Um diesen Dienst einfach und bequem zu gestalten, gibt es Browser-Erweiterungen für alle modernen Browser. Alle Erweiterungen verfügen über die gleichen Sicherheits- und Datenschutzfunktionen."
+      },
+      "SlackApp": {
+        "title": "Slack Applikation",
+        "subtitle": "Kein Wechseln der App nötig: Dank der Slack-App kannst du einmalige Geheimnisse direkt innerhalb deiner Slack-Unterhaltungen erstellen."
+      },
+      "Developers": {
+        "title": "Für Entwickler und Nerds",
+        "subtitle": "Der gesamte Code ist quelloffen. Du kannst die folgenden Pakete verwenden, um deinen eigenen Dienst zu erstellen oder um unseren Dienst programmatisch über die öffentliche API zu nutzen.",
+        "markdown": "Mit unseren Entwickler-Tools kannst du diesen Dienst einfach in deine eigenen Projekte integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App."
+      }
+    },
+    "Account": {
+      "ManageSubscriptionButton": {
+        "button": "Abo auf Stripe verwalten"
+      },
+      "title": "Konto",
+      "subtitle": "Hallo {{name}}, willkommen zurück!",
+      "tabsMenu": {
+        "label": "Konto Optionen"
+      },
+      "settingsDisclaimer": "Die folgenden Angaben sind Standardeinstellungen. Du kannst jede Einstellung für jedes erstellte Geheimnis überschreiben.",
+      "subscriptionInfo": "Du hast den <1>{{customerRole}}</1> Plan abonniert.",
+      "activeSubscriptionWarning": "Du hast ein laufendes Abonnement. Wir empfehlen diese zuerst zu kündigen.",
+      "accountDeletion": "Konto löschen",
+      "signedInAs": "Du bist angemeldet als {{email}}."
+    },
+    "SignIn": {
+      "title": "Scrt Konto",
+      "subtitle": "Große Dinge beginnen hier…",
+      "FreeAccount": {
+        "title": "Deine Gratis-Konto Vorteile",
+        "Usps": {
+          "0": "Mehr Zeichen für deine Geheimnisse",
+          "1": "E-Mail-Lesebestätigungen",
+          "2": "Slack App",
+          "3": "Browsererweiterungen",
+          "4": "Persönlicher Support",
+          "5": "Emoji Links 🤫"
+        },
+        "upsell": "Du brauchst mehr? <1>Hier gibts mehr</1>."
+      }
+    },
+    "Alias": {
+      "passwordRequired": "Passwort notwendig",
+      "enterPassword": "Gebe das Passwort ein um die Nachricht zu entschlüsseln:",
+      "title": "Pssst",
+      "subtitle": "Du hast eine geheime Nachricht bekommen:",
+      "errorOccurred": "Fehler aufgetreten",
+      "loadingSecret": "Geheimnis wird geladen"
+    },
+    "Contact": {
+      "title": "Kontakt",
+      "subtitle": "Hast du eine Frage oder brauchst du Unterstützung? Wir helfen dir gerne weiter!",
+      "topic": {
+        "general": "Allgemeine Anfragen",
+        "support": "Support",
+        "tech": "Tech"
+      }
+    },
+    "FAQ": {
+      "subtitle": "Häufig gestellte Fragen",
+      "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?",
+      "noAnswer": "Hast du keine passende Antwort gefunden? Wir helfen dir gerne weiter:"
+    },
+    "Home": {
+      "HowItWorks": {
+        "create": {
+          "title": "Schreiben",
+          "text": "Verfasse dein Geheimnis und erhalte einen einmaligen Link."
+        },
+        "share": {
+          "title": "Teilen",
+          "text": "Sende den generierten Link an deine Vertrauensperson."
+        },
+        "burn": {
+          "title": "Zerstören",
+          "text": "Nachdem das Geheimnis gesehen wurde, wird es vernichtet."
+        },
+        "title": "So funktioniert's",
+        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's.. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
+      },
+      "success": {
+        "title": "Erfolg!",
+        "subtitle": "Dein Geheimlink wurde erstellt - teile ihn nun mit deiner Vertrauensperson."
+      },
+      "default": {
+        "title": "Teile ein Geheimnis",
+        "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
+      },
+      "SecretLinksExplained": {
+        "title": "Geheime Links erklärt",
+        "subtitle": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung deines Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht im Browser. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
+        "button": "Mehr über Sicherheit erfahren"
+      },
+      "SlackApp": {
+        "title": "Die Slack App\u00a0<1><0>NEU</0></1>",
+        "subtitle": "Manche Dinge sollten besser nicht in deinem Chat-Verlauf bleiben. Wenn du nächstes Mal von einem Mitarbeiter nach einem Zugangstoken, API-Schlüssel oder Passwort gefragt wirst, kannst du mit guten Gewissens antworten.",
+        "usps": {
+          "0": "Verschlüsselte Einwegnachrichten, die außerhalb von Slack gespeichert werden.",
+          "1": "Erstelle Geheimnisse via Shortcut oder Slash Befehl.",
+          "2": "Empfangsbenachrichtigung nachdem ein Geheimnis gelesen wurde."
+        }
+      },
+      "Upsell": {
+        "title": "Unterstütze uns",
+        "subtitle": "Für nur {{price}} im Monat erhältst du vollen Zugang zu allen aktuellen und zukünftigen Funktionen. Mit einem kostenlosen Konto gibt es die Basisfunktionen."
+      }
+    },
+    "Imprint": {
+      "title": "Impressum",
+      "subtitle": "Tl;dr: Beschränkte Haftung.",
+      "policiesAndTerms": "Richtlinien und Bedingungen",
+      "credits": "Credits",
+      "inspiration": "Inspiration"
+    },
+    "Pricing": {
+      "title": "Preisgestaltung",
+      "subtitle": "Einfache Pläne, faire Preise."
+    },
+    "Privacy": {
+      "title": "Privatsphäre",
+      "subtitle": "Keine Werbung, kein Tracking, kein BS.",
+      "intro": "Für uns ist die Privatsphäre nicht verhandelbar. Wir wählen unsere Werkzeuge sorgfältig aus, um das Recht eines jeden auf Privatsphäre zu schützen. Wir schalten keine Werbung, wir verzichten auf Tracking, wir verkaufen keine Daten und wir beschränken die Anforderungen an persönliche Daten auf das absolute Minimum. Selbst mit einem Konto würden wir niemals ohne triftigen Grund nach persönlich identifizierbaren Informationen (PII) fragen. Darüber hinaus wenden wir \"Privacy by Design\" Grundsätze an: Wir haben unsere Datenbank so strukturiert, dass ein einzelnes Geheimnis eine völlig unabhängige Einheit bleibt - selbst wenn du ein Benutzerkonto verwendest, kann ein Geheimnis niemals zu dir zurückverfolgt werden.",
+      "Analytics": {
+        "title": "Analytics",
+        "markdown": "Wir verwenden {{linkPlausible}},der einfachen und datenschutzfreundlichen Alternative zu Google Analytics, für elementare Web-Traffic-Analysen.\n\n- Keine Verwendung von Cookies\n- Vollständig konform mit den Datenschutzbestimmungen GDPR, CCPA und PECR\n- Keine Erhebung von personenbezogenen Daten\n- Das Projekt ist Open Source\n- Alle Analysedaten sind **öffentlich verfügbar**: {{linkDashboard}}"
+      },
+      "Account": {
+        "title": "Konto & Cookies",
+        "markdown": "Für Power-User bieten wir Benutzerkonten an, die eine Authentifizierung erfordern. Eine E-Mail-Adresse ist ausreichend für die Erstellung eines Kontos. (Du kannst eine temporäre oder maskierte E-Mail verwenden)\n\nFür Besucher:innen unserer Website verwenden wir nur essentielle Cookies. Mit anderen Worten: Cookies, die für die Bereitstellung von Kernfunktionen erforderlich sind: Z.B. die Verwaltung der sicheren Authentifizierung. Mehr dazu in unseren Datenschutzrichtlinien."
+      }
+    },
+    "Security": {
+      "title": "Sicherheit",
+      "subtitle": "Bewährte Praktiken, keine Extras.",
+      "markdown": "Alle Nachrichten sind **Ende-zu-Ende-verschlüsselt**. Wir generieren einen zufälligen Hash, um dein Geheimnis **auf dem Client** mit **AES-256** (Advanced Encryption Standard) zu verschlüsseln. Der Verschlüsselungscode wird niemals gespeichert, sondern dem geheimen Link hinzugefügt. Ohne den vollständigen Link wird niemand (auch wir nicht) in der Lage sein, deine Nachricht zu entschlüsseln. \n\nWenn du ein Passwort angibst, verwenden wir es, um dein Geheimnis **zusätzlich** zur Standardverschlüsselung zu verschlüsseln. Das Passwort wird nicht gespeichert. Selbst mit **Zugang zu unserer gesamten Infrastruktur** könnte ein Angreifer deine Nachricht nicht lesen. Nachdem ein Geheimnis eingesehen wurde, löschen wir es dauerhaft aus unserer Datenbank. Es gibt kein Backup.\n![Link-Erklärung](/images/link-explanation.svg)\n\n### Von Grund auf sicher\n- Alle Verbindungen sind über HTTPS gesichert\n- Alle Daten werden verschlüsselt gespeichert (nicht nur Geheimnisse)\n- So wenig Code von Drittanbietern wie möglich\n- Abhängigkeiten werden regelmäßig überprüft und aktualisiert\n- Der gesamte Code ist Open-Source auf {{gitlabLink}}",
+      "Infrastructure": {
+        "title": "Infrastruktur",
+        "subtitle": "Vertrauenswürdige Akteure, wenige Abhängigkeiten.",
+        "markdown": "Wir haben uns für branchenführende Anbieter entschieden, um unsere Infrastruktur zu hosten:\n\n- Website/API auf {{linkVercel}}\n- Cloud Database mit {{linkScaleGrid}}\n- Slack App auf {{linkHeroku}}\n- Sämtlicher Code auf {{linkGitlab}}"
+      }
+    },
+    "TermsOfService": {
+      "title": "Nutzungsbedingungen",
+      "subtitle": "Tl;dr: Nichts Besonderes",
+      "policies": "Richtlinien"
+    }
+  },
+  "button": {
+    "takeMeHome": "Zur Startseite",
+    "lessOptions": "Weniger Optionen",
+    "moreOptions": "Mehr Optionen",
+    "preview": "Vorschau",
+    "demo": "Demo",
+    "createSecretLink": "Geheimen Link erstellen",
+    "save": "Speichen",
+    "deleteAccount": "Konto löschen",
+    "signUp": "Registrieren",
+    "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
+    "account": "Konto",
+    "getAccount": "Konto erstellen",
+    "close": "Schliessen",
+    "closeMenu": "Menü schliessen",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü",
+    "signUpFree": "Gratis registrieren",
+    "reactivatePlan": "Plan reaktivieren",
+    "tryFree": "Gratis testen",
+    "signUpFirst": "Zuerst registrieren",
+    "cancelSubscription": "Abo kündigen",
+    "createNewSecret": "Neues Geheimnis erstellen",
+    "share": "Teilen",
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "installNow": "Jetzt installieren",
+    "learnMore": "Mehr erfahren",
+    "signOut": "Abmelden",
+    "replyWithSecret": "Mit einem Geheimnis antworten",
+    "decryptMessage": "Nachricht entschlüsseln",
+    "destroySecret": "Nachricht zerstören",
+    "tryAgain": "Nochmals versuchen",
+    "createSecret": "Geheimnis erstellen",
+    "addToSlack": "Zu Slack hinzufügen",
+    "readMoreFaq": "Mehr auf FAQ Seite",
+    "viewPlans": "Pläne ansehen",
+    "getFreeAccount": "Kostenloses Konto erstellen",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
   "components": {
     "Footer": {
       "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmalig.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnisse nur einmal gelesen werden kann - bevor es für immer zerstört wird."
@@ -26,6 +236,79 @@
       "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu. (Englisch)",
       "gotAccount": "Du hast bereits ein Konto?",
       "noAccountYet": "Noch kein Konto?"
+    },
+    "PlanSelection": {
+      "plans": {
+        "premium": {
+          "usps": {
+            "0": {
+              "heading": "Alles in Frei, plus:"
+            },
+            "1": {
+              "heading": "Bis zu {{characterLimit}} Zeichen",
+              "body": "Du kannst geheime Nachrichten mit bis zu {{characterLimit}} Zeichen schreiben. Genug Worte für den perfekten geheimen Liebesbrief, ein Geständnis oder eine Enthüllung."
+            },
+            "2": {
+              "heading": "Lesebestätigungen: E-Mail & SMS",
+              "body": "Schnell und bequem. Erhalte Lesebestätigungen per SMS."
+            },
+            "3": {
+              "heading": "Individuelle Neogram™ Nachrichten",
+              "body": "Eine besondere Note für deine Geheimnisse."
+            },
+            "4": {
+              "heading": "Persönlicher Support",
+              "body": "Wenn du Hilfe brauchst, bist du der Erste in der Schlange."
+            },
+            "5": {
+              "heading": "Es kommt noch mehr…",
+              "body": "Du erhältst alle zukünftigen Updates ohne zusätzliche Kosten. Außerdem bekommst du frühzeitigen Zugang zu neuen Funktionen."
+            }
+          }
+        },
+        "free": {
+          "usps": {
+            "0": {
+              "heading": "Bis zu {{characterLimit}} Zeichen",
+              "body": "Du kannst geheime Nachrichten mit bis zu {{characterLimit}} Zeichen schreiben."
+            },
+            "1": {
+              "heading": "Lesebestätigungen: E-Mail",
+              "body": "Du bekommst eine E-Mail Benachrichtigung, sobald ein Geheimnis gelesen wurde."
+            },
+            "2": {
+              "heading": "Geheimnis-Zustelldienst",
+              "body": "Kein App-Wechsel mehr: Sende geheime Links direkt via E-Mail von unserer Plattform aus."
+            }
+          }
+        }
+      },
+      "subscriptionCancellationSuccessMessage": "Dein Abonnement wurde erfolgreich gekündigt! Dein Abonnement wird am {{cancellationDate}} automatisch auf das kostenlose Abonnement zurückgestuft. Wenn du deine Meinung bis dahin änderst, kannst du dein Abonnement jederzeit wieder aktivieren.",
+      "subscriptionChangeSuccessMessage": "Du hast dein Abonnement erfolgreich geändert!",
+      "subscriptionActiveSuccessMessage": "Mission erfüllt! Dein Abonnement ist aktiv.",
+      "loading": "Lade Pläne…",
+      "free": {
+        "subtitle": "Keine Verpflichtungen",
+        "overline": "Das Wesentliche",
+        "price": "Kostenlos"
+      },
+      "premium": {
+        "subtitle": "Ein Schnäppchen"
+      },
+      "currentPlan": "Aktueller Plan",
+      "cancellationNotice": "Dieser Plan wurde gekündigt und wird am {{cancellationDate}} auf den kostenlosen Plan zurückgestuft.",
+      "activePlan": "Dieser Plan ist derzeit aktiv.",
+      "trialEndNotice": "Probezeit endet am {{trialEndDate}}.",
+      "recurringPriceInfo": "Der Betrag {{price}} wird einmal pro {{interval}} in Rechnung gestellt.",
+      "planSwitchOrCancelNotice": "Du kannst jederzeit den Abrechnungszyklus wechseln oder das Abonnement kündigen.",
+      "freeTrialInfo": "{{trialPeriod}} Tage ausprobieren",
+      "switchToMonthlyBilling": "Umstellung auf monatliche Abrechnung",
+      "switchToYearlyBilling": "Umstellung auf jährliche Abrechnung",
+      "saveWithYearlySubscription": "Erhalte <2>2 Monate gratis</2> mit dem Jahrestarif!",
+      "interval": {
+        "monthly": "Monatlich",
+        "yearly": "Jährlich"
+      }
     },
     "ShareSecretResult": {
       "webShare": {
@@ -122,40 +405,20 @@
       "label": "Emoji Link verwenden"
     }
   },
-  "button": {
-    "lessOptions": "Weniger Optionen",
-    "moreOptions": "Mehr Optionen",
-    "preview": "Vorschau",
-    "demo": "Demo",
-    "createSecretLink": "Geheimen Link erstellen",
-    "save": "Speichen",
-    "deleteAccount": "Delete Account",
-    "signUp": "Registrieren",
-    "signIn": "Anmelden",
-    "myAccount": "Mein Konto",
-    "account": "Konto",
-    "getAccount": "Konto erstellen",
-    "close": "Schliessen",
-    "closeMenu": "Menü schliessen",
-    "openMenu": "Menü öffnen",
-    "menu": "Menü",
-    "createNewSecret": "Neues Geheimnis erstellen",
-    "share": "Teilen",
-    "copied": "Kopiert",
-    "copy": "Kopieren",
-    "installNow": "Jetzt installieren",
-    "learnMore": "Mehr erfahren",
-    "signOut": "Abmelden",
-    "replyWithSecret": "Mit einem Geheimnis antworten",
-    "decryptMessage": "Nachricht entschlüsseln",
-    "destroySecret": "Nachricht zerstören",
-    "tryAgain": "Nochmals versuchen",
-    "createSecret": "Geheimnis erstellen",
-    "addToSlack": "Zu Slack hinzufügen",
-    "readMoreFaq": "Mehr auf FAQ Seite",
-    "viewPlans": "Pläne ansehen",
-    "getFreeAccount": "Kostenloses Konto erstellen",
-    "privacyPolicy": "Datenschutzbestimmungen"
+  "error": {
+    "unexpectedError": "Unerwarteter Fehler",
+    "SECRET_NOT_FOUND": "Geheimnis nicht gefunden - Dies bedeutet normalerweise, dass der geheime Link bereits besucht wurde und daher nicht mehr existiert.",
+    "missingDecryptionKey": "Entschlüsselungscode fehlt",
+    "invalidAlias": "Alias ungültig.",
+    "wrongPassword": "Falsches Passwort"
+  },
+  "plans": {
+    "free": {
+      "title": "Free"
+    },
+    "premium": {
+      "title": "Premium"
+    }
   },
   "faq": {
     "payment-provider": {
@@ -327,175 +590,6 @@
     "emojiLink": "Emoji Kurzlink",
     "confirmationRequired": "Dieses Feld ist obligatorisch."
   },
-  "views": {
-    "About": {
-      "title": "Über uns",
-      "subtitle": "Das gesamte Projekt beruht auf einer einfachen Prämisse: Je weniger wir wissen, desto besser.",
-      "intro": "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleiben Sie dran - es kommt noch mehr!",
-      "Philosophy": {
-        "title": "Philosophie",
-        "markdown": "Meinungsfreiheit, Pressefreiheit und das Recht auf Privatsphäre gehören zu den wichtigsten Freiheitsrechten in einer freien Gesellschaft. Mit diesem Projekt unterstützen wir dich, Informationen über das Internet auf wirklich sichere und private Weise auszutauschen. Dieses Produkt ist so konzipiert, dass die Integrität und die Privatsphäre in jeder Hinsicht respektiert werden. Wir haben kein Interesse an dir! Weder an dir als Person, noch an deinen Geheimnissen. Erfahre mehr auf unserer [Datenschutzseite](/de/privacy)."
-      },
-      "Accounts": {
-        "title": "Nutzerkonten",
-        "subtitle": "Warum wir kostenlose und premium Konten anbieten.",
-        "markdown": "Der Hauptgrund, warum wir Konten anbieten, ist der Schutz vor Spam und Betrug. Alle Hauptfunktionen sind kostenlos und erfordern kein Konto.\n\n Allerdings erfordern einige Funktionen eine grundlegende Authentifizierung (wir fragen nur nach einer E-Mail-Adresse - es macht uns nichts aus, wenn eine temporäre E-Mail-Adresse verwendet wird). Zu diesen Funktionen gehört das Senden von Informationen per E-Mail oder SMS. Konten helfen uns, den Missbrauch der zugrunde liegenden Systeme zu verhindern. \n\nBezahlte Premium-Accounts sind für Power-User und Leute gedacht, die [dieses Projekt unterstützen](/de/pricing) möchten."
-      },
-      "BrowserExtensions": {
-        "title": "Browser-Erweiterungen",
-        "subtitle": "Teile Geheimnisse ohne den Tab zu wechseln.",
-        "markdown": "Um diesen Dienst einfach und bequem zu gestalten, gibt es Browser-Erweiterungen für alle modernen Browser. Alle Erweiterungen verfügen über die gleichen Sicherheits- und Datenschutzfunktionen."
-      },
-      "SlackApp": {
-        "title": "Slack Applikation",
-        "subtitle": "Kein Wechseln der App nötig: Dank der Slack-App kannst du einmalige Geheimnisse direkt innerhalb deiner Slack-Unterhaltungen erstellen."
-      },
-      "Developers": {
-        "title": "Für Entwickler und Nerds",
-        "subtitle": "Der gesamte Code ist quelloffen. Du kannst die folgenden Pakete verwenden, um deinen eigenen Dienst zu erstellen oder um unseren Dienst programmatisch über die öffentliche API zu nutzen.",
-        "markdown": "Mit unseren Entwickler-Tools kannst du diesen Dienst einfach in deine eigenen Projekte integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App."
-      }
-    },
-    "Account": {
-      "ManageSubscriptionButton": {
-        "button": "Abo auf Stripe verwalten"
-      },
-      "title": "Konto",
-      "subtitle": "Hallo {{name}}, willkommen zurück!",
-      "tabsMenu": {
-        "label": "Konto Optionen"
-      },
-      "settingsDisclaimer": "Die folgenden Angaben sind Standardeinstellungen. Du kannst jede Einstellung für jedes erstellte Geheimnis überschreiben.",
-      "subscriptionInfo": "Du hast den <1>{{customerRole}}</1> Plan abonniert.",
-      "activeSubscriptionWarning": "Du hast ein laufendes Abonnement. Wir empfehlen diese zuerst zu kündigen.",
-      "accountDeletion": "Konto löschen",
-      "signedInAs": "Du bist angemeldet als {{email}}."
-    },
-    "SignIn": {
-      "title": "Scrt Konto",
-      "subtitle": "Große Dinge beginnen hier…",
-      "FreeAccount": {
-        "title": "Deine Gratis-Konto Vorteile",
-        "Usps": {
-          "0": "Mehr Zeichen für deine Geheimnisse",
-          "1": "E-Mail-Lesebestätigungen",
-          "2": "Slack App",
-          "3": "Browsererweiterungen",
-          "4": "Persönlicher Support",
-          "5": "Emoji Links 🤫"
-        },
-        "upsell": "Du brauchst mehr? <1>Hier gibts mehr</1>."
-      }
-    },
-    "Alias": {
-      "passwordRequired": "Passwort notwendig",
-      "enterPassword": "Gebe das Passwort ein um die Nachricht zu entschlüsseln:",
-      "title": "Pssst",
-      "subtitle": "Du hast eine geheime Nachricht bekommen:",
-      "errorOccurred": "Fehler aufgetreten",
-      "loadingSecret": "Geheimnis wird geladen"
-    },
-    "Contact": {
-      "title": "Kontakt",
-      "subtitle": "Hast du eine Frage oder brauchst du Unterstützung? Wir helfen dir gerne weiter!",
-      "topic": {
-        "general": "Allgemeine Anfragen",
-        "support": "Support",
-        "tech": "Tech"
-      }
-    },
-    "FAQ": {
-      "subtitle": "Häufig gestellte Fragen",
-      "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?",
-      "noAnswer": "Hast du keine passende Antwort gefunden? Wir helfen dir gerne weiter:"
-    },
-    "Home": {
-      "HowItWorks": {
-        "create": {
-          "title": "Schreiben",
-          "text": "Verfasse dein Geheimnis und erhalte einen einmaligen Link."
-        },
-        "share": {
-          "title": "Teilen",
-          "text": "Sende den generierten Link an deine Vertrauensperson."
-        },
-        "burn": {
-          "title": "Zerstören",
-          "text": "Nachdem das Geheimnis gesehen wurde, wird es vernichtet."
-        },
-        "title": "So funktioniert's",
-        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's.. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
-      },
-      "success": {
-        "title": "Erfolg!",
-        "subtitle": "Dein Geheimlink wurde erstellt - teile ihn nun mit deiner Vertrauensperson."
-      },
-      "default": {
-        "title": "Teile ein Geheimnis",
-        "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
-      },
-      "SecretLinksExplained": {
-        "title": "Geheime Links erklärt",
-        "subtitle": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung deines Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht im Browser. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
-        "button": "Mehr über Sicherheit erfahren"
-      },
-      "SlackApp": {
-        "title": "Die Slack App\u00a0<1><0>NEU</0></1>",
-        "subtitle": "Manche Dinge sollten besser nicht in deinem Chat-Verlauf bleiben. Wenn du nächstes Mal von einem Mitarbeiter nach einem Zugangstoken, API-Schlüssel oder Passwort gefragt wirst, kannst du mit guten Gewissens antworten.",
-        "usps": {
-          "0": "Verschlüsselte Einwegnachrichten, die außerhalb von Slack gespeichert werden.",
-          "1": "Erstelle Geheimnisse via Shortcut oder Slash Befehl.",
-          "2": "Empfangsbenachrichtigung nachdem ein Geheimnis gelesen wurde."
-        }
-      },
-      "Upsell": {
-        "title": "Unterstütze uns",
-        "subtitle": "Für nur {{price}} im Monat erhältst du vollen Zugang zu allen aktuellen und zukünftigen Funktionen. Mit einem kostenlosen Konto gibt es die Basisfunktionen."
-      }
-    },
-    "Imprint": {
-      "title": "Impressum",
-      "subtitle": "Tl;dr: Beschränkte Haftung.",
-      "policiesAndTerms": "Richtlinien und Bedingungen",
-      "credits": "Credits",
-      "inspiration": "Inspiration"
-    },
-    "Privacy": {
-      "title": "Privatsphäre",
-      "subtitle": "Keine Werbung, kein Tracking, kein BS.",
-      "intro": "Für uns ist die Privatsphäre nicht verhandelbar. Wir wählen unsere Werkzeuge sorgfältig aus, um das Recht eines jeden auf Privatsphäre zu schützen. Wir schalten keine Werbung, wir verzichten auf Tracking, wir verkaufen keine Daten und wir beschränken die Anforderungen an persönliche Daten auf das absolute Minimum. Selbst mit einem Konto würden wir niemals ohne triftigen Grund nach persönlich identifizierbaren Informationen (PII) fragen. Darüber hinaus wenden wir \"Privacy by Design\" Grundsätze an: Wir haben unsere Datenbank so strukturiert, dass ein einzelnes Geheimnis eine völlig unabhängige Einheit bleibt - selbst wenn du ein Benutzerkonto verwendest, kann ein Geheimnis niemals zu dir zurückverfolgt werden.",
-      "Analytics": {
-        "title": "Analytics",
-        "markdown": "Wir verwenden {{linkPlausible}},der einfachen und datenschutzfreundlichen Alternative zu Google Analytics, für elementare Web-Traffic-Analysen.\n\n- Keine Verwendung von Cookies\n- Vollständig konform mit den Datenschutzbestimmungen GDPR, CCPA und PECR\n- Keine Erhebung von personenbezogenen Daten\n- Das Projekt ist Open Source\n- Alle Analysedaten sind **öffentlich verfügbar**: {{linkDashboard}}"
-      },
-      "Account": {
-        "title": "Konto & Cookies",
-        "markdown": "Für Power-User bieten wir Benutzerkonten an, die eine Authentifizierung erfordern. Eine E-Mail-Adresse ist ausreichend für die Erstellung eines Kontos. (Du kannst eine temporäre oder maskierte E-Mail verwenden)\n\nFür Besucher:innen unserer Website verwenden wir nur essentielle Cookies. Mit anderen Worten: Cookies, die für die Bereitstellung von Kernfunktionen erforderlich sind: Z.B. die Verwaltung der sicheren Authentifizierung. Mehr dazu in unseren Datenschutzrichtlinien."
-      }
-    },
-    "Security": {
-      "title": "Sicherheit",
-      "subtitle": "Bewährte Praktiken, keine Extras.",
-      "markdown": "Alle Nachrichten sind **Ende-zu-Ende-verschlüsselt**. Wir generieren einen zufälligen Hash, um dein Geheimnis **auf dem Client** mit **AES-256** (Advanced Encryption Standard) zu verschlüsseln. Der Verschlüsselungscode wird niemals gespeichert, sondern dem geheimen Link hinzugefügt. Ohne den vollständigen Link wird niemand (auch wir nicht) in der Lage sein, deine Nachricht zu entschlüsseln. \n\nWenn du ein Passwort angibst, verwenden wir es, um dein Geheimnis **zusätzlich** zur Standardverschlüsselung zu verschlüsseln. Das Passwort wird nicht gespeichert. Selbst mit **Zugang zu unserer gesamten Infrastruktur** könnte ein Angreifer deine Nachricht nicht lesen. Nachdem ein Geheimnis eingesehen wurde, löschen wir es dauerhaft aus unserer Datenbank. Es gibt kein Backup.\n![Link-Erklärung](/images/link-explanation.svg)\n\n### Von Grund auf sicher\n- Alle Verbindungen sind über HTTPS gesichert\n- Alle Daten werden verschlüsselt gespeichert (nicht nur Geheimnisse)\n- So wenig Code von Drittanbietern wie möglich\n- Abhängigkeiten werden regelmäßig überprüft und aktualisiert\n- Der gesamte Code ist Open-Source auf {{gitlabLink}}",
-      "Infrastructure": {
-        "title": "Infrastruktur",
-        "subtitle": "Vertrauenswürdige Akteure, wenige Abhängigkeiten.",
-        "markdown": "Wir haben uns für branchenführende Anbieter entschieden, um unsere Infrastruktur zu hosten:\n\n- Website/API auf {{linkVercel}}\n- Cloud Database mit {{linkScaleGrid}}\n- Slack App auf {{linkHeroku}}\n- Sämtlicher Code auf {{linkGitlab}}"
-      }
-    },
-    "TermsOfService": {
-      "title": "Nutzungsbedingungen",
-      "subtitle": "Tl;dr: Nichts Besonderes",
-      "policies": "Richtlinien"
-    }
-  },
-  "error": {
-    "SECRET_NOT_FOUND": "Geheimnis nicht gefunden - Dies bedeutet normalerweise, dass der geheime Link bereits besucht wurde und daher nicht mehr existiert.",
-    "missingDecryptionKey": "Entschlüsselungscode fehlt",
-    "invalidAlias": "Alias ungültig.",
-    "wrongPassword": "Falsches Passwort"
-  },
-  "email": "E-Mail",
   "abbreviations": {
     "faq": "Häufig gestellte Fragen."
   }

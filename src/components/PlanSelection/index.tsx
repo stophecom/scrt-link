@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Stripe } from 'stripe'
+import { useTranslation, Trans } from 'next-i18next'
 
 import { Box, Grid, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -38,57 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const premiumUsps = [
-  {
-    heading: `Everything in Free, plus:`,
-  },
-  {
-    heading: `${abbrNum(limits.premium.maxMessageLength, 1)} character limit`,
-    body: `You can write secret messages with up to ${formatNumber(
-      limits.premium.maxMessageLength,
-    )} characters. Enough words for the perfect secret love letter, confession or disclosure.`,
-  },
-  {
-    heading: 'Read receipts: Email & SMS ',
-    body: 'Fast, convenient. Get read notifications via SMS.',
-  },
-  {
-    heading: 'Customize Neogram™ messages',
-    body: 'Add a special touch to your secrets.',
-  },
-  {
-    heading: 'Priority support',
-    body: `You'll be first in line if you need help.`,
-  },
-  {
-    heading: 'More to come…',
-    body: `You'll get all future updates at no extra cost. Plus, early access to upcoming features.`,
-  },
-]
-
-const freeUsps = [
-  {
-    heading: `${abbrNum(limits.free.maxMessageLength, 1)} character limit`,
-    body: `You can write secret messages with up to ${formatNumber(
-      limits.free.maxMessageLength,
-    )} characters.`,
-  },
-  {
-    heading: 'Read receipts: Email',
-    body: 'Get notification via Email whenever a secret has been viewed. ',
-  },
-  {
-    heading: 'Email delivery service',
-    body: 'No more app switching: Send secret links directly from our platform.',
-  },
-]
-
 type Status = {
   type: 'initial' | 'success' | 'error' | 'loading'
   message?: string
 }
 
 const PlanSelection: React.FunctionComponent = () => {
+  const { t } = useTranslation()
   const { data: customer } = useCustomer()
   const { plans, isLoading, error } = usePlans()
   const { stripeCustomer, triggerFetchStripeCustomer } = useStripeCustomer(
@@ -113,6 +70,95 @@ const PlanSelection: React.FunctionComponent = () => {
   const isSubscriptionActiveNotCanceled = isSubscriptionActive && !subscription?.cancel_at
   const isSubscriptionCanceled = isSubscriptionActive && !!subscription?.cancel_at
 
+  const premiumUsps = [
+    {
+      heading: t(
+        'common:components.PlanSelection.plans.premium.usps.0.heading',
+        `Everything in Free, plus:`,
+      ),
+    },
+    {
+      heading: t('common:components.PlanSelection.plans.premium.usps.1.heading', {
+        defaultValue: `{{characterLimit}} character limit`,
+        characterLimit: abbrNum(limits.premium.maxMessageLength, 1),
+      }),
+      body: t('common:components.PlanSelection.plans.premium.usps.1.body', {
+        defaultValue: `You can write secret messages with up to {{characterLimit}} characters. Enough words for the perfect secret love letter, confession or disclosure.`,
+        characterLimit: formatNumber(limits.premium.maxMessageLength),
+      }),
+    },
+    {
+      heading: t(
+        'common:components.PlanSelection.plans.premium.usps.2.heading',
+        'Read receipts: Email & SMS',
+      ),
+      body: t(
+        'common:components.PlanSelection.plans.premium.usps.2.body',
+        'Fast, convenient. Get read notifications via SMS.',
+      ),
+    },
+    {
+      heading: t(
+        'common:components.PlanSelection.plans.premium.usps.3.heading',
+        'Customize Neogram™ messages',
+      ),
+      body: t(
+        'common:components.PlanSelection.plans.premium.usps.3.body',
+        'Add a special touch to your secrets.',
+      ),
+    },
+    {
+      heading: t(
+        'common:components.PlanSelection.plans.premium.usps.4.heading',
+        'Priority support',
+      ),
+      body: t(
+        'common:components.PlanSelection.plans.premium.usps.4.body',
+        `You'll be first in line if you need help.`,
+      ),
+    },
+    {
+      heading: t('common:components.PlanSelection.plans.premium.usps.5.heading', 'More to come…'),
+      body: t(
+        'common:components.PlanSelection.plans.premium.usps.5.body',
+        `You'll get all future updates at no extra cost. Plus, early access to upcoming features.`,
+      ),
+    },
+  ]
+
+  const freeUsps = [
+    {
+      heading: t('common:components.PlanSelection.plans.free.usps.0.heading', {
+        defaultValue: `{{characterLimit}} character limit`,
+        characterLimit: abbrNum(limits.free.maxMessageLength, 1),
+      }),
+      body: t('common:components.PlanSelection.plans.free.usps.0.body', {
+        defaultValue: `You can write secret messages with up to {{characterLimit}} characters.`,
+        characterLimit: formatNumber(limits.free.maxMessageLength),
+      }),
+    },
+    {
+      heading: t(
+        'common:components.PlanSelection.plans.free.usps.1.heading',
+        'Read receipts: Email',
+      ),
+      body: t(
+        'common:components.PlanSelection.plans.free.usps.1.body',
+        'Get notification via Email whenever a secret has been viewed.',
+      ),
+    },
+    {
+      heading: t(
+        'common:components.PlanSelection.plans.free.usps.2.heading',
+        'Email delivery service',
+      ),
+      body: t(
+        'common:components.PlanSelection.plans.free.usps.2.body',
+        'No more app switching: Send secret links directly from our platform.',
+      ),
+    },
+  ]
+
   useEffect(() => {
     setActivePrice(subscription?.items?.data[0]?.price)
     setShowYearlyPrices(subscription?.items?.data[0]?.price.recurring?.interval === 'year')
@@ -123,9 +169,10 @@ const PlanSelection: React.FunctionComponent = () => {
       .then((subscription) => {
         setStatus({
           type: 'success',
-          message: `Your subscription has been canceled successfully! Your plan will automatically be downgraded to the free plan on ${dateFromTimestamp(
-            subscription.cancel_at,
-          )}. If you change your mind until then, feel free to reactivate any time.`,
+          message: t('common:components.PlanSelection.subscriptionCancellationSuccessMessage', {
+            defaultValue: `Your subscription has been canceled successfully! Your plan will automatically be downgraded to the free plan on {{cancellationDate}}. If you change your mind until then, feel free to reactivate any time.`,
+            cancellationDate: dateFromTimestamp(subscription.cancel_at),
+          }),
         })
         triggerFetchStripeCustomer()
       })
@@ -156,7 +203,13 @@ const PlanSelection: React.FunctionComponent = () => {
 
         setActivePrice(response?.items.data[0].price ?? {})
         setShowYearlyPrices(response?.items.data[0].price.recurring?.interval === 'year')
-        setStatus({ type: 'success', message: 'You successfully changed your subscription!' })
+        setStatus({
+          type: 'success',
+          message: t(
+            'common:components.PlanSelection.subscriptionChangeSuccessMessage',
+            'You successfully changed your subscription!',
+          ),
+        })
       } else {
         // Create a Checkout Session.
         const response = await api<Stripe.Subscription>(
@@ -181,11 +234,20 @@ const PlanSelection: React.FunctionComponent = () => {
 
         setStatus({
           type: 'success',
-          message: 'Mission accomplished! Your subscription is active. ',
+          message: t(
+            'common:components.PlanSelection.subscriptionActiveSuccessMessage',
+            'Mission accomplished! Your subscription is active.',
+          ),
         })
       }
     } catch (err) {
-      setStatus({ type: 'error', message: err instanceof Error ? err.message : 'Unexpected error' })
+      setStatus({
+        type: 'error',
+        message:
+          err instanceof Error
+            ? err.message
+            : t('common:error.unexpectedError', 'Unexpected error'),
+      })
     } finally {
       triggerFetchStripeCustomer()
     }
@@ -212,7 +274,7 @@ const PlanSelection: React.FunctionComponent = () => {
   }
 
   if (isLoading) {
-    return <Spinner message="Loading plans…" />
+    return <Spinner message={t('common:components.PlanSelection.loading', 'Loading plans…')} />
   }
 
   return (
@@ -225,14 +287,14 @@ const PlanSelection: React.FunctionComponent = () => {
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={5}>
           <Plan
-            title="Free"
-            subtitle="No strings attached."
-            overline="Essentials"
+            title={t('common:plans.free.title', 'Free')}
+            subtitle={t('common:components.PlanSelection.free.subtitle', 'No strings attached.')}
+            overline={t('common:components.PlanSelection.free.overline', 'Essentials')}
             isCurrentPlan={!!customer?.userId && !isSubscriptionActive}
           >
             <Box display="flex" justifyContent="center">
               <Typography className={classes.price} variant="h4" component="div">
-                Free forever
+                {t('common:components.PlanSelection.free.price', 'Free forever')}
               </Typography>
             </Box>
             <Box mb={2}>
@@ -246,7 +308,7 @@ const PlanSelection: React.FunctionComponent = () => {
                   color="primary"
                   href="/account?signup=true"
                 >
-                  Sign up free
+                  {t('common:button.signUpFree', 'Sign up free')}
                 </BaseButtonLink>
               )}
             </Box>
@@ -259,8 +321,16 @@ const PlanSelection: React.FunctionComponent = () => {
               <Grid item xs={12} sm={7} key={index}>
                 <Plan
                   title={name}
-                  subtitle={<>Basically a steal.</>}
-                  overline={isSubscriptionBillingIntervalMatch ? 'Current Plan' : 'Premium'}
+                  subtitle={
+                    <>
+                      {t('common:components.PlanSelection.premium.subtitle', 'Basically a steal.')}
+                    </>
+                  }
+                  overline={
+                    isSubscriptionBillingIntervalMatch
+                      ? t('common:components.PlanSelection.currentPlan', 'Current Plan')
+                      : t('common:plans.premium.title', 'Premium')
+                  }
                   isCurrentPlan={
                     isSubscriptionActive &&
                     price.product === activePrice?.product &&
@@ -285,18 +355,34 @@ const PlanSelection: React.FunctionComponent = () => {
                       >
                         {isSubscriptionCanceled ? (
                           <>
-                            This plan has been canceled and will get downgraded to the free plan on{' '}
-                            {dateFromTimestamp(subscription.cancel_at)}.
+                            {t('common:components.PlanSelection.cancellationNotice', {
+                              defaultValue:
+                                'This plan has been canceled and will get downgraded to the free plan on {{cancellationDate}}.',
+                              cancellationDate: dateFromTimestamp(subscription.cancel_at),
+                            })}
                           </>
                         ) : (
                           <>
-                            This plan is currently active.&nbsp;
+                            {t(
+                              'common:components.PlanSelection.activePlan',
+                              'This plan is currently active.',
+                            )}
+                            &nbsp;
                             {isSubscriptionTrialing
-                              ? `Trial ends on ${dateFromTimestamp(subscription?.trial_end)}.`
-                              : `You are being billed 
-                            ${formatCurrency(Number(activePrice?.unit_amount) / 100)} every 
-                            ${activePrice?.recurring?.interval}.`}
-                            &nbsp;You can switch billing cycle or cancel the subscription anytime.
+                              ? t('common:components.PlanSelection.trialEndNotice', {
+                                  defaultValue: `Trial ends on {{trialEndDate}}.`,
+                                  trialEndDate: dateFromTimestamp(subscription?.trial_end),
+                                })
+                              : t('common:components.PlanSelection.recurringPriceInfo', {
+                                  defaultValue: `You are being billed {{price}} every {{interval}}.`,
+                                  price: formatCurrency(Number(activePrice?.unit_amount) / 100),
+                                  interval: activePrice?.recurring?.interval,
+                                })}
+                            &nbsp;
+                            {t(
+                              'common:components.PlanSelection.planSwitchOrCancelNotice',
+                              'You can switch billing cycle or cancel the subscription anytime.',
+                            )}
                           </>
                         )}
                       </Alert>
@@ -315,11 +401,16 @@ const PlanSelection: React.FunctionComponent = () => {
                               onClick={() => handleSubmit(price.id)}
                               loading={status?.type === 'loading'}
                             >
-                              {isSubscriptionCanceled ? 'Reactivate plan' : 'Try it free'}
+                              {isSubscriptionCanceled
+                                ? t('common:button.reactivatePlan', 'Reactivate plan')
+                                : t('common:button.tryFree', 'Try it free')}
                             </BaseButton>
                             {!subscription && (
                               <Typography className={classes.trial} variant="body2">
-                                {trialPeriod} days free trial
+                                {t('common:components.PlanSelection.freeTrialInfo', {
+                                  defaultValue: '{{trialPeriod}} days free trial',
+                                  trialPeriod,
+                                })}
                               </Typography>
                             )}
                           </>
@@ -338,9 +429,15 @@ const PlanSelection: React.FunctionComponent = () => {
                                 }
                                 loading={status?.type === 'loading'}
                               >
-                                Switch to{' '}
-                                {activePrice?.recurring?.interval === 'year' ? 'monthly' : 'yearly'}{' '}
-                                billing
+                                {activePrice?.recurring?.interval === 'year'
+                                  ? t(
+                                      'common:components.PlanSelection.switchToMonthlyBilling',
+                                      'Switch to monthly billing',
+                                    )
+                                  : t(
+                                      'common:components.PlanSelection.switchToYearlyBilling',
+                                      'Switch to yearly billing',
+                                    )}
                               </BaseButton>
                             )}
                           </>
@@ -354,7 +451,7 @@ const PlanSelection: React.FunctionComponent = () => {
                         color="primary"
                         href="/account"
                       >
-                        Sign up first
+                        {t('common:button.signUpFirst', 'Sign up first')}
                       </BaseButtonLink>
                     )}
                     {subscription &&
@@ -366,7 +463,7 @@ const PlanSelection: React.FunctionComponent = () => {
                           onClick={() => deleteSubscription(subscription.id)}
                           loading={status?.type === 'loading'}
                         >
-                          Cancel subscription
+                          {t('common:button.cancelSubscription', 'Cancel subscription')}
                         </BaseButton>
                       )}
                   </Box>
@@ -380,21 +477,23 @@ const PlanSelection: React.FunctionComponent = () => {
         {(!subscription || isSubscriptionBillingIntervalMonthly) && (
           <Box mb={2}>
             <Typography component="div" align="center">
-              Get{' '}
-              <Typography variant="inherit" component="strong" color="primary">
-                2 months free
-              </Typography>{' '}
-              with the yearly plan!
+              <Trans i18nKey="common:components.PlanSelection.saveWithYearlySubscription">
+                Get{' '}
+                <Typography variant="inherit" component="strong" color="primary">
+                  2 months free
+                </Typography>{' '}
+                with the yearly plan!
+              </Trans>
             </Typography>
           </Box>
         )}
 
         <Grid component="label" container alignItems="center" justifyContent="center" spacing={1}>
-          <Grid item>Monthly</Grid>
+          <Grid item>{t('common:components.PlanSelection.interval.monthly', 'Monthly')}</Grid>
           <Grid item>
             <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />
           </Grid>
-          <Grid item>Yearly</Grid>
+          <Grid item>{t('common:components.PlanSelection.interval.yearly', 'Yearly')}</Grid>
         </Grid>
       </Box>
     </>

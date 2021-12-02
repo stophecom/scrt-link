@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react'
 import { Check } from '@material-ui/icons'
 import { Box, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { useTranslation } from 'next-i18next'
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
@@ -50,6 +52,7 @@ const Plan: React.FunctionComponent<PlanProps> = ({
   isCurrentPlan,
 }) => {
   const classes = useStyles()
+  const { t } = useTranslation()
   return (
     <Paper className={classes.paper}>
       {isCurrentPlan && (
@@ -59,7 +62,11 @@ const Plan: React.FunctionComponent<PlanProps> = ({
       )}
       <Box mb={2}>
         <Box display="flex" justifyContent="center" p={1} fontSize="small">
-          <small>{isCurrentPlan ? 'Current plan' : overline}</small>
+          <small>
+            {isCurrentPlan
+              ? t('common:components.PlanSelection.currentPlan', 'Current Plan')
+              : overline}
+          </small>
         </Box>
         <Typography variant="h3" className={classes.planTitle}>
           {title}
