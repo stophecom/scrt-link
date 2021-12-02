@@ -32,6 +32,10 @@
         "markdown": "Mit unseren Entwickler-Tools kannst du diesen Dienst einfach in deine eigenen Projekte integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App."
       }
     },
+    "AcceptableUsePolicy": {
+      "title": "Nutzungsrichtlinien",
+      "subtitle": "Richtlinie zur akzeptablen Nutzung."
+    },
     "Account": {
       "ManageSubscriptionButton": {
         "button": "Abo auf Stripe verwalten"
@@ -405,6 +409,7 @@
       "label": "Emoji Link verwenden"
     }
   },
+  "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
   "error": {
     "unexpectedError": "Unerwarteter Fehler",
     "SECRET_NOT_FOUND": "Geheimnis nicht gefunden - Dies bedeutet normalerweise, dass der geheime Link bereits besucht wurde und daher nicht mehr existiert.",
@@ -574,7 +579,7 @@
     "faq": "FAQ",
     "contact": "Kontakt",
     "termsOfService": "Nutzungsbedingungen",
-    "acceptableUsePolicy": "Richtlinie zur akzeptablen Nutzung",
+    "acceptableUsePolicy": "Nutzungsrichtlinien",
     "cookiePolicy": "Cookie-Richtlinien",
     "privacyPolicy": "Datenschutzbestimmungen",
     "imprint": "Impressum",

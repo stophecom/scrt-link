@@ -32,6 +32,10 @@
         "markdown": "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App."
       }
     },
+    "AcceptableUsePolicy": {
+      "title": "Acceptable Use Policy",
+      "subtitle": "Tl;dr: Play fair."
+    },
     "Account": {
       "ManageSubscriptionButton": {
         "button": "Manage subscription on Stripe"
@@ -405,6 +409,7 @@
       "label": "Use emoji link"
     }
   },
+  "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "error": {
     "unexpectedError": "Unexpected error",
     "SECRET_NOT_FOUND": "",

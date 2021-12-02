@@ -1,7 +1,11 @@
 import React, { ReactNode } from 'react'
 import { Box, Typography } from '@material-ui/core'
 import styled from 'styled-components'
+import { useTranslation } from 'next-i18next'
+import Alert from '@material-ui/lab/Alert'
 
+import { Link } from '@material-ui/core'
+import { emailSupport } from '@/constants'
 import Seo, { SeoProps } from '@/components/Seo'
 
 const Intro = styled('div')`
@@ -14,9 +18,19 @@ export interface PageProps extends SeoProps {
   subtitle?: ReactNode
   intro?: ReactNode
   children: ReactNode
+  hasMissingTranslations?: boolean
 }
 
-const Page = ({ title, subtitle, children, intro, ...seoProps }: PageProps) => {
+const Page = ({
+  title,
+  subtitle,
+  children,
+  intro,
+  hasMissingTranslations,
+  ...seoProps
+}: PageProps) => {
+  const { t, i18n } = useTranslation()
+
   return (
     <Box flex={1} marginBottom={9}>
       <Seo title={title} {...seoProps} />
@@ -33,6 +47,17 @@ const Page = ({ title, subtitle, children, intro, ...seoProps }: PageProps) => {
         )}
         {intro && <Intro>{intro}</Intro>}
       </Box>
+      {hasMissingTranslations && i18n.language !== 'en' && (
+        <Box mb={1}>
+          <Alert severity="info">
+            {t(
+              'common:missingTranslationsNotice',
+              'Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.',
+            )}{' '}
+            <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
+          </Alert>
+        </Box>
+      )}
       {children}
     </Box>
   )
