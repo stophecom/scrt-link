@@ -12,6 +12,9 @@ const Intro = styled('div')`
   margin-top: 2em;
   font-size: 1.1rem;
 `
+const H1 = styled(Typography)`
+  hyphens: auto;
+`
 
 export interface PageProps extends SeoProps {
   title: string
@@ -36,9 +39,7 @@ const Page = ({
       <Seo title={title} {...seoProps} />
       <Box pt={3} mb={6}>
         <Box mb={1}>
-          <Typography variant="h1" noWrap>
-            {title}
-          </Typography>
+          <H1 variant="h1">{title}</H1>
         </Box>
         {subtitle && (
           <Typography variant="subtitle1" component="div">

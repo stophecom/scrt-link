@@ -15,6 +15,7 @@ const TermsOfService = () => {
     <Page
       title={t('common:views.TermsOfService.title', 'Terms Of Service')}
       subtitle={t('common:views.TermsOfService.subtitle', `Tl;dr: Pretty much standard.`)}
+      hasMissingTranslations
     >
       <Box mb={10}>
         <Markdown source={data} />

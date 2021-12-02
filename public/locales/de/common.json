@@ -84,6 +84,10 @@
         "tech": "Tech"
       }
     },
+    "CookiePolicy": {
+      "title": "Cookie-Richtlinien",
+      "subtitle": "Nur das Wesentliche, kein Tracking."
+    },
     "FAQ": {
       "subtitle": "Häufig gestellte Fragen",
       "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?",
@@ -135,7 +139,7 @@
     },
     "Imprint": {
       "title": "Impressum",
-      "subtitle": "Tl;dr: Beschränkte Haftung.",
+      "subtitle": "Kurz: Beschränkte Haftung.",
       "policiesAndTerms": "Richtlinien und Bedingungen",
       "credits": "Credits",
       "inspiration": "Inspiration"
@@ -156,6 +160,10 @@
         "title": "Konto & Cookies",
         "markdown": "Für Power-User bieten wir Benutzerkonten an, die eine Authentifizierung erfordern. Eine E-Mail-Adresse ist ausreichend für die Erstellung eines Kontos. (Du kannst eine temporäre oder maskierte E-Mail verwenden)\n\nFür Besucher:innen unserer Website verwenden wir nur essentielle Cookies. Mit anderen Worten: Cookies, die für die Bereitstellung von Kernfunktionen erforderlich sind: Z.B. die Verwaltung der sicheren Authentifizierung. Mehr dazu in unseren Datenschutzrichtlinien."
       }
+    },
+    "PrivacyPolicy": {
+      "title": "Datenschutzbestimmungen",
+      "subtitle": "Privatsphäre ist uns wichtig."
     },
     "Security": {
       "title": "Sicherheit",

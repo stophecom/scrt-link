@@ -84,6 +84,10 @@
         "tech": "Tech"
       }
     },
+    "CookiePolicy": {
+      "title": "Cookie Policy",
+      "subtitle": "Tl;dr: only essentials, no tracking."
+    },
     "FAQ": {
       "subtitle": "Frequently Asked Questions",
       "introQuestion": "What topic can we help you with?",
@@ -156,6 +160,10 @@
         "title": "Account & Cookies",
         "markdown": "For power users, we offer user accounts that require authentication. You can create an account with only an email address (You may use a temporary or masked email) - no further information is mandatory. \n\nFor people visiting our website, we only ever use essential cookies. In other words, cookies that are necessary for providing core functionalities: E.g. managing secure authentication. Read more in our Privacy Policy."
       }
+    },
+    "PrivacyPolicy": {
+      "title": "Privacy Policy",
+      "subtitle": "Tl;dr: Privacy matters."
     },
     "Security": {
       "title": "Security",
