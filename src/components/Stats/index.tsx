@@ -15,8 +15,7 @@ const Stats = () => {
         {t('common:components.Stats.created', 'created:')}&nbsp;
         {new Intl.NumberFormat('en-US').format(stats?.totalSecretsCount || 0)} |{' '}
         {t('common:components.Stats.viewed', 'viewed:')}&nbsp;
-        {new Intl.NumberFormat('en-US').format(stats?.totalSecretsViewCount || 0)} |{' '}
-        {t('common:components.Stats.compromised', 'compromised:')}&nbsp;0
+        {new Intl.NumberFormat('en-US').format(stats?.totalSecretsViewCount || 0)}
       </div>
     </>
   )

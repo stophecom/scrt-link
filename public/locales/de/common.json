@@ -362,8 +362,7 @@
     "Stats": {
       "title": "Geheimnisse",
       "created": "erstellt:",
-      "viewed": "gesehen:",
-      "compromised": "kompromittiert:"
+      "viewed": "gelesen:"
     },
     "UpgradeNotice": {
       "premium": "Besorge dir ein <1>Premium-Konto</1>, um diese Funktion zu aktivieren.",

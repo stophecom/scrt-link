@@ -362,8 +362,7 @@
     "Stats": {
       "title": "Secrets",
       "created": "created:",
-      "viewed": "viewed:",
-      "compromised": "compromised:"
+      "viewed": "viewed:"
     },
     "UpgradeNotice": {
       "premium": "Get a <1>premium account</1> to enable this feature.",
