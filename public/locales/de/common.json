@@ -47,7 +47,7 @@
       },
       "settingsDisclaimer": "Die folgenden Angaben sind Standardeinstellungen. Du kannst jede Einstellung für jedes erstellte Geheimnis überschreiben.",
       "subscriptionInfo": "Du hast den <1>{{customerRole}}</1> Plan abonniert.",
-      "activeSubscriptionWarning": "Du hast ein laufendes Abonnement. Wir empfehlen diese zuerst zu kündigen.",
+      "activeSubscriptionWarning": "Du hast ein laufendes Abonnement. Wir empfehlen dieses zuerst zu kündigen.",
       "accountDeletion": "Konto löschen",
       "signedInAs": "Du bist angemeldet als {{email}}."
     },
@@ -64,7 +64,7 @@
           "4": "Persönlicher Support",
           "5": "Emoji Links 🤫"
         },
-        "upsell": "Du brauchst mehr? <1>Hier gibts mehr</1>."
+        "upsell": "Du brauchst mehr? <1>Hier gibt's mehr</1>."
       }
     },
     "Alias": {
@@ -216,8 +216,8 @@
     "myAccount": "Mein Konto",
     "account": "Konto",
     "getAccount": "Konto erstellen",
-    "close": "Schliessen",
-    "closeMenu": "Menü schliessen",
+    "close": "Schließen",
+    "closeMenu": "Menü schließen",
     "openMenu": "Menü öffnen",
     "menu": "Menü",
     "signUpFree": "Gratis registrieren",
@@ -258,14 +258,14 @@
       "generalSettings": "Einstellungen",
       "emojiLink": {
         "title": "Emoji Link",
-        "description": "Add some fun with a special emoji link. Beispiel: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>."
+        "description": "Hab Spaß mit unseren Emoji-Links. Beispiel: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Achtung.</4> Emoji Links funktionieren in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Im Moment nicht möglich mit: <11>Signal, Slack, Snapchat</11>."
       }
     },
     "FormDeleteAccount": {
-      "label": "Ich möchte mein Konto schliessen."
+      "label": "Ich möchte mein Konto schließen."
     },
     "FormSignIn": {
-      "success": "Check your email! A sign in link has been sent to <1>{{email}}</1>.",
+      "success": "Schaue in dein Postfach! Ein Anmelde-Link wurde soeben an folgende Adresse verschickt: <1>{{email}}</1>.",
       "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu. (Englisch)",
       "gotAccount": "Du hast bereits ein Konto?",
       "noAccountYet": "Noch kein Konto?"
@@ -431,7 +431,7 @@
       "sms": "Via SMS"
     },
     "name": {
-      "helperText": "Diese Informationen sind <1>privat</1> und werden niemals an Dritte weitergegeben. Wir verwenden sie nur, um Ihnen ein personalisiertes Erlebnis zu bieten."
+      "helperText": "Diese Informationen sind <1>privat</1> und werden niemals an Dritte weitergegeben. Wir verwenden sie nur, um dir ein personalisiertes Erlebnis zu bieten."
     },
     "isEmojiShortLinkEnabled": {
       "label": "Emoji Link verwenden"
@@ -595,8 +595,8 @@
       "body": "Nein. Aber, du kannst dieses Projekt natürlich trotzdem mit einem bezahlten Abonnement unterstützen 🤓."
     }
   },
-  "demoNeogramMessage": "Hallo…\nDies ist nur eine Demo! Neogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spass beim Geheimnisse teilen 😘",
-  "demoTextMessage": "Hallo…\nDies ist nur eine Demo!\n\nViel Spass beim Geheimnisse teilen 😘",
+  "demoNeogramMessage": "Hallo…\nDies ist nur eine Demo! Neogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spaß beim Geheimnisse teilen 😘",
+  "demoTextMessage": "Hallo…\nDies ist nur eine Demo!\n\nViel Spaß beim Geheimnisse teilen 😘",
   "demoNeogramDestructionMessage": "Diese Nachricht zerstört sich selbst in …",
   "menu": {
     "home": "Startseite",
@@ -613,7 +613,7 @@
     "imprint": "Impressum",
     "settings": "Einstellungen",
     "subscription": "Abo",
-    "dangerZone": "Danger Zone"
+    "dangerZone": "Gefahrenzone"
   },
   "validation": {
     "password": "Passwort",
