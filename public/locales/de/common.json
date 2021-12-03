@@ -26,7 +26,7 @@
     },
     "FormSignIn": {
       "success": "Schaue in dein Postfach! Ein Anmelde-Link wurde soeben an folgende Adresse verschickt: <1>{{email}}</1>.",
-      "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu. (Englisch)",
+      "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu.",
       "gotAccount": "Du hast bereits ein Konto?",
       "noAccountYet": "Noch kein Konto?"
     },
