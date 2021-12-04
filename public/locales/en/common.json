@@ -108,7 +108,7 @@
         "text": "You received a secret: {{shortenedUrl}} \n \nReply with a secret:",
         "title": "Share your secret link:"
       },
-      "secretIdInfo": "Your Secret ID is <1>{alias}</1>. <3></3>Remember it, we use it for the read receipt.",
+      "rememberAliasInfo": "Your Secret ID is **{{ alias }}**.  \nRemember it, we use it for the read receipt.",
       "emailService": {
         "title": "Email service",
         "subtitle": "Let us deliver your secret link for you."

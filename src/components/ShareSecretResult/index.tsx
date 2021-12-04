@@ -14,6 +14,7 @@ import {
 import { RWebShare } from 'react-web-share'
 import Alert from '@material-ui/lab/Alert'
 
+import Markdown from '@/components/Markdown'
 import FormShareSecretLink from '@/components/FormShareSecretLink'
 import BaseButton from '@/components/BaseButton'
 import UpgradeNotice from '@/components/UpgradeNotice'
@@ -133,10 +134,13 @@ const Result: React.FunctionComponent<ResultProps> = ({
                   <Box pt={3}>
                     <Alert severity="info">
                       <Typography variant="body2">
-                        <Trans i18nKey="common:components.ShareSecretResult.secretIdInfo">
-                          Your Secret ID is <strong>{alias}</strong>. <br />
-                          Remember it, we use it for the read receipt.
-                        </Trans>
+                        <Markdown
+                          source={t('common:components.ShareSecretResult.rememberAliasInfo', {
+                            defaultValue: `Your Secret ID is **{{ alias }}**.  
+Remember it, we use it for the read receipt.`,
+                            alias,
+                          })}
+                        />
                       </Typography>
                     </Alert>
                   </Box>

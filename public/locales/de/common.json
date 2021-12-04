@@ -108,7 +108,7 @@
         "text": "Du hast ein Geheimnis erhalten: {{shortenedUrl}} \n \nAntworte mit einem Geheimnis:",
         "title": "Teile dein Geheim-Link:"
       },
-      "secretIdInfo": "Deine Geheim ID ist <1>{alias}</1>. <3></3>Wir verwenden sie für die Empfangsbestätigung. Merk sie dir.",
+      "rememberAliasInfo": "Deine Geheim ID ist **{{ alias }}**.  \nWir verwenden sie für die Empfangsbestätigung. Merk sie dir.",
       "emailService": {
         "title": "E-Mail Service",
         "subtitle": "Lass uns dein Geheimnis für dich schicken."
