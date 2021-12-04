@@ -21,6 +21,7 @@
     "@types/ramda": "^0.27.38",
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/styled-components": "^5.1.5",
+    "accept-language-parser": "^1.5.0",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
     "formik": "^2.2.6",
@@ -63,6 +64,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
+    "@types/accept-language-parser": "^1.5.3",
     "@types/file-saver": "^2.0.1",
     "@types/i18next-fs-backend": "^1.1.2",
     "@types/micro": "^7.3.4",

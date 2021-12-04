@@ -2,7 +2,7 @@ export const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'development'
 export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
 
-export const supportedLanguages = ['de', 'en']
+export const supportedLanguages = ['en', 'de']
 export const appTitle = 'scrt.link'
 export const trialPeriod = 5
 export const twilioSenderPhoneNumber = '+17744694525'
@@ -28,6 +28,14 @@ export const firefoxExtensionLink = 'https://addons.mozilla.org/en-US/firefox/ad
 export const microsoftEdgeExtensionLink =
   'https://microsoftedge.microsoft.com/addons/detail/scrtlink-share-a-secre/ijchnpicofdgjjnedmdnhodglbnfmgih'
 export const slackAppInstallLink = 'https://slack.scrt.link/slack/install'
+
+// Mailjet templates
+export const mailjetTemplates = {
+  signInRequest: {
+    en: { templateId: 2715593, subject: 'Sign in request' },
+    de: { templateId: 3400460, subject: 'Konto-Anmeldung' },
+  },
+}
 
 // Limits per user role
 export const limits = {
