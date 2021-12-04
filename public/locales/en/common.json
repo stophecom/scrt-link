@@ -25,6 +25,7 @@
       "label": "I want to delete my account."
     },
     "FormShareSecretLink": {
+      "success": "Email successfully sent!",
       "recipientName": {
         "label": "Recipient name",
         "placeholder": "Jane Doe"

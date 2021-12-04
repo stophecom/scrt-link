@@ -25,6 +25,7 @@
       "label": "Ich möchte mein Konto schließen."
     },
     "FormShareSecretLink": {
+      "success": "E-Mail erfolgreich verschickt!",
       "recipientName": {
         "label": "Name des Empfängers",
         "placeholder": "Erika Muster"

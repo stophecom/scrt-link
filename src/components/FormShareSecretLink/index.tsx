@@ -60,7 +60,11 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
   }
 
   if (message) {
-    return <Alert severity="success">{message}</Alert>
+    return (
+      <Alert severity="success">
+        {t('common:components.FormShareSecretLink.success', 'Email successfully sent!')}
+      </Alert>
+    )
   }
 
   return (
