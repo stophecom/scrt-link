@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useTranslation, Trans } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 
 import { Box, CircularProgress, Paper, Typography, Collapse, IconButton } from '@material-ui/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import {
-  ArrowBack,
+  Replay,
   Share,
   ExpandLess,
   ExpandMore,
@@ -63,7 +63,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
         <Box my={2}>
           <Box pb={1}>
             <BaseButton
-              startIcon={<ArrowBack />}
+              startIcon={<Replay />}
               size="small"
               variant="text"
               color="secondary"
