@@ -2,6 +2,7 @@ export const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'development'
 export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
 
+export const defaultLanguage = 'en'
 export const supportedLanguages = ['en', 'de'] as const
 export type SupportedLanguage = typeof supportedLanguages[number]
 

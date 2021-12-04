@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import path from 'path'
 import Backend from 'i18next-fs-backend'
 
-import { supportedLanguages } from '@/constants'
+import { defaultLanguage, supportedLanguages } from '@/constants'
 
 export const formatCurrency = (amount: number) =>
   new Intl.NumberFormat('us-EN', {
@@ -26,7 +26,7 @@ export const dateFromTimestamp = (timestamp?: number | null) => {
 
 export const getI18nConfig = () => ({
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: defaultLanguage,
     locales: [...supportedLanguages],
   },
   ns: ['common'],

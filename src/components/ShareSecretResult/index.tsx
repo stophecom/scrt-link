@@ -21,7 +21,7 @@ import UpgradeNotice from '@/components/UpgradeNotice'
 import Spacer from '@/components/Spacer'
 import { State } from '@/views/Home/index'
 import { CustomerFields } from '@/api/models/Customer'
-import { emojiShortUrl } from '@/constants'
+import { emojiShortUrl, defaultLanguage } from '@/constants'
 import { getBaseURL } from '@/utils'
 
 type ResultProps = Pick<State, 'data'> &
@@ -37,7 +37,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   role,
   isStandalone,
 }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
   const readReceiptMethod = data?.readReceiptMethod
@@ -47,10 +47,11 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const [isEmailServiceEnabled, setIsEmailServiceEnabled] = useState(false)
   const [wrap, setWrap] = useState(false)
 
-  const baseUrl = getBaseURL()
-  const origin = isEmojiLinkEnabled ? emojiShortUrl : `${baseUrl}/l`
+  const baseUrl = `${getBaseURL()}${i18n.language === defaultLanguage ? '' : `/${i18n.language}`}/l`
+
+  const origin = isEmojiLinkEnabled ? emojiShortUrl : baseUrl
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
-  const shortenedUrlEmailService = `${baseUrl}/l/${alias}#${encryptionKey}`
+  const shortenedUrlEmailService = `${baseUrl}/${alias}#${encryptionKey}`
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
