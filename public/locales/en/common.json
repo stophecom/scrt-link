@@ -24,6 +24,17 @@
     "FormDeleteAccount": {
       "label": "I want to delete my account."
     },
+    "FormShareSecretLink": {
+      "recipientName": {
+        "label": "Recipient name",
+        "placeholder": "Jane Doe"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Message to be included in the email…",
+        "helperText": "We recommend to add a hint about who you are. Otherwise the recipient might mistake the email for spam."
+      }
+    },
     "FormSignIn": {
       "success": "Check your email! A sign in link has been sent to <1>{{email}}</1>.",
       "agreement": "I agree to the <2>Terms Of Service</2> and the associated policies.",
@@ -155,6 +166,7 @@
     "createSecretLink": "Create secret link",
     "save": "Save",
     "deleteAccount": "Delete Account",
+    "send": "Send",
     "signUp": "Sign up",
     "signIn": "Sign in",
     "myAccount": "My account",
@@ -239,6 +251,7 @@
       "label": "Use emoji link"
     }
   },
+  "email": "Email",
   "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "error": {
     "unexpectedError": "Unexpected error",

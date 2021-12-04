@@ -24,6 +24,17 @@
     "FormDeleteAccount": {
       "label": "Ich möchte mein Konto schließen."
     },
+    "FormShareSecretLink": {
+      "recipientName": {
+        "label": "Name des Empfängers",
+        "placeholder": "Erika Muster"
+      },
+      "message": {
+        "label": "Nachricht",
+        "placeholder": "Nachricht, die der E-Mail angefügt wird...",
+        "helperText": "Wir empfehlen, einen Hinweis darauf zu geben, wer du bist. Andernfalls könnte der Empfänger die E-Mail für Spam halten."
+      }
+    },
     "FormSignIn": {
       "success": "Schaue in dein Postfach! Ein Anmelde-Link wurde soeben an folgende Adresse verschickt: <1>{{email}}</1>.",
       "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu.",
@@ -155,6 +166,7 @@
     "createSecretLink": "Geheimen Link erstellen",
     "save": "Speichen",
     "deleteAccount": "Konto löschen",
+    "send": "Absenden",
     "signUp": "Registrieren",
     "signIn": "Anmelden",
     "myAccount": "Mein Konto",
@@ -239,6 +251,7 @@
       "label": "Emoji Link verwenden"
     }
   },
+  "email": "E-Mail",
   "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
   "error": {
     "unexpectedError": "Unerwarteter Fehler",

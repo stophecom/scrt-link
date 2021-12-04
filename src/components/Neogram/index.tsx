@@ -4,6 +4,7 @@ import { Close } from '@material-ui/icons'
 import { WindupChildren, Pause } from 'windups'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
+import { useTranslation } from 'next-i18next'
 
 import { Container } from '@/layouts/Default'
 
@@ -55,6 +56,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
   onFinished,
   closable = false,
 }) => {
+  const { t } = useTranslation()
   const classes = useStyles()
   const countDown = Array.from(Array(timeout).keys()).reverse()
 
@@ -91,7 +93,11 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
         </WindupChildren>
       </ScrollContainer>
       {closable && (
-        <CloseButton color="primary" aria-label="Close" onClick={onFinished}>
+        <CloseButton
+          color="primary"
+          aria-label={t('common:button.close', 'Close')}
+          onClick={onFinished}
+        >
           <Close />
         </CloseButton>
       )}
