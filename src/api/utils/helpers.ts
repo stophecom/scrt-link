@@ -4,7 +4,7 @@ import { supportedLanguages, SupportedLanguage } from '@/constants'
 
 export const getLocaleFromRequest = (req: NextApiRequest): SupportedLanguage => {
   const languageBasedOnHeader = pick(
-    supportedLanguages as any as string[],
+    [...supportedLanguages],
     req?.headers['accept-language'] || '',
     {
       loose: true,

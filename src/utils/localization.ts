@@ -27,7 +27,7 @@ export const dateFromTimestamp = (timestamp?: number | null) => {
 export const getI18nConfig = () => ({
   i18n: {
     defaultLocale: 'en',
-    locales: supportedLanguages,
+    locales: [...supportedLanguages],
   },
   ns: ['common'],
   supportedLngs: supportedLanguages,
