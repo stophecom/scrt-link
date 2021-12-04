@@ -12,7 +12,7 @@ import { Provider } from 'next-auth/client'
 
 import { CustomPage } from '@/types'
 import DefaultLayout from '@/layouts/Default'
-import { appTitle, twitterHandle } from '@/constants'
+import { appTitle, twitterHandle, supportedLanguages } from '@/constants'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
 
@@ -24,6 +24,13 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
   return {
     title,
     canonical: url,
+    languageAlternates: [
+      { hrefLang: 'x-default', href: baseUrl },
+      ...supportedLanguages.map((locale) => ({
+        hrefLang: locale,
+        href: `${baseUrl}/${locale}${pathname}`,
+      })),
+    ],
     description,
 
     openGraph: {
@@ -55,7 +62,7 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
     },
     additionalMetaTags: [
       { name: 'application-name', content: title },
-      { property: 'dc:creator', content: 'Christophe Schwyzer' },
+      { property: 'oc:creator', content: 'Christophe Schwyzer' },
     ],
   }
 }
