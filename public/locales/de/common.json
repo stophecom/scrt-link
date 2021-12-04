@@ -205,7 +205,7 @@
     "text": {
       "label": "Dein Geheimnis",
       "tabLabel": "Text",
-      "placeholder": "Geheimnachricht, Password, private key, etc."
+      "placeholder": "Geheimnachricht, Password, Privatschlüssel, etc."
     },
     "url": {
       "label": "URL",
