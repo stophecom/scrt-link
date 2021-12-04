@@ -33,7 +33,6 @@ export const microsoftEdgeExtensionLink =
 export const slackAppInstallLink = 'https://slack.scrt.link/slack/install'
 
 // Mailjet templates
-
 export const mailjetTemplates = {
   signInRequest: {
     en: { templateId: 2715593, subject: 'Sign in request' },
@@ -54,7 +53,17 @@ export const mailjetTemplates = {
     },
   },
 }
-
+// Twilio SMS templates
+export const smsReadReceipt = {
+  en: {
+    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
+    reply: 'Reply with a secret: https://scrt.link',
+  },
+  de: {
+    receipt: 'scrt.link: Das folgende Geheimnis wurde gelesen und zerstört🔥:',
+    reply: 'Antwort mit einem Geheimnis: https://scrt.link',
+  },
+}
 // Limits per user role
 export const limits = {
   visitor: {

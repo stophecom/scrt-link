@@ -10,11 +10,12 @@ import { twilioSms } from '@/api/utils/twilio'
 import { decryptAES } from '@/utils/db'
 
 import { getLocaleFromRequest } from '@/api/utils/helpers'
-import { mailjetTemplates } from '@/constants'
+import { mailjetTemplates, smsReadReceipt } from '@/constants'
 
 const handler: NextApiHandler = async (req, res) => {
   const locale = getLocaleFromRequest(req)
-  const template = mailjetTemplates.readReceipt[locale]
+  const mailTemplate = mailjetTemplates.readReceipt[locale]
+  const smsTemplate = smsReadReceipt[locale]
 
   // Run the middleware
   await NextCors(req, res, {
@@ -76,15 +77,15 @@ const handler: NextApiHandler = async (req, res) => {
       if (receiptPhoneNumber) {
         await twilioSms({
           to: `+${decryptAES(receiptPhoneNumber)}`,
-          body: `scrt.link: The following secret has been viewed and destroyed🔥: ${alias}\n\nReply with a secret: https://scrt.link`,
+          body: `${smsTemplate.receipt} ${alias}\n\n${smsTemplate.reply}`,
         }).catch(Sentry.captureException)
       }
 
       if (receiptEmail) {
         await mailjet({
           To: [{ Email: decryptAES(receiptEmail), Name: 'scrt.link' }],
-          Subject: template.subject,
-          TemplateID: template.templateId,
+          Subject: mailTemplate.subject,
+          TemplateID: mailTemplate.templateId,
           TemplateLanguage: true,
           Variables: {
             alias,
