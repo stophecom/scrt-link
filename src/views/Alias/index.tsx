@@ -29,7 +29,7 @@ import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 
-// t('common:error.SECRET_NOT_FOUND')
+// t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'>

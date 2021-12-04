@@ -9,7 +9,13 @@ import mailjet from '@/api/utils/mailjet'
 import { twilioSms } from '@/api/utils/twilio'
 import { decryptAES } from '@/utils/db'
 
+import { getLocaleFromRequest } from '@/api/utils/helpers'
+import { mailjetTemplates } from '@/constants'
+
 const handler: NextApiHandler = async (req, res) => {
+  const locale = getLocaleFromRequest(req)
+  const template = mailjetTemplates.readReceipt[locale]
+
   // Run the middleware
   await NextCors(req, res, {
     methods: ['GET', 'HEAD', 'OPTIONS', 'POST', 'DELETE'],
@@ -77,8 +83,8 @@ const handler: NextApiHandler = async (req, res) => {
       if (receiptEmail) {
         await mailjet({
           To: [{ Email: decryptAES(receiptEmail), Name: 'scrt.link' }],
-          Subject: 'Secret has been viewed 🔥',
-          TemplateID: 2818166,
+          Subject: template.subject,
+          TemplateID: template.templateId,
           TemplateLanguage: true,
           Variables: {
             alias,

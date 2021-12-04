@@ -242,7 +242,7 @@
   "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "error": {
     "unexpectedError": "Unexpected error",
-    "SECRET_NOT_FOUND": "",
+    "SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
     "missingDecryptionKey": "Decryption key missing.",
     "invalidAlias": "Invalid alias.",
     "wrongPassword": "Wrong Password"

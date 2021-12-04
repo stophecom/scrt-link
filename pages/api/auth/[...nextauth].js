@@ -9,7 +9,6 @@ import { getLocaleFromRequest } from '@/api/utils/helpers'
 import { mailjetTemplates } from '@/constants'
 
 const handler = (req, res) => {
-  const locale = getLocaleFromRequest(req)
   const template = mailjetTemplates.signInRequest[getLocaleFromRequest(req)]
 
   return NextAuth(req, res, {

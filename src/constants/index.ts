@@ -2,7 +2,9 @@ export const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'development'
 export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
 
-export const supportedLanguages = ['en', 'de']
+export const supportedLanguages = ['en', 'de'] as const
+export type SupportedLanguage = typeof supportedLanguages[number]
+
 export const appTitle = 'scrt.link'
 export const trialPeriod = 5
 export const twilioSenderPhoneNumber = '+17744694525'
@@ -30,10 +32,25 @@ export const microsoftEdgeExtensionLink =
 export const slackAppInstallLink = 'https://slack.scrt.link/slack/install'
 
 // Mailjet templates
+
 export const mailjetTemplates = {
   signInRequest: {
     en: { templateId: 2715593, subject: 'Sign in request' },
     de: { templateId: 3400460, subject: 'Konto-Anmeldung' },
+  },
+  readReceipt: {
+    en: { templateId: 2818166, subject: 'Secret has been viewed 🔥' },
+    de: { templateId: 3400579, subject: 'Geheimnis zerstört 🔥' },
+  },
+  youGotSecret: {
+    en: {
+      templateId: 2939535,
+      subject: 'You received a secret',
+    },
+    de: {
+      templateId: 3400595,
+      subject: 'Du hast ein Geheimnis erhalten',
+    },
   },
 }
 
