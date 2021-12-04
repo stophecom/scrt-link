@@ -143,10 +143,9 @@ const NavigationWrapper = styled.div`
 `
 
 const LanguageSwitcherWrapper = styled.div`
-  position: absolute;
-  left: 6px;
-  top: 14px;
   display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
   justify-content: center;
 `
 

@@ -593,7 +593,7 @@
     },
     "Privacy": {
       "title": "Privatsphäre",
-      "subtitle": "Keine Werbung, kein Tracking, kein BS.",
+      "subtitle": "Keine Werbung, kein Tracking, kein Quatsch.",
       "intro": "Für uns ist die Privatsphäre nicht verhandelbar. Wir wählen unsere Werkzeuge sorgfältig aus, um das Recht eines jeden auf Privatsphäre zu schützen. Wir schalten keine Werbung, wir verzichten auf Tracking, wir verkaufen keine Daten und wir beschränken die Anforderungen an persönliche Daten auf das absolute Minimum. Selbst mit einem Konto würden wir niemals ohne triftigen Grund nach persönlich identifizierbaren Informationen (PII) fragen. Darüber hinaus wenden wir \"Privacy by Design\" Grundsätze an: Wir haben unsere Datenbank so strukturiert, dass ein einzelnes Geheimnis eine völlig unabhängige Einheit bleibt - selbst wenn du ein Benutzerkonto verwendest, kann ein Geheimnis niemals zu dir zurückverfolgt werden.",
       "Analytics": {
         "title": "Analytics",
