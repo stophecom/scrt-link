@@ -43,7 +43,7 @@ export const getI18nConfig = () => ({
   returnObjects: true,
   reloadOnPrerender: process.env.NODE_ENV === 'development',
   serializeConfig: false,
-  debug: process.env.NODE_ENV === 'development',
+  debug: false, //process.env.NODE_ENV === 'development',
 
   // Save missing keys
   // fallbackLng: false as any as string, //'en',
