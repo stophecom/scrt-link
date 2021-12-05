@@ -19,7 +19,8 @@
       "emojiLink": {
         "title": "Emoji link",
         "description": "Add some fun with a special emoji link. Example: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>."
-      }
+      },
+      "success": "Your settings have been saved!"
     },
     "FormDeleteAccount": {
       "label": "I want to delete my account."

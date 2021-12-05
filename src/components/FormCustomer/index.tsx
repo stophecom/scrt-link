@@ -257,7 +257,14 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                     <NoSsr>
                       <Box mb={1}>
                         {error && <Alert severity="error">{error}</Alert>}
-                        {data?.message && <Alert severity="success">{data.message}</Alert>}
+                        {data?.message && (
+                          <Alert severity="success">
+                            {t(
+                              'common:components.FormCustomer.success',
+                              'Your settings have been saved!',
+                            )}
+                          </Alert>
+                        )}
                       </Box>
                     </NoSsr>
                   )}

@@ -19,7 +19,8 @@
       "emojiLink": {
         "title": "Emoji Link",
         "description": "Hab Spaß mit unseren Emoji-Links. Beispiel: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Achtung.</4> Emoji Links funktionieren in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Im Moment nicht möglich mit: <11>Signal, Slack, Snapchat</11>."
-      }
+      },
+      "success": "Deine Einstellungen wurden gespeichert!"
     },
     "FormDeleteAccount": {
       "label": "Ich möchte mein Konto schließen."
@@ -120,7 +121,7 @@
         "text": "Du hast ein Geheimnis erhalten: {{shortenedUrl}} \n \nAntworte mit einem Geheimnis:",
         "title": "Teile dein Geheim-Link:"
       },
-      "rememberAliasInfo": "Deine Geheim ID ist **{{ alias }}**.  \nWir verwenden sie für die Empfangsbestätigung. Merk sie dir.",
+      "rememberAliasInfo": "Deine Geheimnis ID ist **{{ alias }}**.  \nWir verwenden sie für die Empfangsbestätigung. Merk sie dir.",
       "emailService": {
         "title": "E-Mail Service",
         "subtitle": "Lass uns dein Geheimnis für dich schicken."
