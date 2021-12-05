@@ -5,6 +5,9 @@ import nextI18NextConfig from 'next-i18next.config.js'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { Box } from '@material-ui/core'
 import LanguageIcon from '@material-ui/icons/Language'
+import { useTranslation } from 'next-i18next'
+
+import SROnly from '@/components/ScreenreaderOnly'
 
 const languageMap = {
   de: 'Deutsch',
@@ -45,13 +48,20 @@ type LanguageSelectorProps = {
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className }) => {
   const router = useRouter()
   const classes = useStyles()
+  const { t } = useTranslation()
 
   const { pathname, asPath, query, locale } = router
 
   return (
     <Box display="inline-flex" alignItems="center">
       <LanguageIcon className={classes.icon} />
+      <SROnly>
+        <label htmlFor="LanguageSelector">
+          {t('common:components.LanguageSelector.label', 'Select your preferred language')}
+        </label>
+      </SROnly>
       <select
+        id="LanguageSelector"
         className={classes.select}
         onChange={(e) => {
           const language = e.currentTarget.value

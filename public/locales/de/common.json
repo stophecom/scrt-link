@@ -43,6 +43,9 @@
       "gotAccount": "Du hast bereits ein Konto?",
       "noAccountYet": "Noch kein Konto?"
     },
+    "LanguageSelector": {
+      "label": "Wähle deine gewünschte Sprache"
+    },
     "PlanSelection": {
       "plans": {
         "premium": {
