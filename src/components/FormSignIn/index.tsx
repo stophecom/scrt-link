@@ -14,7 +14,7 @@ import BaseTextField from '@/components/BaseTextField'
 import { SignIn } from '@/types'
 
 import BaseButton from '@/components/BaseButton'
-import ExternalLink from '@/components/ExternalLink'
+import { Link } from '@/components/Link'
 import { getSignInValidationSchema } from '@/utils/validationSchemas'
 import { emailPlaceholder } from '@/constants'
 
@@ -117,8 +117,10 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
                     label={
                       <Trans i18nKey="common:components.FormSignIn.agreement">
                         I agree to the{' '}
-                        <ExternalLink href="/terms-of-service">Terms Of Service</ExternalLink> and
-                        the associated policies.
+                        <Link target="_blank" href="/terms-of-service">
+                          Terms Of Service
+                        </Link>{' '}
+                        and the associated policies.
                       </Trans>
                     }
                     name="isConsentToTermsGiven"
