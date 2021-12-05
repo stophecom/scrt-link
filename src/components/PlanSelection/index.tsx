@@ -302,12 +302,7 @@ const PlanSelection: React.FunctionComponent = () => {
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" mt={'auto'}>
               {!customer?.userId && (
-                <BaseButtonLink
-                  size="large"
-                  variant="contained"
-                  color="primary"
-                  href="/account?signup=true"
-                >
+                <BaseButtonLink size="large" variant="contained" color="primary" href="/signup">
                   {t('common:button.signUpFree', 'Sign up free')}
                 </BaseButtonLink>
               )}

@@ -13,7 +13,7 @@ const UpgradeNotice: React.FunctionComponent<UpgradeNoticeProps> = ({
   requiredRole,
   openLinksInNewTab,
 }) => {
-  const link = requiredRole === 'premium' ? '/pricing' : '/account?signup=true'
+  const link = requiredRole === 'premium' ? '/pricing' : '/signup'
 
   type UpgradeLinkProps = {
     children: ReactNode

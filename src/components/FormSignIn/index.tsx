@@ -4,7 +4,6 @@ import { Formik, Form, FormikConfig } from 'formik'
 import { signIn } from 'next-auth/client'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import VpnKeyIcon from '@material-ui/icons/VpnKey'
-import { useRouter } from 'next/router'
 import { Trans, useTranslation } from 'next-i18next'
 
 import BaseCheckboxField from '@/components/BaseCheckboxField'
@@ -14,7 +13,7 @@ import BaseTextField from '@/components/BaseTextField'
 import { SignIn } from '@/types'
 
 import BaseButton from '@/components/BaseButton'
-import { Link } from '@/components/Link'
+import { Link, BaseButtonLink } from '@/components/Link'
 import { getSignInValidationSchema } from '@/utils/validationSchemas'
 import { emailPlaceholder } from '@/constants'
 
@@ -58,15 +57,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   const classes = useStyles()
   const [state, setState] = useState(initialState)
   const [email, setEmail] = useState('')
-  const [isSignUp, setIsSignUp] = useState(showSignUp)
-  const router = useRouter()
   const { t } = useTranslation()
-
-  useEffect(() => {
-    if (router?.query?.signup) {
-      setIsSignUp(true)
-    }
-  }, [router])
 
   const handleSubmit: OnSubmit<SignIn> = async (values, formikHelpers) => {
     try {
@@ -100,7 +91,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   return (
     <Formik<SignIn>
       initialValues={initialValues}
-      validationSchema={getSignInValidationSchema(isSignUp)}
+      validationSchema={getSignInValidationSchema(showSignUp)}
       validateOnMount
       onSubmit={handleSubmit}
     >
@@ -111,7 +102,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
               <Box py={1}>
                 <BaseTextField name="email" label="Email" placeholder={emailPlaceholder} required />
               </Box>
-              {isSignUp && (
+              {showSignUp && (
                 <Box py={1}>
                   <BaseCheckboxField
                     label={
@@ -139,25 +130,25 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
                   disabled={!isValid}
                   startIcon={<VpnKeyIcon />}
                 >
-                  {isSignUp
+                  {showSignUp
                     ? t('common:button.signUp', 'Sign up')
                     : t('common:button.signIn', 'Sign in')}
                 </BaseButton>
               </Box>
             </Form>
-            {isSignUp
+            {showSignUp
               ? t('common:components.FormSignIn.gotAccount', 'Already got an account?')
               : t('common:components.FormSignIn.noAccountYet', 'No Account yet?')}{' '}
-            <BaseButton
+            <BaseButtonLink
               variant="text"
               size="small"
               color="primary"
-              onClick={() => setIsSignUp(!isSignUp)}
+              href={showSignUp ? '/signin' : '/signup'}
             >
-              {isSignUp
+              {showSignUp
                 ? t('common:button.signIn', 'Sign in')
                 : t('common:button.signUp', 'Sign up')}
-            </BaseButton>
+            </BaseButtonLink>
           </>
         )
       }}

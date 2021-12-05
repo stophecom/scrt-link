@@ -233,7 +233,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           <>
             &nbsp;|&nbsp; {t('common:components.FormCreateSecret.needMore', 'Need more?')}
             &nbsp;
-            <Link href="/account?signup=true">
+            <Link href="/signup">
               {t('common:components.FormCreateSecret.getFreeAccount', 'Get free account')}
             </Link>
           </>

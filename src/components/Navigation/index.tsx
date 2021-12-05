@@ -175,7 +175,7 @@ const NavigationMenu: React.FunctionComponent = () => {
           {session ? (
             <Link href="/account">{t('common:button.account', 'Account')}</Link>
           ) : (
-            <Link href="/account?signup=true">{t('common:button.getAccount', 'Get Account')}</Link>
+            <Link href="/signup">{t('common:button.getAccount', 'Get Account')}</Link>
           )}
         </Box>
       </Box>

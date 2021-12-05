@@ -101,6 +101,8 @@ const HomeView: CustomPage = () => {
 
   const { data, error } = state
 
+  const imgLinkExplanation = `/images/link-explanation-${i18n.language}.svg`
+
   if (error) {
     return (
       <PageError error={error}>
@@ -188,8 +190,8 @@ const HomeView: CustomPage = () => {
           <Image
             width={1030}
             height={320}
-            src={`/images/link-explanation-${i18n.language}.svg`}
-            alt="Security"
+            src={imgLinkExplanation}
+            alt={t('common:views.Home.SecretLinksExplained.imageAlt', 'Link explained')}
           />
         </Box>
         <BaseButtonLink
@@ -312,7 +314,7 @@ const HomeView: CustomPage = () => {
               <Box ml={{ sm: 2 }} pt={{ xs: 1, sm: 0 }}>
                 <BaseButtonLink
                   fullWidth
-                  href="/account?signup=true"
+                  href="/signup"
                   prefetch={false}
                   size="large"
                   variant="text"

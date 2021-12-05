@@ -493,22 +493,6 @@
       "accountDeletion": "Delete your account",
       "signedInAs": "You are signed in as {{email}}."
     },
-    "SignIn": {
-      "title": "Scrt account",
-      "subtitle": "Great things start here…",
-      "FreeAccount": {
-        "title": "Free Account Benefits",
-        "Usps": {
-          "0": "More characters for your secrets",
-          "1": "Email read receipts",
-          "2": "Slack App",
-          "3": "Browser extensions",
-          "4": "Personal support",
-          "5": "Emoji links 🤫"
-        },
-        "upsell": "Need more? <1>There is more</1>."
-      }
-    },
     "Alias": {
       "passwordRequired": "Password required",
       "enterPassword": "Enter password to decrypt your secret:",
@@ -622,6 +606,26 @@
         "title": "Infrastructure",
         "subtitle": "Trusted players, few dependencies.",
         "markdown": "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}"
+      }
+    },
+    "SignIn": {
+      "title": "Sign In",
+      "subtitle": "Sign back in. Protect your secrets."
+    },
+    "SignUp": {
+      "title": "Get Account",
+      "subtitle": "Great things start here…",
+      "FreeAccount": {
+        "title": "Free Account Benefits",
+        "Usps": {
+          "0": "More characters for your secrets",
+          "1": "Email read receipts",
+          "2": "Slack App",
+          "3": "Browser extensions",
+          "4": "Personal support",
+          "5": "Emoji links 🤫"
+        },
+        "upsell": "Need more? <1>There is more</1>."
       }
     },
     "Slack": {

@@ -493,22 +493,6 @@
       "accountDeletion": "Konto löschen",
       "signedInAs": "Du bist angemeldet als {{email}}."
     },
-    "SignIn": {
-      "title": "Scrt Konto",
-      "subtitle": "Große Dinge beginnen hier…",
-      "FreeAccount": {
-        "title": "Deine Gratis-Konto Vorteile",
-        "Usps": {
-          "0": "Mehr Zeichen für deine Geheimnisse",
-          "1": "E-Mail-Lesebestätigungen",
-          "2": "Slack App",
-          "3": "Browsererweiterungen",
-          "4": "Persönlicher Support",
-          "5": "Emoji Links 🤫"
-        },
-        "upsell": "Du brauchst mehr? <1>Hier gibt's mehr</1>."
-      }
-    },
     "Alias": {
       "passwordRequired": "Passwort notwendig",
       "enterPassword": "Gebe das Passwort ein um die Nachricht zu entschlüsseln:",
@@ -622,6 +606,26 @@
         "title": "Infrastruktur",
         "subtitle": "Vertrauenswürdige Akteure, wenige Abhängigkeiten.",
         "markdown": "Wir haben uns für branchenführende Anbieter entschieden, um unsere Infrastruktur zu hosten:\n\n- Website/API auf {{linkVercel}}\n- Cloud Database mit {{linkScaleGrid}}\n- Slack App auf {{linkHeroku}}\n- Sämtlicher Code auf {{linkGitlab}}"
+      }
+    },
+    "SignIn": {
+      "title": "Anmelden",
+      "subtitle": "Melde dich im Konto an. Schütze deine Geheimnisse."
+    },
+    "SignUp": {
+      "title": "Konto eröffnen",
+      "subtitle": "Große Dinge beginnen hier…",
+      "FreeAccount": {
+        "title": "Deine Gratis-Konto Vorteile",
+        "Usps": {
+          "0": "Mehr Zeichen für deine Geheimnisse",
+          "1": "E-Mail-Lesebestätigungen",
+          "2": "Slack App",
+          "3": "Browsererweiterungen",
+          "4": "Persönlicher Support",
+          "5": "Emoji Links 🤫"
+        },
+        "upsell": "Du brauchst mehr? <1>Hier gibt's mehr</1>."
       }
     },
     "Slack": {

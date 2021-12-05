@@ -1,2 +1,1 @@
-export { default } from '@/views/Account'
-export { getStaticProps } from '@/utils/localization'
+export { default, getServerSideProps } from '@/views/Account'
