@@ -18,7 +18,7 @@ const Security = () => {
             defaultValue: `All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. 
 
 If a password is provided, we use it to encrypt your secret **on top** of the standard encryption. The password is not being stored. Even with the most advanced attacks (e.g. man in the middle attack) and **access to all our infrastructure** an attacker couldn't read your message. After a secret has been viewed, we delete it permanently from our database. There is no backup.
-![Link explanation](/images/link-explanation.svg)
+![Link explanation](/images/link-explanation-en.svg)
 
 ### Security by design
 - All connections are secured via HTTPS

@@ -368,7 +368,7 @@
     },
     "end-to-end-encryption-info": {
       "heading": "How is end-to-end encryption achieved?",
-      "body": "We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.\n![Link explanation](/images/link-explanation.svg)"
+      "body": "We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.\n![Link explanation](/images/link-explanation-en.svg)"
     },
     "recovery": {
       "heading": "Can I retrieve a secret that has already been visited?",
@@ -611,7 +611,7 @@
     "Security": {
       "title": "Security",
       "subtitle": "Best practices, no extras.",
-      "markdown": "All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. \n\nIf a password is provided, we use it to encrypt your secret **on top** of the standard encryption. The password is not being stored. Even with **access to all our infrastructure** an attacker couldn't read your message. After a secret has been viewed, we delete it permanently from our database. There is no backup.\n![Link explanation](/images/link-explanation.svg)\n\n### Security by design\n- All connections are secured via HTTPS\n- All data is stored encrypted (not only secrets)\n- As little third-party code as possible\n- Dependencies are checked and updated regularly\n- All code is open-source on {{gitlabLink}}",
+      "markdown": "All messages are **end-to-end encrypted**. We generate a random hash to encrypt your secret **on the client** using **AES-256** (Advanced Encryption Standard). The encryption key is never stored, but added to the secret link itself. Without the full link, nobody (including us) will ever be able to decrypt your message. \n\nIf a password is provided, we use it to encrypt your secret **on top** of the standard encryption. The password is not being stored. Even with **access to all our infrastructure** an attacker couldn't read your message. After a secret has been viewed, we delete it permanently from our database. There is no backup.\n![Link explanation](/images/link-explanation-en.svg)\n\n### Security by design\n- All connections are secured via HTTPS\n- All data is stored encrypted (not only secrets)\n- As little third-party code as possible\n- Dependencies are checked and updated regularly\n- All code is open-source on {{gitlabLink}}",
       "Infrastructure": {
         "title": "Infrastructure",
         "subtitle": "Trusted players, few dependencies.",

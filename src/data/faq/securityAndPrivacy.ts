@@ -33,7 +33,7 @@ For the highest level of security, an optional password (which is never stored e
     body: t(
       'common:faq.end-to-end-encryption-info.body',
       `We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.
-![Link explanation](/images/link-explanation.svg)`,
+![Link explanation](/images/link-explanation-en.svg)`,
     ),
   },
   {

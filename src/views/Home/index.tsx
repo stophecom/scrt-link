@@ -95,7 +95,7 @@ const initialState: State = {
 
 const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { t } = useTranslation('common')
+  const { t, i18n } = useTranslation('common')
 
   const { data: customer, isLoading } = useCustomer()
 
@@ -185,7 +185,12 @@ const HomeView: CustomPage = () => {
         )}
       >
         <Box mb={0}>
-          <Image width={1036} height={273} src="/images/link-explanation.svg" alt="Security" />
+          <Image
+            width={1030}
+            height={320}
+            src={`/images/link-explanation-${i18n.language}.svg`}
+            alt="Security"
+          />
         </Box>
         <BaseButtonLink
           href="/security"
