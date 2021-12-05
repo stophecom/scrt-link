@@ -100,7 +100,12 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
           <>
             <Form noValidate>
               <Box py={1}>
-                <BaseTextField name="email" label="Email" placeholder={emailPlaceholder} required />
+                <BaseTextField
+                  name="email"
+                  label={t('common:email', 'Email')}
+                  placeholder={emailPlaceholder}
+                  required
+                />
               </Box>
               {showSignUp && (
                 <Box py={1}>
@@ -136,19 +141,6 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
                 </BaseButton>
               </Box>
             </Form>
-            {showSignUp
-              ? t('common:components.FormSignIn.gotAccount', 'Already got an account?')
-              : t('common:components.FormSignIn.noAccountYet', 'No Account yet?')}{' '}
-            <BaseButtonLink
-              variant="text"
-              size="small"
-              color="primary"
-              href={showSignUp ? '/signin' : '/signup'}
-            >
-              {showSignUp
-                ? t('common:button.signIn', 'Sign in')
-                : t('common:button.signUp', 'Sign up')}
-            </BaseButtonLink>
           </>
         )
       }}

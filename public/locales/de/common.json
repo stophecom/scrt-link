@@ -39,9 +39,7 @@
     },
     "FormSignIn": {
       "success": "Schaue in dein Postfach! Ein Anmelde-Link wurde soeben an folgende Adresse verschickt: <1>{{email}}</1>.",
-      "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu.",
-      "gotAccount": "Du hast bereits ein Konto?",
-      "noAccountYet": "Noch kein Konto?"
+      "agreement": "Ich stimme den <2>Nutzungsbedingungen</2> und den dazugehörigen Datenschutzrichtlinien zu."
     },
     "LanguageSelector": {
       "label": "Wähle deine gewünschte Sprache"
@@ -190,6 +188,7 @@
     "share": "Teilen",
     "copied": "Kopiert",
     "copy": "Kopieren",
+    "cancel": "Abbrechen",
     "installNow": "Jetzt installieren",
     "learnMore": "Mehr erfahren",
     "signOut": "Abmelden",
@@ -437,6 +436,10 @@
     "subscription": "Abo",
     "dangerZone": "Gefahrenzone"
   },
+  "Widget": {
+    "myAccount": "Mein Konto",
+    "noAccountYet": "Noch kein Konto?"
+  },
   "validation": {
     "password": "Passwort",
     "notAllowed": "Nicht möglich.",
@@ -551,6 +554,7 @@
       "SecretLinksExplained": {
         "title": "Geheime Links erklärt",
         "subtitle": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung deines Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht im Browser. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
+        "imageAlt": "Link explained",
         "button": "Mehr über Sicherheit erfahren"
       },
       "SlackApp": {
@@ -610,11 +614,15 @@
     },
     "SignIn": {
       "title": "Anmelden",
-      "subtitle": "Melde dich im Konto an. Schütze deine Geheimnisse."
+      "subtitle": "Melde dich im Konto an. Schütze deine Geheimnisse.",
+      "noAccountYet": "Noch kein Konto?",
+      "signUpNow": "Jetzt registrieren"
     },
     "SignUp": {
       "title": "Konto eröffnen",
       "subtitle": "Große Dinge beginnen hier…",
+      "gotAccount": "Du hast bereits ein Konto?",
+      "signInNow": "Jetzt anmelden",
       "FreeAccount": {
         "title": "Deine Gratis-Konto Vorteile",
         "Usps": {

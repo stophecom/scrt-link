@@ -25,6 +25,8 @@ const SignUp = () => {
     >
       <Box mb={10}>
         <FormSignIn showSignUp />
+        {t('common:views.SignUp.gotAccount', 'Already got an account?')}{' '}
+        <Link href={'/signin'}>{t('common:views.SignUp.signInNow', 'Sign in now')}</Link>
       </Box>
       {customerRole !== 'premium' && (
         <Section title={t('common:views.SignUp.FreeAccount.title', `Free Account Benefits`)}>

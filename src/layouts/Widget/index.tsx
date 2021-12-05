@@ -5,6 +5,7 @@ import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { useSession } from 'next-auth/client'
 import { Face } from '@material-ui/icons'
 import NextNprogress from 'nextjs-progressbar'
+import { useTranslation } from 'next-i18next'
 
 import BaseButton from '@/components/BaseButton'
 import { Link, BaseButtonLink } from '@/components/Link'
@@ -41,6 +42,7 @@ const Layout: React.FC = ({ children }) => {
   const { data: customer, isLoading } = useCustomer()
   const [session] = useSession()
   const [state, setState] = useState<State>('default')
+  const { t } = useTranslation()
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -71,19 +73,19 @@ const Layout: React.FC = ({ children }) => {
                       style={{ maxWidth: '150px' }}
                       noWrap
                     >
-                      {customer?.name || 'My account'}
+                      {customer?.name || t('common:Widget.myAccount', 'My account')}
                     </Typography>
                   </BaseButtonLink>
                 </>
               ) : ['signin', 'signup'].includes(state) ? (
                 <BaseButton onClick={() => setState('default')} variant="text" size="small">
-                  Cancel
+                  {t('common:button.cancel', 'Cancel')}
                 </BaseButton>
               ) : (
                 <>
                   <Box mr={1}>
                     <BaseButton onClick={() => setState('signin')} variant="text" size="small">
-                      Sign in
+                      {t('common:button.signIn', 'Sign in')}
                     </BaseButton>
                   </Box>
                 </>
@@ -92,10 +94,20 @@ const Layout: React.FC = ({ children }) => {
           </Box>
         </Box>
         {['signin', 'signup'].includes(state) ? (
-          <FormSignIn
-            callbackUrl={`${getBaseURL()}/widget/sign-in-success`}
-            showSignUp={state === 'signup'}
-          />
+          <>
+            <FormSignIn
+              callbackUrl={`${getBaseURL()}/widget/sign-in-success`}
+              showSignUp={state === 'signup'}
+            />
+            {state !== 'signup' && (
+              <Box display="flex" alignItems="center">
+                {t('common:Widget.noAccountYet', 'No Account yet?')}&nbsp;
+                <BaseButton onClick={() => setState('signup')} variant="text" size="small">
+                  {t('common:button.signUp', 'Sign up')}
+                </BaseButton>
+              </Box>
+            )}
+          </>
         ) : (
           children
         )}
