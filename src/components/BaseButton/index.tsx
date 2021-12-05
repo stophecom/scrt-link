@@ -2,11 +2,11 @@ import React from 'react'
 import { Button, CircularProgress, ButtonProps, ButtonTypeMap } from '@material-ui/core'
 import styled from 'styled-components'
 
-export type BaseButtonProps<
-  T extends React.ElementType = ButtonTypeMap['defaultComponent']
-> = ButtonProps<T, { component?: T }> & {
-  loading?: boolean
-}
+export type BaseButtonProps<T extends React.ElementType = ButtonTypeMap['defaultComponent']> =
+  ButtonProps<T, { component?: T }> & {
+    loading?: boolean
+    target?: string
+  }
 
 const loadingSize = 24
 
