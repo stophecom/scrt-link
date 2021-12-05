@@ -80,6 +80,7 @@ export const usePlans = () => {
   }
 }
 
+// Currently not used
 export const useCheckoutSession = (checkoutSessionId?: string) => {
   const { data, error } = useSWR(
     checkoutSessionId ? `${baseUrl}/api/checkout/${checkoutSessionId}` : null,
