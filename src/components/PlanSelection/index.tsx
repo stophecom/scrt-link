@@ -340,7 +340,13 @@ const PlanSelection: React.FunctionComponent = () => {
                   <Box display="flex" justifyContent="center">
                     <Typography className={classes.price} variant="h4" component="div">
                       {formatCurrency(Number(price.unit_amount) / 100)}
-                      <small> / {price.recurring?.interval}</small>
+                      <small>
+                        {' '}
+                        /{' '}
+                        {price.recurring?.interval === 'month'
+                          ? t('common:month', 'month')
+                          : t('common:year', 'year')}
+                      </small>
                     </Typography>
                   </Box>
                   <Box mb={2}>

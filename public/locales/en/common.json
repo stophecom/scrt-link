@@ -270,6 +270,8 @@
       "title": "Premium"
     }
   },
+  "month": "month",
+  "year": "year",
   "faq": {
     "payment-provider": {
       "heading": "Who is the payment provider?",
