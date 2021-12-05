@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, ReactNode } from 'react'
 import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import { signIn } from 'next-auth/client'
@@ -49,10 +49,12 @@ const initialState: State = {
 type FormSignInProps = {
   callbackUrl?: string
   showSignUp?: boolean
+  children?: ReactNode
 }
 const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   callbackUrl,
   showSignUp = false,
+  children,
 }) => {
   const classes = useStyles()
   const [state, setState] = useState(initialState)
@@ -141,6 +143,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
                 </BaseButton>
               </Box>
             </Form>
+            {children}
           </>
         )
       }}

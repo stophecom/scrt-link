@@ -19,9 +19,10 @@ const SignIn = () => {
       subtitle={t('common:views.SignIn.subtitle', 'Sign back in. Protect your secrets.')}
     >
       <Box mb={10}>
-        <FormSignIn />
-        {t('common:views.SignIn.noAccountYet', 'No Account yet?')}{' '}
-        <Link href={'/signup'}>{t('common:views.SignIn.signUpNow', 'Sign up now')}</Link>
+        <FormSignIn>
+          {t('common:views.SignIn.noAccountYet', 'No Account yet?')}{' '}
+          <Link href={'/signup'}>{t('common:views.SignIn.signUpNow', 'Sign up now')}</Link>
+        </FormSignIn>
       </Box>
     </Page>
   )
