@@ -7,7 +7,7 @@ import { Face } from '@material-ui/icons'
 import NextNprogress from 'nextjs-progressbar'
 
 import BaseButton from '@/components/BaseButton'
-import { Link } from '@/components/Link'
+import { Link, BaseButtonLink } from '@/components/Link'
 import FormSignIn from '@/components/FormSignIn'
 import { pink } from '@/theme'
 import { appTitle } from '@/constants'
@@ -56,7 +56,7 @@ const Layout: React.FC = ({ children }) => {
             <NoSsr>
               {session && !isLoading ? (
                 <>
-                  <BaseButton
+                  <BaseButtonLink
                     href="/account"
                     target="_blank"
                     color="primary"
@@ -73,7 +73,7 @@ const Layout: React.FC = ({ children }) => {
                     >
                       {customer?.name || 'My account'}
                     </Typography>
-                  </BaseButton>
+                  </BaseButtonLink>
                 </>
               ) : ['signin', 'signup'].includes(state) ? (
                 <BaseButton onClick={() => setState('default')} variant="text" size="small">

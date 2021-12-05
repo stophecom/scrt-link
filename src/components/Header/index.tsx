@@ -132,9 +132,9 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                     </BaseButtonLink>
                   </NoSsr>
                 ) : (
-                  <BaseButton href="/account" color="primary" variant="text">
+                  <BaseButtonLink href="/account" color="primary" variant="text">
                     {t('common:button.signIn', 'Sign in')}
-                  </BaseButton>
+                  </BaseButtonLink>
                 )}
               </>
             )}

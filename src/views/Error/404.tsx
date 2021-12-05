@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@material-ui/core'
 import { useTranslation } from 'next-i18next'
 
-import BaseButton from '@/components/BaseButton'
+import { BaseButtonLink } from '@/components/Link'
 import Page from '@/components/Page'
 
 const Error = () => {
@@ -17,9 +17,9 @@ const Error = () => {
       subtitle={t('common:views.Error.subtitle', `Sorry, something went wrong.`)}
     >
       <Box>
-        <BaseButton href="/" color="primary" variant="contained" size="large">
+        <BaseButtonLink href="/" color="primary" variant="contained" size="large">
           {t('common:button.home', 'Home')}
-        </BaseButton>
+        </BaseButtonLink>
       </Box>
     </Page>
   )

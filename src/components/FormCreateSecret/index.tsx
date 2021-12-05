@@ -399,7 +399,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         <Box ml="auto">
                           <BaseButton
                             variant="text"
-                            target="_blank"
                             onClick={() => {
                               setNeogramPreview(true)
                               plausible(values?.message ? 'Preview' : 'Demo', {
