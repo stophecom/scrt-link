@@ -93,7 +93,7 @@
       "subscriptionCancellationSuccessMessage": "Dein Abonnement wurde erfolgreich gekündigt! Dein Abonnement wird am {{cancellationDate}} automatisch auf das kostenlose Abonnement zurückgestuft. Wenn du deine Meinung bis dahin änderst, kannst du dein Abonnement jederzeit wieder aktivieren.",
       "subscriptionChangeSuccessMessage": "Du hast dein Abonnement erfolgreich geändert!",
       "subscriptionActiveSuccessMessage": "Mission erfüllt! Dein Abonnement ist aktiv.",
-      "loading": "Lade Pläne…",
+      "loading": "Lade Pläne",
       "free": {
         "subtitle": "Keine Verpflichtungen",
         "overline": "Das Wesentliche",
@@ -173,7 +173,7 @@
     "signUp": "Registrieren",
     "signIn": "Anmelden",
     "myAccount": "Mein Konto",
-    "account": "Konto",
+    "account": "Scrt Konto",
     "getAccount": "Konto erstellen",
     "close": "Schließen",
     "closeMenu": "Menü schließen",

@@ -93,7 +93,7 @@
       "subscriptionCancellationSuccessMessage": "Your subscription has been canceled successfully! Your plan will automatically be downgraded to the free plan on {{cancellationDate}}. If you change your mind until then, feel free to reactivate any time.",
       "subscriptionChangeSuccessMessage": "You successfully changed your subscription!",
       "subscriptionActiveSuccessMessage": "Mission accomplished! Your subscription is active.",
-      "loading": "Loading plans…",
+      "loading": "Loading plans",
       "free": {
         "subtitle": "No strings attached.",
         "overline": "Essentials",
@@ -173,7 +173,7 @@
     "signUp": "Sign up",
     "signIn": "Sign in",
     "myAccount": "My account",
-    "account": "Account",
+    "account": "Scrt Account",
     "getAccount": "Get Account",
     "close": "Close",
     "closeMenu": "Close menu",

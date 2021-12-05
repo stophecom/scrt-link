@@ -274,7 +274,7 @@ const PlanSelection: React.FunctionComponent = () => {
   }
 
   if (isLoading) {
-    return <Spinner message={t('common:components.PlanSelection.loading', 'Loading plans…')} />
+    return <Spinner message={t('common:components.PlanSelection.loading', 'Loading plans')} />
   }
 
   return (
