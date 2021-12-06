@@ -574,7 +574,7 @@
         "button": "Learn more about security"
       },
       "SlackApp": {
-        "title": "The Slack App&nbsp;<1><0>NEW</0></1>",
+        "title": "The Slack App\u00a0<1><0>NEW</0></1>",
         "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
         "usps": {
           "0": "Encrypted, disposable messages, stored outside of Slack.",
