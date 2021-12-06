@@ -15,8 +15,6 @@ import { useCustomer } from '@/utils/api'
 
 const SignUp = () => {
   const { t } = useTranslation()
-  const { data: customer } = useCustomer()
-  const customerRole = customer?.role
 
   return (
     <Page
@@ -29,27 +27,25 @@ const SignUp = () => {
           <Link href={'/signin'}>{t('common:views.SignUp.signInNow', 'Sign in now')}</Link>
         </FormSignIn>
       </Box>
-      {customerRole !== 'premium' && (
-        <Section title={t('common:views.SignUp.FreeAccount.title', `Free Account Benefits`)}>
-          <Box pb={1}>
-            <UnorderedList
-              items={[
-                t('common:views.SignUp.FreeAccount.Usps.0', 'More characters for your secrets'),
-                t('common:views.SignUp.FreeAccount.Usps.1', 'Email read receipts'),
-                t('common:views.SignUp.FreeAccount.Usps.2', 'Slack App'),
-                t('common:views.SignUp.FreeAccount.Usps.3', 'Browser extensions'),
-                t('common:views.SignUp.FreeAccount.Usps.4', 'Personal support'),
-                t('common:views.SignUp.FreeAccount.Usps.5', 'Emoji links 🤫'),
-              ]}
-            />
-          </Box>
-          <Typography variant="body1">
-            <Trans i18nKey="common:views.SignUp.FreeAccount.upsell">
-              Need more? <Link href="/pricing">There is more</Link>.
-            </Trans>
-          </Typography>
-        </Section>
-      )}
+      <Section title={t('common:views.SignUp.FreeAccount.title', `Free Account Benefits`)}>
+        <Box pb={1}>
+          <UnorderedList
+            items={[
+              t('common:views.SignUp.FreeAccount.Usps.0', 'More characters for your secrets'),
+              t('common:views.SignUp.FreeAccount.Usps.1', 'Email read receipts'),
+              t('common:views.SignUp.FreeAccount.Usps.2', 'Slack App'),
+              t('common:views.SignUp.FreeAccount.Usps.3', 'Browser extensions'),
+              t('common:views.SignUp.FreeAccount.Usps.4', 'Personal support'),
+              t('common:views.SignUp.FreeAccount.Usps.5', 'Emoji links 🤫'),
+            ]}
+          />
+        </Box>
+        <Typography variant="body1">
+          <Trans i18nKey="common:views.SignUp.FreeAccount.upsell">
+            Need more? <Link href="/pricing">There is more</Link>.
+          </Trans>
+        </Typography>
+      </Section>
     </Page>
   )
 }
