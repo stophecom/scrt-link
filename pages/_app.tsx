@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation, useTranslation, TFunction } from 'next-i18next'
 
 import nextI18NextConfig from 'next-i18next.config.js'
 import { DefaultSeoProps, DefaultSeo } from 'next-seo'
@@ -16,11 +16,14 @@ import { appTitle, twitterHandle, supportedLanguages } from '@/constants'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
 
-const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
+const getDefaultSeoConfig = (t: TFunction, pathname: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   const url = `${baseUrl}${pathname}`
   const title = appTitle
-  const description = `With ${appTitle} you can securely share sensitive information online: End-to-end encryption combined with a one time self-destructive link.`
+  const description = t('common:meta.description', {
+    defaultValue: `With {{appTitle}} you can securely share sensitive information online: End-to-end encryption combined with a one time self-destructive link.`,
+    appTitle,
+  })
   return {
     title,
     canonical: url,
@@ -44,19 +47,28 @@ const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
           url: `${baseUrl}/og-image.png`,
           height: 1200,
           width: 627,
-          alt: 'scrt.link - Share a secret!',
+          alt: t('common:meta.images.alt', {
+            defaultValue: `{{appTitle}} - Share a secret!'`,
+            appTitle,
+          }),
         },
         {
           url: `${baseUrl}/android-chrome-512x512.png`,
           height: 512,
           width: 512,
-          alt: 'scrt.link - Share a secret!',
+          alt: t('common:meta.images.alt', {
+            defaultValue: `{{appTitle}} - Share a secret!'`,
+            appTitle,
+          }),
         },
         {
           url: `${baseUrl}/android-chrome-192x192.png`,
           height: 192,
           width: 192,
-          alt: 'scrt.link - Share a secret!',
+          alt: t('common:meta.images.alt', {
+            defaultValue: `{{appTitle}} - Share a secret!'`,
+            appTitle,
+          }),
         },
       ],
     },
@@ -73,6 +85,7 @@ type Props = AppProps & {
 
 const MyApp = ({ Component, pageProps }: Props) => {
   const router = useRouter()
+  const { t } = useTranslation()
 
   const Layout = Component.layout ?? DefaultLayout
 
@@ -88,7 +101,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
     <Provider session={pageProps.session}>
       <PlausibleProvider domain="scrt.link" exclude="/l/*">
         <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
-          <DefaultSeo {...getDefaultSeoConfig(router.pathname)} />
+          <DefaultSeo {...getDefaultSeoConfig(t, router.pathname)} />
           <Head>
             <meta name="twitter:card" content="summary" key="twitter:card" />
             <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
@@ -100,7 +113,10 @@ const MyApp = ({ Component, pageProps }: Props) => {
             <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
             <meta
               name="keywords"
-              content="scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
+              content={t(
+                'common:meta.keywords',
+                'scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information',
+              )}
               key="keywords"
             />
             <meta name="theme-color" content={theme.palette.primary.main} />

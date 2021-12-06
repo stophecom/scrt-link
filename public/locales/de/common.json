@@ -1,4 +1,11 @@
 {
+  "meta": {
+    "description": "Mit {{appTitle}} kannst du sensible Informationen sicher online teilen: Ende-zu-Ende verschlüsselt. Einmalig.",
+    "images": {
+      "alt": "{{appTitle}} - Teile ein Geheimnis!'"
+    },
+    "keywords": "scrt.link, Geheimlink, Geheimnachrichten, Einmal-Geheimnis, Einmal-Passwort, Einmal-Nachricht, Einmal-Link, Wegwerf-Nachricht, Wegwerf-Link, URL Shortener, Selbstzerstörende Links, Sensible Informationen online teilen"
+  },
   "password": "Passwort",
   "components": {
     "Error": {

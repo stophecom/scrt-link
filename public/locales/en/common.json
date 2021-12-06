@@ -1,4 +1,11 @@
 {
+  "meta": {
+    "description": "With {{appTitle}} you can securely share sensitive information online: End-to-end encryption combined with a one time self-destructive link.",
+    "images": {
+      "alt": "{{appTitle}} - Share a secret!'"
+    },
+    "keywords": "scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
+  },
   "password": "Password",
   "components": {
     "Error": {
