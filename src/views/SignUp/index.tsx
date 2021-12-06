@@ -11,7 +11,6 @@ import UnorderedList from '@/components/UnorderedList'
 import { getI18nConfig } from '@/utils/localization'
 import FormSignIn from '@/components/FormSignIn'
 import Page from '@/components/Page'
-import { useCustomer } from '@/utils/api'
 
 const SignUp = () => {
   const { t } = useTranslation()
