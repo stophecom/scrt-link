@@ -75,7 +75,7 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
         recipientName: '',
         message: '',
       }}
-      validationSchema={shareSecretViaEmailSchema}
+      validationSchema={shareSecretViaEmailSchema(t)}
       validateOnMount
       onSubmit={handleSubmit}
     >

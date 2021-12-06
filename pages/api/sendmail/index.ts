@@ -1,4 +1,5 @@
 import { NextApiHandler, NextApiRequest } from 'next'
+import { getSession } from 'next-auth/client'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
@@ -7,11 +8,11 @@ import { shareSecretViaEmailSchema } from '@/utils/validationSchemas'
 import mailjet from '@/api/utils/mailjet'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
 import { mailjetTemplates } from '@/constants'
-import { getSession } from 'next-auth/client'
+import { t } from '@/api/utils/localization'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    await shareSecretViaEmailSchema.validate(req.body)
+    await shareSecretViaEmailSchema(t).validate(req.body)
   } catch (err) {
     throw createError(
       422,

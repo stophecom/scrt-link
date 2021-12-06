@@ -93,7 +93,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   return (
     <Formik<SignIn>
       initialValues={initialValues}
-      validationSchema={getSignInValidationSchema(showSignUp)}
+      validationSchema={getSignInValidationSchema(t, showSignUp)}
       validateOnMount
       onSubmit={handleSubmit}
     >

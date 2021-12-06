@@ -441,12 +441,21 @@
     "noAccountYet": "Noch kein Konto?"
   },
   "validation": {
+    "destructionMessage": "Zerstörungsmeldung",
+    "destructionTimeout": "Zerstörungs-Countdown",
+    "email": "E-Mail",
+    "phone": "Mobilnummer",
+    "phoneNotValid": "Mobilnummer nicht gültig",
+    "urlNotValid": "{{label}} hat kein gültiges URL-Format",
+    "message": "Nachricht",
     "password": "Passwort",
     "notAllowed": "Nicht möglich.",
     "readReceipts": "Empfangsbestätigungen",
     "name": "Name",
     "emojiLink": "Emoji Kurzlink",
-    "confirmationRequired": "Dieses Feld ist obligatorisch."
+    "confirmationRequired": "Dieses Feld ist obligatorisch.",
+    "consentRequired": "Deine Zustimmung ist erforderlich.",
+    "secretUrl": "Geheim-URL"
   },
   "views": {
     "About": {
