@@ -10,9 +10,10 @@ import Head from 'next/head'
 import PlausibleProvider from 'next-plausible'
 import { Provider } from 'next-auth/client'
 
+import { setYupLocale } from '@/utils/validationSchemas'
 import { CustomPage } from '@/types'
 import DefaultLayout from '@/layouts/Default'
-import { appTitle, twitterHandle, supportedLanguages } from '@/constants'
+import { appTitle, twitterHandle, supportedLanguages, SupportedLanguage } from '@/constants'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
 
@@ -86,6 +87,8 @@ type Props = AppProps & {
 const MyApp = ({ Component, pageProps }: Props) => {
   const router = useRouter()
   const { t } = useTranslation()
+
+  setYupLocale(router?.locale as SupportedLanguage)
 
   const Layout = Component.layout ?? DefaultLayout
 

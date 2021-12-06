@@ -19,3 +19,5 @@ declare module '*.webp' {
 }
 
 declare module '*.md'
+
+declare module 'yup/lib/locale'

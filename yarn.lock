@@ -1851,7 +1851,7 @@
     "@types/node" "*"
     "@types/webidl-conversions" "*"
 
-"@types/yup@^0.29.9":
+"@types/yup@^0.29.13":
   version "0.29.13"
   resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.29.13.tgz#21b137ba60841307a3c8a1050d3bf4e63ad561e9"
   integrity sha512-qRyuv+P/1t1JK1rA+elmK1MmCL1BapEzKKfbEhDBV/LMMse4lmhZ/XbgETI39JveDJRpLjmToOI6uFtMW/WR2g==
@@ -8665,6 +8665,11 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+yup-locales@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/yup-locales/-/yup-locales-1.2.0.tgz#bcbaacf47669750bdd7178685ae2dd4bd0768350"
+  integrity sha512-3sMxJjgbiLxUMA/D05l5uOIZKOxqDD1BnA7jta3bVqMSEkoJyNUVvU+RzYfaxagQvlxSXXj57zjM+tnIaHKeQQ==
 
 yup@^0.29.3:
   version "0.29.3"

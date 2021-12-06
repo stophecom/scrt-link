@@ -1,10 +1,22 @@
 import * as Yup from 'yup'
+import { setLocale } from 'yup'
 import validator from 'validator'
 import { TFunction } from 'next-i18next'
 
 import { Role, CustomerFields, ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import { getLimits } from '@/utils'
+import { SupportedLanguage } from '@/constants'
+import { de } from 'yup-locales'
+import defaultLocale from 'yup/lib/locale'
+
+export const setYupLocale = (locale?: SupportedLanguage) => {
+  if (locale === 'de') {
+    setLocale(de)
+  } else {
+    setLocale(defaultLocale)
+  }
+}
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/

@@ -10,7 +10,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
-    "parse-translations": "i18next 'src/**/*.{ts,tsx}'"
+    "parse-translations": "i18next 'src/**/*.{ts,tsx}' 'pages/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -60,7 +60,8 @@
     "universal-cookie": "^4.0.4",
     "validator": "^13.5.2",
     "windups": "^1.1.9",
-    "yup": "^0.29.3"
+    "yup": "^0.29.3",
+    "yup-locales": "^1.2.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
@@ -77,7 +78,7 @@
     "@types/react": "^17.0.0",
     "@types/throttle-debounce": "^2.1.0",
     "@types/validator": "^13.1.1",
-    "@types/yup": "^0.29.9",
+    "@types/yup": "^0.29.13",
     "babel-plugin-styled-components": "^1.13.3",
     "eslint": "<8.0.0",
     "eslint-config-next": "12.0.3",
