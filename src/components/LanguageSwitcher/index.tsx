@@ -30,8 +30,11 @@ const useStyles = makeStyles((theme: Theme) =>
       boxShadow: 'none',
       font: 'inherit',
       color: 'inherit',
-      padding: '0 1em 0 .4em',
+      padding: '.2em 1em .2em .4em',
       cursor: 'pointer',
+    },
+    option: {
+      color: '#222222',
     },
     icon: {
       fontSize: '1.1rem',
@@ -71,7 +74,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
         value={locale}
       >
         {nextI18NextConfig.i18n.locales.map((language) => (
-          <option key={language} value={language}>
+          <option key={language} value={language} className={classes.option}>
             {languageMap[language as LanguageKeys] || language.toUpperCase()}
           </option>
         ))}
