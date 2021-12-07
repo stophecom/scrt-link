@@ -29,6 +29,7 @@ export const getI18nConfig = () => ({
     defaultLocale: defaultLanguage,
     locales: [...supportedLanguages],
   },
+  localePath: path.resolve('/public/locales'),
   ns: ['common'],
   supportedLngs: supportedLanguages,
   nonExplicitSupportedLngs: true,
@@ -54,7 +55,6 @@ export const getI18nConfig = () => ({
   interpolation: {
     escapeValue: false, // not needed for react!!
   },
-  localePath: '/locales',
 })
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
