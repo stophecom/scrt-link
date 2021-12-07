@@ -10,8 +10,8 @@ import { project } from 'ramda'
 import { useTranslation, Trans, TFunction } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseButton from '@/components/BaseButton'
-
 import FormCustomer from '@/components/FormCustomer'
 import FormDeleteAccount from '@/components/FormDeleteAccount'
 import Page from '@/components/Page'
@@ -72,7 +72,7 @@ type AccountProps = {
   session: Session
 }
 const Account: NextPage<AccountProps> = ({ session }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu(t)[0].key)
   const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
 
@@ -176,7 +176,13 @@ const Account: NextPage<AccountProps> = ({ session }) => {
           })}
         </Typography>
         <Box mt={1}>
-          <BaseButton onClick={() => signOut()} variant="outlined" color="primary">
+          <BaseButton
+            onClick={() =>
+              signOut({ callbackUrl: getAbsoluteLocalizedUrl('/account', i18n.language) })
+            }
+            variant="outlined"
+            color="primary"
+          >
             {t('common:button.signOut', 'Sign out')}
           </BaseButton>
         </Box>

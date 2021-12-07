@@ -21,8 +21,8 @@ import UpgradeNotice from '@/components/UpgradeNotice'
 import Spacer from '@/components/Spacer'
 import { State } from '@/views/Home/index'
 import { CustomerFields } from '@/api/models/Customer'
-import { emojiShortUrl, defaultLanguage } from '@/constants'
-import { getBaseURL } from '@/utils'
+import { emojiShortUrl } from '@/constants'
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 
 type ResultProps = Pick<State, 'data'> &
   Pick<CustomerFields, 'isEmojiShortLinkEnabled' | 'role'> & {
@@ -47,7 +47,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const [isEmailServiceEnabled, setIsEmailServiceEnabled] = useState(false)
   const [wrap, setWrap] = useState(false)
 
-  const baseUrl = `${getBaseURL()}${i18n.language === defaultLanguage ? '' : `/${i18n.language}`}/l`
+  const baseUrl = getAbsoluteLocalizedUrl('/l', i18n.language)
 
   const origin = isEmojiLinkEnabled ? emojiShortUrl : baseUrl
   const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null

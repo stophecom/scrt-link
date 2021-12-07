@@ -4,9 +4,9 @@ import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
 import { useSession, signOut } from 'next-auth/client'
 import { useTranslation } from 'next-i18next'
-
 import Alert from '@material-ui/lab/Alert'
 
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseSwitchField from '@/components/BaseSwitchField'
 import { Maybe } from '@/types'
 import BaseButton from '@/components/BaseButton'
@@ -29,7 +29,7 @@ type DeleteAccountProps = {
 const FormDeleteAccount = () => {
   const [session] = useSession()
   const [state, setState] = useState<State>({})
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const handleSubmit: OnSubmit<DeleteAccountProps> = async (_values, formikHelpers) => {
     try {
@@ -41,7 +41,7 @@ const FormDeleteAccount = () => {
       })
     } finally {
       formikHelpers.setSubmitting(false)
-      signOut()
+      signOut({ callbackUrl: getAbsoluteLocalizedUrl('/', i18n.language) })
     }
   }
 

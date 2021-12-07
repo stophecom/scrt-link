@@ -14,7 +14,7 @@ import { pink } from '@/theme'
 import { appTitle } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 import { useCustomer } from '@/utils/api'
-import { getBaseURL } from '@/utils'
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
@@ -42,7 +42,7 @@ const Layout: React.FC = ({ children }) => {
   const { data: customer, isLoading } = useCustomer()
   const [session] = useSession()
   const [state, setState] = useState<State>('default')
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -96,7 +96,7 @@ const Layout: React.FC = ({ children }) => {
         {['signin', 'signup'].includes(state) ? (
           <>
             <FormSignIn
-              callbackUrl={`${getBaseURL()}/widget/sign-in-success`}
+              callbackUrl={getAbsoluteLocalizedUrl('/widget/sign-in-success', i18n.language)}
               showSignUp={state === 'signup'}
             />
             {state !== 'signup' && (
