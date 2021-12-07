@@ -5,7 +5,6 @@ import { useTranslation } from 'next-i18next'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { getI18nConfig } from '@/utils/localization'
 import FormSignIn from '@/components/FormSignIn'
 import Page from '@/components/Page'
 import { Link } from '@/components/Link'
@@ -43,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale = 'en
   }
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'], getI18nConfig())),
+      ...(await serverSideTranslations(locale, ['common'])),
     },
   }
 }

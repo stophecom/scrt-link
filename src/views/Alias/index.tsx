@@ -14,7 +14,6 @@ import { useTranslation } from 'next-i18next'
 
 import { CustomError } from '@/api/utils/createError'
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
-import { getI18nConfig } from '@/utils/localization'
 import { getBaseURL } from '@/utils'
 import { CustomPage } from '@/types'
 import { LayoutMinimal } from '@/layouts/Default'
@@ -286,7 +285,7 @@ export default AliasView
 export const getServerSideProps: GetServerSideProps = async ({ locale = 'en' }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'], getI18nConfig())),
+      ...(await serverSideTranslations(locale, ['common'])),
     },
   }
 }

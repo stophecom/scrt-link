@@ -3,7 +3,6 @@ import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation, i18n } from 'next-i18next'
 
-import { getI18nConfig } from '@/utils/localization'
 import { Box, Typography, Divider } from '@material-ui/core'
 import Head from 'next/head'
 import { FAQPage, WithContext } from 'schema-dts'
@@ -147,7 +146,7 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
     props: {
       faqByCategory,
       jsonLd,
-      ...(await serverSideTranslations(locale, ['common'], getI18nConfig())),
+      ...(await serverSideTranslations(locale, ['common'])),
     },
   }
 }
