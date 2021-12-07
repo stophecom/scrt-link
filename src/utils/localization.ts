@@ -54,7 +54,7 @@ export const getI18nConfig = () => ({
   interpolation: {
     escapeValue: false, // not needed for react!!
   },
-  localePath: path.resolve('./public/locales'),
+  localePath: '/locales',
 })
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
