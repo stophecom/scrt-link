@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Session } from 'next-auth'
 import { getSession, signOut } from 'next-auth/client'
-import { Box, Typography, Paper } from '@material-ui/core'
+import { Box, Typography, Paper, InputAdornment, NoSsr } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert'
 import styled from 'styled-components'
 import { project } from 'ramda'
@@ -98,76 +98,78 @@ const Account: NextPage<AccountProps> = ({ session }) => {
         tabsMenu={project(['label', 'key'], menu(t))}
         label={t('common:views.Account.tabsMenu.label', 'Account options')}
       />
-      <Section pt={{ xs: 0, sm: 0 }}>
-        {activeTab === 'settings' && (
-          <>
-            <Box mb={1}>
-              <Alert severity="info">
-                {t(
-                  'common:views.Account.settingsDisclaimer',
-                  'The following are default settings. You can overwrite each setting for every secret you create.',
-                )}
-              </Alert>
-            </Box>
-            <Paper square>
-              <Box p={3}>
-                <FormCustomer
-                  {...customer}
-                  formFieldsSelection="secrets"
-                  onSuccess={triggerFetchCustomer}
-                />
-              </Box>
-            </Paper>
-          </>
-        )}
-        {activeTab === 'subscription' && (
-          <>
-            <Box mb={2}>
-              <Alert severity="info">
-                <Trans i18nKey="common:views.Account.subscriptionInfo">
-                  You are currently on the <strong>{{ customerRole }}</strong> plan.
-                </Trans>
-                {customerRole === 'premium' && (
-                  <Box mt={1}>
-                    <ManageSubscriptionButton />
-                  </Box>
-                )}
-              </Alert>
-            </Box>
-
-            <PlanSelection />
-          </>
-        )}
-
-        {activeTab === 'danger' && (
-          <>
-            {customerRole === 'premium' && (
+      <NoSsr>
+        <Section pt={{ xs: 0, sm: 0 }}>
+          {activeTab === 'settings' && (
+            <>
               <Box mb={1}>
                 <Alert severity="info">
                   {t(
-                    'common:views.Account.activeSubscriptionWarning',
-                    'You have a running subscription. We recommend to cancel it first.',
+                    'common:views.Account.settingsDisclaimer',
+                    'The following are default settings. You can overwrite each setting for every secret you create.',
                   )}
-                  <Box mt={1}>
-                    <ManageSubscriptionButton />
-                  </Box>
                 </Alert>
               </Box>
-            )}
-
-            <DangerZone square>
-              <Box p={3}>
-                <Box mb={5}>
-                  <Typography variant="h3">
-                    {t('common:views.Account.accountDeletion', 'Delete your account')}
-                  </Typography>
+              <Paper square>
+                <Box p={3}>
+                  <FormCustomer
+                    {...customer}
+                    formFieldsSelection="secrets"
+                    onSuccess={triggerFetchCustomer}
+                  />
                 </Box>
-                <FormDeleteAccount />
+              </Paper>
+            </>
+          )}
+          {activeTab === 'subscription' && (
+            <>
+              <Box mb={2}>
+                <Alert severity="info">
+                  <Trans i18nKey="common:views.Account.subscriptionInfo">
+                    You are currently on the <strong>{{ customerRole }}</strong> plan.
+                  </Trans>
+                  {customerRole === 'premium' && (
+                    <Box mt={1}>
+                      <ManageSubscriptionButton />
+                    </Box>
+                  )}
+                </Alert>
               </Box>
-            </DangerZone>
-          </>
-        )}
-      </Section>
+
+              <PlanSelection />
+            </>
+          )}
+
+          {activeTab === 'danger' && (
+            <>
+              {customerRole === 'premium' && (
+                <Box mb={1}>
+                  <Alert severity="info">
+                    {t(
+                      'common:views.Account.activeSubscriptionWarning',
+                      'You have a running subscription. We recommend to cancel it first.',
+                    )}
+                    <Box mt={1}>
+                      <ManageSubscriptionButton />
+                    </Box>
+                  </Alert>
+                </Box>
+              )}
+
+              <DangerZone square>
+                <Box p={3}>
+                  <Box mb={5}>
+                    <Typography variant="h3">
+                      {t('common:views.Account.accountDeletion', 'Delete your account')}
+                    </Typography>
+                  </Box>
+                  <FormDeleteAccount />
+                </Box>
+              </DangerZone>
+            </>
+          )}
+        </Section>
+      </NoSsr>
       <AccountInfo pt={5}>
         <Typography variant="body1">
           {t('common:views.Account.signedInAs', {
