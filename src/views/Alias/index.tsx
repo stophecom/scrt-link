@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { GetServerSideProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Box } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
@@ -8,9 +10,10 @@ import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
+import { CustomError } from '@/api/utils/createError'
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
-
 import { getBaseURL } from '@/utils'
 import { CustomPage } from '@/types'
 import { LayoutMinimal } from '@/layouts/Default'
@@ -24,6 +27,8 @@ import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
+
+// t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'>
@@ -42,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const AliasView: CustomPage = () => {
   const classes = useStyles()
   const router = useRouter()
+  const { t } = useTranslation()
 
   const { alias, preview } = router.query
 
@@ -76,7 +82,7 @@ const AliasView: CustomPage = () => {
     return () => {
       router.events.off('routeChangeStart', handleRouteChange)
     }
-  }, [])
+  })
 
   useEffect(() => {
     const fetchSecret = async () => {
@@ -88,11 +94,11 @@ const AliasView: CustomPage = () => {
         const decryptionKey = window.location.hash.substring(1)
 
         if (!decryptionKey) {
-          throw new Error('Decryption key missing.')
+          throw new Error(t('common:error.missingDecryptionKey', 'Decryption key missing.'))
         }
 
         if (typeof alias !== 'string') {
-          throw new Error('Invalid alias.')
+          throw new Error(t('common:error.invalidAlias', 'Invalid alias.'))
         }
 
         const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
@@ -101,7 +107,9 @@ const AliasView: CustomPage = () => {
         // eslint-disable-next-line no-restricted-globals
         history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (error) {
-        setError(`${error instanceof Error && error.message}`)
+        let err = error as CustomError
+
+        setError(`${err?.i18nErrorKey ? t(`common:error.${err.i18nErrorKey}`) : err.message}`)
       }
     }
 
@@ -127,7 +135,7 @@ const AliasView: CustomPage = () => {
       const result = decryptMessage(message, password)
 
       if (!result) {
-        throw new Error('Wrong Password')
+        throw new Error(t('common:error.wrongPassword', 'Wrong Password'))
       } else {
         setSecret((previousState) => ({
           ...previousState,
@@ -138,7 +146,7 @@ const AliasView: CustomPage = () => {
 
       formikHelpers.resetForm()
     } catch (error) {
-      formikHelpers.setErrors({ password: 'Wrong Password' })
+      formikHelpers.setErrors({ password: t('common:error.wrongPassword', 'Wrong Password') })
     } finally {
       formikHelpers.setSubmitting(false)
     }
@@ -147,7 +155,11 @@ const AliasView: CustomPage = () => {
   if (message) {
     if (isEncryptedWithUserPassword) {
       return (
-        <Page title="Password required" subtitle="Enter password to decrypt your secret:" noindex>
+        <Page
+          title={t('common:views.Alias.passwordRequired', 'Password required')}
+          subtitle={t('common:views.Alias.enterPassword', 'Enter password to decrypt your secret:')}
+          noindex
+        >
           <Formik<PasswordForm>
             initialValues={initialValues}
             validationSchema={passwordValidationSchema}
@@ -173,7 +185,7 @@ const AliasView: CustomPage = () => {
                           setFieldValue('message', message)
                         }}
                       >
-                        Decrypt Message
+                        {t('common:button.decryptMessage', 'Decrypt Message')}
                       </BaseButton>
                     </Box>
                   </Form>
@@ -203,7 +215,11 @@ const AliasView: CustomPage = () => {
         }
         default: {
           return (
-            <Page title="Shhh" subtitle="You received a secret:" noindex>
+            <Page
+              title={t('common:views.Alias.title', 'Shhh')}
+              subtitle={t('common:views.Alias.subtitle', 'You received a secret:')}
+              noindex
+            >
               <Box mb={3}>
                 <Paper elevation={3} className={clsx(classes.break, classes.message)}>
                   <Box px={4} pt={4} pb={2}>
@@ -211,7 +227,7 @@ const AliasView: CustomPage = () => {
                     <Box pt={2} display="flex" justifyContent="flex-end">
                       <Box mr={2}>
                         <BaseButtonLink href="/" variant="text" color="primary" size="small">
-                          Destroy secret
+                          {t('common:button.destroySecret', 'Destroy secret')}
                         </BaseButtonLink>
                       </Box>
                       <CopyToClipboard
@@ -229,7 +245,9 @@ const AliasView: CustomPage = () => {
                           color="primary"
                           size="small"
                         >
-                          {hasCopied ? 'Copied' : 'Copy'}
+                          {hasCopied
+                            ? t('common:button.copied', 'Copied')
+                            : t('common:button.copy', 'Copy')}
                         </BaseButton>
                       </CopyToClipboard>
                     </Box>
@@ -249,7 +267,7 @@ const AliasView: CustomPage = () => {
 
   if (error && !isPreview) {
     return (
-      <Page title="Error occured" noindex>
+      <Page title={t('common:views.Alias.errorOccurred', 'Error occurred')} noindex>
         <Alert severity="error">{error}</Alert>
         <Box mt={2}>
           <ReplyButton />
@@ -258,8 +276,16 @@ const AliasView: CustomPage = () => {
     )
   }
 
-  return <Spinner message="Loading secret" />
+  return <Spinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />
 }
 
 AliasView.layout = LayoutMinimal
 export default AliasView
+
+export const getServerSideProps: GetServerSideProps = async ({ locale = 'en' }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}

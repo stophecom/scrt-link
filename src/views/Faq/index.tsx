@@ -1,7 +1,10 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation, i18n } from 'next-i18next'
+
 import { Box, Typography, Divider } from '@material-ui/core'
 import Head from 'next/head'
-import { GetStaticProps } from 'next'
 import { FAQPage, WithContext } from 'schema-dts'
 import remark from 'remark'
 import strip from 'strip-markdown'
@@ -38,8 +41,10 @@ type FaqProps = {
 }
 const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   const classes = useStyles()
+  const { t } = useTranslation()
+
   return (
-    <Page title="FAQ" subtitle="Frequently Asked Questions">
+    <Page title="FAQ" subtitle={t('common:views.FAQ.subtitle', 'Frequently Asked Questions')}>
       <Head>
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -47,7 +52,7 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
         />
       </Head>
       <Typography>
-        <strong>What topic can we help you with?</strong>
+        <strong>{t('common:views.FAQ.introQuestion', 'What topic can we help you with?')}</strong>
       </Typography>
       <ul className={classes.unorderedList}>
         {faqByCategory.map(({ title, id }, index) => (
@@ -72,7 +77,10 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
       ))}
       <Box mb={5}>
         <Typography>
-          {`Didn't find the answer you were looking for? Contact support: `}
+          {t(
+            'common:views.FAQ.noAnswer',
+            `Didn't find the answer you were looking for? Contact support:`,
+          )}{' '}
           <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
         </Typography>
       </Box>
@@ -80,9 +88,14 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
+  const t = i18n?.getFixedT(locale)
+
+  if (!t) {
+    throw Error('TFunction not defined.')
+  }
   const stripFaq = (isBodyStripped?: boolean) =>
-    faq.map(({ heading, body, ...props }) => {
+    faq(t).map(({ heading, body, ...props }) => {
       let question = heading
       let answer = body
 
@@ -120,7 +133,7 @@ export const getStaticProps: GetStaticProps = async () => {
     }),
   }
 
-  const faqByCategory = faqCategories.map(({ id, ...props }) => {
+  const faqByCategory = faqCategories(t).map(({ id, ...props }) => {
     const faqList = stripFaq().filter(({ category }) => category === id)
 
     return {
@@ -130,7 +143,11 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
   return {
-    props: { faqByCategory, jsonLd },
+    props: {
+      faqByCategory,
+      jsonLd,
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
   }
 }
 export default Faq

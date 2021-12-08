@@ -14,7 +14,7 @@ const Section: React.FunctionComponent<Omit<BoxProps, 'title'> & SectionProps> =
 }) => {
   return (
     <Box key="section" py={{ xs: 6, sm: 8 }} {...rest}>
-      <Box mb={5} maxWidth="min(100%, 600px)">
+      <Box mb={5} maxWidth="min(100%, 660px)">
         {title && <Typography variant="h2">{title}</Typography>}
         {subtitle && (
           <Typography variant="subtitle2" component="div">

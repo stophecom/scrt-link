@@ -1,6 +1,7 @@
 import { NextApiHandler } from 'next'
 import { getSession } from 'next-auth/client'
 
+import { getLocaleFromRequest } from '@/api/utils/helpers'
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import stripe from '@/api/utils/stripe'
@@ -9,6 +10,7 @@ import { getBaseURL } from '@/utils'
 
 const handler: NextApiHandler = async (req, res) => {
   const models = req.models
+  const locale = getLocaleFromRequest(req)
 
   const session = await getSession({ req })
 
@@ -33,6 +35,7 @@ const handler: NextApiHandler = async (req, res) => {
         const { url } = await stripe.billingPortal.sessions.create({
           customer: customer.stripe.customerId,
           return_url: `${getBaseURL()}/account`,
+          locale: locale,
         })
 
         res.status(200).json({ url })

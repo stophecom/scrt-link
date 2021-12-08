@@ -5,9 +5,13 @@ import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
 import stripe from '@/api/utils/stripe'
+import { getLocaleFromRequest } from '@/api/utils/helpers'
+import { mailjetTemplates } from '@/constants'
 
-const handler = (req, res) =>
-  NextAuth(req, res, {
+const handler = (req, res) => {
+  const template = mailjetTemplates.signInRequest[getLocaleFromRequest(req)]
+
+  return NextAuth(req, res, {
     // Configure one or more authentication providers
     providers: [
       Providers.Twitter({
@@ -15,13 +19,11 @@ const handler = (req, res) =>
         clientSecret: process.env.TWITTER_CLIENT_SECRET,
       }),
       Providers.Email({
-        // server: process.env.EMAIL_SERVER,
-        // from: process.env.EMAIL_FROM,
         sendVerificationRequest: ({ identifier: email, url }) =>
           mailjet({
             To: [{ Email: email, Name: 'X' }],
-            Subject: 'Sign in request',
-            TemplateID: 2715593,
+            Subject: template.subject,
+            TemplateID: template.templateId,
             TemplateLanguage: true,
             Variables: {
               url: url,
@@ -68,5 +70,6 @@ const handler = (req, res) =>
     },
     database: process.env.DB,
   })
+}
 
 export default handleErrors(withDb(handler))

@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/client'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
+import { useTranslation } from 'next-i18next'
 
 import SROnly from '@/components/ScreenreaderOnly'
 import BaseButton from '@/components/BaseButton'
@@ -100,6 +101,7 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
   const { data: customer, isLoading } = useCustomer()
   const [session] = useSession()
+  const { t } = useTranslation()
 
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -125,14 +127,14 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                         style={{ maxWidth: '150px' }}
                         noWrap
                       >
-                        {customer?.name || 'My account'}
+                        {customer?.name || t('common:button.myAccount', 'My account')}
                       </Typography>
                     </BaseButtonLink>
                   </NoSsr>
                 ) : (
-                  <BaseButton href="/account" color="primary" variant="text">
-                    Sign in
-                  </BaseButton>
+                  <BaseButtonLink href="/account" color="primary" variant="text">
+                    {t('common:button.signIn', 'Sign in')}
+                  </BaseButtonLink>
                 )}
               </>
             )}

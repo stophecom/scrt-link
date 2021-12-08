@@ -9,6 +9,8 @@ const { withPlausibleProxy } = require('next-plausible')
 
 const { withSentryConfig } = require('@sentry/nextjs')
 
+const { i18n } = require('./next-i18next.config')
+
 const plugins = [
   [
     withPWA,
@@ -25,12 +27,14 @@ const plugins = [
 ]
 
 const config = {
+  i18n,
   // swcMinify: true, // Wait for nextjs 12
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
     })
+    config.resolve.fallback = { fs: false, path: false }
 
     return config
   },

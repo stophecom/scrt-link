@@ -2,6 +2,7 @@ import { NextApiHandler, NextApiRequest } from 'next'
 import { getSession } from 'next-auth/client'
 import { pick } from 'ramda'
 
+import { t } from '@/api/utils/localization'
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
@@ -13,7 +14,7 @@ const extractPostInput = async (req: NextApiRequest) => {
   try {
     const editableData = pick(customerWriteData, req.body)
 
-    await getCustomerValidationSchema('none').validate(editableData)
+    await getCustomerValidationSchema(t, 'none').validate(editableData)
   } catch (err) {
     throw createError(422, err instanceof Error ? err.message : 'Unexpected error')
   }

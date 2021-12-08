@@ -7,10 +7,12 @@ import handleErrors from '@/api/middlewares/handleErrors'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
 import { trialPeriod } from '@/constants'
+import { getLocaleFromRequest } from '@/api/utils/helpers'
 
 const handler: NextApiHandler = async (req, res) => {
   const models = req.models
   const session = await getSession({ req })
+  const locale = getLocaleFromRequest(req)
 
   if (!models) {
     throw createError(500, 'Could not find db connection')
@@ -30,6 +32,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         // Create Checkout Sessions from body params.
         const params: Stripe.Checkout.SessionCreateParams = {
+          locale: locale,
           mode: 'subscription',
           payment_method_types: ['card'],
           customer: customer?.stripe?.customerId,

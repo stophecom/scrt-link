@@ -1,68 +1,70 @@
-export const menu = [
+import { TFunction } from 'next-i18next'
+
+export const main = (t: TFunction) => [
   {
     href: '/',
-    label: 'Home',
+    label: t('common:menu.home', 'Home'),
   },
   {
     href: '/about',
-    label: 'About',
+    label: t('common:menu.about', 'About'),
   },
   {
     href: '/security',
-    label: 'Security',
+    label: t('common:menu.security', 'Security'),
   },
   {
     href: '/privacy',
-    label: 'Privacy',
+    label: t('common:menu.privacy', 'Privacy'),
   },
   {
     href: '/pricing',
-    label: 'Pricing',
+    label: t('common:menu.pricing', 'Pricing'),
     prefetch: false,
   },
   {
     href: '/faq',
-    label: 'FAQ',
+    label: t('common:menu.faq', 'FAQ'),
   },
   {
     href: '/contact',
-    label: 'Contact',
+    label: t('common:menu.contact', 'Contact'),
   },
 ]
 
-export const terms = [
+export const terms = (t: TFunction) => [
   {
     href: '/terms-of-service',
-    label: 'Terms of Service',
+    label: t('common:menu.termsOfService', 'Terms of Service'),
   },
 ]
 
-export const policies = [
+export const policies = (t: TFunction) => [
   {
     href: '/acceptable-use-policy',
-    label: 'Acceptable Use Policy',
+    label: t('common:menu.acceptableUsePolicy', 'Acceptable Use Policy'),
   },
   {
     href: '/cookie-policy',
-    label: 'Cookie Policy',
+    label: t('common:menu.cookiePolicy', 'Cookie Policy'),
   },
   {
     href: '/privacy-policy',
-    label: 'Privacy Policy',
+    label: t('common:menu.privacyPolicy', 'Privacy Policy'),
   },
 ]
 
-export const about = [
+export const about = (t: TFunction) => [
   {
     href: '/imprint',
-    label: 'Imprint',
+    label: t('common:menu.imprint', 'Imprint'),
   },
   {
     href: '/privacy-policy',
-    label: 'Privacy Policy',
+    label: t('common:menu.privacyPolicy', 'Privacy Policy'),
   },
   {
     href: '/cookie-policy',
-    label: 'Cookie Policy',
+    label: t('common:menu.cookiePolicy', 'Cookie Policy'),
   },
 ]

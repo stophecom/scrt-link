@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
-
 import Alert from '@material-ui/lab/Alert'
+import { useTranslation } from 'next-i18next'
 
 import BaseTextField from '@/components/BaseTextField'
-
 import BaseButton from '@/components/BaseButton'
 import { shareSecretViaEmailSchema } from '@/utils/validationSchemas'
 import { emailPlaceholder } from '@/constants'
@@ -36,6 +35,7 @@ const initialState: State = {
 
 const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secretUrl'>) => {
   const [state, setState] = useState(initialState)
+  const { t } = useTranslation()
 
   const handleSubmit: OnSubmit<FormShareSecretLinkProps> = async (values, formikHelpers) => {
     try {
@@ -60,7 +60,11 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
   }
 
   if (message) {
-    return <Alert severity="success">{message}</Alert>
+    return (
+      <Alert severity="success">
+        {t('common:components.FormShareSecretLink.success', 'Email successfully sent!')}
+      </Alert>
+    )
   }
 
   return (
@@ -71,7 +75,7 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
         recipientName: '',
         message: '',
       }}
-      validationSchema={shareSecretViaEmailSchema}
+      validationSchema={shareSecretViaEmailSchema(t)}
       validateOnMount
       onSubmit={handleSubmit}
     >
@@ -82,13 +86,23 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
               <Box py={1}>
                 <BaseTextField
                   name="recipientEmail"
-                  label="Email"
+                  label={t('common:email', 'Email')}
                   placeholder={emailPlaceholder}
                   required
                 />
               </Box>
               <Box py={1}>
-                <BaseTextField name="recipientName" label="Recipient name" placeholder="Jane Doe" />
+                <BaseTextField
+                  name="recipientName"
+                  label={t(
+                    'common:components.FormShareSecretLink.recipientName.label',
+                    'Recipient name',
+                  )}
+                  placeholder={t(
+                    'common:components.FormShareSecretLink.recipientName.placeholder',
+                    'Jane Doe',
+                  )}
+                />
               </Box>
               <Box py={1}>
                 <BaseTextField
@@ -96,12 +110,17 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
                   multiline
                   minRows={3}
                   maxRows={7}
-                  label="Message"
-                  placeholder="Message to be included in the email…"
-                  helperText="We recommend to add a hint about who you are. Otherwise the recipient might mistake the email for spam."
+                  label={t('common:components.FormShareSecretLink.message.label', 'Message')}
+                  placeholder={t(
+                    'common:components.FormShareSecretLink.message.placeholder',
+                    'Message to be included in the email…',
+                  )}
+                  helperText={t(
+                    'common:components.FormShareSecretLink.message.helperText',
+                    'We recommend to add a hint about who you are. Otherwise the recipient might mistake the email for spam.',
+                  )}
                 />
               </Box>
-
               <Box py={1}>
                 <BaseButton
                   fullWidth
@@ -112,7 +131,7 @@ const FormShareSecretLink = ({ secretUrl }: Pick<FormShareSecretLinkProps, 'secr
                   loading={isSubmitting}
                   disabled={!isValid}
                 >
-                  Send
+                  {t('common:button.send', 'Send')}
                 </BaseButton>
               </Box>
             </Form>

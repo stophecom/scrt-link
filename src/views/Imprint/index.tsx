@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography, Box } from '@material-ui/core'
 import styled from 'styled-components'
+import { useTranslation } from 'next-i18next'
 
 import { Link } from '@/components/Link'
 import Page from '@/components/Page'
@@ -35,22 +36,32 @@ export const ImprintInfo = () => (
   </Typography>
 )
 
-const Imprint = () => (
-  <Page title="Imprint" subtitle={`Tl;dr: Limited liability.`}>
-    <Box mb={4}>
-      <ImprintInfo />
-    </Box>
-    <Box mb={4}>
-      <Typography variant="h3">Policies and Terms</Typography>
-      <Menu menu={[...policies, ...terms]} />
-    </Box>
-    <Box mb={4}>
-      <Typography variant="h3">Credits</Typography>
-    </Box>
-    <Typography variant="body2">
-      Inspiration: PrivateBin, OneTimeSecret, Yopass, Saltify, hat.sh, OnURL
-    </Typography>
-  </Page>
-)
+const Imprint = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Page
+      title={t('common:views.Imprint.title', 'Imprint')}
+      subtitle={t('common:views.Imprint.subtitle', `Tl;dr: Limited liability.`)}
+    >
+      <Box mb={4}>
+        <ImprintInfo />
+      </Box>
+      <Box mb={4}>
+        <Typography variant="h3">
+          {t('common:views.Imprint.policiesAndTerms', 'Policies and Terms')}
+        </Typography>
+        <Menu menu={[...policies(t), ...terms(t)]} />
+      </Box>
+      <Box mb={4}>
+        <Typography variant="h3">{t('common:views.Imprint.credits', 'Credits')}</Typography>
+      </Box>
+      <Typography variant="body2">
+        {t('common:views.Imprint.inspiration', 'Inspiration')}: PrivateBin, OneTimeSecret, Yopass,
+        Saltify, hat.sh, OnURL
+      </Typography>
+    </Page>
+  )
+}
 
 export default Imprint

@@ -1,16 +1,18 @@
 import { NextApiHandler, NextApiRequest } from 'next'
+import { getSession } from 'next-auth/client'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { shareSecretViaEmailSchema } from '@/utils/validationSchemas'
 import mailjet from '@/api/utils/mailjet'
-
-import { getSession } from 'next-auth/client'
+import { getLocaleFromRequest } from '@/api/utils/helpers'
+import { mailjetTemplates } from '@/constants'
+import { t } from '@/api/utils/localization'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
-    await shareSecretViaEmailSchema.validate(req.body)
+    await shareSecretViaEmailSchema(t).validate(req.body)
   } catch (err) {
     throw createError(
       422,
@@ -22,6 +24,8 @@ const extractPostInput = async (req: NextApiRequest) => {
 }
 
 const handler: NextApiHandler = async (req, res) => {
+  const locale = getLocaleFromRequest(req)
+  const template = mailjetTemplates.youGotSecret[locale]
   const models = req.models
   const session = await getSession({ req })
 
@@ -35,11 +39,11 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'POST': {
       const { secretUrl, message, recipientEmail, recipientName = '' } = await extractPostInput(req)
-
+      //template
       await mailjet({
         To: [{ Email: recipientEmail, Name: recipientName }],
-        Subject: 'You received a secret ',
-        TemplateID: 2939535,
+        Subject: template.subject,
+        TemplateID: template.templateId,
         TemplateLanguage: true,
         Variables: {
           secretUrl,

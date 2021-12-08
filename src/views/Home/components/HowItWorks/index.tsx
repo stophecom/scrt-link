@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { useTranslation, TFunction } from 'next-i18next'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Create from '!@svgr/webpack!@/assets/images/create.svg'
@@ -68,32 +69,43 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const gridContent = [
+const howItWorks = (t: TFunction) => [
   {
     // @ts-ignore
     illustration: <Create />,
-    title: 'Write',
-    text: `Compose your secret and get a one-time link.`,
+    title: t('common:views.Home.HowItWorks.create.title', 'Write'),
+    text: t(
+      'common:views.Home.HowItWorks.create.text',
+      'Compose your secret and get a one-time link.',
+    ),
   },
   {
     // @ts-ignore
     illustration: <Share />,
-    title: 'Share',
-    text: 'Send the generated link to your confidant.',
+    title: t('common:views.Home.HowItWorks.share.title', 'Share'),
+    text: t(
+      'common:views.Home.HowItWorks.share.text',
+      'Send the generated link to your confidant.',
+    ),
   },
   {
     // @ts-ignore
     illustration: <Burn />,
-    title: 'Burn',
-    text: 'After the secret has been viewed, it gets destroyed.',
+    title: t('common:views.Home.HowItWorks.burn.title', 'Burn'),
+    text: t(
+      'common:views.Home.HowItWorks.burn.text',
+      'After the secret has been viewed, it gets destroyed.',
+    ),
   },
 ]
 
 const HowItWorks = () => {
   const classes = useStyles()
+  const { t } = useTranslation()
+
   return (
     <Grid container spacing={2} justifyContent="center">
-      {gridContent.map(({ illustration, title, text }, index) => {
+      {howItWorks(t).map(({ illustration, title, text }, index) => {
         return (
           <Grid item xs={12} sm={4} key={index}>
             <Paper className={classes.paper}>

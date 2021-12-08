@@ -9,7 +9,14 @@ import mailjet from '@/api/utils/mailjet'
 import { twilioSms } from '@/api/utils/twilio'
 import { decryptAES } from '@/utils/db'
 
+import { getLocaleFromRequest } from '@/api/utils/helpers'
+import { mailjetTemplates, smsReadReceipt } from '@/constants'
+
 const handler: NextApiHandler = async (req, res) => {
+  const locale = getLocaleFromRequest(req)
+  const mailTemplate = mailjetTemplates.readReceipt[locale]
+  const smsTemplate = smsReadReceipt[locale]
+
   // Run the middleware
   await NextCors(req, res, {
     methods: ['GET', 'HEAD', 'OPTIONS', 'POST', 'DELETE'],
@@ -36,6 +43,7 @@ const handler: NextApiHandler = async (req, res) => {
         throw createError(
           404,
           `Secret not found - This usually means the secret link has already been visited and therefore no longer exists.`,
+          'SECRET_NOT_FOUND',
         )
       }
 
@@ -69,15 +77,15 @@ const handler: NextApiHandler = async (req, res) => {
       if (receiptPhoneNumber) {
         await twilioSms({
           to: `+${decryptAES(receiptPhoneNumber)}`,
-          body: `scrt.link: The following secret has been viewed and destroyed🔥: ${alias}\n\nReply with a secret: https://scrt.link`,
+          body: `${smsTemplate.receipt} ${alias}\n\n${smsTemplate.reply}`,
         }).catch(Sentry.captureException)
       }
 
       if (receiptEmail) {
         await mailjet({
           To: [{ Email: decryptAES(receiptEmail), Name: 'scrt.link' }],
-          Subject: 'Secret has been viewed 🔥',
-          TemplateID: 2818166,
+          Subject: mailTemplate.subject,
+          TemplateID: mailTemplate.templateId,
           TemplateLanguage: true,
           Variables: {
             alias,

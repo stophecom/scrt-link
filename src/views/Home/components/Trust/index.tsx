@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { Lock, VerifiedUser } from '@material-ui/icons'
+import { useTranslation } from 'next-i18next'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,17 +27,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const HowItWorks = () => {
+const Trust = () => {
   const classes = useStyles()
+  const { t } = useTranslation()
 
   const gridContent = [
     {
       illustration: <Lock className={classes.illustration} />,
-      title: 'End-to-end encrypted (AES)',
+      title: t('common:components.Trust.encryption', 'End-to-end encrypted (AES)'),
     },
     {
       illustration: <VerifiedUser className={classes.illustration} />,
-      title: '100% Privacy protected',
+      title: t('common:components.Trust.privacy', '100% Privacy protected'),
     },
   ]
 
@@ -53,4 +55,4 @@ const HowItWorks = () => {
     </Box>
   )
 }
-export default HowItWorks
+export default Trust

@@ -7,11 +7,12 @@ type LinkProps = NextLinkProps & MUILinkProps
 export const Link: React.FunctionComponent<LinkProps> = ({
   href,
   prefetch,
+  locale,
   children,
   ...props
 }) => {
   return (
-    <NextLink href={href} prefetch={prefetch} passHref>
+    <NextLink href={href} locale={locale} prefetch={prefetch} passHref>
       <MUILink {...props}>{children}</MUILink>
     </NextLink>
   )
@@ -21,11 +22,12 @@ type BaseButtonLinkProps = NextLinkProps & BaseButtonProps
 export const BaseButtonLink: React.FunctionComponent<BaseButtonLinkProps> = ({
   href,
   prefetch,
+  locale,
   children,
   ...props
 }) => {
   return (
-    <NextLink href={href} prefetch={prefetch} passHref>
+    <NextLink href={href} locale={locale} prefetch={prefetch} passHref>
       <BaseButton variant="contained" color="primary" {...props}>
         {children}
       </BaseButton>

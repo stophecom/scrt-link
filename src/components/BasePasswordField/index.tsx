@@ -8,7 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-
+import { useTranslation } from 'next-i18next'
 import { TextFieldProps } from '@material-ui/core'
 import { useField, FieldHookConfig } from 'formik'
 
@@ -16,7 +16,7 @@ export type BasePasswordFieldProps = FormControlProps & FieldHookConfig<TextFiel
 
 const BasePasswordField = (props: BasePasswordFieldProps) => {
   const [showPassword, setShowPassword] = useState(false)
-
+  const { t } = useTranslation()
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
   }
@@ -43,7 +43,7 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
 
   return (
     <FormControl variant="outlined" error={hasError} {...props}>
-      <InputLabel htmlFor="password-input">Password</InputLabel>
+      <InputLabel htmlFor="password-input">{t('common:password', 'Password')}</InputLabel>
       <OutlinedInput
         {...field}
         id="password-input"
