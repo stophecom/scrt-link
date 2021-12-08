@@ -180,7 +180,7 @@
     "signUp": "Registrieren",
     "signIn": "Anmelden",
     "myAccount": "Mein Konto",
-    "account": "Scrt Konto",
+    "account": "Mein Konto",
     "getAccount": "Konto erstellen",
     "close": "Schließen",
     "closeMenu": "Menü schließen",
@@ -501,7 +501,7 @@
       "ManageSubscriptionButton": {
         "button": "Abo auf Stripe verwalten"
       },
-      "title": "Konto",
+      "title": "Mein Konto",
       "subtitle": "Hallo {{name}}, willkommen zurück!",
       "tabsMenu": {
         "label": "Konto Optionen"
