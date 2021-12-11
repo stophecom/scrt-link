@@ -1,12 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie'
-import nextI18NextConfig from 'next-i18next.config.js'
+import { useTranslation } from 'next-i18next'
+
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 import { Box } from '@material-ui/core'
 import LanguageIcon from '@material-ui/icons/Language'
-import { useTranslation } from 'next-i18next'
-
+import { supportedLanguages } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
 
 const languageMap = {
@@ -73,7 +73,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
         }}
         value={locale}
       >
-        {nextI18NextConfig.i18n.locales.map((language) => (
+        {supportedLanguages.map((language) => (
           <option key={language} value={language} className={classes.option}>
             {languageMap[language as LanguageKeys] || language.toUpperCase()}
           </option>
