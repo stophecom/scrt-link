@@ -3,7 +3,6 @@ import { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import { appWithTranslation, useTranslation, TFunction } from 'next-i18next'
 
-import nextI18NextConfig from 'next-i18next.config.js'
 import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
@@ -136,4 +135,4 @@ const MyApp = ({ Component, pageProps }: Props) => {
   )
 }
 
-export default appWithTranslation(MyApp, nextI18NextConfig)
+export default appWithTranslation(MyApp)
