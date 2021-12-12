@@ -25,7 +25,7 @@
       "generalSettings": "Einstellungen",
       "emojiLink": {
         "title": "Emoji Link",
-        "description": "Hab Spaß mit unseren Emoji-Links. Beispiel: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Achtung.</4> Emoji Links funktionieren in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Im Moment nicht möglich mit: <11>Signal, Slack, Snapchat</11>."
+        "description": "Hab Spaß mit unseren Emoji-Links. Beispiel: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Achtung.</4> Emoji Links funktionieren mit: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Im Moment nicht möglich mit: <11>Signal, Slack, Snapchat</11>."
       },
       "success": "Deine Einstellungen wurden gespeichert!"
     },
@@ -570,7 +570,7 @@
       "SecretLinksExplained": {
         "title": "Geheime Links erklärt",
         "subtitle": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung deines Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht im Browser. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
-        "imageAlt": "Link explained",
+        "imageAlt": "Geheime Links erklärt",
         "button": "Mehr über Sicherheit erfahren"
       },
       "SlackApp": {
