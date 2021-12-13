@@ -49,8 +49,8 @@ const Result: React.FunctionComponent<ResultProps> = ({
 
   const baseUrl = getAbsoluteLocalizedUrl('/l', i18n.language)
 
-  const origin = isEmojiLinkEnabled ? emojiShortUrl : baseUrl
-  const shortenedUrl = alias ? `${origin}/${alias}#${encryptionKey}` : null
+  const domain = isEmojiLinkEnabled ? `${emojiShortUrl}/${i18n.language}` : baseUrl
+  const shortenedUrl = alias ? `${domain}/${alias}#${encryptionKey}` : null
   const shortenedUrlEmailService = `${baseUrl}/${alias}#${encryptionKey}`
 
   return (
