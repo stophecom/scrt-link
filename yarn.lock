@@ -5670,10 +5670,10 @@ next-i18next@^10.0.1:
     i18next-fs-backend "^1.0.7"
     react-i18next "^11.8.13"
 
-next-plausible@^1.7.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/next-plausible/-/next-plausible-1.9.0.tgz#7672e0fd366bcfe22648b0173bd6f207603261ad"
-  integrity sha512-7YaK/Rb1wNa7lne105LF+WbMG9VTsyf3iCXXuzzMQ930mUIMLXRcf5ZCaqtj6bjq9JbczdHe46wdW0frPfzkrA==
+next-plausible@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/next-plausible/-/next-plausible-3.1.4.tgz#a386ff4e2327995cb4a1307e53e1b4af70817b52"
+  integrity sha512-NMLKJ0AKlKuvYU//RytyqSES5NtLRoH/ym3fCC02w2Ed1SrTgNRUrgpxyJrcguY/DYGPncQ3a0/nQ358vUTAwQ==
 
 next-pwa@^5.4.0:
   version "5.4.0"
