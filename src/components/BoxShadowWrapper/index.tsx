@@ -23,7 +23,7 @@ export const ImageBox = styled.div`
       box-shadow: 0 0 80px rgba(255, 0, 131, 0.2), 0px 0px 22px rgba(255, 0, 131, 0.2),
         0 0 1px rgba(255, 0, 131, 1);
       opacity: 0.1;
-      border-radius: 12px;
+      border-radius: 5px;
       transition: 1000ms;
     }
   }
