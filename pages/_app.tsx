@@ -16,7 +16,7 @@ import { appTitle, twitterHandle, supportedLanguages, SupportedLanguage } from '
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
 
-const getDefaultSeoConfig = (t: TFunction, pathname: string): DefaultSeoProps => {
+const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   const url = `${baseUrl}${pathname}`
   const title = appTitle
@@ -44,9 +44,9 @@ const getDefaultSeoConfig = (t: TFunction, pathname: string): DefaultSeoProps =>
       site_name: appTitle,
       images: [
         {
-          url: `${baseUrl}/og-image.png`,
+          url: `${baseUrl}/images/${language}/og-image.png`,
           height: 1200,
-          width: 627,
+          width: 630,
           alt: t('common:meta.images.alt', {
             defaultValue: `{{appTitle}} - Share a secret!'`,
             appTitle,
@@ -85,7 +85,7 @@ type Props = AppProps & {
 
 const MyApp = ({ Component, pageProps }: Props) => {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   setYupLocale(router?.locale as SupportedLanguage)
 
@@ -103,7 +103,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
     <Provider session={pageProps.session}>
       <PlausibleProvider domain="scrt.link" exclude="/l/*, /*/l/*,">
         <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
-          <DefaultSeo {...getDefaultSeoConfig(t, router.pathname)} />
+          <DefaultSeo {...getDefaultSeoConfig(t, router.pathname, i18n.language)} />
           <Head>
             <meta name="twitter:card" content="summary" key="twitter:card" />
             <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
