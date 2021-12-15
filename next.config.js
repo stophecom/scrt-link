@@ -28,6 +28,9 @@ const plugins = [
 
 const config = {
   i18n,
+  images: {
+    domains: ['api.producthunt.com'],
+  },
   // swcMinify: true, // Wait for nextjs 12
   webpack: (config) => {
     config.module.rules.push({
