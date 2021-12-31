@@ -101,7 +101,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
 
   return (
     <Provider session={pageProps.session}>
-      <PlausibleProvider domain="scrt.link" exclude="/l/*, /*/l/*,">
+      <PlausibleProvider domain="scrt.link" exclude="/l/*,/*/l/*">
         <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
           <DefaultSeo {...getDefaultSeoConfig(t, router.pathname, i18n.language)} />
           <Head>
