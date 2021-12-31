@@ -11,7 +11,8 @@ const general = (t: TFunction) => [
 **Use this service in case you want to…**
 - Share your Netflix password with a family member.
 - Send a private message from a public computer.
-- Send access tokens, API keys, PIN codes to a coworker.
+- Send access tokens, API keys, PIN codes to a friend or coworker.
+- Forward payment information such as credit card number or Bitcoin wallet address.
 - Confess to a secret crush.
 - Transmit information that could be used against you.`,
     ),
