@@ -24,6 +24,11 @@ const Legal = styled('div')`
 const LinkAbout = styled(Link)`
   text-decoration: underline;
 `
+const Bullet = styled('span')`
+  color: ${({ theme }) => theme.palette.success.main};
+  padding-left: 5px;
+`
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     linkPadding: {
@@ -84,11 +89,23 @@ const Footer: React.FC = () => {
               <span className={classes.linkPadding}>
                 ©{new Date().getFullYear()} SANTiHANS GmbH
               </span>
+
               {about(t).map(({ href, label }, index) => (
                 <LinkAbout key={index} href={href} className={classes.linkPadding} color="inherit">
                   {label}
                 </LinkAbout>
               ))}
+              <span className={classes.linkPadding}>
+                <LinkAbout
+                  href={'https://stats.uptimerobot.com/v5yqDuEr5z'}
+                  target="_blank"
+                  rel="noreferrer"
+                  color="inherit"
+                >
+                  {t('common:menu.status', 'Status')}
+                </LinkAbout>
+                <Bullet>●</Bullet>
+              </span>
               <LanguageSelector />
             </Box>
           </Legal>
