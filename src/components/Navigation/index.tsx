@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
 import { Box, Divider, Typography } from '@material-ui/core'
-import { usePlausible } from 'next-plausible'
 import { useSession } from 'next-auth/client'
 import { useTranslation } from 'next-i18next'
 
@@ -186,7 +185,6 @@ const NavigationMenu: React.FunctionComponent = () => {
 const Navigation = () => {
   const router = useRouter()
   const [isActive, setIsActive] = useState(false)
-  const plausible = usePlausible()
   const { t } = useTranslation()
 
   const showNavigation = () => {
@@ -196,7 +194,6 @@ const Navigation = () => {
     body.style.position = 'fixed'
     body.style.width = '100%'
     body.style.top = `-${scrollY}`
-    plausible('OpenNavigation')
   }
 
   const closeNavigation = () => {
