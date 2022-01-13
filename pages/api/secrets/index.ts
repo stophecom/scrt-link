@@ -20,7 +20,7 @@ const extractPostInput = async (req: NextApiRequest) => {
 const handler: NextApiHandler = async (req, res) => {
   // Run the middleware
   await NextCors(req, res, {
-    methods: ['HEAD', 'POST', 'OPTIONS'],
+    methods: ['HEAD', 'GET', 'POST', 'OPTIONS'],
     origin: '*',
   })
 
@@ -30,6 +30,11 @@ const handler: NextApiHandler = async (req, res) => {
   }
 
   switch (req.method) {
+    case 'GET': {
+      // Used to check the status of the API.
+      res.status(200).json({ status: 200, message: 'Service operational.' })
+      break
+    }
     case 'POST': {
       const {
         secretType,
