@@ -211,6 +211,24 @@
     "getFreeAccount": "Kostenloses Konto erstellen",
     "privacyPolicy": "Datenschutzbestimmungen"
   },
+  "menu": {
+    "status": "Status",
+    "home": "Startseite",
+    "about": "Über uns",
+    "security": "Sicherheit",
+    "privacy": "Privatsphäre",
+    "pricing": "Preise",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "termsOfService": "Nutzungsbedingungen",
+    "acceptableUsePolicy": "Nutzungsrichtlinien",
+    "cookiePolicy": "Cookie-Richtlinien",
+    "privacyPolicy": "Datenschutzbestimmungen",
+    "imprint": "Impressum",
+    "settings": "Einstellungen",
+    "subscription": "Abo",
+    "dangerZone": "Gefahrenzone"
+  },
   "secretType": {
     "text": {
       "label": "Dein Geheimnis",
@@ -426,23 +444,6 @@
   "demoNeogramMessage": "Hallo…\nDies ist nur eine Demo! Neogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spaß beim Geheimnisse teilen 😘",
   "demoTextMessage": "Hallo…\nDies ist nur eine Demo!\n\nViel Spaß beim Geheimnisse teilen 😘",
   "demoNeogramDestructionMessage": "Diese Nachricht zerstört sich selbst in …",
-  "menu": {
-    "home": "Startseite",
-    "about": "Über uns",
-    "security": "Sicherheit",
-    "privacy": "Privatsphäre",
-    "pricing": "Preise",
-    "faq": "FAQ",
-    "contact": "Kontakt",
-    "termsOfService": "Nutzungsbedingungen",
-    "acceptableUsePolicy": "Nutzungsrichtlinien",
-    "cookiePolicy": "Cookie-Richtlinien",
-    "privacyPolicy": "Datenschutzbestimmungen",
-    "imprint": "Impressum",
-    "settings": "Einstellungen",
-    "subscription": "Abo",
-    "dangerZone": "Gefahrenzone"
-  },
   "Widget": {
     "myAccount": "Mein Konto",
     "noAccountYet": "Noch kein Konto?"

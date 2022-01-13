@@ -211,6 +211,24 @@
     "getFreeAccount": "Get free account",
     "privacyPolicy": "Privacy Policy"
   },
+  "menu": {
+    "status": "Status",
+    "home": "Home",
+    "about": "About",
+    "security": "Security",
+    "privacy": "Privacy",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "termsOfService": "Terms of Service",
+    "acceptableUsePolicy": "Acceptable Use Policy",
+    "cookiePolicy": "Cookie Policy",
+    "privacyPolicy": "Privacy Policy",
+    "imprint": "Imprint",
+    "settings": "Settings",
+    "subscription": "Subscription",
+    "dangerZone": "Danger Zone"
+  },
   "secretType": {
     "text": {
       "label": "Your secret",
@@ -426,23 +444,6 @@
   "demoNeogramMessage": "Hi there…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
   "demoTextMessage": "Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘",
   "demoNeogramDestructionMessage": "This message self-destructs in …",
-  "menu": {
-    "home": "Home",
-    "about": "About",
-    "security": "Security",
-    "privacy": "Privacy",
-    "pricing": "Pricing",
-    "faq": "FAQ",
-    "contact": "Contact",
-    "termsOfService": "Terms of Service",
-    "acceptableUsePolicy": "Acceptable Use Policy",
-    "cookiePolicy": "Cookie Policy",
-    "privacyPolicy": "Privacy Policy",
-    "imprint": "Imprint",
-    "settings": "Settings",
-    "subscription": "Subscription",
-    "dangerZone": "Danger Zone"
-  },
   "Widget": {
     "myAccount": "My account",
     "noAccountYet": "No Account yet?"
