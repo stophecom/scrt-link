@@ -1,6 +1,6 @@
-## scrt.link
-
 ![Uptime Robot](https://img.shields.io/uptimerobot/status/m790332623-d87562e4e90c2e4ed1b5625f)
+
+## scrt.link
 
 **Scrt.link** lets you share one-time secrets with a link that self-destructs after the first visit.
 
