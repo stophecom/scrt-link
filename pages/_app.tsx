@@ -18,7 +18,8 @@ import theme from '@/theme'
 
 const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
-  const url = `${baseUrl}${pathname}`
+  const strippedPathname = pathname === '/' ? '' : pathname
+  const url = `${baseUrl}${strippedPathname}`
   const title = appTitle
   const description = t('common:meta.description', {
     defaultValue: `With {{appTitle}} you can securely share sensitive information online: End-to-end encryption combined with a one time self-destructive link.`,
@@ -26,12 +27,11 @@ const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): 
   })
   return {
     title,
-    canonical: url,
     languageAlternates: [
-      { hrefLang: 'x-default', href: baseUrl },
+      { hrefLang: 'x-default', href: `${baseUrl}${strippedPathname}` },
       ...supportedLanguages.map((locale) => ({
         hrefLang: locale,
-        href: `${baseUrl}/${locale}${pathname}`,
+        href: `${baseUrl}/${locale}${strippedPathname}`,
       })),
     ],
     description,
