@@ -12,15 +12,12 @@
 /.next/
 /out/
 
+# Ssdfitemap.xml (auto generated)
+/public/sitemap.xml
+
 # next-pwa
 /public/sw*
 /public/workbox*
-
-# Sitemap.xml (auto generated)
-/public/sitemap.xml
-
-# production
-/build
 
 # misc
 .DS_Store
@@ -33,10 +30,6 @@ yarn-error.log*
 # local env files
 .env.*
 !.env.example
-
-# Sentry
-.sentryclirc
-
 
 # Sentry
 .sentryclirc
