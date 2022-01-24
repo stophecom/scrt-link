@@ -17,10 +17,20 @@ yarn
 // Development server
 yarn dev
 
-// Build and static export
+// Build and start server. Note that build command requires .env.production.
 yarn build
-yarn export
+yarn start
 
+
+
+// Docker: Build image. Note that Docker build requires .env.production file.
+docker build -t scrt .
+
+// Docker: Build image without cache
+docker build --no-cache -t scrt .
+
+// Docker: Run
+docker run -p 3000:3000 scrt
 ```
 
 ### Credits/Inspiration

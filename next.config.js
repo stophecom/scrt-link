@@ -27,17 +27,24 @@ const plugins = [
 ]
 
 const config = {
+  experimental: {
+    outputStandalone: true,
+  },
   i18n,
   images: {
     domains: ['api.producthunt.com'],
   },
   // swcMinify: true, // Wait for nextjs 12
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
     })
-    config.resolve.fallback = { fs: false, path: false }
+
+    // Fixes npm packages that depend on `fs` module
+    if (!isServer) {
+      config.resolve.fallback.fs = false
+    }
 
     return config
   },
