@@ -16,6 +16,8 @@
 /public/sw*
 /public/workbox*
 
+# Sitemap.xml (auto generated)
+/public/sitemap.xml
 
 # production
 /build
@@ -32,6 +34,8 @@ yarn-error.log*
 .env.*
 !.env.example
 
+# Sentry
+.sentryclirc
 
 
 # Sentry
