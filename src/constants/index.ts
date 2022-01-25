@@ -62,7 +62,7 @@ export const smsReadReceipt = {
   },
   de: {
     receipt: 'scrt.link: Das folgende Geheimnis wurde gelesen und zerstört🔥:',
-    reply: 'Antwort mit einem Geheimnis: https://scrt.link',
+    reply: 'Antworte mit einem Geheimnis: https://scrt.link',
   },
 }
 // Limits per user role
