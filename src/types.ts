@@ -9,6 +9,9 @@ export type Maybe<T> = T | undefined | null
 
 declare global {
   namespace NodeJS {
+    interface Global {
+      _mongoClientPromise: any
+    }
     interface ProcessEnv {
       NEXT_PUBLIC_BASE_URL: string
       NEXT_PUBLIC_ENV: string
@@ -17,7 +20,6 @@ declare global {
       MJ_APIKEY_PUBLIC: string
       MJ_APIKEY_PRIVATE: string
       MJ_SMS_TOKEN: string
-      NEXTAUTH_URL: string
       JWT_SECRET: string
       NEXT_AUTH_SECRET: string
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string

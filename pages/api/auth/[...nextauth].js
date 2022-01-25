@@ -1,24 +1,23 @@
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+import Email from 'next-auth/providers/email'
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 
 import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
 import stripe from '@/api/utils/stripe'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
+import clientPromise from '@/api/utils/mongodb'
 import { mailjetTemplates } from '@/constants'
 
-const handler = (req, res) => {
+const handler = async (req, res) => {
   const template = mailjetTemplates.signInRequest[getLocaleFromRequest(req)]
 
-  return NextAuth(req, res, {
+  return await NextAuth(req, res, {
+    adapter: MongoDBAdapter(clientPromise),
     // Configure one or more authentication providers
     providers: [
-      Providers.Twitter({
-        clientId: process.env.TWITTER_CLIENT_ID,
-        clientSecret: process.env.TWITTER_CLIENT_SECRET,
-      }),
-      Providers.Email({
+      Email({
         sendVerificationRequest: ({ identifier: email, url }) =>
           mailjet({
             To: [{ Email: email, Name: 'X' }],
@@ -32,7 +31,7 @@ const handler = (req, res) => {
       }),
     ],
     callbacks: {
-      async jwt(token, user, account, profile, isNewUser) {
+      async jwt({ token, user, account, profile, isNewUser }) {
         const models = req.models
 
         if (isNewUser) {
@@ -54,7 +53,7 @@ const handler = (req, res) => {
 
         return token
       },
-      async session(session, token) {
+      async session({ session, token }) {
         session.userId = token.userId
 
         return session
@@ -62,13 +61,12 @@ const handler = (req, res) => {
     },
     secret: process.env.NEXT_AUTH_SECRET,
     session: {
-      jwt: true,
+      strategy: 'jwt',
     },
     theme: 'dark',
     jwt: {
       secret: process.env.JWT_SECRET,
     },
-    database: process.env.DB,
   })
 }
 

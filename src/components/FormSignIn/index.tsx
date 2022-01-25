@@ -1,7 +1,7 @@
 import React, { useState, ReactNode } from 'react'
 import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
-import { signIn } from 'next-auth/client'
+import { signIn } from 'next-auth/react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import VpnKeyIcon from '@material-ui/icons/VpnKey'
 import { Trans, useTranslation } from 'next-i18next'
@@ -23,7 +23,7 @@ const initialValues: SignIn = {
   email: '',
 }
 
-// See @types/next-auth/client.d.ts
+// See @types/next-auth/react.d.ts
 interface SignInResponse {
   error: string | undefined
   status: number

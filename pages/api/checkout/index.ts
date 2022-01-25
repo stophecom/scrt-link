@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 import Stripe from 'stripe'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'

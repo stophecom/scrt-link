@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
 import { Box, Divider, Typography } from '@material-ui/core'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 
 import { Link } from '@/components/Link'
@@ -150,7 +150,7 @@ const LanguageSwitcherWrapper = styled.div`
 
 const NavigationMenu: React.FunctionComponent = () => {
   const router = useRouter()
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { t } = useTranslation()
 
   return (

@@ -1,5 +1,5 @@
 import { NextApiHandler, NextApiRequest } from 'next'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 import { pick } from 'ramda'
 
 import { t } from '@/api/utils/localization'

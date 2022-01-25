@@ -7,7 +7,7 @@ import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
 import PlausibleProvider from 'next-plausible'
-import { Provider } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
 
 import { setYupLocale } from '@/utils/validationSchemas'
 import { CustomPage } from '@/types'
@@ -83,7 +83,7 @@ type Props = AppProps & {
   Component: CustomPage
 }
 
-const MyApp = ({ Component, pageProps }: Props) => {
+const MyApp = ({ Component, pageProps: { session, ...pageProps } }: Props) => {
   const router = useRouter()
   const { t, i18n } = useTranslation()
 
@@ -100,7 +100,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
   }, [])
 
   return (
-    <Provider session={pageProps.session}>
+    <SessionProvider session={session}>
       <PlausibleProvider domain="scrt.link" exclude="/l/*, /*/l/*">
         <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
           <DefaultSeo {...getDefaultSeoConfig(t, router.pathname, i18n.language)} />
@@ -131,7 +131,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
           </BaseThemeProvider>
         </SWRConfig>
       </PlausibleProvider>
-    </Provider>
+    </SessionProvider>
   )
 }
 
