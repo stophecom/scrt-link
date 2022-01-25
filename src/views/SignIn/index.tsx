@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 import { Box } from '@material-ui/core'
 import { useTranslation } from 'next-i18next'
 import { GetServerSideProps } from 'next'

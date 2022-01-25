@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Box } from '@material-ui/core'
 import { Formik, Form, FormikConfig } from 'formik'
 import NoSsr from '@material-ui/core/NoSsr'
-import { useSession, signOut } from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import Alert from '@material-ui/lab/Alert'
 
@@ -27,7 +27,7 @@ type DeleteAccountProps = {
 }
 
 const FormDeleteAccount = () => {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const [state, setState] = useState<State>({})
   const { t, i18n } = useTranslation()
 

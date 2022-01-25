@@ -1,14 +1,13 @@
 import React from 'react'
 import { Box, NoSsr, Typography } from '@material-ui/core'
 import styled from 'styled-components'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { useTranslation } from 'next-i18next'
 
 import SROnly from '@/components/ScreenreaderOnly'
-import BaseButton from '@/components/BaseButton'
 import Navigation from '@/components/Navigation'
 
 import { Link, BaseButtonLink } from '@/components/Link'
@@ -100,7 +99,7 @@ type HeaderProps = {
 }
 const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
   const { data: customer, isLoading } = useCustomer()
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { t } = useTranslation()
 
   const { ref, inView } = useInView({

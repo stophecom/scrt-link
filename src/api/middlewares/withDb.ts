@@ -16,6 +16,10 @@ const readyStates = {
   disconnecting: 3,
 }
 
+if (!process.env.DB) {
+  throw new Error('Please add your Mongo URI to .env')
+}
+
 let pendingPromise: Maybe<Promise<typeof mongoose>> = null
 
 // https://hoangvvo.com/blog/migrate-from-express-js-to-next-js-api-routes/
@@ -27,25 +31,21 @@ const withDb = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiR
 
   const { readyState } = mongoose.connection
 
-  // TODO: May need to handle concurrent requests
-  // with a little bit more details (disconnecting, disconnected etc).
+  // If already connected don't create new connection
   if (readyState === readyStates.connected) {
-    return next()
-  } else if (pendingPromise) {
-    // Wait for the already pending promise if there is one.
-    await pendingPromise
     return next()
   }
 
+  // @todo Use pem certificate here
   pendingPromise = mongoose.connect(process.env.DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
+    // ssl: true,
+    // sslCA: `${__dirname}/scrtLinkDev.pem`,
   })
 
   try {
     await pendingPromise
+  } catch (error) {
+    console.error(error)
   } finally {
     pendingPromise = null
   }

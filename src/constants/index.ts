@@ -18,7 +18,7 @@ export const email = 'shhh@scrt.link'
 export const emailSupport = 'support@scrt.link'
 export const emailSantihans = 'info@santihans.com'
 export const gitlab = 'https://gitlab.com/kingchiller'
-export const baseUrl = process?.env?.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 export const emojiShortUrl = 'https://🤫.st'
 export const shortUrl = 'https://scrt.li' // Currently not used
 
@@ -62,7 +62,7 @@ export const smsReadReceipt = {
   },
   de: {
     receipt: 'scrt.link: Das folgende Geheimnis wurde gelesen und zerstört🔥:',
-    reply: 'Antwort mit einem Geheimnis: https://scrt.link',
+    reply: 'Antworte mit einem Geheimnis: https://scrt.link',
   },
 }
 // Limits per user role
