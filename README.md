@@ -21,8 +21,11 @@ yarn dev
 yarn build
 yarn start
 
+```
 
+#### Run with Docker
 
+```js
 // Docker: Build image. Note that Docker build requires .env.production file.
 docker build -t scrt .
 
@@ -31,6 +34,14 @@ docker build --no-cache -t scrt .
 
 // Docker: Run
 docker run -p 3000:3000 scrt
+
+
+
+// With MongoDB
+docker-compose up
+
+// Re-build images
+docker-compose up --build
 ```
 
 ### Credits/Inspiration

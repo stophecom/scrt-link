@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      DB: mongodb://db/scrt
+  db:
+    image: mongo:5
+    ports:
+      - 27017:27017
+    volumes:
+      - scrt:/data/db
+volumes:
+  scrt:

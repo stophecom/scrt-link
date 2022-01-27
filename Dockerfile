@@ -45,7 +45,6 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV NEXTAUTH_URL=http://localhost:3000
 ENV PORT=3000
 
 CMD ["node", "server.js"]
