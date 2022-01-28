@@ -33,8 +33,8 @@ RUN adduser -S nextjs -u 1001
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
-# Copy production .env variables @todo Handle outside of image
-COPY --from=builder /app/.env.production ./.env.production
+# Copy .env variables @todo Handle outside of image
+COPY --from=builder /app/.env.* ./
 
 # Automatically leverage output traces to reduce image size 
 # https://nextjs.org/docs/advanced-features/output-file-tracing
