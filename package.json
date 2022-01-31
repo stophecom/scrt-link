@@ -23,6 +23,7 @@
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/styled-components": "^5.1.5",
     "accept-language-parser": "^1.5.0",
+    "aws-sdk": "^2.1066.0",
     "clsx": "^1.1.1",
     "dotenv": "^14.2.0",
     "formik": "^2.2.6",
