@@ -69,11 +69,14 @@ export const smsReadReceipt = {
 export const limits = {
   visitor: {
     maxMessageLength: 280,
+    maxFileSize: 1 * 1024 * 1024, // 1MB
   },
   free: {
     maxMessageLength: 1000,
+    maxFileSize: 10 * 1024 * 1024, // 10MB
   },
   premium: {
     maxMessageLength: 100000,
+    maxFileSize: 100 * 1024 * 1024, // 100MB
   },
 }
