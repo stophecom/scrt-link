@@ -39,8 +39,23 @@ const handler: NextApiHandler = async (req, res) => {
           console.log(error)
         }
       }
-
       break
+
+    case 'DELETE': {
+      {
+        try {
+          // @todo
+          // Gone in 60s
+          var params = { Bucket: process.env.FLOW_S3_BUCKET, Key: req.query.file, Expires: 60 }
+          var url = s3.getSignedUrl('getObject', params)
+
+          res.status(200).json({ url })
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      break
+    }
     default:
       throw createError(405, 'Method Not Allowed')
   }
