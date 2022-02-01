@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Paper, Button, Backdrop, Typography } from '@material-ui/core'
+import { Paper, Button, Chip, Backdrop, Typography } from '@material-ui/core'
 import { CloudUpload } from '@material-ui/icons'
 import { useTranslation } from 'next-i18next'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '100%',
       flexDirection: 'column',
       textAlign: 'center',
+      marginBottom: '1em',
     },
   }),
 )
@@ -34,7 +35,7 @@ interface DropZoneProps {
 const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
   const classes = useStyles()
   const { t } = useTranslation('components')
-  const [error, setError] = useState('')
+  const [error, setError] = useState(null)
   const [file, setFile] = useState<File | null>(null)
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles, fileRejections } = useDropzone({
@@ -47,9 +48,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
   })
 
   const handleFilesInput = (files: File[] | FileList) => {
-    setError('')
-
-    console.log('files in', files)
+    setError(null)
 
     // Custom error handling
     if (!files.length) {
@@ -59,7 +58,12 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
 
     // We only allow one file for now.
     if (files.length > 1) {
-      setError(t('components:DropZone.error.tooManyFiles', 'Too many files'))
+      setError(
+        t(
+          'components:DropZone.error.tooManyFiles',
+          'Too many files. Only one file allowed at this point. You may compress multiple files into one zip file before uploading.',
+        ),
+      )
       return
     }
     const file = files[0]
@@ -87,33 +91,42 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
         </Typography>
       </Backdrop>
       <Paper elevation={0} variant="outlined" className={classes.paper}>
-        <input
-          {...getInputProps()}
-          id="file-input"
-          type="file"
-          onChange={(e) => {
-            if (e.target.files) {
-              handleFilesInput(e.target.files)
-            }
-          }}
-        />
-        <p>
-          {t(
-            'components:DropZone.dragAndDrop',
-            'Drag & drop files here, or click the button select files.',
-          )}
-        </p>
-        <label htmlFor="file-input">
-          <Button component="span" variant="outlined" startIcon={<CloudUpload />}>
-            {t('components:DropZone.button', 'Select files')}
-          </Button>
-        </label>
+        {file && (
+          <Chip
+            color="default"
+            label={`${file.name} - ${formatBytes(file.size)}`}
+            onDelete={() => {
+              setFile(null)
+              setError(null)
+            }}
+          />
+        )}
+        {(error || !file) && (
+          <>
+            <input
+              {...getInputProps()}
+              id="file-input"
+              type="file"
+              onChange={(e) => {
+                if (e.target.files) {
+                  handleFilesInput(e.target.files)
+                }
+              }}
+            />
+            <p>
+              {t(
+                'components:DropZone.dragAndDrop',
+                'Drag & drop files here, or click the button select files.',
+              )}
+            </p>
+            <label htmlFor="file-input">
+              <Button component="span" variant="outlined" startIcon={<CloudUpload />}>
+                {t('components:DropZone.button', 'Select files')}
+              </Button>
+            </label>
+          </>
+        )}
       </Paper>
-      {file && (
-        <div>
-          {file.name} - {formatBytes(file.size)}
-        </div>
-      )}
       {error && <Error error={error} />}
     </div>
   )
