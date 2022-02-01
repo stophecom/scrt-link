@@ -26,11 +26,14 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
       marginBottom: '1em',
     },
+    dropInfo: {
+      marginTop: ' .3em',
+    },
   }),
 )
 
 interface DropZoneProps {
-  onChange(file: File): void
+  onChange(file: File | null): void
 }
 const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
   const classes = useStyles()
@@ -52,7 +55,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
 
     // Custom error handling
     if (!files.length) {
-      setError(t('components:DropZone.error.noFiles', 'No file selected. Please try another file.'))
+      setError(t('components.DropZone.error.noFiles', 'No file selected. Please try another file.'))
       return
     }
 
@@ -60,7 +63,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
     if (files.length > 1) {
       setError(
         t(
-          'components:DropZone.error.tooManyFiles',
+          'components.DropZone.error.tooManyFiles',
           'Too many files. Only one file allowed at this point. You may compress multiple files into one zip file before uploading.',
         ),
       )
@@ -72,7 +75,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
 
     if (file.size > maxFileSize) {
       setError(
-        t('components:DropZone.error.fileToLarge', {
+        t('components.DropZone.error.fileToLarge', {
           defaultValue: 'File too large. Maximum file size is {{max}}.',
           max: formatBytes(maxFileSize),
         }),
@@ -87,7 +90,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
     <div {...getRootProps()}>
       <Backdrop open={isDragActive} style={{ zIndex: 100 }}>
         <Typography variant="h2" gutterBottom style={{ color: '#fff', textAlign: 'center' }}>
-          {t('components:DropZone.backdrop', `Drop It Like It's Hot`)}
+          {t('components.DropZone.backdrop', `Drop It Like It's Hot`)}
         </Typography>
       </Backdrop>
       <Paper elevation={0} variant="outlined" className={classes.paper}>
@@ -98,6 +101,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
             onDelete={() => {
               setFile(null)
               setError(null)
+              onChange(null)
             }}
           />
         )}
@@ -113,17 +117,20 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
                 }
               }}
             />
-            <p>
-              {t(
-                'components:DropZone.dragAndDrop',
-                'Drag & drop files here, or click the button select files.',
-              )}
-            </p>
             <label htmlFor="file-input">
-              <Button component="span" variant="outlined" startIcon={<CloudUpload />}>
-                {t('components:DropZone.button', 'Select files')}
+              <Button
+                component="span"
+                size="large"
+                color="primary"
+                variant="contained"
+                startIcon={<CloudUpload />}
+              >
+                {t('components.DropZone.button', 'Select files')}
               </Button>
             </label>
+            <Typography className={classes.dropInfo} variant="body2">
+              {t('components.DropZone.dragAndDrop', '…or drag & drop here.')}
+            </Typography>
           </>
         )}
       </Paper>

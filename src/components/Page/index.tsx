@@ -16,12 +16,21 @@ const H1 = styled(Typography)`
   hyphens: auto;
 `
 
+const Beta = styled('sup')`
+  color: ${({ theme }) => theme.palette.text.primary};
+  font-size: 0.4em;
+  position: relative;
+  bottom: 10px;
+  margin-left: 0.5em;
+`
+
 export interface PageProps extends SeoProps {
   title: string
   subtitle?: ReactNode
   intro?: ReactNode
   children: ReactNode
   hasMissingTranslations?: boolean
+  isBeta?: boolean
 }
 
 const Page = ({
@@ -30,6 +39,7 @@ const Page = ({
   children,
   intro,
   hasMissingTranslations,
+  isBeta,
   ...seoProps
 }: PageProps) => {
   const { t, i18n } = useTranslation()
@@ -39,7 +49,10 @@ const Page = ({
       <Seo title={title} {...seoProps} />
       <Box pt={3} mb={6}>
         <Box mb={1}>
-          <H1 variant="h1">{title}</H1>
+          <H1 variant="h1">
+            {title}
+            {isBeta && <Beta>BETA</Beta>}
+          </H1>
         </Box>
         {subtitle && (
           <Typography variant="subtitle1" component="div">
