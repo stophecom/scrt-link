@@ -3,7 +3,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 import { BaseDocumentData } from './types'
 
-export type SecretType = 'text' | 'url' | 'neogram'
+export type SecretType = 'text' | 'url' | 'neogram' | 'file' // Could be imported from scrt-link-core
 export interface SecretUrlFields {
   secretType: SecretType
   alias: string
@@ -14,9 +14,10 @@ export interface SecretUrlFields {
   receiptApi?: { slack: string }
   receiptEmail?: string
   receiptPhoneNumber?: string
+  file?: { bucket: string; key: string; type: string; name: string; size: number }
 }
 
-export type SecretUrlData = BaseDocumentData & SecretUrlFields
+export type SecretUrlData = BaseDocumentData & SecretUrlFields // Not used. @todo clean up types
 
 type SecretUrlDocument = mongoose.Document & SecretUrlFields
 
@@ -38,6 +39,13 @@ const SecretUrlSchema = new mongoose.Schema(
     },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
+    file: {
+      bucket: String,
+      key: String,
+      type: String,
+      name: String,
+      size: Number,
+    },
   },
   { timestamps: true },
 )
