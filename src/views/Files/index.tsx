@@ -4,6 +4,9 @@ import axios from 'axios'
 import { Box, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 import Alert from '@material-ui/lab/Alert'
+import { createSecret, generateAlias, generateEncryptionKey } from 'scrt-link-core'
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
+import { getBaseURL } from '@/utils'
 
 import { api } from '@/utils/api'
 import { CustomPage } from '@/types'
@@ -22,41 +25,68 @@ const FilesView: CustomPage = () => {
   const [progress, setProgress] = useState(0)
   const [file, setFile] = useState<File | null>(null)
   const [error, setError] = useState(null)
+  const [secretLink, setSecretLink] = useState<string | null>(null)
 
-  const { t } = useTranslation('common')
+  const { t, i18n } = useTranslation('common')
 
   const uploadFile = async (file: File) => {
     const filename = encodeURIComponent(file.name)
-    const { url, fields } = await api(`/files?file=${filename}`)
-    const formData = new FormData()
 
-    Object.entries(fields).forEach(([key, value]) => {
-      if (typeof value !== 'string') {
-        return
-      }
-      formData.append(key, value)
-    })
-    formData.append('Content-type', 'application/octet-stream') // Setting content type a binary file.
-    formData.append('file', file)
+    try {
+      const { url, fields } = await api(`/files?file=${filename}`)
 
-    // Using axios instead of fetch for progress info
-    axios
-      .request({
-        method: 'post',
+      // Save reference to DB
+      const alias = generateAlias()
+      const encryptionKey = generateEncryptionKey()
+
+      await createSecret(
+        'You received a file!',
+        {
+          alias,
+          encryptionKey,
+          secretType: 'file',
+          file: {
+            bucket: 'development', // pass depending
+            key: filename,
+            name: file.name,
+            size: file.size,
+            fileType: file.type,
+          },
+        },
+        getBaseURL(),
+      )
+
+      // Generate secret link (don't wait until everything is done.)
+      const link = getAbsoluteLocalizedUrl(`/l/${alias}#${encryptionKey}`, i18n.language)
+      setSecretLink(link)
+
+      // Post file to S3
+      const formData = new FormData()
+      Object.entries(fields).forEach(([key, value]) => {
+        if (typeof value !== 'string') {
+          return
+        }
+        formData.append(key, value)
+      })
+      formData.append('Content-type', 'application/octet-stream') // Setting content type a binary file.
+      formData.append('file', file)
+
+      // Using axios instead of fetch for progress info
+      await axios.request({
+        method: 'POST',
         url,
         data: formData,
         onUploadProgress: (p) => {
           setProgress(p.loaded / p.total)
         },
       })
-      .then(() => {
-        setProgress(1)
-      })
-      .catch((error) => {
-        console.error(error)
-        setProgress(0)
-        setError(t('common:views.Files.error.fileUpload', 'Upload failed.'))
-      })
+
+      setProgress(1)
+    } catch (error) {
+      console.error(error)
+      setProgress(0)
+      setError(t('common:views.Files.error.fileUpload', 'Upload failed.'))
+    }
   }
 
   return (
@@ -65,10 +95,11 @@ const FilesView: CustomPage = () => {
       subtitle={t('common:views.Files.subtitle', 'Share end-to-end encrypted files. One time.')}
       isBeta
     >
+      {secretLink && <Alert severity="info">{secretLink}</Alert>}
+
       {progress === 1 && (
         <Alert severity="success">{t('common:views.Files.success', 'Upload successful!')}</Alert>
       )}
-
       <DropZone
         onChange={(file) => {
           setFile(file)
@@ -76,7 +107,6 @@ const FilesView: CustomPage = () => {
           setError(null)
         }}
       />
-
       <Box key="upload" mt={1} display="flex" alignItems="center" flexDirection={'column'}>
         <BaseButton
           fullWidth={true}
@@ -106,7 +136,6 @@ const FilesView: CustomPage = () => {
           </>
         )}
       </Box>
-
       {error && <Error error={error} />}
     </Page>
   )

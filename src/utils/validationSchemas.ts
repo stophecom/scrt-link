@@ -22,7 +22,12 @@ const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 // @todo
-const secretTypes = ['text' as SecretType, 'url' as SecretType, 'neogram' as SecretType]
+const secretTypes = [
+  'text' as SecretType,
+  'url' as SecretType,
+  'neogram' as SecretType,
+  'file' as SecretType,
+]
 const readReceiptMethods = [
   'none' as ReadReceiptMethod,
   'sms' as ReadReceiptMethod,
@@ -105,6 +110,7 @@ export const getValidationSchemaByType = (
   })
 
   const schemataBySecretTypeMap = {
+    file: { ...messageValidation(maxMessageLength) }, // @todo
     url: urlValidation(t),
     text: messageValidation(maxMessageLength),
     neogram: {
