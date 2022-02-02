@@ -31,7 +31,10 @@ const handler: NextApiHandler = async (req, res) => {
               key: req.query.file,
             },
             Expires: 60, // seconds
-            Conditions: [['content-length-range', 0, maxFileSize]],
+            Conditions: [
+              ['content-length-range', 0, maxFileSize],
+              { 'Content-Type': 'application/octet-stream' },
+            ],
           })
 
           res.status(200).json(post)

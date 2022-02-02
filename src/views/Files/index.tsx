@@ -36,6 +36,7 @@ const FilesView: CustomPage = () => {
       }
       formData.append(key, value)
     })
+    formData.append('Content-type', 'application/octet-stream') // Setting content type a binary file.
     formData.append('file', file)
 
     // Using axios instead of fetch for progress info
