@@ -26,7 +26,7 @@ const handler: NextApiHandler = async (req, res) => {
       {
         try {
           const post = await s3.createPresignedPost({
-            Bucket: process.env.FLOW_S3_BUCKET,
+            Bucket: (req.query.bucket as string) || 'development',
             Fields: {
               key: req.query.file,
             },
