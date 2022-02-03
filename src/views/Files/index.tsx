@@ -20,6 +20,7 @@ const Disclaimer = styled(Typography)`
   margin-top: 0.4em;
   margin-bottom: 0.3em;
 `
+const bucket = process.env.NEXT_PUBLIC_FLOW_S3_BUCKET
 
 const FilesView: CustomPage = () => {
   const [progress, setProgress] = useState(0)
@@ -29,11 +30,13 @@ const FilesView: CustomPage = () => {
 
   const { t, i18n } = useTranslation('common')
 
+  type SignedUrlResponse = { url: string }
+
   const uploadFile = async (file: File) => {
     const filename = encodeURIComponent(file.name)
 
     try {
-      const { url, fields } = await api(`/files?file=${filename}`)
+      const { url } = await api<SignedUrlResponse>(`/files?file=${filename}&bucket=${bucket}`)
 
       // Save reference to DB
       const alias = generateAlias()
@@ -46,7 +49,7 @@ const FilesView: CustomPage = () => {
           encryptionKey,
           secretType: 'file',
           file: {
-            bucket: 'development', // pass depending
+            bucket: bucket,
             key: filename,
             name: file.name,
             size: file.size,
@@ -62,19 +65,13 @@ const FilesView: CustomPage = () => {
 
       // Post file to S3
       const formData = new FormData()
-      Object.entries(fields).forEach(([key, value]) => {
-        if (typeof value !== 'string') {
-          return
-        }
-        formData.append(key, value)
-      })
       formData.append('Content-type', 'application/octet-stream') // Setting content type a binary file.
       formData.append('file', file)
 
       // Using axios instead of fetch for progress info
-      await axios.request({
-        method: 'POST',
-        url,
+      axios.request({
+        method: 'PUT',
+        url: url,
         data: formData,
         onUploadProgress: (p) => {
           setProgress(p.loaded / p.total)
