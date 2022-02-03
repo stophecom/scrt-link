@@ -639,6 +639,17 @@
     "@aws-sdk/types" "3.49.0"
     tslib "^2.3.0"
 
+"@aws-sdk/s3-presigned-post@^3.49.0":
+  version "3.49.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/s3-presigned-post/-/s3-presigned-post-3.49.0.tgz#e4d4a7fbf3a8a09e9e5078626d24ea161f0d4062"
+  integrity sha512-WivXRdpNLodrI/NcDeKDsLGOiAeTuTAFjO/hruiZCvpCltp5HNTcl0qI0D/z+lWPBxLV1oDcE0wsFmCBb4OnkQ==
+  dependencies:
+    "@aws-sdk/signature-v4" "3.49.0"
+    "@aws-sdk/types" "3.49.0"
+    "@aws-sdk/util-format-url" "3.49.0"
+    "@aws-sdk/util-hex-encoding" "3.49.0"
+    tslib "^2.3.0"
+
 "@aws-sdk/s3-request-presigner@^3.49.0":
   version "3.49.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/s3-request-presigner/-/s3-request-presigner-3.49.0.tgz#1703b1193b4b8a4ee861396e84587bb3e22dbd5a"
