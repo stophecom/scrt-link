@@ -13,6 +13,8 @@
     "parse-translations": "i18next 'src/**/*.{ts,tsx}' 'pages/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.49.0",
+    "@aws-sdk/s3-request-presigner": "^3.49.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
@@ -23,7 +25,6 @@
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/styled-components": "^5.1.5",
     "accept-language-parser": "^1.5.0",
-    "aws-sdk": "^2.1066.0",
     "axios": "^0.25.0",
     "clsx": "^1.1.1",
     "dotenv": "^14.2.0",
