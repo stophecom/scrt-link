@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Box } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
@@ -12,6 +12,8 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import { formatBytes } from '@/utils/index'
+import { api } from '@/utils/api'
 import { CustomError } from '@/api/utils/createError'
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
 import { getBaseURL } from '@/utils'
@@ -61,6 +63,7 @@ const AliasView: CustomPage = () => {
 
   const [hasCopied, setHasCopied] = useState(false)
   const [secret, setSecret] = useState({} as Partial<SecretState>)
+  const [s3FileUrl, setS3FileUrl] = useState<URL | null>(null)
   const [error, setError] = useState('' as Error['message'])
 
   const {
@@ -69,6 +72,7 @@ const AliasView: CustomPage = () => {
     secretType = 'text',
     neogramDestructionTimeout,
     neogramDestructionMessage,
+    file,
   } = secret
 
   // Cleanup state
@@ -103,9 +107,18 @@ const AliasView: CustomPage = () => {
 
         const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
         setSecret({ ...secret })
+        console.log(secret)
+
+        // Download files
+        if (secret.secretType === 'file' && secret?.file) {
+          console.log(secret)
+          const { key, bucket } = secret.file
+          const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
+          setS3FileUrl(url)
+        }
 
         // eslint-disable-next-line no-restricted-globals
-        history.replaceState(null, 'Secret destroyed', '🔥')
+        // history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (error) {
         let err = error as CustomError
 
@@ -129,7 +142,7 @@ const AliasView: CustomPage = () => {
     password: '',
   }
 
-  const handleSubmit: OnSubmit<PasswordForm> = async (values, formikHelpers) => {
+  const handlePasswordSubmit: OnSubmit<PasswordForm> = async (values, formikHelpers) => {
     try {
       const { message, password } = values
       const result = decryptMessage(message, password)
@@ -164,7 +177,7 @@ const AliasView: CustomPage = () => {
             initialValues={initialValues}
             validationSchema={passwordValidationSchema}
             validateOnMount
-            onSubmit={handleSubmit}
+            onSubmit={handlePasswordSubmit}
           >
             {({ isValid, isSubmitting, setFieldValue }) => {
               return (
@@ -211,6 +224,67 @@ const AliasView: CustomPage = () => {
                 setTimeout(() => router.push('/'), 100)
               }}
             />
+          )
+        }
+        case 'file': {
+          if (!file) {
+            setError('File information missing!')
+            return
+          }
+
+          const { name, fileType, size } = file
+
+          return (
+            <Page
+              title={t('common:views.Alias.file.title', 'Knock knock')}
+              subtitle={t('common:views.Alias.file.subtitle', 'You received a secret file:')}
+              noindex
+            >
+              <Box mb={3}>
+                <Box mb={1}>
+                  <Alert severity="info">
+                    {t(
+                      'common:views.Alias.file.warning',
+                      'Important! We have absolutely no knowledge about the contents of the file. Be sure to trust the sender!',
+                    )}
+                  </Alert>
+                </Box>
+
+                <Paper elevation={3} className={clsx(classes.break, classes.message)}>
+                  <Box px={4} pb={2}>
+                    <Box mb={3}>
+                      <Typography variant="body2">
+                        <br />
+                        <strong>Name:</strong> {name}
+                        <br />
+                        <strong>Type:</strong> {fileType}
+                        <br />
+                        <strong>Size:</strong> {formatBytes(size)}
+                        <br />
+                        <br />
+                        <em>Optional message:</em> {message}
+                      </Typography>
+                    </Box>
+                    {s3FileUrl && (
+                      <BaseButton
+                        component={'a'}
+                        href={s3FileUrl}
+                        download
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                      >
+                        Decrypt and Download
+                      </BaseButton>
+                    )}
+                  </Box>
+                </Paper>
+
+                <Box mt={2}>
+                  <ReplyButton />
+                </Box>
+              </Box>
+            </Page>
           )
         }
         default: {
