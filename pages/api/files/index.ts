@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 import { getSession } from 'next-auth/react'
-import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
+import { GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post'
 
@@ -37,7 +37,7 @@ const handler: NextApiHandler = async (req, res) => {
           const post = await createPresignedPost(s3Client, {
             Bucket: (req.query.bucket as string) || 'development',
             Fields: {
-              key: req.query.file as string,
+              acl: 'bucket-owner-full-control',
             },
             Key: req.query.file as string,
             Expires: 60, // seconds
@@ -60,10 +60,11 @@ const handler: NextApiHandler = async (req, res) => {
           const bucketParams = {
             Bucket: req.query.bucket as string,
             Key: req.query.file as string,
+            ACL: 'public-read',
           }
 
           const url = await getSignedUrl(s3Client, new GetObjectCommand(bucketParams), {
-            expiresIn: 10,
+            expiresIn: 60,
           })
 
           res.status(200).json({ url })
