@@ -229,7 +229,7 @@ const AliasView: CustomPage = () => {
         case 'file': {
           if (!file) {
             setError('File information missing!')
-            return
+            return null
           }
 
           const { name, fileType, size } = file
@@ -265,7 +265,7 @@ const AliasView: CustomPage = () => {
                         <em>Optional message:</em> {message}
                       </Typography>
                     </Box>
-                    {s3FileUrl && (
+                    {typeof s3FileUrl === 'string' && (
                       <BaseButton
                         component={'a'}
                         href={s3FileUrl}
