@@ -29,6 +29,7 @@ import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
+import { decryptFile } from '@/utils/file'
 
 // t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
 
@@ -63,7 +64,7 @@ const AliasView: CustomPage = () => {
 
   const [hasCopied, setHasCopied] = useState(false)
   const [secret, setSecret] = useState({} as Partial<SecretState>)
-  const [s3FileUrl, setS3FileUrl] = useState<URL | null>(null)
+  const [s3FileUrl, setS3FileUrl] = useState<string>()
   const [error, setError] = useState('' as Error['message'])
 
   const {
@@ -114,7 +115,13 @@ const AliasView: CustomPage = () => {
           console.log(secret)
           const { key, bucket } = secret.file
           const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
-          setS3FileUrl(url)
+
+          const response = await fetch(url)
+          const encryptedFile = await response.blob()
+          const decryptedFile = await decryptFile(encryptedFile, decryptionKey, secret.file.name)
+
+          const objectUrl = window.URL.createObjectURL(decryptedFile)
+          setS3FileUrl(objectUrl)
         }
 
         // eslint-disable-next-line no-restricted-globals
@@ -269,7 +276,7 @@ const AliasView: CustomPage = () => {
                       <BaseButton
                         component={'a'}
                         href={s3FileUrl}
-                        download
+                        download={name}
                         variant="contained"
                         color="primary"
                         size="large"

@@ -14,6 +14,7 @@ import Page from '@/components/Page'
 import DropZone from '@/components/DropZone'
 import BaseButton from '@/components/BaseButton'
 import { Error } from '@/components/Error'
+import { encryptFile, generateEncryptionKeyString } from '@/utils/file'
 
 const Disclaimer = styled(Typography)`
   opacity: 0.7;
@@ -36,14 +37,17 @@ const FilesView: CustomPage = () => {
     const filename = encodeURIComponent(file.name)
 
     try {
+      const alias = generateAlias()
+      // const encryptionKey = generateEncryptionKey() //old method
+      const encryptionKey = await generateEncryptionKeyString()
+
+      const { encryptedFile } = await encryptFile(file, encryptionKey)
+
       const { url, fields } = await api<PresignedPostResponse>(
         `/files?file=${filename}&bucket=${bucket}`,
       )
 
       // Save reference to DB
-      const alias = generateAlias()
-      const encryptionKey = generateEncryptionKey()
-
       await createSecret(
         'You received a file!',
         {
@@ -74,7 +78,7 @@ const FilesView: CustomPage = () => {
         formData.append(key, value)
       })
       formData.append('Content-type', 'application/octet-stream') // Setting content type a binary file.
-      formData.append('file', file)
+      formData.append('file', encryptedFile)
 
       // Using axios instead of fetch for progress info
       await axios.request({
