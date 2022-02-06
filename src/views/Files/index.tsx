@@ -14,7 +14,7 @@ import Page from '@/components/Page'
 import DropZone from '@/components/DropZone'
 import BaseButton from '@/components/BaseButton'
 import { Error } from '@/components/Error'
-import { encryptFile, generateEncryptionKeyString } from '@/utils/crypto'
+import { encryptFile, encryptString, generateEncryptionKeyString } from '@/utils/crypto'
 
 const Disclaimer = styled(Typography)`
   opacity: 0.7;
@@ -43,6 +43,16 @@ const FilesView: CustomPage = () => {
 
       const encryptedFile = await encryptFile(file, encryptionKey)
 
+      const fileMeta = {
+        bucket: bucket,
+        key: filename,
+        name: file.name,
+        size: file.size,
+        fileType: file.type,
+      }
+
+      const encryptedFileMeta = await encryptString(JSON.stringify(fileMeta), encryptionKey)
+
       const { url, fields } = await api<PresignedPostResponse>(
         `/files?file=${filename}&bucket=${bucket}`,
       )
@@ -54,13 +64,7 @@ const FilesView: CustomPage = () => {
           alias,
           encryptionKey,
           secretType: 'file',
-          file: {
-            bucket: bucket,
-            key: filename,
-            name: file.name,
-            size: file.size,
-            fileType: file.type,
-          },
+          meta: encryptedFileMeta,
         },
         getBaseURL(),
       )

@@ -29,9 +29,17 @@ import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
-import { decryptFile } from '@/utils/crypto'
+import { decryptFile, decryptString } from '@/utils/crypto'
 
 // t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
+
+type FileMeta = {
+  bucket: string
+  key: string
+  name: string
+  size: number
+  fileType: string
+}
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'>
@@ -65,7 +73,7 @@ const AliasView: CustomPage = () => {
 
   const [hasCopied, setHasCopied] = useState(false)
   const [secret, setSecret] = useState({} as Partial<SecretState>)
-  const [s3FileUrl, setS3FileUrl] = useState<string>()
+  const [file, setFile] = useState<FileMeta & { url: string }>()
   const [error, setError] = useState('' as Error['message'])
 
   const {
@@ -74,7 +82,6 @@ const AliasView: CustomPage = () => {
     secretType = 'text',
     neogramDestructionTimeout,
     neogramDestructionMessage,
-    file,
   } = secret
 
   // Cleanup state
@@ -111,16 +118,24 @@ const AliasView: CustomPage = () => {
         setSecret({ ...secret })
 
         // Download files
-        if (secret.secretType === 'file' && secret?.file) {
-          const { key, bucket } = secret.file
+        if (secret.secretType === 'file' && secret?.meta) {
+          const decryptedFileMeta = await decryptString(secret.meta, decryptionKey)
+          const meta: FileMeta = JSON.parse(decryptedFileMeta)
+
+          const { key, bucket, name } = meta
+
+          if (!key) {
+            throw new Error(`Couldn't get file meta data.`)
+          }
+
           const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
 
           const response = await fetch(url)
           const encryptedFile = await response.blob()
-          const decryptedFile = await decryptFile(encryptedFile, decryptionKey, secret.file.name)
+          const decryptedFile = await decryptFile(encryptedFile, decryptionKey, name)
 
           const objectUrl = window.URL.createObjectURL(decryptedFile)
-          setS3FileUrl(objectUrl)
+          setFile({ ...meta, url: objectUrl })
         }
 
         // eslint-disable-next-line no-restricted-globals
@@ -234,11 +249,10 @@ const AliasView: CustomPage = () => {
         }
         case 'file': {
           if (!file) {
-            setError('File information missing!')
             return null
           }
 
-          const { name, fileType, size } = file
+          const { name, fileType, size, url } = file
 
           return (
             <Page
@@ -271,10 +285,10 @@ const AliasView: CustomPage = () => {
                         <em>Optional message:</em> {message}
                       </Typography>
                     </Box>
-                    {typeof s3FileUrl === 'string' && (
+                    {typeof url === 'string' && (
                       <BaseButton
                         component={'a'}
-                        href={s3FileUrl}
+                        href={url}
                         download={name}
                         variant="contained"
                         color="primary"

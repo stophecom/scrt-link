@@ -14,7 +14,7 @@ export interface SecretUrlFields {
   receiptApi?: { slack: string }
   receiptEmail?: string
   receiptPhoneNumber?: string
-  file?: { bucket: string; key: string; fileType: string; name: string; size: number }
+  meta?: string
 }
 
 export type SecretUrlData = BaseDocumentData & SecretUrlFields // Not used. @todo clean up types
@@ -39,13 +39,7 @@ const SecretUrlSchema = new mongoose.Schema(
     },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
-    file: {
-      bucket: { type: String },
-      key: { type: String, trim: true },
-      fileType: { type: String, trim: true },
-      name: { type: String, trim: true },
-      size: { type: Number },
-    },
+    meta: { type: String, required: false },
   },
   { timestamps: true },
 )
