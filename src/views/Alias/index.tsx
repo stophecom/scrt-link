@@ -29,7 +29,7 @@ import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
-import { decryptFile } from '@/utils/file'
+import { decryptFile } from '@/utils/crypto'
 
 // t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
 

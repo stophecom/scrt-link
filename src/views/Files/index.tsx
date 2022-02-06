@@ -14,7 +14,7 @@ import Page from '@/components/Page'
 import DropZone from '@/components/DropZone'
 import BaseButton from '@/components/BaseButton'
 import { Error } from '@/components/Error'
-import { encryptFile, generateEncryptionKeyString } from '@/utils/file'
+import { encryptFile, generateEncryptionKeyString } from '@/utils/crypto'
 
 const Disclaimer = styled(Typography)`
   opacity: 0.7;
