@@ -8,7 +8,6 @@ export const generateEncryptionKeyString = async () => {
     ['encrypt', 'decrypt'],
   )
   const exportedKey = await crypto.subtle.exportKey('jwk', key)
-  console.log({ exportedKey })
 
   if (!exportedKey.k) {
     throw Error('Failed to generate encryption key.')

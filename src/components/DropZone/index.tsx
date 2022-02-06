@@ -5,9 +5,9 @@ import { CloudUpload } from '@material-ui/icons'
 import { useTranslation } from 'next-i18next'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
-import { formatBytes } from '@/utils/index'
 import { Error } from '@/components/Error'
 import { limits } from '@/constants'
+import usePrettyBytes from '@/hooks/usePrettyBytes'
 
 const maxFileSize = limits.visitor.maxFileSize // @todo
 
@@ -38,6 +38,8 @@ interface DropZoneProps {
 const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
   const classes = useStyles()
   const { t } = useTranslation('components')
+  const prettyBytes = usePrettyBytes()
+
   const [error, setError] = useState(null)
   const [file, setFile] = useState<File | null>(null)
 
@@ -77,7 +79,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
       setError(
         t('components.DropZone.error.fileToLarge', {
           defaultValue: 'File too large. Maximum file size is {{max}}.',
-          max: formatBytes(maxFileSize),
+          max: prettyBytes(maxFileSize),
         }),
       )
       return
@@ -97,7 +99,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
         {file && (
           <Chip
             color="default"
-            label={`${file.name} - ${formatBytes(file.size)}`}
+            label={`${file.name} - ${prettyBytes(file.size)}`}
             onDelete={() => {
               setFile(null)
               setError(null)

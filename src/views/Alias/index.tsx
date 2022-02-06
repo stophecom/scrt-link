@@ -12,7 +12,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { formatBytes } from '@/utils/index'
+import usePrettyBytes from '@/hooks/usePrettyBytes'
 import { api } from '@/utils/api'
 import { CustomError } from '@/api/utils/createError'
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const AliasView: CustomPage = () => {
   const classes = useStyles()
   const router = useRouter()
+  const prettyBytes = usePrettyBytes()
   const { t } = useTranslation()
 
   const { alias, preview } = router.query
@@ -108,11 +109,9 @@ const AliasView: CustomPage = () => {
 
         const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
         setSecret({ ...secret })
-        console.log(secret)
 
         // Download files
         if (secret.secretType === 'file' && secret?.file) {
-          console.log(secret)
           const { key, bucket } = secret.file
           const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
 
@@ -266,7 +265,7 @@ const AliasView: CustomPage = () => {
                         <br />
                         <strong>Type:</strong> {fileType}
                         <br />
-                        <strong>Size:</strong> {formatBytes(size)}
+                        <strong>Size:</strong> {prettyBytes(size)}
                         <br />
                         <br />
                         <em>Optional message:</em> {message}
