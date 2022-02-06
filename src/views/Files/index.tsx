@@ -41,7 +41,7 @@ const FilesView: CustomPage = () => {
       // const encryptionKey = generateEncryptionKey() //old method
       const encryptionKey = await generateEncryptionKeyString()
 
-      const { encryptedFile } = await encryptFile(file, encryptionKey)
+      const encryptedFile = await encryptFile(file, encryptionKey)
 
       const { url, fields } = await api<PresignedPostResponse>(
         `/files?file=${filename}&bucket=${bucket}`,

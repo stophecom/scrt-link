@@ -37,7 +37,8 @@ export const encryptFile = async (file: File, encryptionKey: string) => {
   const cryptoKey = await importKeyFromString(encryptionKey)
   const result = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, cryptoKey, data)
 
-  return { encryptedFile: new Blob([iv, result]) } // Adding IV
+  const encryptedFile = new Blob([iv, result]) // Adding IV
+  return encryptedFile
 }
 
 export const decryptFile = async (file: Blob, decryptionKey: string, fileName: string) => {
