@@ -14,7 +14,7 @@ import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import { getS3Client } from '@/api/utils/s3'
-import { limits } from '@/constants'
+import { limits, MB } from '@/constants'
 
 const handler: NextApiHandler = async (req, res) => {
   const models = req.models
@@ -23,8 +23,8 @@ const handler: NextApiHandler = async (req, res) => {
   if (!models) {
     throw createError(500, 'Could not find db connection')
   }
-
-  let maxFileSize = limits.visitor.maxFileSize // @todo
+  // @todo Adjust to customer role. Adding ~ 40% for encryption.
+  let maxFileSize = limits.premium.maxFileSize + limits.premium.maxFileSize * 0.4
 
   if (session) {
     // @todo set maxFileSize based on customer role

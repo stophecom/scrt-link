@@ -229,14 +229,23 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         formData.append('file', encryptedFile)
 
         // Using axios instead of fetch for progress info
-        await axios.request({
-          method: 'POST',
-          url,
-          data: formData,
-          onUploadProgress: (p) => {
-            setProgress(p.loaded / p.total)
-          },
-        })
+        await axios
+          .request({
+            method: 'POST',
+            url,
+            data: formData,
+            onUploadProgress: (p) => {
+              setProgress(p.loaded / p.total)
+              dispatch(
+                doSuccess({
+                  progress: p.loaded / p.total,
+                }),
+              )
+            },
+          })
+          .catch((err) => {
+            throw Error(`File upload failed. Make sure the file is within the size limit.`)
+          })
 
         setProgress(1)
       }
@@ -354,6 +363,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                   <Box position="relative" py={1}>
                     {secretType === 'file' && (
                       <DropZone
+                        maxFileSize={getLimits(customer?.role || 'visitor').maxFileSize}
                         onChange={(file) => {
                           setFile(file)
                         }}

@@ -33,10 +33,13 @@ const Result = dynamic(() => import('@/components/ShareSecretResult'))
 const FormCreateSecret = dynamic(() => import('@/components/FormCreateSecret'))
 
 type Request = Pick<SecretUrlFields, 'alias'> & { encryptionKey: string }
-type Success = SecretPost & {
-  encryptionKey: string
-  readReceiptMethod: ReadReceiptMethod
-}
+type Success = Partial<
+  SecretPost & {
+    progress: number
+    encryptionKey: string
+    readReceiptMethod: ReadReceiptMethod
+  }
+>
 export interface State {
   data: Maybe<Partial<Success & Request>>
   error: Maybe<string>
@@ -74,7 +77,7 @@ const reducer = (state: State, action: Action): State => {
     case 'request':
       return { ...state, data: action.data, error: undefined }
     case 'success':
-      return { ...state, data: action.data, error: undefined }
+      return { ...state, data: { ...state.data, ...action.data }, error: undefined }
     case 'error':
       const { error } = action
 

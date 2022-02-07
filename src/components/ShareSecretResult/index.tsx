@@ -185,7 +185,8 @@ Remember it, we use it for the read receipt.`,
                 {data?.message || (
                   <>
                     <CircularProgress size=".8em" color="inherit" />{' '}
-                    {t('common:components.ShareSecretResult.loading', 'Encrypt and save…')}
+                    {t('common:components.ShareSecretResult.loading', 'Encrypt and save…')}{' '}
+                    {data?.progress && Math.round(data?.progress * 100)} %
                   </>
                 )}
               </Typography>
