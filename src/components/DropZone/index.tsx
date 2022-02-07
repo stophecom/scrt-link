@@ -27,6 +27,13 @@ const useStyles = makeStyles((theme: Theme) =>
     dropInfo: {
       marginTop: ' .3em',
     },
+    maxFileSizeInfo: {
+      opacity: 0.5,
+      fontSize: '.8em',
+      position: 'absolute',
+      right: '5px',
+      bottom: '5px',
+    },
   }),
 )
 
@@ -126,11 +133,17 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) 
                 variant="contained"
                 startIcon={<CloudUpload />}
               >
-                {t('components.DropZone.button', 'Select files')}
+                {t('components.DropZone.button', 'Select file')}
               </Button>
             </label>
             <Typography className={classes.dropInfo} variant="body2">
               {t('components.DropZone.dragAndDrop', '…or drag & drop here.')}
+            </Typography>
+            <Typography className={classes.maxFileSizeInfo} variant="body2">
+              {t('components.DropZone.maxFileSize', {
+                defaultValue: `Max. {{maxSize}}`,
+                maxSize: prettyBytes(maxFileSize),
+              })}
             </Typography>
           </>
         )}
