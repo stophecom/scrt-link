@@ -12,6 +12,7 @@ interface CopyToClipboardButtonProps extends BaseButtonProps {
 const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({ text, ...button }) => {
   const { t } = useTranslation()
   const [hasCopied, setHasCopied] = useState(false)
+
   return (
     <CopyToClipboard
       text={text}

@@ -12,6 +12,7 @@ import { api } from '@/utils/api'
 import { CustomPage } from '@/types'
 import Page from '@/components/Page'
 import DropZone from '@/components/DropZone'
+import CopyToClipboardButton from '@/components/CopyToClipboardButton'
 import BaseButton from '@/components/BaseButton'
 import { Error } from '@/components/Error'
 import { encryptFile, encryptString, generateEncryptionKeyString } from '@/utils/crypto'
@@ -108,11 +109,20 @@ const FilesView: CustomPage = () => {
       subtitle={t('common:views.Files.subtitle', 'Share end-to-end encrypted files. One time.')}
       isBeta
     >
-      {secretLink && <Alert severity="info">{secretLink}</Alert>}
-
       {progress === 1 && (
-        <Alert severity="success">{t('common:views.Files.success', 'Upload successful!')}</Alert>
+        <Box mb={1}>
+          <Alert severity="success">{t('common:views.Files.success', 'Upload successful!')}</Alert>
+        </Box>
       )}
+      {secretLink && (
+        <Box mb={1}>
+          <Alert severity="info">
+            <Box mb={1}>{secretLink}</Box>
+            <CopyToClipboardButton text={secretLink} size="small" />
+          </Alert>
+        </Box>
+      )}
+
       <DropZone
         onChange={(file) => {
           setFile(file)
