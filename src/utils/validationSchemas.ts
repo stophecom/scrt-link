@@ -110,7 +110,13 @@ export const getValidationSchemaByType = (
   })
 
   const schemataBySecretTypeMap = {
-    file: { ...messageValidation(maxMessageLength) }, // @todo
+    file: {
+      message: Yup.string()
+        .label(t('common:validation.message', 'Message'))
+        .min(1)
+        .max(maxMessageLength)
+        .trim(),
+    },
     url: urlValidation(t),
     text: messageValidation(maxMessageLength),
     neogram: {

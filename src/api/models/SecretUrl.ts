@@ -7,7 +7,7 @@ export type SecretType = 'text' | 'url' | 'neogram' | 'file' // Could be importe
 export interface SecretUrlFields {
   secretType: SecretType
   alias: string
-  message: string
+  message?: string
   isEncryptedWithUserPassword: boolean
   neogramDestructionMessage?: string
   neogramDestructionTimeout?: number
