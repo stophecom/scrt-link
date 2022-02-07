@@ -108,7 +108,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       res.json({
         secretType,
-        message: decryptAES(message),
+        message: message && decryptAES(message),
         isEncryptedWithUserPassword,
         ...(secretType === 'neogram'
           ? {

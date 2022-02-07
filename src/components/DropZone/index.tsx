@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface DropZoneProps {
   onChange(file: File | null): void
-  maxFileSize: number
+  maxFileSize?: number
 }
 const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) => {
   const classes = useStyles()
