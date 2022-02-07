@@ -13,7 +13,7 @@ export const bucketParams = {
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
-import { s3Client } from '@/api/utils/s3'
+import { getS3Client } from '@/api/utils/s3'
 import { limits } from '@/constants'
 
 const handler: NextApiHandler = async (req, res) => {
@@ -33,13 +33,17 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET':
       {
+        const Key: string = req.query.file as string
+        const Bucket: string = (req.query.bucket as string) || 'development'
+
         try {
-          const post = await createPresignedPost(s3Client, {
-            Bucket: (req.query.bucket as string) || 'development',
+          const post = await createPresignedPost(getS3Client(), {
+            Bucket,
             Fields: {
               acl: 'bucket-owner-full-control',
+              key: Key,
             },
-            Key: req.query.file as string,
+            Key,
             Expires: 60, // seconds
             Conditions: [
               ['content-length-range', 0, maxFileSize],
@@ -63,7 +67,7 @@ const handler: NextApiHandler = async (req, res) => {
             ACL: 'public-read',
           }
 
-          const url = await getSignedUrl(s3Client, new GetObjectCommand(bucketParams), {
+          const url = await getSignedUrl(getS3Client(), new GetObjectCommand(bucketParams), {
             expiresIn: 60,
           })
 
