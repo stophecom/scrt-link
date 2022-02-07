@@ -73,7 +73,7 @@ const AliasView: CustomPage = () => {
 
   const [hasCopied, setHasCopied] = useState(false)
   const [secret, setSecret] = useState({} as Partial<SecretState>)
-  const [file, setFile] = useState<FileMeta & { url: string }>()
+  const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
   const [error, setError] = useState('' as Error['message'])
 
   const titles = [
@@ -137,6 +137,8 @@ const AliasView: CustomPage = () => {
             throw new Error(`Couldn't get file meta data.`)
           }
 
+          setFile({ ...meta })
+
           const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
           const response = await fetch(url)
 
@@ -148,7 +150,9 @@ const AliasView: CustomPage = () => {
           const decryptedFile = await decryptFile(encryptedFile, decryptionKey, name)
 
           const objectUrl = window.URL.createObjectURL(decryptedFile)
-          setFile({ ...meta, url: objectUrl })
+          setFile((prevState) => {
+            return { ...prevState, url: objectUrl }
+          })
         }
 
         // eslint-disable-next-line no-restricted-globals
@@ -279,7 +283,7 @@ const AliasView: CustomPage = () => {
           )
         }
         case 'file': {
-          if (!file) {
+          if (!file.size) {
             return null
           }
           const { name, fileType, size, url } = file
@@ -315,18 +319,19 @@ const AliasView: CustomPage = () => {
                         <em>Optional message:</em> {message}
                       </Typography>
                     </Box>
-                    {typeof url === 'string' && (
-                      <BaseButton
-                        component={'a'}
-                        href={url}
-                        download={name}
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                      >
-                        Decrypt and Download
-                      </BaseButton>
-                    )}
+
+                    <BaseButton
+                      component={'a'}
+                      href={url}
+                      download={name}
+                      variant="contained"
+                      loading={!url}
+                      disabled={!url}
+                      color="primary"
+                      size="large"
+                    >
+                      Decrypt and Download
+                    </BaseButton>
                   </Box>
                 </Paper>
 
