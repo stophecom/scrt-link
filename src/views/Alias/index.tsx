@@ -76,6 +76,15 @@ const AliasView: CustomPage = () => {
   const [file, setFile] = useState<FileMeta & { url: string }>()
   const [error, setError] = useState('' as Error['message'])
 
+  const titles = [
+    t('common:views.Alias.title1', 'Shhh'),
+    t('common:views.Alias.title2', 'Knock Knock'),
+    t('common:views.Alias.title3', 'Ding Dong'),
+    t('common:views.Alias.title4', 'Hello Lovely'),
+    '🤫',
+  ]
+  var randomTitle = titles[Math.floor(Math.random() * titles.length)]
+
   const {
     message,
     isEncryptedWithUserPassword = false,
@@ -256,7 +265,7 @@ const AliasView: CustomPage = () => {
 
           return (
             <Page
-              title={t('common:views.Alias.file.title', 'Knock knock')}
+              title={randomTitle}
               subtitle={t('common:views.Alias.file.subtitle', 'You received a secret file:')}
               noindex
             >
@@ -310,7 +319,7 @@ const AliasView: CustomPage = () => {
         default: {
           return (
             <Page
-              title={t('common:views.Alias.title', 'Shhh')}
+              title={randomTitle}
               subtitle={t('common:views.Alias.subtitle', 'You received a secret:')}
               noindex
             >
