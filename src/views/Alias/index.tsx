@@ -138,8 +138,12 @@ const AliasView: CustomPage = () => {
           }
 
           const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
-
           const response = await fetch(url)
+
+          if (!response.ok) {
+            throw new Error(`Couldn't retrieve file - it may no longer exist.`)
+          }
+
           const encryptedFile = await response.blob()
           const decryptedFile = await decryptFile(encryptedFile, decryptionKey, name)
 
@@ -148,11 +152,18 @@ const AliasView: CustomPage = () => {
         }
 
         // eslint-disable-next-line no-restricted-globals
-        // history.replaceState(null, 'Secret destroyed', '🔥')
-      } catch (error) {
-        let err = error as CustomError
+        history.replaceState(null, 'Secret destroyed', '🔥')
+      } catch (e: unknown) {
+        let error = `Undefined error: ${JSON.stringify(e)}`
 
-        setError(`${err?.i18nErrorKey ? t(`common:error.${err.i18nErrorKey}`) : err.message}`)
+        if (e instanceof Error) {
+          error = e.message
+        }
+
+        if (e instanceof CustomError) {
+          error = t(`common:error.${e.i18nErrorKey}`)
+        }
+        setError(error)
       }
     }
 
@@ -193,6 +204,17 @@ const AliasView: CustomPage = () => {
     } finally {
       formikHelpers.setSubmitting(false)
     }
+  }
+
+  if (error && !isPreview) {
+    return (
+      <Page title={t('common:views.Alias.errorOccurred', 'Error occurred')} noindex>
+        <Alert severity="error">{error}</Alert>
+        <Box mt={2}>
+          <ReplyButton />
+        </Box>
+      </Page>
+    )
   }
 
   if (message) {
@@ -260,7 +282,6 @@ const AliasView: CustomPage = () => {
           if (!file) {
             return null
           }
-
           const { name, fileType, size, url } = file
 
           return (
@@ -366,17 +387,6 @@ const AliasView: CustomPage = () => {
         }
       }
     }
-  }
-
-  if (error && !isPreview) {
-    return (
-      <Page title={t('common:views.Alias.errorOccurred', 'Error occurred')} noindex>
-        <Alert severity="error">{error}</Alert>
-        <Box mt={2}>
-          <ReplyButton />
-        </Box>
-      </Page>
-    )
   }
 
   return <Spinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />

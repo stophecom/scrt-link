@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 import { getSession } from 'next-auth/react'
-import { GetObjectCommand } from '@aws-sdk/client-s3'
+import { GetObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post'
 
@@ -61,17 +61,30 @@ const handler: NextApiHandler = async (req, res) => {
     case 'DELETE': {
       {
         try {
+          const s3Client = getS3Client()
           const bucketParams = {
             Bucket: req.query.bucket as string,
             Key: req.query.file as string,
             ACL: 'public-read',
           }
 
-          const url = await getSignedUrl(getS3Client(), new GetObjectCommand(bucketParams), {
+          const url = await getSignedUrl(s3Client, new GetObjectCommand(bucketParams), {
             expiresIn: 60,
           })
 
+          if (!url) {
+            throw createError(405, `Couldn't get signed url. File no longer exist.`)
+          }
+
           res.status(200).json({ url })
+
+          // After the file has been retrieved we delete.
+          const deletionTimeout = 10 * 60 * 1000 // 10 Minutes
+          setTimeout(
+            async () =>
+              await s3Client.send(new DeleteObjectCommand(bucketParams)).then(console.log),
+            deletionTimeout,
+          )
         } catch (error) {
           console.error(error)
         }
