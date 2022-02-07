@@ -34,14 +34,14 @@ const FilesView: CustomPage = () => {
   const { t, i18n } = useTranslation('common')
 
   const uploadFile = async (file: File) => {
-    const filename = encodeURIComponent(file.name)
-
     try {
       const alias = generateAlias()
       // const encryptionKey = generateEncryptionKey() //old method
       const encryptionKey = await generateEncryptionKeyString()
 
       const encryptedFile = await encryptFile(file, encryptionKey)
+
+      const filename = encodeURIComponent(alias)
 
       const fileMeta = {
         bucket: bucket,
