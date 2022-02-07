@@ -6,10 +6,8 @@ import { useTranslation } from 'next-i18next'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 import { Error } from '@/components/Error'
-import { limits } from '@/constants'
+import { MB } from '@/constants'
 import usePrettyBytes from '@/hooks/usePrettyBytes'
-
-const maxFileSize = limits.visitor.maxFileSize // @todo
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,8 +32,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface DropZoneProps {
   onChange(file: File | null): void
+  maxFileSize: number
 }
-const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
+const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) => {
   const classes = useStyles()
   const { t } = useTranslation('components')
   const prettyBytes = usePrettyBytes()
@@ -43,7 +42,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange }) => {
   const [error, setError] = useState(null)
   const [file, setFile] = useState<File | null>(null)
 
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles, fileRejections } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
       handleFilesInput(acceptedFiles)
     },
