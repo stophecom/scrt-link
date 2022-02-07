@@ -66,7 +66,7 @@ export const smsReadReceipt = {
   },
 }
 
-const MB = 10 ** 6 // 1000000 Bytes = 1 MB.
+export const MB = 10 ** 6 // 1000000 Bytes = 1 MB.
 
 // Limits per user role
 export const limits = {
