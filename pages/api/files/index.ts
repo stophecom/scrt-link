@@ -81,8 +81,7 @@ const handler: NextApiHandler = async (req, res) => {
           // After the file has been retrieved we delete.
           const deletionTimeout = 10 * 60 * 1000 // 10 Minutes
           setTimeout(
-            async () =>
-              await s3Client.send(new DeleteObjectCommand(bucketParams)).then(console.log),
+            async () => await s3Client.send(new DeleteObjectCommand(bucketParams)),
             deletionTimeout,
           )
         } catch (error) {
