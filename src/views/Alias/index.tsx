@@ -39,6 +39,7 @@ type FileMeta = {
   name: string
   size: number
   fileType: string
+  message?: string
 }
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
@@ -81,7 +82,6 @@ const AliasView: CustomPage = () => {
     t('common:views.Alias.title2', 'Knock Knock'),
     t('common:views.Alias.title3', 'Ding Dong'),
     t('common:views.Alias.title4', 'Hello Lovely'),
-    '🤫',
   ]
   var randomTitle = titles[Math.floor(Math.random() * titles.length)]
 
@@ -124,11 +124,16 @@ const AliasView: CustomPage = () => {
         }
 
         const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
+
+        if (!secret.message) {
+          throw new Error(t('common:error.noMessage', 'No message.'))
+        }
+
         setSecret({ ...secret })
 
         // Download files
-        if (secret.secretType === 'file' && secret?.meta) {
-          const decryptedFileMeta = await decryptString(secret.meta, decryptionKey)
+        if (secret.secretType === 'file') {
+          const decryptedFileMeta = await decryptString(secret.message, decryptionKey)
           const meta: FileMeta = JSON.parse(decryptedFileMeta)
 
           const { key, bucket, name } = meta
@@ -156,7 +161,7 @@ const AliasView: CustomPage = () => {
         }
 
         // eslint-disable-next-line no-restricted-globals
-        history.replaceState(null, 'Secret destroyed', '🔥')
+        // history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (e: unknown) {
         let error = `Undefined error: ${JSON.stringify(e)}`
 
@@ -286,7 +291,7 @@ const AliasView: CustomPage = () => {
           if (!file.size) {
             return null
           }
-          const { name, fileType, size, url } = file
+          const { name, fileType, size, url, message } = file
 
           return (
             <Page
@@ -305,21 +310,27 @@ const AliasView: CustomPage = () => {
                 </Box>
 
                 <Paper elevation={3} className={clsx(classes.break, classes.message)}>
-                  <Box px={4} pb={2}>
-                    <Box mb={3}>
-                      <Typography variant="body2">
+                  <Box px={4} pt={3} pb={2}>
+                    <Box mb={2}>
+                      <Typography variant="body1" noWrap>
+                        <strong>{t('common:views.Alias.file.name', 'Name')}:</strong> {name}
                         <br />
-                        <strong>Name:</strong> {name}
+                        <strong>{t('common:views.Alias.file.type', 'Type')}:</strong> {fileType}
                         <br />
-                        <strong>Type:</strong> {fileType}
+                        <strong>{t('common:views.Alias.file.size', 'Size')}:</strong>{' '}
+                        {prettyBytes(size)}
                         <br />
-                        <strong>Size:</strong> {prettyBytes(size)}
-                        <br />
-                        <br />
-                        <em>Optional message:</em> {message}
+                        {message && (
+                          <>
+                            <br />
+                            <strong>
+                              {t('common:views.Alias.file.optionalMessage', 'Optional message')}:{' '}
+                            </strong>
+                            <em>{message}</em>
+                          </>
+                        )}
                       </Typography>
                     </Box>
-
                     <BaseButton
                       component={'a'}
                       href={url}
@@ -329,8 +340,9 @@ const AliasView: CustomPage = () => {
                       disabled={!url}
                       color="primary"
                       size="large"
+                      fullWidth
                     >
-                      Decrypt and Download
+                      {t('common:views.Alias.file.button.label', 'Decrypt and Download')}
                     </BaseButton>
                   </Box>
                 </Paper>

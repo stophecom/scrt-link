@@ -192,7 +192,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     dispatch(doRequest({ alias, encryptionKey }))
     window.scrollTo(0, 0)
 
-    let meta
+    let metaAsMessage = ''
 
     try {
       if (secretType === 'file' && file) {
@@ -206,9 +206,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           name: file.name,
           size: file.size,
           fileType: file.type,
+          message,
         }
 
-        meta = await encryptString(JSON.stringify(fileMeta), encryptionKey)
+        metaAsMessage = await encryptString(JSON.stringify(fileMeta), encryptionKey)
 
         const { url, fields } = await api<PresignedPostResponse>(
           `/files?file=${filename}&bucket=${bucket}`,
@@ -255,18 +256,13 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         receiptEmail: readReceiptMethod === 'email' && receiptEmail ? receiptEmail : undefined,
         receiptPhoneNumber:
           readReceiptMethod === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
-        meta,
       }
 
       if (secretType !== 'neogram') {
         data = omit(['neogramDestructionMessage', 'neogramDestructionTimeout'], data)
       }
 
-      const response = await createSecret(
-        message || t('common:components.FormCreateSecret.emptyMessage', 'None'),
-        data,
-        getBaseURL(),
-      )
+      const response = await createSecret(metaAsMessage, data, getBaseURL())
 
       if (response) {
         dispatch(

@@ -7,14 +7,13 @@ export type SecretType = 'text' | 'url' | 'neogram' | 'file' // Could be importe
 export interface SecretUrlFields {
   secretType: SecretType
   alias: string
-  message?: string
+  message: string
   isEncryptedWithUserPassword: boolean
   neogramDestructionMessage?: string
   neogramDestructionTimeout?: number
   receiptApi?: { slack: string }
   receiptEmail?: string
   receiptPhoneNumber?: string
-  meta?: string
 }
 
 export type SecretUrlData = BaseDocumentData & SecretUrlFields // Not used. @todo clean up types
@@ -39,7 +38,6 @@ const SecretUrlSchema = new mongoose.Schema(
     },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
-    meta: { type: String, required: false },
   },
   { timestamps: true },
 )
