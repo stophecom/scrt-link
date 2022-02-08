@@ -67,7 +67,7 @@
               "body": "Fast, convenient. Get read notifications via SMS."
             },
             "3": {
-              "heading": "Customize Neogram™ messages",
+              "heading": "Customize Neogram messages",
               "body": "Add a special touch to your secrets."
             },
             "4": {
@@ -242,7 +242,7 @@
     },
     "neogram": {
       "label": "Your secret",
-      "tabLabel": "Neogram™",
+      "tabLabel": "Neogram",
       "placeholder": "Wake up Neo…"
     }
   },
@@ -361,8 +361,8 @@
       "body": "There are easy-to-use npm packages available. For code examples and further information about integration visit the [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
     },
     "secret-types": {
-      "heading": "What is the difference between *Text*, *Link* and *Neogram™*?",
-      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **Link**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
+      "heading": "What is the difference between *Text*, *Link* and *Neogram*?",
+      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **Link**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
     },
     "message-size": {
       "heading": "What is the maximum message size?",

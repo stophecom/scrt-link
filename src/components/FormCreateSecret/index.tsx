@@ -78,7 +78,7 @@ export const secretTypesMap = (t: TFunction) =>
     },
     file: {
       label: t('common:secretType.file.label', 'Optional Message'),
-      tabLabel: t('common:secretType.file.tabLabel', 'File'),
+      tabLabel: t('common:secretType.file.tabLabel', 'File') + ' ᴮᴱᵀᴬ',
       placeholder: t(
         'common:secretType.file.placeholder',
         'Add an optional message for the recipient…',
@@ -91,7 +91,7 @@ export const secretTypesMap = (t: TFunction) =>
     },
     neogram: {
       label: t('common:secretType.neogram.label', 'Your secret'),
-      tabLabel: t('common:secretType.neogram.tabLabel', 'Neogram™'),
+      tabLabel: t('common:secretType.neogram.tabLabel', 'Neogram'),
       placeholder: t('common:secretType.neogram.placeholder', 'Wake up Neo…'),
     },
   } as ObjKey)
@@ -209,9 +209,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         }
 
         meta = await encryptString(JSON.stringify(fileMeta), encryptionKey)
-
-        console.log({ meta })
-        console.log({ fileMeta })
 
         const { url, fields } = await api<PresignedPostResponse>(
           `/files?file=${filename}&bucket=${bucket}`,
@@ -417,7 +414,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           <BaseTextField
                             name="message"
                             multiline
-                            minRows={3}
+                            minRows={2}
                             maxRows={3}
                             label={getFormFieldConfigBySecretType(secretType).label}
                             placeholder={getFormFieldConfigBySecretType(secretType).placeholder}

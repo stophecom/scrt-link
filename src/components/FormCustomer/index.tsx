@@ -243,7 +243,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                 </Box>
 
                 <Box>
-                  <Typography variant="h3">Neogram™</Typography>
+                  <Typography variant="h3">Neogram</Typography>
                   <Box mb={3}>
                     <DestructionMessage />
                   </Box>

@@ -67,7 +67,7 @@
               "body": "Schnell und bequem. Erhalte Lesebestätigungen per SMS."
             },
             "3": {
-              "heading": "Individuelle Neogram™ Nachrichten",
+              "heading": "Individuelle Neogram Nachrichten",
               "body": "Eine besondere Note für deine Geheimnisse."
             },
             "4": {
@@ -242,7 +242,7 @@
     },
     "neogram": {
       "label": "Dein Geheimnis",
-      "tabLabel": "Neogram™",
+      "tabLabel": "Neogram",
       "placeholder": "Wach auf Neo…"
     }
   },
@@ -361,8 +361,8 @@
       "body": "Es sind einfach zu verwendende npm-Pakete verfügbar. Code-Beispiele und weitere Informationen zur Integration gibt's im [Entwickler-Blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
     },
     "secret-types": {
-      "heading": "Was ist der Unterschied zwischen *Text*, *Link* und *Neogram™*?",
-      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit, das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Link**: Ein anonymer Link der nur ein einziges Mal funktioniert.\n- **Neogram™**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})"
+      "heading": "Was ist der Unterschied zwischen *Text*, *Link* und *Neogram*?",
+      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit, das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Link**: Ein anonymer Link der nur ein einziges Mal funktioniert.\n- **Neogram**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})"
     },
     "message-size": {
       "heading": "Wie lange Nachrichten kann ich schreiben?",
