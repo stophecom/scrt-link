@@ -178,7 +178,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const handleSubmit: OnSubmit<SecretUrlFormValues> = async (values, formikHelpers) => {
     const {
       password,
-      message,
+      message = '',
       secretType,
       alias,
       encryptionKey,
