@@ -77,7 +77,7 @@ export const secretTypesMap = (t: TFunction) =>
       ),
     },
     file: {
-      label: t('common:secretType.file.label', 'Optional Message'),
+      label: t('common:secretType.file.label', 'Optional message'),
       tabLabel: t('common:secretType.file.tabLabel', 'File') + ' ᴮᴱᵀᴬ',
       placeholder: t(
         'common:secretType.file.placeholder',
@@ -124,10 +124,12 @@ const useStyles = makeStyles((theme: Theme) =>
 type FormCreateSecretProps = {
   dispatch: React.Dispatch<Action>
   isStandalone?: boolean
+  limitedToSecretType?: SecretType
 }
 const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   dispatch,
   isStandalone,
+  limitedToSecretType,
 }) => {
   const { t } = useTranslation('common')
   const classes = useStyles()
@@ -156,6 +158,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     }
 
     getKey()
+
+    if (limitedToSecretType) {
+      setSecretType(limitedToSecretType)
+    }
   }, [])
 
   const initialValues = {
@@ -328,14 +334,17 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
 
   return (
     <>
-      <Box pt={1} pb={1}>
-        <TabsMenu
-          handleChange={handleMenuChange}
-          value={secretType}
-          tabsMenu={Object.values(tabsMenu)}
-          label={t('common:components.FormCreateSecret.selectSecretType', 'Select secret type')}
-        />
-      </Box>
+      {!limitedToSecretType && (
+        <Box pt={1} pb={1}>
+          <TabsMenu
+            handleChange={handleMenuChange}
+            value={secretType}
+            tabsMenu={Object.values(tabsMenu)}
+            label={t('common:components.FormCreateSecret.selectSecretType', 'Select secret type')}
+          />
+        </Box>
+      )}
+
       <Box pb={2}>
         <Formik<SecretUrlFormValues>
           enableReinitialize={true}

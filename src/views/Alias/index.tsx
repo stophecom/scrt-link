@@ -173,7 +173,7 @@ const AliasView: CustomPage = () => {
   // Additional actions after password
   useEffect(() => {
     handlePasswordInput()
-  }, [isEncryptedWithUserPassword])
+  }, [isEncryptedWithUserPassword, secretType])
 
   interface PasswordForm {
     message: string

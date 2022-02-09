@@ -10,13 +10,12 @@ import { Maybe, CustomPage } from '@/types'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { PageError } from '@/components/Error'
-import { SecretUrlFields } from '@/api/models/SecretUrl'
+import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import { formatCurrency } from '@/utils/localization'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 import BoxShadowWrapper from '@/components/BoxShadowWrapper'
 import UnorderedList from '@/components/UnorderedList'
-
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 import AccountTeaser from './components/AccountTeaser'
@@ -96,7 +95,7 @@ const initialState: State = {
   error: undefined,
 }
 
-const HomeView: CustomPage = () => {
+export const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { t, i18n } = useTranslation('common')
 
@@ -334,7 +333,10 @@ const HomeView: CustomPage = () => {
   )
 }
 
-export const Widget: CustomPage = () => {
+interface WidgetProps {
+  limitedToSecretType?: SecretType
+}
+export const Widget: CustomPage<WidgetProps> = ({ limitedToSecretType }) => {
   const { t } = useTranslation('common')
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: customer } = useCustomer()
@@ -365,7 +367,13 @@ export const Widget: CustomPage = () => {
     )
   }
 
-  return <FormCreateSecret dispatch={dispatch} isStandalone={true} />
+  return (
+    <FormCreateSecret
+      dispatch={dispatch}
+      isStandalone={true}
+      limitedToSecretType={limitedToSecretType}
+    />
+  )
 }
 Widget.layout = WidgetLayout
 
