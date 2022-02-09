@@ -247,7 +247,7 @@
       "placeholder": "Secret message, password, private key, etc."
     },
     "file": {
-      "label": "Message (optional)",
+      "label": "Message",
       "tabLabel": "File",
       "placeholder": "Add an optional message for the recipient…"
     },
@@ -578,7 +578,7 @@
     "Files": {
       "title": "X Files",
       "subtitle": "Share end-to-end encrypted files. One time.",
-      "flowDisclaimer": "File will be end-to-end encrypted and stored in Zürich, Switzerland by Flow Swiss AG."
+      "flowDisclaimer": "File will be end-to-end encrypted and stored in Zurich, Switzerland by Flow Swiss AG."
     },
     "Home": {
       "HowItWorks": {
@@ -633,6 +633,7 @@
       "subtitle": "Tl;dr: Limited liability.",
       "policiesAndTerms": "Policies and Terms",
       "credits": "Credits",
+      "flowSwiss": "This project is supported by Flow Swiss AG - Premium cloud services from Zurich, Switzerland.",
       "inspiration": "Inspiration"
     },
     "Pricing": {

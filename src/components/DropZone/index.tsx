@@ -12,17 +12,18 @@ import usePrettyBytes from '@/hooks/usePrettyBytes'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
+      alignItems: 'center',
       borderStyle: 'dashed',
       borderWidth: '2px',
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(5),
       color: theme.palette.text.secondary,
-      height: '100%',
+      display: 'flex',
       flexDirection: 'column',
+      height: '100%',
+      justifyContent: 'center',
+      minHeight: '152px',
+      padding: theme.spacing(5),
+      position: 'relative',
       textAlign: 'center',
-      marginBottom: '1em',
     },
     dropInfo: {
       marginTop: ' .3em',

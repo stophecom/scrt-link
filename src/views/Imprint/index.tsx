@@ -1,10 +1,11 @@
 import React from 'react'
-import { Typography, Box } from '@material-ui/core'
+import { Typography, Box, Button } from '@material-ui/core'
 import styled from 'styled-components'
 import { useTranslation } from 'next-i18next'
 
 import { Link } from '@/components/Link'
 import Page from '@/components/Page'
+import ExternalLink from '@/components/ExternalLink'
 
 import { emailSantihans } from '@/constants'
 import { policies, terms } from '@/data/menu'
@@ -56,9 +57,18 @@ const Imprint = () => {
       <Box mb={4}>
         <Typography variant="h3">{t('common:views.Imprint.credits', 'Credits')}</Typography>
       </Box>
+      <Box mb={2}>
+        <Typography variant="body1">
+          {t(
+            'common:views.Imprint.flowSwiss',
+            'This project is supported by Flow Swiss AG - Premium cloud services from Zurich, Switzerland.',
+          )}
+          <br />〜<ExternalLink href="https://flow.swiss">flow.swiss</ExternalLink>
+        </Typography>
+      </Box>
       <Typography variant="body2">
-        {t('common:views.Imprint.inspiration', 'Inspiration')}: PrivateBin, OneTimeSecret, Yopass,
-        Saltify, hat.sh, OnURL
+        {t('common:views.Imprint.inspiration', 'More Inspiration')}: PrivateBin, OneTimeSecret,
+        Yopass, Saltify, hat.sh, OnURL
       </Typography>
     </Page>
   )
