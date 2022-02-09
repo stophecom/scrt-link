@@ -43,7 +43,9 @@ type FileMeta = {
 }
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
-type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'>
+type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'> & {
+  decryptionKey: string
+}
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     break: {
@@ -91,6 +93,7 @@ const AliasView: CustomPage = () => {
     secretType = 'text',
     neogramDestructionTimeout,
     neogramDestructionMessage,
+    decryptionKey,
   } = secret
 
   // Cleanup state
@@ -142,39 +145,10 @@ const AliasView: CustomPage = () => {
           throw new Error(t('common:error.noMessage', 'No message.'))
         }
 
-        setSecret({ ...secret })
-
-        // Download files
-        if (secret.secretType === 'file') {
-          const decryptedFileMeta = await decryptString(secret.message, decryptionKey)
-          const meta: FileMeta = JSON.parse(decryptedFileMeta)
-
-          const { key, bucket, name } = meta
-
-          if (!key) {
-            throw new Error(`Couldn't get file meta data.`)
-          }
-
-          setFile({ ...meta })
-
-          const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
-          const response = await fetch(url)
-
-          if (!response.ok) {
-            throw new Error(`Couldn't retrieve file - it may no longer exist.`)
-          }
-
-          const encryptedFile = await response.blob()
-          const decryptedFile = await decryptFile(encryptedFile, decryptionKey, name)
-
-          const objectUrl = window.URL.createObjectURL(decryptedFile)
-          setFile((prevState) => {
-            return { ...prevState, url: objectUrl }
-          })
-        }
+        setSecret({ ...secret, decryptionKey })
 
         // eslint-disable-next-line no-restricted-globals
-        history.replaceState(null, 'Secret destroyed', '🔥')
+        history.replaceState(null, 'Secret destroyed', 'l/🔥')
       } catch (e: unknown) {
         let error = `Undefined error: ${JSON.stringify(e)}`
 
@@ -196,6 +170,11 @@ const AliasView: CustomPage = () => {
     }
   }, [])
 
+  // Additional actions after password
+  useEffect(() => {
+    handlePasswordInput()
+  }, [isEncryptedWithUserPassword])
+
   interface PasswordForm {
     message: string
     password: string
@@ -216,7 +195,7 @@ const AliasView: CustomPage = () => {
         setSecret((previousState) => ({
           ...previousState,
           message: result,
-          isEncryptedWithUserPassword: undefined,
+          isEncryptedWithUserPassword: false,
         }))
       }
 
@@ -225,6 +204,44 @@ const AliasView: CustomPage = () => {
       formikHelpers.setErrors({ password: t('common:error.wrongPassword', 'Wrong Password') })
     } finally {
       formikHelpers.setSubmitting(false)
+    }
+  }
+
+  const handlePasswordInput = async () => {
+    if (isEncryptedWithUserPassword) {
+      return
+    }
+
+    if (secretType === 'file') {
+      if (!message || !decryptionKey) {
+        throw new Error(`Missing data to fetch file.`)
+      }
+
+      const decryptedFileMeta = await decryptString(message, decryptionKey)
+      const meta: FileMeta = JSON.parse(decryptedFileMeta)
+
+      const { key, bucket, name } = meta
+
+      if (!key) {
+        throw new Error(`Couldn't get file meta data.`)
+      }
+
+      setFile({ ...meta })
+
+      const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
+      const response = await fetch(url)
+
+      if (!response.ok) {
+        throw new Error(`Couldn't retrieve file - it may no longer exist.`)
+      }
+
+      const encryptedFile = await response.blob()
+      const decryptedFile = await decryptFile(encryptedFile, decryptionKey, name)
+
+      const objectUrl = window.URL.createObjectURL(decryptedFile)
+      setFile((prevState) => {
+        return { ...prevState, url: objectUrl }
+      })
     }
   }
 
