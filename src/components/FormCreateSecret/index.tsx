@@ -133,7 +133,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const classes = useStyles()
   const plausible = usePlausible()
   const [secretType, setSecretType] = useState<SecretType>('text')
-  const [progress, setProgress] = useState(0)
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
   const [neogramPreview, setNeogramPreview] = useState(false)
   const [key, setKey] = useState<string>('')
@@ -233,7 +232,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
             url,
             data: formData,
             onUploadProgress: (p) => {
-              setProgress(p.loaded / p.total)
               dispatch(
                 doSuccess({
                   progress: p.loaded / p.total,
@@ -244,8 +242,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           .catch((err) => {
             throw Error(`File upload failed. Make sure the file is within the size limit.`)
           })
-
-        setProgress(1)
       }
 
       let data = {

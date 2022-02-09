@@ -62,7 +62,7 @@ const AliasView: CustomPage = () => {
   const prettyBytes = usePrettyBytes()
   const { t } = useTranslation()
 
-  const { alias, preview } = router.query
+  const { preview } = router.query
 
   // Use preview mode if data if passed via URL params
   let previewData = {} as Partial<SecretState>
@@ -108,19 +108,28 @@ const AliasView: CustomPage = () => {
 
   useEffect(() => {
     const fetchSecret = async () => {
-      if (!alias || message) {
+      // Old implementation
+      let { alias } = router.query
+      let decryptionKey
+      if (alias) {
+        decryptionKey = window.location.hash.substring(1)
+      } else {
+        // New version
+        const hashData = window.location.hash.substring(1).split('/')
+        alias = hashData[0]
+        decryptionKey = hashData[1]
+      }
+
+      if (message) {
         return
       }
 
       try {
-        const decryptionKey = window.location.hash.substring(1)
-
+        if (!alias || typeof alias !== 'string') {
+          throw new Error(t('common:error.invalidAlias', 'Invalid alias.'))
+        }
         if (!decryptionKey) {
           throw new Error(t('common:error.missingDecryptionKey', 'Decryption key missing.'))
-        }
-
-        if (typeof alias !== 'string') {
-          throw new Error(t('common:error.invalidAlias', 'Invalid alias.'))
         }
 
         const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
@@ -161,7 +170,7 @@ const AliasView: CustomPage = () => {
         }
 
         // eslint-disable-next-line no-restricted-globals
-        // history.replaceState(null, 'Secret destroyed', '🔥')
+        history.replaceState(null, 'Secret destroyed', '🔥')
       } catch (e: unknown) {
         let error = `Undefined error: ${JSON.stringify(e)}`
 
@@ -181,7 +190,7 @@ const AliasView: CustomPage = () => {
     } else {
       fetchSecret()
     }
-  }, [alias])
+  }, [])
 
   interface PasswordForm {
     message: string

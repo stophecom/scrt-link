@@ -18,7 +18,7 @@ export const demoNeogramMessage = (t: TFunction) =>
   )
 
 const demoSecretMessageLink = (t: TFunction) =>
-  `${baseUrl}/l/preview?preview=${encodeURIComponent(
+  `${baseUrl}/l?preview=${encodeURIComponent(
     JSON.stringify({
       message: t(
         'common:demoTextMessage',
@@ -28,7 +28,7 @@ const demoSecretMessageLink = (t: TFunction) =>
     }),
   )}`
 const demoSecretNeogramLink = (t: TFunction) =>
-  `${baseUrl}/l/preview?preview=${encodeURIComponent(
+  `${baseUrl}/l?preview=${encodeURIComponent(
     JSON.stringify({
       message: demoNeogramMessage(t),
       secretType: 'neogram',
