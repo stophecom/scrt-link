@@ -46,7 +46,6 @@ const handler: NextApiHandler = async (req, res) => {
         receiptApi,
         neogramDestructionMessage,
         neogramDestructionTimeout,
-        meta,
       } = await extractPostInput(req)
 
       // Update global stats
@@ -77,7 +76,6 @@ const handler: NextApiHandler = async (req, res) => {
         receiptApi,
         ...(receiptEmail ? { receiptEmail: encryptAES(receiptEmail) } : {}),
         ...(receiptPhoneNumber ? { receiptPhoneNumber: encryptAES(receiptPhoneNumber) } : {}),
-        meta,
       })
 
       try {
