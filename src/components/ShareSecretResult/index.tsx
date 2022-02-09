@@ -42,10 +42,11 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const [wrap, setWrap] = useState(false)
 
   const baseUrl = getAbsoluteLocalizedUrl('/l', i18n.language)
+  const secretHash = `#${alias}/${encryptionKey}`
 
   const domain = isEmojiLinkEnabled ? `${emojiShortUrl}/${i18n.language}` : baseUrl
-  const shortenedUrl = alias ? `${domain}#${alias}/${encryptionKey}` : null
-  const shortenedUrlEmailService = `${baseUrl}#${alias}/${encryptionKey}`
+  const shortenedUrl = alias ? `${domain}${secretHash}` : null
+  const shortenedUrlEmailService = `${baseUrl}${secretHash}`
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
