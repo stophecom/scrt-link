@@ -1,6 +1,5 @@
 import { NextApiHandler } from 'next'
 import NextCors from 'nextjs-cors'
-import * as Sentry from '@sentry/node'
 
 import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
@@ -78,7 +77,7 @@ const handler: NextApiHandler = async (req, res) => {
         await twilioSms({
           to: `+${decryptAES(receiptPhoneNumber)}`,
           body: `${smsTemplate.receipt} ${alias}\n\n${smsTemplate.reply}`,
-        }).catch(Sentry.captureException)
+        }).catch(console.error)
       }
 
       if (receiptEmail) {
@@ -90,7 +89,7 @@ const handler: NextApiHandler = async (req, res) => {
           Variables: {
             alias,
           },
-        }).catch(Sentry.captureException)
+        }).catch(console.error)
       }
 
       // Here we send receiptId to slack app endpoint. See https://gitlab.com/kingchiller/scrt-link-slack for more info.
@@ -102,12 +101,12 @@ const handler: NextApiHandler = async (req, res) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ receiptId: receiptApi.slack }),
-        }).catch(Sentry.captureException)
+        }).catch(console.error)
       }
 
       res.json({
         secretType,
-        message: decryptAES(message),
+        message: message && decryptAES(message),
         isEncryptedWithUserPassword,
         ...(secretType === 'neogram'
           ? {

@@ -2,20 +2,14 @@ import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
 import { Box, CircularProgress, Paper, Typography, Collapse, IconButton } from '@material-ui/core'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import {
-  Replay,
-  Share,
-  ExpandLess,
-  ExpandMore,
-  FileCopyOutlined,
-  EmojiEmotions,
-} from '@material-ui/icons'
+
+import { Replay, Share, ExpandLess, ExpandMore, EmojiEmotions } from '@material-ui/icons'
 import { RWebShare } from 'react-web-share'
 import Alert from '@material-ui/lab/Alert'
 
 import Markdown from '@/components/Markdown'
 import FormShareSecretLink from '@/components/FormShareSecretLink'
+import CopyToClipboardButton from '@/components/CopyToClipboardButton'
 import BaseButton from '@/components/BaseButton'
 import UpgradeNotice from '@/components/UpgradeNotice'
 import Spacer from '@/components/Spacer'
@@ -41,17 +35,18 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const alias = data?.alias
   const encryptionKey = data?.encryptionKey
   const readReceiptMethod = data?.readReceiptMethod
-  const [hasCopied, setHasCopied] = useState(false)
+
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = useState(isEmojiShortLinkEnabled)
   const [isEmailServiceEnabled, setIsEmailServiceEnabled] = useState(false)
   const [wrap, setWrap] = useState(false)
 
   const baseUrl = getAbsoluteLocalizedUrl('/l', i18n.language)
+  const secretHash = `#${alias}/${encryptionKey}`
 
   const domain = isEmojiLinkEnabled ? `${emojiShortUrl}/${i18n.language}` : baseUrl
-  const shortenedUrl = alias ? `${domain}/${alias}#${encryptionKey}` : null
-  const shortenedUrlEmailService = `${baseUrl}/${alias}#${encryptionKey}`
+  const shortenedUrl = alias ? `${domain}${secretHash}` : null
+  const shortenedUrlEmailService = `${baseUrl}${secretHash}`
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
@@ -108,27 +103,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     </RWebShare>
                   </Box>
                   <Box mx={1}>
-                    <CopyToClipboard
-                      text={shortenedUrl}
-                      options={{ format: 'text/plain' }}
-                      onCopy={() => {
-                        setHasCopied(true)
-                        setTimeout(() => {
-                          setHasCopied(false)
-                        }, 2000)
-                      }}
-                    >
-                      <BaseButton
-                        startIcon={<FileCopyOutlined />}
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                      >
-                        {hasCopied
-                          ? t('common:button.copied', 'Copied')
-                          : t('common:button.copy', 'Copy')}
-                      </BaseButton>
-                    </CopyToClipboard>
+                    <CopyToClipboardButton text={shortenedUrl} />
                   </Box>
                 </Box>
                 {['email', 'sms'].includes(readReceiptMethod || '') && (
@@ -211,7 +186,8 @@ Remember it, we use it for the read receipt.`,
                 {data?.message || (
                   <>
                     <CircularProgress size=".8em" color="inherit" />{' '}
-                    {t('common:components.ShareSecretResult.loading', 'Encrypt and save…')}
+                    {t('common:components.ShareSecretResult.loading', 'Encrypt and save…')}{' '}
+                    {data?.progress && Math.round(data?.progress * 100)} %
                   </>
                 )}
               </Typography>

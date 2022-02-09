@@ -7,7 +7,62 @@
     "keywords": "scrt.link, Geheimlink, Geheimnachrichten, Einmal-Geheimnis, Einmal-Passwort, Einmal-Nachricht, Einmal-Link, Wegwerf-Nachricht, Wegwerf-Link, URL Shortener, Selbstzerstörende Links, Sensible Informationen online teilen"
   },
   "password": "Passwort",
+  "button": {
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "takeMeHome": "Zur Startseite",
+    "lessOptions": "Weniger Optionen",
+    "moreOptions": "Mehr Optionen",
+    "preview": "Vorschau",
+    "demo": "Demo",
+    "createSecretLink": "Geheimen Link erstellen",
+    "save": "Speichern",
+    "deleteAccount": "Konto löschen",
+    "send": "Absenden",
+    "signUp": "Registrieren",
+    "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
+    "account": "Mein Konto",
+    "getAccount": "Konto erstellen",
+    "close": "Schließen",
+    "closeMenu": "Menü schließen",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü",
+    "signUpFree": "Gratis registrieren",
+    "reactivatePlan": "Plan reaktivieren",
+    "tryFree": "Gratis testen",
+    "signUpFirst": "Zuerst registrieren",
+    "cancelSubscription": "Abo kündigen",
+    "createNewSecret": "Neues Geheimnis erstellen",
+    "share": "Teilen",
+    "cancel": "Abbrechen",
+    "installNow": "Jetzt installieren",
+    "learnMore": "Mehr erfahren",
+    "signOut": "Abmelden",
+    "replyWithSecret": "Mit einem Geheimnis antworten",
+    "decryptMessage": "Nachricht entschlüsseln",
+    "destroySecret": "Nachricht zerstören",
+    "home": "Startseite",
+    "tryAgain": "Nochmals versuchen",
+    "createSecret": "Geheimnis erstellen",
+    "addToSlack": "Zu Slack hinzufügen",
+    "readMoreFaq": "Mehr auf FAQ Seite",
+    "viewPlans": "Pläne ansehen",
+    "getFreeAccount": "Kostenloses Konto erstellen",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
   "components": {
+    "DropZone": {
+      "error": {
+        "noFiles": "Keine Datei ausgewählt. Bitte füge eine andere Datei hinzu.",
+        "tooManyFiles": "Zu viele Dateien. Zu diesem Zeitpunkt ist nur eine Datei erlaubt. Du kannst mehrere Dateien vor dem Hochladen in eine Zip-Datei komprimieren.",
+        "fileToLarge": "Datei zu gross. Maximale erlaubte Dateigrösse ist {{max}}."
+      },
+      "backdrop": "Drop It Like It's Hot",
+      "button": "Datei auswählen",
+      "dragAndDrop": "…oder via Drag & Drop.",
+      "maxFileSize": "Max. {{maxSize}}"
+    },
     "Error": {
       "defaultTitle": "Es ist ein Fehler aufgetreten!"
     },
@@ -67,7 +122,7 @@
               "body": "Schnell und bequem. Erhalte Lesebestätigungen per SMS."
             },
             "3": {
-              "heading": "Individuelle Neogram™ Nachrichten",
+              "heading": "Individuelle Neogram Nachrichten",
               "body": "Eine besondere Note für deine Geheimnisse."
             },
             "4": {
@@ -167,50 +222,6 @@
       "privacy": "100% geschützte Privatsphäre"
     }
   },
-  "button": {
-    "takeMeHome": "Zur Startseite",
-    "lessOptions": "Weniger Optionen",
-    "moreOptions": "Mehr Optionen",
-    "preview": "Vorschau",
-    "demo": "Demo",
-    "createSecretLink": "Geheimen Link erstellen",
-    "save": "Speichern",
-    "deleteAccount": "Konto löschen",
-    "send": "Absenden",
-    "signUp": "Registrieren",
-    "signIn": "Anmelden",
-    "myAccount": "Mein Konto",
-    "account": "Mein Konto",
-    "getAccount": "Konto erstellen",
-    "close": "Schließen",
-    "closeMenu": "Menü schließen",
-    "openMenu": "Menü öffnen",
-    "menu": "Menü",
-    "signUpFree": "Gratis registrieren",
-    "reactivatePlan": "Plan reaktivieren",
-    "tryFree": "Gratis testen",
-    "signUpFirst": "Zuerst registrieren",
-    "cancelSubscription": "Abo kündigen",
-    "createNewSecret": "Neues Geheimnis erstellen",
-    "share": "Teilen",
-    "copied": "Kopiert",
-    "copy": "Kopieren",
-    "cancel": "Abbrechen",
-    "installNow": "Jetzt installieren",
-    "learnMore": "Mehr erfahren",
-    "signOut": "Abmelden",
-    "replyWithSecret": "Mit einem Geheimnis antworten",
-    "decryptMessage": "Nachricht entschlüsseln",
-    "destroySecret": "Nachricht zerstören",
-    "home": "Startseite",
-    "tryAgain": "Nochmals versuchen",
-    "createSecret": "Geheimnis erstellen",
-    "addToSlack": "Zu Slack hinzufügen",
-    "readMoreFaq": "Mehr auf FAQ Seite",
-    "viewPlans": "Pläne ansehen",
-    "getFreeAccount": "Kostenloses Konto erstellen",
-    "privacyPolicy": "Datenschutzbestimmungen"
-  },
   "menu": {
     "status": "Status",
     "home": "Startseite",
@@ -235,6 +246,11 @@
       "tabLabel": "Text",
       "placeholder": "Geheimnachricht, Password, Privatschlüssel, etc."
     },
+    "file": {
+      "label": "Nachricht (optional)",
+      "tabLabel": "Datei",
+      "placeholder": "Fügen eine Nachricht für den Empfänger hinzu…"
+    },
     "url": {
       "label": "URL",
       "tabLabel": "Link",
@@ -242,7 +258,7 @@
     },
     "neogram": {
       "label": "Dein Geheimnis",
-      "tabLabel": "Neogram™",
+      "tabLabel": "Neogram",
       "placeholder": "Wach auf Neo…"
     }
   },
@@ -285,8 +301,10 @@
   "error": {
     "unexpectedError": "Unerwarteter Fehler",
     "SECRET_NOT_FOUND": "Geheimnis nicht gefunden - Dies bedeutet normalerweise, dass der geheime Link bereits besucht wurde und daher nicht mehr existiert.",
-    "missingDecryptionKey": "Entschlüsselungscode fehlt",
+    "secretBurned": "Geheimnis wurde bereits zerstört.",
     "invalidAlias": "Alias ungültig.",
+    "missingDecryptionKey": "Entschlüsselungscode fehlt",
+    "noMessage": "Keine Nachricht.",
     "wrongPassword": "Falsches Passwort"
   },
   "plans": {
@@ -361,8 +379,8 @@
       "body": "Es sind einfach zu verwendende npm-Pakete verfügbar. Code-Beispiele und weitere Informationen zur Integration gibt's im [Entwickler-Blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
     },
     "secret-types": {
-      "heading": "Was ist der Unterschied zwischen *Text*, *Link* und *Neogram™*?",
-      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit, das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Link**: Ein anonymer Link der nur ein einziges Mal funktioniert.\n- **Neogram™**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})"
+      "heading": "Was ist der Unterschied zwischen *Text*, *Link* und *Neogram*?",
+      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit, das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Datei**: Schicke eine Datei, egal welches Format. Dies ist ein Beta-Funktion.\n- **Link**: Ein anonymer Link der nur ein einziges Mal funktioniert.\n- **Neogram**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})"
     },
     "message-size": {
       "heading": "Wie lange Nachrichten kann ich schreiben?",
@@ -398,7 +416,7 @@
     },
     "end-to-end-encryption-info": {
       "heading": "Wie wird die Ende-zu-Ende-Verschlüsselung erreicht?",
-      "body": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung des Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht. Wir speichern den Verschlüsselungscode nicht. Nur mit dem vollständigen Link kann das Geheimnis entschlüsselt werden.\n![Link-Erklärung](/images/link-explanation-de.svg)"
+      "body": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung des Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht. Wir speichern den Verschlüsselungscode nicht. Nur mit dem vollständigen Link kann das Geheimnis entschlüsselt werden.\n![Link-Erklärung](/images/de/link-explanation.svg)"
     },
     "recovery": {
       "heading": "Kann ich ein Geheimnis, das bereits besucht wurde, wiederfinden?",
@@ -514,11 +532,25 @@
       "signedInAs": "Du bist angemeldet als {{email}}."
     },
     "Alias": {
+      "title1": "Pssst",
+      "title2": "Klopf Klopf",
+      "title3": "Ding Dong",
+      "title4": "Es kommt was…",
+      "errorOccurred": "Fehler aufgetreten",
       "passwordRequired": "Passwort notwendig",
       "enterPassword": "Gebe das Passwort ein um die Nachricht zu entschlüsseln:",
-      "title": "Pssst",
+      "file": {
+        "subtitle": "Du hast eine geheime Datei erhalten:",
+        "warning": "Wichtig! Wir haben keinerlei Kenntnis über den Inhalt der Datei. Öffne die Datei nur wenn du dem Absender vertraust!",
+        "name": "Name",
+        "type": "Typ",
+        "size": "Grösse",
+        "optionalMessage": "Nachricht",
+        "button": {
+          "label": "Entschlüsseln und herunterladen"
+        }
+      },
       "subtitle": "Du hast eine geheime Nachricht bekommen:",
-      "errorOccurred": "Fehler aufgetreten",
       "loadingSecret": "Geheimnis wird geladen"
     },
     "Contact": {
@@ -542,6 +574,11 @@
       "subtitle": "Häufig gestellte Fragen",
       "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?",
       "noAnswer": "Hast du keine passende Antwort gefunden? Wir helfen dir gerne weiter:"
+    },
+    "Files": {
+      "title": "X Files",
+      "subtitle": "Teile Ende-zu-Ende-verschlüsselte Dateien. Einmalig.",
+      "flowDisclaimer": "Schweizer Privatsphäre: Dateien werden Ende-zu-Ende verschlüsselt und in Zürich, Schweiz bei der Flow Swiss AG gespeichert."
     },
     "Home": {
       "HowItWorks": {
@@ -596,6 +633,7 @@
       "subtitle": "Kurz: Beschränkte Haftung.",
       "policiesAndTerms": "Richtlinien und Bedingungen",
       "credits": "Credits",
+      "flowSwiss": "Dieses Projekt wird unterstützt von Flow Swiss AG - Premium Cloud Services aus Zürich, Schweiz.",
       "inspiration": "Inspiration"
     },
     "Pricing": {
@@ -622,11 +660,11 @@
     "Security": {
       "title": "Sicherheit",
       "subtitle": "Bewährte Praktiken, keine Extras.",
-      "markdown": "Alle Nachrichten sind **Ende-zu-Ende-verschlüsselt**. Wir generieren einen zufälligen Hash, um dein Geheimnis **auf dem Client** mit **AES-256** (Advanced Encryption Standard) zu verschlüsseln. Der Verschlüsselungscode wird niemals gespeichert, sondern dem geheimen Link hinzugefügt. Ohne den vollständigen Link wird niemand (auch wir nicht) in der Lage sein, deine Nachricht zu entschlüsseln. \n\nWenn du ein Passwort angibst, verwenden wir es, um dein Geheimnis **zusätzlich** zur Standardverschlüsselung zu verschlüsseln. Das Passwort wird nicht gespeichert. Selbst mit **Zugang zu unserer gesamten Infrastruktur** könnte ein Angreifer deine Nachricht nicht lesen. Nachdem ein Geheimnis eingesehen wurde, löschen wir es dauerhaft aus unserer Datenbank. Es gibt kein Backup.\n![Link-Erklärung](/images/link-explanation-de.svg)\n\n### Von Grund auf sicher\n- Alle Verbindungen sind über HTTPS gesichert\n- Alle Daten werden verschlüsselt gespeichert (nicht nur Geheimnisse)\n- So wenig Code von Drittanbietern wie möglich\n- Abhängigkeiten werden regelmäßig überprüft und aktualisiert\n- Der gesamte Code ist Open-Source auf {{gitlabLink}}",
+      "markdown": "Alle Nachrichten sind **Ende-zu-Ende-verschlüsselt**. Wir generieren einen zufälligen Hash, um dein Geheimnis **auf dem Client** mit **AES-256** (Advanced Encryption Standard) zu verschlüsseln. Der Verschlüsselungscode wird niemals gespeichert, sondern dem geheimen Link hinzugefügt. Ohne den vollständigen Link wird niemand (auch wir nicht) in der Lage sein, deine Nachricht zu entschlüsseln. \n\nWenn du ein Passwort angibst, verwenden wir es, um dein Geheimnis **zusätzlich** zur Standardverschlüsselung zu verschlüsseln. Das Passwort wird nicht gespeichert. Selbst mit **Zugang zu unserer gesamten Infrastruktur** könnte ein Angreifer deine Nachricht nicht lesen. Nachdem ein Geheimnis eingesehen wurde, löschen wir es dauerhaft aus unserer Datenbank. Es gibt kein Backup.\n![Link-Erklärung](/images/de/link-explanation.svg)\n\n### Von Grund auf sicher\n- Alle Verbindungen sind über HTTPS gesichert\n- Alle Daten werden verschlüsselt gespeichert (nicht nur Geheimnisse)\n- So wenig Code von Drittanbietern wie möglich\n- Abhängigkeiten werden regelmäßig überprüft und aktualisiert\n- Der gesamte Code ist Open-Source auf {{gitlabLink}}",
       "Infrastructure": {
         "title": "Infrastruktur",
         "subtitle": "Vertrauenswürdige Akteure, wenige Abhängigkeiten.",
-        "markdown": "Wir haben uns für branchenführende Anbieter entschieden, um unsere Infrastruktur zu hosten:\n\n- Website/API auf {{linkVercel}}\n- Cloud Database mit {{linkScaleGrid}}\n- Slack App auf {{linkHeroku}}\n- Sämtlicher Code auf {{linkGitlab}}"
+        "markdown": "Wir haben uns für branchenführende Anbieter entschieden, um unsere Infrastruktur zu hosten:\n\n- Website/API auf {{linkVercel}}\n- Cloud Database mit {{linkScaleGrid}}\n- Object Storage (Dateien) mit {{linkFlowSwiss}}\n- Slack App auf {{linkHeroku}}\n- Sämtlicher Code auf {{linkGitlab}}"
       }
     },
     "SignIn": {

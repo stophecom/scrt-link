@@ -18,7 +18,7 @@ export const demoNeogramMessage = (t: TFunction) =>
   )
 
 const demoSecretMessageLink = (t: TFunction) =>
-  `${baseUrl}/l/preview?preview=${encodeURIComponent(
+  `${baseUrl}/l?preview=${encodeURIComponent(
     JSON.stringify({
       message: t(
         'common:demoTextMessage',
@@ -28,7 +28,7 @@ const demoSecretMessageLink = (t: TFunction) =>
     }),
   )}`
 const demoSecretNeogramLink = (t: TFunction) =>
-  `${baseUrl}/l/preview?preview=${encodeURIComponent(
+  `${baseUrl}/l?preview=${encodeURIComponent(
     JSON.stringify({
       message: demoNeogramMessage(t),
       secretType: 'neogram',
@@ -46,13 +46,14 @@ const product = (t: TFunction) => [
     category: 'product',
     heading: t(
       'common:faq.secret-types.heading',
-      'What is the difference between *Text*, *Link* and *Neogram™*?',
+      'What is the difference between *Text*, *Link* and *Neogram*?',
     ),
     body: t('common:faq.secret-types.body', {
       defaultValue: `- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.
 [Demo]({{ demoSecretMessageLink }})
+- **File**: Drop any file. This feature is currently in beta.
 - **Link**: Think about it as a URL-shortener where the generated link only works once.
-- **Neogram™**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})`,
+- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})`,
       demoSecretMessageLink: demoSecretMessageLink(t),
       demoSecretNeogramLink: demoSecretNeogramLink(t),
     }),

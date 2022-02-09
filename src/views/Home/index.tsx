@@ -10,13 +10,12 @@ import { Maybe, CustomPage } from '@/types'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { PageError } from '@/components/Error'
-import { SecretUrlFields } from '@/api/models/SecretUrl'
+import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import { formatCurrency } from '@/utils/localization'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 import BoxShadowWrapper from '@/components/BoxShadowWrapper'
 import UnorderedList from '@/components/UnorderedList'
-
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 import AccountTeaser from './components/AccountTeaser'
@@ -33,10 +32,13 @@ const Result = dynamic(() => import('@/components/ShareSecretResult'))
 const FormCreateSecret = dynamic(() => import('@/components/FormCreateSecret'))
 
 type Request = Pick<SecretUrlFields, 'alias'> & { encryptionKey: string }
-type Success = SecretPost & {
-  encryptionKey: string
-  readReceiptMethod: ReadReceiptMethod
-}
+type Success = Partial<
+  SecretPost & {
+    progress: number
+    encryptionKey: string
+    readReceiptMethod: ReadReceiptMethod
+  }
+>
 export interface State {
   data: Maybe<Partial<Success & Request>>
   error: Maybe<string>
@@ -74,7 +76,7 @@ const reducer = (state: State, action: Action): State => {
     case 'request':
       return { ...state, data: action.data, error: undefined }
     case 'success':
-      return { ...state, data: action.data, error: undefined }
+      return { ...state, data: { ...state.data, ...action.data }, error: undefined }
     case 'error':
       const { error } = action
 
@@ -93,7 +95,7 @@ const initialState: State = {
   error: undefined,
 }
 
-const HomeView: CustomPage = () => {
+export const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { t, i18n } = useTranslation('common')
 
@@ -101,7 +103,7 @@ const HomeView: CustomPage = () => {
 
   const { data, error } = state
 
-  const imgLinkExplanation = `/images/link-explanation-${i18n.language}.svg`
+  const imgLinkExplanation = `/images/${i18n.language}/link-explanation.svg`
 
   if (error) {
     return (
@@ -331,7 +333,10 @@ const HomeView: CustomPage = () => {
   )
 }
 
-export const Widget: CustomPage = () => {
+interface WidgetProps {
+  limitedToSecretType?: SecretType
+}
+export const Widget: CustomPage<WidgetProps> = ({ limitedToSecretType }) => {
   const { t } = useTranslation('common')
   const [state, dispatch] = useReducer(reducer, initialState)
   const { data: customer } = useCustomer()
@@ -362,7 +367,13 @@ export const Widget: CustomPage = () => {
     )
   }
 
-  return <FormCreateSecret dispatch={dispatch} isStandalone={true} />
+  return (
+    <FormCreateSecret
+      dispatch={dispatch}
+      isStandalone={true}
+      limitedToSecretType={limitedToSecretType}
+    />
+  )
 }
 Widget.layout = WidgetLayout
 

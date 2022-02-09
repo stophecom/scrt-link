@@ -3,11 +3,11 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 import { BaseDocumentData } from './types'
 
-export type SecretType = 'text' | 'url' | 'neogram'
+export type SecretType = 'text' | 'url' | 'neogram' | 'file' // Could be imported from scrt-link-core
 export interface SecretUrlFields {
   secretType: SecretType
   alias: string
-  message: string
+  message?: string
   isEncryptedWithUserPassword: boolean
   neogramDestructionMessage?: string
   neogramDestructionTimeout?: number
@@ -16,7 +16,7 @@ export interface SecretUrlFields {
   receiptPhoneNumber?: string
 }
 
-export type SecretUrlData = BaseDocumentData & SecretUrlFields
+export type SecretUrlData = BaseDocumentData & SecretUrlFields // Not used. @todo clean up types
 
 type SecretUrlDocument = mongoose.Document & SecretUrlFields
 

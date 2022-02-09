@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Box } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { Formik, Form, FormikConfig } from 'formik'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
@@ -12,6 +12,8 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import usePrettyBytes from '@/hooks/usePrettyBytes'
+import { api } from '@/utils/api'
 import { CustomError } from '@/api/utils/createError'
 import { decryptMessage, retrieveSecret } from 'scrt-link-core'
 import { getBaseURL } from '@/utils'
@@ -27,11 +29,23 @@ import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
+import { decryptFile, decryptString } from '@/utils/crypto'
 
 // t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
 
+type FileMeta = {
+  bucket: string
+  key: string
+  name: string
+  size: number
+  fileType: string
+  message?: string
+}
+
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
-type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'>
+type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'> & {
+  decryptionKey: string
+}
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     break: {
@@ -47,9 +61,10 @@ const useStyles = makeStyles((theme: Theme) =>
 const AliasView: CustomPage = () => {
   const classes = useStyles()
   const router = useRouter()
+  const prettyBytes = usePrettyBytes()
   const { t } = useTranslation()
 
-  const { alias, preview } = router.query
+  const { preview } = router.query
 
   // Use preview mode if data if passed via URL params
   let previewData = {} as Partial<SecretState>
@@ -59,9 +74,18 @@ const AliasView: CustomPage = () => {
   }
   const isPreview = previewData?.secretType
 
+  const titles = [
+    t('common:views.Alias.title1', 'Shhh'),
+    t('common:views.Alias.title2', 'Knock Knock'),
+    t('common:views.Alias.title3', 'Ding Dong'),
+    t('common:views.Alias.title4', 'Incoming…'),
+  ]
+
   const [hasCopied, setHasCopied] = useState(false)
   const [secret, setSecret] = useState({} as Partial<SecretState>)
+  const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
   const [error, setError] = useState('' as Error['message'])
+  const [title, _setTitle] = useState(titles[Math.floor(Math.random() * titles.length)])
 
   const {
     message,
@@ -69,6 +93,7 @@ const AliasView: CustomPage = () => {
     secretType = 'text',
     neogramDestructionTimeout,
     neogramDestructionMessage,
+    decryptionKey,
   } = secret
 
   // Cleanup state
@@ -86,30 +111,56 @@ const AliasView: CustomPage = () => {
 
   useEffect(() => {
     const fetchSecret = async () => {
-      if (!alias || message) {
+      if (message) {
         return
       }
 
       try {
-        const decryptionKey = window.location.hash.substring(1)
+        // Old implementation
+        let { alias } = router.query
+        let decryptionKey
+        if (alias) {
+          if (alias === '🔥') {
+            throw new Error(t('common:error.secretBurned', 'Secret has been burned already.'))
+          }
 
+          decryptionKey = window.location.hash.substring(1)
+        } else {
+          // New version
+          const hashData = window.location.hash.substring(1).split('/')
+          alias = hashData[0]
+          decryptionKey = hashData[1]
+        }
+
+        if (!alias || typeof alias !== 'string') {
+          throw new Error(t('common:error.invalidAlias', 'Invalid alias.'))
+        }
         if (!decryptionKey) {
           throw new Error(t('common:error.missingDecryptionKey', 'Decryption key missing.'))
         }
 
-        if (typeof alias !== 'string') {
-          throw new Error(t('common:error.invalidAlias', 'Invalid alias.'))
+        const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
+
+        if (!secret.message) {
+          throw new Error(t('common:error.noMessage', 'No message.'))
         }
 
-        const secret = await retrieveSecret(alias, decryptionKey, getBaseURL())
-        setSecret({ ...secret })
+        setSecret({ ...secret, decryptionKey })
 
         // eslint-disable-next-line no-restricted-globals
-        history.replaceState(null, 'Secret destroyed', '🔥')
-      } catch (error) {
-        let err = error as CustomError
+        history.replaceState(null, 'Secret destroyed', 'l/🔥')
+      } catch (e: unknown) {
+        let error = `Undefined error: ${JSON.stringify(e)}`
 
-        setError(`${err?.i18nErrorKey ? t(`common:error.${err.i18nErrorKey}`) : err.message}`)
+        if (e instanceof Error) {
+          error = e.message
+        }
+
+        // Custom error
+        if ((e as CustomError)?.i18nErrorKey) {
+          error = t(`common:error.${(e as CustomError)?.i18nErrorKey}`)
+        }
+        setError(error)
       }
     }
 
@@ -118,7 +169,12 @@ const AliasView: CustomPage = () => {
     } else {
       fetchSecret()
     }
-  }, [alias])
+  }, [])
+
+  // Additional actions after password
+  useEffect(() => {
+    handlePasswordInput()
+  }, [isEncryptedWithUserPassword, secretType])
 
   interface PasswordForm {
     message: string
@@ -129,7 +185,7 @@ const AliasView: CustomPage = () => {
     password: '',
   }
 
-  const handleSubmit: OnSubmit<PasswordForm> = async (values, formikHelpers) => {
+  const handlePasswordSubmit: OnSubmit<PasswordForm> = async (values, formikHelpers) => {
     try {
       const { message, password } = values
       const result = decryptMessage(message, password)
@@ -140,7 +196,7 @@ const AliasView: CustomPage = () => {
         setSecret((previousState) => ({
           ...previousState,
           message: result,
-          isEncryptedWithUserPassword: undefined,
+          isEncryptedWithUserPassword: false,
         }))
       }
 
@@ -150,6 +206,55 @@ const AliasView: CustomPage = () => {
     } finally {
       formikHelpers.setSubmitting(false)
     }
+  }
+
+  const handlePasswordInput = async () => {
+    if (isEncryptedWithUserPassword) {
+      return
+    }
+
+    if (secretType === 'file') {
+      if (!message || !decryptionKey) {
+        throw new Error(`Missing data to fetch file.`)
+      }
+
+      const decryptedFileMeta = await decryptString(message, decryptionKey)
+      const meta: FileMeta = JSON.parse(decryptedFileMeta)
+
+      const { key, bucket, name } = meta
+
+      if (!key) {
+        throw new Error(`Couldn't get file meta data.`)
+      }
+
+      setFile({ ...meta })
+
+      const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
+      const response = await fetch(url)
+
+      if (!response.ok) {
+        throw new Error(`Couldn't retrieve file - it may no longer exist.`)
+      }
+
+      const encryptedFile = await response.blob()
+      const decryptedFile = await decryptFile(encryptedFile, decryptionKey, name)
+
+      const objectUrl = window.URL.createObjectURL(decryptedFile)
+      setFile((prevState) => {
+        return { ...prevState, url: objectUrl }
+      })
+    }
+  }
+
+  if (error && !isPreview) {
+    return (
+      <Page title={t('common:views.Alias.errorOccurred', 'Error occurred')} noindex>
+        <Alert severity="error">{error}</Alert>
+        <Box mt={2}>
+          <ReplyButton />
+        </Box>
+      </Page>
+    )
   }
 
   if (message) {
@@ -164,7 +269,7 @@ const AliasView: CustomPage = () => {
             initialValues={initialValues}
             validationSchema={passwordValidationSchema(t)}
             validateOnMount
-            onSubmit={handleSubmit}
+            onSubmit={handlePasswordSubmit}
           >
             {({ isValid, isSubmitting, setFieldValue }) => {
               return (
@@ -213,10 +318,77 @@ const AliasView: CustomPage = () => {
             />
           )
         }
+        case 'file': {
+          if (!file.size) {
+            return null
+          }
+          const { name, fileType, size, url, message } = file
+
+          return (
+            <Page
+              title={title}
+              subtitle={t('common:views.Alias.file.subtitle', 'You received a secret file:')}
+              noindex
+            >
+              <Box mb={3}>
+                <Box mb={1}>
+                  <Alert severity="info">
+                    {t(
+                      'common:views.Alias.file.warning',
+                      'Important! We have absolutely no knowledge about the contents of the file. Be sure to trust the sender!',
+                    )}
+                  </Alert>
+                </Box>
+
+                <Paper elevation={3} className={clsx(classes.break, classes.message)}>
+                  <Box px={4} pt={3} pb={2}>
+                    <Box mb={2}>
+                      <Typography variant="body1" noWrap>
+                        <strong>{t('common:views.Alias.file.name', 'Name')}:</strong> {name}
+                        <br />
+                        <strong>{t('common:views.Alias.file.type', 'Type')}:</strong> {fileType}
+                        <br />
+                        <strong>{t('common:views.Alias.file.size', 'Size')}:</strong>{' '}
+                        {prettyBytes(size)}
+                        <br />
+                        {message && (
+                          <>
+                            <br />
+                            <strong>
+                              {t('common:views.Alias.file.optionalMessage', 'Message')}:{' '}
+                            </strong>
+                            <em>{message}</em>
+                          </>
+                        )}
+                      </Typography>
+                    </Box>
+                    <BaseButton
+                      component={'a'}
+                      href={url}
+                      download={name}
+                      variant="contained"
+                      loading={!url}
+                      disabled={!url}
+                      color="primary"
+                      size="large"
+                      fullWidth
+                    >
+                      {t('common:views.Alias.file.button.label', 'Decrypt and Download')}
+                    </BaseButton>
+                  </Box>
+                </Paper>
+
+                <Box mt={2}>
+                  <ReplyButton />
+                </Box>
+              </Box>
+            </Page>
+          )
+        }
         default: {
           return (
             <Page
-              title={t('common:views.Alias.title', 'Shhh')}
+              title={title}
               subtitle={t('common:views.Alias.subtitle', 'You received a secret:')}
               noindex
             >
@@ -263,17 +435,6 @@ const AliasView: CustomPage = () => {
         }
       }
     }
-  }
-
-  if (error && !isPreview) {
-    return (
-      <Page title={t('common:views.Alias.errorOccurred', 'Error occurred')} noindex>
-        <Alert severity="error">{error}</Alert>
-        <Box mt={2}>
-          <ReplyButton />
-        </Box>
-      </Page>
-    )
   }
 
   return <Spinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />

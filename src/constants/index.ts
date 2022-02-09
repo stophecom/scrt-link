@@ -65,15 +65,21 @@ export const smsReadReceipt = {
     reply: 'Antworte mit einem Geheimnis: https://scrt.link',
   },
 }
+
+export const MB = 10 ** 6 // 1000000 Bytes = 1 MB.
+
 // Limits per user role
 export const limits = {
   visitor: {
     maxMessageLength: 280,
+    maxFileSize: 10 * MB,
   },
   free: {
     maxMessageLength: 1000,
+    maxFileSize: 100 * MB,
   },
   premium: {
     maxMessageLength: 100000,
+    maxFileSize: 500 * MB,
   },
 }

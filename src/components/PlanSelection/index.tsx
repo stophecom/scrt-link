@@ -100,7 +100,7 @@ const PlanSelection: React.FunctionComponent = () => {
     {
       heading: t(
         'common:components.PlanSelection.plans.premium.usps.3.heading',
-        'Customize Neogram™ messages',
+        'Customize Neogram messages',
       ),
       body: t(
         'common:components.PlanSelection.plans.premium.usps.3.body',

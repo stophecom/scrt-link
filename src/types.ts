@@ -29,6 +29,10 @@ declare global {
       TWILIO_AUTH_TOKEN: string
       SLACK_APP_API_URL: string
       SLACK_APP_API_KEY: string
+      FLOW_S3_ENDPOINT: string
+      NEXT_PUBLIC_FLOW_S3_BUCKET: string
+      FLOW_S3_ACCESS_KEY: string
+      FLOW_S3_SECRET_KEY: string
     }
   }
 }
