@@ -58,7 +58,6 @@ const handler: NextApiHandler = async (req, res) => {
         receiptEmail,
         receiptPhoneNumber,
         message,
-        meta,
       } = secretUrl
 
       // Update global view count stats
@@ -118,7 +117,6 @@ const handler: NextApiHandler = async (req, res) => {
               neogramDestructionTimeout,
             }
           : {}),
-        meta,
       })
       break
     }
