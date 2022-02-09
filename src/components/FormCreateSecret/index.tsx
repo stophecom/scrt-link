@@ -138,6 +138,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
   const [neogramPreview, setNeogramPreview] = useState(false)
   const [key, setKey] = useState<string>('')
+  const [alias, setAlias] = useState<string>(generateAlias())
   const [file, setFile] = useState<File | null>(null)
   const { data: customer } = useCustomer()
 
@@ -151,13 +152,13 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     }
   })
 
-  useEffect(() => {
-    const getKey = async () => {
-      const key = await generateEncryptionKeyString()
-      setKey(key)
-    }
+  const generateAndStoreKey = async () => {
+    const key = await generateEncryptionKeyString()
+    setKey(key)
+  }
 
-    getKey()
+  useEffect(() => {
+    generateAndStoreKey()
 
     if (limitedToSecretType) {
       setSecretType(limitedToSecretType)
@@ -167,7 +168,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const initialValues = {
     message: '',
     secretType: 'text' as SecretType,
-    alias: generateAlias(),
+    alias: alias,
     encryptionKey: key,
     neogramDestructionMessage:
       customer?.neogramDestructionMessage ||
@@ -184,7 +185,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const handleSubmit: OnSubmit<SecretUrlFormValues> = async (values, formikHelpers) => {
     const {
       password,
-      message = '',
+      message,
       secretType,
       alias,
       encryptionKey,
@@ -264,11 +265,9 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         data = omit(['neogramDestructionMessage', 'neogramDestructionTimeout'], data)
       }
 
-      const response = await createSecret(
-        secretType === 'file' ? metaAsMessage : message,
-        data,
-        getBaseURL(),
-      )
+      const messageToStore: string = secretType === 'file' ? metaAsMessage : message || 'Error'
+
+      const response = await createSecret(messageToStore, data, getBaseURL())
 
       if (response) {
         dispatch(
@@ -355,7 +354,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
             readReceiptMethod,
             customer?.role,
           )}
-          validateOnMount
           onSubmit={handleSubmit}
         >
           {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
