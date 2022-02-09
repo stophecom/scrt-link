@@ -74,18 +74,18 @@ const AliasView: CustomPage = () => {
   }
   const isPreview = previewData?.secretType
 
-  const [hasCopied, setHasCopied] = useState(false)
-  const [secret, setSecret] = useState({} as Partial<SecretState>)
-  const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
-  const [error, setError] = useState('' as Error['message'])
-
   const titles = [
     t('common:views.Alias.title1', 'Shhh'),
     t('common:views.Alias.title2', 'Knock Knock'),
     t('common:views.Alias.title3', 'Ding Dong'),
-    t('common:views.Alias.title4', 'Hello Lovely'),
+    t('common:views.Alias.title4', 'Incoming…'),
   ]
-  var randomTitle = titles[Math.floor(Math.random() * titles.length)]
+
+  const [hasCopied, setHasCopied] = useState(false)
+  const [secret, setSecret] = useState({} as Partial<SecretState>)
+  const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
+  const [error, setError] = useState('' as Error['message'])
+  const [title, _setTitle] = useState(titles[Math.floor(Math.random() * titles.length)])
 
   const {
     message,
@@ -325,7 +325,7 @@ const AliasView: CustomPage = () => {
 
           return (
             <Page
-              title={randomTitle}
+              title={title}
               subtitle={t('common:views.Alias.file.subtitle', 'You received a secret file:')}
               noindex
             >
@@ -387,7 +387,7 @@ const AliasView: CustomPage = () => {
         default: {
           return (
             <Page
-              title={randomTitle}
+              title={title}
               subtitle={t('common:views.Alias.subtitle', 'You received a secret:')}
               noindex
             >

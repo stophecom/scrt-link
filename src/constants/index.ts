@@ -80,6 +80,6 @@ export const limits = {
   },
   premium: {
     maxMessageLength: 100000,
-    maxFileSize: 1000 * MB, // 1GB
+    maxFileSize: 500 * MB,
   },
 }

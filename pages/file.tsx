@@ -1,2 +1,2 @@
-export { default } from '@/views/Files'
+export { default } from '@/views/File'
 export { getStaticProps } from '@/utils/localization'
