@@ -103,7 +103,7 @@ export const HomeView: CustomPage = () => {
 
   const { data, error } = state
 
-  const imgLinkExplanation = `/images/link-explanation-${i18n.language}.svg`
+  const imgLinkExplanation = `/images/${i18n.language}/link-explanation.svg`
 
   if (error) {
     return (

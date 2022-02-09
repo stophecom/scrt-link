@@ -398,7 +398,7 @@
     },
     "end-to-end-encryption-info": {
       "heading": "Wie wird die Ende-zu-Ende-Verschlüsselung erreicht?",
-      "body": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung des Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht. Wir speichern den Verschlüsselungscode nicht. Nur mit dem vollständigen Link kann das Geheimnis entschlüsselt werden.\n![Link-Erklärung](/images/link-explanation-de.svg)"
+      "body": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung des Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht. Wir speichern den Verschlüsselungscode nicht. Nur mit dem vollständigen Link kann das Geheimnis entschlüsselt werden.\n![Link-Erklärung](/images/de/link-explanation.svg)"
     },
     "recovery": {
       "heading": "Kann ich ein Geheimnis, das bereits besucht wurde, wiederfinden?",
@@ -622,7 +622,7 @@
     "Security": {
       "title": "Sicherheit",
       "subtitle": "Bewährte Praktiken, keine Extras.",
-      "markdown": "Alle Nachrichten sind **Ende-zu-Ende-verschlüsselt**. Wir generieren einen zufälligen Hash, um dein Geheimnis **auf dem Client** mit **AES-256** (Advanced Encryption Standard) zu verschlüsseln. Der Verschlüsselungscode wird niemals gespeichert, sondern dem geheimen Link hinzugefügt. Ohne den vollständigen Link wird niemand (auch wir nicht) in der Lage sein, deine Nachricht zu entschlüsseln. \n\nWenn du ein Passwort angibst, verwenden wir es, um dein Geheimnis **zusätzlich** zur Standardverschlüsselung zu verschlüsseln. Das Passwort wird nicht gespeichert. Selbst mit **Zugang zu unserer gesamten Infrastruktur** könnte ein Angreifer deine Nachricht nicht lesen. Nachdem ein Geheimnis eingesehen wurde, löschen wir es dauerhaft aus unserer Datenbank. Es gibt kein Backup.\n![Link-Erklärung](/images/link-explanation-de.svg)\n\n### Von Grund auf sicher\n- Alle Verbindungen sind über HTTPS gesichert\n- Alle Daten werden verschlüsselt gespeichert (nicht nur Geheimnisse)\n- So wenig Code von Drittanbietern wie möglich\n- Abhängigkeiten werden regelmäßig überprüft und aktualisiert\n- Der gesamte Code ist Open-Source auf {{gitlabLink}}",
+      "markdown": "Alle Nachrichten sind **Ende-zu-Ende-verschlüsselt**. Wir generieren einen zufälligen Hash, um dein Geheimnis **auf dem Client** mit **AES-256** (Advanced Encryption Standard) zu verschlüsseln. Der Verschlüsselungscode wird niemals gespeichert, sondern dem geheimen Link hinzugefügt. Ohne den vollständigen Link wird niemand (auch wir nicht) in der Lage sein, deine Nachricht zu entschlüsseln. \n\nWenn du ein Passwort angibst, verwenden wir es, um dein Geheimnis **zusätzlich** zur Standardverschlüsselung zu verschlüsseln. Das Passwort wird nicht gespeichert. Selbst mit **Zugang zu unserer gesamten Infrastruktur** könnte ein Angreifer deine Nachricht nicht lesen. Nachdem ein Geheimnis eingesehen wurde, löschen wir es dauerhaft aus unserer Datenbank. Es gibt kein Backup.\n![Link-Erklärung](/images/de/link-explanation.svg)\n\n### Von Grund auf sicher\n- Alle Verbindungen sind über HTTPS gesichert\n- Alle Daten werden verschlüsselt gespeichert (nicht nur Geheimnisse)\n- So wenig Code von Drittanbietern wie möglich\n- Abhängigkeiten werden regelmäßig überprüft und aktualisiert\n- Der gesamte Code ist Open-Source auf {{gitlabLink}}",
       "Infrastructure": {
         "title": "Infrastruktur",
         "subtitle": "Vertrauenswürdige Akteure, wenige Abhängigkeiten.",
