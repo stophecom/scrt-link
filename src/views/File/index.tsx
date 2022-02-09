@@ -2,14 +2,25 @@ import { Widget } from '@/views/Home'
 import { useTranslation } from 'next-i18next'
 import { Typography } from '@material-ui/core'
 import styled from 'styled-components'
+import { Lock } from '@material-ui/icons'
 
 import { CustomPage } from '@/types'
 import Page from '@/components/Page'
 
 const Disclaimer = styled(Typography)`
   opacity: 0.7;
-  margin-top: 0.4em;
+  margin-top: 5em;
   margin-bottom: 0.3em;
+  padding-left: clamp(0.1em, 10vw, 10em);
+  padding-right: clamp(0.1em, 10vw, 10em);
+  text-align: center;
+`
+
+const LockIcon = styled(Lock)`
+  font-size: 1em;
+  margin-right: 0.2em;
+  position: relative;
+  bottom: -0.1em;
 `
 
 const FileView: CustomPage = () => {
@@ -24,9 +35,10 @@ const FileView: CustomPage = () => {
       <Widget limitedToSecretType="file" />
 
       <Disclaimer variant="body2">
+        <LockIcon />
         {t(
           'common:views.Files.flowDisclaimer',
-          'File will be end-to-end encrypted and stored in Zürich, Switzerland by Flow Swiss AG.',
+          'Swiss privacy: Files will be end-to-end encrypted and stored in Zürich, Switzerland by Flow Swiss AG.',
         )}
       </Disclaimer>
     </Page>
