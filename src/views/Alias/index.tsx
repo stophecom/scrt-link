@@ -108,23 +108,27 @@ const AliasView: CustomPage = () => {
 
   useEffect(() => {
     const fetchSecret = async () => {
-      // Old implementation
-      let { alias } = router.query
-      let decryptionKey
-      if (alias) {
-        decryptionKey = window.location.hash.substring(1)
-      } else {
-        // New version
-        const hashData = window.location.hash.substring(1).split('/')
-        alias = hashData[0]
-        decryptionKey = hashData[1]
-      }
-
       if (message) {
         return
       }
 
       try {
+        // Old implementation
+        let { alias } = router.query
+        let decryptionKey
+        if (alias) {
+          if (alias === '🔥') {
+            throw new Error(t('common:error.secretBurned', 'Secret has been burned already.'))
+          }
+
+          decryptionKey = window.location.hash.substring(1)
+        } else {
+          // New version
+          const hashData = window.location.hash.substring(1).split('/')
+          alias = hashData[0]
+          decryptionKey = hashData[1]
+        }
+
         if (!alias || typeof alias !== 'string') {
           throw new Error(t('common:error.invalidAlias', 'Invalid alias.'))
         }
