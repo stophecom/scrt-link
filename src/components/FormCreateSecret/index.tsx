@@ -258,7 +258,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         data = omit(['neogramDestructionMessage', 'neogramDestructionTimeout'], data)
       }
 
-      const response = await createSecret(metaAsMessage, data, getBaseURL())
+      const response = await createSecret(
+        secretType === 'file' ? metaAsMessage : message,
+        data,
+        getBaseURL(),
+      )
 
       if (response) {
         dispatch(
