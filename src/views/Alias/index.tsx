@@ -249,7 +249,7 @@ const AliasView: CustomPage = () => {
         >
           <Formik<PasswordForm>
             initialValues={initialValues}
-            validationSchema={passwordValidationSchema}
+            validationSchema={passwordValidationSchema(t)}
             validateOnMount
             onSubmit={handlePasswordSubmit}
           >
