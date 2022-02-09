@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Paper, Button, Chip, Backdrop, Typography } from '@material-ui/core'
-import { CloudUpload } from '@material-ui/icons'
+import { CloudUpload, Delete } from '@material-ui/icons'
 import { useTranslation } from 'next-i18next'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
@@ -33,6 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       right: '5px',
       bottom: '5px',
+    },
+    chip: {
+      paddingLeft: '.6em',
+      paddingRight: '.6em',
+      maxWidth: '100%',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      marginBottom: '.3em',
     },
   }),
 )
@@ -103,15 +111,19 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) 
       </Backdrop>
       <Paper elevation={0} variant="outlined" className={classes.paper}>
         {file && (
-          <Chip
-            color="default"
-            label={`${file.name} - ${prettyBytes(file.size)}`}
-            onDelete={() => {
-              setFile(null)
-              setError(null)
-              onChange(null)
-            }}
-          />
+          <>
+            <Chip
+              deleteIcon={<Delete />}
+              className={classes.chip}
+              color="default"
+              label={`${file.name} - ${prettyBytes(file.size)}`}
+              onDelete={() => {
+                setFile(null)
+                setError(null)
+                onChange(null)
+              }}
+            />
+          </>
         )}
         {(error || !file) && (
           <>
