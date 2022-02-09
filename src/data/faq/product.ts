@@ -51,6 +51,7 @@ const product = (t: TFunction) => [
     body: t('common:faq.secret-types.body', {
       defaultValue: `- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.
 [Demo]({{ demoSecretMessageLink }})
+- **File**: Drop any file. This feature is currently in beta.
 - **Link**: Think about it as a URL-shortener where the generated link only works once.
 - **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})`,
       demoSecretMessageLink: demoSecretMessageLink(t),

@@ -380,7 +380,7 @@
     },
     "secret-types": {
       "heading": "What is the difference between *Text*, *Link* and *Neogram*?",
-      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **Link**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
+      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **File**: Drop any file. This feature is currently in beta.\n- **Link**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
     },
     "message-size": {
       "heading": "What is the maximum message size?",
@@ -663,7 +663,7 @@
       "Infrastructure": {
         "title": "Infrastructure",
         "subtitle": "Trusted players, few dependencies.",
-        "markdown": "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}"
+        "markdown": "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Object Storage (Files) with {{linkFlowSwiss}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}"
       }
     },
     "SignIn": {

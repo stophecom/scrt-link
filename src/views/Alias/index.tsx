@@ -156,8 +156,9 @@ const AliasView: CustomPage = () => {
           error = e.message
         }
 
-        if (e instanceof CustomError) {
-          error = t(`common:error.${e.i18nErrorKey}`)
+        // Custom error
+        if ((e as CustomError)?.i18nErrorKey) {
+          error = t(`common:error.${(e as CustomError)?.i18nErrorKey}`)
         }
         setError(error)
       }
