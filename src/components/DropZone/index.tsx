@@ -51,7 +51,7 @@ interface DropZoneProps {
 }
 const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) => {
   const classes = useStyles()
-  const { t } = useTranslation('components')
+  const { t } = useTranslation('common')
   const prettyBytes = usePrettyBytes()
 
   const [error, setError] = useState(null)

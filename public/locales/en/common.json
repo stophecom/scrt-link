@@ -7,7 +7,62 @@
     "keywords": "scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
   },
   "password": "Password",
+  "button": {
+    "copied": "Copied",
+    "copy": "Copy",
+    "takeMeHome": "Take me home",
+    "lessOptions": "Less options",
+    "moreOptions": "More options",
+    "preview": "Preview",
+    "demo": "Demo",
+    "createSecretLink": "Create secret link",
+    "save": "Save",
+    "deleteAccount": "Delete Account",
+    "send": "Send",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "myAccount": "My account",
+    "account": "Scrt Account",
+    "getAccount": "Get Account",
+    "close": "Close",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "menu": "Menu",
+    "signUpFree": "Sign up free",
+    "reactivatePlan": "Reactivate plan",
+    "tryFree": "Try it free",
+    "signUpFirst": "Sign up first",
+    "cancelSubscription": "Cancel subscription",
+    "createNewSecret": "Create new secret",
+    "share": "Share",
+    "cancel": "Cancel",
+    "installNow": "Install now",
+    "learnMore": "Learn more",
+    "signOut": "Sign out",
+    "replyWithSecret": "Reply with a secret",
+    "decryptMessage": "Decrypt Message",
+    "destroySecret": "Destroy secret",
+    "home": "Home",
+    "tryAgain": "Try again",
+    "createSecret": "Create a secret",
+    "addToSlack": "Add to Slack",
+    "readMoreFaq": "Read more on FAQ page",
+    "viewPlans": "View plans",
+    "getFreeAccount": "Get free account",
+    "privacyPolicy": "Privacy Policy"
+  },
   "components": {
+    "DropZone": {
+      "error": {
+        "noFiles": "No file selected. Please try another file.",
+        "tooManyFiles": "Too many files. Only one file allowed at this point. You may compress multiple files into one zip file before uploading.",
+        "fileToLarge": "File too large. Maximum file size is {{max}}."
+      },
+      "backdrop": "Drop It Like It's Hot",
+      "button": "Select file",
+      "dragAndDrop": "…or drag & drop here.",
+      "maxFileSize": "Max. {{maxSize}}"
+    },
     "Error": {
       "defaultTitle": "An error occurred!"
     },
@@ -167,50 +222,6 @@
       "privacy": "100% Privacy protected"
     }
   },
-  "button": {
-    "takeMeHome": "Take me home",
-    "lessOptions": "Less options",
-    "moreOptions": "More options",
-    "preview": "Preview",
-    "demo": "Demo",
-    "createSecretLink": "Create secret link",
-    "save": "Save",
-    "deleteAccount": "Delete Account",
-    "send": "Send",
-    "signUp": "Sign up",
-    "signIn": "Sign in",
-    "myAccount": "My account",
-    "account": "Scrt Account",
-    "getAccount": "Get Account",
-    "close": "Close",
-    "closeMenu": "Close menu",
-    "openMenu": "Open menu",
-    "menu": "Menu",
-    "signUpFree": "Sign up free",
-    "reactivatePlan": "Reactivate plan",
-    "tryFree": "Try it free",
-    "signUpFirst": "Sign up first",
-    "cancelSubscription": "Cancel subscription",
-    "createNewSecret": "Create new secret",
-    "share": "Share",
-    "copied": "Copied",
-    "copy": "Copy",
-    "cancel": "Cancel",
-    "installNow": "Install now",
-    "learnMore": "Learn more",
-    "signOut": "Sign out",
-    "replyWithSecret": "Reply with a secret",
-    "decryptMessage": "Decrypt Message",
-    "destroySecret": "Destroy secret",
-    "home": "Home",
-    "tryAgain": "Try again",
-    "createSecret": "Create a secret",
-    "addToSlack": "Add to Slack",
-    "readMoreFaq": "Read more on FAQ page",
-    "viewPlans": "View plans",
-    "getFreeAccount": "Get free account",
-    "privacyPolicy": "Privacy Policy"
-  },
   "menu": {
     "status": "Status",
     "home": "Home",
@@ -234,6 +245,11 @@
       "label": "Your secret",
       "tabLabel": "Text",
       "placeholder": "Secret message, password, private key, etc."
+    },
+    "file": {
+      "label": "Message (optional)",
+      "tabLabel": "File",
+      "placeholder": "Add an optional message for the recipient…"
     },
     "url": {
       "label": "URL",
@@ -285,8 +301,10 @@
   "error": {
     "unexpectedError": "Unexpected error",
     "SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
-    "missingDecryptionKey": "Decryption key missing.",
+    "secretBurned": "Secret has been burned already.",
     "invalidAlias": "Invalid alias.",
+    "missingDecryptionKey": "Decryption key missing.",
+    "noMessage": "No message.",
     "wrongPassword": "Wrong Password"
   },
   "plans": {
@@ -514,11 +532,25 @@
       "signedInAs": "You are signed in as {{email}}."
     },
     "Alias": {
+      "title1": "Shhh",
+      "title2": "Knock Knock",
+      "title3": "Ding Dong",
+      "title4": "Incoming…",
+      "errorOccurred": "Error occurred",
       "passwordRequired": "Password required",
       "enterPassword": "Enter password to decrypt your secret:",
-      "title": "Shhh",
+      "file": {
+        "subtitle": "You received a secret file:",
+        "warning": "Important! We have absolutely no knowledge about the contents of the file. Be sure to trust the sender!",
+        "name": "Name",
+        "type": "Type",
+        "size": "Size",
+        "optionalMessage": "Optional message",
+        "button": {
+          "label": "Decrypt and Download"
+        }
+      },
       "subtitle": "You received a secret:",
-      "errorOccurred": "Error occurred",
       "loadingSecret": "Loading secret"
     },
     "Contact": {
@@ -542,6 +574,11 @@
       "subtitle": "Frequently Asked Questions",
       "introQuestion": "What topic can we help you with?",
       "noAnswer": "Didn't find the answer you were looking for? Contact support:"
+    },
+    "Files": {
+      "title": "X Files",
+      "subtitle": "Share end-to-end encrypted files. One time.",
+      "flowDisclaimer": "File will be end-to-end encrypted and stored in Zürich, Switzerland by Flow Swiss AG."
     },
     "Home": {
       "HowItWorks": {

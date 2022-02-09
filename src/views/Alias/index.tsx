@@ -354,7 +354,7 @@ const AliasView: CustomPage = () => {
                           <>
                             <br />
                             <strong>
-                              {t('common:views.Alias.file.optionalMessage', 'Optional message')}:{' '}
+                              {t('common:views.Alias.file.optionalMessage', 'Message')}:{' '}
                             </strong>
                             <em>{message}</em>
                           </>

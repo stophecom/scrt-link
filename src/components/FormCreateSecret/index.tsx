@@ -77,7 +77,7 @@ export const secretTypesMap = (t: TFunction) =>
       ),
     },
     file: {
-      label: t('common:secretType.file.label', 'Optional message'),
+      label: t('common:secretType.file.label', 'Message (optional)'),
       tabLabel: t('common:secretType.file.tabLabel', 'File') + ' ᴮᴱᵀᴬ',
       placeholder: t(
         'common:secretType.file.placeholder',

@@ -7,7 +7,62 @@
     "keywords": "scrt.link, Geheimlink, Geheimnachrichten, Einmal-Geheimnis, Einmal-Passwort, Einmal-Nachricht, Einmal-Link, Wegwerf-Nachricht, Wegwerf-Link, URL Shortener, Selbstzerstörende Links, Sensible Informationen online teilen"
   },
   "password": "Passwort",
+  "button": {
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "takeMeHome": "Zur Startseite",
+    "lessOptions": "Weniger Optionen",
+    "moreOptions": "Mehr Optionen",
+    "preview": "Vorschau",
+    "demo": "Demo",
+    "createSecretLink": "Geheimen Link erstellen",
+    "save": "Speichern",
+    "deleteAccount": "Konto löschen",
+    "send": "Absenden",
+    "signUp": "Registrieren",
+    "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
+    "account": "Mein Konto",
+    "getAccount": "Konto erstellen",
+    "close": "Schließen",
+    "closeMenu": "Menü schließen",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü",
+    "signUpFree": "Gratis registrieren",
+    "reactivatePlan": "Plan reaktivieren",
+    "tryFree": "Gratis testen",
+    "signUpFirst": "Zuerst registrieren",
+    "cancelSubscription": "Abo kündigen",
+    "createNewSecret": "Neues Geheimnis erstellen",
+    "share": "Teilen",
+    "cancel": "Abbrechen",
+    "installNow": "Jetzt installieren",
+    "learnMore": "Mehr erfahren",
+    "signOut": "Abmelden",
+    "replyWithSecret": "Mit einem Geheimnis antworten",
+    "decryptMessage": "Nachricht entschlüsseln",
+    "destroySecret": "Nachricht zerstören",
+    "home": "Startseite",
+    "tryAgain": "Nochmals versuchen",
+    "createSecret": "Geheimnis erstellen",
+    "addToSlack": "Zu Slack hinzufügen",
+    "readMoreFaq": "Mehr auf FAQ Seite",
+    "viewPlans": "Pläne ansehen",
+    "getFreeAccount": "Kostenloses Konto erstellen",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
   "components": {
+    "DropZone": {
+      "error": {
+        "noFiles": "Keine Datei ausgewählt. Bitte füge eine andere Datei hinzu.",
+        "tooManyFiles": "Zu viele Dateien. Zu diesem Zeitpunkt ist nur eine Datei erlaubt. Du kannst mehrere Dateien vor dem Hochladen in eine Zip-Datei komprimieren.",
+        "fileToLarge": "Datei zu gross. Maximale erlaubte Dateigrösse ist {{max}}."
+      },
+      "backdrop": "Drop It Like It's Hot",
+      "button": "Datei auswählen",
+      "dragAndDrop": "…oder via Drag & Drop.",
+      "maxFileSize": "Max. {{maxSize}}"
+    },
     "Error": {
       "defaultTitle": "Es ist ein Fehler aufgetreten!"
     },
@@ -167,50 +222,6 @@
       "privacy": "100% geschützte Privatsphäre"
     }
   },
-  "button": {
-    "takeMeHome": "Zur Startseite",
-    "lessOptions": "Weniger Optionen",
-    "moreOptions": "Mehr Optionen",
-    "preview": "Vorschau",
-    "demo": "Demo",
-    "createSecretLink": "Geheimen Link erstellen",
-    "save": "Speichern",
-    "deleteAccount": "Konto löschen",
-    "send": "Absenden",
-    "signUp": "Registrieren",
-    "signIn": "Anmelden",
-    "myAccount": "Mein Konto",
-    "account": "Mein Konto",
-    "getAccount": "Konto erstellen",
-    "close": "Schließen",
-    "closeMenu": "Menü schließen",
-    "openMenu": "Menü öffnen",
-    "menu": "Menü",
-    "signUpFree": "Gratis registrieren",
-    "reactivatePlan": "Plan reaktivieren",
-    "tryFree": "Gratis testen",
-    "signUpFirst": "Zuerst registrieren",
-    "cancelSubscription": "Abo kündigen",
-    "createNewSecret": "Neues Geheimnis erstellen",
-    "share": "Teilen",
-    "copied": "Kopiert",
-    "copy": "Kopieren",
-    "cancel": "Abbrechen",
-    "installNow": "Jetzt installieren",
-    "learnMore": "Mehr erfahren",
-    "signOut": "Abmelden",
-    "replyWithSecret": "Mit einem Geheimnis antworten",
-    "decryptMessage": "Nachricht entschlüsseln",
-    "destroySecret": "Nachricht zerstören",
-    "home": "Startseite",
-    "tryAgain": "Nochmals versuchen",
-    "createSecret": "Geheimnis erstellen",
-    "addToSlack": "Zu Slack hinzufügen",
-    "readMoreFaq": "Mehr auf FAQ Seite",
-    "viewPlans": "Pläne ansehen",
-    "getFreeAccount": "Kostenloses Konto erstellen",
-    "privacyPolicy": "Datenschutzbestimmungen"
-  },
   "menu": {
     "status": "Status",
     "home": "Startseite",
@@ -234,6 +245,11 @@
       "label": "Dein Geheimnis",
       "tabLabel": "Text",
       "placeholder": "Geheimnachricht, Password, Privatschlüssel, etc."
+    },
+    "file": {
+      "label": "Nachricht (optional)",
+      "tabLabel": "Datei",
+      "placeholder": "Fügen eine Nachricht für den Empfänger hinzu…"
     },
     "url": {
       "label": "URL",
@@ -285,8 +301,10 @@
   "error": {
     "unexpectedError": "Unerwarteter Fehler",
     "SECRET_NOT_FOUND": "Geheimnis nicht gefunden - Dies bedeutet normalerweise, dass der geheime Link bereits besucht wurde und daher nicht mehr existiert.",
-    "missingDecryptionKey": "Entschlüsselungscode fehlt",
+    "secretBurned": "Geheimnis wurde bereits zerstört.",
     "invalidAlias": "Alias ungültig.",
+    "missingDecryptionKey": "Entschlüsselungscode fehlt",
+    "noMessage": "Keine Nachricht.",
     "wrongPassword": "Falsches Passwort"
   },
   "plans": {
@@ -514,11 +532,25 @@
       "signedInAs": "Du bist angemeldet als {{email}}."
     },
     "Alias": {
+      "title1": "Pssst",
+      "title2": "Klopf Klopf",
+      "title3": "Ding Dong",
+      "title4": "Es kommt was…",
+      "errorOccurred": "Fehler aufgetreten",
       "passwordRequired": "Passwort notwendig",
       "enterPassword": "Gebe das Passwort ein um die Nachricht zu entschlüsseln:",
-      "title": "Pssst",
+      "file": {
+        "subtitle": "Du hast eine geheime Datei erhalten:",
+        "warning": "Wichtig! Wir haben keinerlei Kenntnis über den Inhalt der Datei. Öffne die Datei nur wenn du dem Absender vertraust!",
+        "name": "Name",
+        "type": "Typ",
+        "size": "Grösse",
+        "optionalMessage": "Nachricht",
+        "button": {
+          "label": "Entschlüsseln und herunterladen"
+        }
+      },
       "subtitle": "Du hast eine geheime Nachricht bekommen:",
-      "errorOccurred": "Fehler aufgetreten",
       "loadingSecret": "Geheimnis wird geladen"
     },
     "Contact": {
@@ -542,6 +574,11 @@
       "subtitle": "Häufig gestellte Fragen",
       "introQuestion": "Bei welchem Thema können wir dir weiterhelfen?",
       "noAnswer": "Hast du keine passende Antwort gefunden? Wir helfen dir gerne weiter:"
+    },
+    "Files": {
+      "title": "X Files",
+      "subtitle": "Teile Ende-zu-Ende-verschlüsselte Dateien. Einmalig.",
+      "flowDisclaimer": "Die Datei wird Ende-zu-Ende verschlüsselt und in Zürich, Schweiz bei der Flow Swiss AG gespeichert."
     },
     "Home": {
       "HowItWorks": {
