@@ -101,7 +101,6 @@ Third parties we currently use include:
 
 - Plausible - https://plausible.io/
 - Stripe - https://stripe.com/
-- Sentry - https://sentry.io/
 - Twilio - https://www.twilio.com/
 - Mailjet - https://www.mailjet.com/
 
