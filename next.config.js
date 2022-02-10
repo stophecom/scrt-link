@@ -41,6 +41,15 @@ const config = {
 
     return config
   },
+  redirects: async () => {
+    return [
+      {
+        source: '/file',
+        destination: '/files',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = withPlugins(plugins, config)

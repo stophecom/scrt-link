@@ -86,7 +86,7 @@ const secretTypesMap = (t: TFunction) =>
     },
     url: {
       label: t('common:secretType.url.label', 'URL'),
-      tabLabel: t('common:secretType.url.tabLabel', 'Link'),
+      tabLabel: t('common:secretType.url.tabLabel', 'Redirect'),
       placeholder: t('common:secretType.url.placeholder', 'e.g. https://www.example.com'),
     },
     neogram: {

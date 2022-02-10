@@ -14,7 +14,7 @@ import { TFunction } from 'next-i18next'
 export const demoNeogramMessage = (t: TFunction) =>
   t(
     'common:demoNeogramMessage',
-    'Hi there…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘',
+    'Wake up Neo…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘',
   )
 
 const demoSecretMessageLink = (t: TFunction) =>
@@ -44,15 +44,12 @@ const product = (t: TFunction) => [
   {
     id: 'secret-types',
     category: 'product',
-    heading: t(
-      'common:faq.secret-types.heading',
-      'What is the difference between *Text*, *Link* and *Neogram*?',
-    ),
+    heading: t('common:faq.secret-types.heading', '*Text*, *Files*, *Redirect* und *Neogram*?'),
     body: t('common:faq.secret-types.body', {
       defaultValue: `- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.
 [Demo]({{ demoSecretMessageLink }})
 - **File**: Drop any file. This feature is currently in beta.
-- **Link**: Think about it as a URL-shortener where the generated link only works once.
+- **Redirect**: Think about it as a URL-shortener where the generated link only works once.
 - **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})`,
       demoSecretMessageLink: demoSecretMessageLink(t),
       demoSecretNeogramLink: demoSecretNeogramLink(t),

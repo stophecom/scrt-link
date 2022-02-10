@@ -253,7 +253,7 @@
     },
     "url": {
       "label": "URL",
-      "tabLabel": "Link",
+      "tabLabel": "Redirect",
       "placeholder": "z.B. https://www.example.com"
     },
     "neogram": {
@@ -379,8 +379,8 @@
       "body": "Es sind einfach zu verwendende npm-Pakete verfügbar. Code-Beispiele und weitere Informationen zur Integration gibt's im [Entwickler-Blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
     },
     "secret-types": {
-      "heading": "Was ist der Unterschied zwischen *Text*, *Link* und *Neogram*?",
-      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit, das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Datei**: Schicke eine Datei, egal welches Format. Dies ist ein Beta-Funktion.\n- **Link**: Ein anonymer Link der nur ein einziges Mal funktioniert.\n- **Neogram**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})"
+      "heading": "*Text*, *Files*, *Redirect* und *Neogram*?",
+      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit, das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Datei**: Schicke eine Datei, egal welches Format. Dies ist ein Beta-Funktion.\n- **Redirect**: Ein anonymer Link der nur ein einziges Mal funktioniert.\n- **Neogram**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})"
     },
     "message-size": {
       "heading": "Wie lange Nachrichten kann ich schreiben?",
@@ -459,7 +459,7 @@
       "body": "Nein. Aber, du kannst dieses Projekt natürlich trotzdem mit einem bezahlten Abonnement unterstützen 🤓."
     }
   },
-  "demoNeogramMessage": "Hallo…\nDies ist nur eine Demo! Neogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spaß beim Geheimnisse teilen 😘",
+  "demoNeogramMessage": "Aufwachen Neo…\nDies ist nur eine Demo! Neogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spaß beim Geheimnisse teilen 😘",
   "demoTextMessage": "Hallo…\nDies ist nur eine Demo!\n\nViel Spaß beim Geheimnisse teilen 😘",
   "demoNeogramDestructionMessage": "Diese Nachricht zerstört sich selbst in …",
   "Widget": {
@@ -636,6 +636,10 @@
       "flowSwiss": "Dieses Projekt wird unterstützt von Flow Swiss AG - Premium Cloud Services aus Zürich, Schweiz.",
       "inspiration": "Inspiration"
     },
+    "Neogram": {
+      "title": "Neogram",
+      "subtitle": "Selbstzerstörende Nachrichten im Matrix-Stil. Ende-zu-Ende verschlüsselt."
+    },
     "Pricing": {
       "title": "Preisgestaltung",
       "subtitle": "Einfache Pläne, faire Preise."
@@ -656,6 +660,10 @@
     "PrivacyPolicy": {
       "title": "Datenschutzbestimmungen",
       "subtitle": "Privatsphäre ist uns wichtig."
+    },
+    "Redirect": {
+      "title": "Geheime Weiterleitung",
+      "subtitle": "Erstelle eine einmalige Umleitung. Ohne Spuren zu hinterlassen."
     },
     "Security": {
       "title": "Sicherheit",
@@ -713,6 +721,10 @@
       "title": "Nutzungsbedingungen",
       "subtitle": "Tl;dr: Nichts Besonderes",
       "policies": "Richtlinien"
+    },
+    "Text": {
+      "title": "Geheimer Text",
+      "subtitle": "Teile Ende-zu-Ende-verschlüsselte Nachrichten. Einmalig."
     }
   },
   "abbreviations": {

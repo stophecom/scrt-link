@@ -23,7 +23,7 @@ const LockIcon = styled(Lock)`
   bottom: -0.1em;
 `
 
-const FileView: CustomPage = () => {
+const FilesView: CustomPage = () => {
   const { t } = useTranslation('common')
 
   return (
@@ -45,4 +45,4 @@ const FileView: CustomPage = () => {
   )
 }
 
-export default FileView
+export default FilesView

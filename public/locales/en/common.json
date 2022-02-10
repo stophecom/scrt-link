@@ -253,7 +253,7 @@
     },
     "url": {
       "label": "URL",
-      "tabLabel": "Link",
+      "tabLabel": "Redirect",
       "placeholder": "e.g. https://www.example.com"
     },
     "neogram": {
@@ -379,8 +379,8 @@
       "body": "There are easy-to-use npm packages available. For code examples and further information about integration visit the [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
     },
     "secret-types": {
-      "heading": "What is the difference between *Text*, *Link* and *Neogram*?",
-      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **File**: Drop any file. This feature is currently in beta.\n- **Link**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
+      "heading": "*Text*, *Files*, *Redirect* and *Neogram*?",
+      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **File**: Drop any file. This feature is currently in beta.\n- **Redirect**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
     },
     "message-size": {
       "heading": "What is the maximum message size?",
@@ -459,7 +459,7 @@
       "body": "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless 🤓."
     }
   },
-  "demoNeogramMessage": "Hi there…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
+  "demoNeogramMessage": "Wake up Neo…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
   "demoTextMessage": "Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘",
   "demoNeogramDestructionMessage": "This message self-destructs in …",
   "Widget": {
@@ -636,6 +636,10 @@
       "flowSwiss": "This project is supported by Flow Swiss AG - Premium cloud services from Zurich, Switzerland.",
       "inspiration": "Inspiration"
     },
+    "Neogram": {
+      "title": "Neogram",
+      "subtitle": "Matrix-style disappearing messages. End-to-end encrypted."
+    },
     "Pricing": {
       "title": "Pricing",
       "subtitle": "Simple plans, fair pricing."
@@ -656,6 +660,10 @@
     "PrivacyPolicy": {
       "title": "Privacy Policy",
       "subtitle": "Tl;dr: Privacy matters."
+    },
+    "Redirect": {
+      "title": "Secret Redirect",
+      "subtitle": "Create a one-time redirect. Without a trace."
     },
     "Security": {
       "title": "Security",
@@ -713,6 +721,10 @@
       "title": "Terms Of Service",
       "subtitle": "Tl;dr: Pretty much standard.",
       "policies": "Policies"
+    },
+    "Text": {
+      "title": "Secret Text",
+      "subtitle": "Share end-to-end encrypted messages. One time."
     }
   },
   "abbreviations": {
