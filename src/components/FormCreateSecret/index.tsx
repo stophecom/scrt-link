@@ -121,6 +121,7 @@ const useStyles = makeStyles((theme: Theme) =>
     betaTab: {
       '& .MuiTab-wrapper': {
         position: 'relative',
+        width: 'auto',
 
         '&::after': {
           content: '"BETA"',
