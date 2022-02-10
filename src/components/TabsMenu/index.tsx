@@ -2,7 +2,7 @@ import React from 'react'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
-export type TabsMenuItem = { label: string; key: string }
+export type TabsMenuItem = { label: string; key: string; className: string }
 
 type TabsMenuProps = {
   value: string
@@ -21,8 +21,8 @@ const TabsMenu = ({ value, handleChange, label = 'Menu', tabsMenu = [] }: TabsMe
       variant="scrollable"
       scrollButtons="auto"
     >
-      {tabsMenu.map(({ label, key }, index) => (
-        <Tab label={label} id={key} value={key} key={index} />
+      {tabsMenu.map(({ label, key, className }, index) => (
+        <Tab className={className} label={label} id={key} value={key} key={index} />
       ))}
     </Tabs>
   )

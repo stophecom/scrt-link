@@ -66,7 +66,7 @@ type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> 
 
 type ObjKey = { [key: string]: SecretTypeConfig }
 
-export const secretTypesMap = (t: TFunction) =>
+const secretTypesMap = (t: TFunction) =>
   ({
     text: {
       label: t('common:secretType.text.label', 'Your secret'),
@@ -78,7 +78,7 @@ export const secretTypesMap = (t: TFunction) =>
     },
     file: {
       label: t('common:secretType.file.label', 'Message'),
-      tabLabel: t('common:secretType.file.tabLabel', 'File') + ' ᴮᴱᵀᴬ',
+      tabLabel: t('common:secretType.file.tabLabel', 'File'),
       placeholder: t(
         'common:secretType.file.placeholder',
         'Add an optional message for the recipient…',
@@ -118,6 +118,17 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: 12,
       right: 10,
     },
+    betaTab: {
+      position: 'relative',
+
+      '&::after': {
+        content: '"BETA"',
+        position: 'absolute',
+        fontSize: '.4rem',
+        left: 'calc(50% + 18px)',
+        bottom: '50%',
+      },
+    },
   }),
 )
 
@@ -149,6 +160,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     return {
       label: secretTypeItem.tabLabel as string,
       key: item,
+      className: item === 'file' ? classes.betaTab : '',
     }
   })
 
