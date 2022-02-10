@@ -77,7 +77,7 @@ const AliasView: CustomPage = () => {
   const titles = [
     t('common:views.Alias.title1', 'Shhh'),
     t('common:views.Alias.title2', 'Knock Knock'),
-    t('common:views.Alias.title3', 'Ding Dong'),
+    t('common:views.Alias.title3', 'Hello'),
     t('common:views.Alias.title4', 'Incoming…'),
   ]
 
