@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Box, NoSsr, Typography } from '@material-ui/core'
-import styled from 'styled-components'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/system'
+import { Box, NoSsr, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
-import { Face } from '@material-ui/icons'
+import { Face } from '@mui/icons-material'
 import NextNprogress from 'nextjs-progressbar'
 import { useTranslation } from 'next-i18next'
 
@@ -19,33 +18,36 @@ import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Logo from '!@svgr/webpack!@/assets/images/logo.svg'
 
-export const Container = styled.main`
+const PREFIX = 'Layout'
+
+const classes = {
+  logo: `${PREFIX}-logo`,
+}
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`& .${classes.logo}`]: {
+    width: '40px',
+    height: '40px',
+  },
+}))
+
+export const Container = styled('main')`
   flex: 1;
   margin: 0 auto;
   max-width: 780px;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(2)}px;
+  padding: ${({ theme }) => theme.spacing(2)};
 `
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    logo: {
-      width: '40px',
-      height: '40px',
-    },
-  }),
-)
 
 type State = 'default' | 'signin' | 'signup'
 const Layout: React.FC = ({ children }) => {
-  const classes = useStyles()
   const { data: customer, isLoading } = useCustomer()
   const { data: session } = useSession()
   const [state, setState] = useState<State>('default')
   const { t, i18n } = useTranslation()
 
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh">
+    <StyledBox display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
       <Container>
         <Box display="flex" alignItems="center" pb={2} mb={3}>
@@ -112,7 +114,7 @@ const Layout: React.FC = ({ children }) => {
           children
         )}
       </Container>
-    </Box>
+    </StyledBox>
   )
 }
 

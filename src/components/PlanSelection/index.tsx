@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { styled } from '@mui/system'
 import { Stripe } from 'stripe'
 import { useTranslation, Trans } from 'next-i18next'
 
-import { Box, Grid, Typography } from '@material-ui/core'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import Alert from '@material-ui/lab/Alert'
-import { Check } from '@material-ui/icons'
+import { Box, Grid, Typography } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import { Check } from '@mui/icons-material'
 
 import { formatNumber } from '@/utils/localization'
 import { limits, trialPeriod } from '@/constants'
@@ -21,23 +21,34 @@ import { api, useStripeCustomer, usePlans, useCustomer } from '@/utils/api'
 import Plan from './Plan'
 import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    trial: {
-      paddingTop: '.2em',
-    },
-    accordionHeading: {
-      fontSize: '1.05rem',
-      fontWeight: 'bold',
-    },
-    price: {
-      borderBottom: `2px solid ${theme.palette.primary.main}`,
-    },
-  }),
-)
+const PREFIX = 'PlanSelection'
+
+const classes = {
+  root: `${PREFIX}-root`,
+  trial: `${PREFIX}-trial`,
+  accordionHeading: `${PREFIX}-accordionHeading`,
+  price: `${PREFIX}-price`,
+}
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')(({ theme }) => ({
+  [`& .${classes.root}`]: {
+    flexGrow: 1,
+  },
+
+  [`& .${classes.trial}`]: {
+    paddingTop: '.2em',
+  },
+
+  [`& .${classes.accordionHeading}`]: {
+    fontSize: '1.05rem',
+    fontWeight: 'bold',
+  },
+
+  [`& .${classes.price}`]: {
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+  },
+}))
 
 type Status = {
   type: 'initial' | 'success' | 'error' | 'loading'
@@ -253,8 +264,6 @@ const PlanSelection: React.FunctionComponent = () => {
     }
   }
 
-  const classes = useStyles()
-
   type AccordionItem = { heading: string; body?: string }
   const getAccordionItems = (items: AccordionItem[]) =>
     items.map(({ heading, body }) => ({
@@ -278,7 +287,7 @@ const PlanSelection: React.FunctionComponent = () => {
   }
 
   return (
-    <>
+    <Root>
       {['error', 'success'].includes(status.type) && (
         <Box mb={2}>
           <Alert severity={status.type as 'error' | 'success'}>{status.message}</Alert>
@@ -473,7 +482,6 @@ const PlanSelection: React.FunctionComponent = () => {
             )
           })}
       </Grid>
-
       <Box pt={5}>
         {(!subscription || isSubscriptionBillingIntervalMonthly) && (
           <Box mb={2}>
@@ -497,7 +505,7 @@ const PlanSelection: React.FunctionComponent = () => {
           <Grid item>{t('common:components.PlanSelection.interval.yearly', 'Yearly')}</Grid>
         </Grid>
       </Box>
-    </>
+    </Root>
   )
 }
 

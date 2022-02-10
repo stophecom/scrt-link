@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
-import { Box, Divider, Typography } from '@material-ui/core'
+import { Box, Divider, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
+import { styled } from '@mui/system'
 
 import { Link } from '@/components/Link'
-import BaseButton, { BaseButtonProps } from '@/components/BaseButton'
+import BaseButton from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
 import { LanguageSelector } from '@/components/LanguageSwitcher'
 import { main } from '@/data/menu'
 
-const NavigationButton = styled(BaseButton)<BaseButtonProps>`
+const NavigationButton = styled(BaseButton)`
   align-items: center;
   -webkit-appearance: none;
   background-color: transparent;
@@ -29,7 +29,7 @@ const NavigationButton = styled(BaseButton)<BaseButtonProps>`
   z-index: 300;
 `
 
-const Hamburger = styled.div`
+const Hamburger = styled('div')`
   line-height: inherit;
   margin: 0;
   max-width: 100%;
@@ -79,7 +79,7 @@ const Hamburger = styled.div`
     }
   }
 `
-const NavigationInner = styled.div`
+const NavigationInner = styled('div')`
   align-items: center;
   background-color: ${({ theme }) => theme.palette.background.paper};
   border: 5px solid ${({ theme }) => theme.palette.primary.main};
@@ -102,7 +102,7 @@ const NavigationInner = styled.div`
   }
 `
 
-const Nav = styled.nav`
+const Nav = styled('nav')`
   align-items: center;
   flex-grow: 1;
   display: flex;
@@ -133,7 +133,7 @@ const Nav = styled.nav`
   }
 `
 
-const NavigationWrapper = styled.div`
+const NavigationWrapper = styled('div')`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -141,7 +141,7 @@ const NavigationWrapper = styled.div`
   width: 100%;
 `
 
-const LanguageSwitcherWrapper = styled.div`
+const LanguageSwitcherWrapper = styled('div')`
   display: flex;
   margin-top: 2em;
   margin-bottom: 2em;

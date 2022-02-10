@@ -1,14 +1,14 @@
 import React from 'react'
+import { styled } from '@mui/system'
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation, i18n } from 'next-i18next'
 
-import { Box, Typography, Divider } from '@material-ui/core'
+import { Box, Typography, Divider } from '@mui/material'
 import Head from 'next/head'
 import { FAQPage, WithContext } from 'schema-dts'
 import remark from 'remark'
 import strip from 'strip-markdown'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 import { scrollIntoView } from '@/utils/browser'
 import FaqAccordion from '@/components/Accordion'
@@ -18,14 +18,18 @@ import Page from '@/components/Page'
 import { faq, faqCategories } from '@/data/faq'
 import { emailSupport } from '@/constants'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    unorderedList: {
-      paddingLeft: '2em',
-      '& a': { paddingTop: '.2em', paddingBottom: '.2em', display: 'inline-flex' },
-    },
-  }),
-)
+const PREFIX = 'Faq'
+
+const classes = {
+  unorderedList: `${PREFIX}-unorderedList`,
+}
+
+const StyledPage = styled(Page)(({ theme }) => ({
+  [`& .${classes.unorderedList}`]: {
+    paddingLeft: '2em',
+    '& a': { paddingTop: '.2em', paddingBottom: '.2em', display: 'inline-flex' },
+  },
+}))
 
 type FaqProps = {
   jsonLd: WithContext<FAQPage>
@@ -40,11 +44,10 @@ type FaqProps = {
   }[]
 }
 const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   return (
-    <Page title="FAQ" subtitle={t('common:views.FAQ.subtitle', 'Frequently Asked Questions')}>
+    <StyledPage title="FAQ" subtitle={t('common:views.FAQ.subtitle', 'Frequently Asked Questions')}>
       <Head>
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -84,7 +87,7 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
           <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
         </Typography>
       </Box>
-    </Page>
+    </StyledPage>
   )
 }
 

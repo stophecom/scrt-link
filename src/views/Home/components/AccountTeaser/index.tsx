@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
 import UnorderedList from '@/components/UnorderedList'

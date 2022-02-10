@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { Box, InputAdornment, NoSsr } from '@material-ui/core'
+import { Box, InputAdornment, NoSsr } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
 import clsx from 'clsx'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import Collapse from '@material-ui/core/Collapse'
+import Collapse from '@mui/material/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
-import { ExpandLess, ExpandMore } from '@material-ui/icons'
-import LinkIcon from '@material-ui/icons/Link'
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import LinkIcon from '@mui/icons-material/Link'
 import { useTranslation, TFunction } from 'next-i18next'
 import axios from 'axios'
 
@@ -41,6 +41,65 @@ import { getBaseURL } from '@/utils'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { Action, doRequest, doSuccess, doError } from '@/views/Home'
 import { encryptFile, encryptString, generateEncryptionKeyString } from '@/utils/crypto'
+
+const PREFIX = 'FormCreateSecret'
+
+const classes = {
+  wordBreak: `${PREFIX}-wordBreak`,
+  root: `${PREFIX}-root`,
+  formFooter: `${PREFIX}-formFooter`,
+  counter: `${PREFIX}-counter`,
+  customTabs: `${PREFIX}-customTabs`,
+  betaTab: `${PREFIX}-betaTab`,
+}
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')(({ theme }) => ({
+  [`& .${classes.wordBreak}`]: {
+    wordBreak: 'break-word',
+  },
+
+  [`& .${classes.root}`]: {
+    marginBottom: 0,
+    width: '100%',
+  },
+
+  [`& .${classes.formFooter}`]: {
+    flexDirection: 'column',
+
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+  },
+
+  [`& .${classes.counter}`]: {
+    position: 'absolute',
+    bottom: 12,
+    right: 10,
+  },
+
+  [`& .${classes.customTabs}`]: {
+    '& .MuiTab-root': {
+      fontSize: '0.9em',
+    },
+  },
+
+  [`& .${classes.betaTab}`]: {
+    '& .MuiTab-wrapper': {
+      position: 'relative',
+      width: 'auto',
+
+      '&::after': {
+        content: '"BETA"',
+        position: 'absolute',
+        fontSize: '.4rem',
+        left: 'calc(100% + 5px)',
+        top: 0,
+      },
+    },
+  },
+}))
 
 const bucket = process.env.NEXT_PUBLIC_FLOW_S3_BUCKET
 
@@ -96,50 +155,6 @@ const secretTypesMap = (t: TFunction) =>
     },
   } as ObjKey)
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    wordBreak: {
-      wordBreak: 'break-word',
-    },
-    root: {
-      marginBottom: 0,
-      width: '100%',
-    },
-    formFooter: {
-      flexDirection: 'column',
-
-      [theme.breakpoints.up('sm')]: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      },
-    },
-    counter: {
-      position: 'absolute',
-      bottom: 12,
-      right: 10,
-    },
-    customTabs: {
-      '& .MuiTab-root': {
-        fontSize: '0.9em',
-      },
-    },
-    betaTab: {
-      '& .MuiTab-wrapper': {
-        position: 'relative',
-        width: 'auto',
-
-        '&::after': {
-          content: '"BETA"',
-          position: 'absolute',
-          fontSize: '.4rem',
-          left: 'calc(100% + 5px)',
-          top: 0,
-        },
-      },
-    },
-  }),
-)
-
 type FormCreateSecretProps = {
   dispatch: React.Dispatch<Action>
   isStandalone?: boolean
@@ -151,7 +166,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   limitedToSecretType,
 }) => {
   const { t } = useTranslation('common')
-  const classes = useStyles()
+
   const plausible = usePlausible()
   const [secretType, setSecretType] = useState<SecretType>('text')
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')

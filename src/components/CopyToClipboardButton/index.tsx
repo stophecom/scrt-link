@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
-import { FileCopyOutlined } from '@material-ui/icons'
+import { FileCopyOutlined } from '@mui/icons-material'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import BaseButton, { BaseButtonProps } from '@/components/BaseButton'

@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react'
-import styled from 'styled-components'
+import { styled } from '@mui/system'
 import { useInView } from 'react-intersection-observer'
 import clsx from 'clsx'
 
-export const ImageBox = styled.div`
+export const ImageBox = styled('div')`
   position: relative;
 
   & > .image {

@@ -1,6 +1,6 @@
 import React from 'react'
 import NextLink, { LinkProps as NextLinkProps } from 'next/link'
-import { Link as MUILink, LinkProps as MUILinkProps } from '@material-ui/core'
+import { Link as MUILink, LinkProps as MUILinkProps } from '@mui/material'
 import BaseButton, { BaseButtonProps } from '@/components/BaseButton'
 
 type LinkProps = NextLinkProps & MUILinkProps

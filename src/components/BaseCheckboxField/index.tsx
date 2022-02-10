@@ -7,7 +7,7 @@ import {
   FormControlLabelProps,
   Checkbox,
   CheckboxProps,
-} from '@material-ui/core'
+} from '@mui/material'
 
 export type BaseCheckboxProps = Partial<FormControlLabelProps> &
   FieldHookConfig<CheckboxProps> & { helperText?: ReactNode }

@@ -8,8 +8,8 @@ import {
   FormLabel,
   Box,
   FormHelperText,
-} from '@material-ui/core'
-import FormControl, { FormControlProps } from '@material-ui/core/FormControl'
+} from '@mui/material'
+import FormControl, { FormControlProps } from '@mui/material/FormControl'
 import { useField, FieldHookConfig } from 'formik'
 
 type Option = {

@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Paper, Typography } from '@material-ui/core'
-import { ArrowForward } from '@material-ui/icons'
+import { Box, Paper, Typography } from '@mui/material'
+import { ArrowForward } from '@mui/icons-material'
 import Image from 'next/image'
 import { useTranslation, Trans } from 'next-i18next'
 

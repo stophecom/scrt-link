@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
-import { Box, Typography } from '@material-ui/core'
-import styled from 'styled-components'
+import { Box, Typography } from '@mui/material'
 import { useTranslation } from 'next-i18next'
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
+import { styled } from '@mui/system'
 
-import { Link } from '@material-ui/core'
+import { Link } from '@mui/material'
 import { emailSupport } from '@/constants'
 import Seo, { SeoProps } from '@/components/Seo'
 

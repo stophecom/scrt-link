@@ -1,9 +1,8 @@
 import React from 'react'
-import { Box, IconButton } from '@material-ui/core'
-import styled from 'styled-components'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { Twitter } from '@material-ui/icons'
+import { Box, IconButton } from '@mui/material'
+import { Twitter } from '@mui/icons-material'
 import { useTranslation, Trans } from 'next-i18next'
+import { styled } from '@mui/system'
 
 import { LanguageSelector } from '@/components/LanguageSwitcher'
 import { Link } from '@/components/Link'
@@ -11,6 +10,25 @@ import { twitterLink, twitterHandle } from '@/constants'
 import Stats from '@/components/Stats'
 import { Container } from '@/layouts/Default'
 import { main, about } from '@/data/menu'
+
+const PREFIX = 'Footer'
+
+const classes = {
+  linkPadding: `${PREFIX}-linkPadding`,
+  footer: `${PREFIX}-footer`,
+}
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`& .${classes.linkPadding}`]: {
+    padding: theme.spacing(1),
+  },
+
+  [`&.${classes.footer}`]: {
+    opacity: 0.8,
+    background: theme.palette.background.paper,
+    boxShadow: `inset 0 10px 40px hsl(0deg 0% 0% / 20%)`,
+  },
+}))
 
 const LinkStyled = styled(Link)`
   font-size: 1.2rem;
@@ -29,25 +47,11 @@ const Bullet = styled('span')`
   padding-left: 5px;
 `
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    linkPadding: {
-      padding: theme.spacing(1),
-    },
-    footer: {
-      opacity: 0.8,
-      background: theme.palette.background.paper,
-      boxShadow: `inset 0 10px 40px hsl(0deg 0% 0% / 20%)`,
-    },
-  }),
-)
-
 const Footer: React.FC = () => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   return (
-    <Box component="footer" className={classes.footer}>
+    <StyledBox component="footer" className={classes.footer}>
       <Container>
         <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
           {main(t).map(({ href, label, prefetch }, index) => (
@@ -71,6 +75,7 @@ const Footer: React.FC = () => {
             href={twitterLink}
             aria-label={twitterHandle}
             title={twitterHandle}
+            size="large"
           >
             <Twitter fontSize="inherit" />
           </IconButton>
@@ -111,7 +116,7 @@ const Footer: React.FC = () => {
           </Legal>
         </Box>
       </Container>
-    </Box>
+    </StyledBox>
   )
 }
 

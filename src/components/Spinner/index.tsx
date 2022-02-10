@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Typography, CircularProgress, NoSsr } from '@material-ui/core'
+import { Box, Typography, CircularProgress, NoSsr } from '@mui/material'
 
 type SpinnerProps = {
   message?: string

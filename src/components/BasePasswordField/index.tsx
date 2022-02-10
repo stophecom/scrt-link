@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import IconButton from '@material-ui/core/IconButton'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import InputLabel from '@material-ui/core/InputLabel'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import FormControl, { FormControlProps } from '@material-ui/core/FormControl'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import IconButton from '@mui/material/IconButton'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import InputLabel from '@mui/material/InputLabel'
+import InputAdornment from '@mui/material/InputAdornment'
+import FormHelperText from '@mui/material/FormHelperText'
+import FormControl, { FormControlProps } from '@mui/material/FormControl'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { useTranslation } from 'next-i18next'
-import { TextFieldProps } from '@material-ui/core'
+import { TextFieldProps } from '@mui/material'
 import { useField, FieldHookConfig } from 'formik'
 
 export type BasePasswordFieldProps = FormControlProps & FieldHookConfig<TextFieldProps['value']>
@@ -58,7 +58,7 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
               edge="end"
-            >
+              size="large">
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>
@@ -67,7 +67,7 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
       />
       {errorMessage && <FormHelperText id="helper-text">{errorMessage}</FormHelperText>}
     </FormControl>
-  )
+  );
 }
 
 export default BasePasswordField

@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { Box, Typography, FormLabel } from '@material-ui/core'
+
+import { Box, Typography, FormLabel } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import NoSsr from '@material-ui/core/NoSsr'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import NoSsr from '@mui/material/NoSsr'
 import { useTranslation, TFunction, Trans } from 'next-i18next'
 
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
 
 import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BaseTextField, { BaseTextFieldProps } from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitchField from '@/components/BaseSwitchField'
-import InputAdornment from '@material-ui/core/InputAdornment'
+import InputAdornment from '@mui/material/InputAdornment'
 import { Maybe } from '@/types'
 import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
@@ -87,14 +87,6 @@ const PrivacyNotice = () => (
   </Trans>
 )
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    submitButton: {
-      width: '100%',
-    },
-  }),
-)
-
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 
 type ResponsePost = Maybe<{ message: string }>
@@ -117,7 +109,7 @@ interface FormCustomerProps extends CustomerProps {
 const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomerProps) => {
   const { t } = useTranslation()
   const { data: customer } = useCustomer()
-  const classes = useStyles()
+
   const [state, setState] = useState<State>(initialState)
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
 
@@ -136,7 +128,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
   const { data, error } = state
 
   return (
-    <>
+    <div>
       <Formik<CustomerProps>
         initialValues={{
           readReceiptMethod: 'none',
@@ -237,7 +229,10 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                     </Trans>
                   </Typography>
                   <BaseSwitchField
-                    label={t('common:FormField.isEmojiShortLinkEnabled.label', 'Use emoji link')}
+                    label={t<string>(
+                      'common:FormField.isEmojiShortLinkEnabled.label',
+                      'Use emoji link',
+                    )}
                     name="isEmojiShortLinkEnabled"
                   />
                 </Box>
@@ -269,7 +264,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                     </NoSsr>
                   )}
                   <BaseButton
-                    className={classes.submitButton}
+                    fullWidth
                     type="submit"
                     color="primary"
                     variant="contained"
@@ -285,7 +280,7 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
           )
         }}
       </Formik>
-    </>
+    </div>
   )
 }
 

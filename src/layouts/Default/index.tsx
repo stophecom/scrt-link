@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
-import styled from 'styled-components'
+import { Box } from '@mui/material'
+import { styled } from '@mui/system'
 
 import NextNprogress from 'nextjs-progressbar'
 import Image from 'next/image'
@@ -13,12 +13,12 @@ import Header from '@/components/Header'
 import { Link } from '@/components/Link'
 import { appTitle } from '@/constants'
 
-export const Container = styled.main`
+export const Container = styled('main')`
   flex: 1;
   margin: 0 auto;
   max-width: 780px;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(2)}px;
+  padding: ${({ theme }) => theme.spacing(2)};
 `
 
 const LogoPage = styled(Link)`

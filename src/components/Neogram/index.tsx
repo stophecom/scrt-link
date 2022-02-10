@@ -1,14 +1,13 @@
 import React from 'react'
-import { Box, Typography, IconButton } from '@material-ui/core'
-import { Close } from '@material-ui/icons'
+import { Box, Typography, IconButton } from '@mui/material'
+import { Close } from '@mui/icons-material'
+import { styled } from '@mui/system'
 import { WindupChildren, Pause } from 'windups'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import styled from 'styled-components'
 import { useTranslation } from 'next-i18next'
 
 import { Container } from '@/layouts/Default'
 
-const Backdrop = styled(Box)`
+const StyledBackdrop = styled(Box)`
   background-color: ${({ theme }) => theme.palette.background.paper};
   display: flex;
   height: 100%;
@@ -33,14 +32,10 @@ const ScrollContainer = styled(Container)`
   overflow: scroll;
 `
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    break: {
-      wordBreak: 'break-word',
-      whiteSpace: 'pre-wrap',
-    },
-  }),
-)
+const Message = styled(Typography)`
+  word-break: break-word;
+  white-space: pre-wrap;
+`
 
 type NeogramType = {
   message: string
@@ -57,16 +52,14 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
   closable = false,
 }) => {
   const { t } = useTranslation()
-  const classes = useStyles()
+
   const countDown = Array.from(Array(timeout).keys()).reverse()
 
   return (
-    <Backdrop>
+    <StyledBackdrop>
       <ScrollContainer>
         <WindupChildren onFinished={onFinished}>
-          <Typography variant="subtitle1" component="div" className={classes.break}>
-            {message}
-          </Typography>
+          <Message variant="subtitle1">{message}</Message>
           <Typography variant="subtitle1" component="div" color="primary">
             <Pause ms={1000} />
             <br />
@@ -101,7 +94,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
           <Close />
         </CloseButton>
       )}
-    </Backdrop>
+    </StyledBackdrop>
   )
 }
 

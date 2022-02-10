@@ -1,12 +1,12 @@
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 export const pink = '#ff0083'
 const bg = '#1b242e'
 
-let theme = createTheme({
+let darkTheme = createTheme({
   palette: {
-    type: 'dark',
-    background: { paper: '#151c24', default: bg },
+    mode: 'dark',
+    background: { default: bg, paper: '#151c24' },
     primary: {
       main: pink,
     },
@@ -43,14 +43,23 @@ let theme = createTheme({
     subtitle1: { fontSize: '34%', lineHeight: '1.55' },
     subtitle2: { fontSize: '22%', lineHeight: '1.55', marginBottom: '1em' },
   },
-  overrides: {
+
+  components: {
     MuiFormLabel: {
-      root: {
-        fontWeight: 'bold',
+      styleOverrides: {
+        root: { fontWeight: 'bold' },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
       },
     },
   },
 })
-theme = responsiveFontSizes(theme, { factor: 3 })
 
-export default theme
+darkTheme = responsiveFontSizes(darkTheme, { factor: 3 })
+
+export default darkTheme

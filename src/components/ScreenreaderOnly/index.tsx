@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import { styled } from '@mui/system'
 
-const SROnly = styled.span`
+const SROnly = styled('span')`
   &:not(:focus):not(:active) {
     clip: rect(0 0 0 0);
     clip-path: inset(100%);

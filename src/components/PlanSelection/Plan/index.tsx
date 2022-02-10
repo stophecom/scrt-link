@@ -1,41 +1,49 @@
 import React, { ReactNode } from 'react'
-import { Check } from '@material-ui/icons'
-import { Box, Paper, Typography } from '@material-ui/core'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { styled } from '@mui/system'
+import { Check } from '@mui/icons-material'
+import { Box, Paper, Typography } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(2),
-      color: theme.palette.text.secondary,
-      height: '100%',
-      flexDirection: 'column',
-      textAlign: 'center',
-    },
-    planTitle: {
-      marginBottom: '.4em',
-    },
-    check: {
-      width: '2.4rem',
-      height: '2.4rem',
-      position: 'absolute',
-      borderRadius: '50%',
-      backgroundColor: `${theme.palette.primary.main}`,
-      color: `${theme.palette.text.primary}`,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '1.4rem',
-      right: '0',
-      top: '0',
-      transform: 'translate(15%, -15%)',
-    },
-  }),
-)
+const PREFIX = 'Plan'
+
+const classes = {
+  paper: `${PREFIX}-paper`,
+  planTitle: `${PREFIX}-planTitle`,
+  check: `${PREFIX}-check`,
+}
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  [`&.${classes.paper}`]: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
+    height: '100%',
+    flexDirection: 'column',
+    textAlign: 'center',
+  },
+
+  [`& .${classes.planTitle}`]: {
+    marginBottom: '.4em',
+  },
+
+  [`& .${classes.check}`]: {
+    width: '2.4rem',
+    height: '2.4rem',
+    position: 'absolute',
+    borderRadius: '50%',
+    backgroundColor: `${theme.palette.primary.main}`,
+    color: `${theme.palette.text.primary}`,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.4rem',
+    right: '0',
+    top: '0',
+    transform: 'translate(15%, -15%)',
+  },
+}))
 
 type PlanProps = {
   title: string
@@ -51,10 +59,9 @@ const Plan: React.FunctionComponent<PlanProps> = ({
   children,
   isCurrentPlan,
 }) => {
-  const classes = useStyles()
   const { t } = useTranslation()
   return (
-    <Paper className={classes.paper}>
+    <StyledPaper className={classes.paper}>
       {isCurrentPlan && (
         <div className={classes.check}>
           <Check />
@@ -78,7 +85,7 @@ const Plan: React.FunctionComponent<PlanProps> = ({
       <Box display="flex" flexDirection="column" height="100%">
         {children}
       </Box>
-    </Paper>
+    </StyledPaper>
   )
 }
 

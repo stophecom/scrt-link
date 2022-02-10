@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import NoSsr from '@material-ui/core/NoSsr'
+import NoSsr from '@mui/material/NoSsr'
 import { useSession, signOut } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
 
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseSwitchField from '@/components/BaseSwitchField'
@@ -73,7 +73,7 @@ const FormDeleteAccount = () => {
             <>
               <Form noValidate>
                 <BaseSwitchField
-                  label={t(
+                  label={t<string>(
                     'common:components.FormDeleteAccount.label',
                     'I want to delete my account.',
                   )}

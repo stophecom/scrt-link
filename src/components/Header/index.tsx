@@ -1,11 +1,11 @@
 import React from 'react'
-import { Box, NoSsr, Typography } from '@material-ui/core'
-import styled from 'styled-components'
+import { Box, NoSsr, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { useTranslation } from 'next-i18next'
+import { styled } from '@mui/system'
 
 import SROnly from '@/components/ScreenreaderOnly'
 import Navigation from '@/components/Navigation'
@@ -14,18 +14,18 @@ import { Link, BaseButtonLink } from '@/components/Link'
 import { appTitle } from '@/constants'
 import { useCustomer } from '@/utils/api'
 
-const HeaderBarInner = styled.div`
+const HeaderBarInner = styled('div')`
   align-items: center;
   display: flex;
   margin: 0 auto;
   max-width: 780px;
   position: relative;
   z-index: 1;
-  padding-left: ${({ theme }) => theme.spacing(2)}px;
-  padding-right: ${({ theme }) => theme.spacing(2)}px;
+  padding-left: ${({ theme }) => theme.spacing(2)};
+  padding-right: ${({ theme }) => theme.spacing(2)};
   width: 100%;
 `
-const HeaderBarReserveSpace = styled.main`
+const HeaderBarReserveSpace = styled('main')`
   height: 60px;
 `
 
@@ -57,7 +57,7 @@ const LogoHeader = styled(Link)`
     }
   }
 `
-const HeaderBar = styled.div`
+const HeaderBar = styled('div')`
   align-items: center;
   display: flex;
   background-color: ${({ theme }) => theme.palette.background.default};

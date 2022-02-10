@@ -1,8 +1,8 @@
 import { Widget } from '@/views/Home'
 import { useTranslation } from 'next-i18next'
-import { Typography } from '@material-ui/core'
-import styled from 'styled-components'
-import { Lock } from '@material-ui/icons'
+import { Typography } from '@mui/material'
+import { Lock } from '@mui/icons-material'
+import { styled } from '@mui/system'
 
 import { CustomPage } from '@/types'
 import Page from '@/components/Page'
