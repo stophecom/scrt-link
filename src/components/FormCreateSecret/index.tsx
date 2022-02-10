@@ -119,14 +119,16 @@ const useStyles = makeStyles((theme: Theme) =>
       right: 10,
     },
     betaTab: {
-      position: 'relative',
+      '& .MuiTab-wrapper': {
+        position: 'relative',
 
-      '&::after': {
-        content: '"BETA"',
-        position: 'absolute',
-        fontSize: '.4rem',
-        left: 'calc(50% + 18px)',
-        bottom: '50%',
+        '&::after': {
+          content: '"BETA"',
+          position: 'absolute',
+          fontSize: '.4rem',
+          left: 'calc(100% + 5px)',
+          top: 0,
+        },
       },
     },
   }),
