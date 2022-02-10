@@ -1,18 +1,25 @@
 import React from 'react'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
+import { Tabs, Tab } from '@material-ui/core'
 
-export type TabsMenuItem = { label: string; key: string; className: string }
+export type TabsMenuItem = { label: string; key: string; className?: string }
 
 type TabsMenuProps = {
   value: string
   handleChange: any
   tabsMenu: TabsMenuItem[]
+  className?: string
   label?: string
 }
-const TabsMenu = ({ value, handleChange, label = 'Menu', tabsMenu = [] }: TabsMenuProps) => {
+const TabsMenu = ({
+  value,
+  handleChange,
+  label = 'Menu',
+  tabsMenu = [],
+  className,
+}: TabsMenuProps) => {
   return (
     <Tabs
+      className={className}
       value={value}
       indicatorColor="primary"
       textColor="primary"

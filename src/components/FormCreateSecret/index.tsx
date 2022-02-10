@@ -118,6 +118,11 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: 12,
       right: 10,
     },
+    customTabs: {
+      '& .MuiTab-root': {
+        fontSize: '0.9em',
+      },
+    },
     betaTab: {
       '& .MuiTab-wrapper': {
         position: 'relative',
@@ -351,6 +356,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       {!limitedToSecretType && (
         <Box pt={1} pb={1}>
           <TabsMenu
+            className={classes.customTabs}
             handleChange={handleMenuChange}
             value={secretType}
             tabsMenu={Object.values(tabsMenu)}
@@ -511,6 +517,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       mb={{ xs: 1, sm: 0 }}
                     >
                       <BaseButton
+                        size="small"
                         startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
                         onClick={() => {
                           // Workaround to validate field initially onChange, not onBlur
