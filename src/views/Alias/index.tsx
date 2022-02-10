@@ -343,7 +343,7 @@ const AliasView: CustomPage = () => {
                 <Paper elevation={3} className={clsx(classes.break, classes.message)}>
                   <Box px={4} pt={3} pb={2}>
                     <Box mb={2}>
-                      <Typography variant="body1" noWrap>
+                      <Typography variant="body1">
                         <strong>{t('common:views.Alias.file.name', 'Name')}:</strong> {name}
                         <br />
                         <strong>{t('common:views.Alias.file.type', 'Type')}:</strong> {fileType}

@@ -545,7 +545,7 @@
         "name": "Name",
         "type": "Type",
         "size": "Size",
-        "optionalMessage": "Optional message",
+        "optionalMessage": "Message",
         "button": {
           "label": "Decrypt and Download"
         }
