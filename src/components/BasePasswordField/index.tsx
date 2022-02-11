@@ -1,18 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import IconButton from '@mui/material/IconButton'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import InputLabel from '@mui/material/InputLabel'
-import InputAdornment from '@mui/material/InputAdornment'
-import FormHelperText from '@mui/material/FormHelperText'
-import FormControl, { FormControlProps } from '@mui/material/FormControl'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { IconButton, InputAdornment, TextFieldProps, TextField } from '@mui/material'
+
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
-import { TextFieldProps } from '@mui/material'
 import { useField, FieldHookConfig } from 'formik'
 
-export type BasePasswordFieldProps = FormControlProps & FieldHookConfig<TextFieldProps['value']>
+export type BasePasswordFieldProps = TextFieldProps & FieldHookConfig<TextFieldProps['value']>
 
 const BasePasswordField = (props: BasePasswordFieldProps) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -42,19 +36,20 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
   }, [autoFocus])
 
   return (
-    <FormControl variant="outlined" error={hasError} {...props}>
-      <InputLabel htmlFor="password-input">{t('common:password', 'Password')}</InputLabel>
-      <OutlinedInput
-        {...field}
-        id="password-input"
-        inputRef={inputRef}
-        aria-describedby="helper-text"
-        type={showPassword ? 'text' : 'password'}
-        value={field.value ?? ''}
-        endAdornment={
+    <TextField
+      {...{ ...props, ...field, variant: props.variant ?? 'outlined' }}
+      label={t('common:password', 'Password')}
+      id="password-input"
+      inputRef={inputRef}
+      aria-describedby="helper-text"
+      type={showPassword ? 'text' : 'password'}
+      value={field.value ?? ''}
+      fullWidth
+      InputProps={{
+        endAdornment: (
           <InputAdornment position="end">
             <IconButton
-              aria-label="toggle password visibility"
+              aria-label={t('common:password', '"toggle password visibility"')}
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
               edge="end"
@@ -63,10 +58,11 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>
-        }
-      />
-      {errorMessage && <FormHelperText id="helper-text">{errorMessage}</FormHelperText>}
-    </FormControl>
+        ),
+      }}
+      error={hasError}
+      helperText={errorMessage || props.helperText}
+    />
   )
 }
 
