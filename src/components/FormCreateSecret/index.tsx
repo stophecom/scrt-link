@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { Box, InputAdornment, NoSsr } from '@mui/material'
+import { Box, InputAdornment, NoSsr, Backdrop } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import clsx from 'clsx'
 import Collapse from '@mui/material/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
@@ -121,12 +120,16 @@ const secretTypesMap = (t: TFunction) =>
 
 type FormCreateSecretProps = {
   dispatch: React.Dispatch<Action>
+  setFocusState?: (e: boolean) => void
+  isFocusState?: boolean
   isStandalone?: boolean
   limitedToSecretType?: SecretType
 }
 const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   dispatch,
   isStandalone,
+  setFocusState,
+  isFocusState,
   limitedToSecretType,
 }) => {
   const { t } = useTranslation('common')
@@ -291,6 +294,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       }
 
       formikHelpers.resetForm()
+      setFocusState && setFocusState(false)
     } catch (error) {
       dispatch(doError(error instanceof Error ? error : new Error('Secret creation failed.')))
     } finally {
@@ -299,6 +303,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   }
 
   const handleMenuChange = (_event: unknown, newValue: SecretType) => {
+    setFocusState && setFocusState(true)
     setSecretType(newValue)
   }
 
@@ -333,9 +338,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   return (
     <>
       {!limitedToSecretType && (
-        <Box pt={1} pb={1}>
+        <Box pt={1}>
           <TabsMenu
             onChange={handleMenuChange}
+            focusMode={isFocusState}
             value={secretType}
             tabsMenu={Object.values(tabsMenu)}
             aria-label={t(
@@ -361,7 +367,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
             return (
               <>
-                <Form noValidate>
+                <Form noValidate onClick={() => setFocusState && setFocusState(true)}>
                   <Box position="relative" py={1}>
                     {secretType === 'file' && (
                       <DropZone
@@ -375,12 +381,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     {secretType === 'url' && (
                       <BaseTextField
                         name="message"
-                        label={t('common:FormField.url.label', 'Secret URL')}
+                        hiddenLabel
+                        aria-label={t('common:FormField.url.label', 'Secret URL')}
                         placeholder="example.com"
                         required
-                        InputLabelProps={{
-                          shrink: undefined,
-                        }}
                         helperText={t(
                           'common:FormField.url.helperText',
                           'The URL to get redirected to (one time).',
@@ -402,11 +406,9 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           required
                           minRows={3}
                           maxRows={7}
-                          label={getFormFieldConfigBySecretType(secretType).label}
+                          hiddenLabel
+                          aria-label={getFormFieldConfigBySecretType(secretType).label}
                           placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
-                          InputLabelProps={{
-                            shrink: undefined,
-                          }}
                         />
                         <Counter messageLength={values?.message?.length || 0} />
                       </>
