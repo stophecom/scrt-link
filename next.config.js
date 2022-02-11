@@ -24,9 +24,7 @@ const config = {
     outputStandalone: true,
   },
   i18n,
-  images: {
-    domains: ['api.producthunt.com'],
-  },
+
   // swcMinify: true, // Wait for nextjs 12
   webpack: (config, { isServer }) => {
     config.module.rules.push({

@@ -109,28 +109,10 @@ const Slack = () => {
         'common:views.Slack.subtitle',
         `Some things better not stay in your chat history.`,
       )}
-      intro={
-        <>
-          <a
-            href="https://www.producthunt.com/posts/scrt-link-for-slack?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-scrt-link-for-slack"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=322965&theme=light"
-              alt="Scrt.link for Slack - Some things better not stay in your chat history. | Product Hunt"
-              width={250}
-              height={54}
-            />
-          </a>
-          <p>
-            {t(
-              'common:views.Slack.intro',
-              'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.',
-            )}
-          </p>
-        </>
-      }
+      intro={t(
+        'common:views.Slack.intro',
+        'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.',
+      )}
     >
       <Box mb={4} position="relative">
         <BoxShadowWrapper>
