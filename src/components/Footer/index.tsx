@@ -11,24 +11,16 @@ import Stats from '@/components/Stats'
 import { Container } from '@/layouts/Default'
 import { main, about } from '@/data/menu'
 
-const PREFIX = 'Footer'
+const StyledBox = styled(Box)`
+  font-size: 0.85em;
+  opacity: 0.8;
+  background: ${({ theme }) => theme.palette.background.paper};
+  box-shadow: inset 0 10px 40px hsl(0deg 0% 0% / 20%);
 
-const classes = {
-  linkPadding: `${PREFIX}-linkPadding`,
-  footer: `${PREFIX}-footer`,
-}
-
-const StyledBox = styled(Box)(({ theme }) => ({
-  [`& .${classes.linkPadding}`]: {
-    padding: theme.spacing(1),
-  },
-
-  [`&.${classes.footer}`]: {
-    opacity: 0.8,
-    background: theme.palette.background.paper,
-    boxShadow: `inset 0 10px 40px hsl(0deg 0% 0% / 20%)`,
-  },
-}))
+  & .link-padding {
+    padding: ${({ theme }) => theme.spacing(1)};
+  }
+`
 
 const LinkStyled = styled(Link)`
   font-size: 1.2rem;
@@ -51,7 +43,7 @@ const Footer: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <StyledBox component="footer" className={classes.footer}>
+    <StyledBox component="footer">
       <Container>
         <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
           {main(t).map(({ href, label, prefetch }, index) => (
@@ -59,7 +51,7 @@ const Footer: React.FC = () => {
               key={index}
               href={href}
               prefetch={prefetch}
-              className={classes.linkPadding}
+              className="link-padding"
               color="primary"
             >
               {label}
@@ -91,16 +83,14 @@ const Footer: React.FC = () => {
               ever be accessed once - before being destroyed forever.
             </Trans>
             <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
-              <span className={classes.linkPadding}>
-                ©{new Date().getFullYear()} SANTiHANS GmbH
-              </span>
+              <span className="link-padding">©{new Date().getFullYear()} SANTiHANS GmbH</span>
 
               {about(t).map(({ href, label }, index) => (
-                <LinkAbout key={index} href={href} className={classes.linkPadding} color="inherit">
+                <LinkAbout key={index} href={href} className="link-padding" color="inherit">
                   {label}
                 </LinkAbout>
               ))}
-              <span className={classes.linkPadding}>
+              <span className="link-padding">
                 <LinkAbout
                   href={'https://stats.uptimerobot.com/v5yqDuEr5z'}
                   target="_blank"

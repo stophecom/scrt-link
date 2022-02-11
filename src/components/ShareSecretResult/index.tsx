@@ -174,6 +174,7 @@ Remember it, we use it for the read receipt.`,
               <BaseButton
                 endIcon={isEmailServiceEnabled ? <ExpandLess /> : <ExpandMore />}
                 size="small"
+                color="secondary"
                 onClick={() => {
                   setIsEmailServiceEnabled(!isEmailServiceEnabled)
                 }}

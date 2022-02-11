@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Paper, Typography } from '@mui/material'
+import { Box, Paper, Typography, NoSsr } from '@mui/material'
 import { ArrowForward } from '@mui/icons-material'
 import Image from 'next/image'
 import { useTranslation, Trans } from 'next-i18next'
@@ -117,22 +117,24 @@ export const HomeView: CustomPage = () => {
 
   if (data) {
     return (
-      <Page
-        title={t('common:views.Home.success.title', 'Success!')}
-        subtitle={t(
-          'common:views.Home.success.subtitle',
-          'Your secret link has been created - now share it with your confidant.',
-        )}
-      >
-        <Result
-          data={data}
-          isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
-          role={customer?.role || 'visitor'}
-          onReset={() => {
-            dispatch(doReset())
-          }}
-        />
-      </Page>
+      <NoSsr>
+        <Page
+          title={t('common:views.Home.success.title', 'Success!')}
+          subtitle={t(
+            'common:views.Home.success.subtitle',
+            'Your secret link has been created - now share it with your confidant.',
+          )}
+        >
+          <Result
+            data={data}
+            isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
+            role={customer?.role || 'visitor'}
+            onReset={() => {
+              dispatch(doReset())
+            }}
+          />
+        </Page>
+      </NoSsr>
     )
   }
 
