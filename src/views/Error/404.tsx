@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
 import { BaseButtonLink } from '@/components/Link'

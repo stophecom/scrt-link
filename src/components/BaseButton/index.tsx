@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, CircularProgress, ButtonProps, ButtonTypeMap } from '@material-ui/core'
-import styled from 'styled-components'
+import { Button, CircularProgress, ButtonProps, ButtonTypeMap } from '@mui/material'
+import { styled } from '@mui/system'
 
 export type BaseButtonProps<T extends React.ElementType = ButtonTypeMap['defaultComponent']> =
   ButtonProps<T, { component?: T }> & {
@@ -39,4 +39,4 @@ function BaseButton<T extends React.ElementType>(
   )
 }
 
-export default React.forwardRef(BaseButton) as typeof BaseButton
+export default React.forwardRef(BaseButton)

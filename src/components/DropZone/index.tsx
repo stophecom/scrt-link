@@ -1,57 +1,66 @@
 import React, { useState } from 'react'
+import { styled } from '@mui/system'
 import { useDropzone } from 'react-dropzone'
-import { Paper, Button, Chip, Backdrop, Typography } from '@material-ui/core'
-import { CloudUpload, Delete } from '@material-ui/icons'
+import { Paper, Button, Chip, Backdrop, Typography } from '@mui/material'
+import { CloudUpload, Delete } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 import { Error } from '@/components/Error'
 import { MB } from '@/constants'
 import usePrettyBytes from '@/hooks/usePrettyBytes'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      alignItems: 'center',
-      borderStyle: 'dashed',
-      borderWidth: '2px',
-      color: theme.palette.text.secondary,
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      justifyContent: 'center',
-      minHeight: '152px',
-      padding: theme.spacing(5),
-      position: 'relative',
-      textAlign: 'center',
-    },
-    dropInfo: {
-      marginTop: ' .3em',
-    },
-    maxFileSizeInfo: {
-      opacity: 0.5,
-      fontSize: '.8em',
-      position: 'absolute',
-      right: '5px',
-      bottom: '5px',
-    },
-    chip: {
-      paddingLeft: '.6em',
-      paddingRight: '.6em',
-      maxWidth: '100%',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      marginBottom: '.3em',
-    },
-  }),
-)
+const PREFIX = 'DropZone'
+
+const classes = {
+  paper: `${PREFIX}-paper`,
+  dropInfo: `${PREFIX}-dropInfo`,
+  maxFileSizeInfo: `${PREFIX}-maxFileSizeInfo`,
+  chip: `${PREFIX}-chip`,
+}
+
+const Root = styled('div')(({ theme }) => ({
+  [`& .${classes.paper}`]: {
+    alignItems: 'center',
+    borderStyle: 'dashed',
+    borderWidth: '2px',
+    color: theme.palette.text.secondary,
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    justifyContent: 'center',
+    minHeight: '152px',
+    padding: theme.spacing(5),
+    position: 'relative',
+    textAlign: 'center',
+  },
+
+  [`& .${classes.dropInfo}`]: {
+    marginTop: ' .3em',
+  },
+
+  [`& .${classes.maxFileSizeInfo}`]: {
+    opacity: 0.5,
+    fontSize: '.8em',
+    position: 'absolute',
+    right: '5px',
+    bottom: '5px',
+  },
+
+  [`& .${classes.chip}`]: {
+    paddingLeft: '.6em',
+    paddingRight: '.6em',
+    maxWidth: '100%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    marginBottom: '.3em',
+  },
+}))
 
 interface DropZoneProps {
   onChange(file: File | null): void
   maxFileSize?: number
 }
 const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) => {
-  const classes = useStyles()
   const { t } = useTranslation('common')
   const prettyBytes = usePrettyBytes()
 
@@ -104,7 +113,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) 
   }
 
   return (
-    <div {...getRootProps()}>
+    <Root {...getRootProps()}>
       <Backdrop open={isDragActive} style={{ zIndex: 100 }}>
         <Typography variant="h2" gutterBottom style={{ color: '#fff', textAlign: 'center' }}>
           {t('components.DropZone.backdrop', `Drop It Like It's Hot`)}
@@ -162,7 +171,7 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) 
         )}
       </Paper>
       {error && <Error error={error} />}
-    </div>
+    </Root>
   )
 }
 

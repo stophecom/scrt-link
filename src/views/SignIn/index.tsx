@@ -1,6 +1,6 @@
 import React from 'react'
 import { getSession } from 'next-auth/react'
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'

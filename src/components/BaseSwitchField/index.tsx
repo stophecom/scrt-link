@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react'
 import { useField, FieldHookConfig } from 'formik'
-import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
-import Switch, { SwitchProps } from '@material-ui/core/Switch'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import { FormControl } from '@material-ui/core'
+import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
+import Switch, { SwitchProps } from '@mui/material/Switch'
+import FormHelperText from '@mui/material/FormHelperText'
+import { FormControl } from '@mui/material'
 
-export type BaseSwitchProps = Partial<FormControlLabelProps> &
+export type BaseSwitchProps = Pick<FormControlLabelProps, 'label'> &
   FieldHookConfig<SwitchProps> & { helperText?: ReactNode }
 
 function BaseSwitchField({ label, helperText, ...props }: BaseSwitchProps) {
@@ -17,7 +17,6 @@ function BaseSwitchField({ label, helperText, ...props }: BaseSwitchProps) {
   return (
     <FormControl error={hasError}>
       <FormControlLabel
-        {...props}
         {...field}
         control={<Switch checked={Boolean(field.value)} color="primary" />}
         label={label}

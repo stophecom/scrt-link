@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { Box, InputAdornment, NoSsr } from '@material-ui/core'
+import { Box, InputAdornment, NoSsr, Backdrop } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import clsx from 'clsx'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import Collapse from '@material-ui/core/Collapse'
+import Collapse from '@mui/material/Collapse'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
-import { ExpandLess, ExpandMore } from '@material-ui/icons'
-import LinkIcon from '@material-ui/icons/Link'
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import LinkIcon from '@mui/icons-material/Link'
 import { useTranslation, TFunction } from 'next-i18next'
 import axios from 'axios'
 
@@ -41,6 +40,29 @@ import { getBaseURL } from '@/utils'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { Action, doRequest, doSuccess, doError } from '@/views/Home'
 import { encryptFile, encryptString, generateEncryptionKeyString } from '@/utils/crypto'
+
+const FormFooter = styled(Box)(({ theme }) => ({
+  flexDirection: 'column',
+
+  [theme.breakpoints.up('sm')]: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+}))
+
+const BetaTab = styled('span')`
+  position: relative;
+  width: auto;
+  margin-right: 2em;
+
+  &::after {
+    content: 'BETA';
+    position: absolute;
+    font-size: 0.4rem;
+    left: calc(100% + 5px);
+    top: 0;
+  }
+`
 
 const bucket = process.env.NEXT_PUBLIC_FLOW_S3_BUCKET
 
@@ -96,62 +118,22 @@ const secretTypesMap = (t: TFunction) =>
     },
   } as ObjKey)
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    wordBreak: {
-      wordBreak: 'break-word',
-    },
-    root: {
-      marginBottom: 0,
-      width: '100%',
-    },
-    formFooter: {
-      flexDirection: 'column',
-
-      [theme.breakpoints.up('sm')]: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      },
-    },
-    counter: {
-      position: 'absolute',
-      bottom: 12,
-      right: 10,
-    },
-    customTabs: {
-      '& .MuiTab-root': {
-        fontSize: '0.9em',
-      },
-    },
-    betaTab: {
-      '& .MuiTab-wrapper': {
-        position: 'relative',
-        width: 'auto',
-
-        '&::after': {
-          content: '"BETA"',
-          position: 'absolute',
-          fontSize: '.4rem',
-          left: 'calc(100% + 5px)',
-          top: 0,
-        },
-      },
-    },
-  }),
-)
-
 type FormCreateSecretProps = {
   dispatch: React.Dispatch<Action>
+  setFocusState?: (e: boolean) => void
+  isFocusState?: boolean
   isStandalone?: boolean
   limitedToSecretType?: SecretType
 }
 const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   dispatch,
   isStandalone,
+  setFocusState,
+  isFocusState,
   limitedToSecretType,
 }) => {
   const { t } = useTranslation('common')
-  const classes = useStyles()
+
   const plausible = usePlausible()
   const [secretType, setSecretType] = useState<SecretType>('text')
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
@@ -166,9 +148,12 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     const secretTypeItem = secretMap[item]
 
     return {
-      label: secretTypeItem.tabLabel as string,
+      label:
+        item === 'file' ? <BetaTab>{secretTypeItem.tabLabel}</BetaTab> : secretTypeItem.tabLabel,
       key: item,
-      className: item === 'file' ? classes.betaTab : '',
+      sx: {
+        fontSize: '0.8em',
+      },
     }
   })
 
@@ -183,7 +168,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     if (limitedToSecretType) {
       setSecretType(limitedToSecretType)
     }
-  }, [])
+  }, [limitedToSecretType])
 
   const initialValues = {
     message: '',
@@ -309,6 +294,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       }
 
       formikHelpers.resetForm()
+      setFocusState && setFocusState(false)
     } catch (error) {
       dispatch(doError(error instanceof Error ? error : new Error('Secret creation failed.')))
     } finally {
@@ -316,10 +302,8 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     }
   }
 
-  const handleMenuChange = (
-    _event: React.ChangeEvent<Record<string, unknown>>,
-    newValue: SecretType,
-  ) => {
+  const handleMenuChange = (_event: unknown, newValue: SecretType) => {
+    setFocusState && setFocusState(true)
     setSecretType(newValue)
   }
 
@@ -336,7 +320,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
     const charactersLeft = getLimits(customer?.role || 'visitor').maxMessageLength - messageLength
     return (
-      <small className={classes.counter}>
+      <small style={{ position: 'absolute', bottom: 12, right: 10, opacity: 0.6 }}>
         {charactersLeft.toLocaleString()}
         {charactersLeft < 0 && (
           <>
@@ -354,13 +338,16 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   return (
     <>
       {!limitedToSecretType && (
-        <Box pt={1} pb={1}>
+        <Box pt={1}>
           <TabsMenu
-            className={classes.customTabs}
-            handleChange={handleMenuChange}
+            onChange={handleMenuChange}
+            focusMode={isFocusState}
             value={secretType}
             tabsMenu={Object.values(tabsMenu)}
-            label={t('common:components.FormCreateSecret.selectSecretType', 'Select secret type')}
+            aria-label={t(
+              'common:components.FormCreateSecret.selectSecretType',
+              'Select secret type',
+            )}
           />
         </Box>
       )}
@@ -380,7 +367,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
             return (
               <>
-                <Form noValidate>
+                <Form noValidate onClick={() => setFocusState && setFocusState(true)}>
                   <Box position="relative" py={1}>
                     {secretType === 'file' && (
                       <DropZone
@@ -394,12 +381,14 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     {secretType === 'url' && (
                       <BaseTextField
                         name="message"
-                        label={t('common:FormField.url.label', 'Secret URL')}
+                        autoFocus={!!limitedToSecretType}
+                        hiddenLabel={!limitedToSecretType}
+                        label={
+                          limitedToSecretType && getFormFieldConfigBySecretType(secretType).label
+                        }
+                        aria-label={t('common:FormField.url.label', 'Secret URL')}
                         placeholder="example.com"
                         required
-                        InputLabelProps={{
-                          shrink: undefined,
-                        }}
                         helperText={t(
                           'common:FormField.url.helperText',
                           'The URL to get redirected to (one time).',
@@ -421,11 +410,13 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           required
                           minRows={3}
                           maxRows={7}
-                          label={getFormFieldConfigBySecretType(secretType).label}
+                          autoFocus={!!limitedToSecretType}
+                          hiddenLabel={!limitedToSecretType}
+                          label={
+                            limitedToSecretType && getFormFieldConfigBySecretType(secretType).label
+                          }
+                          aria-label={getFormFieldConfigBySecretType(secretType).label}
                           placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
-                          InputLabelProps={{
-                            shrink: undefined,
-                          }}
                         />
                         <Counter messageLength={values?.message?.length || 0} />
                       </>
@@ -449,7 +440,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         </>
                       )}
                       <Box py={1}>
-                        <BasePasswordField className={clsx(classes.root)} name="password" />
+                        <BasePasswordField
+                          sx={{ marginBottom: 0, width: '100%' }}
+                          name="password"
+                        />
                       </Box>
                       <Box pl={1} pt={3} pb={6}>
                         <BaseRadioGroupField
@@ -507,7 +501,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       )}
                     </NoSsr>
                   </Collapse>
-                  <Box display="flex" className={classes.formFooter}>
+                  <FormFooter display="flex">
                     <Box
                       key="formControls"
                       display="flex"
@@ -518,6 +512,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     >
                       <BaseButton
                         size="small"
+                        color="secondary"
                         startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
                         onClick={() => {
                           // Workaround to validate field initially onChange, not onBlur
@@ -566,7 +561,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         {t('common:button.createSecretLink', 'Create secret link')}
                       </BaseButton>
                     </Box>
-                  </Box>
+                  </FormFooter>
                 </Form>
                 {neogramPreview && (
                   <Neogram

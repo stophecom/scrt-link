@@ -1,6 +1,6 @@
 import React from 'react'
-import { Grid, Paper, Typography } from '@material-ui/core'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { styled } from '@mui/system'
+import { Grid, Paper, Typography } from '@mui/material'
 import { useTranslation, TFunction } from 'next-i18next'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -10,64 +10,75 @@ import Share from '!@svgr/webpack!@/assets/images/share.svg'
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import Burn from '!@svgr/webpack!@/assets/images/burn.svg'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(2),
-      color: theme.palette.text.secondary,
-      height: '100%',
+const PREFIX = 'HowItWorks'
 
-      [theme.breakpoints.up('sm')]: {
-        flexDirection: 'column',
-        textAlign: 'center',
-      },
-    },
-    illustration: {
-      width: '32%',
-      flexShrink: 0,
-      marginRight: theme.spacing(2),
+const classes = {
+  root: `${PREFIX}-root`,
+  paper: `${PREFIX}-paper`,
+  illustration: `${PREFIX}-illustration`,
+  title: `${PREFIX}-title`,
+  number: `${PREFIX}-number`,
+}
 
-      [theme.breakpoints.up('sm')]: {
-        width: '100%',
-        marginRight: 0,
-      },
-    },
-    title: {
-      marginBottom: theme.spacing(1),
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  [`& .${classes.root}`]: {
+    flexGrow: 1,
+  },
 
-      [theme.breakpoints.up('sm')]: {
-        marginBottom: theme.spacing(2),
-      },
-    },
+  [`& .${classes.paper}`]: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
+    height: '100%',
 
-    number: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexShrink: 0,
-      width: '36px',
-      height: '36px',
-      borderRadius: '50%',
-      backgroundColor: theme.palette.background.default,
-      color: theme.palette.text.secondary,
-      fontSize: '1.1rem',
-      fontWeight: 'bold',
-
-      [theme.breakpoints.down('xs')]: {
-        position: 'absolute',
-        transform: 'scale(.8)',
-        right: 8,
-        top: 8,
-      },
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'column',
+      textAlign: 'center',
     },
-  }),
-)
+  },
+
+  [`& .${classes.illustration}`]: {
+    width: '32%',
+    flexShrink: 0,
+    marginRight: theme.spacing(2),
+
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+      marginRight: 0,
+    },
+  },
+
+  [`& .${classes.title}`]: {
+    marginBottom: theme.spacing(1),
+
+    [theme.breakpoints.up('sm')]: {
+      marginBottom: theme.spacing(2),
+    },
+  },
+
+  [`& .${classes.number}`]: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: '36px',
+    height: '36px',
+    borderRadius: '50%',
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.secondary,
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+
+    [theme.breakpoints.down('sm')]: {
+      position: 'absolute',
+      transform: 'scale(.8)',
+      right: 8,
+      top: 8,
+    },
+  },
+}))
 
 const howItWorks = (t: TFunction) => [
   {
@@ -100,11 +111,10 @@ const howItWorks = (t: TFunction) => [
 ]
 
 const HowItWorks = () => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   return (
-    <Grid container spacing={2} justifyContent="center">
+    <StyledGrid container spacing={2} justifyContent="center">
       {howItWorks(t).map(({ illustration, title, text }, index) => {
         return (
           <Grid item xs={12} sm={4} key={index}>
@@ -123,7 +133,7 @@ const HowItWorks = () => {
           </Grid>
         )
       })}
-    </Grid>
+    </StyledGrid>
   )
 }
 export default HowItWorks

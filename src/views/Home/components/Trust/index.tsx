@@ -1,34 +1,41 @@
 import React from 'react'
-import { Box, Typography } from '@material-ui/core'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import { Lock, VerifiedUser } from '@material-ui/icons'
+import { styled } from '@mui/system'
+import { Box, Typography } from '@mui/material'
+import { Lock, VerifiedUser } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    box: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: theme.palette.text.secondary,
-      opacity: 0.7,
-      paddingTop: '.15rem',
-      paddingBottom: '.15rem',
-    },
-    illustration: {
-      fontSize: '.9rem',
-      marginRight: '.3rem',
-    },
-    title: {
-      fontSize: '.7rem',
-      color: theme.palette.text.primary,
-    },
-  }),
-)
+const PREFIX = 'Trust'
+
+const classes = {
+  box: `${PREFIX}-box`,
+  illustration: `${PREFIX}-illustration`,
+  title: `${PREFIX}-title`,
+}
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`& .${classes.box}`]: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: theme.palette.text.secondary,
+    opacity: 0.7,
+    paddingTop: '.15rem',
+    paddingBottom: '.15rem',
+  },
+
+  [`& .${classes.illustration}`]: {
+    fontSize: '.9rem',
+    marginRight: '.3rem',
+  },
+
+  [`& .${classes.title}`]: {
+    fontSize: '.7rem',
+    color: theme.palette.text.primary,
+  },
+}))
 
 const Trust = () => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   const gridContent = [
@@ -43,7 +50,7 @@ const Trust = () => {
   ]
 
   return (
-    <Box display="flex" flexWrap="wrap" py={1}>
+    <StyledBox display="flex" flexWrap="wrap" py={1}>
       {gridContent.map(({ illustration, title }, index) => {
         return (
           <Box key={`trust-${index}`} px={1} className={classes.box}>
@@ -52,7 +59,7 @@ const Trust = () => {
           </Box>
         )
       })}
-    </Box>
+    </StyledBox>
   )
 }
 export default Trust

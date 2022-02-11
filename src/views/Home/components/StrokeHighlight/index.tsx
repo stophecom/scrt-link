@@ -1,12 +1,14 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 
-import styled from 'styled-components'
 import clsx from 'clsx'
+import { styled } from '@mui/system'
 
-const SVG = styled.svg.attrs({
-  xmlns: 'http://www.w3.org/2000/svg',
-  viewBox: '0 0 154 13',
-})``
+type SVGProps = {
+  className?: string
+}
+const SVG = ({ className }: SVGProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154 13" className={className} />
+)
 
 const StrokeSvg = styled(SVG)`
   display: block;
@@ -21,7 +23,7 @@ const StrokeSvg = styled(SVG)`
   }
 `
 
-const StrokeWrapper = styled.span`
+const StrokeWrapper = styled('span')`
   display: inline-block;
   position: absolute;
   left: 0;
@@ -29,7 +31,7 @@ const StrokeWrapper = styled.span`
   width: 100%;
 `
 
-const Highlight = styled.span`
+const Highlight = styled('span')`
   position: relative;
   display: inline-block;
 `

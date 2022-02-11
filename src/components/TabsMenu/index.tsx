@@ -1,35 +1,32 @@
 import React from 'react'
-import { Tabs, Tab } from '@material-ui/core'
+import { Tabs, TabsProps, Tab, TabProps } from '@mui/material'
 
-export type TabsMenuItem = { label: string; key: string; className?: string }
-
-type TabsMenuProps = {
-  value: string
-  handleChange: any
-  tabsMenu: TabsMenuItem[]
-  className?: string
-  label?: string
+interface TabsMenuProps extends TabsProps {
+  tabsMenu: TabProps[]
+  focusMode?: boolean
 }
-const TabsMenu = ({
-  value,
-  handleChange,
-  label = 'Menu',
-  tabsMenu = [],
-  className,
-}: TabsMenuProps) => {
+
+const TabsMenu = ({ focusMode = false, tabsMenu = [], ...props }: TabsMenuProps) => {
   return (
     <Tabs
-      className={className}
-      value={value}
       indicatorColor="primary"
       textColor="primary"
-      onChange={handleChange}
-      aria-label={label}
       variant="scrollable"
       scrollButtons="auto"
+      sx={[
+        focusMode && {
+          '[aria-selected="false"]': { opacity: 0.4 },
+        },
+        {
+          '.MuiTabs-indicator': {
+            opacity: 0,
+          },
+        },
+      ]}
+      {...props}
     >
-      {tabsMenu.map(({ label, key, className }, index) => (
-        <Tab className={className} label={label} id={key} value={key} key={index} />
+      {tabsMenu.map(({ key, ...tabProps }, index) => (
+        <Tab key={index} value={key} {...tabProps} />
       ))}
     </Tabs>
   )

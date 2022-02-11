@@ -1,26 +1,28 @@
 import React from 'react'
-import Alert from '@material-ui/lab/Alert'
-import { Box } from '@material-ui/core'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { styled } from '@mui/system'
+import Alert from '@mui/material/Alert'
+import { Box } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
 import { BaseButtonLink } from '@/components/Link'
 import Page, { PageProps } from '@/components/Page'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    wordBreak: {
-      wordBreak: 'break-word',
-    },
-  }),
-)
+const PREFIX = 'Error'
+
+const classes = {
+  wordBreak: `${PREFIX}-wordBreak`,
+}
+
+const StyledPage = styled(Page)(({ theme }) => ({
+  [`& .${classes.wordBreak}`]: {
+    wordBreak: 'break-word',
+  },
+}))
 
 type ErrorProps = {
   error: string
 }
 export const Error: React.FunctionComponent<ErrorProps> = ({ error }) => {
-  const classes = useStyles()
-
   return (
     <Alert severity="error">
       <Box className={classes.wordBreak}>{error}</Box>
@@ -35,7 +37,7 @@ export const PageError: React.FunctionComponent<ErrorProps & Partial<PageProps>>
 }) => {
   const { t } = useTranslation()
   return (
-    <Page title={t('common:components.Error.defaultTitle', 'An error occurred!')} {...props}>
+    <StyledPage title={t('common:components.Error.defaultTitle', 'An error occurred!')} {...props}>
       <Box mb={2}>
         <Error error={error} />
       </Box>
@@ -44,6 +46,6 @@ export const PageError: React.FunctionComponent<ErrorProps & Partial<PageProps>>
           {t('common:button.takeMeHome', 'Take me home')}
         </BaseButtonLink>
       )}
-    </Page>
+    </StyledPage>
   )
 }

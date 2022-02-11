@@ -1,29 +1,33 @@
 import React, { ReactNode } from 'react'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@material-ui/core'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { styled } from '@mui/material/styles'
+import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { usePlausible } from 'next-plausible'
 
 import Markdown from '@/components/Markdown'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightBold,
-      '& p': {
-        marginBottom: 0,
-      },
+const PREFIX = 'FaqAccordion'
+
+const classes = {
+  heading: `${PREFIX}-heading`,
+}
+
+const Root = styled('div')(({ theme }) => ({
+  [`& .${classes.heading}`]: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightBold,
+    '& p': {
+      marginBottom: 0,
     },
-  }),
-)
+  },
+}))
+
 type FaqAccordionProps = { items: { heading: string; body: string }[]; name?: string }
 const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, name }) => {
-  const classes = useStyles()
   const plausible = usePlausible()
 
   return (
-    <div id={name}>
+    <Root id={name}>
       {items.map(({ heading, body }, index) => (
         <Accordion
           key={index}
@@ -45,7 +49,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, name }) => {
           </AccordionDetails>
         </Accordion>
       ))}
-    </div>
+    </Root>
   )
 }
 

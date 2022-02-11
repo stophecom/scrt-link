@@ -1,13 +1,44 @@
 import React from 'react'
+import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie'
 import { useTranslation } from 'next-i18next'
 
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { Box } from '@material-ui/core'
-import LanguageIcon from '@material-ui/icons/Language'
+import { Box } from '@mui/material'
+import LanguageIcon from '@mui/icons-material/Language'
 import { supportedLanguages } from '@/constants'
 import SROnly from '@/components/ScreenreaderOnly'
+
+const PREFIX = 'LanguageSelector'
+
+const classes = {
+  select: `${PREFIX}-select`,
+  option: `${PREFIX}-option`,
+  icon: `${PREFIX}-icon`,
+}
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`& .${classes.select}`]: {
+    appearance: 'none',
+    background: 'transparent',
+    border: 0,
+    boxShadow: 'none',
+    font: 'inherit',
+    color: 'inherit',
+    padding: '.2em 1em .2em .4em',
+    cursor: 'pointer',
+  },
+
+  [`& .${classes.option}`]: {
+    color: '#222222',
+  },
+
+  [`& .${classes.icon}`]: {
+    fontSize: '1.1rem',
+    flexShrink: 0,
+    marginLeft: '0.5rem',
+  },
+}))
 
 const languageMap = {
   de: 'Deutsch',
@@ -21,42 +52,19 @@ const setLocaleCookie = (locale: string): void => {
   cookies.set('NEXT_LOCALE', locale, { path: '/' })
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    select: {
-      appearance: 'none',
-      background: 'transparent',
-      border: 0,
-      boxShadow: 'none',
-      font: 'inherit',
-      color: 'inherit',
-      padding: '.2em 1em .2em .4em',
-      cursor: 'pointer',
-    },
-    option: {
-      color: '#222222',
-    },
-    icon: {
-      fontSize: '1.1rem',
-      flexShrink: 0,
-      marginLeft: '0.5rem',
-    },
-  }),
-)
-
 type LanguageSelectorProps = {
   className?: string
 }
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className }) => {
   const router = useRouter()
-  const classes = useStyles()
+
   const { t } = useTranslation()
 
   const { pathname, asPath, query, locale } = router
 
   return (
-    <Box display="inline-flex" alignItems="center">
+    <StyledBox display="inline-flex" alignItems="center">
       <LanguageIcon className={classes.icon} />
       <SROnly>
         <label htmlFor="LanguageSelector">
@@ -79,6 +87,6 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
           </option>
         ))}
       </select>
-    </Box>
+    </StyledBox>
   )
 }

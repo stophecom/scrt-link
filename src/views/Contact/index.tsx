@@ -1,6 +1,6 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
-import { Link } from '@material-ui/core'
+import { Typography } from '@mui/material'
+import { Link } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
 import Page from '@/components/Page'

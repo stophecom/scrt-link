@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Box, BoxProps, Typography } from '@material-ui/core'
+import { Box, BoxProps, Typography } from '@mui/material'
 
 type SectionProps = {
   title?: string | ReactNode

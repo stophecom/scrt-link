@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Session } from 'next-auth'
 import { getSession, signOut } from 'next-auth/react'
-import { Box, Typography, Paper, InputAdornment, NoSsr } from '@material-ui/core'
-import Alert from '@material-ui/lab/Alert'
-import styled from 'styled-components'
+import { Box, Typography, Paper, InputAdornment, NoSsr } from '@mui/material'
+import Alert from '@mui/material/Alert'
 import { project } from 'ramda'
 import { useTranslation, Trans, TFunction } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { styled } from '@mui/system'
 
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseButton from '@/components/BaseButton'
@@ -76,10 +76,7 @@ const Account: NextPage<AccountProps> = ({ session }) => {
   const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu(t)[0].key)
   const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
 
-  const handleMenuChange = (
-    _event: React.ChangeEvent<Record<string, unknown>>,
-    newValue: MenuItem['key'],
-  ) => {
+  const handleMenuChange = (_event: unknown, newValue: MenuItem['key']) => {
     setActiveTab(newValue)
   }
   const customerRole = customer?.role
@@ -93,10 +90,10 @@ const Account: NextPage<AccountProps> = ({ session }) => {
       })}
     >
       <TabsMenu
-        handleChange={handleMenuChange}
+        onChange={handleMenuChange}
         value={activeTab}
         tabsMenu={project(['label', 'key'], menu(t))}
-        label={t('common:views.Account.tabsMenu.label', 'Account options')}
+        aria-label={t('common:views.Account.tabsMenu.label', 'Account options')}
       />
       <NoSsr>
         <Section pt={{ xs: 0, sm: 0 }}>

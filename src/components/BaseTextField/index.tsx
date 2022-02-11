@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { TextField, TextFieldProps } from '@material-ui/core'
+import { TextField, TextFieldProps } from '@mui/material'
 import { useField, FieldHookConfig } from 'formik'
 
 export type BaseTextFieldProps = TextFieldProps & FieldHookConfig<TextFieldProps['value']>

@@ -1,13 +1,12 @@
 import React, { useState, ReactNode } from 'react'
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
 import { signIn } from 'next-auth/react'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import VpnKeyIcon from '@material-ui/icons/VpnKey'
+import VpnKeyIcon from '@mui/icons-material/VpnKey'
 import { Trans, useTranslation } from 'next-i18next'
 
 import BaseCheckboxField from '@/components/BaseCheckboxField'
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
 
 import BaseTextField from '@/components/BaseTextField'
 import { SignIn } from '@/types'
@@ -33,14 +32,6 @@ interface SignInResponse {
 
 type State = Partial<SignInResponse>
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    submitButton: {
-      width: '100%',
-    },
-  }),
-)
-
 const initialState: State = {
   ok: false,
   error: undefined,
@@ -56,7 +47,6 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   showSignUp = false,
   children,
 }) => {
-  const classes = useStyles()
   const [state, setState] = useState(initialState)
   const [email, setEmail] = useState('')
   const { t } = useTranslation()
@@ -128,7 +118,7 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
 
               <Box py={1}>
                 <BaseButton
-                  className={classes.submitButton}
+                  fullWidth
                   type="submit"
                   color="primary"
                   variant="contained"

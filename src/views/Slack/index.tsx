@@ -1,11 +1,11 @@
 import React from 'react'
+import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { Box } from '@material-ui/core'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
+import { Box } from '@mui/material'
 import clsx from 'clsx'
 import { useTranslation } from 'next-i18next'
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
 
 import Markdown from '@/components/Markdown'
 import Page from '@/components/Page'
@@ -14,63 +14,71 @@ import BoxShadowWrapper from '@/components/BoxShadowWrapper'
 import { slackAppInstallLink } from '@/constants'
 import slackAppFaq from '@/data/faq/slack'
 
-const FaqAccordion = dynamic(() => import('@/components/Accordion'))
+const PREFIX = 'Slack'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    slackButton: {
+const classes = {
+  slackButton: `${PREFIX}-slackButton`,
+  cta: `${PREFIX}-cta`,
+  shadow: `${PREFIX}-shadow`,
+  image: `${PREFIX}-image`,
+}
+
+const StyledPage = styled(Page)(({ theme }) => ({
+  [`& .${classes.slackButton}`]: {
+    '& .slack-button': {
+      transform: 'scale(0.8)',
+    },
+
+    [theme.breakpoints.up('sm')]: {
       '& .slack-button': {
-        transform: 'scale(0.8)',
-      },
-
-      [theme.breakpoints.up('sm')]: {
-        '& .slack-button': {
-          transform: 'scale(1)',
-        },
+        transform: 'scale(1)',
       },
     },
-    cta: {
-      backgroundColor: theme.palette.background.default,
-      position: 'absolute',
-      bottom: -50,
-      paddingTop: '20px',
-      paddingBottom: '20px',
-      width: '100vw',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      boxShadow: '0 -12px 10px -10px #00000047, 0 -35px 20px -30px #00000027',
-      maxWidth: theme.breakpoints.values.md,
-      zIndex: 1,
+  },
 
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: '46px',
-        paddingBottom: '30px',
-      },
+  [`& .${classes.cta}`]: {
+    backgroundColor: theme.palette.background.default,
+    position: 'absolute',
+    bottom: -50,
+    paddingTop: '20px',
+    paddingBottom: '20px',
+    width: '100vw',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    boxShadow: '0 -12px 10px -10px #00000047, 0 -35px 20px -30px #00000027',
+    maxWidth: theme.breakpoints.values.md,
+    zIndex: 1,
+
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: '46px',
+      paddingBottom: '30px',
     },
-    shadow: {
-      display: 'inline-flex',
-      borderRadius: '10px',
+  },
+
+  [`& .${classes.shadow}`]: {
+    display: 'inline-flex',
+    borderRadius: '10px',
+    boxShadow:
+      '0 0 50px rgba(255, 0, 131, 0.4), 0px 0px 20px rgba(255, 0, 131, 0.3), 0 0 2px rgba(255, 0, 131, 1)',
+    transition: '400ms',
+
+    '&:hover': {
       boxShadow:
-        '0 0 50px rgba(255, 0, 131, 0.4), 0px 0px 20px rgba(255, 0, 131, 0.3), 0 0 2px rgba(255, 0, 131, 1)',
-      transition: '400ms',
+        '0 0 70px rgba(255, 0, 131, 0.5), 0px 0px 25px rgba(255, 0, 131, 0.3), 0 0 3px rgba(255, 0, 131, 1)',
+    },
+  },
 
-      '&:hover': {
-        boxShadow:
-          '0 0 70px rgba(255, 0, 131, 0.5), 0px 0px 25px rgba(255, 0, 131, 0.3), 0 0 3px rgba(255, 0, 131, 1)',
-      },
-    },
-    image: {
-      display: 'block !important',
-    },
-  }),
-)
+  [`& .${classes.image}`]: {
+    display: 'block !important',
+  },
+}))
+
+const FaqAccordion = dynamic(() => import('@/components/Accordion'))
 
 type SlackInstallButtonProps = {
   className?: string
 }
 const SlackInstallButton: React.FC<SlackInstallButtonProps> = ({ className }) => {
-  const classes = useStyles()
-
   return (
     <Box
       className={clsx(classes.slackButton, className)}
@@ -92,38 +100,19 @@ const SlackInstallButton: React.FC<SlackInstallButtonProps> = ({ className }) =>
 }
 
 const Slack = () => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation()
 
   return (
-    <Page
+    <StyledPage
       title={t('common:views.Slack.title', 'The Slack App')}
       subtitle={t(
         'common:views.Slack.subtitle',
         `Some things better not stay in your chat history.`,
       )}
-      intro={
-        <>
-          <a
-            href="https://www.producthunt.com/posts/scrt-link-for-slack?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-scrt-link-for-slack"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=322965&theme=light"
-              alt="Scrt.link for Slack - Some things better not stay in your chat history. | Product Hunt"
-              width={250}
-              height={54}
-            />
-          </a>
-          <p>
-            {t(
-              'common:views.Slack.intro',
-              'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.',
-            )}
-          </p>
-        </>
-      }
+      intro={t(
+        'common:views.Slack.intro',
+        'Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.',
+      )}
     >
       <Box mb={4} position="relative">
         <BoxShadowWrapper>
@@ -213,7 +202,7 @@ This is a built in feature. You get notified when a secret has been viewed. We u
         <FaqAccordion items={slackAppFaq(t)} />
       </Section>
       <SlackInstallButton />
-    </Page>
+    </StyledPage>
   )
 }
 

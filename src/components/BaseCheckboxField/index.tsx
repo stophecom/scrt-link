@@ -7,12 +7,12 @@ import {
   FormControlLabelProps,
   Checkbox,
   CheckboxProps,
-} from '@material-ui/core'
+} from '@mui/material'
 
-export type BaseCheckboxProps = Partial<FormControlLabelProps> &
+export type BaseCheckboxProps = Omit<FormControlLabelProps, 'control'> &
   FieldHookConfig<CheckboxProps> & { helperText?: ReactNode }
 
-function BaseCheckboxField({ label, helperText, ...props }: BaseCheckboxProps) {
+function BaseCheckboxField({ helperText, ...props }: BaseCheckboxProps) {
   const [field, meta] = useField(props)
   const { error, touched } = meta
   const hasError = Boolean(error && touched)
@@ -24,7 +24,6 @@ function BaseCheckboxField({ label, helperText, ...props }: BaseCheckboxProps) {
         {...props}
         {...field}
         control={<Checkbox checked={Boolean(field.value)} color="primary" />}
-        label={label}
       />
       {(helperText || hasError) && (
         <FormHelperText error={hasError}>{hasError ? errorMessage : helperText}</FormHelperText>

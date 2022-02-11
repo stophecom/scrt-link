@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { styled } from '@mui/system'
 import { Stripe } from 'stripe'
 import { useTranslation, Trans } from 'next-i18next'
 
-import { Box, Grid, Typography } from '@material-ui/core'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import Alert from '@material-ui/lab/Alert'
-import { Check } from '@material-ui/icons'
+import { Box, Grid, Typography } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import { Check } from '@mui/icons-material'
 
 import { formatNumber } from '@/utils/localization'
 import { limits, trialPeriod } from '@/constants'
@@ -21,23 +21,24 @@ import { api, useStripeCustomer, usePlans, useCustomer } from '@/utils/api'
 import Plan from './Plan'
 import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    trial: {
-      paddingTop: '.2em',
-    },
-    accordionHeading: {
-      fontSize: '1.05rem',
-      fontWeight: 'bold',
-    },
-    price: {
-      borderBottom: `2px solid ${theme.palette.primary.main}`,
-    },
-  }),
-)
+const Root = styled('div')`
+  flex-grow: 1;
+`
+
+const Trial = styled(Typography)`
+  padding-top: 0.2em;
+`
+
+const AccordionHeading = styled('span')`
+  font-size: 1.05rem;
+  font-weight: bold;
+`
+
+const Price = styled('div')(({ theme }) => ({
+  fontSize: '1.4rem',
+  marginBottom: '1.5rem',
+  borderBottom: `2px solid ${theme.palette.primary.main}`,
+}))
 
 type Status = {
   type: 'initial' | 'success' | 'error' | 'loading'
@@ -253,8 +254,6 @@ const PlanSelection: React.FunctionComponent = () => {
     }
   }
 
-  const classes = useStyles()
-
   type AccordionItem = { heading: string; body?: string }
   const getAccordionItems = (items: AccordionItem[]) =>
     items.map(({ heading, body }) => ({
@@ -263,7 +262,7 @@ const PlanSelection: React.FunctionComponent = () => {
           <Box display="flex" alignItems="center" pr={1}>
             <Check color="primary" />
           </Box>
-          <span className={classes.accordionHeading}>{heading}</span>
+          <AccordionHeading>{heading}</AccordionHeading>
         </Box>
       ),
       body,
@@ -278,7 +277,7 @@ const PlanSelection: React.FunctionComponent = () => {
   }
 
   return (
-    <>
+    <Root>
       {['error', 'success'].includes(status.type) && (
         <Box mb={2}>
           <Alert severity={status.type as 'error' | 'success'}>{status.message}</Alert>
@@ -293,9 +292,7 @@ const PlanSelection: React.FunctionComponent = () => {
             isCurrentPlan={!!customer?.userId && !isSubscriptionActive}
           >
             <Box display="flex" justifyContent="center">
-              <Typography className={classes.price} variant="h4" component="div">
-                {t('common:components.PlanSelection.free.price', 'Free forever')}
-              </Typography>
+              <Price>{t('common:components.PlanSelection.free.price', 'Free forever')}</Price>
             </Box>
             <Box mb={2}>
               <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
@@ -333,7 +330,7 @@ const PlanSelection: React.FunctionComponent = () => {
                   }
                 >
                   <Box display="flex" justifyContent="center">
-                    <Typography className={classes.price} variant="h4" component="div">
+                    <Price>
                       {formatCurrency(Number(price.unit_amount) / 100)}
                       <small>
                         {' '}
@@ -342,7 +339,7 @@ const PlanSelection: React.FunctionComponent = () => {
                           ? t('common:month', 'month')
                           : t('common:year', 'year')}
                       </small>
-                    </Typography>
+                    </Price>
                   </Box>
                   <Box mb={2}>
                     <SimpleAccordion name="premiumUsps" items={getAccordionItems(premiumUsps)} />
@@ -407,12 +404,12 @@ const PlanSelection: React.FunctionComponent = () => {
                                 : t('common:button.tryFree', 'Try it free')}
                             </BaseButton>
                             {!subscription && (
-                              <Typography className={classes.trial} variant="body2">
+                              <Trial variant="body2">
                                 {t('common:components.PlanSelection.freeTrialInfo', {
                                   defaultValue: '{{trialPeriod}} days free trial',
                                   trialPeriod,
                                 })}
-                              </Typography>
+                              </Trial>
                             )}
                           </>
                         ) : (
@@ -473,7 +470,6 @@ const PlanSelection: React.FunctionComponent = () => {
             )
           })}
       </Grid>
-
       <Box pt={5}>
         {(!subscription || isSubscriptionBillingIntervalMonthly) && (
           <Box mb={2}>
@@ -497,7 +493,7 @@ const PlanSelection: React.FunctionComponent = () => {
           <Grid item>{t('common:components.PlanSelection.interval.yearly', 'Yearly')}</Grid>
         </Grid>
       </Box>
-    </>
+    </Root>
   )
 }
 

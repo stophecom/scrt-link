@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { styled } from '@mui/system'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Box, Typography } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { Box, Typography } from '@mui/material'
+import { Alert } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
-import Paper from '@material-ui/core/Paper'
+import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined'
+import Paper from '@mui/material/Paper'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -31,6 +31,24 @@ import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 import { decryptFile, decryptString } from '@/utils/crypto'
 
+const PREFIX = 'AliasView'
+
+const classes = {
+  break: `${PREFIX}-break`,
+  message: `${PREFIX}-message`,
+}
+
+const StyledSpinner = styled(Spinner)(({ theme }) => ({
+  [`& .${classes.break}`]: {
+    wordBreak: 'break-word',
+    whiteSpace: 'pre-wrap',
+  },
+
+  [`& .${classes.message}`]: {
+    fontSize: '1.1rem',
+  },
+}))
+
 // t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
 
 type FileMeta = {
@@ -46,20 +64,8 @@ type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
 type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'> & {
   decryptionKey: string
 }
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    break: {
-      wordBreak: 'break-word',
-      whiteSpace: 'pre-wrap',
-    },
-    message: {
-      fontSize: '1.1rem',
-    },
-  }),
-)
 
 const AliasView: CustomPage = () => {
-  const classes = useStyles()
   const router = useRouter()
   const prettyBytes = usePrettyBytes()
   const { t } = useTranslation()
@@ -437,7 +443,7 @@ const AliasView: CustomPage = () => {
     }
   }
 
-  return <Spinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />
+  return <StyledSpinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />
 }
 
 AliasView.layout = LayoutMinimal

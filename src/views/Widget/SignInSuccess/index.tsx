@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material'
 
 import BaseButton from '@/components/BaseButton'
 import Page from '@/components/Page'

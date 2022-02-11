@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
-import { Box, CircularProgress, Paper, Typography, Collapse, IconButton } from '@material-ui/core'
+import { Box, CircularProgress, Paper, Typography, Collapse, IconButton } from '@mui/material'
 
-import { Replay, Share, ExpandLess, ExpandMore, EmojiEmotions } from '@material-ui/icons'
+import { Replay, Share, ExpandLess, ExpandMore, EmojiEmotions } from '@mui/icons-material'
 import { RWebShare } from 'react-web-share'
-import Alert from '@material-ui/lab/Alert'
+import Alert from '@mui/material/Alert'
 
 import Markdown from '@/components/Markdown'
 import FormShareSecretLink from '@/components/FormShareSecretLink'
@@ -174,6 +174,7 @@ Remember it, we use it for the read receipt.`,
               <BaseButton
                 endIcon={isEmailServiceEnabled ? <ExpandLess /> : <ExpandMore />}
                 size="small"
+                color="secondary"
                 onClick={() => {
                   setIsEmailServiceEnabled(!isEmailServiceEnabled)
                 }}

@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Paper, Typography } from '@material-ui/core'
-import { ArrowForward } from '@material-ui/icons'
+import { Box, Paper, Typography, NoSsr, Backdrop } from '@mui/material'
+import { ArrowForward } from '@mui/icons-material'
 import Image from 'next/image'
 import { useTranslation, Trans } from 'next-i18next'
 
@@ -97,8 +97,16 @@ const initialState: State = {
 
 export const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { t, i18n } = useTranslation('common')
 
+  const [isFocusState, setIsFocusState] = React.useState(false)
+  const handleClose = () => {
+    setIsFocusState(false)
+  }
+  const handleBackdropFocus = (state: boolean) => {
+    setIsFocusState(state)
+  }
+
+  const { t, i18n } = useTranslation('common')
   const { data: customer, isLoading } = useCustomer()
 
   const { data, error } = state
@@ -117,22 +125,24 @@ export const HomeView: CustomPage = () => {
 
   if (data) {
     return (
-      <Page
-        title={t('common:views.Home.success.title', 'Success!')}
-        subtitle={t(
-          'common:views.Home.success.subtitle',
-          'Your secret link has been created - now share it with your confidant.',
-        )}
-      >
-        <Result
-          data={data}
-          isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
-          role={customer?.role || 'visitor'}
-          onReset={() => {
-            dispatch(doReset())
-          }}
-        />
-      </Page>
+      <NoSsr>
+        <Page
+          title={t('common:views.Home.success.title', 'Success!')}
+          subtitle={t(
+            'common:views.Home.success.subtitle',
+            'Your secret link has been created - now share it with your confidant.',
+          )}
+        >
+          <Result
+            data={data}
+            isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
+            role={customer?.role || 'visitor'}
+            onReset={() => {
+              dispatch(doReset())
+            }}
+          />
+        </Page>
+      </NoSsr>
     )
   }
 
@@ -148,10 +158,36 @@ export const HomeView: CustomPage = () => {
         </Trans>
       }
     >
+      <Backdrop
+        sx={{
+          backgroundColor: 'rgba(27, 36, 46, .5)',
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+        }}
+        open={isFocusState}
+        onClick={handleClose}
+      />
       <Box mb={7}>
-        <Paper elevation={1} id="create" style={{ scrollMarginTop: '70px' }}>
+        <Paper
+          elevation={1}
+          id="create"
+          style={{ scrollMarginTop: '70px' }}
+          sx={{
+            position: 'relative',
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            ...(isFocusState
+              ? {
+                  boxShadow:
+                    '0 0 80px rgba(255, 0, 131, 0.15), 0px 0px 22px rgba(255, 0, 131, 0.15), 0 0 1px rgba(255, 0, 131, .8)',
+                }
+              : {}),
+          }}
+        >
           <Box px={2}>
-            <FormCreateSecret dispatch={dispatch} />
+            <FormCreateSecret
+              dispatch={dispatch}
+              isFocusState={isFocusState}
+              setFocusState={handleBackdropFocus}
+            />
           </Box>
         </Paper>
         <Trust />

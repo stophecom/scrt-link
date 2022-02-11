@@ -1,5 +1,5 @@
-import { Box, BoxProps } from '@material-ui/core'
-import styled from 'styled-components'
+import { Box, BoxProps } from '@mui/material'
+import { styled } from '@mui/system'
 
 type SpacerProps = BoxProps & {
   spacing: number
@@ -15,10 +15,10 @@ const Spacer = styled(Box)<SpacerProps>`
     ${({ flexDirection, theme, spacing }) =>
       flexDirection === 'row'
         ? `
-            margin-right: ${theme.spacing(spacing)}px;
+            margin-right: ${theme.spacing(spacing)};
           `
         : `
-            margin-bottom: ${theme.spacing(spacing)}px;
+            margin-bottom: ${theme.spacing(spacing)};
           `}
   }
 `

@@ -1,9 +1,8 @@
 import React from 'react'
-import { Box, IconButton } from '@material-ui/core'
-import styled from 'styled-components'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { Twitter } from '@material-ui/icons'
+import { Box, IconButton } from '@mui/material'
+import { Twitter } from '@mui/icons-material'
 import { useTranslation, Trans } from 'next-i18next'
+import { styled } from '@mui/system'
 
 import { LanguageSelector } from '@/components/LanguageSwitcher'
 import { Link } from '@/components/Link'
@@ -11,6 +10,17 @@ import { twitterLink, twitterHandle } from '@/constants'
 import Stats from '@/components/Stats'
 import { Container } from '@/layouts/Default'
 import { main, about } from '@/data/menu'
+
+const StyledBox = styled(Box)`
+  font-size: 0.85em;
+  opacity: 0.8;
+  background: ${({ theme }) => theme.palette.background.paper};
+  box-shadow: inset 0 10px 40px hsl(0deg 0% 0% / 20%);
+
+  & .link-padding {
+    padding: ${({ theme }) => theme.spacing(1)};
+  }
+`
 
 const LinkStyled = styled(Link)`
   font-size: 1.2rem;
@@ -29,25 +39,11 @@ const Bullet = styled('span')`
   padding-left: 5px;
 `
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    linkPadding: {
-      padding: theme.spacing(1),
-    },
-    footer: {
-      opacity: 0.8,
-      background: theme.palette.background.paper,
-      boxShadow: `inset 0 10px 40px hsl(0deg 0% 0% / 20%)`,
-    },
-  }),
-)
-
 const Footer: React.FC = () => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   return (
-    <Box component="footer" className={classes.footer}>
+    <StyledBox component="footer">
       <Container>
         <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
           {main(t).map(({ href, label, prefetch }, index) => (
@@ -55,7 +51,7 @@ const Footer: React.FC = () => {
               key={index}
               href={href}
               prefetch={prefetch}
-              className={classes.linkPadding}
+              className="link-padding"
               color="primary"
             >
               {label}
@@ -71,6 +67,7 @@ const Footer: React.FC = () => {
             href={twitterLink}
             aria-label={twitterHandle}
             title={twitterHandle}
+            size="large"
           >
             <Twitter fontSize="inherit" />
           </IconButton>
@@ -86,16 +83,14 @@ const Footer: React.FC = () => {
               ever be accessed once - before being destroyed forever.
             </Trans>
             <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
-              <span className={classes.linkPadding}>
-                ©{new Date().getFullYear()} SANTiHANS GmbH
-              </span>
+              <span className="link-padding">©{new Date().getFullYear()} SANTiHANS GmbH</span>
 
               {about(t).map(({ href, label }, index) => (
-                <LinkAbout key={index} href={href} className={classes.linkPadding} color="inherit">
+                <LinkAbout key={index} href={href} className="link-padding" color="inherit">
                   {label}
                 </LinkAbout>
               ))}
-              <span className={classes.linkPadding}>
+              <span className="link-padding">
                 <LinkAbout
                   href={'https://stats.uptimerobot.com/v5yqDuEr5z'}
                   target="_blank"
@@ -111,7 +106,7 @@ const Footer: React.FC = () => {
           </Legal>
         </Box>
       </Container>
-    </Box>
+    </StyledBox>
   )
 }
 

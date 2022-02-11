@@ -1,7 +1,7 @@
-import { Link, LinkProps } from '@material-ui/core'
+import { Link, LinkProps } from '@mui/material'
 import React from 'react'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import styled from 'styled-components'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import { styled } from '@mui/system'
 
 const LinkIcon = styled(ExitToAppIcon)`
   vertical-align: text-bottom;

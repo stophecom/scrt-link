@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import { appWithTranslation, useTranslation, TFunction } from 'next-i18next'
-
+import { CacheProvider, EmotionCache } from '@emotion/react'
 import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
@@ -15,6 +15,11 @@ import DefaultLayout from '@/layouts/Default'
 import { appTitle, twitterHandle, supportedLanguages, SupportedLanguage } from '@/constants'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
+
+import createEmotionCache from '@/utils/createEmotionCache'
+
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache()
 
 const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): DefaultSeoProps => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
@@ -81,9 +86,14 @@ const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): 
 
 type Props = AppProps & {
   Component: CustomPage
+  emotionCache?: EmotionCache
 }
 
-const MyApp = ({ Component, pageProps: { session, ...pageProps } }: Props) => {
+const MyApp = ({
+  Component,
+  emotionCache = clientSideEmotionCache,
+  pageProps: { session, ...pageProps },
+}: Props) => {
   const router = useRouter()
   const { t, i18n } = useTranslation()
 
@@ -91,47 +101,41 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }: Props) => {
 
   const Layout = Component.layout ?? DefaultLayout
 
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side')
-    if (jssStyles) {
-      jssStyles.parentElement?.removeChild(jssStyles)
-    }
-  }, [])
-
   return (
-    <SessionProvider session={session}>
-      <PlausibleProvider domain="scrt.link" exclude="/l/*, /*/l/*">
-        <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
-          <DefaultSeo {...getDefaultSeoConfig(t, router.pathname, i18n.language)} />
-          <Head>
-            <meta name="twitter:card" content="summary" key="twitter:card" />
-            <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
+    <CacheProvider value={emotionCache}>
+      <SessionProvider session={session}>
+        <PlausibleProvider domain="scrt.link" exclude="/l/*, /*/l/*">
+          <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
+            <DefaultSeo {...getDefaultSeoConfig(t, router.pathname, i18n.language)} />
+            <Head>
+              <meta name="twitter:card" content="summary" key="twitter:card" />
+              <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
 
-            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-            <link rel="manifest" href="/manifest.json" />
-            <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
-            <meta
-              name="keywords"
-              content={t(
-                'common:meta.keywords',
-                'scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information',
-              )}
-              key="keywords"
-            />
-            <meta name="theme-color" content={theme.palette.primary.main} />
-          </Head>
+              <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+              <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+              <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+              <link rel="manifest" href="/manifest.json" />
+              <meta name="msapplication-TileColor" content={theme.palette.primary.main} />
+              <meta
+                name="keywords"
+                content={t(
+                  'common:meta.keywords',
+                  'scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information',
+                )}
+                key="keywords"
+              />
+              <meta name="theme-color" content={theme.palette.primary.main} />
+            </Head>
 
-          <BaseThemeProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </BaseThemeProvider>
-        </SWRConfig>
-      </PlausibleProvider>
-    </SessionProvider>
+            <BaseThemeProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </BaseThemeProvider>
+          </SWRConfig>
+        </PlausibleProvider>
+      </SessionProvider>
+    </CacheProvider>
   )
 }
 

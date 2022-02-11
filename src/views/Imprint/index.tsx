@@ -1,7 +1,7 @@
 import React from 'react'
-import { Typography, Box, Button } from '@material-ui/core'
-import styled from 'styled-components'
+import { Typography, Box } from '@mui/material'
 import { useTranslation } from 'next-i18next'
+import { styled } from '@mui/system'
 
 import { Link } from '@/components/Link'
 import Page from '@/components/Page'

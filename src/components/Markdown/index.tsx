@@ -1,21 +1,9 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import styled from 'styled-components'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
+import { styled } from '@mui/system'
 
-type MarkdownProps = {
-  source: string
-  className?: string
-}
-const Markdown: React.FunctionComponent<MarkdownProps> = ({ source, className }) => (
-  <Typography component="div">
-    <ReactMarkdown className={className}>{source}</ReactMarkdown>
-  </Typography>
-)
-
-const StyledMarkdown = styled(Markdown)`
-  font-size: ${({ theme }) => theme.typography.body1.fontSize};
-
+const StyledMarkdown = styled('div')`
   p {
     margin-top: 0;
   }
@@ -47,4 +35,16 @@ const StyledMarkdown = styled(Markdown)`
   }
 `
 
-export default StyledMarkdown
+type MarkdownProps = {
+  source: string
+  className?: string
+}
+const Markdown: React.FunctionComponent<MarkdownProps> = ({ source, className }) => (
+  <Typography component="div">
+    <StyledMarkdown>
+      <ReactMarkdown className={className}>{source}</ReactMarkdown>
+    </StyledMarkdown>
+  </Typography>
+)
+
+export default Markdown
