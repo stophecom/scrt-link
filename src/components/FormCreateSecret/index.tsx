@@ -381,7 +381,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     {secretType === 'url' && (
                       <BaseTextField
                         name="message"
-                        hiddenLabel
+                        autoFocus={!!limitedToSecretType}
+                        hiddenLabel={!limitedToSecretType}
+                        label={
+                          limitedToSecretType && getFormFieldConfigBySecretType(secretType).label
+                        }
                         aria-label={t('common:FormField.url.label', 'Secret URL')}
                         placeholder="example.com"
                         required
@@ -406,7 +410,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           required
                           minRows={3}
                           maxRows={7}
-                          hiddenLabel
+                          autoFocus={!!limitedToSecretType}
+                          hiddenLabel={!limitedToSecretType}
+                          label={
+                            limitedToSecretType && getFormFieldConfigBySecretType(secretType).label
+                          }
                           aria-label={getFormFieldConfigBySecretType(secretType).label}
                           placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                         />
