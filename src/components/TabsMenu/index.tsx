@@ -1,35 +1,21 @@
 import React from 'react'
-import { Tabs, Tab } from '@mui/material'
+import { Tabs, TabsProps, Tab, TabProps } from '@mui/material'
 
-export type TabsMenuItem = { label: string; key: string; className?: string }
-
-type TabsMenuProps = {
-  value: string
-  handleChange: any
-  tabsMenu: TabsMenuItem[]
-  className?: string
-  label?: string
+interface TabsMenuProps extends TabsProps {
+  tabsMenu: TabProps[]
 }
-const TabsMenu = ({
-  value,
-  handleChange,
-  label = 'Menu',
-  tabsMenu = [],
-  className,
-}: TabsMenuProps) => {
+
+const TabsMenu = ({ tabsMenu = [], ...props }: TabsMenuProps) => {
   return (
     <Tabs
-      className={className}
-      value={value}
       indicatorColor="primary"
       textColor="primary"
-      onChange={handleChange}
-      aria-label={label}
       variant="scrollable"
       scrollButtons="auto"
+      {...props}
     >
-      {tabsMenu.map(({ label, key, className }, index) => (
-        <Tab className={className} label={label} id={key} value={key} key={index} />
+      {tabsMenu.map(({ key, ...tabProps }, index) => (
+        <Tab key={index} value={key} {...tabProps} />
       ))}
     </Tabs>
   )

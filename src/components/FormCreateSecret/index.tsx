@@ -42,64 +42,28 @@ import { ReadReceiptMethod } from '@/api/models/Customer'
 import { Action, doRequest, doSuccess, doError } from '@/views/Home'
 import { encryptFile, encryptString, generateEncryptionKeyString } from '@/utils/crypto'
 
-const PREFIX = 'FormCreateSecret'
+const FormFooter = styled(Box)(({ theme }) => ({
+  flexDirection: 'column',
 
-const classes = {
-  wordBreak: `${PREFIX}-wordBreak`,
-  root: `${PREFIX}-root`,
-  formFooter: `${PREFIX}-formFooter`,
-  counter: `${PREFIX}-counter`,
-  customTabs: `${PREFIX}-customTabs`,
-  betaTab: `${PREFIX}-betaTab`,
-}
-
-// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')(({ theme }) => ({
-  [`& .${classes.wordBreak}`]: {
-    wordBreak: 'break-word',
-  },
-
-  [`& .${classes.root}`]: {
-    marginBottom: 0,
-    width: '100%',
-  },
-
-  [`& .${classes.formFooter}`]: {
-    flexDirection: 'column',
-
-    [theme.breakpoints.up('sm')]: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-  },
-
-  [`& .${classes.counter}`]: {
-    position: 'absolute',
-    bottom: 12,
-    right: 10,
-  },
-
-  [`& .${classes.customTabs}`]: {
-    '& .MuiTab-root': {
-      fontSize: '0.9em',
-    },
-  },
-
-  [`& .${classes.betaTab}`]: {
-    '& .MuiTab-wrapper': {
-      position: 'relative',
-      width: 'auto',
-
-      '&::after': {
-        content: '"BETA"',
-        position: 'absolute',
-        fontSize: '.4rem',
-        left: 'calc(100% + 5px)',
-        top: 0,
-      },
-    },
+  [theme.breakpoints.up('sm')]: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 }))
+
+const BetaTab = styled('span')`
+  position: relative;
+  width: auto;
+  margin-right: 2em;
+
+  &::after {
+    content: 'BETA';
+    position: absolute;
+    font-size: 0.4rem;
+    left: calc(100% + 5px);
+    top: 0;
+  }
+`
 
 const bucket = process.env.NEXT_PUBLIC_FLOW_S3_BUCKET
 
@@ -181,9 +145,12 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     const secretTypeItem = secretMap[item]
 
     return {
-      label: secretTypeItem.tabLabel as string,
+      label:
+        item === 'file' ? <BetaTab>{secretTypeItem.tabLabel}</BetaTab> : secretTypeItem.tabLabel,
       key: item,
-      className: item === 'file' ? classes.betaTab : '',
+      sx: {
+        fontSize: '0.8em',
+      },
     }
   })
 
@@ -198,7 +165,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     if (limitedToSecretType) {
       setSecretType(limitedToSecretType)
     }
-  }, [])
+  }, [limitedToSecretType])
 
   const initialValues = {
     message: '',
@@ -331,10 +298,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     }
   }
 
-  const handleMenuChange = (
-    _event: React.ChangeEvent<Record<string, unknown>>,
-    newValue: SecretType,
-  ) => {
+  const handleMenuChange = (_event: unknown, newValue: SecretType) => {
     setSecretType(newValue)
   }
 
@@ -351,7 +315,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
     const charactersLeft = getLimits(customer?.role || 'visitor').maxMessageLength - messageLength
     return (
-      <small className={classes.counter}>
+      <small style={{ position: 'absolute', bottom: 12, right: 10, opacity: 0.6 }}>
         {charactersLeft.toLocaleString()}
         {charactersLeft < 0 && (
           <>
@@ -371,11 +335,13 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       {!limitedToSecretType && (
         <Box pt={1} pb={1}>
           <TabsMenu
-            className={classes.customTabs}
-            handleChange={handleMenuChange}
+            onChange={handleMenuChange}
             value={secretType}
             tabsMenu={Object.values(tabsMenu)}
-            label={t('common:components.FormCreateSecret.selectSecretType', 'Select secret type')}
+            aria-label={t(
+              'common:components.FormCreateSecret.selectSecretType',
+              'Select secret type',
+            )}
           />
         </Box>
       )}
@@ -464,7 +430,10 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         </>
                       )}
                       <Box py={1}>
-                        <BasePasswordField className={clsx(classes.root)} name="password" />
+                        <BasePasswordField
+                          sx={{ marginBottom: 0, width: '100%' }}
+                          name="password"
+                        />
                       </Box>
                       <Box pl={1} pt={3} pb={6}>
                         <BaseRadioGroupField
@@ -522,7 +491,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       )}
                     </NoSsr>
                   </Collapse>
-                  <Box display="flex" className={classes.formFooter}>
+                  <FormFooter display="flex">
                     <Box
                       key="formControls"
                       display="flex"
@@ -533,6 +502,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     >
                       <BaseButton
                         size="small"
+                        color="secondary"
                         startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
                         onClick={() => {
                           // Workaround to validate field initially onChange, not onBlur
@@ -581,7 +551,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         {t('common:button.createSecretLink', 'Create secret link')}
                       </BaseButton>
                     </Box>
-                  </Box>
+                  </FormFooter>
                 </Form>
                 {neogramPreview && (
                   <Neogram

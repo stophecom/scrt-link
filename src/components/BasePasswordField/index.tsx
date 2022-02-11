@@ -58,16 +58,16 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
               edge="end"
-              size="large">
+              size="large"
+            >
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>
         }
-        labelWidth={70}
       />
       {errorMessage && <FormHelperText id="helper-text">{errorMessage}</FormHelperText>}
     </FormControl>
-  );
+  )
 }
 
 export default BasePasswordField

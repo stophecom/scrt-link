@@ -21,33 +21,23 @@ import { api, useStripeCustomer, usePlans, useCustomer } from '@/utils/api'
 import Plan from './Plan'
 import { formatCurrency, dateFromTimestamp } from '@/utils/localization'
 
-const PREFIX = 'PlanSelection'
+const Root = styled('div')`
+  flex-grow: 1;
+`
 
-const classes = {
-  root: `${PREFIX}-root`,
-  trial: `${PREFIX}-trial`,
-  accordionHeading: `${PREFIX}-accordionHeading`,
-  price: `${PREFIX}-price`,
-}
+const Trial = styled(Typography)`
+  padding-top: 0.2em;
+`
 
-// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')(({ theme }) => ({
-  [`& .${classes.root}`]: {
-    flexGrow: 1,
-  },
+const AccordionHeading = styled('span')`
+  font-size: 1.05rem;
+  font-weight: bold;
+`
 
-  [`& .${classes.trial}`]: {
-    paddingTop: '.2em',
-  },
-
-  [`& .${classes.accordionHeading}`]: {
-    fontSize: '1.05rem',
-    fontWeight: 'bold',
-  },
-
-  [`& .${classes.price}`]: {
-    borderBottom: `2px solid ${theme.palette.primary.main}`,
-  },
+const Price = styled('div')(({ theme }) => ({
+  fontSize: '1.4rem',
+  marginBottom: '1.5rem',
+  borderBottom: `2px solid ${theme.palette.primary.main}`,
 }))
 
 type Status = {
@@ -272,7 +262,7 @@ const PlanSelection: React.FunctionComponent = () => {
           <Box display="flex" alignItems="center" pr={1}>
             <Check color="primary" />
           </Box>
-          <span className={classes.accordionHeading}>{heading}</span>
+          <AccordionHeading>{heading}</AccordionHeading>
         </Box>
       ),
       body,
@@ -302,9 +292,7 @@ const PlanSelection: React.FunctionComponent = () => {
             isCurrentPlan={!!customer?.userId && !isSubscriptionActive}
           >
             <Box display="flex" justifyContent="center">
-              <Typography className={classes.price} variant="h4" component="div">
-                {t('common:components.PlanSelection.free.price', 'Free forever')}
-              </Typography>
+              <Price>{t('common:components.PlanSelection.free.price', 'Free forever')}</Price>
             </Box>
             <Box mb={2}>
               <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
@@ -342,7 +330,7 @@ const PlanSelection: React.FunctionComponent = () => {
                   }
                 >
                   <Box display="flex" justifyContent="center">
-                    <Typography className={classes.price} variant="h4" component="div">
+                    <Price>
                       {formatCurrency(Number(price.unit_amount) / 100)}
                       <small>
                         {' '}
@@ -351,7 +339,7 @@ const PlanSelection: React.FunctionComponent = () => {
                           ? t('common:month', 'month')
                           : t('common:year', 'year')}
                       </small>
-                    </Typography>
+                    </Price>
                   </Box>
                   <Box mb={2}>
                     <SimpleAccordion name="premiumUsps" items={getAccordionItems(premiumUsps)} />
@@ -416,12 +404,12 @@ const PlanSelection: React.FunctionComponent = () => {
                                 : t('common:button.tryFree', 'Try it free')}
                             </BaseButton>
                             {!subscription && (
-                              <Typography className={classes.trial} variant="body2">
+                              <Trial variant="body2">
                                 {t('common:components.PlanSelection.freeTrialInfo', {
                                   defaultValue: '{{trialPeriod}} days free trial',
                                   trialPeriod,
                                 })}
-                              </Typography>
+                              </Trial>
                             )}
                           </>
                         ) : (
