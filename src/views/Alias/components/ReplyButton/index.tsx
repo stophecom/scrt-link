@@ -7,7 +7,7 @@ import { BaseButtonLink } from '@/components/Link'
 const ReplyButton = () => {
   const { t } = useTranslation()
   return (
-    <BaseButtonLink href="/" color="default" variant="text" startIcon={<ReplyIcon />}>
+    <BaseButtonLink href="/" variant="text" startIcon={<ReplyIcon />}>
       {t('common:button.replyWithSecret', 'Reply with a secret')}
     </BaseButtonLink>
   )

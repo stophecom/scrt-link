@@ -22,7 +22,7 @@ const Root = styled('ul')(({ theme }) => ({
   [`& .${classes.li}`]: {
     display: 'flex',
     marginBottom: '.7em',
-    fontWeight: theme.typography.fontWeightBold,
+    fontWeight: 'bold',
   },
 
   [`& .${classes.icon}`]: {
