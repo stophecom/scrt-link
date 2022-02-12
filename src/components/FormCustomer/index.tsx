@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 
 import { Box, Typography, FormLabel } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import NoSsr from '@mui/material/NoSsr'
 import { useTranslation, TFunction, Trans } from 'next-i18next'
 
-import Alert from '@mui/material/Alert'
+import { NoSsr, Alert, InputAdornment } from '@mui/material'
 
 import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BaseTextField, { BaseTextFieldProps } from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitchField from '@/components/BaseSwitchField'
-import InputAdornment from '@mui/material/InputAdornment'
 import { Maybe } from '@/types'
 import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'

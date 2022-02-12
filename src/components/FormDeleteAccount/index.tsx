@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import { Box } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import NoSsr from '@mui/material/NoSsr'
 import { useSession, signOut } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
-import Alert from '@mui/material/Alert'
+import { Box, Alert, NoSsr } from '@mui/material'
 
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseSwitchField from '@/components/BaseSwitchField'

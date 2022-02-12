@@ -1,9 +1,13 @@
 import React, { ReactNode } from 'react'
 import { useField, FieldHookConfig } from 'formik'
-import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
-import Switch, { SwitchProps } from '@mui/material/Switch'
-import FormHelperText from '@mui/material/FormHelperText'
-import { FormControl } from '@mui/material'
+import {
+  FormControl,
+  FormHelperText,
+  Switch,
+  SwitchProps,
+  FormControlLabel,
+  FormControlLabelProps,
+} from '@mui/material'
 
 export type BaseSwitchProps = Pick<FormControlLabelProps, 'label'> &
   FieldHookConfig<SwitchProps> & { helperText?: ReactNode }

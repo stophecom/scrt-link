@@ -1,10 +1,8 @@
 import React, { ReactNode } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Alert, Box, Link, Typography } from '@mui/material'
 import { useTranslation } from 'next-i18next'
-import Alert from '@mui/material/Alert'
 import { styled } from '@mui/system'
 
-import { Link } from '@mui/material'
 import { emailSupport } from '@/constants'
 import Seo, { SeoProps } from '@/components/Seo'
 

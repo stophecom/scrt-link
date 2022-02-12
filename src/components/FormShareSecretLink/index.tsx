@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Box } from '@mui/material'
+import { Box, Alert } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
-import Alert from '@mui/material/Alert'
 import { useTranslation } from 'next-i18next'
 
 import BaseTextField from '@/components/BaseTextField'

@@ -1,12 +1,11 @@
 import React, { useState, ReactNode } from 'react'
-import { Box } from '@mui/material'
 import { Formik, Form, FormikConfig } from 'formik'
 import { signIn } from 'next-auth/react'
 import VpnKeyIcon from '@mui/icons-material/VpnKey'
 import { Trans, useTranslation } from 'next-i18next'
+import { Box, Alert } from '@mui/material'
 
 import BaseCheckboxField from '@/components/BaseCheckboxField'
-import Alert from '@mui/material/Alert'
 
 import BaseTextField from '@/components/BaseTextField'
 import { SignIn } from '@/types'

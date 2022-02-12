@@ -3,8 +3,7 @@ import { styled } from '@mui/system'
 import { Stripe } from 'stripe'
 import { useTranslation, Trans } from 'next-i18next'
 
-import { Box, Grid, Typography } from '@mui/material'
-import Alert from '@mui/material/Alert'
+import { Alert, Box, Grid, Typography } from '@mui/material'
 import { Check } from '@mui/icons-material'
 
 import { formatNumber } from '@/utils/localization'

@@ -4,12 +4,14 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
+  FormControl,
+  FormControlProps,
   FormControlLabelProps,
   FormLabel,
   Box,
   FormHelperText,
 } from '@mui/material'
-import FormControl, { FormControlProps } from '@mui/material/FormControl'
+
 import { useField, FieldHookConfig } from 'formik'
 
 type Option = {

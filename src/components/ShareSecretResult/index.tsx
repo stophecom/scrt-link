@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
-import { Box, CircularProgress, Paper, Typography, Collapse, IconButton } from '@mui/material'
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  Paper,
+  Typography,
+  Collapse,
+  IconButton,
+} from '@mui/material'
 
 import { Replay, Share, ExpandLess, ExpandMore, EmojiEmotions } from '@mui/icons-material'
 import { RWebShare } from 'react-web-share'
-import Alert from '@mui/material/Alert'
 
 import Markdown from '@/components/Markdown'
 import FormShareSecretLink from '@/components/FormShareSecretLink'

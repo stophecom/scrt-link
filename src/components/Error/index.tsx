@@ -1,7 +1,6 @@
 import React from 'react'
 import { styled } from '@mui/system'
-import Alert from '@mui/material/Alert'
-import { Box } from '@mui/material'
+import { Box, Alert } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
 import { BaseButtonLink } from '@/components/Link'

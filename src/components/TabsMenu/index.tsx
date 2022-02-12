@@ -26,7 +26,25 @@ const TabsMenu = ({ focusMode = false, tabsMenu = [], ...props }: TabsMenuProps)
       {...props}
     >
       {tabsMenu.map(({ key, ...tabProps }, index) => (
-        <Tab key={index} value={key} {...tabProps} />
+        <Tab
+          key={index}
+          value={key}
+          sx={{
+            fontSize: {
+              xs: '0.8rem',
+              sm: '0.875rem',
+            },
+            paddingLeft: {
+              xs: '.7rem',
+              sm: '1rem',
+            },
+            paddingRight: {
+              xs: '.7rem',
+              sm: '1rem',
+            },
+          }}
+          {...tabProps}
+        />
       ))}
     </Tabs>
   )

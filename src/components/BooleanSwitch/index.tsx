@@ -1,6 +1,10 @@
 import React from 'react'
-import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
-import MUISwitch, { SwitchProps as MUISwitchProps } from '@mui/material/Switch'
+import {
+  Switch as MUISwitch,
+  SwitchProps as MUISwitchProps,
+  FormControlLabel,
+  FormControlLabelProps,
+} from '@mui/material'
 
 type SwitchProps = Omit<MUISwitchProps, 'onChange'> & {
   onChange: (checked: boolean) => void
