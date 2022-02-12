@@ -5,9 +5,12 @@ import { styled } from '@mui/system'
 
 type SVGProps = {
   className?: string
+  children: ReactNode
 }
-const SVG = ({ className }: SVGProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154 13" className={className} />
+const SVG = ({ className, children }: SVGProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154 13" className={className}>
+    {children}
+  </svg>
 )
 
 const StrokeSvg = styled(SVG)`
