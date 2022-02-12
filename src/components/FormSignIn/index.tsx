@@ -11,7 +11,7 @@ import BaseTextField from '@/components/BaseTextField'
 import { SignIn } from '@/types'
 
 import BaseButton from '@/components/BaseButton'
-import { Link, BaseButtonLink } from '@/components/Link'
+import { Link } from '@/components/Link'
 import { getSignInValidationSchema } from '@/utils/validationSchemas'
 import { emailPlaceholder } from '@/constants'
 
