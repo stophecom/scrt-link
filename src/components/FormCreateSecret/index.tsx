@@ -356,7 +356,15 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           )}
           onSubmit={handleSubmit}
         >
-          {({ isValid, isSubmitting, setFieldValue, setFieldTouched, touched, values }) => {
+          {({
+            isValid,
+            isSubmitting,
+            validateForm,
+            setFieldValue,
+            setFieldTouched,
+            touched,
+            values,
+          }) => {
             return (
               <>
                 <Form noValidate onClick={() => setFocusState && setFocusState(true)}>
@@ -366,6 +374,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         maxFileSize={getLimits(customer?.role || 'visitor').maxFileSize}
                         onChange={(file) => {
                           setFile(file)
+                          validateForm()
                         }}
                       />
                     )}
