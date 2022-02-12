@@ -9,7 +9,7 @@ export const ImageBox = styled('div')`
   & > .image {
     position: relative;
 
-    & > div {
+    & > * {
       display: block !important; // Workaround
     }
 
