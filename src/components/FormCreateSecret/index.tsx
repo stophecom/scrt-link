@@ -93,10 +93,7 @@ const secretTypesMap = (t: TFunction) =>
     text: {
       label: t('common:secretType.text.label', 'Your secret'),
       tabLabel: t('common:secretType.text.tabLabel', 'Text'),
-      placeholder: t(
-        'common:secretType.text.placeholder',
-        'Secret message, password, private key, etc.',
-      ),
+      placeholder: t('common:secretType.text.placeholder', `What's your secret?`),
     },
     file: {
       label: t('common:secretType.file.label', 'Message'),

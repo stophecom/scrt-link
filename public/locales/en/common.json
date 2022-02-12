@@ -244,7 +244,7 @@
     "text": {
       "label": "Your secret",
       "tabLabel": "Text",
-      "placeholder": "Secret message, password, private key, etc."
+      "placeholder": "What's your secret?"
     },
     "file": {
       "label": "Message",
