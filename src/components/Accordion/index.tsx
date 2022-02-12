@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { styled } from '@mui/material/styles'
 import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 import { usePlausible } from 'next-plausible'
 
 import Markdown from '@/components/Markdown'

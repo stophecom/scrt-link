@@ -34,14 +34,7 @@ const TabsMenu = ({ focusMode = false, tabsMenu = [], ...props }: TabsMenuProps)
               xs: '0.8rem',
               sm: '0.875rem',
             },
-            paddingLeft: {
-              xs: '.7rem',
-              sm: '1rem',
-            },
-            paddingRight: {
-              xs: '.7rem',
-              sm: '1rem',
-            },
+            minWidth: '70px',
           }}
           {...tabProps}
         />

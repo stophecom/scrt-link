@@ -1,5 +1,6 @@
 import React from 'react'
-import ReplyIcon from '@mui/icons-material/Reply'
+
+import { Reply as ReplyIcon } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
 
 import { BaseButtonLink } from '@/components/Link'

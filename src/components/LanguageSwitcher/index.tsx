@@ -5,9 +5,10 @@ import Cookies from 'universal-cookie'
 import { useTranslation } from 'next-i18next'
 
 import { Box } from '@mui/material'
-import LanguageIcon from '@mui/icons-material/Language'
-import { supportedLanguages } from '@/constants'
+import { Language as LanguageIcon } from '@mui/icons-material'
+
 import SROnly from '@/components/ScreenreaderOnly'
+import { supportedLanguages } from '@/constants'
 
 const PREFIX = 'LanguageSelector'
 

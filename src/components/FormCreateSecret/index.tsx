@@ -5,8 +5,7 @@ import { Formik, Form, FormikConfig } from 'formik'
 import { omit } from 'ramda'
 import { usePlausible } from 'next-plausible'
 import { Box, InputAdornment, NoSsr, Collapse } from '@mui/material'
-import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import LinkIcon from '@mui/icons-material/Link'
+import { ExpandLess, ExpandMore, Link as LinkIcon } from '@mui/icons-material'
 import { useTranslation, TFunction } from 'next-i18next'
 import axios from 'axios'
 
@@ -52,7 +51,7 @@ const FormFooter = styled(Box)(({ theme }) => ({
 const BetaTab = styled('span')`
   position: relative;
   width: auto;
-  left: -1.1em;
+  left: -0.5em;
 
   &::after {
     content: 'BETA';

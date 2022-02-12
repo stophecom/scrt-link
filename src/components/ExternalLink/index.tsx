@@ -1,6 +1,6 @@
 import { Link, LinkProps } from '@mui/material'
 import React from 'react'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import { ExitToApp as ExitToAppIcon } from '@mui/icons-material'
 import { styled } from '@mui/system'
 
 const LinkIcon = styled(ExitToAppIcon)`
