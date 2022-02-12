@@ -179,7 +179,7 @@ export const HomeView: CustomPage = () => {
     >
       <Backdrop
         sx={{
-          backgroundColor: 'rgba(27, 36, 46, .5)',
+          backgroundColor: 'rgba(27, 36, 46, .8)',
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
         open={isFocusState}
