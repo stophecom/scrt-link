@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Paper, Typography, NoSsr, Backdrop } from '@mui/material'
 import { ArrowForward } from '@mui/icons-material'
+import { styled } from '@mui/system'
 import Image from 'next/image'
 import { useTranslation, Trans } from 'next-i18next'
 
@@ -95,6 +96,24 @@ const initialState: State = {
   error: undefined,
 }
 
+export const BoxShadowPaper = styled(Paper)`
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 80px rgba(255, 0, 131, 0.15), 0px 0px 22px rgba(255, 0, 131, 0.15),
+      0 0 1px rgba(255, 0, 131, 0.8);
+    opacity: 0.1;
+    border-radius: 5px;
+    transition: 1000ms;
+  }
+`
+
 export const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -167,20 +186,23 @@ export const HomeView: CustomPage = () => {
         onClick={handleClose}
       />
       <Box mb={7}>
-        <Paper
+        <BoxShadowPaper
           elevation={1}
           id="create"
-          style={{ scrollMarginTop: '70px' }}
-          sx={{
-            position: 'relative',
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-            ...(isFocusState
-              ? {
-                  boxShadow:
-                    '0 0 80px rgba(255, 0, 131, 0.15), 0px 0px 22px rgba(255, 0, 131, 0.15), 0 0 1px rgba(255, 0, 131, .8)',
-                }
-              : {}),
-          }}
+          sx={[
+            isFocusState && {
+              '&::before': { opacity: 1 },
+              '&': {
+                zIndex: 1202, // use (theme)=> theme.zIndex.drawer + 1
+              },
+            },
+            {
+              '&': {
+                scrollMarginTop: '70px',
+                position: 'relative',
+              },
+            },
+          ]}
         >
           <Box px={2}>
             <FormCreateSecret
@@ -189,7 +211,7 @@ export const HomeView: CustomPage = () => {
               setFocusState={handleBackdropFocus}
             />
           </Box>
-        </Paper>
+        </BoxShadowPaper>
         <Trust />
       </Box>
 
