@@ -72,7 +72,7 @@ export const MB = 10 ** 6 // 1000000 Bytes = 1 MB.
 export const limits = {
   visitor: {
     maxMessageLength: 280,
-    maxFileSize: 10 * MB,
+    maxFileSize: 50 * MB,
   },
   free: {
     maxMessageLength: 1000,

@@ -132,6 +132,10 @@
             "5": {
               "heading": "More to come…",
               "body": "You'll get all future updates at no extra cost. Plus, early access to upcoming features."
+            },
+            "files": {
+              "heading": "{{uploadLimit}} files",
+              "body": "You can send files with up to {{uploadLimit}}."
             }
           }
         },
@@ -148,6 +152,10 @@
             "2": {
               "heading": "Email delivery service",
               "body": "No more app switching: Send secret links directly from our platform."
+            },
+            "files": {
+              "heading": "{{uploadLimit}} files",
+              "body": "You can send files with up to {{uploadLimit}}."
             }
           }
         }
@@ -213,7 +221,7 @@
       },
       "items2": {
         "0": "Browser extensions",
-        "1": "Secret files (early 2022)",
+        "1": "Secret files",
         "2": "More to come…"
       }
     },

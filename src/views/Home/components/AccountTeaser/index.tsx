@@ -25,7 +25,7 @@ export const AccountTeaser = () => {
     [
       <Slack key="slack" />,
       t('common:components.AccountTeaser.items2.0', 'Browser extensions'),
-      t('common:components.AccountTeaser.items2.1', 'Secret files (early 2022)'),
+      t('common:components.AccountTeaser.items2.1', 'Secret files'),
       t('common:components.AccountTeaser.items2.2', 'More to come…'),
     ],
   ]

@@ -118,7 +118,7 @@
               "body": "Du kannst geheime Nachrichten mit bis zu {{characterLimit}} Zeichen schreiben. Genug Worte für den perfekten geheimen Liebesbrief, ein Geständnis oder eine Enthüllung."
             },
             "2": {
-              "heading": "Lesebestätigungen: E-Mail & SMS",
+              "heading": "Lesebestätigungen per E-Mail & SMS",
               "body": "Schnell und bequem. Erhalte Lesebestätigungen per SMS."
             },
             "3": {
@@ -132,6 +132,10 @@
             "5": {
               "heading": "Es kommt noch mehr…",
               "body": "Du erhältst alle zukünftigen Updates ohne zusätzliche Kosten. Außerdem bekommst du frühzeitigen Zugang zu neuen Funktionen."
+            },
+            "files": {
+              "heading": "{{uploadLimit}} Dateien",
+              "body": "Sende Dateien bis zu {{uploadLimit}}."
             }
           }
         },
@@ -142,12 +146,16 @@
               "body": "Du kannst geheime Nachrichten mit bis zu {{characterLimit}} Zeichen schreiben."
             },
             "1": {
-              "heading": "Lesebestätigungen: E-Mail",
+              "heading": "Lesebestätigungen per E-Mail",
               "body": "Du bekommst eine E-Mail Benachrichtigung, sobald ein Geheimnis gelesen wurde."
             },
             "2": {
-              "heading": "Geheimnis-Zustelldienst",
+              "heading": "E-Mailversand",
               "body": "Kein App-Wechsel mehr: Sende geheime Links direkt via E-Mail von unserer Plattform aus."
+            },
+            "files": {
+              "heading": "{{uploadLimit}} Dateien",
+              "body": "Sende Dateien bis zu {{uploadLimit}}."
             }
           }
         }
@@ -213,7 +221,7 @@
       },
       "items2": {
         "0": "Browser extensions",
-        "1": "Secret files (early 2022)",
+        "1": "Secret files",
         "2": "More to come…"
       }
     },

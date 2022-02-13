@@ -6,6 +6,7 @@ import { useTranslation, Trans } from 'next-i18next'
 import { Alert, Box, Grid, Typography } from '@mui/material'
 import { Check } from '@mui/icons-material'
 
+import usePrettyBytes from '@/hooks/usePrettyBytes'
 import { formatNumber } from '@/utils/localization'
 import { limits, trialPeriod } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
@@ -46,6 +47,7 @@ type Status = {
 
 const PlanSelection: React.FunctionComponent = () => {
   const { t } = useTranslation()
+  const prettyBytes = usePrettyBytes()
   const { data: customer } = useCustomer()
   const { plans, isLoading, error } = usePlans()
   const { stripeCustomer, triggerFetchStripeCustomer } = useStripeCustomer(
@@ -85,6 +87,16 @@ const PlanSelection: React.FunctionComponent = () => {
       body: t('common:components.PlanSelection.plans.premium.usps.1.body', {
         defaultValue: `You can write secret messages with up to {{characterLimit}} characters. Enough words for the perfect secret love letter, confession or disclosure.`,
         characterLimit: formatNumber(limits.premium.maxMessageLength),
+      }),
+    },
+    {
+      heading: t('common:components.PlanSelection.plans.premium.usps.files.heading', {
+        defaultValue: `{{uploadLimit}} files`,
+        uploadLimit: prettyBytes(limits.premium.maxFileSize),
+      }),
+      body: t('common:components.PlanSelection.plans.premium.usps.files.body', {
+        defaultValue: `You can send files with up to {{uploadLimit}}.`,
+        uploadLimit: prettyBytes(limits.premium.maxFileSize),
       }),
     },
     {
@@ -135,6 +147,16 @@ const PlanSelection: React.FunctionComponent = () => {
       body: t('common:components.PlanSelection.plans.free.usps.0.body', {
         defaultValue: `You can write secret messages with up to {{characterLimit}} characters.`,
         characterLimit: formatNumber(limits.free.maxMessageLength),
+      }),
+    },
+    {
+      heading: t('common:components.PlanSelection.plans.free.usps.files.heading', {
+        defaultValue: `{{uploadLimit}} files`,
+        uploadLimit: prettyBytes(limits.free.maxFileSize),
+      }),
+      body: t('common:components.PlanSelection.plans.free.usps.files.body', {
+        defaultValue: `You can send files with up to {{uploadLimit}}.`,
+        uploadLimit: prettyBytes(limits.free.maxFileSize),
       }),
     },
     {
