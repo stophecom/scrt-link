@@ -177,14 +177,6 @@ export const HomeView: CustomPage = () => {
         </Trans>
       }
     >
-      <Backdrop
-        sx={{
-          backgroundColor: 'rgba(27, 36, 46, .8)',
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-        }}
-        open={isFocusState}
-        onClick={handleClose}
-      />
       <Box mb={7}>
         <BoxShadowPaper
           elevation={1}
@@ -192,14 +184,12 @@ export const HomeView: CustomPage = () => {
           sx={[
             isFocusState && {
               '&::before': { opacity: 1 },
-              '&': {
-                zIndex: 1202, // use (theme)=> theme.zIndex.drawer + 1
-              },
             },
             {
               '&': {
                 scrollMarginTop: '70px',
                 position: 'relative',
+                zIndex: 1, // use (theme)=> theme.zIndex.drawer + 1
               },
             },
           ]}
@@ -387,6 +377,13 @@ export const HomeView: CustomPage = () => {
           </Box>
         </Section>
       )}
+      <Backdrop
+        sx={{
+          backgroundColor: 'rgba(27, 36, 46, .8)',
+        }}
+        open={isFocusState}
+        onClick={handleClose}
+      />
     </Page>
   )
 }
