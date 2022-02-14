@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { useState, ReactNode } from 'react'
 import { Grid, Box, IconButton, Typography } from '@mui/material'
 import { Twitter } from '@mui/icons-material'
 import { useTranslation, Trans } from 'next-i18next'
 import { styled } from '@mui/system'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 
 import { LanguageSelector } from '@/components/LanguageSwitcher'
 import { Link, LinkProps } from '@/components/Link'
@@ -12,10 +13,12 @@ import Stats from '@/components/Stats'
 import { Container } from '@/layouts/Default'
 import { about, secrets, integrations, information, support } from '@/data/menu'
 
+const Neogram = dynamic(() => import('@/components/Neogram'))
+
 const StyledBox = styled(Box)`
   font-size: 0.85em;
-  opacity: 0.8;
   background: ${({ theme }) => theme.palette.background.paper};
+  color: ${({ theme }) => theme.palette.text.secondary};
   box-shadow: inset 0 10px 40px hsl(0deg 0% 0% / 20%);
 
   & .link-padding {
@@ -33,13 +36,103 @@ const Legal = styled('div')`
   opacity: 0.7;
   text-align: center;
 `
-
 const LinkAbout = styled(Link)`
   text-decoration: underline;
 `
 const Bullet = styled('span')`
   color: ${({ theme }) => theme.palette.success.main};
   padding-left: 5px;
+`
+const DangerButton = styled('button')`
+  position: relative;
+  box-shadow: -4px -4px 12px rgba(0, 0, 0, 07);
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+
+  .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  }
+
+  .edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(
+      to left,
+      hsl(329deg 100% 16%) 0%,
+      hsl(329deg 100% 32%) 8%,
+      hsl(329deg 100% 32%) 92%,
+      hsl(329deg 100% 16%) 100%
+    );
+  }
+
+  .front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: white;
+    background: hsl(329deg 100% 50%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  }
+
+  .label {
+    font-size: 1.1em;
+    color: white;
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    padding: 0.5em 0.6em;
+    width: 180px;
+    transform-origin: bottom left;
+    transform: skew(-3deg, -5deg) rotateY(15deg);
+    font-family: monospace;
+  }
+
+  &:hover {
+    filter: brightness(110%);
+  }
+  &:hover .front {
+    transform: translateY(-6px);
+    transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+  }
+  &:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+  &:hover .shadow {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+  }
+  &:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 `
 
 interface CustomLink extends LinkProps {
@@ -85,6 +178,7 @@ const GridBlock: React.FC<MenuBlockProps> = ({ children }) => {
 
 const Footer: React.FC = () => {
   const { t } = useTranslation()
+  const [neogramPreview, setNeogramPreview] = useState(false)
 
   return (
     <StyledBox component="footer">
@@ -169,6 +263,42 @@ const Footer: React.FC = () => {
               <LanguageSelector />
             </Box>
           </Legal>
+        </Box>
+        <Box display={'flex'} justifyContent={{ xs: 'center' }}>
+          <DangerButton onClick={() => setNeogramPreview(true)}>
+            <span className="shadow"></span>
+            <span className="edge"></span>
+            <span className="front"></span>
+            <span className="label">
+              {t('common:button.dangerButton', `Never ever push that button!`)}
+            </span>
+          </DangerButton>
+          {neogramPreview && (
+            <Neogram
+              message={
+                `${t(
+                  'common:components.DangerButton.why',
+                  `Why didn't you listen…?`,
+                )}                        \n` +
+                `${t(
+                  'common:components.DangerButton.listen',
+                  `You really should have listened!!!`,
+                )}\n` +
+                `${t('common:components.DangerButton.repeat', `Repeat after me:`)}\n` +
+                `${t(
+                  'common:components.DangerButton.neogram',
+                  `Never ever push that button!`,
+                )}\n`.repeat(20)
+              }
+              timeout={3}
+              destructionMessage={t(
+                'common:components.DangerButton.destructionMessage',
+                `Now see what happens! Self-destruction starts in…`,
+              )}
+              onFinished={() => setNeogramPreview(false)}
+              closable
+            />
+          )}
         </Box>
       </Container>
     </StyledBox>

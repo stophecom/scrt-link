@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Paper, Typography, NoSsr, Backdrop } from '@mui/material'
+import { Box, Paper, Typography, NoSsr, Backdrop, Theme } from '@mui/material'
 import { ArrowForward } from '@mui/icons-material'
 import { styled } from '@mui/system'
 import Image from 'next/image'
@@ -203,7 +203,7 @@ export const HomeView: CustomPage = () => {
               '&': {
                 scrollMarginTop: '70px',
                 position: 'relative',
-                zIndex: 1, // use (theme)=> theme.zIndex.drawer + 1
+                zIndex: 1,
               },
             },
           ]}

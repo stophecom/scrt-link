@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, IconButton } from '@mui/material'
+import { Typography, IconButton, Backdrop } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { styled } from '@mui/system'
 import { WindupChildren, Pause } from 'windups'
@@ -7,19 +7,9 @@ import { useTranslation } from 'next-i18next'
 
 import { Container } from '@/layouts/Default'
 
-const StyledBackdrop = styled(Box)`
+const StyledBackdrop = styled(Backdrop)`
   background-color: ${({ theme }) => theme.palette.background.paper};
-  display: flex;
-  height: 100%;
-  left: 0;
-  opacity: 1;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  position: fixed;
-  top: 0;
-  transition: 700ms;
-  width: 100%;
-  z-index: 400;
+  z-index: 1201; // theme.zIndex.appBar + 1
 `
 
 const CloseButton = styled(IconButton)`
@@ -30,6 +20,9 @@ const CloseButton = styled(IconButton)`
 
 const ScrollContainer = styled(Container)`
   overflow: scroll;
+  height: 100%;
+  padding-top: calc(60px + 2.5em); // Temporary fix
+  padding-bottom: 2.5em;
 `
 
 const Message = styled(Typography)`
@@ -42,11 +35,13 @@ type NeogramType = {
   timeout?: number
   destructionMessage?: string
   onFinished: () => void
+  open?: boolean
   closable?: boolean
 }
 const Neogram: React.FunctionComponent<NeogramType> = ({
   message,
   timeout = 0,
+  open = true,
   destructionMessage,
   onFinished,
   closable = false,
@@ -56,7 +51,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
   const countDown = Array.from(Array(timeout).keys()).reverse()
 
   return (
-    <StyledBackdrop>
+    <StyledBackdrop open={open}>
       <ScrollContainer>
         <WindupChildren onFinished={onFinished}>
           <Message variant="subtitle1">{message}</Message>

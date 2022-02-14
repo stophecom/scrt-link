@@ -25,7 +25,7 @@ const HeaderBarInner = styled('div')`
   padding-right: ${({ theme }) => theme.spacing(2)};
   width: 100%;
 `
-const HeaderBarReserveSpace = styled('main')`
+const HeaderBarReserveSpace = styled('div')`
   height: 60px;
 `
 
@@ -65,9 +65,8 @@ const HeaderBar = styled('div')`
   left: 0;
   top: 0;
   position: fixed;
-
   width: 100%;
-  z-index: 100;
+  z-index: 1200; // theme.zIndex.appBar
 
   &::after {
     content: '';
