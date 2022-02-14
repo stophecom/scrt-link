@@ -11,6 +11,7 @@
     "copied": "Copied",
     "copy": "Copy",
     "takeMeHome": "Take me home",
+    "dangerButton": "Never ever push that button!",
     "lessOptions": "Less options",
     "moreOptions": "More options",
     "preview": "Preview",
@@ -68,6 +69,13 @@
     },
     "Footer": {
       "abstract": "<0>Scrt.link</0> lets you share sensitive information online. End-to-end encrypted. One time.<2></2>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
+    },
+    "DangerButton": {
+      "why": "Why didn't you listen…?",
+      "listen": "You really should have listened!!!",
+      "repeat": "Repeat after me:",
+      "neogram": "Never ever push that button!",
+      "destructionMessage": "Now see what happens! Self-destruction starts in…"
     },
     "FormCreateSecret": {
       "secretSaved": "Secret saved!",

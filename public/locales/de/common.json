@@ -11,6 +11,7 @@
     "copied": "Kopiert",
     "copy": "Kopieren",
     "takeMeHome": "Zur Startseite",
+    "dangerButton": "Drücke niemals diesen Knopf!",
     "lessOptions": "Weniger Optionen",
     "moreOptions": "Mehr Optionen",
     "preview": "Vorschau",
@@ -68,6 +69,13 @@
     },
     "Footer": {
       "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmalig.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnis nur einmal gelesen werden kann - bevor es für immer zerstört wird."
+    },
+    "DangerButton": {
+      "why": "Warum hast du nicht zugehört…?",
+      "listen": "Du hättest wirklich zuhören sollen!!!",
+      "repeat": "Sprich mir nach:",
+      "neogram": "Drücke niemals diesen Knopf!",
+      "destructionMessage": "Jetzt siehst du, was passiert! Die Selbstzerstörung beginnt in…"
     },
     "FormCreateSecret": {
       "secretSaved": "Geheimnis gespeichert!",
