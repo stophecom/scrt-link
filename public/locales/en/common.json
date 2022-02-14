@@ -231,14 +231,27 @@
     }
   },
   "menu": {
+    "title": {
+      "secrets": "Secrets",
+      "integrations": "Integrations",
+      "information": "Information",
+      "support": "Support"
+    },
     "status": "Status",
-    "home": "Home",
+    "secrets": {
+      "text": "Text",
+      "files": "Files",
+      "redirect": "Redirect",
+      "neogram": "Neogram"
+    },
     "about": "About",
     "security": "Security",
     "privacy": "Privacy",
     "pricing": "Pricing",
+    "blog": "Developer Blog",
     "faq": "FAQ",
     "contact": "Contact",
+    "home": "Home",
     "termsOfService": "Terms of Service",
     "acceptableUsePolicy": "Acceptable Use Policy",
     "cookiePolicy": "Cookie Policy",

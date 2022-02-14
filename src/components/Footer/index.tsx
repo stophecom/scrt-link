@@ -1,15 +1,16 @@
-import React from 'react'
-import { Box, IconButton } from '@mui/material'
+import React, { ReactNode } from 'react'
+import { Grid, Box, IconButton, Typography } from '@mui/material'
 import { Twitter } from '@mui/icons-material'
 import { useTranslation, Trans } from 'next-i18next'
 import { styled } from '@mui/system'
+import Image from 'next/image'
 
 import { LanguageSelector } from '@/components/LanguageSwitcher'
-import { Link } from '@/components/Link'
-import { twitterLink, twitterHandle } from '@/constants'
+import { Link, LinkProps } from '@/components/Link'
+import { appTitle, twitterLink, twitterHandle, uptimerobotUrl } from '@/constants'
 import Stats from '@/components/Stats'
 import { Container } from '@/layouts/Default'
-import { main, about } from '@/data/menu'
+import { about, secrets, integrations, information, support } from '@/data/menu'
 
 const StyledBox = styled(Box)`
   font-size: 0.85em;
@@ -23,7 +24,9 @@ const StyledBox = styled(Box)`
 `
 
 const LinkStyled = styled(Link)`
-  font-size: 1.2rem;
+  font-size: 1rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
 `
 
 const Legal = styled('div')`
@@ -39,28 +42,86 @@ const Bullet = styled('span')`
   padding-left: 5px;
 `
 
+interface CustomLink extends LinkProps {
+  label: string
+}
+type SubMenuProps = {
+  menu: CustomLink[]
+  title: string
+}
+const SubMenu: React.FC<SubMenuProps> = ({ title, menu }) => {
+  return (
+    <>
+      <Typography fontWeight={'bold'} mb={1} pt={3} color="primary">
+        {title}
+      </Typography>
+      {menu.map(({ href, label, prefetch }, index) => (
+        <LinkStyled key={index} href={href} prefetch={prefetch} color="inherit" underline="hover">
+          {label}
+        </LinkStyled>
+      ))}
+    </>
+  )
+}
+
+type MenuBlockProps = {
+  children: ReactNode
+}
+const GridBlock: React.FC<MenuBlockProps> = ({ children }) => {
+  return (
+    <Grid item xs={12} sm={6} md={'auto'} flexGrow={1} display={'flex'} flexDirection={'column'}>
+      {children}
+    </Grid>
+  )
+}
+
 const Footer: React.FC = () => {
   const { t } = useTranslation()
 
   return (
     <StyledBox component="footer">
       <Container>
-        <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
-          {main(t).map(({ href, label, prefetch }, index) => (
-            <LinkStyled
-              key={index}
-              href={href}
-              prefetch={prefetch}
-              className="link-padding"
-              color="primary"
+        <Grid container spacing={2} justifyContent="space-between" mb={5}>
+          <Grid item xs={12} sm={12} md={'auto'} display={'flex'} flexDirection={'column'}>
+            <Link
+              href="/"
+              mb={3}
+              pt={2}
+              display={'flex'}
+              alignItems={'center'}
+              underline="none"
+              color="inherit"
             >
-              {label}
-            </LinkStyled>
-          ))}
-        </Box>
-        <Box key="stats1" display="flex" flexWrap="wrap" justifyContent="center" p={2} pt={0}>
+              <Image src="/logo-transparent.svg" width={40} height={40} alt={appTitle} />
+              <Typography ml={1} fontWeight={'bold'}>
+                {appTitle}
+              </Typography>
+            </Link>
+          </Grid>
+          <GridBlock>
+            <SubMenu menu={secrets(t)} title={t('common:menu.title.secrets', 'Secrets')} />
+          </GridBlock>
+          <GridBlock>
+            <SubMenu
+              menu={integrations}
+              title={t('common:menu.title.integrations', 'Integrations')}
+            />
+          </GridBlock>
+          <GridBlock>
+            <SubMenu
+              menu={information(t)}
+              title={t('common:menu.title.information', 'Information')}
+            />
+          </GridBlock>
+          <GridBlock>
+            <SubMenu menu={support(t)} title={t('common:menu.title.support', 'Support')} />
+          </GridBlock>
+        </Grid>
+
+        <Box display="flex" flexWrap="wrap" justifyContent="center" p={2}>
           <Stats />
         </Box>
+
         <Box display="flex" justifyContent="center">
           <IconButton
             target="_blank"
@@ -72,6 +133,7 @@ const Footer: React.FC = () => {
             <Twitter fontSize="inherit" />
           </IconButton>
         </Box>
+
         <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
           <Legal>
             <Trans i18nKey="common:components.Footer.abstract">

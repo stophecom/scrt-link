@@ -3,7 +3,7 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import { Link as MUILink, LinkProps as MUILinkProps } from '@mui/material'
 import BaseButton, { BaseButtonProps } from '@/components/BaseButton'
 
-type LinkProps = NextLinkProps & MUILinkProps
+export type LinkProps = NextLinkProps & MUILinkProps
 export const Link: React.FunctionComponent<LinkProps> = ({
   href,
   prefetch,

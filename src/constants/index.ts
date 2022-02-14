@@ -22,6 +22,9 @@ export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:300
 export const emojiShortUrl = 'https://🤫.st'
 export const shortUrl = 'https://scrt.li' // Currently not used
 
+export const blogUrl = 'https://blog.stophe.com'
+export const uptimerobotUrl = 'https://stats.uptimerobot.com/v5yqDuEr5z'
+
 // Form defaults
 export const emailPlaceholder = 'example@gmail.com'
 export const neogramDestructionTimeoutDefault = 3

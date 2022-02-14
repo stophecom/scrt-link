@@ -231,14 +231,27 @@
     }
   },
   "menu": {
+    "title": {
+      "secrets": "Geheimnisse",
+      "integrations": "Integration",
+      "information": "Information",
+      "support": "Support"
+    },
     "status": "Status",
-    "home": "Startseite",
+    "secrets": {
+      "text": "Text",
+      "files": "Datei",
+      "redirect": "Redirect",
+      "neogram": "Neogram"
+    },
     "about": "Über uns",
     "security": "Sicherheit",
     "privacy": "Privatsphäre",
     "pricing": "Preise",
+    "blog": "Developer Blog",
     "faq": "FAQ",
     "contact": "Kontakt",
+    "home": "Startseite",
     "termsOfService": "Nutzungsbedingungen",
     "acceptableUsePolicy": "Nutzungsrichtlinien",
     "cookiePolicy": "Cookie-Richtlinien",
