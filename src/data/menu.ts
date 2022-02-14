@@ -35,14 +35,23 @@ export const integrations = [
   {
     href: chromeExtensionLink,
     label: 'Google Chrome',
+    prefetch: false,
+    target: '_blank',
+    rel: 'noopener noreferrer',
   },
   {
     href: firefoxExtensionLink,
     label: 'Mozilla Firefox',
+    prefetch: false,
+    target: '_blank',
+    rel: 'noopener noreferrer',
   },
   {
     href: microsoftEdgeExtensionLink,
     label: 'Microsoft Edge',
+    prefetch: false,
+    target: '_blank',
+    rel: 'noopener noreferrer',
   },
 ]
 
@@ -68,6 +77,8 @@ export const information = (t: TFunction) => [
     href: blogUrl,
     label: t('common:menu.blog', 'Developer Blog'),
     prefetch: false,
+    target: '_blank',
+    rel: 'noopener noreferrer',
   },
 ]
 

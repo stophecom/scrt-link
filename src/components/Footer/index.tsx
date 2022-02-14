@@ -55,8 +55,16 @@ const SubMenu: React.FC<SubMenuProps> = ({ title, menu }) => {
       <Typography fontWeight={'bold'} mb={1} pt={3} color="primary">
         {title}
       </Typography>
-      {menu.map(({ href, label, prefetch }, index) => (
-        <LinkStyled key={index} href={href} prefetch={prefetch} color="inherit" underline="hover">
+      {menu.map(({ label, href, prefetch, target, rel }, index) => (
+        <LinkStyled
+          key={index}
+          href={href}
+          prefetch={prefetch}
+          target={target}
+          rel={rel}
+          color="inherit"
+          underline="hover"
+        >
           {label}
         </LinkStyled>
       ))}
@@ -69,7 +77,7 @@ type MenuBlockProps = {
 }
 const GridBlock: React.FC<MenuBlockProps> = ({ children }) => {
   return (
-    <Grid item xs={12} sm={6} md={'auto'} flexGrow={1} display={'flex'} flexDirection={'column'}>
+    <Grid item xs={6} md={'auto'} flexGrow={1} display={'flex'} flexDirection={'column'}>
       {children}
     </Grid>
   )
