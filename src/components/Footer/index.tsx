@@ -161,12 +161,7 @@ const Footer: React.FC = () => {
                 </LinkAbout>
               ))}
               <span className="link-padding">
-                <LinkAbout
-                  href={'https://stats.uptimerobot.com/v5yqDuEr5z'}
-                  target="_blank"
-                  rel="noreferrer"
-                  color="inherit"
-                >
+                <LinkAbout href={uptimerobotUrl} target="_blank" rel="noreferrer" color="inherit">
                   {t('common:menu.status', 'Status')}
                 </LinkAbout>
                 <Bullet>●</Bullet>
