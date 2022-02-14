@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Paper, Typography, NoSsr, Backdrop } from '@mui/material'
 import { ArrowForward } from '@mui/icons-material'
 import { styled } from '@mui/system'
 import Image from 'next/image'
 import { useTranslation, Trans } from 'next-i18next'
+import { useInView } from 'react-intersection-observer'
 
 import WidgetLayout from '@/layouts/Widget'
 import { Maybe, CustomPage } from '@/types'
@@ -116,14 +117,13 @@ export const BoxShadowPaper = styled(Paper)`
 
 export const HomeView: CustomPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-
   const [isFocusState, setIsFocusState] = React.useState(false)
-  const handleClose = () => {
-    setIsFocusState(false)
-  }
-  const handleBackdropFocus = (state: boolean) => {
-    setIsFocusState(state)
-  }
+
+  const { ref, inView } = useInView({
+    threshold: 0.9,
+    delay: 300,
+    initialInView: false,
+  })
 
   const { t, i18n } = useTranslation('common')
   const { data: customer, isLoading } = useCustomer()
@@ -131,6 +131,20 @@ export const HomeView: CustomPage = () => {
   const { data, error } = state
 
   const imgLinkExplanation = `/images/${i18n.language}/link-explanation.svg`
+
+  useEffect(() => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setIsFocusState(false)
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!inView) {
+      setIsFocusState(false)
+    }
+  }, [inView])
 
   if (error) {
     return (
@@ -177,7 +191,7 @@ export const HomeView: CustomPage = () => {
         </Trans>
       }
     >
-      <Box mb={7}>
+      <Box mb={7} ref={ref}>
         <BoxShadowPaper
           elevation={1}
           id="create"
@@ -198,7 +212,7 @@ export const HomeView: CustomPage = () => {
             <FormCreateSecret
               dispatch={dispatch}
               isFocusState={isFocusState}
-              setFocusState={handleBackdropFocus}
+              setFocusState={setIsFocusState}
             />
           </Box>
         </BoxShadowPaper>
@@ -382,7 +396,7 @@ export const HomeView: CustomPage = () => {
           backgroundColor: 'rgba(27, 36, 46, .8)',
         }}
         open={isFocusState}
-        onClick={handleClose}
+        onClick={() => setIsFocusState(false)}
       />
     </Page>
   )
