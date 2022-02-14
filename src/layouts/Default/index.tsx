@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box } from '@mui/material'
 import { styled } from '@mui/system'
 
@@ -42,6 +42,17 @@ type LayoutProps = {
   hideHeader?: boolean
 }
 const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => {
+  useEffect(() => {
+    console.log(
+      '%c“If you want to keep a secret, you must also hide it from yourself.” ― George Orwell, 1984',
+      'font-size: 20px;color: #ff0083',
+    )
+    console.log(
+      '%c🤓🤫',
+      'font-weight: bold; font-size: 50px;color: #ff0083; text-shadow: 3px 3px 0 rgba(0,0,0,0.3)',
+    )
+  }, [])
+
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <NextNprogress color={pink} options={{ showSpinner: false }} />
