@@ -50,11 +50,22 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
 
   const countDown = Array.from(Array(timeout).keys()).reverse()
 
+  // Split message by newline character to pause between them.
+  const lines = message.split(/\r?\n/)
+
   return (
     <StyledBackdrop open={open}>
       <ScrollContainer>
         <WindupChildren onFinished={onFinished}>
-          <Message variant="subtitle1">{message}</Message>
+          <Message variant="subtitle1">
+            {lines.map((item) => (
+              <>
+                {item}
+                <br />
+                <Pause ms={1000} />
+              </>
+            ))}
+          </Message>
           <Typography variant="subtitle1" component="div" color="primary">
             <Pause ms={1000} />
             <br />

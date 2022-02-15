@@ -276,14 +276,11 @@ const Footer: React.FC = () => {
           {neogramPreview && (
             <Neogram
               message={
-                `${t(
-                  'common:components.DangerButton.why',
-                  `Why didn't you listen…?`,
-                )}                        \n` +
+                `${t('common:components.DangerButton.why', `Why didn't you listen…?`)}\n` +
                 `${t(
                   'common:components.DangerButton.listen',
                   `You really should have listened!!!`,
-                )}\n` +
+                )}\n\n` +
                 `${t('common:components.DangerButton.repeat', `Repeat after me:`)}\n` +
                 `${t(
                   'common:components.DangerButton.neogram',
