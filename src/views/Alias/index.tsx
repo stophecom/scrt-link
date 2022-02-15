@@ -314,6 +314,7 @@ const AliasView: CustomPage = () => {
           return (
             <Neogram
               message={message}
+              open={true}
               timeout={Number(neogramDestructionTimeout)}
               destructionMessage={neogramDestructionMessage}
               onFinished={() => {

@@ -564,16 +564,15 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     </Box>
                   </FormFooter>
                 </Form>
-                {neogramPreview && (
-                  <Neogram
-                    open={neogramPreview}
-                    message={values.message || demoNeogramMessage(t)}
-                    timeout={Number(values.neogramDestructionTimeout)}
-                    destructionMessage={values.neogramDestructionMessage}
-                    onFinished={() => setNeogramPreview(false)}
-                    closable
-                  />
-                )}
+
+                <Neogram
+                  open={neogramPreview}
+                  message={values.message || demoNeogramMessage(t)}
+                  timeout={Number(values.neogramDestructionTimeout)}
+                  destructionMessage={values.neogramDestructionMessage}
+                  onFinished={() => setNeogramPreview(false)}
+                  closable
+                />
               </>
             )
           }}

@@ -273,29 +273,28 @@ const Footer: React.FC = () => {
               {t('common:button.dangerButton', `Never ever push that button!`)}
             </span>
           </DangerButton>
-          {neogramPreview && (
-            <Neogram
-              message={
-                `${t('common:components.DangerButton.why', `Why didn't you listen…?`)}\n` +
-                `${t(
-                  'common:components.DangerButton.listen',
-                  `You really should have listened!!!`,
-                )}\n\n` +
-                `${t('common:components.DangerButton.repeat', `Repeat after me:`)}\n` +
-                `${t(
-                  'common:components.DangerButton.neogram',
-                  `Never ever push that button!`,
-                )}\n`.repeat(20)
-              }
-              timeout={3}
-              destructionMessage={t(
-                'common:components.DangerButton.destructionMessage',
-                `Now see what happens! Self-destruction starts in…`,
-              )}
-              onFinished={() => setNeogramPreview(false)}
-              closable
-            />
-          )}
+          <Neogram
+            message={
+              `${t('common:components.DangerButton.why', `Why didn't you listen…?`)}\n` +
+              `${t(
+                'common:components.DangerButton.listen',
+                `You really should have listened!!!`,
+              )}\n\n` +
+              `${t('common:components.DangerButton.repeat', `Repeat after me:`)}\n` +
+              `${t(
+                'common:components.DangerButton.neogram',
+                `Never ever push that button!`,
+              )}\n`.repeat(20)
+            }
+            timeout={3}
+            destructionMessage={t(
+              'common:components.DangerButton.destructionMessage',
+              `Now see what happens! Self-destruction starts in…`,
+            )}
+            onFinished={() => setNeogramPreview(false)}
+            closable
+            open={neogramPreview}
+          />
         </Box>
       </Container>
     </StyledBox>
