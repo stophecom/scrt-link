@@ -264,7 +264,7 @@ const Footer: React.FC = () => {
             </Box>
           </Legal>
         </Box>
-        <Box display={'flex'} justifyContent={{ xs: 'center' }}>
+        <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }}>
           <DangerButton id="danger-button" onClick={() => setNeogramPreview(true)}>
             <span className="shadow"></span>
             <span className="edge"></span>
