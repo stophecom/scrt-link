@@ -8,10 +8,6 @@ import { useTranslation } from 'next-i18next'
 import Modal from '@mui/material/Modal'
 import { Container } from '@/layouts/Default'
 
-const StyledBackdrop = styled(Backdrop)`
-  background-color: ${({ theme }) => theme.palette.background.paper};
-`
-
 const ModalInner = styled('div')`
   position: relative;
   height: 100%;
@@ -38,10 +34,10 @@ const Message = styled(Typography)`
 
 type NeogramType = {
   message: string
+  open: boolean
   timeout?: number
   destructionMessage?: string
   onFinished: () => void
-  open: boolean
   closable?: boolean
 }
 const Neogram: React.FunctionComponent<NeogramType> = ({
@@ -64,7 +60,12 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
       onClose={onFinished}
       // aria-labelledby="Neogram"
       // aria-describedby="modal-modal-description"
-      BackdropComponent={StyledBackdrop}
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        sx: {
+          backgroundColor: `background.paper`,
+        },
+      }}
     >
       <ModalInner>
         <ScrollContainer>
