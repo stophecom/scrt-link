@@ -5,6 +5,7 @@ import { useTranslation, Trans } from 'next-i18next'
 import { styled } from '@mui/system'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import { usePlausible } from 'next-plausible'
 
 import { LanguageSelector } from '@/components/LanguageSwitcher'
 import { Link, LinkProps } from '@/components/Link'
@@ -178,6 +179,8 @@ const GridBlock: React.FC<MenuBlockProps> = ({ children }) => {
 
 const Footer: React.FC = () => {
   const { t } = useTranslation()
+  const plausible = usePlausible()
+
   const [neogramPreview, setNeogramPreview] = useState(false)
 
   return (
@@ -265,7 +268,13 @@ const Footer: React.FC = () => {
           </Legal>
         </Box>
         <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }}>
-          <DangerButton id="danger-button" onClick={() => setNeogramPreview(true)}>
+          <DangerButton
+            id="danger-button"
+            onClick={() => {
+              plausible('DangerButton')
+              setNeogramPreview(true)
+            }}
+          >
             <span className="shadow"></span>
             <span className="edge"></span>
             <span className="front"></span>
