@@ -1,11 +1,10 @@
 import React from 'react'
-import { Typography, IconButton, Backdrop } from '@mui/material'
+import { Typography, IconButton, Backdrop, Modal, ModalProps } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { styled } from '@mui/system'
 import { WindupChildren, Pause } from 'windups'
 import { useTranslation } from 'next-i18next'
 
-import Modal from '@mui/material/Modal'
 import { Container } from '@/layouts/Default'
 
 const ModalInner = styled('div')`
@@ -32,9 +31,8 @@ const Message = styled(Typography)`
   white-space: pre-wrap;
 `
 
-type NeogramType = {
+interface NeogramType extends Omit<ModalProps, 'children'> {
   message: string
-  open: boolean
   timeout?: number
   destructionMessage?: string
   onFinished: () => void
@@ -43,10 +41,10 @@ type NeogramType = {
 const Neogram: React.FunctionComponent<NeogramType> = ({
   message,
   timeout = 0,
-  open,
   destructionMessage,
-  onFinished,
   closable = false,
+  onFinished,
+  ...props
 }) => {
   const { t } = useTranslation()
 
@@ -56,16 +54,14 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
   const lines = message.split(/\r?\n/)
   return (
     <Modal
-      open={open}
-      onClose={onFinished}
-      // aria-labelledby="Neogram"
-      // aria-describedby="modal-modal-description"
       BackdropComponent={Backdrop}
       BackdropProps={{
         sx: {
           backgroundColor: `background.paper`,
         },
       }}
+      onClose={closable ? onFinished : undefined}
+      {...props}
     >
       <ModalInner>
         <ScrollContainer>

@@ -265,7 +265,7 @@ const Footer: React.FC = () => {
           </Legal>
         </Box>
         <Box display={'flex'} justifyContent={{ xs: 'center' }}>
-          <DangerButton onClick={() => setNeogramPreview(true)}>
+          <DangerButton id="danger-button" onClick={() => setNeogramPreview(true)}>
             <span className="shadow"></span>
             <span className="edge"></span>
             <span className="front"></span>
@@ -284,7 +284,7 @@ const Footer: React.FC = () => {
               `${t(
                 'common:components.DangerButton.neogram',
                 `Never ever push that button!`,
-              )}\n`.repeat(20)
+              )}\n`.repeat(10)
             }
             timeout={3}
             destructionMessage={t(
@@ -294,6 +294,7 @@ const Footer: React.FC = () => {
             onFinished={() => setNeogramPreview(false)}
             closable
             open={neogramPreview}
+            aria-labelledby="danger-button"
           />
         </Box>
       </Container>

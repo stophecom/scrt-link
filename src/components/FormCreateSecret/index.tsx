@@ -531,6 +531,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       {secretType === 'neogram' && (
                         <Box ml="auto">
                           <BaseButton
+                            id="neogram-preview"
                             variant="text"
                             onClick={() => {
                               setNeogramPreview(true)
@@ -572,6 +573,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                   destructionMessage={values.neogramDestructionMessage}
                   onFinished={() => setNeogramPreview(false)}
                   closable
+                  aria-labelledby="neogram-preview"
                 />
               </>
             )
