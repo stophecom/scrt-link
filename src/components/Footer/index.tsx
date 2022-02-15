@@ -99,13 +99,13 @@ const DangerButton = styled('button')`
   }
 
   .label {
-    font-size: 1.1em;
+    font-size: 1em;
     color: white;
     position: absolute;
     left: 100%;
     bottom: 0;
     padding: 0.5em 0.6em;
-    width: 180px;
+    width: 140px;
     transform-origin: bottom left;
     transform: skew(-3deg, -5deg) rotateY(15deg);
     font-family: monospace;
