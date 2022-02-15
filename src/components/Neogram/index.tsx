@@ -62,20 +62,20 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
     <Modal
       open={open}
       onClose={onFinished}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      // aria-labelledby="Neogram"
+      // aria-describedby="modal-modal-description"
       BackdropComponent={StyledBackdrop}
     >
       <ModalInner>
         <ScrollContainer>
           <WindupChildren onFinished={onFinished}>
             <Message variant="subtitle1">
-              {lines.map((item) => (
-                <>
+              {lines.map((item, index) => (
+                <span key={index}>
                   {item}
                   <br />
                   <Pause ms={1000} />
-                </>
+                </span>
               ))}
             </Message>
             <Typography variant="subtitle1" component="div" color="primary">
