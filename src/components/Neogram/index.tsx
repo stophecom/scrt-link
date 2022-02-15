@@ -1,8 +1,8 @@
-import React from 'react'
-import { Typography, IconButton, Backdrop, Modal, ModalProps } from '@mui/material'
+import React, { useRef } from 'react'
+import { Box, Typography, IconButton, Backdrop, Modal, ModalProps } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { styled } from '@mui/system'
-import { WindupChildren, Pause } from 'windups'
+import { WindupChildren, Pause, Effect } from 'windups'
 import { useTranslation } from 'next-i18next'
 
 import { Container } from '@/layouts/Default'
@@ -22,8 +22,7 @@ const ScrollContainer = styled(Container)`
   overflow: scroll;
   height: 100%;
   width: 100%;
-  padding-top: 2.5em;
-  padding-bottom: 2.5em;
+  padding: 2.5em 1.5em;
 `
 
 const Message = styled(Typography)`
@@ -52,6 +51,13 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
 
   // Split message by newline character to pause between them.
   const lines = message.split(/\r?\n/)
+
+  // Reference to auto scroll to the newest message
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <Modal
       BackdropComponent={Backdrop}
@@ -72,12 +78,12 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
                   {item}
                   <br />
                   <Pause ms={1000} />
+                  <Effect fn={scrollToBottom} />
                 </span>
               ))}
             </Message>
             <Typography variant="subtitle1" component="div" color="primary">
               <Pause ms={1000} />
-              <br />
               {destructionMessage && (
                 <>
                   {destructionMessage}
@@ -85,6 +91,7 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
                 </>
               )}
               <Pause ms={100} />
+              <Effect fn={scrollToBottom} />
               {countDown.map((item, index) => {
                 return (
                   <span key={index}>
@@ -93,12 +100,14 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
                   </span>
                 )
               })}
-              <br />
+
               <Pause ms={1000} />
               {'🔥'}
+              <Effect fn={scrollToBottom} />
               <Pause ms={1000} />
             </Typography>
           </WindupChildren>
+          <Box mt={5} ref={messagesEndRef} />
         </ScrollContainer>
         {closable && (
           <CloseButton
