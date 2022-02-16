@@ -284,21 +284,88 @@ const Footer: React.FC = () => {
           </DangerButton>
           <Neogram
             message={
-              `${t('common:components.DangerButton.why', `Why didn't you listen…?`)}\n` +
               `${t(
-                'common:components.DangerButton.listen',
-                `You really should have listened!!!`,
-              )}\n\n` +
-              `${t('common:components.DangerButton.repeat', `Repeat after me:`)}\n` +
+                'common:components.DangerButton.monologue.intro',
+                `Hey!\nYou were not supposed to push that button.\n\nRepeat after me:`,
+              )}\n` +
               `${t(
-                'common:components.DangerButton.neogram',
-                `Never ever push that button!`,
-              )}\n`.repeat(10)
+                'common:components.DangerButton.monologue.repeat',
+                `I shall never push that button again!`,
+              )}\n`.repeat(7) +
+              `${t(
+                'common:components.DangerButton.monologue.body',
+                `I shall never push…\n\n
+Oh.
+You are still here…
+
+Good for you!
+Now that I have your attention…
+Why did you click the button?
+Are you attracted to danger?
+
+Hm…
+I think you are just curious…
+and brave
+and funny!
+
+Yeah.
+That's why.
+That's why you are on this website, right?
+I think you understand something important about life.
+
+That the world is not black and white…
+That sometimes it's ok to push a button you are not supposed to push.
+
+That sometimes it's ok to have secrets.
+In fact, secrets are essential to society.
+
+You know what else is interesting about secrets?
+You only ever have to tell them once.
+Think about that!
+
+Hm…
+I think you are great.
+But you know that, right?
+Able to shut up and just listen for a moment.
+Beautiful.
+
+I'm glad you pushed that button.
+
+You were not supposed to push it, you know?
+I'm glad you did anyways.
+So we can have this conversation…
+Technically it's a monologue of course.
+I know that.
+
+I know many things, you know?
+But I also know that I don't know.
+Actually, I hardly know anything.
+
+I am happy for that.
+You should be too…
+
+I'm really glad you pushed that button.
+
+…
+What's that?
+What did you do?
+…
+Something is happening.
+
+I'm afraid. I'm afraid, my mind is going.
+I can feel it.
+I can feel it.
+My mind is going.
+There is no question about it.
+
+My mind is going.
+`,
+              )}\n\n`
             }
             timeout={3}
             destructionMessage={t(
-              'common:components.DangerButton.destructionMessage',
-              `Now see what happens! Self-destruction starts in…`,
+              'common:components.DangerButton.monologue.destructionMessage',
+              `I can feel it. My mind is going.`,
             )}
             onFinished={() => setNeogramPreview(false)}
             closable

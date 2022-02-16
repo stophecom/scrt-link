@@ -18,7 +18,7 @@ const CloseButton = styled(IconButton)`
   right: 5px;
 `
 
-const ScrollContainer = styled(Container)`
+const ScrollContainer = styled('div')`
   overflow: scroll;
   height: 100%;
   width: 100%;
@@ -71,43 +71,44 @@ const Neogram: React.FunctionComponent<NeogramType> = ({
     >
       <ModalInner>
         <ScrollContainer>
-          <WindupChildren onFinished={onFinished}>
-            <Message variant="subtitle1">
-              {lines.map((item, index) => (
-                <span key={index}>
-                  {item}
-                  <br />
-                  <Pause ms={1000} />
-                  <Effect fn={scrollToBottom} />
-                </span>
-              ))}
-            </Message>
-            <Typography variant="subtitle1" component="div" color="primary">
-              <Pause ms={1000} />
-              {destructionMessage && (
-                <>
-                  {destructionMessage}
-                  <br />
-                </>
-              )}
-              <Pause ms={100} />
-              <Effect fn={scrollToBottom} />
-              {countDown.map((item, index) => {
-                return (
+          <Container>
+            <WindupChildren onFinished={onFinished}>
+              <Message variant="subtitle1">
+                {lines.map((item, index) => (
                   <span key={index}>
-                    {item + 1}…
+                    {item}
+                    <br />
                     <Pause ms={1000} />
+                    <Effect fn={scrollToBottom} />
                   </span>
-                )
-              })}
+                ))}
+              </Message>
+              <Typography variant="subtitle1" component="div" color="primary">
+                <Pause ms={1000} />
+                {destructionMessage && (
+                  <>
+                    {destructionMessage}
+                    <br />
+                  </>
+                )}
+                <Pause ms={100} />
+                <Effect fn={scrollToBottom} />
+                {countDown.map((item, index) => {
+                  return (
+                    <span key={index}>
+                      {item + 1}…
+                      <Pause ms={1000} />
+                    </span>
+                  )
+                })}
 
-              <Pause ms={1000} />
-              {'🔥'}
-              <Effect fn={scrollToBottom} />
-              <Pause ms={1000} />
-            </Typography>
-          </WindupChildren>
-          <Box mt={5} ref={messagesEndRef} />
+                <Pause ms={1000} />
+                {'🔥'}
+                <Pause ms={1000} />
+              </Typography>
+            </WindupChildren>
+            <Box mt={15} ref={messagesEndRef} />
+          </Container>
         </ScrollContainer>
         {closable && (
           <CloseButton

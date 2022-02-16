@@ -71,11 +71,12 @@
       "abstract": "<0>Scrt.link</0> lets you share sensitive information online. End-to-end encrypted. One time.<2></2>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
     },
     "DangerButton": {
-      "why": "Why didn't you listen…?",
-      "listen": "You really should have listened!!!",
-      "repeat": "Repeat after me:",
-      "neogram": "Never ever push that button!",
-      "destructionMessage": "Now see what happens! Self-destruction starts in…"
+      "monologue": {
+        "intro": "Hey!\nYou were not supposed to push that button.\n\nRepeat after me:",
+        "repeat": "I shall never push that button again!",
+        "body": "I shall never push…\n\n\nOh.\nYou are still here…\n\nGood for you!\nNow that I have your attention…\nWhy did you click the button?\nAre you attracted to danger?\n\nHm…\nI think you are just curious…\nand brave\nand funny!\n\nYeah.\nThat's why.\nThat's why you are on this website, right?\nI think you understand something important about life.\n\nThat the world is not black and white…\nThat sometimes it's ok to push a button you are not supposed to push.\n\nThat sometimes it's ok to have secrets.\nIn fact, secrets are essential to society.\n\nYou know what else is interesting about secrets?\nYou only ever have to tell them once.\nThink about that!\n\nHm…\nI think you are great.\nBut you know that, right?\nAble to shut up and just listen for a moment.\nBeautiful.\n\nI'm glad you pushed that button.\n\nYou were not supposed to push it, you know?\nI'm glad you did anyways.\nSo we can have this conversation…\nTechnically it's a monologue of course.\nI know that.\n\nI know many things, you know?\nBut I also know that I don't know.\nActually, I hardly know anything.\n\nI am happy for that.\nYou should be too…\n\nI'm really glad you pushed that button.\n\n…\nWhat's that?\nWhat did you do?\n…\nSomething is happening.\n\nI'm afraid. I'm afraid, my mind is going.\nI can feel it.\nI can feel it.\nMy mind is going.\nThere is no question about it.\n\nMy mind is going.\n",
+        "destructionMessage": "I can feel it. My mind is going."
+      }
     },
     "FormCreateSecret": {
       "secretSaved": "Secret saved!",
