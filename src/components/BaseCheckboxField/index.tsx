@@ -23,7 +23,7 @@ function BaseCheckboxField({ helperText, ...props }: BaseCheckboxProps) {
       <FormControlLabel
         {...props}
         {...field}
-        control={<Checkbox checked={Boolean(field.value)} color="primary" />}
+        control={<Checkbox value={true} checked={props.checked} color="primary" />}
       />
       {(helperText || hasError) && (
         <FormHelperText error={hasError}>{hasError ? errorMessage : helperText}</FormHelperText>

@@ -9,7 +9,7 @@ import {
   FormControlLabelProps,
 } from '@mui/material'
 
-export type BaseSwitchProps = Pick<FormControlLabelProps, 'label'> &
+export type BaseSwitchProps = Omit<FormControlLabelProps, 'control'> &
   FieldHookConfig<SwitchProps> & { helperText?: ReactNode }
 
 function BaseSwitchField({ label, helperText, ...props }: BaseSwitchProps) {
@@ -22,7 +22,7 @@ function BaseSwitchField({ label, helperText, ...props }: BaseSwitchProps) {
     <FormControl error={hasError}>
       <FormControlLabel
         {...field}
-        control={<Switch checked={Boolean(field.value)} color="primary" />}
+        control={<Switch value={true} checked={props.checked} color="primary" />}
         label={label}
       />
       {(helperText || hasError) && (
