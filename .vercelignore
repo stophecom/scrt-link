@@ -1,0 +1,4 @@
+# https://vercel.com/docs/concepts/deployments/build-step#ignored-files-and-folders
+
+# cypress
+cypress
