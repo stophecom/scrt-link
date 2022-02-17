@@ -1,0 +1,28 @@
+https://vercel.com/guides/prevent-uploading-sourcepaths-with-vercelignore
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# cypress
+/cypress/videos
+
+# next.js
+/.next/
+/out/
+
+
+# misc
+.DS_Store
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env.*
