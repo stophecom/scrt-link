@@ -24,7 +24,12 @@ deploy-to-vercel:
 
   script:
     - npm i -g vercel
-    - vercel -t $VERCEL_TOKEN --confirm > vercel_deployment_url.txt
+    - >
+      if [ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]; then
+        vercel -t $VERCEL_TOKEN --confirm --prod > vercel_deployment_url.txt
+      else
+        vercel -t $VERCEL_TOKEN --confirm > vercel_deployment_url.txt
+      fi
 
   artifacts:
     when: on_success
