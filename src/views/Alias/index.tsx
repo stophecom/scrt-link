@@ -400,7 +400,7 @@ const AliasView: CustomPage = () => {
               <Box mb={3}>
                 <Paper elevation={3} className={clsx(classes.break, classes.message)}>
                   <Box px={4} pt={4} pb={2}>
-                    {message}
+                    <span id="secret-decrypted">{message}</span>
                     <Box pt={2} display="flex" justifyContent="flex-end">
                       <Box mr={2}>
                         <BaseButtonLink href="/" variant="text" color="primary" size="small">
