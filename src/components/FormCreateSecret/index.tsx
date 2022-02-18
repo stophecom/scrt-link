@@ -367,7 +367,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           }) => {
             return (
               <>
-                <Form noValidate onClick={() => setFocusState && setFocusState(true)}>
+                <Form
+                  id="form-create-secret"
+                  noValidate
+                  onClick={() => setFocusState && setFocusState(true)}
+                >
                   <Box position="relative" py={1}>
                     {secretType === 'file' && (
                       <DropZone

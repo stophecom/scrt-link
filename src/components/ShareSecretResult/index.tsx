@@ -80,6 +80,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
               <Box px={{ xs: 2, sm: 4 }} pt={4} pb={3} key="paper-inner">
                 <Box mb={4} display="flex" flexDirection="column">
                   <Typography
+                    id="result-secret-link"
                     variant="h4"
                     align="center"
                     component="div"
