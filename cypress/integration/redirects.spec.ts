@@ -14,6 +14,7 @@ context('Redirects', function () {
   it('redirects secrets from 🤫 domain', function () {
     cy.visit('https://🤫.st/en#some-secret')
     cy.url().should('contain', 'scrt.link')
-    cy.location('pathname').should('contain', 'en/l#some-secret')
+    cy.location('pathname').should('contain', 'en/l')
+    cy.location('hash').should('contain', '#some-secret')
   })
 })
