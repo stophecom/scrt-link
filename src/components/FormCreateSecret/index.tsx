@@ -296,6 +296,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
 
   const handleMenuChange = (_event: unknown, newValue: SecretType) => {
     setFocusState && setFocusState(true)
+    plausible('TabMenu', {
+      props: {
+        secretType: newValue,
+      },
+    })
     setSecretType(newValue)
   }
 
