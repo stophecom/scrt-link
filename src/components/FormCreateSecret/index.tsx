@@ -377,7 +377,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                   noValidate
                   onClick={() => setFocusState && setFocusState(true)}
                 >
-                  <Box position="relative" py={1}>
+                  <Box py={1}>
                     {secretType === 'file' && (
                       <DropZone
                         maxFileSize={getLimits(customer?.role || 'visitor').maxFileSize}
@@ -455,7 +455,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           name="password"
                         />
                       </Box>
-                      <Box pl={1} pt={3} pb={6}>
+                      <Box id="read-receipts" pl={1} pt={3} pb={6}>
                         <BaseRadioGroupField
                           options={readReceiptsOptions(t)}
                           name="readReceiptMethod"
@@ -521,6 +521,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       mb={{ xs: 1, sm: 0 }}
                     >
                       <BaseButton
+                        id="more-options"
                         size="small"
                         color="secondary"
                         startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
