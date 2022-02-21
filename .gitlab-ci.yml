@@ -44,9 +44,19 @@ cypress-test:
   stage: test
 
   script:
-    - yarn install --frozen-lockfile
+    - echo 'yarn-offline-mirror ".yarn-cache/"' >> .yarnrc
+    - echo 'yarn-offline-mirror-pruning true' >> .yarnrc
+    - yarn install --frozen-lockfile --no-progress
     - DEPLOYMENT_URL=$(cat vercel_deployment_url.txt)
     - yarn cypress run --config baseUrl=$DEPLOYMENT_URL
+
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - .yarn-cache/
+
   artifacts:
     when: on_success
     paths:
