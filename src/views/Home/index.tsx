@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Paper, Typography, NoSsr, Backdrop, Theme } from '@mui/material'
+import { Box, Paper, Typography, NoSsr, Backdrop } from '@mui/material'
 import { ArrowForward } from '@mui/icons-material'
 import { styled } from '@mui/system'
 import Image from 'next/image'
@@ -208,7 +208,7 @@ export const HomeView: CustomPage = () => {
             },
           ]}
         >
-          <Box px={2}>
+          <Box px={2} position={'relative'} sx={{ transform: 'translateZ(0)' }}>
             <FormCreateSecret
               dispatch={dispatch}
               isFocusState={isFocusState}
@@ -216,6 +216,7 @@ export const HomeView: CustomPage = () => {
             />
           </Box>
         </BoxShadowPaper>
+
         <Trust />
       </Box>
 
