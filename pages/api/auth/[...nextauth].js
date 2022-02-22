@@ -13,13 +13,25 @@ import { mailjetTemplates } from '@/constants'
 const handler = async (req, res) => {
   const template = mailjetTemplates.signInRequest[getLocaleFromRequest(req)]
 
+  const adapter = MongoDBAdapter(clientPromise)
+
   return await NextAuth(req, res, {
-    adapter: MongoDBAdapter(clientPromise),
-    // Configure one or more authentication providers
+    adapter,
     providers: [
       Email({
-        sendVerificationRequest: ({ identifier: email, url }) =>
-          mailjet({
+        sendVerificationRequest: async ({ identifier: email, url }) => {
+          const user = await adapter.getUserByEmail(email)
+
+          // If a new user tries to sign in (instead of sign up) we throw an error and vice-versa
+          // Unfortunately the following custom error messages won't work. It will return "EmailSignin" error instead.
+          if (req.query.signUpOrSignIn === 'signIn' && !user) {
+            throw createError(500, 'You need to sign up first!')
+          }
+          if (req.query.signUpOrSignIn === 'signUp' && user) {
+            throw createError(500, 'User with this email already exists - you may sign in instead.')
+          }
+
+          return mailjet({
             To: [{ Email: email, Name: 'X' }],
             Subject: template.subject,
             TemplateID: template.templateId,
@@ -27,7 +39,8 @@ const handler = async (req, res) => {
             Variables: {
               url: url,
             },
-          }).catch((error) => new Error('SEND_VERIFICATION_EMAIL_ERROR', error)),
+          }).catch((error) => new Error('SEND_VERIFICATION_EMAIL_ERROR', error))
+        },
       }),
     ],
     callbacks: {
@@ -42,6 +55,7 @@ const handler = async (req, res) => {
             userId: user.id,
             stripe: { customerId: stripeCustomer?.id },
             receiptEmail: user.email,
+            didAcceptTerms: true,
             role: 'free',
           })
         }

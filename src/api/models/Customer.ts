@@ -19,6 +19,7 @@ export interface CustomerFields {
   isEmojiShortLinkEnabled: boolean
   name: string
   readReceiptMethod: ReadReceiptMethod
+  didAcceptTerms: boolean
 }
 
 // User editable data
@@ -50,6 +51,7 @@ const CustomerSchema = new mongoose.Schema(
     isEmojiShortLinkEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },
     neogramDestructionTimeout: { type: Number, required: false },
+    didAcceptTerms: { type: Boolean, required: false },
   },
   { timestamps: true },
 )
