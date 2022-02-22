@@ -20,6 +20,7 @@
     "save": "Save",
     "deleteAccount": "Delete Account",
     "send": "Send",
+    "tryAgain": "Try again",
     "signUp": "Sign up",
     "signIn": "Sign in",
     "myAccount": "My account",
@@ -44,7 +45,6 @@
     "decryptMessage": "Decrypt Message",
     "destroySecret": "Destroy secret",
     "home": "Home",
-    "tryAgain": "Try again",
     "createSecret": "Create a secret",
     "addToSlack": "Add to Slack",
     "readMoreFaq": "Read more on FAQ page",
@@ -327,8 +327,13 @@
     }
   },
   "email": "Email",
-  "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "error": {
+    "signUp": {
+      "emailAlreadyExists": "A user with this email already exists - you may sign in instead."
+    },
+    "signIn": {
+      "emailUnknown": "Unknown email address. Check your email or try to sign up instead."
+    },
     "unexpectedError": "Unexpected error",
     "SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
     "secretBurned": "Secret has been burned already.",
@@ -337,6 +342,7 @@
     "noMessage": "No message.",
     "wrongPassword": "Wrong Password"
   },
+  "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "plans": {
     "free": {
       "title": "Free"

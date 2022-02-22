@@ -20,6 +20,7 @@
     "save": "Speichern",
     "deleteAccount": "Konto löschen",
     "send": "Absenden",
+    "tryAgain": "Nochmals versuchen",
     "signUp": "Registrieren",
     "signIn": "Anmelden",
     "myAccount": "Mein Konto",
@@ -44,7 +45,6 @@
     "decryptMessage": "Nachricht entschlüsseln",
     "destroySecret": "Nachricht zerstören",
     "home": "Startseite",
-    "tryAgain": "Nochmals versuchen",
     "createSecret": "Geheimnis erstellen",
     "addToSlack": "Zu Slack hinzufügen",
     "readMoreFaq": "Mehr auf FAQ Seite",
@@ -327,8 +327,13 @@
     }
   },
   "email": "E-Mail",
-  "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
   "error": {
+    "signUp": {
+      "emailAlreadyExists": "Diese E-Mail-Adresse wurde bereits registriert - du kannst dich stattdessen anmelden."
+    },
+    "signIn": {
+      "emailUnknown": "Unbekannte E-Mail-Adresse. Überprüfe die E-Mail oder registriere dich zuerst."
+    },
     "unexpectedError": "Unerwarteter Fehler",
     "SECRET_NOT_FOUND": "Geheimnis nicht gefunden - Dies bedeutet normalerweise, dass der geheime Link bereits besucht wurde und daher nicht mehr existiert.",
     "secretBurned": "Geheimnis wurde bereits zerstört.",
@@ -337,6 +342,7 @@
     "noMessage": "Keine Nachricht.",
     "wrongPassword": "Falsches Passwort"
   },
+  "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
   "plans": {
     "free": {
       "title": "Free"
