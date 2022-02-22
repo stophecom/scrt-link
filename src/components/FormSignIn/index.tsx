@@ -52,7 +52,11 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
 
   const handleSubmit: OnSubmit<SignIn> = async (values, formikHelpers) => {
     try {
-      const response = await signIn('email', { ...values, callbackUrl, redirect: false })
+      const response = await signIn(
+        'email',
+        { ...values, callbackUrl, redirect: false },
+        { signUpOrSignIn: showSignUp ? 'signUp' : 'signIn' },
+      )
       if (response) {
         setState(response)
       }
@@ -66,7 +70,26 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
   const { ok, error } = state
 
   if (error) {
-    return <Alert severity="error">{error}</Alert>
+    return (
+      <Box>
+        <Alert severity="error" sx={{ marginBottom: '.5em' }}>
+          {error === 'EmailSignin'
+            ? showSignUp
+              ? t(
+                  'common:error.signUp.emailAlreadyExists',
+                  'A user with this email already exists - you may sign in instead.',
+                )
+              : t(
+                  'common:error.signIn.emailUnknown',
+                  'Unknown email address. Check your email or try to sign up instead.',
+                )
+            : error}
+        </Alert>
+        <BaseButton onClick={() => setState(initialState)} color="primary" variant="contained">
+          {t('common:button.tryAgain', 'Try again')}
+        </BaseButton>
+      </Box>
+    )
   }
 
   if (ok) {
