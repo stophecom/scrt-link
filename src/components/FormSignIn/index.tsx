@@ -55,7 +55,10 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
       const response = await signIn(
         'email',
         { ...values, callbackUrl, redirect: false },
-        { signUpOrSignIn: showSignUp ? 'signUp' : 'signIn' },
+        {
+          signUpOrSignIn: showSignUp ? 'signUp' : 'signIn',
+          ...(values?.name ? { name: values.name } : {}),
+        },
       )
       if (response) {
         setState(response)
@@ -113,6 +116,11 @@ const FormSignIn: React.FunctionComponent<FormSignInProps> = ({
         return (
           <>
             <Form noValidate>
+              {showSignUp && (
+                <Box pb={3}>
+                  <BaseTextField name="name" label="Name" placeholder="Jane Doe" />
+                </Box>
+              )}
               <Box py={1}>
                 <BaseTextField
                   name="email"

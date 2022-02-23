@@ -38,6 +38,7 @@ declare global {
 }
 
 export interface SignIn {
+  name?: string
   email: string
 }
 
