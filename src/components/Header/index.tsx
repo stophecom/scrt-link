@@ -12,7 +12,6 @@ import Navigation from '@/components/Navigation'
 
 import { Link, BaseButtonLink } from '@/components/Link'
 import { appTitle } from '@/constants'
-import { useCustomer } from '@/utils/api'
 
 const HeaderBarInner = styled('div')`
   align-items: center;
@@ -97,7 +96,6 @@ type HeaderProps = {
   hideHeader?: boolean
 }
 const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
-  const { data: customer, isLoading } = useCustomer()
   const { data: session } = useSession()
   const { t } = useTranslation()
 
@@ -116,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
           <Box display="flex" marginLeft="auto" alignItems="center">
             {hideHeader || (
               <>
-                {session && !isLoading ? (
+                {session ? (
                   <NoSsr>
                     <BaseButtonLink href="/account" color="primary" variant="text">
                       <Typography
@@ -125,7 +123,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                         style={{ maxWidth: '150px' }}
                         noWrap
                       >
-                        {customer?.name || t('common:button.myAccount', 'My account')}
+                        {session?.user?.name || t('common:button.myAccount', 'My account')}
                       </Typography>
                     </BaseButtonLink>
                   </NoSsr>
