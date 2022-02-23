@@ -13,6 +13,7 @@ import { mailjetTemplates } from '@/constants'
 const handler = async (req, res) => {
   const template = mailjetTemplates.signInRequest[getLocaleFromRequest(req)]
 
+  const models = req.models
   const adapter = MongoDBAdapter(clientPromise)
 
   return await NextAuth(req, res, {
@@ -31,8 +32,20 @@ const handler = async (req, res) => {
             throw createError(500, 'User with this email already exists - you may sign in instead.')
           }
 
+          const givenName = user?.name || req.query.name || 'X'
+          if (!user) {
+            const customer = await models.Customer.findOneAndUpdate(
+              { receiptEmail: email },
+              { name: givenName },
+              {
+                upsert: true,
+                new: true,
+              },
+            )
+          }
+
           return mailjet({
-            To: [{ Email: email, Name: 'X' }],
+            To: [{ Email: email, Name: givenName }],
             Subject: template.subject,
             TemplateID: template.templateId,
             TemplateLanguage: true,
@@ -45,19 +58,21 @@ const handler = async (req, res) => {
     ],
     callbacks: {
       async jwt({ token, user, account, profile, isNewUser }) {
-        const models = req.models
-
         if (isNewUser) {
           const stripeCustomer = await stripe.customers.create({
             email: user.email,
           })
-          models.Customer.create({
-            userId: user.id,
-            stripe: { customerId: stripeCustomer?.id },
-            receiptEmail: user.email,
-            didAcceptTerms: true,
-            role: 'free',
-          })
+          const customer = await models.Customer.findOneAndUpdate(
+            { receiptEmail: user.email },
+            {
+              userId: user.id,
+              stripe: { customerId: stripeCustomer?.id },
+              receiptEmail: user.email,
+              didAcceptTerms: true,
+              role: 'free',
+            },
+          ).lean()
+          await adapter.updateUser({ ...user, name: customer.name })
         }
 
         // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
