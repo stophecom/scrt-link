@@ -1,9 +1,9 @@
-import { GetServerSideProps, NextPage } from 'next'
 import React, { useState } from 'react'
+import { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { Session } from 'next-auth'
 import { getSession, signOut } from 'next-auth/react'
-import { Alert, Box, Typography, Paper, InputAdornment, NoSsr } from '@mui/material'
+import { Alert, Box, Typography, Paper, NoSsr } from '@mui/material'
 import { project } from 'ramda'
 import { useTranslation, Trans, TFunction } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -79,7 +79,6 @@ const Account: NextPage<AccountProps> = ({ session }) => {
     setActiveTab(newValue)
   }
   const customerRole = customer?.role
-
   return (
     <Page
       title={t('common:views.Account.title', `Account`)}
