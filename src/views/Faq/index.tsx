@@ -3,6 +3,7 @@ import { styled } from '@mui/system'
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation, i18n } from 'next-i18next'
+import Script from 'next/script'
 
 import { Box, Typography, Divider } from '@mui/material'
 import Head from 'next/head'
@@ -49,10 +50,13 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
   return (
     <StyledPage title="FAQ" subtitle={t('common:views.FAQ.subtitle', 'Frequently Asked Questions')}>
       <Head>
-        <script
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          type="application/ld+json"
-        />
+        <>
+          <Script
+            id="json-ld-faq"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            type="application/ld+json"
+          />
+        </>
       </Head>
       <Typography>
         <strong>{t('common:views.FAQ.introQuestion', 'What topic can we help you with?')}</strong>
