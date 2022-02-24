@@ -1,27 +1,30 @@
+import { NextApiHandler } from 'next'
 import NextAuth from 'next-auth'
 import Email from 'next-auth/providers/email'
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 
 import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
 import stripe from '@/api/utils/stripe'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
-import clientPromise from '@/api/utils/mongodb'
 import { mailjetTemplates } from '@/constants'
+import { nextAuthAdapter } from '@/api/utils/nextAuth'
+import createError from '@/api/utils/createError'
 
-const handler = async (req, res) => {
+const handler: NextApiHandler = async (req, res) => {
   const template = mailjetTemplates.signInRequest[getLocaleFromRequest(req)]
 
   const models = req.models
-  const adapter = MongoDBAdapter(clientPromise)
+  if (!models) {
+    throw createError(500, 'Could not find db connection')
+  }
 
   return await NextAuth(req, res, {
-    adapter,
+    adapter: nextAuthAdapter,
     providers: [
       Email({
         sendVerificationRequest: async ({ identifier: email, url }) => {
-          const user = await adapter.getUserByEmail(email)
+          const user = await nextAuthAdapter.getUserByEmail(email)
 
           // If a new user tries to sign in (instead of sign up) we throw an error and vice-versa
           // Unfortunately the following custom error messages won't work. It will return "EmailSignin" error instead.
@@ -32,9 +35,9 @@ const handler = async (req, res) => {
             throw createError(500, 'User with this email already exists - you may sign in instead.')
           }
 
-          const givenName = user?.name || req.query.name || 'X'
+          const givenName = (user?.name as string) || (req?.query?.name as string) || 'X'
           if (!user) {
-            const customer = await models.Customer.findOneAndUpdate(
+            await models.Customer.findOneAndUpdate(
               { receiptEmail: email },
               { name: givenName },
               {
@@ -44,7 +47,7 @@ const handler = async (req, res) => {
             )
           }
 
-          return mailjet({
+          await mailjet({
             To: [{ Email: email, Name: givenName }],
             Subject: template.subject,
             TemplateID: template.templateId,
@@ -52,13 +55,17 @@ const handler = async (req, res) => {
             Variables: {
               url: url,
             },
-          }).catch((error) => new Error('SEND_VERIFICATION_EMAIL_ERROR', error))
+          }).catch((error) => {
+            console.error(error)
+            throw new Error('SEND_VERIFICATION_EMAIL_ERROR')
+          })
         },
       }),
     ],
     callbacks: {
-      async jwt({ token, user, account, profile, isNewUser }) {
-        if (isNewUser) {
+      async jwt({ token, user, isNewUser }) {
+        // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
+        if (isNewUser && user && user.email) {
           const stripeCustomer = await stripe.customers.create({
             email: user.email,
           })
@@ -72,18 +79,16 @@ const handler = async (req, res) => {
               role: 'free',
             },
           ).lean()
-          await adapter.updateUser({ ...user, name: customer.name })
-        }
-
-        // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
-        if (user?.id) {
-          token.userId = user.id
+          await nextAuthAdapter.updateUser({ ...user, name: customer?.name || 'X' })
         }
 
         return token
       },
       async session({ session, token }) {
-        session.userId = token.userId
+        // Token sub is the user id
+        if (session?.user && token.sub) {
+          session.user.id = token.sub
+        }
 
         return session
       },
@@ -92,7 +97,6 @@ const handler = async (req, res) => {
     session: {
       strategy: 'jwt',
     },
-    theme: 'dark',
     jwt: {
       secret: process.env.JWT_SECRET,
     },

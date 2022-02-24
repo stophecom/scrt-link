@@ -8,7 +8,7 @@ const uri = process.env.DB
 const options = {}
 
 let client
-let clientPromise
+let clientPromise: Promise<MongoClient>
 
 if (!process.env.DB) {
   throw new Error('Please add your Mongo URI to .env')
