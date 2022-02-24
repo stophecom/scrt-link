@@ -96,25 +96,11 @@ const Account: NextPage<AccountProps> = ({ session }) => {
       <NoSsr>
         <Section pt={{ xs: 0, sm: 0 }}>
           {activeTab === 'settings' && (
-            <>
-              <Box mb={1}>
-                <Alert severity="info">
-                  {t(
-                    'common:views.Account.settingsDisclaimer',
-                    'The following are default settings. You can overwrite each setting for every secret you create.',
-                  )}
-                </Alert>
-              </Box>
-              <Paper square>
-                <Box p={3}>
-                  <FormCustomer
-                    {...customer}
-                    formFieldsSelection="secrets"
-                    onSuccess={triggerFetchCustomer}
-                  />
-                </Box>
-              </Paper>
-            </>
+            <FormCustomer
+              {...customer}
+              formFieldsSelection="secrets"
+              onSuccess={triggerFetchCustomer}
+            />
           )}
           {activeTab === 'subscription' && (
             <>
