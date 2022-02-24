@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 
+import { useCustomer } from '@/utils/api'
 import SROnly from '@/components/ScreenreaderOnly'
 import Navigation from '@/components/Navigation'
 
@@ -96,6 +97,7 @@ type HeaderProps = {
   hideHeader?: boolean
 }
 const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
+  const { data: customer, isLoading } = useCustomer()
   const { data: session } = useSession()
   const { t } = useTranslation()
 
@@ -114,7 +116,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
           <Box display="flex" marginLeft="auto" alignItems="center">
             {hideHeader || (
               <>
-                {session ? (
+                {session && !isLoading ? (
                   <NoSsr>
                     <BaseButtonLink href="/account" color="primary" variant="text">
                       <Typography
@@ -123,7 +125,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                         style={{ maxWidth: '150px' }}
                         noWrap
                       >
-                        {session?.user?.name || t('common:button.myAccount', 'My account')}
+                        {customer?.name || t('common:button.myAccount', 'My account')}
                       </Typography>
                     </BaseButtonLink>
                   </NoSsr>
