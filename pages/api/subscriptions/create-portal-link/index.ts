@@ -25,7 +25,7 @@ const handler: NextApiHandler = async (req, res) => {
     case 'POST': {
       try {
         const customer = await models.Customer.findOne({
-          userId: session.userId || '',
+          userId: session?.user?.id || '',
         }).lean()
 
         if (!customer?.stripe?.customerId) {

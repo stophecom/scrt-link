@@ -9,6 +9,7 @@ import createError from '@/api/utils/createError'
 import { getCustomerValidationSchema } from '@/utils/validationSchemas'
 import { encodeStringsForDB, decodeStringsFromDB } from '@/utils/db'
 import { customerWriteData, customerReadData } from '@/api/models/Customer'
+import { nextAuthAdapter } from '@/api/utils/nextAuth'
 
 const extractPostInput = async (req: NextApiRequest) => {
   try {
@@ -36,7 +37,7 @@ const handler: NextApiHandler = async (req, res) => {
   switch (req.method) {
     case 'GET': {
       const customer = await models.Customer.findOne({
-        userId: session.userId || '',
+        userId: session?.user?.id || '',
       }).lean()
 
       res.json({
@@ -47,7 +48,7 @@ const handler: NextApiHandler = async (req, res) => {
     case 'POST': {
       const data = await extractPostInput(req)
 
-      const userId = session.userId || ''
+      const userId = session?.user?.id || ''
       const customer = await models.Customer.findOneAndUpdate({ userId }, data, {
         upsert: true,
         new: true,
@@ -57,10 +58,21 @@ const handler: NextApiHandler = async (req, res) => {
       break
     }
     case 'DELETE': {
-      const userId = session.userId || ''
-      await models.Customer.findOneAndDelete({ userId })
+      try {
+        const userId = session?.user?.id || ''
+        await models.Customer.findOneAndDelete({ userId })
 
-      res.json({ message: 'Account has been deleted successfully.' })
+        // @ts-ignore
+        await nextAuthAdapter.deleteUser(userId)
+
+        res.json({ message: 'Account has been deleted successfully.' })
+      } catch (err) {
+        throw createError(
+          405,
+          err instanceof Error ? err.message : 'Unable to delete user account.',
+        )
+      }
+
       break
     }
     default:

@@ -27,7 +27,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       try {
         const customer = await models.Customer.findOne({
-          userId: session.userId || '',
+          userId: session?.user?.id || '',
         }).lean()
 
         // Create Checkout Sessions from body params.
