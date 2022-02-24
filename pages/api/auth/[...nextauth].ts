@@ -38,7 +38,7 @@ const handler: NextApiHandler = async (req, res) => {
           const givenName = (user?.name as string) || (req?.query?.name as string) || 'X'
           if (!user) {
             await models.Customer.findOneAndUpdate(
-              { receiptEmail: email },
+              { signupUniqueEmailIdentifier: email },
               { name: givenName },
               {
                 upsert: true,
@@ -69,8 +69,8 @@ const handler: NextApiHandler = async (req, res) => {
           const stripeCustomer = await stripe.customers.create({
             email: user.email,
           })
-          const customer = await models.Customer.findOneAndUpdate(
-            { receiptEmail: user.email },
+          await models.Customer.findOneAndUpdate(
+            { signupUniqueEmailIdentifier: user.email },
             {
               userId: user.id,
               stripe: { customerId: stripeCustomer?.id },
@@ -78,8 +78,7 @@ const handler: NextApiHandler = async (req, res) => {
               didAcceptTerms: true,
               role: 'free',
             },
-          ).lean()
-          await nextAuthAdapter.updateUser({ ...user, name: customer?.name || 'X' })
+          )
         }
 
         return token
