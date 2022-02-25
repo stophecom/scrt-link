@@ -11,7 +11,7 @@ import { styled } from '@mui/system'
 
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseButton from '@/components/BaseButton'
-import FormCustomer from '@/components/FormCustomer'
+import FormCustomer, { FormCustomerName } from '@/components/FormCustomer'
 import FormDeleteAccount from '@/components/FormDeleteAccount'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
@@ -96,11 +96,10 @@ const Account: NextPage<AccountProps> = ({ session }) => {
       <NoSsr>
         <Section pt={{ xs: 0, sm: 0 }}>
           {activeTab === 'settings' && (
-            <FormCustomer
-              {...customer}
-              formFieldsSelection="secrets"
-              onSuccess={triggerFetchCustomer}
-            />
+            <>
+              <FormCustomer {...customer} onSuccess={triggerFetchCustomer} />
+              <FormCustomerName />
+            </>
           )}
           {activeTab === 'subscription' && (
             <>

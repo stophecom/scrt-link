@@ -10,12 +10,13 @@ import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BaseTextField, { BaseTextFieldProps } from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitchField from '@/components/BaseSwitchField'
+import FormFactory from '@/components/FormFactory'
 import { Maybe } from '@/types'
 import { CustomerFields } from '@/api/models/Customer'
 import BaseButton from '@/components/BaseButton'
 import UpgradeNotice from '@/components/UpgradeNotice'
-import { getCustomerValidationSchema } from '@/utils/validationSchemas'
-import { MenuItem } from '@/views/Account'
+import { getCustomerValidationSchema, customerNameSchema } from '@/utils/validationSchemas'
+
 import { emailPlaceholder, neogramDestructionTimeoutDefault } from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { useCustomer, api } from '@/utils/api'
@@ -102,9 +103,8 @@ const initialState: State = {
 type CustomerProps = Partial<CustomerFields>
 interface FormCustomerProps extends CustomerProps {
   onSuccess: () => void
-  formFieldsSelection: MenuItem['key']
 }
-const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomerProps) => {
+const FormCustomer = ({ onSuccess, ...props }: FormCustomerProps) => {
   const { t } = useTranslation()
   const { data: customer } = useCustomer()
 
@@ -155,29 +155,29 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
 
   return (
     <div>
-      <Formik<CustomerProps>
-        initialValues={{
-          readReceiptMethod: 'none',
-          ...props,
-          neogramDestructionMessage:
-            props?.neogramDestructionMessage ||
-            t(
-              'common:FormField.neogramDestructionMessage.placeholder',
-              'This message will self-destruct in…',
-            ),
-          neogramDestructionTimeout:
-            props?.neogramDestructionTimeout || neogramDestructionTimeoutDefault,
-        }}
-        enableReinitialize={true}
-        validationSchema={getCustomerValidationSchema(t, readReceiptMethod)}
-        validateOnMount
-        onSubmit={handleSubmit}
-      >
-        {({ isValid, isSubmitting, values }) => {
-          return (
-            <>
-              <Form noValidate>
-                <Paper square sx={{ marginBottom: '2em' }}>
+      <Paper square sx={{ marginBottom: '2em' }}>
+        <Formik<CustomerProps>
+          initialValues={{
+            readReceiptMethod: 'none',
+            ...props,
+            neogramDestructionMessage:
+              props?.neogramDestructionMessage ||
+              t(
+                'common:FormField.neogramDestructionMessage.placeholder',
+                'This message will self-destruct in…',
+              ),
+            neogramDestructionTimeout:
+              props?.neogramDestructionTimeout || neogramDestructionTimeoutDefault,
+          }}
+          enableReinitialize={true}
+          validationSchema={getCustomerValidationSchema(t, readReceiptMethod)}
+          validateOnMount
+          onSubmit={handleSubmit}
+        >
+          {({ isValid, isSubmitting, values }) => {
+            return (
+              <>
+                <Form noValidate>
                   <Box p={3}>
                     <Box mb={10}>
                       <Box mb={8}>
@@ -268,34 +268,45 @@ const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomer
                     </Box>
                     <FormFooter isSubmitting={isSubmitting} isValid={isValid} />
                   </Box>
-                </Paper>
-
-                <Paper square>
-                  <Box p={3}>
-                    <Box mb={8}>
-                      <Typography variant="h2" display={'flex'} alignItems="center">
-                        <ManageAccounts sx={{ fontSize: '1em', marginRight: '.2em' }} />
-                        {t('common:components.FormCustomer.account', 'Account')}
-                      </Typography>
-
-                      <Trans i18nKey="common:FormField.name.helperText">
-                        This information is <strong>private</strong> and will never be shown to
-                        anybody. We only use it give you a personalized experience.
-                      </Trans>
-                    </Box>
-                    <Box>
-                      <BaseTextField name="name" label="Name" placeholder="Jane Doe" />
-                    </Box>
-                    <FormFooter isSubmitting={isSubmitting} isValid={isValid} />
-                  </Box>
-                </Paper>
-              </Form>
-            </>
-          )
-        }}
-      </Formik>
+                </Form>
+              </>
+            )
+          }}
+        </Formik>
+      </Paper>
     </div>
   )
 }
 
+export const FormCustomerName = () => {
+  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
+  const { t } = useTranslation()
+
+  return (
+    <Paper square>
+      <FormFactory
+        name="customer-name"
+        endpoint="/me"
+        initialValues={{ name: customer?.name }}
+        validationSchema={customerNameSchema}
+        onSuccess={triggerFetchCustomer}
+      >
+        <Box mb={8}>
+          <Typography variant="h2" display={'flex'} alignItems="center">
+            <ManageAccounts sx={{ fontSize: '1em', marginRight: '.2em' }} />
+            {t('common:components.FormCustomer.account', 'Account')}
+          </Typography>
+
+          <Trans i18nKey="common:FormField.name.helperText">
+            This information is <strong>private</strong> and will never be shown to anybody. We only
+            use it give you a personalized experience.
+          </Trans>
+        </Box>
+        <Box>
+          <BaseTextField name="name" label="Name" placeholder="Jane Doe" />
+        </Box>
+      </FormFactory>
+    </Paper>
+  )
+}
 export default FormCustomer

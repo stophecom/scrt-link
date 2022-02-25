@@ -1,14 +1,14 @@
 import * as Yup from 'yup'
-import { setLocale } from 'yup'
+import { setLocale, object, string, number, date, InferType } from 'yup'
 import validator from 'validator'
 import { TFunction } from 'next-i18next'
+import { de } from 'yup-locales'
+import defaultLocale from 'yup/lib/locale'
 
 import { Role, CustomerFields, ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import { getLimits } from '@/utils'
 import { SupportedLanguage } from '@/constants'
-import { de } from 'yup-locales'
-import defaultLocale from 'yup/lib/locale'
 
 export const setYupLocale = (locale?: SupportedLanguage) => {
   if (locale === 'de') {
@@ -48,7 +48,6 @@ const neogramDestructionMessageValidation = (t: TFunction) => ({
 const neogramDestructionTimeoutValidation = (t: TFunction) => ({
   neogramDestructionTimeout: Yup.number()
     .label(t('common:validation.destructionTimeout', 'Destruction timeout'))
-    .required()
     .min(1)
     .max(200),
 })
@@ -179,6 +178,10 @@ export const getCustomerValidationSchema = (t: TFunction, readReceiptMethod: Rea
     ...(readReceiptMethod === 'email' ? receiptEmailValidation(t) : {}),
     ...(readReceiptMethod === 'sms' ? receiptPhoneNumberValidation(t) : {}),
   })
+
+export const customerNameSchema = object({
+  name: string().max(200).trim(),
+})
 
 export const deleteCustomerValidationSchema = (t: TFunction) =>
   Yup.object().shape({
