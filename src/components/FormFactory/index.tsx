@@ -40,7 +40,7 @@ const FormFactory = ({
 }: FormFactoryProps) => {
   const { t } = useTranslation()
 
-  type FormType = InferType<typeof validationSchema> // TEST
+  type FormType = InferType<typeof validationSchema>
 
   const [state, setState] = useState<State>(initialState)
 
@@ -101,12 +101,12 @@ const FormFactory = ({
         validateOnMount
         onSubmit={handleSubmit}
       >
-        {({ isValid, isSubmitting, dirty }) => {
+        {(formikStateAndHelpers) => {
           return (
             <Form id={name} noValidate>
               <Box p={3}>
-                {children}
-                <FormFooter dirty={dirty} isSubmitting={isSubmitting} isValid={isValid} />
+                {typeof children === 'function' ? children(formikStateAndHelpers) : children}
+                <FormFooter {...formikStateAndHelpers} />
               </Box>
             </Form>
           )
