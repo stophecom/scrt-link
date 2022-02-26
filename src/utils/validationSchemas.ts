@@ -142,7 +142,7 @@ export const apiValidationSchemaByType = Yup.object().shape({
 })
 
 export const passwordValidationSchema = (t: TFunction) =>
-  Yup.object().shape<{ password: string }>({
+  Yup.object().shape({
     password: Yup.string()
       .label(t('common:validation.password', 'Password'))
       .required()
@@ -178,7 +178,7 @@ export const deleteCustomerValidationSchema = (t: TFunction) =>
   })
 
 export const getSignInValidationSchema = (t: TFunction, isSignUp?: boolean) =>
-  Yup.object().shape<{ email: string }>({
+  Yup.object().shape({
     email: Yup.string().label(t('common:validation.email', 'Email')).required().email().trim(),
     ...(isSignUp
       ? {
