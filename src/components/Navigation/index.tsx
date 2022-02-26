@@ -172,7 +172,7 @@ const NavigationMenu: React.FunctionComponent = () => {
         <Divider />
         <Box pt={2}>
           {session ? (
-            <Link href="/account">{t('common:button.account', 'Account')}</Link>
+            <Link href="/account">{t('common:button.account', 'My Account')}</Link>
           ) : (
             <Link href="/signup">{t('common:button.getAccount', 'Get Account')}</Link>
           )}
