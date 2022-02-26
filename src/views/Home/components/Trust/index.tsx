@@ -44,11 +44,11 @@ const Trust = () => {
     },
     {
       illustration: <HealthAndSafety className={classes.illustration} />,
-      title: t('common:components.Trust.privacy', 'Swiss Privacy'),
+      title: t('common:components.Trust.privacy', 'Swiss privacy'),
     },
     {
       illustration: <LocalFireDepartment className={classes.illustration} />,
-      title: t('common:components.Trust.noTrace', 'Without trace'),
+      title: t('common:components.Trust.noTrace', 'Without a trace'),
     },
   ]
 
