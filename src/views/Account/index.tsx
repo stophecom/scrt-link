@@ -97,7 +97,7 @@ const Account: NextPage<AccountProps> = ({ session }) => {
         <Section pt={{ xs: 0, sm: 0 }}>
           {activeTab === 'settings' && (
             <>
-              <FormCustomer {...customer} onSuccess={triggerFetchCustomer} />
+              <FormCustomer />
               <FormCustomerName />
             </>
           )}
