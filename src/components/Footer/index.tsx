@@ -250,8 +250,6 @@ const Footer: React.FC = () => {
               ever be accessed once - before being destroyed forever.
             </Trans>
             <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
-              <span className="link-padding">©{new Date().getFullYear()} SANTiHANS GmbH</span>
-
               {about(t).map(({ href, label }, index) => (
                 <LinkAbout key={index} href={href} className="link-padding" color="inherit">
                   {label}
@@ -265,6 +263,9 @@ const Footer: React.FC = () => {
               </span>
               <LanguageSelector />
             </Box>
+            <span className="link-padding">
+              ©{new Date().getFullYear()} SANTiHANS GmbH - Made in Switzerland
+            </span>
           </Legal>
         </Box>
         <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }}>
