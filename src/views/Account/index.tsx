@@ -1,9 +1,9 @@
-import { GetServerSideProps, NextPage } from 'next'
 import React, { useState } from 'react'
+import { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { Session } from 'next-auth'
 import { getSession, signOut } from 'next-auth/react'
-import { Alert, Box, Typography, Paper, InputAdornment, NoSsr } from '@mui/material'
+import { Alert, Box, Typography, Paper, NoSsr } from '@mui/material'
 import { project } from 'ramda'
 import { useTranslation, Trans, TFunction } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -11,7 +11,7 @@ import { styled } from '@mui/system'
 
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseButton from '@/components/BaseButton'
-import FormCustomer from '@/components/FormCustomer'
+import FormCustomer, { FormCustomerName } from '@/components/FormCustomer'
 import FormDeleteAccount from '@/components/FormDeleteAccount'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
@@ -79,7 +79,6 @@ const Account: NextPage<AccountProps> = ({ session }) => {
     setActiveTab(newValue)
   }
   const customerRole = customer?.role
-
   return (
     <Page
       title={t('common:views.Account.title', `Account`)}
@@ -98,23 +97,8 @@ const Account: NextPage<AccountProps> = ({ session }) => {
         <Section pt={{ xs: 0, sm: 0 }}>
           {activeTab === 'settings' && (
             <>
-              <Box mb={1}>
-                <Alert severity="info">
-                  {t(
-                    'common:views.Account.settingsDisclaimer',
-                    'The following are default settings. You can overwrite each setting for every secret you create.',
-                  )}
-                </Alert>
-              </Box>
-              <Paper square>
-                <Box p={3}>
-                  <FormCustomer
-                    {...customer}
-                    formFieldsSelection="secrets"
-                    onSuccess={triggerFetchCustomer}
-                  />
-                </Box>
-              </Paper>
+              <FormCustomer />
+              <FormCustomerName />
             </>
           )}
           {activeTab === 'subscription' && (

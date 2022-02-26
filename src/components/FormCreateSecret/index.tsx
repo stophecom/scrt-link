@@ -338,7 +338,8 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         <Box pt={1}>
           <TabsMenu
             onChange={handleMenuChange}
-            focusMode={isFocusState}
+            isFocusMode={isFocusState}
+            hideIndicator={true}
             value={secretType}
             tabsMenu={Object.values(tabsMenu)}
             aria-label={t(

@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
+import { InferType } from 'yup'
+import { FormikState } from 'formik'
 
-import { Box, Typography, FormLabel } from '@mui/material'
-import { Formik, Form, FormikConfig } from 'formik'
+import { Box, Typography, FormLabel, Paper, InputAdornment } from '@mui/material'
 import { useTranslation, TFunction, Trans } from 'next-i18next'
 
-import { NoSsr, Alert, InputAdornment } from '@mui/material'
+import { ManageAccounts } from '@mui/icons-material'
 
 import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BaseTextField, { BaseTextFieldProps } from '@/components/BaseTextField'
 import BasePhoneField from '@/components/BasePhoneField'
 import BaseSwitchField from '@/components/BaseSwitchField'
-import { Maybe } from '@/types'
-import { CustomerFields } from '@/api/models/Customer'
-import BaseButton from '@/components/BaseButton'
+import FormFactory from '@/components/FormFactory'
+
 import UpgradeNotice from '@/components/UpgradeNotice'
-import { getCustomerValidationSchema } from '@/utils/validationSchemas'
-import { MenuItem } from '@/views/Account'
+import { getCustomerValidationSchema, customerNameSchema } from '@/utils/validationSchemas'
+
 import { emailPlaceholder, neogramDestructionTimeoutDefault } from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
-import { useCustomer, api } from '@/utils/api'
+import { useCustomer } from '@/utils/api'
 
 export const DestructionMessage = () => {
   const { t } = useTranslation()
@@ -85,201 +85,162 @@ const PrivacyNotice = () => (
   </Trans>
 )
 
-type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
-
-type ResponsePost = Maybe<{ message: string }>
-
-type State = {
-  data?: ResponsePost
-  error?: string
-}
-
-const initialState: State = {
-  data: undefined,
-  error: undefined,
-}
-
-type CustomerProps = Partial<CustomerFields>
-interface FormCustomerProps extends CustomerProps {
-  onSuccess: () => void
-  formFieldsSelection: MenuItem['key']
-}
-const FormCustomer = ({ onSuccess, formFieldsSelection, ...props }: FormCustomerProps) => {
+export const FormCustomer = () => {
   const { t } = useTranslation()
-  const { data: customer } = useCustomer()
+  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
 
-  const [state, setState] = useState<State>(initialState)
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
 
-  const handleSubmit: OnSubmit<CustomerProps> = async (values, formikHelpers) => {
-    try {
-      const response = await api<ResponsePost>('/me', { method: 'POST' }, values)
-      setState({ data: response })
-      onSuccess()
-    } catch (error) {
-      setState({ error: error instanceof Error ? error.message : 'FormCustomer submit failed.' })
-    } finally {
-      formikHelpers.setSubmitting(false)
-    }
-  }
-
-  const { data, error } = state
+  const validationSchema = getCustomerValidationSchema(t, readReceiptMethod).required()
+  type Values = InferType<typeof validationSchema>
 
   return (
-    <div>
-      <Formik<CustomerProps>
+    <Paper square sx={{ marginBottom: '2em' }}>
+      <FormFactory
+        name="defaults"
+        endpoint="/me"
         initialValues={{
           readReceiptMethod: 'none',
-          ...props,
+          ...customer,
           neogramDestructionMessage:
-            props?.neogramDestructionMessage ||
+            customer?.neogramDestructionMessage ||
             t(
               'common:FormField.neogramDestructionMessage.placeholder',
               'This message will self-destruct in…',
             ),
           neogramDestructionTimeout:
-            props?.neogramDestructionTimeout || neogramDestructionTimeoutDefault,
+            customer?.neogramDestructionTimeout || neogramDestructionTimeoutDefault,
         }}
-        enableReinitialize={true}
-        validationSchema={getCustomerValidationSchema(t, readReceiptMethod)}
-        validateOnMount
-        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+        onSuccess={triggerFetchCustomer}
       >
-        {({ isValid, isSubmitting, values }) => {
+        {({ values }: Partial<FormikState<Values>>) => {
           return (
             <>
-              <Form noValidate>
-                <Box mb={10}>
-                  <Box mb={8}>
-                    <Typography variant="h2">
-                      {t('common:components.FormCustomer.generalSettings', 'General settings')}
-                    </Typography>
-                  </Box>
-                  <Box mb={7}>
-                    <BaseTextField
-                      name="name"
-                      label="Name"
-                      placeholder="Jane Doe"
-                      helperText={
-                        <Trans i18nKey="common:FormField.name.helperText">
-                          This information is <strong>private</strong> and will never be shown to
-                          anybody. We only use it give you a personalized experience.
-                        </Trans>
-                      }
-                    />
-                  </Box>
-                  <BaseRadioGroupField
-                    options={readReceiptsOptions(t)}
-                    name="readReceiptMethod"
-                    label={t('common:FormField.readReceiptMethod.label', 'Read receipts')}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      setReadReceiptMethod(e.target.value as ReadReceiptMethod)
-                    }}
-                  />
-                  {values?.readReceiptMethod !== 'none' && (
-                    <Box pt={2}>
-                      {values?.readReceiptMethod === 'email' && (
-                        <BaseTextField
-                          name="receiptEmail"
-                          label={t('common:FormField.receiptEmail.label', 'Email')}
-                          required
-                          placeholder={emailPlaceholder}
-                          helperText={<PrivacyNotice />}
-                        />
-                      )}
-                      {values?.readReceiptMethod === 'sms' && (
-                        <>
-                          <BasePhoneField
-                            name="receiptPhoneNumber"
-                            label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
-                            required
-                            disabled={customer?.role !== 'premium'}
-                            helperText={
-                              customer?.role !== 'premium' ? (
-                                <UpgradeNotice requiredRole="premium" />
-                              ) : (
-                                <PrivacyNotice />
-                              )
-                            }
-                          />
-                        </>
-                      )}
-                    </Box>
-                  )}
-                </Box>
-
-                <Box mb={10}>
-                  <Box mb={2}>
-                    <FormLabel component="legend">
-                      {t('common:components.FormCustomer.emojiLink.title', 'Emoji link')} 🤫
-                    </FormLabel>
-                  </Box>
-                  <Typography variant="body2">
-                    <Trans i18nKey="common:components.FormCustomer.emojiLink.description">
-                      Add some fun with a special emoji link. Example:{' '}
-                      <Typography variant="body2" noWrap component="span">
-                        <strong>https://🤫.st/nxKFy…</strong>{' '}
-                      </Typography>
-                      <br />
-                      <strong>Be aware.</strong> Emoji links are supported in:{' '}
-                      <em>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</em>. <br />
-                      Currently not supported in: <em>Signal, Slack, Snapchat</em>.
-                    </Trans>
+              <Box mb={10}>
+                <Box mb={8}>
+                  <Typography variant="h2" display={'flex'} alignItems="center">
+                    {t('common:components.FormCustomer.defaults', 'Defaults')}
                   </Typography>
-                  <BaseSwitchField
-                    label={t<string>(
-                      'common:FormField.isEmojiShortLinkEnabled.label',
-                      'Use emoji link',
-                    )}
-                    name="isEmojiShortLinkEnabled"
-                  />
-                </Box>
-
-                <Box>
-                  <Typography variant="h3">Neogram</Typography>
-                  <Box mb={3}>
-                    <DestructionMessage />
-                  </Box>
-                  <Box mb={1}>
-                    <DestructionTimeout />
-                  </Box>
-                </Box>
-
-                <Box pt={5}>
-                  {(error || data?.message) && (
-                    <NoSsr>
-                      <Box mb={1}>
-                        {error && <Alert severity="error">{error}</Alert>}
-                        {data?.message && (
-                          <Alert severity="success">
-                            {t(
-                              'common:components.FormCustomer.success',
-                              'Your settings have been saved!',
-                            )}
-                          </Alert>
-                        )}
-                      </Box>
-                    </NoSsr>
+                  {t(
+                    'common:views.Account.settingsDisclaimer',
+                    'The following are default settings. You can overwrite each setting for every secret you create.',
                   )}
-                  <BaseButton
-                    fullWidth
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                    size="large"
-                    loading={isSubmitting}
-                    disabled={!isValid}
-                  >
-                    {t('common:button.save', 'Save')}
-                  </BaseButton>
                 </Box>
-              </Form>
+
+                <BaseRadioGroupField
+                  options={readReceiptsOptions(t)}
+                  name="readReceiptMethod"
+                  label={t('common:FormField.readReceiptMethod.label', 'Read receipts')}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setReadReceiptMethod(e.target.value as ReadReceiptMethod)
+                  }}
+                />
+                {values?.readReceiptMethod !== 'none' && (
+                  <Box pt={2}>
+                    {values?.readReceiptMethod === 'email' && (
+                      <BaseTextField
+                        name="receiptEmail"
+                        label={t('common:FormField.receiptEmail.label', 'Email')}
+                        required
+                        placeholder={emailPlaceholder}
+                        helperText={<PrivacyNotice />}
+                      />
+                    )}
+                    {values?.readReceiptMethod === 'sms' && (
+                      <>
+                        <BasePhoneField
+                          name="receiptPhoneNumber"
+                          label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
+                          required
+                          disabled={customer?.role !== 'premium'}
+                          helperText={
+                            customer?.role !== 'premium' ? (
+                              <UpgradeNotice requiredRole="premium" />
+                            ) : (
+                              <PrivacyNotice />
+                            )
+                          }
+                        />
+                      </>
+                    )}
+                  </Box>
+                )}
+              </Box>
+
+              <Box mb={10}>
+                <Box mb={2}>
+                  <FormLabel component="legend">
+                    {t('common:components.FormCustomer.emojiLink.title', 'Emoji link')} 🤫
+                  </FormLabel>
+                </Box>
+                <Typography variant="body2">
+                  <Trans i18nKey="common:components.FormCustomer.emojiLink.description">
+                    Add some fun with a special emoji link. Example:{' '}
+                    <Typography variant="body2" noWrap component="span">
+                      <strong>https://🤫.st/nxKFy…</strong>{' '}
+                    </Typography>
+                    <br />
+                    <strong>Be aware.</strong> Emoji links are supported in:{' '}
+                    <em>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</em>. <br />
+                    Currently not supported in: <em>Signal, Slack, Snapchat</em>.
+                  </Trans>
+                </Typography>
+                <BaseSwitchField
+                  label={t<string>(
+                    'common:FormField.isEmojiShortLinkEnabled.label',
+                    'Use emoji link',
+                  )}
+                  name="isEmojiShortLinkEnabled"
+                />
+              </Box>
+
+              <Box>
+                <Typography variant="h3">Neogram</Typography>
+                <Box mb={3}>
+                  <DestructionMessage />
+                </Box>
+                <Box mb={1}>
+                  <DestructionTimeout />
+                </Box>
+              </Box>
             </>
           )
         }}
-      </Formik>
-    </div>
+      </FormFactory>
+    </Paper>
   )
 }
 
+export const FormCustomerName = () => {
+  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
+  const { t } = useTranslation()
+
+  return (
+    <Paper square>
+      <FormFactory
+        name="customer-name"
+        endpoint="/me"
+        initialValues={{ name: customer?.name }}
+        validationSchema={customerNameSchema}
+        onSuccess={triggerFetchCustomer}
+      >
+        <Box mb={8}>
+          <Typography variant="h2" display={'flex'} alignItems="center">
+            <ManageAccounts sx={{ fontSize: '1em', marginRight: '.2em' }} />
+            {t('common:components.FormCustomer.account', 'Account')}
+          </Typography>
+
+          <Trans i18nKey="common:FormField.name.helperText">
+            This information is <strong>private</strong> and will never be shown to anybody. We only
+            use it give you a personalized experience.
+          </Trans>
+        </Box>
+        <Box>
+          <BaseTextField name="name" label="Name" placeholder="Jane Doe" />
+        </Box>
+      </FormFactory>
+    </Paper>
+  )
+}
 export default FormCustomer

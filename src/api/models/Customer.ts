@@ -17,6 +17,7 @@ export interface CustomerFields {
   neogramDestructionMessage: string
   neogramDestructionTimeout: number
   isEmojiShortLinkEnabled: boolean
+  signupUniqueEmailIdentifier: string // Used for initial sign up
   name: string
   readReceiptMethod: ReadReceiptMethod
   didAcceptTerms: boolean
@@ -45,6 +46,7 @@ const CustomerSchema = new mongoose.Schema(
       customerId: String,
     },
     name: { type: String, required: false, trim: true },
+    signupUniqueEmailIdentifier: { type: String, required: false, trim: true, unique: true },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
     readReceiptMethod: { type: String, enum: readReceiptOptions, required: false },

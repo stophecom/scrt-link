@@ -2,7 +2,7 @@ import React, { Fragment, ReactNode } from 'react'
 import Head from 'next/head'
 import { is } from 'ramda'
 import { appTitle } from '@/constants'
-
+import Script from 'next/script'
 export interface JsonLd extends Record<string, unknown> {
   '@type': string
 }
@@ -51,7 +51,8 @@ const SEO: React.FunctionComponent<SeoProps> = ({
       )}
       {children}
       {jsonLd && (
-        <script
+        <Script
+          id="json-ld"
           dangerouslySetInnerHTML={{ __html: generateJsonLD(jsonLd) }}
           type="application/ld+json"
         />

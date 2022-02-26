@@ -129,7 +129,7 @@ const MyApp = ({
 
             <BaseThemeProvider>
               <Layout>
-                <Component {...pageProps} />
+                <Component session={session} {...pageProps} />
               </Layout>
             </BaseThemeProvider>
           </SWRConfig>

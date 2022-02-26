@@ -1,26 +1,30 @@
+import { NextApiHandler } from 'next'
 import NextAuth from 'next-auth'
 import Email from 'next-auth/providers/email'
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 
 import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
 import stripe from '@/api/utils/stripe'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
-import clientPromise from '@/api/utils/mongodb'
 import { mailjetTemplates } from '@/constants'
+import { nextAuthAdapter } from '@/api/utils/nextAuth'
+import createError from '@/api/utils/createError'
 
-const handler = async (req, res) => {
+const handler: NextApiHandler = async (req, res) => {
   const template = mailjetTemplates.signInRequest[getLocaleFromRequest(req)]
 
-  const adapter = MongoDBAdapter(clientPromise)
+  const models = req.models
+  if (!models) {
+    throw createError(500, 'Could not find db connection')
+  }
 
   return await NextAuth(req, res, {
-    adapter,
+    adapter: nextAuthAdapter,
     providers: [
       Email({
         sendVerificationRequest: async ({ identifier: email, url }) => {
-          const user = await adapter.getUserByEmail(email)
+          const user = await nextAuthAdapter.getUserByEmail(email)
 
           // If a new user tries to sign in (instead of sign up) we throw an error and vice-versa
           // Unfortunately the following custom error messages won't work. It will return "EmailSignin" error instead.
@@ -31,44 +35,59 @@ const handler = async (req, res) => {
             throw createError(500, 'User with this email already exists - you may sign in instead.')
           }
 
-          return mailjet({
-            To: [{ Email: email, Name: 'X' }],
+          const givenName = (user?.name as string) || (req?.query?.name as string) || 'X'
+          if (!user) {
+            await models.Customer.findOneAndUpdate(
+              { signupUniqueEmailIdentifier: email },
+              { name: givenName },
+              {
+                upsert: true,
+                new: true,
+              },
+            )
+          }
+
+          await mailjet({
+            To: [{ Email: email, Name: givenName }],
             Subject: template.subject,
             TemplateID: template.templateId,
             TemplateLanguage: true,
             Variables: {
               url: url,
             },
-          }).catch((error) => new Error('SEND_VERIFICATION_EMAIL_ERROR', error))
+          }).catch((error) => {
+            console.error('Email sign-in request failed: ', error)
+            throw new Error('SEND_VERIFICATION_EMAIL_ERROR')
+          })
         },
       }),
     ],
     callbacks: {
-      async jwt({ token, user, account, profile, isNewUser }) {
-        const models = req.models
-
-        if (isNewUser) {
+      async jwt({ token, user, isNewUser }) {
+        // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
+        if (isNewUser && user && user.email) {
           const stripeCustomer = await stripe.customers.create({
             email: user.email,
           })
-          models.Customer.create({
-            userId: user.id,
-            stripe: { customerId: stripeCustomer?.id },
-            receiptEmail: user.email,
-            didAcceptTerms: true,
-            role: 'free',
-          })
-        }
-
-        // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
-        if (user?.id) {
-          token.userId = user.id
+          await models.Customer.findOneAndUpdate(
+            { signupUniqueEmailIdentifier: user.email },
+            {
+              userId: user.id,
+              stripe: { customerId: stripeCustomer?.id },
+              receiptEmail: user.email,
+              didAcceptTerms: true,
+              role: 'free',
+            },
+          )
         }
 
         return token
       },
       async session({ session, token }) {
-        session.userId = token.userId
+        // Token sub is the user id
+        if (session?.user && token.sub) {
+          session.user.id = token.sub
+        }
 
         return session
       },
@@ -77,7 +96,6 @@ const handler = async (req, res) => {
     session: {
       strategy: 'jwt',
     },
-    theme: 'dark',
     jwt: {
       secret: process.env.JWT_SECRET,
     },

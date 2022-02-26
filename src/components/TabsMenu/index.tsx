@@ -3,10 +3,16 @@ import { Tabs, TabsProps, Tab, TabProps } from '@mui/material'
 
 interface TabsMenuProps extends TabsProps {
   tabsMenu: TabProps[]
-  focusMode?: boolean
+  isFocusMode?: boolean
+  hideIndicator?: boolean
 }
 
-const TabsMenu = ({ focusMode = false, tabsMenu = [], ...props }: TabsMenuProps) => {
+const TabsMenu = ({
+  isFocusMode = false,
+  hideIndicator = false,
+  tabsMenu = [],
+  ...props
+}: TabsMenuProps) => {
   return (
     <Tabs
       indicatorColor="primary"
@@ -14,10 +20,10 @@ const TabsMenu = ({ focusMode = false, tabsMenu = [], ...props }: TabsMenuProps)
       variant="scrollable"
       scrollButtons="auto"
       sx={[
-        focusMode && {
+        isFocusMode && {
           '[aria-selected="false"]': { opacity: 0.4 },
         },
-        {
+        hideIndicator && {
           '.MuiTabs-indicator': {
             opacity: 0,
           },

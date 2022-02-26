@@ -1,12 +1,6 @@
 import { NextPage } from 'next'
 import { ComponentType } from 'react'
-
-export type CustomPage<P = Record<string, unknown>> = NextPage<P> & {
-  layout?: ComponentType
-}
-
-export type Maybe<T> = T | undefined | null
-
+import type { DefaultUser } from 'next-auth'
 declare global {
   namespace NodeJS {
     interface Global {
@@ -37,7 +31,22 @@ declare global {
   }
 }
 
+declare module 'next-auth' {
+  interface Session {
+    user?: DefaultUser & {
+      id: string
+    }
+  }
+}
+
+export type CustomPage<P = Record<string, unknown>> = NextPage<P> & {
+  layout?: ComponentType
+}
+
+export type Maybe<T> = T | undefined | null
+
 export interface SignIn {
+  name?: string
   email: string
 }
 

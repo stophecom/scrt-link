@@ -7,12 +7,12 @@ import { useInView } from 'react-intersection-observer'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 
+import { useCustomer } from '@/utils/api'
 import SROnly from '@/components/ScreenreaderOnly'
 import Navigation from '@/components/Navigation'
 
 import { Link, BaseButtonLink } from '@/components/Link'
 import { appTitle } from '@/constants'
-import { useCustomer } from '@/utils/api'
 
 const HeaderBarInner = styled('div')`
   align-items: center;

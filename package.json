@@ -70,8 +70,8 @@
     "universal-cookie": "^4.0.4",
     "validator": "^13.5.2",
     "windups": "^1.1.9",
-    "yup": "^0.29.3",
-    "yup-locales": "^1.2.0"
+    "yup": "^0.32.11",
+    "yup-locales": "^1.2.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
