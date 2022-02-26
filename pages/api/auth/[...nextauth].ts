@@ -56,7 +56,7 @@ const handler: NextApiHandler = async (req, res) => {
               url: url,
             },
           }).catch((error) => {
-            console.error(error)
+            console.error('Email sign-in request failed: ', error)
             throw new Error('SEND_VERIFICATION_EMAIL_ERROR')
           })
         },
