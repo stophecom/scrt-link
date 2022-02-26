@@ -217,7 +217,7 @@ export const FormCustomerName = () => {
   const { t } = useTranslation()
 
   return (
-    <Paper square>
+    <Paper square sx={{ marginBottom: '2em' }}>
       <FormFactory
         name="customer-name"
         endpoint="/me"

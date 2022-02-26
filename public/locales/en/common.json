@@ -17,8 +17,8 @@
     "preview": "Preview",
     "demo": "Demo",
     "createSecretLink": "Create secret link",
-    "save": "Save",
     "deleteAccount": "Delete Account",
+    "save": "Save",
     "send": "Send",
     "tryAgain": "Try again",
     "signUp": "Sign up",
@@ -86,11 +86,12 @@
     },
     "FormCustomer": {
       "privacyNotice": "This information is <1>private</1> and will never be shown to anybody. We only use it to send you read receipts.",
-      "generalSettings": "General settings",
+      "defaults": "Defaults",
       "emojiLink": {
         "title": "Emoji link",
         "description": "Add some fun with a special emoji link. Example: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>."
       },
+      "account": "Account",
       "success": "Your settings have been saved!"
     },
     "FormDeleteAccount": {
@@ -319,207 +320,29 @@
       "email": "Via Email",
       "sms": "Via SMS"
     },
-    "name": {
-      "helperText": "This information is <1>private</1> and will never be shown to anybody. We only use it give you a personalized experience."
-    },
     "isEmojiShortLinkEnabled": {
       "label": "Use emoji link"
+    },
+    "name": {
+      "helperText": "This information is <1>private</1> and will never be shown to anybody. We only use it give you a personalized experience."
     }
-  },
-  "email": "Email",
-  "error": {
-    "signUp": {
-      "emailAlreadyExists": "A user with this email already exists - you may sign in instead."
-    },
-    "signIn": {
-      "emailUnknown": "Unknown email address. Check your email or try to sign up instead."
-    },
-    "unexpectedError": "Unexpected error",
-    "SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
-    "secretBurned": "Secret has been burned already.",
-    "invalidAlias": "Invalid alias.",
-    "missingDecryptionKey": "Decryption key missing.",
-    "noMessage": "No message.",
-    "wrongPassword": "Wrong Password"
-  },
-  "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
-  "plans": {
-    "free": {
-      "title": "Free"
-    },
-    "premium": {
-      "title": "Premium"
-    }
-  },
-  "month": "month",
-  "year": "year",
-  "faq": {
-    "payment-provider": {
-      "heading": "Who is the payment provider?",
-      "body": "We work with [Stripe](https://stripe.com/) as our payment provider. We don't store any payment related information whatsoever."
-    },
-    "payment-methods": {
-      "heading": "What payment methods are supported?",
-      "body": "Our payment provider [Stripe](https://stripe.com/) offers a variety of payment options: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) among many others. Once you choose a premium plan you get redirected to Stripe where you can select your preferred method."
-    },
-    "subscriptions": {
-      "heading": "How do subscriptions work?",
-      "body": "Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval. A subscription can be cancelled anytime."
-    },
-    "trial": {
-      "heading": "How do trials work?",
-      "body": "**Try before you buy**: You can test all premium features for a **{{ trialPeriod }} day trial period**. Once the trial ends you will be billed based on your chosen plan. Cancellations during the trial period result in the immediate termination of the subscription - **no billing** will be made in such case."
-    },
-    "end-subscription": {
-      "heading": "How do I cancel a subscription?",
-      "body": "Sign in to the [account page](/account). Under the \"Subscription\" tab you can cancel your subscription anytime, **no questions asked**."
-    },
-    "why": {
-      "heading": "Why should I use this service?",
-      "body": "Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, API keys, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, inbox, or any other communication channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.\n\n**Use this service in case you want to…**\n- Share your Netflix password with a family member.\n- Send a private message from a public computer.\n- Send access tokens, API keys, PIN codes to a friend or coworker.\n- Forward payment information such as credit card number or Bitcoin wallet address.\n- Confess to a secret crush.\n- Transmit information that could be used against you."
-    },
-    "who": {
-      "heading": "Who is it for?",
-      "body": "Essentially everybody. Everybody should care about privacy.  \n  The means to transmit sensitive information anonymously is especially crucial for journalists, lawyers, politicians, whistleblowers, people who are being oppressed, etc."
-    },
-    "how": {
-      "heading": "How does the service work?",
-      "body": "After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recipients clicks the link, the message gets displayed and permanently removed from the database. \n    \nFor **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel than the link.)"
-    },
-    "difference-to-disappearing-messages": {
-      "heading": "What is the difference to disappearing messages on Signal or Whatsapp?",
-      "body": "Anonymity, privacy and security. Plain text messages within a chat log can always get traced back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level. With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content."
-    },
-    "difference-to-snapchat": {
-      "heading": "What is the difference to Snapchat?",
-      "body": "Same answer as for the previous question. Also, the business model behind Snapchat, and every other major social media platform, contradicts the idea of privacy and anonymity. Social media companies need to know their users in order to sell ads. \n    \nHowever, it is fine to share a generated secret link using Snapchat, Facebook, Instagram, Telegram, etc."
-    },
-    "service-provider": {
-      "heading": "Who is behind this service?",
-      "body": "Scrt.link is a service by [SANTiHANS GmbH](https://santihans.com), a Swiss based tech company with a mission to advance the web. We operate under Swiss law. As a customer you profit from one of the world's strongest data and privacy protection regulation, the [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). This product has been created and is operated by [@stophecom](https://twitter.com/stophecom)."
-    },
-    "category": {
-      "general": "General",
-      "product": "Product and Service",
-      "securityAndPrivacy": "Security and Privacy",
-      "accountAndBilling": "Account and Billing",
-      "slack": "Slack App",
-      "nerdZone": "Nerd Zone"
-    },
-    "developer": {
-      "heading": "Where can I find the source code?",
-      "body": "All code is open-source on {{gitlabLink}}"
-    },
-    "developer-tools": {
-      "heading": "How can integrate this tool in my project?",
-      "body": "There are easy-to-use npm packages available. For code examples and further information about integration visit the [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
-    },
-    "secret-types": {
-      "heading": "*Text*, *Files*, *Redirect* and *Neogram*?",
-      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **File**: Drop any file. This feature is currently in beta.\n- **Redirect**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
-    },
-    "message-size": {
-      "heading": "What is the maximum message size?",
-      "body": "The current limit is {{ maxMessageLengthVisitor }} characters for visitors. With a premium plan you can get up to {{ maxMessageLengthPremium }} characters."
-    },
-    "notification": {
-      "heading": "Can I get notified when a secret has been viewed?",
-      "body": "Yes, you can get **SMS or Email notifications** with an account. [Go to Account](/account)"
-    },
-    "read-receipts-info": {
-      "heading": "How do read receipts work?",
-      "body": "For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.\n\n**Email**: You'll receive an email from *{{ email }}*.\n\n**SMS**: You'll receive an SMS notification from *{{ twilioSenderPhoneNumber }}*."
-    },
-    "secret-not-found": {
-      "heading": "Why do I get \"Secret not found\" error?",
-      "body": "This means that the secret link has already been visited. If this happens unexpectedly:\n- Check with the sender to make sure the link hasn't been visited by mistake.\n- The secret was accessed via brut-force attack or there is an issue with the server infrastructure (don't worry, the contents of the secrets would still be encrypted) - both cases are very unlikely.\n- **Worst case**: A third party accessed the link, which ultimately means, your communication channel and/or either party's device has been compromised."
-    },
-    "browser-extensions": {
-      "heading": "Where can I find the browser extensions?",
-      "body": "The scrt.link browser extensions are available for all major browsers:\n- [Google Chrome]({{ chromeExtensionLink }})\n- [Mozilla Firefox]({{ firefoxExtensionLink }})\n- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})"
-    },
-    "slack-app": {
-      "heading": "Where can I get the Slack App?",
-      "body": "The Slack app lets you use the power of scrt.link without switching apps. Go to the [Slack App page](/slack) for more information. Or get the app right here:  \n\n👉 [Install Slack App]({{ slackAppInstallLink }})  \n\n_**Important notice:** There are limitations when using the Slack Application. Due to the nature of how these apps are designed, full end-to-end encryption is not possible. In most cases this is not a problem and a risk worth taking - however, if you need advanced protection, create secrets on the website instead._"
-    },
-    "security": {
-      "heading": "How secure is this service?",
-      "body": "All messages are end-to-end encrypted using **AES-256**, which is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.\nFor the highest level of security, an optional password (which is never stored either) will be used to encrypt your message. Read more on our [Security page](/security)."
-    },
-    "anonymity": {
-      "heading": "How is my privacy protected?",
-      "body": "We take a number of steps to protect your privacy, detailed on the [privacy page](/privacy) - however some of the features require third party services that may have access to personal identifiable information (PII). If you want to further protect your privacy, we recommend the following:\n\n- Connect to our service via a virtual private network (VPN): This way you never expose your personal IP address. We recommend [ProtonVPN](https://protonvpn.com/).\n- Use a service such as [Abine Blur](https://www.abine.com/) to hide your personal email address, phone number and/or credit card information."
-    },
-    "end-to-end-encryption-info": {
-      "heading": "How is end-to-end encryption achieved?",
-      "body": "We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.\n![Link explanation](/images/en/link-explanation.svg)"
-    },
-    "recovery": {
-      "heading": "Can I retrieve a secret that has already been visited?",
-      "body": "Nope. It's a **one time secret**. We show it once and then delete it permanently from the database. There is no backup. It's gone for good."
-    },
-    "save": {
-      "heading": "Can the recipient save the message?",
-      "body": "Sure. You can always take a screenshot. The idea behind this service is to securely share sensitive information one time. We (obviously) don't have control over what a recipient does with the message."
-    },
-    "secret-expiration": {
-      "heading": "How long do you keep non-viewed secrets?",
-      "body": "Until the end of times. Seriously, there is no maximum time limit set. But you can always destroy your secret by visiting the secret link."
-    },
-    "slack-security": {
-      "heading": "Is the Slack App secure?",
-      "body": "The honest answer: We can't know for sure. It's important to understand that **end-to-end-encryption is not possible** with Slack apps. However, the communication between our app server and Slack is encrypted and we therefore believe that for 99% of use cases it's safe to use. Still, please be aware that **Slack is proprietary software** and we don't have control over code that runs your Slack instance. **In case you need to be 100% sure, create secrets via the website instead.**"
-    },
-    "slack-trust": {
-      "heading": "Why should I trust you?",
-      "body": "Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on {{gitlabLink}}. Feel free to launch your own private Slack App."
-    },
-    "slack-data-collection": {
-      "heading": "What data do you collect?",
-      "body": "We only store data that is necessary to run the app. When you install the app, you grant us specific access rights (e.g. the right to post a secret link in your name). This data includes basic Slack user information (e.g. username, id) as well as the individual authorization tokens. Additionally, we temporarily store data required for read receipts.  \n**We don't store any other data. We do not repurpose, sell or distribute any data we collect. Even if we wanted to, we are not able to identify you as a person, since only Slack may have the relevant information to do so.**"
-    },
-    "slack-not-approved": {
-      "heading": "Why isn't this app approved by Slack?",
-      "body": "First, it's important to understand that this app can still be installed and used in the exact same way as officially listed apps. That said, we tried to submit our app to the Slack App Directory to get listed. But since Slack is literally \"restricting the approval of apps that facilitate the sharing of sensitive information\" we were not able to do so. Now think about this for a minute. And afterwards, help us spread the word 🥰"
-    },
-    "slack-scopes": {
-      "heading": "What permissions are required?",
-      "body": "The app requires basic information about the user, channels and conversations. Additionally, the app needs the permission to post in your name, join a conversation and make use of _slash commands_ and _shortcuts_. You'll get more detailed information about permission scopes during the app installation."
-    },
-    "slack-user-account": {
-      "heading": "Do I need an account to use the Slack app?",
-      "body": "No. Currently not. You are welcome."
-    },
-    "slack-premium-account": {
-      "heading": "Do I need a premium subscription to use the Slack app?",
-      "body": "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless 🤓."
-    }
-  },
-  "demoNeogramMessage": "Wake up Neo…\nThis is just a demo!\nNeogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
-  "demoTextMessage": "Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘",
-  "demoNeogramDestructionMessage": "This message self-destructs in …",
-  "Widget": {
-    "myAccount": "My account",
-    "noAccountYet": "No Account yet?"
-  },
-  "validation": {
-    "destructionMessage": "Destruction message",
-    "destructionTimeout": "Destruction timeout",
-    "email": "Email",
-    "phone": "Phone",
-    "phoneNotValid": "Phone number is not valid",
-    "urlNotValid": "{{label}} does not have a valid URL format",
-    "message": "Message",
-    "password": "Password",
-    "notAllowed": "Not allowed.",
-    "readReceipts": "Read receipts",
-    "name": "Name",
-    "emojiLink": "Emoji short link",
-    "confirmationRequired": "Field must be checked",
-    "consentRequired": "Your consent is required.",
-    "secretUrl": "Secret URL"
   },
   "views": {
+    "Account": {
+      "settingsDisclaimer": "The following are default settings. You can overwrite each setting for every secret you create.",
+      "ManageSubscriptionButton": {
+        "button": "Manage subscription on Stripe"
+      },
+      "title": "Account",
+      "subtitle": "Hi {{name}}, welcome back!",
+      "tabsMenu": {
+        "label": "Account options"
+      },
+      "subscriptionInfo": "You are currently on the <1>{{customerRole}}</1> plan.",
+      "activeSubscriptionWarning": "You have a running subscription. We recommend to cancel it first.",
+      "accountDeletion": "Delete your account",
+      "signedInAs": "You are signed in as {{email}}."
+    },
     "About": {
       "title": "About",
       "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
@@ -551,21 +374,6 @@
     "AcceptableUsePolicy": {
       "title": "Acceptable Use Policy",
       "subtitle": "Tl;dr: Play fair."
-    },
-    "Account": {
-      "ManageSubscriptionButton": {
-        "button": "Manage subscription on Stripe"
-      },
-      "title": "Account",
-      "subtitle": "Hi {{name}}, welcome back!",
-      "tabsMenu": {
-        "label": "Account options"
-      },
-      "settingsDisclaimer": "The following are default settings. You can overwrite each setting for every secret you create.",
-      "subscriptionInfo": "You are currently on the <1>{{customerRole}}</1> plan.",
-      "activeSubscriptionWarning": "You have a running subscription. We recommend to cancel it first.",
-      "accountDeletion": "Delete your account",
-      "signedInAs": "You are signed in as {{email}}."
     },
     "Alias": {
       "title1": "Shhh",
@@ -762,6 +570,199 @@
       "title": "Secret Text",
       "subtitle": "Share end-to-end encrypted messages. One time."
     }
+  },
+  "email": "Email",
+  "error": {
+    "signUp": {
+      "emailAlreadyExists": "A user with this email already exists - you may sign in instead."
+    },
+    "signIn": {
+      "emailUnknown": "Unknown email address. Check your email or try to sign up instead."
+    },
+    "unexpectedError": "Unexpected error",
+    "SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
+    "secretBurned": "Secret has been burned already.",
+    "invalidAlias": "Invalid alias.",
+    "missingDecryptionKey": "Decryption key missing.",
+    "noMessage": "No message.",
+    "wrongPassword": "Wrong Password"
+  },
+  "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
+  "plans": {
+    "free": {
+      "title": "Free"
+    },
+    "premium": {
+      "title": "Premium"
+    }
+  },
+  "month": "month",
+  "year": "year",
+  "faq": {
+    "payment-provider": {
+      "heading": "Who is the payment provider?",
+      "body": "We work with [Stripe](https://stripe.com/) as our payment provider. We don't store any payment related information whatsoever."
+    },
+    "payment-methods": {
+      "heading": "What payment methods are supported?",
+      "body": "Our payment provider [Stripe](https://stripe.com/) offers a variety of payment options: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) among many others. Once you choose a premium plan you get redirected to Stripe where you can select your preferred method."
+    },
+    "subscriptions": {
+      "heading": "How do subscriptions work?",
+      "body": "Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval. A subscription can be cancelled anytime."
+    },
+    "trial": {
+      "heading": "How do trials work?",
+      "body": "**Try before you buy**: You can test all premium features for a **{{ trialPeriod }} day trial period**. Once the trial ends you will be billed based on your chosen plan. Cancellations during the trial period result in the immediate termination of the subscription - **no billing** will be made in such case."
+    },
+    "end-subscription": {
+      "heading": "How do I cancel a subscription?",
+      "body": "Sign in to the [account page](/account). Under the \"Subscription\" tab you can cancel your subscription anytime, **no questions asked**."
+    },
+    "why": {
+      "heading": "Why should I use this service?",
+      "body": "Sharing secrets is delicate. You don't want sensitive information (confidential information, passwords, API keys, access tokens, key combinations, confessions, etc.) to stay in your Slack channel, Whatsapp chat log, inbox, or any other communication channel. A one-time disposable link guarantees that your secret is only viewed exactly once, before being permanently destroyed.\n\n**Use this service in case you want to…**\n- Share your Netflix password with a family member.\n- Send a private message from a public computer.\n- Send access tokens, API keys, PIN codes to a friend or coworker.\n- Forward payment information such as credit card number or Bitcoin wallet address.\n- Confess to a secret crush.\n- Transmit information that could be used against you."
+    },
+    "who": {
+      "heading": "Who is it for?",
+      "body": "Essentially everybody. Everybody should care about privacy.  \n  The means to transmit sensitive information anonymously is especially crucial for journalists, lawyers, politicians, whistleblowers, people who are being oppressed, etc."
+    },
+    "how": {
+      "heading": "How does the service work?",
+      "body": "After you submit the form your secret will be encrypted and stored. You can now share the generated short link via text message, email or whatever service you trust. (We recommend Signal, Threema or Matrix.) After the recipients clicks the link, the message gets displayed and permanently removed from the database. \n    \nFor **extra security**, you can include a password that will be needed to decrypt the message. (We recommend to share the password via a different channel than the link.)"
+    },
+    "difference-to-disappearing-messages": {
+      "heading": "What is the difference to disappearing messages on Signal or Whatsapp?",
+      "body": "Anonymity, privacy and security. Plain text messages within a chat log can always get traced back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level. With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content."
+    },
+    "difference-to-snapchat": {
+      "heading": "What is the difference to Snapchat?",
+      "body": "Same answer as for the previous question. Also, the business model behind Snapchat, and every other major social media platform, contradicts the idea of privacy and anonymity. Social media companies need to know their users in order to sell ads. \n    \nHowever, it is fine to share a generated secret link using Snapchat, Facebook, Instagram, Telegram, etc."
+    },
+    "service-provider": {
+      "heading": "Who is behind this service?",
+      "body": "Scrt.link is a service by [SANTiHANS GmbH](https://santihans.com), a Swiss based tech company with a mission to advance the web. We operate under Swiss law. As a customer you profit from one of the world's strongest data and privacy protection regulation, the [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). This product has been created and is operated by [@stophecom](https://twitter.com/stophecom)."
+    },
+    "category": {
+      "general": "General",
+      "product": "Product and Service",
+      "securityAndPrivacy": "Security and Privacy",
+      "accountAndBilling": "Account and Billing",
+      "slack": "Slack App",
+      "nerdZone": "Nerd Zone"
+    },
+    "developer": {
+      "heading": "Where can I find the source code?",
+      "body": "All code is open-source on {{gitlabLink}}"
+    },
+    "developer-tools": {
+      "heading": "How can integrate this tool in my project?",
+      "body": "There are easy-to-use npm packages available. For code examples and further information about integration visit the [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
+    },
+    "secret-types": {
+      "heading": "*Text*, *Files*, *Redirect* and *Neogram*?",
+      "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **File**: Drop any file. This feature is currently in beta.\n- **Redirect**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
+    },
+    "message-size": {
+      "heading": "What is the maximum message size?",
+      "body": "The current limit is {{ maxMessageLengthVisitor }} characters for visitors. With a premium plan you can get up to {{ maxMessageLengthPremium }} characters."
+    },
+    "notification": {
+      "heading": "Can I get notified when a secret has been viewed?",
+      "body": "Yes, you can get **SMS or Email notifications** with an account. [Go to Account](/account)"
+    },
+    "read-receipts-info": {
+      "heading": "How do read receipts work?",
+      "body": "For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.\n\n**Email**: You'll receive an email from *{{ email }}*.\n\n**SMS**: You'll receive an SMS notification from *{{ twilioSenderPhoneNumber }}*."
+    },
+    "secret-not-found": {
+      "heading": "Why do I get \"Secret not found\" error?",
+      "body": "This means that the secret link has already been visited. If this happens unexpectedly:\n- Check with the sender to make sure the link hasn't been visited by mistake.\n- The secret was accessed via brut-force attack or there is an issue with the server infrastructure (don't worry, the contents of the secrets would still be encrypted) - both cases are very unlikely.\n- **Worst case**: A third party accessed the link, which ultimately means, your communication channel and/or either party's device has been compromised."
+    },
+    "browser-extensions": {
+      "heading": "Where can I find the browser extensions?",
+      "body": "The scrt.link browser extensions are available for all major browsers:\n- [Google Chrome]({{ chromeExtensionLink }})\n- [Mozilla Firefox]({{ firefoxExtensionLink }})\n- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})"
+    },
+    "slack-app": {
+      "heading": "Where can I get the Slack App?",
+      "body": "The Slack app lets you use the power of scrt.link without switching apps. Go to the [Slack App page](/slack) for more information. Or get the app right here:  \n\n👉 [Install Slack App]({{ slackAppInstallLink }})  \n\n_**Important notice:** There are limitations when using the Slack Application. Due to the nature of how these apps are designed, full end-to-end encryption is not possible. In most cases this is not a problem and a risk worth taking - however, if you need advanced protection, create secrets on the website instead._"
+    },
+    "security": {
+      "heading": "How secure is this service?",
+      "body": "All messages are end-to-end encrypted using **AES-256**, which is virtually impenetrable using brute-force methods. AES would take billions of years to break using current computing technology.\nFor the highest level of security, an optional password (which is never stored either) will be used to encrypt your message. Read more on our [Security page](/security)."
+    },
+    "anonymity": {
+      "heading": "How is my privacy protected?",
+      "body": "We take a number of steps to protect your privacy, detailed on the [privacy page](/privacy) - however some of the features require third party services that may have access to personal identifiable information (PII). If you want to further protect your privacy, we recommend the following:\n\n- Connect to our service via a virtual private network (VPN): This way you never expose your personal IP address. We recommend [ProtonVPN](https://protonvpn.com/).\n- Use a service such as [Abine Blur](https://www.abine.com/) to hide your personal email address, phone number and/or credit card information."
+    },
+    "end-to-end-encryption-info": {
+      "heading": "How is end-to-end encryption achieved?",
+      "body": "We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.\n![Link explanation](/images/en/link-explanation.svg)"
+    },
+    "recovery": {
+      "heading": "Can I retrieve a secret that has already been visited?",
+      "body": "Nope. It's a **one time secret**. We show it once and then delete it permanently from the database. There is no backup. It's gone for good."
+    },
+    "save": {
+      "heading": "Can the recipient save the message?",
+      "body": "Sure. You can always take a screenshot. The idea behind this service is to securely share sensitive information one time. We (obviously) don't have control over what a recipient does with the message."
+    },
+    "secret-expiration": {
+      "heading": "How long do you keep non-viewed secrets?",
+      "body": "Until the end of times. Seriously, there is no maximum time limit set. But you can always destroy your secret by visiting the secret link."
+    },
+    "slack-security": {
+      "heading": "Is the Slack App secure?",
+      "body": "The honest answer: We can't know for sure. It's important to understand that **end-to-end-encryption is not possible** with Slack apps. However, the communication between our app server and Slack is encrypted and we therefore believe that for 99% of use cases it's safe to use. Still, please be aware that **Slack is proprietary software** and we don't have control over code that runs your Slack instance. **In case you need to be 100% sure, create secrets via the website instead.**"
+    },
+    "slack-trust": {
+      "heading": "Why should I trust you?",
+      "body": "Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on {{gitlabLink}}. Feel free to launch your own private Slack App."
+    },
+    "slack-data-collection": {
+      "heading": "What data do you collect?",
+      "body": "We only store data that is necessary to run the app. When you install the app, you grant us specific access rights (e.g. the right to post a secret link in your name). This data includes basic Slack user information (e.g. username, id) as well as the individual authorization tokens. Additionally, we temporarily store data required for read receipts.  \n**We don't store any other data. We do not repurpose, sell or distribute any data we collect. Even if we wanted to, we are not able to identify you as a person, since only Slack may have the relevant information to do so.**"
+    },
+    "slack-not-approved": {
+      "heading": "Why isn't this app approved by Slack?",
+      "body": "First, it's important to understand that this app can still be installed and used in the exact same way as officially listed apps. That said, we tried to submit our app to the Slack App Directory to get listed. But since Slack is literally \"restricting the approval of apps that facilitate the sharing of sensitive information\" we were not able to do so. Now think about this for a minute. And afterwards, help us spread the word 🥰"
+    },
+    "slack-scopes": {
+      "heading": "What permissions are required?",
+      "body": "The app requires basic information about the user, channels and conversations. Additionally, the app needs the permission to post in your name, join a conversation and make use of _slash commands_ and _shortcuts_. You'll get more detailed information about permission scopes during the app installation."
+    },
+    "slack-user-account": {
+      "heading": "Do I need an account to use the Slack app?",
+      "body": "No. Currently not. You are welcome."
+    },
+    "slack-premium-account": {
+      "heading": "Do I need a premium subscription to use the Slack app?",
+      "body": "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless 🤓."
+    }
+  },
+  "demoNeogramMessage": "Wake up Neo…\nThis is just a demo!\nNeogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
+  "demoTextMessage": "Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘",
+  "demoNeogramDestructionMessage": "This message self-destructs in …",
+  "Widget": {
+    "myAccount": "My account",
+    "noAccountYet": "No Account yet?"
+  },
+  "validation": {
+    "destructionMessage": "Destruction message",
+    "destructionTimeout": "Destruction timeout",
+    "email": "Email",
+    "phone": "Phone",
+    "phoneNotValid": "Phone number is not valid",
+    "urlNotValid": "{{label}} does not have a valid URL format",
+    "message": "Message",
+    "password": "Password",
+    "notAllowed": "Not allowed.",
+    "readReceipts": "Read receipts",
+    "name": "Name",
+    "emojiLink": "Emoji short link",
+    "confirmationRequired": "Field must be checked",
+    "consentRequired": "Your consent is required.",
+    "secretUrl": "Secret URL"
   },
   "abbreviations": {
     "faq": "FAQ"

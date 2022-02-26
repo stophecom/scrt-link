@@ -23,6 +23,9 @@
 /public/sw*
 /public/workbox*
 
+# Outdated translations via parse-translations
+/public/locales/*/common_old.json
+
 # misc
 .DS_Store
 
