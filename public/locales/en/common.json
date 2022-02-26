@@ -236,8 +236,9 @@
       }
     },
     "Trust": {
-      "encryption": "End-to-end encrypted (AES)",
-      "privacy": "100% Privacy protected"
+      "encryption": "End-to-end encrypted",
+      "privacy": "Swiss Privacy",
+      "noTrace": "Without trace"
     }
   },
   "menu": {

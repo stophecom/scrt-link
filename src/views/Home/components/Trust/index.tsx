@@ -1,9 +1,8 @@
 import React from 'react'
 import { styled } from '@mui/system'
 import { Box, Typography } from '@mui/material'
-import { Lock, VerifiedUser } from '@mui/icons-material'
+import { Lock, LocalFireDepartment, HealthAndSafety } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
-
 const PREFIX = 'Trust'
 
 const classes = {
@@ -41,16 +40,20 @@ const Trust = () => {
   const gridContent = [
     {
       illustration: <Lock className={classes.illustration} />,
-      title: t('common:components.Trust.encryption', 'End-to-end encrypted (AES)'),
+      title: t('common:components.Trust.encryption', 'End-to-end encrypted'),
     },
     {
-      illustration: <VerifiedUser className={classes.illustration} />,
-      title: t('common:components.Trust.privacy', '100% Privacy protected'),
+      illustration: <HealthAndSafety className={classes.illustration} />,
+      title: t('common:components.Trust.privacy', 'Swiss Privacy'),
+    },
+    {
+      illustration: <LocalFireDepartment className={classes.illustration} />,
+      title: t('common:components.Trust.noTrace', 'Without trace'),
     },
   ]
 
   return (
-    <StyledBox display="flex" flexWrap="wrap" py={1}>
+    <StyledBox display="flex" flexWrap="wrap" py={1} justifyContent={{ xs: 'center', sm: 'start' }}>
       {gridContent.map(({ illustration, title }, index) => {
         return (
           <Box key={`trust-${index}`} px={1} className={classes.box}>
