@@ -1,1 +1,2 @@
-export { default, getServerSideProps } from '@/views/SignOut'
+export { default } from '@/views/SignOut'
+export { getStaticProps } from '@/utils/localization'

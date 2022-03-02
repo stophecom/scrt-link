@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import { Alert } from '@mui/material'
 import { useTranslation } from 'next-i18next'
-import { GetServerSideProps } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getSession, signOut, useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 import { Spinner } from '@/components/Spinner'
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
@@ -41,13 +39,3 @@ const SignOut = () => {
 }
 
 export default SignOut
-
-export const getServerSideProps: GetServerSideProps = async ({ req, locale = 'en' }) => {
-  const session = await getSession({ req })
-
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'])),
-    },
-  }
-}
