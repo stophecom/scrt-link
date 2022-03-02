@@ -24,7 +24,7 @@ export const SubMenu: React.FC<SubMenuProps & Omit<BoxProps, 'title'>> = ({
 }) => {
   return (
     <Box display={'flex'} flexDirection={'column'} {...box}>
-      <Typography fontWeight={'bold'} mb={1} pt={3} color="primary">
+      <Typography component="div" fontWeight={'bold'} mb={1} pt={3} color="primary">
         {title}
       </Typography>
       {menu.map(({ label, href, prefetch, target, rel }, index) => (
