@@ -25,7 +25,7 @@ const SignOut = () => {
   return (
     <Page
       title={t('common:views.SignOut.title', 'Sign Out')}
-      subtitle={t('common:views.SignIn.subtitle', 'Stay safe! Come back soon.')}
+      subtitle={t('common:views.SignOut.subtitle', 'Stay safe! Come back soon.')}
     >
       {session ? (
         <Spinner message={t('common:views.SignOut.loading', 'Signing out…')} />

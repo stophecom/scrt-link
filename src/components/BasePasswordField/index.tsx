@@ -49,7 +49,10 @@ const BasePasswordField = (props: BasePasswordFieldProps) => {
         endAdornment: (
           <InputAdornment position="end">
             <IconButton
-              aria-label={t('common:password', '"toggle password visibility"')}
+              aria-label={t(
+                'common:components.BasePasswordField.ariaLabel',
+                'Toggle password visibility',
+              )}
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
               edge="end"

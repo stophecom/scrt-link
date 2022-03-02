@@ -7,52 +7,10 @@
     "keywords": "scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
   },
   "password": "Password",
-  "button": {
-    "copied": "Copied",
-    "copy": "Copy",
-    "takeMeHome": "Take me home",
-    "dangerButton": "Never ever push that button!",
-    "lessOptions": "Less options",
-    "moreOptions": "More options",
-    "preview": "Preview",
-    "demo": "Demo",
-    "createSecretLink": "Create secret link",
-    "deleteAccount": "Delete Account",
-    "save": "Save",
-    "send": "Send",
-    "tryAgain": "Try again",
-    "signUp": "Sign up",
-    "signIn": "Sign in",
-    "myAccount": "My account",
-    "account": "My Account",
-    "getAccount": "Get Account",
-    "close": "Close",
-    "closeMenu": "Close menu",
-    "openMenu": "Open menu",
-    "menu": "Menu",
-    "signUpFree": "Sign up free",
-    "reactivatePlan": "Reactivate plan",
-    "tryFree": "Try it free",
-    "signUpFirst": "Sign up first",
-    "cancelSubscription": "Cancel subscription",
-    "createNewSecret": "Create new secret",
-    "share": "Share",
-    "cancel": "Cancel",
-    "installNow": "Install now",
-    "learnMore": "Learn more",
-    "signOut": "Sign out",
-    "replyWithSecret": "Reply with a secret",
-    "decryptMessage": "Decrypt Message",
-    "destroySecret": "Destroy secret",
-    "home": "Home",
-    "createSecret": "Create a secret",
-    "addToSlack": "Add to Slack",
-    "readMoreFaq": "Read more on FAQ page",
-    "viewPlans": "View plans",
-    "getFreeAccount": "Get free account",
-    "privacyPolicy": "Privacy Policy"
-  },
   "components": {
+    "BasePasswordField": {
+      "ariaLabel": "Toggle password visibility"
+    },
     "DropZone": {
       "error": {
         "noFiles": "No file selected. Please try another file.",
@@ -115,6 +73,9 @@
     },
     "LanguageSelector": {
       "label": "Select your preferred language"
+    },
+    "Navigation": {
+      "ariaLabel": "Main navigation menu"
     },
     "PlanSelection": {
       "plans": {
@@ -241,11 +202,54 @@
       "noTrace": "Without trace"
     }
   },
+  "button": {
+    "copied": "Copied",
+    "copy": "Copy",
+    "takeMeHome": "Take me home",
+    "dangerButton": "Never ever push that button!",
+    "lessOptions": "Less options",
+    "moreOptions": "More options",
+    "preview": "Preview",
+    "demo": "Demo",
+    "createSecretLink": "Create secret link",
+    "deleteAccount": "Delete Account",
+    "save": "Save",
+    "send": "Send",
+    "tryAgain": "Try again",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "myAccount": "My account",
+    "close": "Close",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "menu": "Menu",
+    "signUpFree": "Sign up free",
+    "reactivatePlan": "Reactivate plan",
+    "tryFree": "Try it free",
+    "signUpFirst": "Sign up first",
+    "cancelSubscription": "Cancel subscription",
+    "createNewSecret": "Create new secret",
+    "share": "Share",
+    "cancel": "Cancel",
+    "installNow": "Install now",
+    "learnMore": "Learn more",
+    "signOut": "Sign out",
+    "replyWithSecret": "Reply with a secret",
+    "decryptMessage": "Decrypt Message",
+    "destroySecret": "Destroy secret",
+    "home": "Home",
+    "addToSlack": "Add to Slack",
+    "readMoreFaq": "Read more on FAQ page",
+    "privacyPolicy": "Privacy Policy"
+  },
   "menu": {
     "title": {
       "secrets": "Secrets",
       "integrations": "Integrations",
       "information": "Information",
+      "help": "Help",
+      "createSecret": "Create secret",
+      "account": "Account",
       "support": "Support"
     },
     "status": "Status",
@@ -262,8 +266,11 @@
     "blog": "Developer Blog",
     "faq": "FAQ",
     "contact": "Contact",
-    "home": "Home",
     "termsOfService": "Terms of Service",
+    "account": "My Account",
+    "signOut": "Sign out",
+    "register": "Register",
+    "signIn": "Sign in",
     "acceptableUsePolicy": "Acceptable Use Policy",
     "cookiePolicy": "Cookie Policy",
     "privacyPolicy": "Privacy Policy",
@@ -467,10 +474,6 @@
       },
       "FAQ": {
         "subtitle": "Frequently asked questions."
-      },
-      "Upsell": {
-        "title": "Support us",
-        "subtitle": "For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials."
       }
     },
     "Imprint": {
@@ -525,6 +528,12 @@
       "subtitle": "Sign back in. Protect your secrets.",
       "noAccountYet": "No Account yet?",
       "signUpNow": "Sign up now"
+    },
+    "SignOut": {
+      "title": "Sign Out",
+      "subtitle": "Stay safe! Come back soon.",
+      "loading": "Signing out…",
+      "success": "You are successfully signed out."
     },
     "SignUp": {
       "title": "Get Account",

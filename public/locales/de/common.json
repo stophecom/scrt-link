@@ -7,52 +7,10 @@
     "keywords": "scrt.link, Geheimlink, Geheimnachrichten, Einmal-Geheimnis, Einmal-Passwort, Einmal-Nachricht, Einmal-Link, Wegwerf-Nachricht, Wegwerf-Link, URL Shortener, Selbstzerstörende Links, Sensible Informationen online teilen"
   },
   "password": "Passwort",
-  "button": {
-    "copied": "Kopiert",
-    "copy": "Kopieren",
-    "takeMeHome": "Zur Startseite",
-    "dangerButton": "Drücke niemals diesen Knopf!",
-    "lessOptions": "Weniger Optionen",
-    "moreOptions": "Mehr Optionen",
-    "preview": "Vorschau",
-    "demo": "Demo",
-    "createSecretLink": "Geheimen Link erstellen",
-    "deleteAccount": "Konto löschen",
-    "save": "Speichern",
-    "send": "Absenden",
-    "tryAgain": "Nochmals versuchen",
-    "signUp": "Registrieren",
-    "signIn": "Anmelden",
-    "myAccount": "Mein Konto",
-    "account": "Mein Konto",
-    "getAccount": "Konto erstellen",
-    "close": "Schließen",
-    "closeMenu": "Menü schließen",
-    "openMenu": "Menü öffnen",
-    "menu": "Menü",
-    "signUpFree": "Gratis registrieren",
-    "reactivatePlan": "Plan reaktivieren",
-    "tryFree": "Gratis testen",
-    "signUpFirst": "Zuerst registrieren",
-    "cancelSubscription": "Abo kündigen",
-    "createNewSecret": "Neues Geheimnis erstellen",
-    "share": "Teilen",
-    "cancel": "Abbrechen",
-    "installNow": "Jetzt installieren",
-    "learnMore": "Mehr erfahren",
-    "signOut": "Abmelden",
-    "replyWithSecret": "Mit einem Geheimnis antworten",
-    "decryptMessage": "Nachricht entschlüsseln",
-    "destroySecret": "Nachricht zerstören",
-    "home": "Startseite",
-    "createSecret": "Geheimnis erstellen",
-    "addToSlack": "Zu Slack hinzufügen",
-    "readMoreFaq": "Mehr auf FAQ Seite",
-    "viewPlans": "Pläne ansehen",
-    "getFreeAccount": "Kostenloses Konto erstellen",
-    "privacyPolicy": "Datenschutzbestimmungen"
-  },
   "components": {
+    "BasePasswordField": {
+      "ariaLabel": "Passwort-Sichtbarkeit ein- und ausschalten"
+    },
     "DropZone": {
       "error": {
         "noFiles": "Keine Datei ausgewählt. Bitte füge eine andere Datei hinzu.",
@@ -115,6 +73,9 @@
     },
     "LanguageSelector": {
       "label": "Wähle deine gewünschte Sprache"
+    },
+    "Navigation": {
+      "ariaLabel": "Navigationsmenü"
     },
     "PlanSelection": {
       "plans": {
@@ -241,11 +202,54 @@
       "noTrace": "Ohne Spuren"
     }
   },
+  "button": {
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "takeMeHome": "Zur Startseite",
+    "dangerButton": "Drücke niemals diesen Knopf!",
+    "lessOptions": "Weniger Optionen",
+    "moreOptions": "Mehr Optionen",
+    "preview": "Vorschau",
+    "demo": "Demo",
+    "createSecretLink": "Geheimen Link erstellen",
+    "deleteAccount": "Konto löschen",
+    "save": "Speichern",
+    "send": "Absenden",
+    "tryAgain": "Nochmals versuchen",
+    "signUp": "Registrieren",
+    "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
+    "close": "Schließen",
+    "closeMenu": "Menü schließen",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü",
+    "signUpFree": "Gratis registrieren",
+    "reactivatePlan": "Plan reaktivieren",
+    "tryFree": "Gratis testen",
+    "signUpFirst": "Zuerst registrieren",
+    "cancelSubscription": "Abo kündigen",
+    "createNewSecret": "Neues Geheimnis erstellen",
+    "share": "Teilen",
+    "cancel": "Abbrechen",
+    "installNow": "Jetzt installieren",
+    "learnMore": "Mehr erfahren",
+    "signOut": "Abmelden",
+    "replyWithSecret": "Mit einem Geheimnis antworten",
+    "decryptMessage": "Nachricht entschlüsseln",
+    "destroySecret": "Nachricht zerstören",
+    "home": "Startseite",
+    "addToSlack": "Zu Slack hinzufügen",
+    "readMoreFaq": "Mehr auf FAQ Seite",
+    "privacyPolicy": "Datenschutzbestimmungen"
+  },
   "menu": {
     "title": {
       "secrets": "Geheimnisse",
       "integrations": "Integration",
       "information": "Information",
+      "help": "Hilfe",
+      "createSecret": "Geheimnis erstellen",
+      "account": "Account",
       "support": "Support"
     },
     "status": "Status",
@@ -262,8 +266,11 @@
     "blog": "Developer Blog",
     "faq": "FAQ",
     "contact": "Kontakt",
-    "home": "Startseite",
     "termsOfService": "Nutzungsbedingungen",
+    "account": "Mein Konto",
+    "signOut": "Abmelden",
+    "register": "Registrieren",
+    "signIn": "Anmelden",
     "acceptableUsePolicy": "Nutzungsrichtlinien",
     "cookiePolicy": "Cookie-Richtlinien",
     "privacyPolicy": "Datenschutzbestimmungen",
@@ -467,10 +474,6 @@
       },
       "FAQ": {
         "subtitle": "Häufig gestellte Fragen."
-      },
-      "Upsell": {
-        "title": "Unterstütze uns",
-        "subtitle": "Für nur {{price}} im Monat erhältst du vollen Zugang zu allen aktuellen und zukünftigen Funktionen. Mit einem kostenlosen Konto gibt es die Basisfunktionen."
       }
     },
     "Imprint": {
@@ -525,6 +528,12 @@
       "subtitle": "Melde dich im Konto an. Schütze deine Geheimnisse.",
       "noAccountYet": "Noch kein Konto?",
       "signUpNow": "Jetzt registrieren"
+    },
+    "SignOut": {
+      "title": "Abmeldung",
+      "subtitle": "Alles Gute! Komm bald wieder.",
+      "loading": "Abmeldung…",
+      "success": "Du hast dich erfolgreich abgemeldet."
     },
     "SignUp": {
       "title": "Konto eröffnen",

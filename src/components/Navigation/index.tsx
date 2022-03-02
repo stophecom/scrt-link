@@ -131,7 +131,7 @@ const NavigationMenu: React.FunctionComponent = () => {
     <Nav
       role="navigation"
       id="navigation"
-      aria-label={t('components:Navigation.ariaLabel', 'Main navigation menu')}
+      aria-label={t('common:components.Navigation.ariaLabel', 'Main navigation menu')}
     >
       <Container>
         <Grid container spacing={{ sm: 2 }} mb={8} textAlign={{ xs: 'center', sm: 'left' }}>
