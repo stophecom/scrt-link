@@ -13,18 +13,16 @@ import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { PageError } from '@/components/Error'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
-import { formatCurrency } from '@/utils/localization'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 import BoxShadowWrapper from '@/components/BoxShadowWrapper'
 import UnorderedList from '@/components/UnorderedList'
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
-import AccountTeaser from './components/AccountTeaser'
+
 import Trust from './components/Trust'
 import { slackAppInstallLink } from '@/constants'
 import { useCustomer } from '@/utils/api'
-import { scrollIntoView } from '@/utils/browser'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretPost } from '@/types'
 import { shortFaq } from '@/data/faq'
@@ -230,17 +228,6 @@ export const HomeView: CustomPage = () => {
         )}
       >
         <HowItWorks />
-        <Box display="flex" justifyContent="center" pt={5}>
-          <BaseButtonLink
-            href="#create"
-            size="large"
-            variant="contained"
-            color="primary"
-            onClick={scrollIntoView}
-          >
-            {t('common:button.createSecret', 'Create a secret')}
-          </BaseButtonLink>
-        </Box>
       </Section>
 
       <Section
@@ -349,49 +336,6 @@ export const HomeView: CustomPage = () => {
         </BaseButtonLink>
       </Section>
 
-      {!isLoading && customer?.role !== 'premium' && (
-        <Section
-          id="Upsell"
-          title={t('common:views.Home.Upsell.title', 'Support us')}
-          subtitle={t('common:views.Home.Upsell.subtitle', {
-            defaultValue: `For only {{price}} a month you get full access to all current and upcoming features. A free account gets you the essentials.`,
-            price: formatCurrency(1),
-          })}
-        >
-          <AccountTeaser />
-          <Box
-            display="flex"
-            justifyContent="start"
-            alignItems={{ sm: 'center' }}
-            mt={4}
-            flexDirection={{ xs: 'column', sm: 'row' }}
-          >
-            <BaseButtonLink
-              prefetch={false}
-              href="/pricing"
-              size="large"
-              variant="contained"
-              color="primary"
-            >
-              {t('common:button.viewPlans', 'View plans')}
-            </BaseButtonLink>
-            {!customer?.role && (
-              <Box ml={{ sm: 2 }} pt={{ xs: 1, sm: 0 }}>
-                <BaseButtonLink
-                  fullWidth
-                  href="/signup"
-                  prefetch={false}
-                  size="large"
-                  variant="text"
-                  color="primary"
-                >
-                  {t('common:button.getFreeAccount', 'Get free account')}
-                </BaseButtonLink>
-              </Box>
-            )}
-          </Box>
-        </Section>
-      )}
       <Backdrop
         sx={{
           backgroundColor: 'rgba(27, 36, 46, .8)',
