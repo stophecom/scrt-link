@@ -7,7 +7,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { usePlausible } from 'next-plausible'
 
-import { LanguageSelector } from '@/components/LanguageSwitcher'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { Link, LinkProps } from '@/components/Link'
 import { appTitle, twitterLink, twitterHandle, uptimerobotUrl } from '@/constants'
 import Stats from '@/components/Stats'
@@ -239,7 +239,13 @@ const Footer: React.FC = () => {
           </IconButton>
         </Box>
 
-        <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
+        <Box
+          display="flex"
+          flexDirection={'column'}
+          justifyContent="center"
+          alignItems={'center'}
+          p={2}
+        >
           <Legal>
             <Trans i18nKey="common:components.Footer.abstract">
               <strong>Scrt.link</strong> lets you share sensitive information online. End-to-end
@@ -249,7 +255,8 @@ const Footer: React.FC = () => {
               communication channel. A one-time disposable link guarantees your secrets can only
               ever be accessed once - before being destroyed forever.
             </Trans>
-            <Box display="flex" justifyContent="center" flexWrap="wrap" p={2}>
+            <Box display="flex" justifyContent="center" flexWrap="wrap" pt={2}>
+              <span className="link-padding">©{new Date().getFullYear()} SANTiHANS GmbH</span>
               {about(t).map(({ href, label }, index) => (
                 <LinkAbout key={index} href={href} className="link-padding" color="inherit">
                   {label}
@@ -261,12 +268,9 @@ const Footer: React.FC = () => {
                 </LinkAbout>
                 <Bullet>●</Bullet>
               </span>
-              <LanguageSelector />
             </Box>
-            <span className="link-padding">
-              ©{new Date().getFullYear()} SANTiHANS GmbH - Made in Switzerland
-            </span>
           </Legal>
+          <LanguageSwitcher itemClassName="link-padding" />
         </Box>
         <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }}>
           <DangerButton
