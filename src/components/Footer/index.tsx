@@ -19,12 +19,13 @@ import { about, secrets, integrations, information, support } from '@/data/menu'
 const Neogram = dynamic(() => import('@/components/Neogram'))
 
 const StyledBox = styled(Box)`
-  font-size: 0.85em;
+  font-size: 0.85rem;
   background: ${({ theme }) => theme.palette.background.paper};
   color: ${({ theme }) => theme.palette.text.secondary};
   box-shadow: inset 0 10px 40px hsl(0deg 0% 0% / 20%);
 
   & .link-padding {
+    font-size: 0.85rem;
     padding: ${({ theme }) => theme.spacing(1)};
   }
 `

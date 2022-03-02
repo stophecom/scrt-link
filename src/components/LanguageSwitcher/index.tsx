@@ -3,10 +3,10 @@ import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie'
 import { useTranslation } from 'next-i18next'
-import { Link } from '@/components/Link'
-
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { Language as LanguageIcon } from '@mui/icons-material'
+
+import { Link } from '@/components/Link'
 
 import SROnly from '@/components/ScreenreaderOnly'
 import { supportedLanguages } from '@/constants'
@@ -102,17 +102,23 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className, i
 
   return (
     <div className={className}>
-      {supportedLanguages.map((language) => (
-        <Link
-          className={itemClassName}
-          key={language}
-          href={router.pathname}
-          locale={language}
-          onClick={() => setLocaleCookie(language)}
-        >
-          {languageMap[language as LanguageKeys] || language.toUpperCase()}
-        </Link>
-      ))}
+      {supportedLanguages.map((language) => {
+        return language === router.locale ? (
+          <Typography component="span" color="primary" className={itemClassName}>
+            {languageMap[language as LanguageKeys] || language.toUpperCase()}
+          </Typography>
+        ) : (
+          <Link
+            className={itemClassName}
+            key={language}
+            href={router.pathname}
+            locale={language}
+            onClick={() => setLocaleCookie(language)}
+          >
+            {languageMap[language as LanguageKeys] || language.toUpperCase()}
+          </Link>
+        )
+      })}
     </div>
   )
 }
