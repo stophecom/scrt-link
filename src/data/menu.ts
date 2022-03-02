@@ -5,7 +5,7 @@ import {
   chromeExtensionLink,
   firefoxExtensionLink,
   microsoftEdgeExtensionLink,
-  uptimerobotUrl,
+  twitterLink,
 } from '@/constants'
 
 export const secrets = (t: TFunction) => [
@@ -90,6 +90,13 @@ export const support = (t: TFunction) => [
   {
     href: '/contact',
     label: t('common:menu.contact', 'Contact'),
+  },
+  {
+    href: twitterLink,
+    prefetch: false,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    label: 'Twitter',
   },
 ]
 
