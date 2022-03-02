@@ -154,14 +154,14 @@ const NavigationMenu: React.FunctionComponent = () => {
             justifyContent={{ xs: 'center', sm: 'start' }}
           >
             <SubMenu
-              sx={{ '& a': { fontSize: ['1.4rem', '1.6em'] } }}
+              sx={{ '& a': { fontSize: ['1.9rem', '1.6em'] } }}
               menu={secrets(t)}
               title={t('common:menu.title.createSecret', 'Create secret')}
             />
           </Grid>
           <Grid item xs={12} sm={4} display={'flex'} justifyContent={{ xs: 'center', sm: 'start' }}>
             <SubMenu
-              sx={{ '& a': { fontSize: ['1.4rem', '1.6em'] } }}
+              sx={{ '& a': { fontSize: ['1.9rem', '1.6em'] } }}
               menu={account(t, !!session)}
               title={
                 <Box display={'inline-flex'} alignItems="center">
