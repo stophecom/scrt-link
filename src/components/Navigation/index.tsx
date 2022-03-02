@@ -249,7 +249,7 @@ const Navigation = () => {
           </Box>
         </NavigationInner>
         <NavigationButton
-          tabIndex="1"
+          tabIndex={1}
           aria-label={
             isActive
               ? t('common:button.closeMenu', 'Close menu')
