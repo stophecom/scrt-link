@@ -317,7 +317,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
     const charactersLeft = getLimits(customer?.role || 'visitor').maxMessageLength - messageLength
     return (
-      <small style={{ position: 'absolute', bottom: 12, right: 10, opacity: 0.6 }}>
+      <small style={{ position: 'absolute', bottom: 5, right: 10, opacity: 0.6 }}>
         {charactersLeft.toLocaleString()}
         {charactersLeft < 0 && (
           <>
@@ -414,7 +414,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       />
                     )}
                     {['text', 'neogram'].includes(secretType) && (
-                      <>
+                      <Box position={'relative'}>
                         <BaseTextField
                           name="message"
                           multiline
@@ -429,8 +429,8 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           aria-label={getFormFieldConfigBySecretType(secretType).label}
                           placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                         />
-                        <Counter messageLength={values?.message?.length || 0} />
-                      </>
+                        {isValid && <Counter messageLength={values?.message?.length || 0} />}
+                      </Box>
                     )}
                   </Box>
                   <Collapse in={hasFormOptions}>

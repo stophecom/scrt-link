@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Grid, Divider, Typography } from '@mui/material'
+import TrapFocus from '@mui/base/Unstable_TrapFocus'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
+import { Person } from '@mui/icons-material'
 
-import { Link } from '@/components/Link'
+import { Container } from '@/layouts/Default'
+import SubMenu from '@/components/SubMenu'
+import Logo from '@/components/Logo'
 import BaseButton from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
 import { LanguageSelector } from '@/components/LanguageSwitcher'
-import { main } from '@/data/menu'
+import { account, secrets, integrations, information, support } from '@/data/menu'
 
 const NavigationButton = styled(BaseButton)`
   align-items: center;
@@ -89,6 +93,7 @@ const NavigationInner = styled('div')`
   justify-content: center;
   left: 0;
   opacity: 0;
+  padding-top: 3em;
   pointer-events: none;
   position: fixed;
   top: 0;
@@ -108,29 +113,6 @@ const Nav = styled('nav')`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 2em 0;
-    text-align: center;
-  }
-
-  a {
-    display: block;
-    font-size: clamp(1.6rem, 5vw, 2rem);
-    color: ${({ theme }) => theme.palette.text.primary};
-    padding: 0.15em 1em;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &.Nav--active {
-      color: ${({ theme }) => theme.palette.primary.main};
-    }
-  }
 `
 
 const NavigationWrapper = styled('div')`
@@ -141,43 +123,103 @@ const NavigationWrapper = styled('div')`
   width: 100%;
 `
 
-const LanguageSwitcherWrapper = styled('div')`
-  display: flex;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  justify-content: center;
-`
-
 const NavigationMenu: React.FunctionComponent = () => {
-  const router = useRouter()
   const { data: session } = useSession()
   const { t } = useTranslation()
 
   return (
-    <Nav role="navigation" id="navigation" aria-label="Main navigation menu">
-      <ul>
-        {main(t).map(({ href, label }, index) => (
-          <li key={index}>
-            <Link
-              href={href}
-              key={index}
-              className={clsx({ 'Nav--active': router.pathname === href })}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Box>
+    <Nav
+      role="navigation"
+      id="navigation"
+      aria-label={t('components:Navigation.ariaLabel', 'Main navigation menu')}
+    >
+      <Container>
+        <Grid container spacing={{ sm: 2 }} mb={8} textAlign={{ xs: 'center', sm: 'left' }}>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            display={'flex'}
+            alignItems={'start'}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
+            <Logo fontSize={['1.4em']} />
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            display={'flex'}
+            mb={{ xs: 3, sm: 0 }}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
+            <SubMenu
+              sx={{ '& a': { fontSize: ['1.4rem', '1.6em'] } }}
+              menu={secrets(t)}
+              title={t('common:menu.title.createSecret', 'Create secret')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4} display={'flex'} justifyContent={{ xs: 'center', sm: 'start' }}>
+            <SubMenu
+              sx={{ '& a': { fontSize: ['1.4rem', '1.6em'] } }}
+              menu={account(t, !!session)}
+              title={
+                <Box display={'inline-flex'} alignItems="center">
+                  <Person sx={{ marginRight: '.2em' }} />
+                  {t('common:menu.title.account', 'Account')}
+                </Box>
+              }
+            />
+          </Grid>
+        </Grid>
+
         <Divider />
-        <Box pt={2}>
-          {session ? (
-            <Link href="/account">{t('common:button.account', 'My Account')}</Link>
-          ) : (
-            <Link href="/signup">{t('common:button.getAccount', 'Get Account')}</Link>
-          )}
-        </Box>
-      </Box>
+
+        <Grid
+          container
+          spacing={2}
+          justifyContent="space-between"
+          mb={5}
+          mt={{ xs: 3, sm: 0 }}
+          textAlign={{ xs: 'center', sm: 'left' }}
+        >
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            mb={{ xs: 2, sm: 0 }}
+            display={'flex'}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
+            <SubMenu
+              sx={{ '& a': { fontSize: ['1.4rem', '1em'] } }}
+              menu={integrations}
+              title={t('common:menu.title.integrations', 'Integrations')}
+            />
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            mb={{ xs: 2, sm: 0 }}
+            display={'flex'}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
+            <SubMenu
+              sx={{ '& a': { fontSize: ['1.4rem', '1em'] } }}
+              menu={information(t)}
+              title={t('common:menu.title.information', 'Information')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4} display={'flex'} justifyContent={{ xs: 'center', sm: 'start' }}>
+            <SubMenu
+              sx={{ '& a': { fontSize: ['1.4rem', '1em'] } }}
+              menu={support(t)}
+              title={t('common:menu.title.support', 'Support')}
+            />
+          </Grid>
+        </Grid>
+      </Container>
     </Nav>
   )
 }
@@ -212,6 +254,12 @@ const Navigation = () => {
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler)
 
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeNavigation()
+      }
+    })
+
     router.events.on('routeChangeStart', () => {
       closeNavigation()
     })
@@ -222,47 +270,49 @@ const Navigation = () => {
   })
 
   return (
-    <div>
-      <NavigationInner
-        className={clsx({
-          'Navigation--active': isActive,
-        })}
-      >
-        <NavigationWrapper>
-          <NavigationMenu />
-          <LanguageSwitcherWrapper>
-            <LanguageSelector />
-          </LanguageSwitcherWrapper>
-        </NavigationWrapper>
-        <Box p={1}>
-          <BaseButton color="primary" onClick={closeNavigation}>
-            {t('common:button.close', 'Close')}
-          </BaseButton>
-        </Box>
-      </NavigationInner>
-      <NavigationButton
-        aria-label={
-          isActive
-            ? t('common:button.closeMenu', 'Close menu')
-            : t('common:button.openMenu', 'Open menu')
-        }
-        aria-controls="navigation"
-        onClick={isActive ? closeNavigation : showNavigation}
-      >
-        <Typography variant="button">{t('common:button.menu', 'Menu')}</Typography>
-        <Hamburger
+    <TrapFocus open={isActive}>
+      <div>
+        <NavigationInner
           className={clsx({
-            'Hamburger--active': isActive,
+            'Navigation--active': isActive,
           })}
         >
-          <SROnly>
-            {isActive
+          <NavigationWrapper>
+            <NavigationMenu />
+            <Box display={'flex'} justifyContent={'center'} my={2}>
+              <LanguageSelector />
+            </Box>
+          </NavigationWrapper>
+          <Box p={1}>
+            <BaseButton color="primary" onClick={closeNavigation}>
+              {t('common:button.close', 'Close')}
+            </BaseButton>
+          </Box>
+        </NavigationInner>
+        <NavigationButton
+          aria-label={
+            isActive
               ? t('common:button.closeMenu', 'Close menu')
-              : t('common:button.openMenu', 'Open menu')}
-          </SROnly>
-        </Hamburger>
-      </NavigationButton>
-    </div>
+              : t('common:button.openMenu', 'Open menu')
+          }
+          aria-controls="navigation"
+          onClick={isActive ? closeNavigation : showNavigation}
+        >
+          <Typography variant="button">{t('common:button.menu', 'Menu')}</Typography>
+          <Hamburger
+            className={clsx({
+              'Hamburger--active': isActive,
+            })}
+          >
+            <SROnly>
+              {isActive
+                ? t('common:button.closeMenu', 'Close menu')
+                : t('common:button.openMenu', 'Open menu')}
+            </SROnly>
+          </Hamburger>
+        </NavigationButton>
+      </div>
+    </TrapFocus>
   )
 }
 

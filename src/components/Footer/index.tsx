@@ -8,9 +8,11 @@ import dynamic from 'next/dynamic'
 import { usePlausible } from 'next-plausible'
 
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
-import { Link, LinkProps } from '@/components/Link'
+import { Link } from '@/components/Link'
 import { appTitle, twitterLink, twitterHandle, uptimerobotUrl } from '@/constants'
 import Stats from '@/components/Stats'
+import SubMenu from '@/components/SubMenu'
+import Logo from '@/components/Logo'
 import { Container } from '@/layouts/Default'
 import { about, secrets, integrations, information, support } from '@/data/menu'
 
@@ -27,19 +29,11 @@ const StyledBox = styled(Box)`
   }
 `
 
-const LinkStyled = styled(Link)`
-  font-size: 1rem;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
-`
-
 const Legal = styled('div')`
   opacity: 0.7;
   text-align: center;
 `
-const LinkAbout = styled(Link)`
-  text-decoration: underline;
-`
+
 const Bullet = styled('span')`
   color: ${({ theme }) => theme.palette.success.main};
   padding-left: 5px;
@@ -136,36 +130,6 @@ const DangerButton = styled('button')`
   }
 `
 
-interface CustomLink extends LinkProps {
-  label: string
-}
-type SubMenuProps = {
-  menu: CustomLink[]
-  title: string
-}
-const SubMenu: React.FC<SubMenuProps> = ({ title, menu }) => {
-  return (
-    <>
-      <Typography fontWeight={'bold'} mb={1} pt={3} color="primary">
-        {title}
-      </Typography>
-      {menu.map(({ label, href, prefetch, target, rel }, index) => (
-        <LinkStyled
-          key={index}
-          href={href}
-          prefetch={prefetch}
-          target={target}
-          rel={rel}
-          color="inherit"
-          underline="hover"
-        >
-          {label}
-        </LinkStyled>
-      ))}
-    </>
-  )
-}
-
 type MenuBlockProps = {
   children: ReactNode
 }
@@ -188,20 +152,7 @@ const Footer: React.FC = () => {
       <Container>
         <Grid container spacing={2} justifyContent="space-between" mb={5}>
           <Grid item xs={12} sm={12} md={'auto'} display={'flex'} flexDirection={'column'}>
-            <Link
-              href="/"
-              mb={3}
-              pt={2}
-              display={'flex'}
-              alignItems={'center'}
-              underline="none"
-              color="inherit"
-            >
-              <Image src="/logo-transparent.svg" width={40} height={40} alt={appTitle} />
-              <Typography ml={1} fontWeight={'bold'}>
-                {appTitle}
-              </Typography>
-            </Link>
+            <Logo mb={3} pt={2} />
           </Grid>
           <GridBlock>
             <SubMenu menu={secrets(t)} title={t('common:menu.title.secrets', 'Secrets')} />
@@ -219,7 +170,7 @@ const Footer: React.FC = () => {
             />
           </GridBlock>
           <GridBlock>
-            <SubMenu menu={support(t)} title={t('common:menu.title.support', 'Support')} />
+            <SubMenu menu={support(t)} title={t('common:menu.title.help', 'Help')} />
           </GridBlock>
         </Grid>
 
@@ -258,14 +209,14 @@ const Footer: React.FC = () => {
             <Box display="flex" justifyContent="center" flexWrap="wrap" pt={2}>
               <span className="link-padding">©{new Date().getFullYear()} SANTiHANS GmbH</span>
               {about(t).map(({ href, label }, index) => (
-                <LinkAbout key={index} href={href} className="link-padding" color="inherit">
+                <Link key={index} href={href} className="link-padding" color="inherit">
                   {label}
-                </LinkAbout>
+                </Link>
               ))}
               <span className="link-padding">
-                <LinkAbout href={uptimerobotUrl} target="_blank" rel="noreferrer" color="inherit">
+                <Link href={uptimerobotUrl} target="_blank" rel="noreferrer" color="inherit">
                   {t('common:menu.status', 'Status')}
-                </LinkAbout>
+                </Link>
                 <Bullet>●</Bullet>
               </span>
             </Box>
