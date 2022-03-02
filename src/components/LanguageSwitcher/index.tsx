@@ -3,6 +3,7 @@ import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie'
 import { useTranslation } from 'next-i18next'
+import { Link } from '@/components/Link'
 
 import { Box } from '@mui/material'
 import { Language as LanguageIcon } from '@mui/icons-material'
@@ -89,5 +90,29 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
         ))}
       </select>
     </StyledBox>
+  )
+}
+
+type LanguageSwitcherProps = {
+  className?: string
+  itemClassName?: string
+}
+export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className, itemClassName }) => {
+  const router = useRouter()
+
+  return (
+    <div className={className}>
+      {supportedLanguages.map((language) => (
+        <Link
+          className={itemClassName}
+          key={language}
+          href={router.pathname}
+          locale={language}
+          onClick={() => setLocaleCookie(language)}
+        >
+          {languageMap[language as LanguageKeys] || language.toUpperCase()}
+        </Link>
+      ))}
+    </div>
   )
 }
