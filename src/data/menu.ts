@@ -75,7 +75,7 @@ export const information = (t: TFunction) => [
   },
   {
     href: blogUrl,
-    label: t('common:menu.blog', 'Developer Blog'),
+    label: t('common:menu.blog', 'Blog'),
     prefetch: false,
     target: '_blank',
     rel: 'noopener noreferrer',
@@ -88,15 +88,15 @@ export const support = (t: TFunction) => [
     label: t('common:menu.faq', 'FAQ'),
   },
   {
-    href: '/contact',
-    label: t('common:menu.contact', 'Contact'),
-  },
-  {
     href: twitterLink,
     prefetch: false,
     target: '_blank',
     rel: 'noopener noreferrer',
     label: 'Twitter',
+  },
+  {
+    href: '/contact',
+    label: t('common:menu.contact', 'Contact'),
   },
 ]
 

@@ -11,6 +11,7 @@ import { Person } from '@mui/icons-material'
 
 import { Container } from '@/layouts/Default'
 import SubMenu from '@/components/SubMenu'
+import Logo from '@/components/Logo'
 import BaseButton from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
 import { LanguageSelector } from '@/components/LanguageSwitcher'
@@ -133,17 +134,34 @@ const NavigationMenu: React.FunctionComponent = () => {
       aria-label={t('components:Navigation.ariaLabel', 'Main navigation menu')}
     >
       <Container>
-        <Grid container spacing={2} justifyContent="space-between" mb={6} textAlign="center">
-          <Grid item xs={12} sm={6} display={'flex'} justifyContent="center" mb={{ xs: 3, sm: 0 }}>
+        <Grid container spacing={{ sm: 2 }} mb={8} textAlign={{ xs: 'center', sm: 'left' }}>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            display={'flex'}
+            alignItems={'start'}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
+            <Logo fontSize={['1.4em']} />
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            display={'flex'}
+            mb={{ xs: 3, sm: 0 }}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
             <SubMenu
-              sx={{ '& a': { fontSize: 'clamp(1.6rem, 10vw, 2rem)' } }}
+              sx={{ '& a': { fontSize: ['1.4rem', '1.6em'] } }}
               menu={secrets(t)}
               title={t('common:menu.title.createSecret', 'Create secret')}
             />
           </Grid>
-          <Grid item xs={12} sm={6} display={'flex'} justifyContent="center">
+          <Grid item xs={12} sm={4} display={'flex'} justifyContent={{ xs: 'center', sm: 'start' }}>
             <SubMenu
-              sx={{ '& a': { fontSize: 'clamp(1.6rem, 10vw, 2rem)' } }}
+              sx={{ '& a': { fontSize: ['1.4rem', '1.6em'] } }}
               menu={account(t, !!session)}
               title={
                 <Box display={'inline-flex'} alignItems="center">
@@ -161,27 +179,41 @@ const NavigationMenu: React.FunctionComponent = () => {
           container
           spacing={2}
           justifyContent="space-between"
-          mt={3}
           mb={5}
+          mt={{ xs: 3, sm: 0 }}
           textAlign={{ xs: 'center', sm: 'left' }}
         >
-          <Grid item xs={12} sm={4} display={'flex'} justifyContent="center">
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            mb={{ xs: 2, sm: 0 }}
+            display={'flex'}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
             <SubMenu
-              sx={{ '& a': { fontSize: '1.4rem' } }}
+              sx={{ '& a': { fontSize: ['1.4rem', '1em'] } }}
               menu={integrations}
               title={t('common:menu.title.integrations', 'Integrations')}
             />
           </Grid>
-          <Grid item xs={12} sm={4} display={'flex'} justifyContent="center">
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            mb={{ xs: 2, sm: 0 }}
+            display={'flex'}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          >
             <SubMenu
-              sx={{ '& a': { fontSize: '1.4rem' } }}
+              sx={{ '& a': { fontSize: ['1.4rem', '1em'] } }}
               menu={information(t)}
               title={t('common:menu.title.information', 'Information')}
             />
           </Grid>
-          <Grid item xs={12} sm={4} display={'flex'} justifyContent="center">
+          <Grid item xs={12} sm={4} display={'flex'} justifyContent={{ xs: 'center', sm: 'start' }}>
             <SubMenu
-              sx={{ '& a': { fontSize: '1.4rem' } }}
+              sx={{ '& a': { fontSize: ['1.4rem', '1em'] } }}
               menu={support(t)}
               title={t('common:menu.title.support', 'Support')}
             />
