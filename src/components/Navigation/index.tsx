@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Grid, Divider, Typography } from '@mui/material'
 import TrapFocus from '@mui/base/Unstable_TrapFocus'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
+import { Person } from '@mui/icons-material'
 
-import { Link } from '@/components/Link'
+import { Container } from '@/layouts/Default'
+import SubMenu from '@/components/SubMenu'
 import BaseButton from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
 import { LanguageSelector } from '@/components/LanguageSwitcher'
-import { main } from '@/data/menu'
+import { account, secrets, integrations, information, support } from '@/data/menu'
 
 const NavigationButton = styled(BaseButton)`
   align-items: center;
@@ -90,6 +92,7 @@ const NavigationInner = styled('div')`
   justify-content: center;
   left: 0;
   opacity: 0;
+  padding-top: 3em;
   pointer-events: none;
   position: fixed;
   top: 0;
@@ -109,29 +112,6 @@ const Nav = styled('nav')`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 2em 0;
-    text-align: center;
-  }
-
-  a {
-    display: block;
-    font-size: clamp(1.6rem, 5vw, 2rem);
-    color: ${({ theme }) => theme.palette.text.primary};
-    padding: 0.15em 1em;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &.Nav--active {
-      color: ${({ theme }) => theme.palette.primary.main};
-    }
-  }
 `
 
 const NavigationWrapper = styled('div')`
@@ -142,43 +122,72 @@ const NavigationWrapper = styled('div')`
   width: 100%;
 `
 
-const LanguageSwitcherWrapper = styled('div')`
-  display: flex;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  justify-content: center;
-`
-
 const NavigationMenu: React.FunctionComponent = () => {
-  const router = useRouter()
   const { data: session } = useSession()
   const { t } = useTranslation()
 
   return (
-    <Nav role="navigation" id="navigation" aria-label="Main navigation menu">
-      <ul>
-        {main(t).map(({ href, label }, index) => (
-          <li key={index}>
-            <Link
-              href={href}
-              key={index}
-              className={clsx({ 'Nav--active': router.pathname === href })}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Box>
+    <Nav
+      role="navigation"
+      id="navigation"
+      aria-label={t('components:Navigation.ariaLabel', 'Main navigation menu')}
+    >
+      <Container>
+        <Grid container spacing={2} justifyContent="space-between" mb={6} textAlign="center">
+          <Grid item xs={12} sm={6} display={'flex'} justifyContent="center" mb={{ xs: 3, sm: 0 }}>
+            <SubMenu
+              sx={{ '& a': { fontSize: 'clamp(1.6rem, 10vw, 2rem)' } }}
+              menu={secrets(t)}
+              title={t('common:menu.title.createSecret', 'Create secret')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} display={'flex'} justifyContent="center">
+            <SubMenu
+              sx={{ '& a': { fontSize: 'clamp(1.6rem, 10vw, 2rem)' } }}
+              menu={account(t, !!session)}
+              title={
+                <Box display={'inline-flex'} alignItems="center">
+                  <Person sx={{ marginRight: '.2em' }} />
+                  {t('common:menu.title.account', 'Account')}
+                </Box>
+              }
+            />
+          </Grid>
+        </Grid>
+
         <Divider />
-        <Box pt={2}>
-          {session ? (
-            <Link href="/account">{t('common:button.account', 'My Account')}</Link>
-          ) : (
-            <Link href="/signup">{t('common:button.getAccount', 'Get Account')}</Link>
-          )}
-        </Box>
-      </Box>
+
+        <Grid
+          container
+          spacing={2}
+          justifyContent="space-between"
+          mt={3}
+          mb={5}
+          textAlign={{ xs: 'center', sm: 'left' }}
+        >
+          <Grid item xs={12} sm={4} display={'flex'} justifyContent="center">
+            <SubMenu
+              sx={{ '& a': { fontSize: '1.4rem' } }}
+              menu={integrations}
+              title={t('common:menu.title.integrations', 'Integrations')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4} display={'flex'} justifyContent="center">
+            <SubMenu
+              sx={{ '& a': { fontSize: '1.4rem' } }}
+              menu={information(t)}
+              title={t('common:menu.title.information', 'Information')}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4} display={'flex'} justifyContent="center">
+            <SubMenu
+              sx={{ '& a': { fontSize: '1.4rem' } }}
+              menu={support(t)}
+              title={t('common:menu.title.support', 'Support')}
+            />
+          </Grid>
+        </Grid>
+      </Container>
     </Nav>
   )
 }
@@ -215,7 +224,7 @@ const Navigation = () => {
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        setIsActive(false)
+        closeNavigation()
       }
     })
 
@@ -238,9 +247,9 @@ const Navigation = () => {
         >
           <NavigationWrapper>
             <NavigationMenu />
-            <LanguageSwitcherWrapper>
+            <Box display={'flex'} justifyContent={'center'} my={2}>
               <LanguageSelector />
-            </LanguageSwitcherWrapper>
+            </Box>
           </NavigationWrapper>
           <Box p={1}>
             <BaseButton color="primary" onClick={closeNavigation}>
@@ -249,7 +258,6 @@ const Navigation = () => {
           </Box>
         </NavigationInner>
         <NavigationButton
-          tabIndex={1}
           aria-label={
             isActive
               ? t('common:button.closeMenu', 'Close menu')

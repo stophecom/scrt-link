@@ -100,45 +100,35 @@ export const support = (t: TFunction) => [
   },
 ]
 
-// Deprecate this
-export const main = (t: TFunction) => [
-  {
-    href: '/',
-    label: t('common:menu.home', 'Home'),
-  },
-  {
-    href: '/about',
-    label: t('common:menu.about', 'About'),
-  },
-  {
-    href: '/security',
-    label: t('common:menu.security', 'Security'),
-  },
-  {
-    href: '/privacy',
-    label: t('common:menu.privacy', 'Privacy'),
-  },
-  {
-    href: '/pricing',
-    label: t('common:menu.pricing', 'Pricing'),
-    prefetch: false,
-  },
-  {
-    href: '/faq',
-    label: t('common:menu.faq', 'FAQ'),
-  },
-  {
-    href: '/contact',
-    label: t('common:menu.contact', 'Contact'),
-  },
-]
-
 export const terms = (t: TFunction) => [
   {
     href: '/terms-of-service',
     label: t('common:menu.termsOfService', 'Terms of Service'),
   },
 ]
+
+export const account = (t: TFunction, isUser: boolean) =>
+  isUser
+    ? [
+        {
+          href: '/account',
+          label: t('common:menu.account', 'My Account'),
+        },
+        {
+          href: '/signout',
+          label: t('common:menu.signOut', 'Sign out'),
+        },
+      ]
+    : [
+        {
+          href: '/signup',
+          label: t('common:menu.register', 'Register'),
+        },
+        {
+          href: '/signin',
+          label: t('common:menu.signIn', 'Sign in'),
+        },
+      ]
 
 export const policies = (t: TFunction) => [
   {

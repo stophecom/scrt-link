@@ -8,9 +8,10 @@ import dynamic from 'next/dynamic'
 import { usePlausible } from 'next-plausible'
 
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
-import { Link, LinkProps } from '@/components/Link'
+import { Link } from '@/components/Link'
 import { appTitle, twitterLink, twitterHandle, uptimerobotUrl } from '@/constants'
 import Stats from '@/components/Stats'
+import SubMenu from '@/components/SubMenu'
 import { Container } from '@/layouts/Default'
 import { about, secrets, integrations, information, support } from '@/data/menu'
 
@@ -25,12 +26,6 @@ const StyledBox = styled(Box)`
   & .link-padding {
     padding: ${({ theme }) => theme.spacing(1)};
   }
-`
-
-const LinkStyled = styled(Link)`
-  font-size: 1rem;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
 `
 
 const Legal = styled('div')`
@@ -135,36 +130,6 @@ const DangerButton = styled('button')`
     outline: none;
   }
 `
-
-interface CustomLink extends LinkProps {
-  label: string
-}
-type SubMenuProps = {
-  menu: CustomLink[]
-  title: string
-}
-const SubMenu: React.FC<SubMenuProps> = ({ title, menu }) => {
-  return (
-    <>
-      <Typography fontWeight={'bold'} mb={1} pt={3} color="primary">
-        {title}
-      </Typography>
-      {menu.map(({ label, href, prefetch, target, rel }, index) => (
-        <LinkStyled
-          key={index}
-          href={href}
-          prefetch={prefetch}
-          target={target}
-          rel={rel}
-          color="inherit"
-          underline="hover"
-        >
-          {label}
-        </LinkStyled>
-      ))}
-    </>
-  )
-}
 
 type MenuBlockProps = {
   children: ReactNode
