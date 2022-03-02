@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
 import { Box, Divider, Typography } from '@mui/material'
+import TrapFocus from '@mui/base/Unstable_TrapFocus'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
@@ -212,6 +213,12 @@ const Navigation = () => {
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler)
 
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setIsActive(false)
+      }
+    })
+
     router.events.on('routeChangeStart', () => {
       closeNavigation()
     })
@@ -222,47 +229,50 @@ const Navigation = () => {
   })
 
   return (
-    <div>
-      <NavigationInner
-        className={clsx({
-          'Navigation--active': isActive,
-        })}
-      >
-        <NavigationWrapper>
-          <NavigationMenu />
-          <LanguageSwitcherWrapper>
-            <LanguageSelector />
-          </LanguageSwitcherWrapper>
-        </NavigationWrapper>
-        <Box p={1}>
-          <BaseButton color="primary" onClick={closeNavigation}>
-            {t('common:button.close', 'Close')}
-          </BaseButton>
-        </Box>
-      </NavigationInner>
-      <NavigationButton
-        aria-label={
-          isActive
-            ? t('common:button.closeMenu', 'Close menu')
-            : t('common:button.openMenu', 'Open menu')
-        }
-        aria-controls="navigation"
-        onClick={isActive ? closeNavigation : showNavigation}
-      >
-        <Typography variant="button">{t('common:button.menu', 'Menu')}</Typography>
-        <Hamburger
+    <TrapFocus open={isActive}>
+      <div>
+        <NavigationInner
           className={clsx({
-            'Hamburger--active': isActive,
+            'Navigation--active': isActive,
           })}
         >
-          <SROnly>
-            {isActive
+          <NavigationWrapper>
+            <NavigationMenu />
+            <LanguageSwitcherWrapper>
+              <LanguageSelector />
+            </LanguageSwitcherWrapper>
+          </NavigationWrapper>
+          <Box p={1}>
+            <BaseButton color="primary" onClick={closeNavigation}>
+              {t('common:button.close', 'Close')}
+            </BaseButton>
+          </Box>
+        </NavigationInner>
+        <NavigationButton
+          tabIndex="1"
+          aria-label={
+            isActive
               ? t('common:button.closeMenu', 'Close menu')
-              : t('common:button.openMenu', 'Open menu')}
-          </SROnly>
-        </Hamburger>
-      </NavigationButton>
-    </div>
+              : t('common:button.openMenu', 'Open menu')
+          }
+          aria-controls="navigation"
+          onClick={isActive ? closeNavigation : showNavigation}
+        >
+          <Typography variant="button">{t('common:button.menu', 'Menu')}</Typography>
+          <Hamburger
+            className={clsx({
+              'Hamburger--active': isActive,
+            })}
+          >
+            <SROnly>
+              {isActive
+                ? t('common:button.closeMenu', 'Close menu')
+                : t('common:button.openMenu', 'Open menu')}
+            </SROnly>
+          </Hamburger>
+        </NavigationButton>
+      </div>
+    </TrapFocus>
   )
 }
 
