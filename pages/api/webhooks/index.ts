@@ -7,7 +7,6 @@ import NextCors from 'nextjs-cors'
 import withDb from '@/api/middlewares/withDb'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
-import { Role } from '@/api/models/Customer'
 
 const webhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET!
 
@@ -62,7 +61,7 @@ const handler: NextApiHandler = async (req, res) => {
             {
               'stripe.customerId': subscription.customer,
             },
-            { role: subscription.items.data[0].price.metadata.role as Role },
+            { role: 'premium' },
           )
           console.log('✅ Subscription active:', event.type)
         } else {
