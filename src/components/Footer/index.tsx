@@ -234,9 +234,7 @@ const Footer: React.FC = () => {
             <span className="shadow"></span>
             <span className="edge"></span>
             <span className="front"></span>
-            <span className="label">
-              {t('common:button.dangerButton', `Never ever push that button!`)}
-            </span>
+            <span className="label">{`Never ever push that button!`}</span>
           </DangerButton>
           <Neogram
             message={`Hey!\nYou were not supposed to push that button.\n\nRepeat after me:\n
