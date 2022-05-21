@@ -442,7 +442,7 @@
           "text": "After the secret has been viewed, it gets destroyed."
         },
         "title": "One-Time Secrets",
-        "subtitle": "Share sensitive information that can only be viewed one time. The perfect way to transmit passwords, credit card information, private keys, or other confidential information."
+        "subtitle": "Share sensitive information that can only be viewed one time. The perfect way to transmit passwords, credit card information, private keys, or other confidential data."
       },
       "success": {
         "title": "Success!",
