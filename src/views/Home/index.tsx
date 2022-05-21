@@ -221,23 +221,25 @@ export const HomeView: CustomPage = () => {
       <Section
         id="HowItWorks"
         mb={3}
-        title={t('common:views.Home.HowItWorks.title', 'How it works')}
-        subtitle={t(
-          'common:views.Home.HowItWorks.subtitle',
-          `Create end-to-end encrypted, one-time secrets with ease: Add your message and submit the form. That's it. You'll get a secret link to share with your confidant.`,
-        )}
+        title={t('common:views.Home.HowItWorks.title', 'One-Time Secrets')}
+        subtitle={t('common:views.Home.HowItWorks.subtitle')}
       >
         <HowItWorks />
       </Section>
 
       <Section
         id="SecretLinksExplained"
-        title={t('common:views.Home.SecretLinksExplained.title', 'Secret links explained')}
-        subtitle={t(
-          'common:views.Home.SecretLinksExplained.subtitle',
-          'We generate two random strings, one to identify your secret in the database and one to encrypt your message in the browser. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.',
-        )}
+        title={t('common:views.Home.SecretLinksExplained.title', 'End-to-End Encryption')}
+        subtitle={t('common:views.Home.SecretLinksExplained.subtitle')}
       >
+        <BaseButtonLink
+          href="/security"
+          variant="contained"
+          color="primary"
+          startIcon={<ArrowForward />}
+        >
+          {t('common:views.Home.SecretLinksExplained.button', 'Learn more about security')}
+        </BaseButtonLink>
         <Box mb={0}>
           <Image
             width={1030}
@@ -246,14 +248,6 @@ export const HomeView: CustomPage = () => {
             alt={t('common:views.Home.SecretLinksExplained.imageAlt', 'Link explained')}
           />
         </Box>
-        <BaseButtonLink
-          href="/security"
-          variant="text"
-          color="primary"
-          startIcon={<ArrowForward />}
-        >
-          {t('common:views.Home.SecretLinksExplained.button', 'Learn more about security')}
-        </BaseButtonLink>
       </Section>
 
       <Section

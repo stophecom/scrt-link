@@ -27,7 +27,7 @@ const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): 
   const url = `${baseUrl}${strippedPathname}`
   const title = appTitle
   const description = t('common:meta.description', {
-    defaultValue: `With {{appTitle}} you can securely share sensitive information online: End-to-end encryption combined with a one time self-destructive link.`,
+    defaultValue: `Share a one-time secret. With {{appTitle}} you can transmit passwords, credit card information, private keys or other sensitive data in a secure way: End-to-end encrypted. One time.`,
     appTitle,
   })
   return {

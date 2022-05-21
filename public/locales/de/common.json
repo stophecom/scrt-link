@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "Mit {{appTitle}} kannst du sensible Informationen sicher online teilen: Ende-zu-Ende verschlüsselt. Einmalig.",
+    "description": "Teile geheime Informationen. Mit {{appTitle}} kannst du Passwörter, Kreditkarteninformationen, private Schlüssel oder andere sensible Daten auf sichere Weise weitergeben: Ende-zu-Ende verschlüsselt. Einmalig. Diskret.",
     "images": {
       "alt": "{{appTitle}} - Teile ein Geheimnis!'"
     },
@@ -438,8 +438,8 @@
           "title": "Zerstören",
           "text": "Nachdem das Geheimnis gesehen wurde, wird es vernichtet."
         },
-        "title": "So funktioniert's",
-        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
+        "title": "Einmal-Geheimnisse",
+        "subtitle": "Gib vertrauliche Informationen weiter, die nur ein einziges Mal eingesehen werden können. Der perfekte Weg, um Passwörter, Kreditkarteninformationen, private Schlüssel oder andere vertrauliche Informationen zu übertragen."
       },
       "success": {
         "title": "Erfolg!",
@@ -450,10 +450,10 @@
         "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
       },
       "SecretLinksExplained": {
-        "title": "Geheime Links erklärt",
-        "subtitle": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung deines Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht im Browser. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
-        "imageAlt": "Geheime Links erklärt",
-        "button": "Mehr über Sicherheit erfahren"
+        "title": "Ende-zu-Ende-Verschlüsselung",
+        "subtitle": "Wir verschlüsseln deine Geheiminformation bereits auf deinem Gerät. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
+        "button": "Mehr über Sicherheit erfahren",
+        "imageAlt": "Geheime Links erklärt"
       },
       "SlackApp": {
         "title": "Die Slack App\u00a0<1><0>NEU</0></1>",

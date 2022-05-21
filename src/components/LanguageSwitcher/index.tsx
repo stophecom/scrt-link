@@ -104,7 +104,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className, i
     <div className={className}>
       {supportedLanguages.map((language) => {
         return language === router.locale ? (
-          <Typography component="span" color="primary" className={itemClassName}>
+          <Typography key={language} component="span" color="primary" className={itemClassName}>
             {languageMap[language as LanguageKeys] || language.toUpperCase()}
           </Typography>
         ) : (
