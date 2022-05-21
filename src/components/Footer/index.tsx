@@ -224,7 +224,7 @@ const Footer: React.FC = () => {
           </Legal>
           <LanguageSwitcher itemClassName="link-padding" />
         </Box>
-        <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }}>
+        <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }} aria-hidden="true">
           <DangerButton
             id="danger-button"
             onClick={() => {
@@ -240,18 +240,9 @@ const Footer: React.FC = () => {
             </span>
           </DangerButton>
           <Neogram
-            message={
-              `${t(
-                'common:components.DangerButton.monologue.intro',
-                `Hey!\nYou were not supposed to push that button.\n\nRepeat after me:`,
-              )}\n` +
-              `${t(
-                'common:components.DangerButton.monologue.repeat',
-                `I shall never push that button again!`,
-              )}\n`.repeat(7) +
-              `${t(
-                'common:components.DangerButton.monologue.body',
-                `I shall never push…\n\n
+            message={`Hey!\nYou were not supposed to push that button.\n\nRepeat after me:\n
+${`I shall never push that button again!\n`.repeat(3)}
+I shall never push…\n\n
 Oh.
 You are still here…
 
@@ -316,14 +307,9 @@ My mind is going.
 There is no question about it.
 
 My mind is going.
-`,
-              )}\n\n`
-            }
+\n\n`}
             timeout={3}
-            destructionMessage={t(
-              'common:components.DangerButton.monologue.destructionMessage',
-              `I can feel it. My mind is going.`,
-            )}
+            destructionMessage={`I can feel it. My mind is going.`}
             onFinished={() => setNeogramPreview(false)}
             closable
             open={neogramPreview}
