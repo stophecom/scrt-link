@@ -116,6 +116,10 @@
               "heading": "Email delivery service",
               "body": "No more app switching: Send secret links directly from our platform."
             },
+            "secretTypes": {
+              "heading": "All secret types",
+              "body": "With an account you get access to all secret types."
+            },
             "files": {
               "heading": "{{uploadLimit}} files",
               "body": "You can send files with up to {{uploadLimit}}."

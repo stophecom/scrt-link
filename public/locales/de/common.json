@@ -116,6 +116,10 @@
               "heading": "E-Mailversand",
               "body": "Kein App-Wechsel mehr: Sende geheime Links direkt via E-Mail von unserer Plattform aus."
             },
+            "secretTypes": {
+              "heading": "Alle Arten von Geheimnissen",
+              "body": "Mit einem Gratis-Konto kannst du alle Arten von Geheimnissen teilen."
+            },
             "files": {
               "heading": "{{uploadLimit}} Dateien",
               "body": "Sende Dateien bis zu {{uploadLimit}}."
@@ -173,7 +177,7 @@
     },
     "UpgradeNotice": {
       "premium": "Besorge dir ein <1>Premium-Konto</1>, um diese Funktion zu aktivieren.",
-      "free": "<1>Melde dich an</1>, um diese Funktion zu nutzen."
+      "free": "<1>Eröffne ein Gratis-Konto</1>, um diese Funktion zu nutzen."
     },
     "AccountTeaser": {
       "items1": {

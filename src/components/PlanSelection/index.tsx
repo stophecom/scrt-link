@@ -140,6 +140,16 @@ const PlanSelection: React.FunctionComponent = () => {
 
   const freeUsps = [
     {
+      heading: t(
+        'common:components.PlanSelection.plans.free.usps.secretTypes.heading',
+        'All secret types',
+      ),
+      body: t(
+        'common:components.PlanSelection.plans.free.usps.secretTypes.body',
+        'With an account you get access to all secret types.',
+      ),
+    },
+    {
       heading: t('common:components.PlanSelection.plans.free.usps.0.heading', {
         defaultValue: `{{characterLimit}} character limit`,
         characterLimit: abbrNum(limits.free.maxMessageLength, 1),
