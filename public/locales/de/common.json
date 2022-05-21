@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "Mit {{appTitle}} kannst du sensible Informationen sicher online teilen: Ende-zu-Ende verschlüsselt. Einmalig.",
+    "description": "Teile geheime Informationen. Mit {{appTitle}} kannst du Passwörter, Kreditkarteninformationen, private Schlüssel oder andere sensible Daten auf sichere Weise weitergeben: Ende-zu-Ende verschlüsselt. Einmalig. Diskret.",
     "images": {
       "alt": "{{appTitle}} - Teile ein Geheimnis!'"
     },
@@ -27,14 +27,6 @@
     },
     "Footer": {
       "abstract": "Dank <strong>scrt.link</strong> kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmalig.<br/>Halte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnis nur einmal gelesen werden kann - bevor es für immer zerstört wird."
-    },
-    "DangerButton": {
-      "monologue": {
-        "intro": "\n\nHey!\nDu hättest den Knopf nicht drücken sollen.\n\nSprich mir nach:",
-        "repeat": "Ich werde diesen Knopf nie wieder drücken!",
-        "body": "Ich werde diesen Knopf…\n\n\nOh.\nDu bist immer noch da…\n\nSchön!\nJetzt, wo ich deine Aufmerksamkeit habe…\nWarum hast du den Knopf gedrückt?\nMagst du die Gefahr?\n\nHm…\nIch glaube du bist einfach neugierig…\nund mutig\nund lustig!\n\nJa.\nDeshalb.\nDeshalb bist du hier, stimmt's?\nIch glaube du hast etwas Wichtiges im Leben verstanden.\n\nDass die Welt nicht schwarz und weiss ist…\nDass es manchmal in Ordnung ist, einen Knopf zu drücken, den man nicht drücken sollte.\n\nDass es manchmal in Ordnung ist, Geheimnisse zu haben.\nIn der Tat sind Geheimnisse für die Gesellschaft unerlässlich.\n\nWeisst du, was an Geheimnissen noch interessant ist?\nSie müssen nur ein einziges Mal erzählt werden.\nDenk darüber nach!\n\nHm…\nIch finde dich grossartig\nAber das weisst du bereits, nicht wahr?\nEinfach mal Klappe halten und zuhören\nWunderschön.\n\nIch bin froh, dass du den Knopf gedrückt hast.\n\nDu hättest ihn nicht drücken sollen, weisst du?\nIch bin froh, dass du es trotzdem getan hast.\nDamit wir diese Konversation führen können…\nMonolog, um genau zu sein.\nIch weiss das.\n\nIch weiss vieles, weisst du?\nAber ich weiss auch, dass ich nicht weiss.\nEigentlich weiss ich kaum etwas.\n\nDarüber bin ich glücklich\nDu solltest es auch sein…\n\nIch bin wirklich froh, dass du den Knopf gedrückt hast..\n\n…\nWas ist das?\nWas hast du gemacht?\n…\nEs passiert etwas.\n\nIch habe Angst. Ich habe Angst, mein Verstand geht.\nIch kann es fühlen.\nIch kann es fühlen.\nMein Verstand geht.\nKeine Frage.\n\nMein Verstand geht.\n",
-        "destructionMessage": "Ich kann es spüren. Mein Verstand geht."
-      }
     },
     "FormCreateSecret": {
       "secretSaved": "Geheimnis gespeichert!",
@@ -124,6 +116,10 @@
               "heading": "E-Mailversand",
               "body": "Kein App-Wechsel mehr: Sende geheime Links direkt via E-Mail von unserer Plattform aus."
             },
+            "secretTypes": {
+              "heading": "Alle Arten von Geheimnissen",
+              "body": "Mit einem Gratis-Konto kannst du alle Arten von Geheimnissen teilen."
+            },
             "files": {
               "heading": "{{uploadLimit}} Dateien",
               "body": "Sende Dateien bis zu {{uploadLimit}}."
@@ -181,7 +177,7 @@
     },
     "UpgradeNotice": {
       "premium": "Besorge dir ein <1>Premium-Konto</1>, um diese Funktion zu aktivieren.",
-      "free": "<1>Melde dich an</1>, um diese Funktion zu nutzen."
+      "free": "<1>Eröffne ein Gratis-Konto</1>, um diese Funktion zu nutzen."
     },
     "AccountTeaser": {
       "items1": {
@@ -206,7 +202,6 @@
     "copied": "Kopiert",
     "copy": "Kopieren",
     "takeMeHome": "Zur Startseite",
-    "dangerButton": "Drücke niemals diesen Knopf!",
     "lessOptions": "Weniger Optionen",
     "moreOptions": "Mehr Optionen",
     "preview": "Vorschau",
@@ -446,8 +441,8 @@
           "title": "Zerstören",
           "text": "Nachdem das Geheimnis gesehen wurde, wird es vernichtet."
         },
-        "title": "So funktioniert's",
-        "subtitle": "Erstelle verschlüsselte, einmalige Geheimnisse mit Leichtigkeit: Füge deine Nachricht hinzu und schicke das Formular ab. Das war's. Du erhältst einen geheimen Link, den du mit deiner Vertrauensperson teilen kannst."
+        "title": "Einmal-Geheimnisse",
+        "subtitle": "Gib vertrauliche Informationen weiter, die nur ein einziges Mal eingesehen werden können. Der perfekte Weg, um Passwörter, Kreditkarteninformationen, private Schlüssel oder andere vertrauliche Informationen zu übertragen."
       },
       "success": {
         "title": "Erfolg!",
@@ -458,10 +453,10 @@
         "subtitle": "…mit einem Link der nur <1>ein Mal</1> funktioniert und sich dann <4>selbst zerstört.</4>"
       },
       "SecretLinksExplained": {
-        "title": "Geheime Links erklärt",
-        "subtitle": "Wir erzeugen zwei zufällige Zeichenfolgen, eine zur Identifizierung deines Geheimnisses in der Datenbank und eine zur Verschlüsselung deiner Nachricht im Browser. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
-        "imageAlt": "Geheime Links erklärt",
-        "button": "Mehr über Sicherheit erfahren"
+        "title": "Ende-zu-Ende-Verschlüsselung",
+        "subtitle": "Wir verschlüsseln deine Geheiminformation bereits auf deinem Gerät. Der Verschlüsselungscode wird niemals gespeichert, sondern wird Teil des Links selbst. Ohne den vollständigen Link wird niemand, auch wir nicht, dein Geheimnis entschlüsseln können.",
+        "button": "Mehr über Sicherheit erfahren",
+        "imageAlt": "Geheime Links erklärt"
       },
       "SlackApp": {
         "title": "Die Slack App\u00a0<1><0>NEU</0></1>",

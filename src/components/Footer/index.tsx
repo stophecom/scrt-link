@@ -3,13 +3,12 @@ import { Grid, Box, IconButton, Typography } from '@mui/material'
 import { Twitter } from '@mui/icons-material'
 import { useTranslation, Trans } from 'next-i18next'
 import { styled } from '@mui/system'
-import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { usePlausible } from 'next-plausible'
 
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { Link } from '@/components/Link'
-import { appTitle, twitterLink, twitterHandle, uptimerobotUrl } from '@/constants'
+import { twitterLink, twitterHandle, uptimerobotUrl } from '@/constants'
 import Stats from '@/components/Stats'
 import SubMenu from '@/components/SubMenu'
 import Logo from '@/components/Logo'
@@ -224,7 +223,7 @@ const Footer: React.FC = () => {
           </Legal>
           <LanguageSwitcher itemClassName="link-padding" />
         </Box>
-        <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }}>
+        <Box display={'flex'} py={2} justifyContent={{ xs: 'center' }} aria-hidden="true">
           <DangerButton
             id="danger-button"
             onClick={() => {
@@ -235,23 +234,12 @@ const Footer: React.FC = () => {
             <span className="shadow"></span>
             <span className="edge"></span>
             <span className="front"></span>
-            <span className="label">
-              {t('common:button.dangerButton', `Never ever push that button!`)}
-            </span>
+            <span className="label">{`Never ever push that button!`}</span>
           </DangerButton>
           <Neogram
-            message={
-              `${t(
-                'common:components.DangerButton.monologue.intro',
-                `Hey!\nYou were not supposed to push that button.\n\nRepeat after me:`,
-              )}\n` +
-              `${t(
-                'common:components.DangerButton.monologue.repeat',
-                `I shall never push that button again!`,
-              )}\n`.repeat(7) +
-              `${t(
-                'common:components.DangerButton.monologue.body',
-                `I shall never push…\n\n
+            message={`Hey!\nYou were not supposed to push that button.\n\nRepeat after me:\n
+${`I shall never push that button again!\n`.repeat(3)}
+I shall never push…\n\n
 Oh.
 You are still here…
 
@@ -316,14 +304,9 @@ My mind is going.
 There is no question about it.
 
 My mind is going.
-`,
-              )}\n\n`
-            }
+\n\n`}
             timeout={3}
-            destructionMessage={t(
-              'common:components.DangerButton.monologue.destructionMessage',
-              `I can feel it. My mind is going.`,
-            )}
+            destructionMessage={`I can feel it. My mind is going.`}
             onFinished={() => setNeogramPreview(false)}
             closable
             open={neogramPreview}
