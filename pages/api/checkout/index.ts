@@ -34,6 +34,7 @@ const handler: NextApiHandler = async (req, res) => {
         const params: Stripe.Checkout.SessionCreateParams = {
           locale: locale,
           mode: 'subscription',
+          allow_promotion_codes: true,
           customer: customer?.stripe?.customerId,
           line_items: [
             {
