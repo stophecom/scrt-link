@@ -131,15 +131,19 @@
       "subscriptionChangeSuccessMessage": "Du hast dein Abonnement erfolgreich geändert!",
       "subscriptionActiveSuccessMessage": "Mission erfüllt! Dein Abonnement ist aktiv.",
       "loading": "Lade Pläne",
+      "interval": {
+        "monthly": "Monatlich",
+        "yearly": "Jährlich"
+      },
       "free": {
         "subtitle": "Keine Verpflichtungen",
-        "overline": "Das Wesentliche",
         "price": "Kostenlos"
       },
       "premium": {
         "subtitle": "Ein Schnäppchen"
       },
-      "currentPlan": "Aktueller Plan",
+      "amountBilledPerYear": "zahlbar {{amount}} pro Jahr",
+      "amountBilledPerMonth": "zahlbar {{amount}} pro Monat",
       "cancellationNotice": "Dieser Plan wurde gekündigt und wird am {{cancellationDate}} auf den kostenlosen Plan zurückgestuft.",
       "activePlan": "Dieser Plan ist derzeit aktiv.",
       "trialEndNotice": "Probezeit endet am {{trialEndDate}}.",
@@ -147,12 +151,7 @@
       "planSwitchOrCancelNotice": "Du kannst jederzeit den Abrechnungszyklus wechseln oder das Abonnement kündigen.",
       "freeTrialInfo": "{{trialPeriod}} Tage ausprobieren",
       "switchToMonthlyBilling": "Umstellung auf monatliche Abrechnung",
-      "switchToYearlyBilling": "Umstellung auf jährliche Abrechnung",
-      "saveWithYearlySubscription": "Erhalte <2>2 Monate gratis</2> mit dem Jahrestarif!",
-      "interval": {
-        "monthly": "Monatlich",
-        "yearly": "Jährlich"
-      }
+      "switchToYearlyBilling": "Umstellung auf jährliche Abrechnung"
     },
     "ShareSecretResult": {
       "webShare": {
@@ -235,6 +234,7 @@
     "home": "Startseite",
     "addToSlack": "Zu Slack hinzufügen",
     "readMoreFaq": "Mehr auf FAQ Seite",
+    "backToPlans": "Zurück zu den Plänen",
     "privacyPolicy": "Datenschutzbestimmungen"
   },
   "menu": {
@@ -596,13 +596,9 @@
   "plans": {
     "free": {
       "title": "Free"
-    },
-    "premium": {
-      "title": "Premium"
     }
   },
-  "month": "Monat",
-  "year": "Jahr",
+  "perMonth": "pro Monat",
   "faq": {
     "payment-provider": {
       "heading": "Wer ist der Zahlungsanbieter?",

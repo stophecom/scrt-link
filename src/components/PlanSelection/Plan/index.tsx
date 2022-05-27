@@ -29,57 +29,47 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   },
 
   [`& .${classes.check}`]: {
-    width: '2.4rem',
-    height: '2.4rem',
-    position: 'absolute',
+    width: '1.2em',
+    height: '1.2em',
     borderRadius: '50%',
     backgroundColor: `${theme.palette.primary.main}`,
     color: `${theme.palette.text.primary}`,
-    display: 'flex',
+    display: 'inline-flex',
     alignItems: 'center',
+    position: 'absolute',
+    left: 'calc(100% + .5em)',
     justifyContent: 'center',
-    fontSize: '1.4rem',
-    right: '0',
-    top: '0',
-    transform: 'translate(15%, -15%)',
   },
 }))
 
 type PlanProps = {
   title: string
   subtitle: ReactNode
-  overline?: ReactNode
   children?: ReactNode
   isCurrentPlan?: boolean
 }
-const Plan: React.FunctionComponent<PlanProps> = ({
-  title,
-  subtitle,
-  overline,
-  children,
-  isCurrentPlan,
-}) => {
+const Plan: React.FunctionComponent<PlanProps> = ({ title, subtitle, children, isCurrentPlan }) => {
   const { t } = useTranslation()
   return (
     <StyledPaper className={classes.paper}>
-      {isCurrentPlan && (
-        <div className={classes.check}>
-          <Check />
-        </div>
-      )}
       <Box mb={2}>
-        <Box display="flex" justifyContent="center" p={1} fontSize="small">
-          <small>
-            {isCurrentPlan
-              ? t('common:components.PlanSelection.currentPlan', 'Current Plan')
-              : overline}
-          </small>
-        </Box>
-        <Typography variant="h3" className={classes.planTitle}>
-          {title}
-        </Typography>
-        <Typography variant="h5" component="div">
+        <Box display="flex" justifyContent="center" p={1} pb={2} fontSize="small">
           {subtitle}
+        </Box>
+        <Typography
+          variant="h4"
+          component="div"
+          display="inline-flex"
+          justifyContent="center"
+          position="relative"
+          alignItems={'center'}
+        >
+          {title}{' '}
+          {isCurrentPlan && (
+            <div className={classes.check}>
+              <Check sx={{ fontSize: '.9em' }} />
+            </div>
+          )}
         </Typography>
       </Box>
       <Box display="flex" flexDirection="column" height="100%">

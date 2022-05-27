@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/system'
 import { Stripe } from 'stripe'
-import { useTranslation, Trans } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 
-import { Alert, Box, Grid, Typography } from '@mui/material'
+import { Alert, Box, Grid, Typography, Paper } from '@mui/material'
 import { Check } from '@mui/icons-material'
 
 import usePrettyBytes from '@/hooks/usePrettyBytes'
@@ -34,11 +34,17 @@ const AccordionHeading = styled('span')`
   font-weight: bold;
 `
 
-const Price = styled('div')(({ theme }) => ({
-  fontSize: '1.4rem',
-  marginBottom: '1.5rem',
-  borderBottom: `2px solid ${theme.palette.primary.main}`,
+const PriceInner = styled('div')(({ theme }) => ({
+  fontSize: '2rem',
+  fontWeight: 'bold',
+  borderBottom: `4px solid ${theme.palette.primary.main}`,
 }))
+
+const Price: React.FunctionComponent = ({ children }) => (
+  <Typography variant="h2" mb={2}>
+    <PriceInner>{children}</PriceInner>
+  </Typography>
+)
 
 type Status = {
   type: 'initial' | 'success' | 'error' | 'loading'
@@ -57,7 +63,7 @@ const PlanSelection: React.FunctionComponent = () => {
   const [status, setStatus] = useState<Status>({ type: 'initial' })
   const [activePrice, setActivePrice] = useState<Stripe.Price>()
   // Form options
-  const [showYearlyPrice, setShowYearlyPrices] = React.useState(false)
+  const [showYearlyPrice, setShowYearlyPrices] = React.useState(true)
 
   // We assume a customer only ever has one subscription
   const subscription = stripeCustomer?.subscriptions?.data[0]
@@ -71,6 +77,16 @@ const PlanSelection: React.FunctionComponent = () => {
   const isSubscriptionActive = subscription?.status === 'active' || isSubscriptionTrialing
   const isSubscriptionActiveNotCanceled = isSubscriptionActive && !subscription?.cancel_at
   const isSubscriptionCanceled = isSubscriptionActive && !!subscription?.cancel_at
+
+  // Get % yearly savings. We take first plan. (There should be only one)
+  const premiumPlanPrices = plans?.length && plans[0].prices
+  const yearlyPlanSavings =
+    premiumPlanPrices &&
+    premiumPlanPrices.yearly.unit_amount &&
+    premiumPlanPrices.monthly.unit_amount &&
+    Math.floor(
+      (1 - premiumPlanPrices.yearly.unit_amount / 12 / premiumPlanPrices.monthly.unit_amount) * 100,
+    )
 
   const premiumUsps = [
     {
@@ -192,8 +208,10 @@ const PlanSelection: React.FunctionComponent = () => {
   ]
 
   useEffect(() => {
-    setActivePrice(subscription?.items?.data[0]?.price)
-    setShowYearlyPrices(subscription?.items?.data[0]?.price.recurring?.interval === 'year')
+    if (subscription) {
+      setActivePrice(subscription?.items?.data[0]?.price)
+      setShowYearlyPrices(subscription?.items?.data[0]?.price.recurring?.interval === 'year')
+    }
   }, [subscription])
 
   const deleteSubscription = (subscriptionId: string) =>
@@ -314,16 +332,39 @@ const PlanSelection: React.FunctionComponent = () => {
           <Alert severity={status.type as 'error' | 'success'}>{status.message}</Alert>
         </Box>
       )}
+
+      <Box display="flex" justifyContent="center" pb={5}>
+        <Grid component="label" container alignItems="center" justifyContent="center" spacing={1}>
+          <Grid item>{t('common:components.PlanSelection.interval.monthly', 'Monthly')}</Grid>
+          <Grid item>
+            <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />
+          </Grid>
+          <Grid item>
+            {t('common:components.PlanSelection.interval.yearly', 'Annual')} (-
+            {yearlyPlanSavings}
+            %)
+          </Grid>
+        </Grid>
+      </Box>
+
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={5}>
           <Plan
             title={t('common:plans.free.title', 'Free')}
             subtitle={t('common:components.PlanSelection.free.subtitle', 'No strings attached.')}
-            overline={t('common:components.PlanSelection.free.overline', 'Essentials')}
             isCurrentPlan={!!customer?.userId && !isSubscriptionActive}
           >
-            <Box display="flex" justifyContent="center">
-              <Price>{t('common:components.PlanSelection.free.price', 'Free forever')}</Price>
+            <Box
+              display="flex"
+              flexDirection={'column'}
+              justifyContent="center"
+              alignItems={'center'}
+              mb={7}
+            >
+              <Price>{formatCurrency(0, 0)}</Price>
+              <Box display="flex" flexDirection={'column'}>
+                <span>{t('common:components.PlanSelection.free.price', 'Free forever')}</span>
+              </Box>
             </Box>
             <Box mb={2}>
               <SimpleAccordion name="freeUsps" items={getAccordionItems(freeUsps)} />
@@ -349,28 +390,45 @@ const PlanSelection: React.FunctionComponent = () => {
                       {t('common:components.PlanSelection.premium.subtitle', 'Basically a steal.')}
                     </>
                   }
-                  overline={
-                    isSubscriptionBillingIntervalMatch
-                      ? t('common:components.PlanSelection.currentPlan', 'Current Plan')
-                      : t('common:plans.premium.title', 'Premium')
-                  }
                   isCurrentPlan={
                     isSubscriptionActive &&
                     price.product === activePrice?.product &&
                     isSubscriptionBillingIntervalMatch
                   }
                 >
-                  <Box display="flex" justifyContent="center">
+                  <Box
+                    display="flex"
+                    flexDirection={'column'}
+                    justifyContent="center"
+                    alignItems={'center'}
+                    mb={4}
+                  >
                     <Price>
-                      {formatCurrency(Number(price.unit_amount) / 100)}
-                      <small>
-                        {' '}
-                        /{' '}
-                        {price.recurring?.interval === 'month'
-                          ? t('common:month', 'month')
-                          : t('common:year', 'year')}
-                      </small>
+                      {formatCurrency(Number(price.unit_amount) / 100 / (showYearlyPrice ? 12 : 1))}
                     </Price>
+
+                    <Box display="flex" flexDirection={'column'}>
+                      <span>{t('common:perMonth', 'per month')}</span>
+                      {price.recurring?.interval === 'year' ? (
+                        <>
+                          <span>
+                            {t('common:components.PlanSelection.amountBilledPerYear', {
+                              defaultValue: 'billed {{amount}} annually',
+                              amount: formatCurrency(Number(price.unit_amount) / 100),
+                            })}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span>
+                            {t('common:components.PlanSelection.amountBilledPerMonth', {
+                              defaultValue: 'billed {{amount}} a month',
+                              amount: formatCurrency(Number(price.unit_amount) / 100),
+                            })}
+                          </span>
+                        </>
+                      )}
+                    </Box>
                   </Box>
                   <Box mb={2}>
                     <SimpleAccordion name="premiumUsps" items={getAccordionItems(premiumUsps)} />
@@ -465,7 +523,7 @@ const PlanSelection: React.FunctionComponent = () => {
                                     )
                                   : t(
                                       'common:components.PlanSelection.switchToYearlyBilling',
-                                      'Switch to yearly billing',
+                                      'Switch to annual billing',
                                     )}
                               </BaseButton>
                             )}
@@ -501,29 +559,6 @@ const PlanSelection: React.FunctionComponent = () => {
             )
           })}
       </Grid>
-      <Box pt={5}>
-        {(!subscription || isSubscriptionBillingIntervalMonthly) && (
-          <Box mb={2}>
-            <Typography component="div" align="center">
-              <Trans i18nKey="common:components.PlanSelection.saveWithYearlySubscription">
-                Get{' '}
-                <Typography variant="inherit" component="strong" color="primary">
-                  2 months free
-                </Typography>{' '}
-                with the yearly plan!
-              </Trans>
-            </Typography>
-          </Box>
-        )}
-
-        <Grid component="label" container alignItems="center" justifyContent="center" spacing={1}>
-          <Grid item>{t('common:components.PlanSelection.interval.monthly', 'Monthly')}</Grid>
-          <Grid item>
-            <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />
-          </Grid>
-          <Grid item>{t('common:components.PlanSelection.interval.yearly', 'Yearly')}</Grid>
-        </Grid>
-      </Box>
     </Root>
   )
 }
