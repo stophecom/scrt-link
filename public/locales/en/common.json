@@ -131,15 +131,19 @@
       "subscriptionChangeSuccessMessage": "You successfully changed your subscription!",
       "subscriptionActiveSuccessMessage": "Mission accomplished! Your subscription is active.",
       "loading": "Loading plans",
+      "interval": {
+        "monthly": "Monthly",
+        "yearly": "Annual"
+      },
       "free": {
         "subtitle": "No strings attached.",
-        "overline": "Essentials",
         "price": "Free forever"
       },
       "premium": {
         "subtitle": "Basically a steal."
       },
-      "currentPlan": "Current Plan",
+      "amountBilledPerYear": "billed {{amount}} annually",
+      "amountBilledPerMonth": "billed {{amount}} a month",
       "cancellationNotice": "This plan has been canceled and will get downgraded to the free plan on {{cancellationDate}}.",
       "activePlan": "This plan is currently active.",
       "trialEndNotice": "Trial ends on {{trialEndDate}}.",
@@ -147,12 +151,7 @@
       "planSwitchOrCancelNotice": "You can switch billing cycle or cancel the subscription anytime.",
       "freeTrialInfo": "{{trialPeriod}} days free trial",
       "switchToMonthlyBilling": "Switch to monthly billing",
-      "switchToYearlyBilling": "Switch to yearly billing",
-      "saveWithYearlySubscription": "Get <2>2 months free</2> with the yearly plan!",
-      "interval": {
-        "monthly": "Monthly",
-        "yearly": "Yearly"
-      }
+      "switchToYearlyBilling": "Switch to yearly billing"
     },
     "ShareSecretResult": {
       "webShare": {
@@ -597,13 +596,9 @@
   "plans": {
     "free": {
       "title": "Free"
-    },
-    "premium": {
-      "title": "Premium"
     }
   },
-  "month": "month",
-  "year": "year",
+  "perMonth": "per month",
   "faq": {
     "payment-provider": {
       "heading": "Who is the payment provider?",

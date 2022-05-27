@@ -7,11 +7,17 @@ import { defaultLanguage } from '@/constants'
 export const getAbsoluteLocalizedUrl = (pathname: string, locale = 'en') =>
   `${getBaseURL()}${locale === defaultLanguage ? '' : `/${locale}`}${pathname}`
 
-export const formatCurrency = (amount: number) =>
+export const formatCurrency = (
+  amount: number,
+  // currency: string = 'USD',
+  minimumFractionDigits: number = 2,
+) =>
   new Intl.NumberFormat('us-EN', {
     style: 'currency',
     currency: 'USD',
+    signDisplay: 'never',
     currencyDisplay: 'narrowSymbol',
+    minimumFractionDigits,
   }).format(amount)
 
 export const formatNumber = (amount: number) => new Intl.NumberFormat('us-EN').format(amount)
