@@ -133,7 +133,8 @@
       "loading": "Lade Pläne",
       "interval": {
         "monthly": "Monatlich",
-        "yearly": "Jährlich"
+        "yearly": "Jährlich",
+        "yearlySavings": "Spare {{percentage}}%"
       },
       "free": {
         "subtitle": "Keine Verpflichtungen",
@@ -593,6 +594,7 @@
     "wrongPassword": "Falsches Passwort"
   },
   "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
+  "currency": "Währung",
   "plans": {
     "free": {
       "title": "Free"

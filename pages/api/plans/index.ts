@@ -9,6 +9,7 @@ const handler: NextApiHandler = async (req, res) => {
     case 'GET': {
       try {
         const { data } = await stripe.products.list({ active: true })
+        const currency: string = req.query.currency as string
 
         const getPlans = async () =>
           Promise.all(
@@ -16,6 +17,7 @@ const handler: NextApiHandler = async (req, res) => {
               const { data } = await stripe.prices.list({
                 product: item.id,
                 active: true,
+                currency: currency || 'USD',
               })
 
               const priceByInterval = (interval: string) =>

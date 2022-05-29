@@ -70,8 +70,8 @@ type Plan = {
 }
 export type Plans = Plan[]
 
-export const usePlans = () => {
-  const { data, error } = useSWR<Plans | undefined>(`${baseUrl}/api/plans`)
+export const usePlans = (currency?: string) => {
+  const { data, error } = useSWR<Plans | undefined>(`${baseUrl}/api/plans?currency=${currency}`)
 
   return {
     plans: data,

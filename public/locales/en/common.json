@@ -133,7 +133,8 @@
       "loading": "Loading plans",
       "interval": {
         "monthly": "Monthly",
-        "yearly": "Annual"
+        "yearly": "Annual",
+        "yearlySavings": "Save {{percentage}}%"
       },
       "free": {
         "subtitle": "No strings attached.",
@@ -593,6 +594,7 @@
     "wrongPassword": "Wrong Password"
   },
   "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
+  "currency": "Currency",
   "plans": {
     "free": {
       "title": "Free"
