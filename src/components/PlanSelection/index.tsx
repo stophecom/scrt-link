@@ -3,7 +3,17 @@ import { styled } from '@mui/system'
 import { Stripe } from 'stripe'
 import { useTranslation } from 'next-i18next'
 
-import { Alert, Box, Grid, Typography, Paper } from '@mui/material'
+import {
+  Alert,
+  Box,
+  Grid,
+  Typography,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material'
 import { Check } from '@mui/icons-material'
 
 import usePrettyBytes from '@/hooks/usePrettyBytes'
@@ -51,19 +61,25 @@ type Status = {
   message?: string
 }
 
+type Currency = 'USD' | 'EUR' | 'CHF'
+const supportedCurrencies = ['USD', 'EUR', 'CHF']
+
 const PlanSelection: React.FunctionComponent = () => {
   const { t } = useTranslation()
   const prettyBytes = usePrettyBytes()
+
+  // Form options
+  const [showYearlyPrice, setShowYearlyPrices] = React.useState(true)
+  const [currency, setCurrency] = React.useState<Currency>('USD')
+
   const { data: customer } = useCustomer()
-  const { plans, isLoading, error } = usePlans()
+  const { plans, isLoading, error } = usePlans(currency)
   const { stripeCustomer, triggerFetchStripeCustomer } = useStripeCustomer(
     customer?.stripe?.customerId,
   )
 
   const [status, setStatus] = useState<Status>({ type: 'initial' })
   const [activePrice, setActivePrice] = useState<Stripe.Price>()
-  // Form options
-  const [showYearlyPrice, setShowYearlyPrices] = React.useState(true)
 
   // We assume a customer only ever has one subscription
   const subscription = stripeCustomer?.subscriptions?.data[0]
@@ -82,8 +98,8 @@ const PlanSelection: React.FunctionComponent = () => {
   const premiumPlanPrices = plans?.length && plans[0].prices
   const yearlyPlanSavings =
     premiumPlanPrices &&
-    premiumPlanPrices.yearly.unit_amount &&
-    premiumPlanPrices.monthly.unit_amount &&
+    premiumPlanPrices?.yearly?.unit_amount &&
+    premiumPlanPrices?.monthly?.unit_amount &&
     Math.floor(
       (1 - premiumPlanPrices.yearly.unit_amount / 12 / premiumPlanPrices.monthly.unit_amount) * 100,
     )
@@ -233,6 +249,33 @@ const PlanSelection: React.FunctionComponent = () => {
         }),
       )
 
+  const CurrencySelection = () => {
+    const handleCurrencyChange = (event: SelectChangeEvent) => {
+      setCurrency(event.target.value as Currency)
+    }
+
+    return (
+      <Box py={3} sx={{ minWidth: 150 }}>
+        <FormControl fullWidth>
+          <InputLabel id="currency-select-label">{t('common:currency', 'Currency')}</InputLabel>
+          <Select
+            labelId="currency-select-label"
+            id="currency-select-label"
+            value={currency}
+            label={t('common:currency', 'Currency')}
+            onChange={handleCurrencyChange}
+          >
+            {supportedCurrencies.map((item, index) => (
+              <MenuItem key={index} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+    )
+  }
+
   const handleSubmit = async (priceId: string) => {
     setStatus({ type: 'loading' })
 
@@ -364,7 +407,7 @@ const PlanSelection: React.FunctionComponent = () => {
               alignItems={'center'}
               mb={7}
             >
-              <Price>{formatCurrency(0, 0)}</Price>
+              <Price>{formatCurrency(0, currency, 0)}</Price>
               <Box display="flex" flexDirection={'column'}>
                 <span>{t('common:components.PlanSelection.free.price', 'Free forever')}</span>
               </Box>
@@ -383,6 +426,9 @@ const PlanSelection: React.FunctionComponent = () => {
         </Grid>
         {plans?.length &&
           plans.map(({ name, prices }, index) => {
+            if (!prices.monthly || !prices.yearly) {
+              return null
+            }
             const price = showYearlyPrice ? prices?.yearly : prices?.monthly
             return (
               <Grid item xs={12} sm={7} key={index} order={{ sm: 2, xs: 1 }}>
@@ -407,7 +453,10 @@ const PlanSelection: React.FunctionComponent = () => {
                     mb={4}
                   >
                     <Price>
-                      {formatCurrency(Number(price.unit_amount) / 100 / (showYearlyPrice ? 12 : 1))}
+                      {formatCurrency(
+                        Number(price.unit_amount) / 100 / (showYearlyPrice ? 12 : 1),
+                        currency,
+                      )}
                     </Price>
 
                     <Box display="flex" flexDirection={'column'}>
@@ -417,7 +466,7 @@ const PlanSelection: React.FunctionComponent = () => {
                           <span>
                             {t('common:components.PlanSelection.amountBilledPerYear', {
                               defaultValue: 'billed {{amount}} annually',
-                              amount: formatCurrency(Number(price.unit_amount) / 100),
+                              amount: formatCurrency(Number(price.unit_amount) / 100, currency),
                             })}
                           </span>
                         </>
@@ -426,7 +475,7 @@ const PlanSelection: React.FunctionComponent = () => {
                           <span>
                             {t('common:components.PlanSelection.amountBilledPerMonth', {
                               defaultValue: 'billed {{amount}} a month',
-                              amount: formatCurrency(Number(price.unit_amount) / 100),
+                              amount: formatCurrency(Number(price.unit_amount) / 100, currency),
                             })}
                           </span>
                         </>
@@ -465,7 +514,10 @@ const PlanSelection: React.FunctionComponent = () => {
                                 })
                               : t('common:components.PlanSelection.recurringPriceInfo', {
                                   defaultValue: `You are being billed {{price}} every {{interval}}.`,
-                                  price: formatCurrency(Number(activePrice?.unit_amount) / 100),
+                                  price: formatCurrency(
+                                    Number(activePrice?.unit_amount) / 100,
+                                    currency,
+                                  ),
                                   interval: activePrice?.recurring?.interval,
                                 })}
                             &nbsp;
@@ -562,6 +614,9 @@ const PlanSelection: React.FunctionComponent = () => {
             )
           })}
       </Grid>
+      <Box display={'flex'} justifyContent="center" pt={3}>
+        <CurrencySelection />
+      </Box>
     </Root>
   )
 }
