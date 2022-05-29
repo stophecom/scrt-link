@@ -333,22 +333,25 @@ const PlanSelection: React.FunctionComponent = () => {
         </Box>
       )}
 
-      <Box display="flex" justifyContent="center" pb={5}>
+      <Box display="flex" justifyContent="center" pb={4}>
         <Grid component="label" container alignItems="center" justifyContent="center" spacing={1}>
           <Grid item>{t('common:components.PlanSelection.interval.monthly', 'Monthly')}</Grid>
           <Grid item>
             <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />
           </Grid>
           <Grid item>
-            {t('common:components.PlanSelection.interval.yearly', 'Annual')} (-
-            {yearlyPlanSavings}
-            %)
+            {t('common:components.PlanSelection.interval.yearly', 'Annual')} (
+            {t('common:components.PlanSelection.interval.yearlySavings', {
+              defaultValue: 'Save {{percentage}}%',
+              percentage: yearlyPlanSavings,
+            })}
+            )
           </Grid>
         </Grid>
       </Box>
 
       <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} sm={5}>
+        <Grid item xs={12} sm={5} order={{ xs: 2, sm: 1 }}>
           <Plan
             title={t('common:plans.free.title', 'Free')}
             subtitle={t('common:components.PlanSelection.free.subtitle', 'No strings attached.')}
@@ -382,7 +385,7 @@ const PlanSelection: React.FunctionComponent = () => {
           plans.map(({ name, prices }, index) => {
             const price = showYearlyPrice ? prices?.yearly : prices?.monthly
             return (
-              <Grid item xs={12} sm={7} key={index}>
+              <Grid item xs={12} sm={7} key={index} order={{ sm: 2, xs: 1 }}>
                 <Plan
                   title={name}
                   subtitle={
