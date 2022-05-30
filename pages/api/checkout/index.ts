@@ -8,6 +8,7 @@ import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
 import { trialPeriod } from '@/constants'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 
 const handler: NextApiHandler = async (req, res) => {
   const models = req.models
@@ -49,8 +50,8 @@ const handler: NextApiHandler = async (req, res) => {
           // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
           // the actual Session ID is returned in the query parameter when your customer
           // is redirected to the success page.
-          success_url: `${req.headers.origin}/pricing?session_id={CHECKOUT_SESSION_ID}`,
-          cancel_url: `${req.headers.origin}/pricing/canceled`,
+          success_url: getAbsoluteLocalizedUrl('/pricing?session_id={CHECKOUT_SESSION_ID}', locale),
+          cancel_url: getAbsoluteLocalizedUrl('/pricing/canceled', locale),
         }
 
         const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(

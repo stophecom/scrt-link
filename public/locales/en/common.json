@@ -485,6 +485,10 @@
       "subtitle": "Matrix-style disappearing messages. End-to-end encrypted."
     },
     "Pricing": {
+      "Canceled": {
+        "title": "Payment canceled",
+        "error": "You either canceled the payment process or something went wrong along the way. Sorry about that. Feel free to try again."
+      },
       "title": "Pricing",
       "subtitle": "Simple plans, fair pricing."
     },

@@ -26,7 +26,7 @@
       "defaultTitle": "Une erreur s'est produite !"
     },
     "Footer": {
-      "abstract": "**Scrt.link** vous permet de partager des informations sensibles en ligne. Cryptée de bout en bout. Une seule fois.\nGardez les informations confidentielles hors du courrier électronique, de Slack, de Teams, de Whatsapp ou de tout autre canal de communication. Un lien jetable à usage unique garantit que vos secrets ne peuvent être consultés qu'une seule fois - avant d'être détruits pour toujours."
+      "abstract": "**Scrt.link** vous permet de partager des informations sensibles en ligne. Cryptée de bout en bout. Une seule fois.\nGardez les informations confidentielles en dehors des e-mails, de Slack, de Teams, de Whatsapp ou de tout autre canal de communication. Un lien jetable à usage unique garantit que vos secrets ne peuvent être consultés qu'une seule fois, avant d'être détruits à jamais."
     },
     "FormCreateSecret": {
       "secretSaved": "Secret sauvé !",
@@ -133,7 +133,8 @@
       "loading": "Plans de chargement",
       "interval": {
         "monthly": "Mensuel",
-        "yearly": "Annuel"
+        "yearly": "Annuel",
+        "yearlySavings": "Sauvegarder {{percentage}}."
       },
       "free": {
         "subtitle": "Sans engagement de votre part.",
@@ -484,6 +485,10 @@
       "subtitle": "Messages disparaissant dans un style matriciel. Cryptés de bout en bout."
     },
     "Pricing": {
+      "Canceled": {
+        "title": "Paiement annulé",
+        "error": "Vous avez annulé le processus de paiement ou quelque chose s'est mal passé en cours de route. Nous en sommes désolés. N'hésitez pas à réessayer."
+      },
       "title": "Tarification",
       "subtitle": "Des plans simples, des prix équitables."
     },
@@ -593,6 +598,7 @@
     "wrongPassword": "Mot de passe erroné"
   },
   "missingTranslationsNotice": "Cher client, malheureusement certains contenus de cette page n'ont pas encore été traduits dans votre langue préférée. Nous y travaillons actuellement. Dans l'intervalle, si vous avez des questions ou si vous avez besoin d'aide, veuillez contacter l'assistance.",
+  "currency": "Devise",
   "plans": {
     "free": {
       "title": "Gratuit"
