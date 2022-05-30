@@ -9,12 +9,12 @@ export const getAbsoluteLocalizedUrl = (pathname: string, locale = 'en') =>
 
 export const formatCurrency = (
   amount: number,
-  // currency: string = 'USD',
+  currency: string = 'USD',
   minimumFractionDigits: number = 2,
 ) =>
   new Intl.NumberFormat('us-EN', {
     style: 'currency',
-    currency: 'USD',
+    currency,
     signDisplay: 'never',
     currencyDisplay: 'narrowSymbol',
     minimumFractionDigits,
