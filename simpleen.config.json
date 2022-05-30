@@ -1,0 +1,8 @@
+{
+  "source_language": "EN",
+  "target_languages": ["FR"],
+  "interpolation": "default",
+  "input_path": "./public/locales/en/*.json",
+  "output_path": "./public/locales/$locale/$FILE.json",
+  "auth_key": "68c800e0-8dd1-4a8b-a747-e6bc65e21289"
+}
