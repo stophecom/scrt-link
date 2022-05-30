@@ -8,6 +8,7 @@ export const supportedLanguagesMap = {
   de: 'Deutsch',
   en: 'English',
   fr: 'Français',
+  pl: 'Polski',
 }
 export const supportedLanguages = Object.keys(supportedLanguagesMap)
 export type SupportedLanguage = keyof typeof supportedLanguagesMap
@@ -47,11 +48,13 @@ export const mailjetTemplates = {
     en: { templateId: 2715593, subject: 'Sign in request' },
     de: { templateId: 3400460, subject: 'Konto-Anmeldung' },
     fr: { templateId: 3970462, subject: 'Connexion au compte' },
+    pl: { templateId: 2715593, subject: 'Sign in request' }, // Todo
   },
   readReceipt: {
     en: { templateId: 2818166, subject: 'Secret has been viewed 🔥' },
     de: { templateId: 3400579, subject: 'Geheimnis zerstört 🔥' },
     fr: { templateId: 3970465, subject: 'Secret détruit 🔥' },
+    pl: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
   },
   youGotSecret: {
     en: {
@@ -65,6 +68,10 @@ export const mailjetTemplates = {
     fr: {
       templateId: 3970455,
       subject: 'Tu as reçu un secret',
+    },
+    pl: {
+      templateId: 2939535,
+      subject: 'You received a secret', // Todo
     },
   },
 }
@@ -81,6 +88,11 @@ export const smsReadReceipt = {
   fr: {
     receipt: 'scrt.link: Le secret suivant a été lu et détruit🔥:',
     reply: 'Réponds avec un secret: https://scrt.link',
+  },
+  pl: {
+    // Todo
+    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
+    reply: 'Reply with a secret: https://scrt.link',
   },
 }
 
