@@ -487,7 +487,7 @@
     "Pricing": {
       "Canceled": {
         "title": "Bezahlvorgang abgebrochen",
-        "error": "You either canceled the payment process or something went wrong along the way. Sorry about that. Feel free to try again."
+        "error": "Du hast entweder den Zahlungsvorgang abgebrochen oder es ist etwas schief gelaufen. Das tut uns leid. Versuche es einfach noch einmal."
       },
       "title": "Preisgestaltung",
       "subtitle": "Einfache Pläne, faire Preise."
