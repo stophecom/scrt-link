@@ -26,7 +26,7 @@
       "defaultTitle": "Une erreur s'est produite !"
     },
     "Footer": {
-      "abstract": "<0>Scrt.link vous permet de partager des informations sensibles en ligne. Cryptée de bout en bout. Une seule fois.<2>Gardez les informations confidentielles hors du courrier électronique, de Slack, de Teams, de Whatsapp ou de tout autre canal de communication. Un lien jetable à usage unique garantit que vos secrets ne peuvent être consultés qu'une seule fois - avant d'être détruits pour toujours."
+      "abstract": "**Scrt.link** vous permet de partager des informations sensibles en ligne. Cryptée de bout en bout. Une seule fois.\nGardez les informations confidentielles hors du courrier électronique, de Slack, de Teams, de Whatsapp ou de tout autre canal de communication. Un lien jetable à usage unique garantit que vos secrets ne peuvent être consultés qu'une seule fois - avant d'être détruits pour toujours."
     },
     "FormCreateSecret": {
       "secretSaved": "Secret sauvé !",
@@ -690,7 +690,7 @@
     },
     "security": {
       "heading": "Ce service est-il sécurisé ?",
-      "body": "Tous les messages sont chiffrés de bout en bout à l'aide de **AES-256**, qui est pratiquement impénétrable par des méthodes de force brute. Il faudrait des milliards d'années pour casser l'AES avec la technologie informatique actuelle.\nPour le plus haut niveau de sécurité, un mot de passe facultatif (qui n'est jamais stocké non plus) sera utilisé pour crypter votre message. Pour en savoir plus, consultez notre [page Sécurité](/sécurité)."
+      "body": "Tous les messages sont chiffrés de bout en bout à l'aide de **AES-256**, qui est pratiquement impénétrable par des méthodes de force brute. Il faudrait des milliards d'années pour casser l'AES avec la technologie informatique actuelle.\nPour le plus haut niveau de sécurité, un mot de passe facultatif (qui n'est jamais stocké non plus) sera utilisé pour crypter votre message. Pour en savoir plus, consultez notre [page Sécurité](/fr/security)."
     },
     "anonymity": {
       "heading": "Comment ma vie privée est-elle protégée ?",
@@ -741,8 +741,8 @@
       "body": "Non. Vous êtes le bienvenu. Mais, vous pouvez bien sûr soutenir ce projet avec un abonnement payant quoi qu'il en soit 🤓."
     }
   },
-  "demoNeogramMessage": "Réveille-toi Neo...\nC'est juste une démo !\nLes messages Neogram s'autodétruisent automatiquement après une période de temps définie.\n\nAmusez-vous à partager vos secrets 😘",
-  "demoTextMessage": "Salut...\nC'est juste une démo !\n\nEnjoy sharing secrets 😘",
+  "demoNeogramMessage": "Réveille-toi Neo...\nC'est juste une démo !\nLes messages Neogram s'autodétruisent automatiquement après une période de temps définie.\n\nAmuse-toi à partager tes secrets 😘",
+  "demoTextMessage": "Salut...\nC'est juste une démo !\n\nAmuse-toi à partager tes secrets 😘",
   "demoNeogramDestructionMessage": "Ce message s'autodétruit dans ...",
   "Widget": {
     "myAccount": "Mon compte",

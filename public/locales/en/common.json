@@ -26,7 +26,7 @@
       "defaultTitle": "An error occurred!"
     },
     "Footer": {
-      "abstract": "<0>Scrt.link</0> lets you share sensitive information online. End-to-end encrypted. One time.<2></2>Keep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
+      "abstract": "**Scrt.link** lets you share sensitive information online. End-to-end encrypted. One time.\nKeep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
     },
     "FormCreateSecret": {
       "secretSaved": "Secret saved!",
