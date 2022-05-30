@@ -485,6 +485,10 @@
       "subtitle": "Selbstzerstörende Nachrichten im Matrix-Stil. Ende-zu-Ende verschlüsselt."
     },
     "Pricing": {
+      "Canceled": {
+        "title": "Bezahlvorgang abgebrochen",
+        "error": "You either canceled the payment process or something went wrong along the way. Sorry about that. Feel free to try again."
+      },
       "title": "Preisgestaltung",
       "subtitle": "Einfache Pläne, faire Preise."
     },
