@@ -77,7 +77,7 @@
               "heading": "Tout ce qui est dans Free, plus :"
             },
             "1": {
-              "heading": "Limite de caractères de{{characterLimit}} ",
+              "heading": "Limite de caractères de {{characterLimit}} ",
               "body": "Vous pouvez écrire des messages secrets avec un maximum de {{characterLimit}} caractères. Assez de mots pour une lettre d'amour secrète, une confession ou une révélation parfaite."
             },
             "2": {
@@ -97,7 +97,7 @@
               "body": "Vous bénéficierez de toutes les mises à jour futures sans frais supplémentaires. De plus, vous aurez un accès anticipé aux fonctionnalités à venir."
             },
             "files": {
-              "heading": "fichiers{{uploadLimit}} ",
+              "heading": "Fichiers {{uploadLimit}} ",
               "body": "Vous pouvez envoyer des fichiers avec jusqu'à {{uploadLimit}}."
             }
           }
@@ -105,7 +105,7 @@
         "free": {
           "usps": {
             "0": {
-              "heading": "Limite de caractères de{{characterLimit}} ",
+              "heading": "Limite de caractères de {{characterLimit}} ",
               "body": "Vous pouvez écrire des messages secrets avec un maximum de caractères de {{characterLimit}}."
             },
             "1": {
@@ -121,7 +121,7 @@
               "body": "Avec un compte, vous avez accès à tous les types de secrets."
             },
             "files": {
-              "heading": "fichiers{{uploadLimit}} ",
+              "heading": "Fichiers {{uploadLimit}} ",
               "body": "Vous pouvez envoyer des fichiers avec jusqu'à {{uploadLimit}}."
             }
           }
