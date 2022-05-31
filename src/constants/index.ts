@@ -5,8 +5,9 @@ export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
 // See next-i18next.config
 export const defaultLanguage = 'en'
 export const supportedLanguagesMap = {
-  de: 'Deutsch',
   en: 'English',
+  de: 'Deutsch',
+  it: 'Italian',
   fr: 'Français',
   pl: 'Polski',
 }
@@ -49,12 +50,14 @@ export const mailjetTemplates = {
     de: { templateId: 3400460, subject: 'Konto-Anmeldung' },
     fr: { templateId: 3970462, subject: 'Connexion au compte' },
     pl: { templateId: 2715593, subject: 'Sign in request' }, // Todo
+    it: { templateId: 2715593, subject: 'Sign in request' }, // Todo
   },
   readReceipt: {
     en: { templateId: 2818166, subject: 'Secret has been viewed 🔥' },
     de: { templateId: 3400579, subject: 'Geheimnis zerstört 🔥' },
     fr: { templateId: 3970465, subject: 'Secret détruit 🔥' },
     pl: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
+    it: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
   },
   youGotSecret: {
     en: {
@@ -70,6 +73,10 @@ export const mailjetTemplates = {
       subject: 'Tu as reçu un secret',
     },
     pl: {
+      templateId: 2939535,
+      subject: 'You received a secret', // Todo
+    },
+    it: {
       templateId: 2939535,
       subject: 'You received a secret', // Todo
     },
@@ -90,6 +97,11 @@ export const smsReadReceipt = {
     reply: 'Réponds avec un secret: https://scrt.link',
   },
   pl: {
+    // Todo
+    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
+    reply: 'Reply with a secret: https://scrt.link',
+  },
+  it: {
     // Todo
     receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
     reply: 'Reply with a secret: https://scrt.link',

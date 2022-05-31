@@ -1,6 +1,6 @@
 {
   "source_language": "EN",
-  "target_languages": ["FR", "PL"],
+  "target_languages": ["FR", "PL", "IT"],
   "interpolation": "default",
   "input_path": "./public/locales/en/*.json",
   "output_path": "./public/locales/$locale/$FILE.json",
