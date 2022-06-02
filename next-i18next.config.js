@@ -1,10 +1,21 @@
 const path = require('path')
 
-// Make sure to match supported locales from src/constants.ts
+// Global languages configuration
+const defaultLanguage = 'en'
+const supportedLanguagesMap = {
+  en: 'English',
+  de: 'Deutsch',
+  it: 'Italian',
+  fr: 'Français',
+  pl: 'Polski',
+}
+const supportedLanguages = Object.keys(supportedLanguagesMap)
+
 module.exports = {
+  supportedLanguagesMap,
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'de', 'fr', 'it', 'pl'],
+    defaultLocale: defaultLanguage,
+    locales: supportedLanguages,
   },
   localePath: path.resolve('./public/locales'),
 }

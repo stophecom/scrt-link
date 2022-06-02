@@ -1,16 +1,12 @@
+import { i18n, supportedLanguagesMap } from 'next-i18next.config'
+
 export const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'development'
 export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
 
 // See next-i18next.config
-export const defaultLanguage = 'en'
-export const supportedLanguagesMap = {
-  en: 'English',
-  de: 'Deutsch',
-  it: 'Italian',
-  fr: 'Français',
-  pl: 'Polski',
-}
+export { supportedLanguagesMap }
+export const defaultLanguage = i18n.defaultLocale
 export const supportedLanguages = Object.keys(supportedLanguagesMap)
 export type SupportedLanguage = keyof typeof supportedLanguagesMap
 
