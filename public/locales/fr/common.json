@@ -239,10 +239,10 @@
   "demoTextMessage": "Salut...\nC'est juste une démo !\n\nAmuse-toi à partager tes secrets 😘",
   "email": "Email",
   "error": {
+    "API_SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
     "invalidAlias": "Alias invalides.",
     "missingDecryptionKey": "Clé de décryptage manquante.",
     "noMessage": "Pas de message.",
-    "SECRET_NOT_FOUND": "Secret introuvable - Cela signifie généralement que le lien secret a déjà été visité et n'existe donc plus.",
     "secretBurned": "Le secret a déjà été brûlé.",
     "signIn": {
       "emailUnknown": "Adresse e-mail inconnue. Vérifiez votre adresse e-mail ou essayez de vous inscrire à la place."
