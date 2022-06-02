@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "Create a one-time secret. With {{appTitle}} you can share passwords, credit card information, private keys or other sensitive data in a secure way: End-to-end encrypted. One time.",
+    "description": "Share a one-time secret. With {{appTitle}} you can transmit passwords, credit card information, private keys or other sensitive data in a secure way: End-to-end encrypted. One time.",
     "images": {
       "alt": "{{appTitle}} - Share a secret!'"
     },
@@ -152,7 +152,7 @@
       "planSwitchOrCancelNotice": "You can switch billing cycle or cancel the subscription anytime.",
       "freeTrialInfo": "{{trialPeriod}} days free trial",
       "switchToMonthlyBilling": "Switch to monthly billing",
-      "switchToYearlyBilling": "Switch to yearly billing"
+      "switchToYearlyBilling": "Switch to annual billing"
     },
     "ShareSecretResult": {
       "webShare": {
@@ -195,7 +195,7 @@
     "Trust": {
       "encryption": "End-to-end encrypted",
       "privacy": "Swiss privacy",
-      "noTrace": "Without trace"
+      "noTrace": "Without a trace"
     }
   },
   "button": {
@@ -372,7 +372,7 @@
       "Developers": {
         "title": "For Developers",
         "subtitle": "All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.",
-        "markdown": "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App."
+        "markdown": "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App."
       }
     },
     "AcceptableUsePolicy": {
@@ -426,7 +426,7 @@
     "Files": {
       "title": "X Files",
       "subtitle": "Share end-to-end encrypted files. One time.",
-      "flowDisclaimer": "Swiss privacy: Files will be end-to-end encrypted and stored in Zurich, Switzerland by Flow Swiss AG."
+      "flowDisclaimer": "Swiss privacy: Files will be end-to-end encrypted and stored in Zürich, Switzerland by Flow Swiss AG."
     },
     "Home": {
       "HowItWorks": {
@@ -460,7 +460,7 @@
         "imageAlt": "Link explained"
       },
       "SlackApp": {
-        "title": "The Slack App\u00a0<1><0>NEW</0></1>",
+        "title": "The Slack App&nbsp;<1><0>NEW</0></1>",
         "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
         "usps": {
           "0": "Encrypted, disposable messages, stored outside of Slack.",
@@ -478,7 +478,7 @@
       "policiesAndTerms": "Policies and Terms",
       "credits": "Credits",
       "flowSwiss": "This project is supported by Flow Swiss AG - Premium cloud services from Zurich, Switzerland.",
-      "inspiration": "Inspiration"
+      "inspiration": "More Inspiration"
     },
     "Neogram": {
       "title": "Neogram",
@@ -536,7 +536,7 @@
       "success": "You are successfully signed out."
     },
     "SignUp": {
-      "title": "Get Account",
+      "title": "Get account",
       "subtitle": "Great things start here…",
       "gotAccount": "Already got an account?",
       "signInNow": "Sign in now",
@@ -667,7 +667,7 @@
       "body": "There are easy-to-use npm packages available. For code examples and further information about integration visit the [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers)."
     },
     "secret-types": {
-      "heading": "*Text*, *Files*, *Redirect* and *Neogram*?",
+      "heading": "*Text*, *Files*, *Redirect* und *Neogram*?",
       "body": "- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.\n[Demo]({{ demoSecretMessageLink }})\n- **File**: Drop any file. This feature is currently in beta.\n- **Redirect**: Think about it as a URL-shortener where the generated link only works once.\n- **Neogram**: Digital letter-style message that automatically burns after reading. Use it for confidential notes, confessions or secret love letters. [Demo]({{ demoSecretNeogramLink }})"
     },
     "message-size": {
@@ -747,7 +747,7 @@
       "body": "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless 🤓."
     }
   },
-  "demoNeogramMessage": "Wake up Neo…\nThis is just a demo!\nNeogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
+  "demoNeogramMessage": "Wake up Neo…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
   "demoTextMessage": "Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘",
   "demoNeogramDestructionMessage": "This message self-destructs in …",
   "Widget": {

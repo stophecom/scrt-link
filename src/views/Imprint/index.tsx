@@ -67,8 +67,8 @@ const Imprint = () => {
         </Typography>
       </Box>
       <Typography variant="body2">
-        {t('common:views.Imprint.inspiration', 'More Inspiration')}: PrivateBin, OneTimeSecret,
-        Yopass, Saltify, hat.sh, OnURL
+        {t('common:views.Imprint.inspiration', 'Inspiration')}: PrivateBin, OneTimeSecret, Yopass,
+        Saltify, hat.sh, OnURL
       </Typography>
     </Page>
   )
