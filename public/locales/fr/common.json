@@ -86,7 +86,7 @@
       "account": "Compte",
       "defaults": "Valeurs par défaut",
       "emojiLink": {
-        "description": "Ajoutez un peu de fun avec un lien emoji spécial. Exemple : <2><0>https://🤫.st/nxKFy... <3><4>Attention. Les liens emoji sont pris en charge dans : <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Pas pris en charge actuellement dans : <11>Signal, Slack, Snapchat.",
+        "description": "Ajoutez un peu de fun avec un lien emoji spécial. Exemple : <2><0>https://\uD83E\uDD2B.st/nxKFy... <3><4>Attention. Les liens emoji sont pris en charge dans : <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Pas pris en charge actuellement dans : <11>Signal, Slack, Snapchat.",
         "title": "Lien emoji"
       },
       "privacyNotice": "Ces informations sont <1>privées et ne seront jamais montrées à personne. Nous ne les utilisons que pour vous envoyer des accusés de réception.",
@@ -235,11 +235,11 @@
   },
   "currency": "Devise",
   "demoNeogramDestructionMessage": "Ce message s'autodétruit dans ...",
-  "demoNeogramMessage": "Réveille-toi Neo...\nC'est juste une démo !\nLes messages Neogram s'autodétruisent automatiquement après une période de temps définie.\n\nAmuse-toi à partager tes secrets 😘",
-  "demoTextMessage": "Salut...\nC'est juste une démo !\n\nAmuse-toi à partager tes secrets 😘",
+  "demoNeogramMessage": "Réveille-toi Neo...\nC'est juste une démo !\nLes messages Neogram s'autodétruisent automatiquement après une période de temps définie.\n\nAmuse-toi à partager tes secrets \uD83D\uDE18",
+  "demoTextMessage": "Salut...\nC'est juste une démo !\n\nAmuse-toi à partager tes secrets \uD83D\uDE18",
   "email": "Email",
   "error": {
-    "API_SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
+    "API_SECRET_NOT_FOUND": "Secret introuvable - Cela signifie généralement que le lien secret a déjà été visité et n'existe donc plus.",
     "invalidAlias": "Alias invalides.",
     "missingDecryptionKey": "Clé de décryptage manquante.",
     "noMessage": "Pas de message.",
@@ -347,7 +347,7 @@
       "heading": "Qui est à l'origine de ce service ?"
     },
     "slack-app": {
-      "body": "L'application Slack vous permet d'utiliser la puissance de scrt.link sans changer d'application. Rendez-vous sur la page [Slack App](/slack) pour plus d'informations. Ou obtenez l'application ici :  \n\n👉 [Installer l'application Slack]{{ slackAppInstallLink }} \n\nRemarque importante : il existe des limites à l'utilisation de l'application Slack. En raison de la nature de la conception de ces applications, un cryptage complet de bout en bout n'est pas possible. Dans la plupart des cas, ce n'est pas un problème et c'est un risque à prendre. Cependant, si vous avez besoin d'une protection avancée, créez plutôt des secrets sur le site Web.",
+      "body": "L'application Slack vous permet d'utiliser la puissance de scrt.link sans changer d'application. Rendez-vous sur la page [Slack App](/slack) pour plus d'informations. Ou obtenez l'application ici :  \n\n\uD83D\uDC49 [Installer l'application Slack]{{ slackAppInstallLink }} \n\nRemarque importante : il existe des limites à l'utilisation de l'application Slack. En raison de la nature de la conception de ces applications, un cryptage complet de bout en bout n'est pas possible. Dans la plupart des cas, ce n'est pas un problème et c'est un risque à prendre. Cependant, si vous avez besoin d'une protection avancée, créez plutôt des secrets sur le site Web.",
       "heading": "Où puis-je obtenir l'application Slack ?"
     },
     "slack-data-collection": {
@@ -355,11 +355,11 @@
       "heading": "Quelles sont les données que vous collectez ?"
     },
     "slack-not-approved": {
-      "body": "Tout d'abord, il est important de comprendre que cette application peut toujours être installée et utilisée exactement de la même manière que les applications officiellement listées. Cela dit, nous avons essayé de soumettre notre application au Slack App Directory pour qu'elle soit répertoriée. Mais comme Slack a littéralement \"restreint l'approbation des applications qui facilitent le partage d'informations sensibles\", nous n'avons pas pu le faire. Maintenant, réfléchissez-y une minute. Et ensuite, aidez-nous à faire passer le message 🥰",
+      "body": "Tout d'abord, il est important de comprendre que cette application peut toujours être installée et utilisée exactement de la même manière que les applications officiellement listées. Cela dit, nous avons essayé de soumettre notre application au Slack App Directory pour qu'elle soit répertoriée. Mais comme Slack a littéralement \"restreint l'approbation des applications qui facilitent le partage d'informations sensibles\", nous n'avons pas pu le faire. Maintenant, réfléchissez-y une minute. Et ensuite, aidez-nous à faire passer le message \uD83E\uDD70",
       "heading": "Pourquoi cette application n'est-elle pas approuvée par Slack ?"
     },
     "slack-premium-account": {
-      "body": "Non. Vous êtes le bienvenu. Mais, vous pouvez bien sûr soutenir ce projet avec un abonnement payant quoi qu'il en soit 🤓.",
+      "body": "Non. Vous êtes le bienvenu. Mais, vous pouvez bien sûr soutenir ce projet avec un abonnement payant quoi qu'il en soit \uD83E\uDD13.",
       "heading": "Ai-je besoin d'un abonnement premium pour utiliser l'application Slack ?"
     },
     "slack-scopes": {
@@ -544,7 +544,7 @@
       },
       "SlackApp": {
         "subtitle": "Plus besoin de changer d'application. Avec l'application Slack, vous pouvez créer des secrets à usage unique directement dans vos conversations Slack.",
-        "title": "Application Slack\u00a0<1><0>NEUF</0></1>"
+        "title": "Application Slack <1><0>NEUF</0></1>"
       },
       "subtitle": "L'ensemble du projet repose sur un principe simple : moins on en sait, mieux c'est.",
       "title": "À propos de"
@@ -734,7 +734,7 @@
           "2": "Application Slack",
           "3": "Extensions de navigateur",
           "4": "Soutien personnel",
-          "5": "Liens Emoji 🤫"
+          "5": "Liens Emoji \uD83E\uDD2B"
         }
       },
       "gotAccount": "Vous avez déjà un compte ?",
@@ -747,12 +747,12 @@
         "subtitle": "Questions fréquemment posées sur l'application Slack."
       },
       "HowToUse": {
-        "markdown": "### Commande Slash \nL'option la plus simple et la plus polyvalente est d'utiliser une commande slash (**`/scrt`**)\n\n_Exemple:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** ouvre un dialogue pour créer un secret.\n- **`/scrt` _`[le secret va ici...]`_** crée instantanément un lien secret (de type **Texte**).\n- **`/scrt [text|lien|néogramme]`** ouvre une boîte de dialogue pour créer un type de secret spécifique.\n- **`/scrt help`** : ouvre un dialogue d'aide.\n\n### Raccourcis de Slack\nIl existe des raccourcis globaux et au niveau des messages.\n- Cliquez sur ⚡️ pour accéder aux raccourcis globaux et choisissez **scrt.link**.\n- Dans une conversation, cliquez sur l'icône du menu contextuel (3 points) et choisissez **Répondre avec un secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Lire les reçus\nIl s'agit d'une fonctionnalité intégrée. Vous recevez une notification lorsqu'un secret a été consulté. Nous utilisons un 🔥 emoji pour indiquer quand un secret a été brûlé et que le lien n'est donc plus disponible.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
+        "markdown": "### Commande Slash \nL'option la plus simple et la plus polyvalente est d'utiliser une commande slash (**`/scrt`**)\n\n_Exemple:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** ouvre un dialogue pour créer un secret.\n- **`/scrt` _`[le secret va ici...]`_** crée instantanément un lien secret (de type **Texte**).\n- **`/scrt [text|lien|néogramme]`** ouvre une boîte de dialogue pour créer un type de secret spécifique.\n- **`/scrt help`** : ouvre un dialogue d'aide.\n\n### Raccourcis de Slack\nIl existe des raccourcis globaux et au niveau des messages.\n- Cliquez sur ⚡️ pour accéder aux raccourcis globaux et choisissez **scrt.link**.\n- Dans une conversation, cliquez sur l'icône du menu contextuel (3 points) et choisissez **Répondre avec un secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Lire les reçus\nIl s'agit d'une fonctionnalité intégrée. Vous recevez une notification lorsqu'un secret a été consulté. Nous utilisons un \uD83D\uDD25 emoji pour indiquer quand un secret a été brûlé et que le lien n'est donc plus disponible.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
         "title": "Comment utiliser"
       },
       "intro": "Les conversations Slack ne sont jamais totalement privées. Saviez-vous qu'un administrateur système ou votre patron pourrait potentiellement lire vos messages Slack ? Avec l'App scrt.link, vous pouvez désormais protéger les informations sensibles au sein de votre conversation Slack.",
       "Introduction": {
-        "markdown": "### Caractéristiques principales\n- Créez des secrets à usage unique via **shortcut** ou **slash command**.\n- **Messages cryptés et jetables** qui sont stockés en dehors de Slack.\n- **Notification par brûlure** après qu'un secret ait été consulté. \n- Aucun journal, aucune sauvegarde, aucune trace.\n    \n  👉 [Installer maintenant]{{slackAppInstallLink}})\n---\n#### _Informations importantes sur les limites de sécurité_.\nEn raison de la nature de\ncomment les applications Slack sont conçues, le cryptage complet **de bout en bout n'est pas possible**. Nous prenons un certain nombre de mesures pour nous assurer que vos secrets sont en sécurité, notamment des connexions cryptées, un serveur d'application sandboxé, un accès limité à l'infrastructure, etc. Dans 99% des cas d'utilisation, c'est\nDans 99 % des cas d'utilisation, c'est très bien et c'est un risque qui vaut la peine d'être pris. En d'autres termes, si vous avez besoin d'une protection avancée, créez plutôt des secrets\nsur le site web à la place.",
+        "markdown": "### Caractéristiques principales\n- Créez des secrets à usage unique via **shortcut** ou **slash command**.\n- **Messages cryptés et jetables** qui sont stockés en dehors de Slack.\n- **Notification par brûlure** après qu'un secret ait été consulté. \n- Aucun journal, aucune sauvegarde, aucune trace.\n    \n  \uD83D\uDC49 [Installer maintenant]{{slackAppInstallLink}})\n---\n#### _Informations importantes sur les limites de sécurité_.\nEn raison de la nature de\ncomment les applications Slack sont conçues, le cryptage complet **de bout en bout n'est pas possible**. Nous prenons un certain nombre de mesures pour nous assurer que vos secrets sont en sécurité, notamment des connexions cryptées, un serveur d'application sandboxé, un accès limité à l'infrastructure, etc. Dans 99% des cas d'utilisation, c'est\nDans 99 % des cas d'utilisation, c'est très bien et c'est un risque qui vaut la peine d'être pris. En d'autres termes, si vous avez besoin d'une protection avancée, créez plutôt des secrets\nsur le site web à la place.",
         "subtitle": "C'est un scénario très commun : Un collègue de travail vous demande un jeton d'accès, une clé API ou un mot de passe. Maintenant, vous pouvez répondre en toute sécurité.",
         "title": "Secrets pour Slack"
       },

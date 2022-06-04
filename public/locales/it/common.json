@@ -86,7 +86,7 @@
       "account": "Conto",
       "defaults": "Predefinito",
       "emojiLink": {
-        "description": "Aggiungete un po' di divertimento con un link emoji speciale. Esempio: <2><0>https://🤫.st/nxKFy... <3><4>Attenzione. I link emoji sono supportati in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Al momento non sono supportati in: <11>Signal, Slack, Snapchat.",
+        "description": "Aggiungete un po' di divertimento con un link emoji speciale. Esempio: <2><0>https://\uD83E\uDD2B.st/nxKFy... <3><4>Attenzione. I link emoji sono supportati in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Al momento non sono supportati in: <11>Signal, Slack, Snapchat.",
         "title": "Collegamento emoji"
       },
       "privacyNotice": "Queste informazioni sono <1>private e non saranno mai mostrate a nessuno. Vengono utilizzate solo per inviare le ricevute di lettura.",
@@ -233,237 +233,103 @@
       "premium": "Ottenere un account <1>premium per abilitare questa funzione."
     }
   },
-  "currency": "Currency",
-  "demoNeogramDestructionMessage": "This message self-destructs in …",
-  "demoNeogramMessage": "Sveglia Neo...\nQuesta è solo una dimostrazione!\nI messaggi di Neogram si autodistruggono automaticamente dopo un periodo di tempo definito.\n\nDivertitevi a condividere i segreti 😘",
-  "demoTextMessage": "Ciao...\nQuesta è solo una demo!\n\nDivertitevi a condividere i segreti 😘",
+  "currency": "Valuta",
+  "demoNeogramDestructionMessage": "Questo messaggio si autodistrugge in ...",
+  "demoNeogramMessage": "Sveglia Neo...\nQuesta è solo una dimostrazione!\nI messaggi di Neogram si autodistruggono automaticamente dopo un periodo di tempo definito.\n\nDivertitevi a condividere i segreti \uD83D\uDE18",
+  "demoTextMessage": "Ciao...\nQuesta è solo una demo!\n\nDivertitevi a condividere i segreti \uD83D\uDE18",
   "email": "Email",
   "error": {
-    "API_SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
-    "invalidAlias": "Invalid alias.",
-    "missingDecryptionKey": "Decryption key missing.",
-    "noMessage": "No message.",
-    "secretBurned": "Secret has been burned already.",
+    "API_SECRET_NOT_FOUND": "Segreto non trovato - Di solito significa che il link segreto è già stato visitato e quindi non esiste più.",
+    "invalidAlias": "Alias non valido.",
+    "missingDecryptionKey": "Manca la chiave di decrittazione.",
+    "noMessage": "Nessun messaggio.",
+    "secretBurned": "Il segreto è già stato bruciato.",
     "signIn": {
-      "emailUnknown": "Unknown email address. Check your email or try to sign up instead."
+      "emailUnknown": "Indirizzo e-mail sconosciuto. Controllare l'e-mail o provare a registrarsi."
     },
     "signUp": {
-      "emailAlreadyExists": "A user with this email already exists - you may sign in instead."
+      "emailAlreadyExists": "Esiste già un utente con questo indirizzo e-mail: potete accedere al suo posto."
     },
-    "unexpectedError": "Unexpected error",
-    "wrongPassword": "Wrong Password"
+    "unexpectedError": "Errore imprevisto",
+    "wrongPassword": "Password errata"
   },
   "faq": {
     "anonymity": {
       "body": "Adottiamo una serie di misure per proteggere la vostra privacy, descritte in dettaglio nella pagina [privacy](/privacy) - tuttavia alcune funzioni richiedono servizi di terze parti che possono avere accesso a informazioni personali identificabili (PII). Se si desidera proteggere ulteriormente la propria privacy, si consiglia quanto segue:\n\n- Connettersi al nostro servizio tramite una rete privata virtuale (VPN): In questo modo non si espone mai il proprio indirizzo IP personale. Consigliamo [ProtonVPN](https://protonvpn.com/).\n- Utilizzare un servizio come [Abine Blur](https://www.abine.com/) per nascondere l'indirizzo e-mail personale, il numero di telefono e/o i dati della carta di credito.",
-      "heading": "How is my privacy protected?"
+      "heading": "Come viene protetta la mia privacy?"
     },
     "browser-extensions": {
       "body": "Le estensioni del browser scrt.link sono disponibili per tutti i principali browser:\n- [Google Chrome]{{ chromeExtensionLink }})\n- [Mozilla Firefox]{{ firefoxExtensionLink }})\n- [Microsoft Edge]{{ microsoftEdgeExtensionLink }})",
-      "heading": "Where can I find the browser extensions?"
+      "heading": "Dove posso trovare le estensioni del browser?"
     },
     "category": {
-      "accountAndBilling": "Account and Billing",
-      "general": "General",
-      "nerdZone": "Nerd Zone",
-      "product": "Product and Service",
-      "securityAndPrivacy": "Security and Privacy",
-      "slack": "Slack App"
-    },
-    "developer": {
-      "body": "All code is open-source on {{gitlabLink}}",
-      "heading": "Where can I find the source code?"
-    },
-    "developer-tools": {
-      "body": "There are easy-to-use npm packages available. For code examples and further information about integration visit the [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers).",
-      "heading": "How can integrate this tool in my project?"
-    },
-    "difference-to-disappearing-messages": {
-      "body": "Anonymity, privacy and security. Plain text messages within a chat log can always get traced back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level. With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content.",
-      "heading": "What is the difference to disappearing messages on Signal or Whatsapp?"
+      "accountAndBilling": "Conto e fatturazione"
     },
     "difference-to-snapchat": {
-      "body": "La risposta è la stessa della domanda precedente. Inoltre, il modello di business alla base di Snapchat e di ogni altra grande piattaforma di social media contraddice l'idea di privacy e anonimato. Le società di social media hanno bisogno di conoscere i propri utenti per vendere annunci pubblicitari. \n    \nTuttavia, va bene condividere un link segreto generato utilizzando Snapchat, Facebook, Instagram, Telegram, ecc.",
-      "heading": "What is the difference to Snapchat?"
+      "body": "La risposta è la stessa della domanda precedente. Inoltre, il modello di business alla base di Snapchat e di ogni altra grande piattaforma di social media contraddice l'idea di privacy e anonimato. Le società di social media hanno bisogno di conoscere i propri utenti per vendere annunci pubblicitari. \n    \nTuttavia, va bene condividere un link segreto generato utilizzando Snapchat, Facebook, Instagram, Telegram, ecc."
     },
     "end-subscription": {
-      "body": "Accedere alla pagina [account](/account). Sotto la scheda \"Abbonamento\" è possibile annullare l'abbonamento in qualsiasi momento, senza fare domande**.",
-      "heading": "How do I cancel a subscription?"
+      "body": "Accedere alla pagina [account](/account). Sotto la scheda \"Abbonamento\" è possibile annullare l'abbonamento in qualsiasi momento, senza fare domande**."
     },
     "end-to-end-encryption-info": {
-      "body": "Generiamo due stringhe casuali, una per identificare il vostro segreto nel database e una per crittografare il vostro messaggio. Non memorizziamo la chiave di crittografia. Solo con il link completo è possibile decifrare il segreto.\n![Spiegazione del link](/images/it/link-explanation.svg)",
-      "heading": "How is end-to-end encryption achieved?"
+      "body": "Generiamo due stringhe casuali, una per identificare il vostro segreto nel database e una per crittografare il vostro messaggio. Non memorizziamo la chiave di crittografia. Solo con il link completo è possibile decifrare il segreto.\n![Spiegazione del link](/images/it/link-explanation.svg)"
     },
     "how": {
-      "body": "Dopo aver inviato il modulo, il vostro segreto sarà criptato e memorizzato. A questo punto potete condividere il breve link generato tramite SMS, e-mail o qualsiasi altro servizio di cui vi fidate. (Dopo che i destinatari avranno cliccato sul link, il messaggio verrà visualizzato e rimosso definitivamente dal database. \n    \nPer una maggiore sicurezza**, è possibile includere una password che sarà necessaria per decifrare il messaggio. (Si consiglia di condividere la password attraverso un canale diverso dal link).",
-      "heading": "How does the service work?"
-    },
-    "message-size": {
-      "body": "The current limit is {{ maxMessageLengthVisitor }} characters for visitors. With a premium plan you can get up to {{ maxMessageLengthPremium }} characters.",
-      "heading": "What is the maximum message size?"
-    },
-    "notification": {
-      "body": "Yes, you can get **SMS or Email notifications** with an account. [Go to Account](/account)",
-      "heading": "Can I get notified when a secret has been viewed?"
-    },
-    "payment-methods": {
-      "body": "Our payment provider [Stripe](https://stripe.com/) offers a variety of payment options: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) among many others. Once you choose a premium plan you get redirected to Stripe where you can select your preferred method.",
-      "heading": "What payment methods are supported?"
-    },
-    "payment-provider": {
-      "body": "We work with [Stripe](https://stripe.com/) as our payment provider. We don't store any payment related information whatsoever.",
-      "heading": "Who is the payment provider?"
+      "body": "Dopo aver inviato il modulo, il vostro segreto sarà criptato e memorizzato. A questo punto potete condividere il breve link generato tramite SMS, e-mail o qualsiasi altro servizio di cui vi fidate. (Dopo che i destinatari avranno cliccato sul link, il messaggio verrà visualizzato e rimosso definitivamente dal database. \n    \nPer una maggiore sicurezza**, è possibile includere una password che sarà necessaria per decifrare il messaggio. (Si consiglia di condividere la password attraverso un canale diverso dal link)."
     },
     "read-receipts-info": {
-      "body": "Per ogni segreto, generiamo un ID segreto (una stringa casuale) che è l'unico riferimento al messaggio originale. Una volta che il destinatario apre il link segreto, vi informiamo con il metodo scelto. Nella notifica includiamo solo l'ID segreto, quindi assicuratevi di conservarlo/ricordarlo. Inutile dire che le informazioni di contatto (e-mail o numero di telefono) non sono **mai esposte al destinatario**.\n\n**E-mail**: Riceverete un'e-mail da *Darian.Sporer@yahoo.com*.\n\n**SMS**: Riceverete un SMS di notifica da *{{ twilioSenderPhoneNumber }}.",
-      "heading": "How do read receipts work?"
-    },
-    "recovery": {
-      "body": "Nope. It's a **one time secret**. We show it once and then delete it permanently from the database. There is no backup. It's gone for good.",
-      "heading": "Can I retrieve a secret that has already been visited?"
-    },
-    "save": {
-      "body": "Sure. You can always take a screenshot. The idea behind this service is to securely share sensitive information one time. We (obviously) don't have control over what a recipient does with the message.",
-      "heading": "Can the recipient save the message?"
-    },
-    "secret-expiration": {
-      "body": "Until the end of times. Seriously, there is no maximum time limit set. But you can always destroy your secret by visiting the secret link.",
-      "heading": "How long do you keep non-viewed secrets?"
+      "body": "Per ogni segreto, generiamo un ID segreto (una stringa casuale) che è l'unico riferimento al messaggio originale. Una volta che il destinatario apre il link segreto, vi informiamo con il metodo scelto. Nella notifica includiamo solo l'ID segreto, quindi assicuratevi di conservarlo/ricordarlo. Inutile dire che le informazioni di contatto (e-mail o numero di telefono) non sono **mai esposte al destinatario**.\n\n**E-mail**: Riceverete un'e-mail da *Darian.Sporer@yahoo.com*.\n\n**SMS**: Riceverete un SMS di notifica da *{{ twilioSenderPhoneNumber }}."
     },
     "secret-not-found": {
       "body": "Ciò significa che il link segreto è già stato visitato. Se ciò accade inaspettatamente:\n- Verificare con il mittente che il link non sia stato visitato per errore.\n- Il segreto è stato raggiunto tramite un attacco brut-force o c'è un problema con l'infrastruttura del server (non preoccupatevi, il contenuto dei segreti sarebbe comunque criptato) - entrambi i casi sono molto improbabili.\n- **Caso peggiore**: Una terza parte ha avuto accesso al link, il che significa che il vostro canale di comunicazione e/o il dispositivo di una delle parti è stato compromesso.",
       "heading": "Perché ricevo l'errore \"Segreto non trovato\"?"
     },
     "secret-types": {
-      "body": "- **Testo**: È la modalità standard. È il modo preferito per condividere password e segreti simili. Il destinatario ha la possibilità di copiare il segreto.\n[Demo]{{ demoSecretMessageLink }})\n- **File**: Consegnare un file qualsiasi. Questa funzione è attualmente in fase beta.\n- **Redirect**: Consideratelo come un accorciatore di URL in cui il link generato funziona solo una volta.\n- **Neogramma**: Messaggio digitale in stile lettera che si brucia automaticamente dopo la lettura. Utilizzatelo per note riservate, confessioni o lettere d'amore segrete. [Demo]{{ demoSecretNeogramLink }})",
-      "heading": "*Text*, *Files*, *Redirect* and *Neogram*?"
+      "body": "- **Testo**: È la modalità standard. È il modo preferito per condividere password e segreti simili. Il destinatario ha la possibilità di copiare il segreto.\n[Demo]{{ demoSecretMessageLink }})\n- **File**: Consegnare un file qualsiasi. Questa funzione è attualmente in fase beta.\n- **Redirect**: Consideratelo come un accorciatore di URL in cui il link generato funziona solo una volta.\n- **Neogramma**: Messaggio digitale in stile lettera che si brucia automaticamente dopo la lettura. Utilizzatelo per note riservate, confessioni o lettere d'amore segrete. [Demo]{{ demoSecretNeogramLink }})"
     },
     "security": {
-      "body": "Tutti i messaggi sono crittografati end-to-end utilizzando **AES-256**, che è praticamente impenetrabile con metodi di forza bruta. L'AES richiederebbe miliardi di anni per essere violato con l'attuale tecnologia informatica.\nPer ottenere il massimo livello di sicurezza, per crittografare il messaggio viene utilizzata una password opzionale (che non viene mai memorizzata). Per saperne di più, consultare la pagina [Sicurezza](/sicurezza).",
-      "heading": "How secure is this service?"
-    },
-    "service-provider": {
-      "body": "Scrt.link is a service by [SANTiHANS GmbH](https://santihans.com), a Swiss based tech company with a mission to advance the web. We operate under Swiss law. As a customer you profit from one of the world's strongest data and privacy protection regulation, the [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). This product has been created and is operated by [@stophecom](https://twitter.com/stophecom).",
-      "heading": "Who is behind this service?"
+      "body": "Tutti i messaggi sono crittografati end-to-end utilizzando **AES-256**, che è praticamente impenetrabile con metodi di forza bruta. L'AES richiederebbe miliardi di anni per essere violato con l'attuale tecnologia informatica.\nPer ottenere il massimo livello di sicurezza, per crittografare il messaggio viene utilizzata una password opzionale (che non viene mai memorizzata). Per saperne di più, consultare la pagina [Sicurezza](/sicurezza)."
     },
     "slack-app": {
-      "body": "L'app Slack consente di utilizzare la potenza di scrt.link senza dover cambiare app. Per ulteriori informazioni, visitare la pagina [App Slack](/slack). In alternativa, è possibile ottenere l'app direttamente qui:  \n\n👉 [Installa l'app Slack]{{ slackAppInstallLink }})  \n\nAvviso importante:** L'utilizzo dell'applicazione Slack è soggetto a limitazioni. A causa della natura di queste applicazioni, non è possibile una crittografia end-to-end completa. Nella maggior parte dei casi questo non è un problema ed è un rischio che vale la pena correre; tuttavia, se avete bisogno di una protezione avanzata, create i segreti sul sito web.",
-      "heading": "Where can I get the Slack App?"
+      "body": "L'app Slack consente di utilizzare la potenza di scrt.link senza dover cambiare app. Per ulteriori informazioni, visitare la pagina [App Slack](/slack). In alternativa, è possibile ottenere l'app direttamente qui:  \n\n\uD83D\uDC49 [Installa l'app Slack]{{ slackAppInstallLink }})  \n\nAvviso importante:** L'utilizzo dell'applicazione Slack è soggetto a limitazioni. A causa della natura di queste applicazioni, non è possibile una crittografia end-to-end completa. Nella maggior parte dei casi questo non è un problema ed è un rischio che vale la pena correre; tuttavia, se avete bisogno di una protezione avanzata, create i segreti sul sito web."
     },
     "slack-data-collection": {
-      "body": "Memorizziamo solo i dati necessari per l'esecuzione dell'applicazione. Quando installate l'app, ci concedete diritti di accesso specifici (ad esempio, il diritto di pubblicare un link segreto a vostro nome). Questi dati comprendono le informazioni di base dell'utente Slack (ad es. nome utente, id) e i singoli token di autorizzazione. Inoltre, memorizziamo temporaneamente i dati necessari per le ricevute di lettura.  \n**Non memorizziamo altri dati. Non riutilizziamo, vendiamo o distribuiamo i dati raccolti. Anche se volessimo, non siamo in grado di identificare l'utente come persona, poiché solo Slack può disporre delle informazioni necessarie per farlo.",
-      "heading": "What data do you collect?"
+      "body": "Memorizziamo solo i dati necessari per l'esecuzione dell'applicazione. Quando installate l'app, ci concedete diritti di accesso specifici (ad esempio, il diritto di pubblicare un link segreto a vostro nome). Questi dati comprendono le informazioni di base dell'utente Slack (ad es. nome utente, id) e i singoli token di autorizzazione. Inoltre, memorizziamo temporaneamente i dati necessari per le ricevute di lettura.  \n**Non memorizziamo altri dati. Non riutilizziamo, vendiamo o distribuiamo i dati raccolti. Anche se volessimo, non siamo in grado di identificare l'utente come persona, poiché solo Slack può disporre delle informazioni necessarie per farlo."
     },
     "slack-not-approved": {
-      "body": "In primo luogo, è importante capire che questa app può essere installata e utilizzata esattamente come le app elencate ufficialmente. Detto questo, abbiamo provato a inviare la nostra app alla Slack App Directory per essere inseriti nell'elenco. Ma poiché Slack sta letteralmente \"limitando l'approvazione delle app che facilitano la condivisione di informazioni sensibili\", non siamo riusciti a farlo. Pensate a questo per un minuto. E poi aiutateci a diffondere la notizia 🥰",
-      "heading": "Why isn't this app approved by Slack?"
-    },
-    "slack-premium-account": {
-      "body": "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless 🤓.",
-      "heading": "Do I need a premium subscription to use the Slack app?"
-    },
-    "slack-scopes": {
-      "body": "The app requires basic information about the user, channels and conversations. Additionally, the app needs the permission to post in your name, join a conversation and make use of _slash commands_ and _shortcuts_. You'll get more detailed information about permission scopes during the app installation.",
-      "heading": "What permissions are required?"
-    },
-    "slack-security": {
-      "body": "The honest answer: We can't know for sure. It's important to understand that **end-to-end-encryption is not possible** with Slack apps. However, the communication between our app server and Slack is encrypted and we therefore believe that for 99% of use cases it's safe to use. Still, please be aware that **Slack is proprietary software** and we don't have control over code that runs your Slack instance. **In case you need to be 100% sure, create secrets via the website instead.**",
-      "heading": "Is the Slack App secure?"
-    },
-    "slack-trust": {
-      "body": "Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on {{gitlabLink}}. Feel free to launch your own private Slack App.",
-      "heading": "Why should I trust you?"
-    },
-    "slack-user-account": {
-      "body": "No. Currently not. You are welcome.",
-      "heading": "Do I need an account to use the Slack app?"
-    },
-    "subscriptions": {
-      "body": "Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval. A subscription can be cancelled anytime.",
-      "heading": "How do subscriptions work?"
-    },
-    "trial": {
-      "body": "**Try before you buy**: You can test all premium features for a **{{ trialPeriod }} day trial period**. Once the trial ends you will be billed based on your chosen plan. Cancellations during the trial period result in the immediate termination of the subscription - **no billing** will be made in such case.",
-      "heading": "How do trials work?"
+      "body": "In primo luogo, è importante capire che questa app può essere installata e utilizzata esattamente come le app elencate ufficialmente. Detto questo, abbiamo provato a inviare la nostra app alla Slack App Directory per essere inseriti nell'elenco. Ma poiché Slack sta letteralmente \"limitando l'approvazione delle app che facilitano la condivisione di informazioni sensibili\", non siamo riusciti a farlo. Pensate a questo per un minuto. E poi aiutateci a diffondere la notizia \uD83E\uDD70"
     },
     "who": {
-      "body": "Essenzialmente tutti. Tutti dovrebbero avere a cuore la privacy.  \n  La possibilità di trasmettere informazioni sensibili in forma anonima è particolarmente importante per giornalisti, avvocati, politici, informatori, persone oppresse, ecc.",
-      "heading": "Who is it for?"
+      "body": "Essenzialmente tutti. Tutti dovrebbero avere a cuore la privacy.  \n  La possibilità di trasmettere informazioni sensibili in forma anonima è particolarmente importante per giornalisti, avvocati, politici, informatori, persone oppresse, ecc."
     },
     "why": {
-      "body": "Condividere i segreti è delicato. Non volete che le informazioni sensibili (informazioni riservate, password, chiavi API, token di accesso, combinazioni di chiavi, confessioni, ecc.) rimangano nel vostro canale Slack, nella chat di Whatsapp, nella casella di posta elettronica o in qualsiasi altro canale di comunicazione. Un link monouso garantisce che il vostro segreto venga visualizzato solo una volta, prima di essere distrutto in modo permanente.\n\n**Utilizzate questo servizio nel caso in cui vogliate\n- Condividere la password di Netflix con un membro della famiglia.\n- Inviare un messaggio privato da un computer pubblico.\n- Inviare token di accesso, chiavi API, codici PIN a un amico o a un collega.\n- Inoltrare informazioni di pagamento come il numero della carta di credito o l'indirizzo del portafoglio Bitcoin.\n- Confessare una cotta segreta.\n- Trasmettere informazioni che potrebbero essere usate contro di voi.",
-      "heading": "Why should I use this service?"
+      "body": "Condividere i segreti è delicato. Non volete che le informazioni sensibili (informazioni riservate, password, chiavi API, token di accesso, combinazioni di chiavi, confessioni, ecc.) rimangano nel vostro canale Slack, nella chat di Whatsapp, nella casella di posta elettronica o in qualsiasi altro canale di comunicazione. Un link monouso garantisce che il vostro segreto venga visualizzato solo una volta, prima di essere distrutto in modo permanente.\n\n**Utilizzate questo servizio nel caso in cui vogliate\n- Condividere la password di Netflix con un membro della famiglia.\n- Inviare un messaggio privato da un computer pubblico.\n- Inviare token di accesso, chiavi API, codici PIN a un amico o a un collega.\n- Inoltrare informazioni di pagamento come il numero della carta di credito o l'indirizzo del portafoglio Bitcoin.\n- Confessare una cotta segreta.\n- Trasmettere informazioni che potrebbero essere usate contro di voi."
     }
   },
   "FormField": {
-    "isEmojiShortLinkEnabled": {
-      "label": "Use emoji link"
-    },
-    "name": {
-      "helperText": "This information is <1>private</1> and will never be shown to anybody. We only use it give you a personalized experience."
-    },
-    "neogramDestructionMessage": {
-      "label": "Destruction message",
-      "placeholder": "This message will self-destruct in…"
-    },
-    "neogramDestructionTimeout": {
-      "endAdornment": "seconds",
-      "label": "Destruction countdown"
-    },
     "readReceiptMethod": {
       "label": "Leggere le ricevute"
     },
-    "readReceiptsOptions": {
-      "email": "Via Email",
-      "none": "None",
-      "sms": "Via SMS"
-    },
     "receiptEmail": {
       "label": "Indirizzo e-mail"
-    },
-    "receiptPhoneNumber": {
-      "label": "Phone"
-    },
-    "url": {
-      "helperText": "The URL to get redirected to (one time).",
-      "label": "Secret URL"
     }
   },
   "menu": {
-    "about": "About",
-    "acceptableUsePolicy": "Acceptable Use Policy",
-    "account": "My Account",
-    "blog": "Blog",
-    "contact": "Contact",
-    "cookiePolicy": "Cookie Policy",
-    "dangerZone": "Danger Zone",
     "faq": "FAQ",
-    "imprint": "Imprint",
-    "pricing": "Pricing",
     "privacy": "Informativa sulla privacy",
     "privacyPolicy": "Informativa sulla privacy",
-    "register": "Register",
     "secrets": {
       "files": "File",
       "neogram": "Neogramma",
-      "redirect": "Redirect",
       "text": "Testo"
     },
-    "security": "Security",
-    "settings": "Settings",
     "signIn": "Accedi",
     "signOut": "Esci",
-    "status": "Status",
     "subscription": "Abbonamento",
-    "termsOfService": "Terms of Service",
     "title": {
       "account": "Conto",
       "createSecret": "Crea segreto",
-      "help": "Help",
-      "information": "Information",
-      "integrations": "Integrations",
-      "secrets": "Segreti",
-      "support": "Support"
+      "secrets": "Segreti"
     }
   },
   "meta": {
@@ -473,9 +339,7 @@
     },
     "keywords": "scrt.link, link segreto, link messaggio segreto, segreto una tantum, password una tantum, messaggio una tantum, link una tantum, messaggio usa e getta, link usa e getta, accorciatore di url, link autodistruttivi, condividere informazioni sensibili"
   },
-  "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "password": "Password",
-  "perMonth": "per month",
   "plans": {
     "free": {
       "title": "Gratis"
@@ -484,294 +348,91 @@
   "secretType": {
     "file": {
       "label": "Messaggio",
-      "placeholder": "Add an optional message for the recipient…",
       "tabLabel": "File"
     },
     "neogram": {
-      "label": "Your secret",
-      "placeholder": "Wake up Neo…",
       "tabLabel": "Neogramma"
     },
     "text": {
-      "label": "Your secret",
-      "placeholder": "What's your secret?",
       "tabLabel": "Testo"
-    },
-    "url": {
-      "label": "URL",
-      "placeholder": "e.g. https://www.example.com",
-      "tabLabel": "Redirect"
     }
   },
   "validation": {
-    "confirmationRequired": "Field must be checked",
-    "consentRequired": "Your consent is required.",
-    "destructionMessage": "Destruction message",
-    "destructionTimeout": "Destruction timeout",
     "email": "Email",
-    "emojiLink": "Emoji short link",
     "message": "Messaggio",
     "name": "Nome e cognome",
-    "notAllowed": "Not allowed.",
     "password": "Password",
-    "phone": "Phone",
-    "phoneNotValid": "Phone number is not valid",
-    "readReceipts": "Leggere le ricevute",
-    "secretUrl": "Secret URL",
-    "urlNotValid": "{{label}} does not have a valid URL format"
+    "readReceipts": "Leggere le ricevute"
   },
   "views": {
     "About": {
       "Accounts": {
-        "markdown": "Il motivo principale per cui offriamo un account è prevenire lo spam e le frodi. Tutte le funzioni principali sono gratuite e non richiedono un account.\n\nTuttavia, alcune funzioni richiedono un'autenticazione di base (chiediamo solo un indirizzo e-mail - non ci interessa che usiate un indirizzo e-mail temporaneo). Queste funzioni includono l'invio di informazioni via e-mail o SMS. Gli account ci aiutano a prevenire gli abusi dei sistemi sottostanti. \n\nGli account premium a pagamento sono destinati ai power user e alle persone che amano [sostenere questo progetto](/prezzo).",
-        "subtitle": "On why we offer free and premium accounts.",
-        "title": "User Accounts"
-      },
-      "BrowserExtensions": {
-        "markdown": "To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.",
-        "subtitle": "Share secrets from within your browser.",
-        "title": "Browser Extensions"
+        "markdown": "Il motivo principale per cui offriamo un account è prevenire lo spam e le frodi. Tutte le funzioni principali sono gratuite e non richiedono un account.\n\nTuttavia, alcune funzioni richiedono un'autenticazione di base (chiediamo solo un indirizzo e-mail - non ci interessa che usiate un indirizzo e-mail temporaneo). Queste funzioni includono l'invio di informazioni via e-mail o SMS. Gli account ci aiutano a prevenire gli abusi dei sistemi sottostanti. \n\nGli account premium a pagamento sono destinati ai power user e alle persone che amano [sostenere questo progetto](/prezzo)."
       },
       "Developers": {
-        "markdown": "Con i nostri strumenti per sviluppatori è possibile integrare facilmente questo servizio nei propri progetti. Offriamo un'API pubblica insieme a pacchetti lato client che gestiscono la crittografia end-to-end.\n\n### Pacchetti NPM\n- {{npmScrtLinkCore}} Utilizzare questo pacchetto per creare un collegamento segreto. Questo strumento gestisce tutto ciò che riguarda la crittografia e l'API. (È lo stesso codice che gira su questo sito web).\n- {{npmScrtLinkCli}} Usare questo pacchetto per creare segreti dalla riga di comando.\n\n### Codice sorgente\n- {{gitlabScrtLink}} Codice sorgente dell'API e di questo sito web.\n- {{gitlabScrtLinkCore}} Codice sorgente del pacchetto principale che gestisce la crittografia e l'accesso all'API.\n- {{gitlabScrtLinkCli}} Codice sorgente dello strumento CLI.\n- {{gitlabScrtLinkSlack}} Codice sorgente dell'app Slack.",
-        "subtitle": "All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.",
-        "title": "For Developers"
+        "markdown": "Con i nostri strumenti per sviluppatori è possibile integrare facilmente questo servizio nei propri progetti. Offriamo un'API pubblica insieme a pacchetti lato client che gestiscono la crittografia end-to-end.\n\n### Pacchetti NPM\n- {{npmScrtLinkCore}} Utilizzare questo pacchetto per creare un collegamento segreto. Questo strumento gestisce tutto ciò che riguarda la crittografia e l'API. (È lo stesso codice che gira su questo sito web).\n- {{npmScrtLinkCli}} Usare questo pacchetto per creare segreti dalla riga di comando.\n\n### Codice sorgente\n- {{gitlabScrtLink}} Codice sorgente dell'API e di questo sito web.\n- {{gitlabScrtLinkCore}} Codice sorgente del pacchetto principale che gestisce la crittografia e l'accesso all'API.\n- {{gitlabScrtLinkCli}} Codice sorgente dello strumento CLI.\n- {{gitlabScrtLinkSlack}} Codice sorgente dell'app Slack."
       },
-      "intro": "Tutto è iniziato con l'idea di inviare messaggi privati in modo divertente. Messaggi che non persistono. Pensate a Snapchat, ma senza rivelare i vostri dati utente. L'idea è cresciuta fino a diventare un progetto che potrebbe essere riassunto come \"Condivisione di segreti come servizio\". Ci sono prodotti simili in giro, anzi, alcuni sono stati di grande ispirazione. Tuttavia, ciò che distingue scrt.link è la combinazione di tutte le grandi idee e concetti sulla sicurezza e la privacy, con l'attenzione al design e all'esperienza utente. Restate sintonizzati: ne arriveranno altri!",
-      "Philosophy": {
-        "markdown": "Freedom of speech, freedom of the press, and the right to privacy are among the most important civil liberties in a free society. With this project we empower you to exchange information over the internet in truly secure and private way. This product is made in a way that respects people's integrity and privacy all the way. We have no interest in you! Not in you as a person, nor in your secrets. Read more on our [Privacy page](/privacy).",
-        "title": "Philosophy"
-      },
-      "SlackApp": {
-        "subtitle": "No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.",
-        "title": "Slack Application"
-      },
-      "subtitle": "The whole project is based on a simple premise: The less we know, the better.",
-      "title": "About"
-    },
-    "AcceptableUsePolicy": {
-      "subtitle": "Tl;dr: Play fair.",
-      "title": "Acceptable Use Policy"
+      "intro": "Tutto è iniziato con l'idea di inviare messaggi privati in modo divertente. Messaggi che non persistono. Pensate a Snapchat, ma senza rivelare i vostri dati utente. L'idea è cresciuta fino a diventare un progetto che potrebbe essere riassunto come \"Condivisione di segreti come servizio\". Ci sono prodotti simili in giro, anzi, alcuni sono stati di grande ispirazione. Tuttavia, ciò che distingue scrt.link è la combinazione di tutte le grandi idee e concetti sulla sicurezza e la privacy, con l'attenzione al design e all'esperienza utente. Restate sintonizzati: ne arriveranno altri!"
     },
     "Account": {
-      "accountDeletion": "Delete your account",
-      "activeSubscriptionWarning": "You have a running subscription. We recommend to cancel it first.",
-      "ManageSubscriptionButton": {
-        "button": "Manage subscription on Stripe"
-      },
-      "settingsDisclaimer": "The following are default settings. You can overwrite each setting for every secret you create.",
-      "signedInAs": "You are signed in as {{email}}.",
-      "subscriptionInfo": "You are currently on the <1>{{customerRole}}</1> plan.",
-      "subtitle": "Hi {{name}}, welcome back!",
-      "tabsMenu": {
-        "label": "Account options"
-      },
       "title": "Conto"
     },
     "Alias": {
-      "enterPassword": "Enter password to decrypt your secret:",
-      "errorOccurred": "Error occurred",
       "file": {
-        "button": {
-          "label": "Decrypt and Download"
-        },
         "name": "Nome del destinatario",
         "optionalMessage": "Messaggio",
         "size": "Dimensione",
-        "subtitle": "You received a secret file:",
-        "type": "Tipo",
-        "warning": "Important! We have absolutely no knowledge about the contents of the file. Be sure to trust the sender!"
+        "type": "Tipo"
       },
-      "loadingSecret": "Loading secret",
-      "passwordRequired": "Password required",
-      "subtitle": "Hai ricevuto un segreto:",
-      "title1": "Shhh",
-      "title2": "Knock Knock",
-      "title3": "Hello",
-      "title4": "Incoming…"
-    },
-    "Contact": {
-      "subtitle": "Do you have a question or need support? Get in touch!",
-      "title": "Contact",
-      "topic": {
-        "general": "General inquiries",
-        "support": "Support",
-        "tech": "Tech"
-      }
-    },
-    "CookiePolicy": {
-      "subtitle": "Tl;dr: only essentials, no tracking.",
-      "title": "Cookie Policy"
-    },
-    "Error": {
-      "subtitle": "Sorry, something went wrong.",
-      "title": "Error {{statusCode}}"
-    },
-    "FAQ": {
-      "introQuestion": "What topic can we help you with?",
-      "noAnswer": "Didn't find the answer you were looking for? Contact support:",
-      "subtitle": "Frequently Asked Questions"
-    },
-    "Files": {
-      "flowDisclaimer": "Swiss privacy: Files will be end-to-end encrypted and stored in Zürich, Switzerland by Flow Swiss AG.",
-      "subtitle": "Share end-to-end encrypted files. One time.",
-      "title": "X Files"
+      "subtitle": "Hai ricevuto un segreto:"
     },
     "Home": {
       "default": {
-        "subtitle": "…with a link that only works <1>one time</1> and then <4>self-destructs.</4>",
         "title": "Condividi un segreto"
       },
-      "FAQ": {
-        "subtitle": "Frequently asked questions."
-      },
       "HowItWorks": {
-        "burn": {
-          "text": "After the secret has been viewed, it gets destroyed.",
-          "title": "Burn"
-        },
-        "create": {
-          "text": "Compose your secret and get a one-time link.",
-          "title": "Write"
-        },
         "share": {
-          "text": "Send the generated link to your confidant.",
           "title": "Condividere"
-        },
-        "subtitle": "Share sensitive information that can only be viewed one time. The perfect way to transmit passwords, credit card information, private keys, or other confidential data.",
-        "title": "One-Time Secrets"
-      },
-      "SecretLinksExplained": {
-        "button": "Learn more about security",
-        "imageAlt": "Link explained",
-        "subtitle": "We encrypt your secret on your device. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.",
-        "title": "End-to-End Encryption"
-      },
-      "SlackApp": {
-        "subtitle": "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
-        "title": "The Slack App&nbsp;<1><0>NEW</0></1>",
-        "usps": {
-          "0": "Encrypted, disposable messages, stored outside of Slack.",
-          "1": "Create one-time secrets via shortcut or slash command.",
-          "2": "Burn notification after a secret has been viewed."
         }
-      },
-      "success": {
-        "subtitle": "Your secret link has been created - now share it with your confidant.",
-        "title": "Success!"
       }
     },
-    "Imprint": {
-      "credits": "Credits",
-      "flowSwiss": "This project is supported by Flow Swiss AG - Premium cloud services from Zurich, Switzerland.",
-      "inspiration": "Inspiration",
-      "policiesAndTerms": "Policies and Terms",
-      "subtitle": "Tl;dr: Limited liability.",
-      "title": "Imprint"
-    },
     "Neogram": {
-      "subtitle": "Matrix-style disappearing messages. End-to-end encrypted.",
       "title": "Neogramma"
-    },
-    "Pricing": {
-      "Canceled": {
-        "error": "You either canceled the payment process or something went wrong along the way. Sorry about that. Feel free to try again.",
-        "title": "Payment canceled"
-      },
-      "subtitle": "Simple plans, fair pricing.",
-      "title": "Pricing"
     },
     "Privacy": {
       "Account": {
-        "markdown": "Per i power user, offriamo account utente che richiedono l'autenticazione. È possibile creare un account solo con un indirizzo e-mail (è possibile utilizzare un'e-mail temporanea o mascherata) - non è obbligatorio fornire ulteriori informazioni. \n\nPer le persone che visitano il nostro sito web, utilizziamo sempre e solo cookie essenziali. In altre parole, i cookie che sono necessari per fornire le funzionalità principali: Ad esempio, la gestione dell'autenticazione sicura. Per saperne di più, consultate la nostra Informativa sulla privacy.",
-        "title": "Account & Cookies"
+        "markdown": "Per i power user, offriamo account utente che richiedono l'autenticazione. È possibile creare un account solo con un indirizzo e-mail (è possibile utilizzare un'e-mail temporanea o mascherata) - non è obbligatorio fornire ulteriori informazioni. \n\nPer le persone che visitano il nostro sito web, utilizziamo sempre e solo cookie essenziali. In altre parole, i cookie che sono necessari per fornire le funzionalità principali: Ad esempio, la gestione dell'autenticazione sicura. Per saperne di più, consultate la nostra Informativa sulla privacy."
       },
       "Analytics": {
-        "markdown": "Analizziamo il traffico web di base con {{linkPlausible}} - l'alternativa semplice e rispettosa della privacy a Google Analytics.\n\n- Nessun utilizzo di cookie\n- Pienamente conforme alle normative sulla privacy GDPR, CCPA e PECR\n- Nessuna raccolta di dati personali\n- Il progetto è open source\n- Tutti i dati analitici sono **pubblicamente disponibili**: {{linkDashboard}}",
-        "title": "Analytics"
-      },
-      "intro": "For us, privacy is not negotiable. We carefully choose and limit our tools in order to protect everyone's right to privacy. We don't use ads, we don't track individuals, we don't sell data and we keep personal data requirements at the bare minimum. Even with an account, we'd never ask for personally identifiable information (PII) without a good reason. On top of that, we use privacy by design principles: We structured our database in a way that a single secret remains a completely independent entity - even while using a user account, a secret can never be traced back to you.",
-      "subtitle": "No ads, no tracking, no bullshit.",
-      "title": "Privacy"
-    },
-    "PrivacyPolicy": {
-      "subtitle": "Tl;dr: Privacy matters.",
-      "title": "Privacy Policy"
-    },
-    "Redirect": {
-      "subtitle": "Create a one-time redirect. Without a trace.",
-      "title": "Secret Redirect"
+        "markdown": "Analizziamo il traffico web di base con {{linkPlausible}} - l'alternativa semplice e rispettosa della privacy a Google Analytics.\n\n- Nessun utilizzo di cookie\n- Pienamente conforme alle normative sulla privacy GDPR, CCPA e PECR\n- Nessuna raccolta di dati personali\n- Il progetto è open source\n- Tutti i dati analitici sono **pubblicamente disponibili**: {{linkDashboard}}"
+      }
     },
     "Security": {
       "Infrastructure": {
-        "markdown": "Abbiamo scelto i leader del settore per ospitare la nostra infrastruttura:\n\n- Sito web/API su {{linkVercel}}\n- Database in cloud con {{linkScaleGrid}}\n- Memorizzazione degli oggetti (file) con {{linkFlowSwiss}}\n- App Slack su {{linkHeroku}}\n- Tutto il codice su {{linkGitlab}}",
-        "subtitle": "Trusted players, few dependencies.",
-        "title": "Infrastructure"
+        "markdown": "Abbiamo scelto i leader del settore per ospitare la nostra infrastruttura:\n\n- Sito web/API su {{linkVercel}}\n- Database in cloud con {{linkScaleGrid}}\n- Memorizzazione degli oggetti (file) con {{linkFlowSwiss}}\n- App Slack su {{linkHeroku}}\n- Tutto il codice su {{linkGitlab}}"
       },
-      "markdown": "Tutti i messaggi sono **crittografati end-to-end**. Generiamo un hash casuale per criptare il vostro segreto **sul client** utilizzando **AES-256** (Advanced Encryption Standard). La chiave di crittografia non viene mai memorizzata, ma aggiunta al link segreto stesso. Senza il link completo, nessuno (compresi noi) sarà mai in grado di decifrare il vostro messaggio. \n\nSe viene fornita una password, la utilizziamo per crittografare il vostro segreto **in aggiunta** alla crittografia standard. La password non viene memorizzata. Anche con **l'accesso a tutta la nostra infrastruttura** un aggressore non potrebbe leggere il vostro messaggio. Dopo che un segreto è stato visualizzato, lo cancelliamo definitivamente dal nostro database. Non c'è alcun backup.\n![Spiegazione del link](/images/it/link-explanation.svg)\n\n### Sicurezza per progettazione\n- Tutte le connessioni sono protette tramite HTTPS\n- Tutti i dati sono memorizzati in modo criptato (non solo i segreti)\n- Il minor numero possibile di codice di terze parti\n- Le dipendenze sono controllate e aggiornate regolarmente\n- Tutto il codice è open-source su {{gitlabLink}}",
-      "subtitle": "Best practices, no extras.",
-      "title": "Security"
-    },
-    "SignIn": {
-      "noAccountYet": "No Account yet?",
-      "signUpNow": "Sign up now",
-      "subtitle": "Sign back in. Protect your secrets.",
-      "title": "Sign In"
-    },
-    "SignOut": {
-      "loading": "Signing out…",
-      "subtitle": "Stay safe! Come back soon.",
-      "success": "You are successfully signed out.",
-      "title": "Sign Out"
+      "markdown": "Tutti i messaggi sono **crittografati end-to-end**. Generiamo un hash casuale per criptare il vostro segreto **sul client** utilizzando **AES-256** (Advanced Encryption Standard). La chiave di crittografia non viene mai memorizzata, ma aggiunta al link segreto stesso. Senza il link completo, nessuno (compresi noi) sarà mai in grado di decifrare il vostro messaggio. \n\nSe viene fornita una password, la utilizziamo per crittografare il vostro segreto **in aggiunta** alla crittografia standard. La password non viene memorizzata. Anche con **l'accesso a tutta la nostra infrastruttura** un aggressore non potrebbe leggere il vostro messaggio. Dopo che un segreto è stato visualizzato, lo cancelliamo definitivamente dal nostro database. Non c'è alcun backup.\n![Spiegazione del link](/images/it/link-explanation.svg)\n\n### Sicurezza per progettazione\n- Tutte le connessioni sono protette tramite HTTPS\n- Tutti i dati sono memorizzati in modo criptato (non solo i segreti)\n- Il minor numero possibile di codice di terze parti\n- Le dipendenze sono controllate e aggiornate regolarmente\n- Tutto il codice è open-source su {{gitlabLink}}"
     },
     "SignUp": {
       "FreeAccount": {
-        "title": "Free Account Benefits",
-        "upsell": "Need more? <1>There is more</1>.",
         "Usps": {
-          "0": "More characters for your secrets",
-          "1": "Email read receipts",
-          "2": "Slack App",
-          "3": "Estensioni del browser",
-          "4": "Personal support",
-          "5": "Emoji links 🤫"
+          "3": "Estensioni del browser"
         }
-      },
-      "gotAccount": "Already got an account?",
-      "signInNow": "Sign in now",
-      "subtitle": "Great things start here…",
-      "title": "Get Account"
+      }
     },
     "Slack": {
-      "FAQ": {
-        "subtitle": "Frequently asked questions about the Slack App."
-      },
       "HowToUse": {
-        "markdown": "### Comando Slash \nL'opzione più semplice e versatile è quella di utilizzare un comando slash (**`/scrt`**)\n\nEsempio:_\n![Immagine](/images/slack/slack-screenshot-comando-ingresso.png)\n\n- **`/scrt`** apre una finestra di dialogo per creare un segreto.\n- **`/scrt` _`[il segreto va qui...]`_** crea istantaneamente un collegamento segreto (di tipo **Text**).\n- **`/scrt [text|link|neogramma]`** apre una finestra di dialogo per creare un tipo specifico di segreto.\n- **`/scrt help`**: apre una finestra di dialogo di aiuto.\n\n### Scorciatoie di Slack\nSono disponibili scorciatoie globali e a livello di messaggio.\n- Fare clic su ⚡️ per accedere ai collegamenti globali e scegliere **scrt.link**.\n- All'interno di una conversazione, fare clic sull'icona del menu contestuale (3 punti) e scegliere **Rispondi con un segreto**.\n\n![Immagine](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Leggere le ricevute\nQuesta è una funzione integrata. Si riceve una notifica quando un segreto è stato visualizzato. Utilizziamo un'emoji 🔥 per indicare quando un segreto è stato bruciato e il link non è più disponibile.\n![Immagine](/images/slack/slack-screenshot-read-receipt.png)",
-        "title": "How to use"
+        "markdown": "### Comando Slash \nL'opzione più semplice e versatile è quella di utilizzare un comando slash (**`/scrt`**)\n\nEsempio:_\n![Immagine](/images/slack/slack-screenshot-comando-ingresso.png)\n\n- **`/scrt`** apre una finestra di dialogo per creare un segreto.\n- **`/scrt` _`[il segreto va qui...]`_** crea istantaneamente un collegamento segreto (di tipo **Text**).\n- **`/scrt [text|link|neogramma]`** apre una finestra di dialogo per creare un tipo specifico di segreto.\n- **`/scrt help`**: apre una finestra di dialogo di aiuto.\n\n### Scorciatoie di Slack\nSono disponibili scorciatoie globali e a livello di messaggio.\n- Fare clic su ⚡️ per accedere ai collegamenti globali e scegliere **scrt.link**.\n- All'interno di una conversazione, fare clic sull'icona del menu contestuale (3 punti) e scegliere **Rispondi con un segreto**.\n\n![Immagine](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Leggere le ricevute\nQuesta è una funzione integrata. Si riceve una notifica quando un segreto è stato visualizzato. Utilizziamo un'emoji \uD83D\uDD25 per indicare quando un segreto è stato bruciato e il link non è più disponibile.\n![Immagine](/images/slack/slack-screenshot-read-receipt.png)"
       },
-      "intro": "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.",
       "Introduction": {
-        "markdown": "### Caratteristiche principali\n- Creazione di segreti una tantum tramite **scorciatoia** o **comandolash**.\n- Messaggi** crittografati e usa e getta che vengono archiviati al di fuori di Slack.\n- Notifica** dopo la visualizzazione di un segreto. \n- Nessun registro, nessun backup, nessuna traccia.\n    \n  👉 [Installa ora]{{slackAppInstallLink}})\n---\n#### _Informazioni importanti sulle limitazioni di sicurezza\nA causa della natura\ndelle app Slack, non è possibile una **crittografia completa end-to-end**. Adottiamo una serie di misure per assicurarci che i vostri segreti siano al sicuro, tra cui connessioni crittografate, server applicativo sandboxato, accesso limitato all'infrastruttura, ecc. Nel 99% dei casi d'uso questo è\nNel 99% dei casi d'uso questo va bene ed è un rischio che vale la pena correre; tuttavia, Slack è un software proprietario su cui non abbiamo il controllo. In altre parole, se avete bisogno di una protezione avanzata, create dei segreti sul sito web.\nsul sito web.",
-        "subtitle": "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.",
-        "title": "Secrets for Slack"
-      },
-      "missingTranslationsNotice": "Dear customer, the Slack App is currently only available in English.",
-      "subtitle": "Some things better not stay in your chat history.",
-      "title": "The Slack App"
+        "markdown": "### Caratteristiche principali\n- Creazione di segreti una tantum tramite **scorciatoia** o **comandolash**.\n- Messaggi** crittografati e usa e getta che vengono archiviati al di fuori di Slack.\n- Notifica** dopo la visualizzazione di un segreto. \n- Nessun registro, nessun backup, nessuna traccia.\n    \n  \uD83D\uDC49 [Installa ora]{{slackAppInstallLink}})\n---\n#### _Informazioni importanti sulle limitazioni di sicurezza\nA causa della natura\ndelle app Slack, non è possibile una **crittografia completa end-to-end**. Adottiamo una serie di misure per assicurarci che i vostri segreti siano al sicuro, tra cui connessioni crittografate, server applicativo sandboxato, accesso limitato all'infrastruttura, ecc. Nel 99% dei casi d'uso questo è\nNel 99% dei casi d'uso questo va bene ed è un rischio che vale la pena correre; tuttavia, Slack è un software proprietario su cui non abbiamo il controllo. In altre parole, se avete bisogno di una protezione avanzata, create dei segreti sul sito web.\nsul sito web."
+      }
     },
     "TermsOfService": {
-      "policies": "Policies",
-      "subtitle": "Tl;dr: Pretty much standard.",
       "title": "Termini di servizio"
-    },
-    "Text": {
-      "subtitle": "Share end-to-end encrypted messages. One time.",
-      "title": "Secret Text"
     }
   },
   "Widget": {
-    "myAccount": "Il mio conto",
-    "noAccountYet": "No Account yet?"
+    "myAccount": "Il mio conto"
   }
 }

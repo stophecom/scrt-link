@@ -86,7 +86,7 @@
       "account": "Konto",
       "defaults": "Domyślnie",
       "emojiLink": {
-        "description": "Dodaj trochę zabawy za pomocą specjalnego łącza emoji. Przykład: <2><0>https://🤫.st/nxKFy... <3><4>Uważaj. Łącza emoji są obsługiwane w następujących aplikacjach: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Obecnie nie są obsługiwane w następujących aplikacjach: <11>Signal, Slack, Snapchat.",
+        "description": "Dodaj trochę zabawy za pomocą specjalnego łącza emoji. Przykład: <2><0>https://\uD83E\uDD2B.st/nxKFy... <3><4>Uważaj. Łącza emoji są obsługiwane w następujących aplikacjach: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Obecnie nie są obsługiwane w następujących aplikacjach: <11>Signal, Slack, Snapchat.",
         "title": "Łącze emoji"
       },
       "privacyNotice": "Te informacje są <1>prywatne i nigdy nie zostaną nikomu pokazane. Używamy ich tylko do wysyłania potwierdzeń odczytu.",
@@ -235,11 +235,11 @@
   },
   "currency": "Waluta",
   "demoNeogramDestructionMessage": "Ta wiadomość ulegnie samodestrukcji w ...",
-  "demoNeogramMessage": "Obudź się Neo...\nTo jest tylko demo!\nWiadomości Neogram ulegają samozniszczeniu automatycznie po upływie określonego czasu.\n\nMiłego dzielenia się sekretami 😘",
-  "demoTextMessage": "Cześć tam...\nTo jest tylko demo!\n\nCiesz się dzieleniem sekretami 😘",
+  "demoNeogramMessage": "Obudź się Neo...\nTo jest tylko demo!\nWiadomości Neogram ulegają samozniszczeniu automatycznie po upływie określonego czasu.\n\nMiłego dzielenia się sekretami \uD83D\uDE18",
+  "demoTextMessage": "Cześć tam...\nTo jest tylko demo!\n\nCiesz się dzieleniem sekretami \uD83D\uDE18",
   "email": "Wyślij wiadomość e-mail na adres .",
   "error": {
-    "API_SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
+    "API_SECRET_NOT_FOUND": "Nie znaleziono sekretu - Zwykle oznacza to, że sekretny link został już odwiedzony i dlatego już nie istnieje.",
     "invalidAlias": "Nieprawidłowy alias.",
     "missingDecryptionKey": "Brak klucza deszyfrującego.",
     "noMessage": "Brak komunikatu.",
@@ -347,7 +347,7 @@
       "heading": "Kto stoi za tą usługą?"
     },
     "slack-app": {
-      "body": "Aplikacja Slack pozwala korzystać z możliwości scrt.link bez konieczności przełączania aplikacji. Aby uzyskać więcej informacji, przejdź na stronę [Slack App page](/slack). Możesz też pobrać aplikację tutaj:  \n\n👉 [Install Slack App]{{ slackAppInstallLink }})  \n\n_**Ważna informacja:** Korzystanie z aplikacji Slack wiąże się z pewnymi ograniczeniami. Ze względu na charakter tych aplikacji, pełne szyfrowanie end-to-end nie jest możliwe. W większości przypadków nie stanowi to problemu i jest to ryzyko, które warto podjąć - jeśli jednak potrzebujesz zaawansowanej ochrony, utwórz sekrety na stronie internetowej.",
+      "body": "Aplikacja Slack pozwala korzystać z możliwości scrt.link bez konieczności przełączania aplikacji. Aby uzyskać więcej informacji, przejdź na stronę [Slack App page](/slack). Możesz też pobrać aplikację tutaj:  \n\n\uD83D\uDC49 [Install Slack App]{{ slackAppInstallLink }})  \n\n_**Ważna informacja:** Korzystanie z aplikacji Slack wiąże się z pewnymi ograniczeniami. Ze względu na charakter tych aplikacji, pełne szyfrowanie end-to-end nie jest możliwe. W większości przypadków nie stanowi to problemu i jest to ryzyko, które warto podjąć - jeśli jednak potrzebujesz zaawansowanej ochrony, utwórz sekrety na stronie internetowej.",
       "heading": "Gdzie mogę pobrać aplikację Slack?"
     },
     "slack-data-collection": {
@@ -355,11 +355,11 @@
       "heading": "Jakie dane zbierasz?"
     },
     "slack-not-approved": {
-      "body": "Po pierwsze, ważne jest, aby zrozumieć, że ta aplikacja nadal może być instalowana i używana w dokładnie taki sam sposób, jak aplikacje znajdujące się na oficjalnej liście. Próbowaliśmy zgłosić naszą aplikację do Slack App Directory, aby znaleźć się na liście. Ale ponieważ Slack dosłownie \"ogranicza zatwierdzanie aplikacji, które ułatwiają dzielenie się wrażliwymi informacjami\", nie byliśmy w stanie tego zrobić. Zastanów się nad tym przez chwilę. A potem pomóż nam to rozpowszechnić 🥰.",
+      "body": "Po pierwsze, ważne jest, aby zrozumieć, że ta aplikacja nadal może być instalowana i używana w dokładnie taki sam sposób, jak aplikacje znajdujące się na oficjalnej liście. Próbowaliśmy zgłosić naszą aplikację do Slack App Directory, aby znaleźć się na liście. Ale ponieważ Slack dosłownie \"ogranicza zatwierdzanie aplikacji, które ułatwiają dzielenie się wrażliwymi informacjami\", nie byliśmy w stanie tego zrobić. Zastanów się nad tym przez chwilę. A potem pomóż nam to rozpowszechnić \uD83E\uDD70.",
       "heading": "Dlaczego ta aplikacja nie jest zatwierdzona przez Slacka?"
     },
     "slack-premium-account": {
-      "body": "Nie. Nie ma za co. Ale oczywiście możesz wspierać ten projekt poprzez płatne subskrypcje niezależnie od tego 🤓.",
+      "body": "Nie. Nie ma za co. Ale oczywiście możesz wspierać ten projekt poprzez płatne subskrypcje niezależnie od tego \uD83E\uDD13.",
       "heading": "Czy muszę mieć wykupioną subskrypcję premium, aby korzystać z aplikacji Slack?"
     },
     "slack-scopes": {
@@ -734,7 +734,7 @@
           "2": "Aplikacja Slack",
           "3": "Rozszerzenia przeglądarki",
           "4": "Wsparcie osobiste",
-          "5": "Łącza Emoji 🤫"
+          "5": "Łącza Emoji \uD83E\uDD2B"
         }
       },
       "gotAccount": "Masz już konto?",
@@ -747,12 +747,12 @@
         "subtitle": "Najczęściej zadawane pytania dotyczące aplikacji Slack."
       },
       "HowToUse": {
-        "markdown": "### Polecenie ukośnik \nNajprostszą i najbardziej uniwersalną opcją jest użycie polecenia ukośnika (**`/scrt`**)\n\nPrzykład:_Przykład\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** otwiera okno dialogowe do utworzenia sekretu.\n- **`/scrt` _`[secret goes here...]`_** tworzy natychmiast tajny odnośnik (typu **Text**).\n- **`/scrt [text|link|neogram]`** otwiera okno dialogowe, aby utworzyć określony typ sekretu.\n- **`/scrt help`**: otwiera okno dialogowe pomocy.\n\n### Skróty klawiszowe\nDostępne są skróty globalne i na poziomie wiadomości.\n- Kliknij ⚡️, aby uzyskać dostęp do skrótów globalnych i wybierz **scrt.link**.\n- W rozmowie kliknij ikonę menu kontekstowego (3 kropki) i wybierz **odpowiedz z sekretem**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Czytaj pokwitowania\nJest to wbudowana funkcja. Użytkownik otrzymuje powiadomienie, gdy sekret został obejrzany. Używamy emoji 🔥, aby wskazać, kiedy sekret został spalony i link nie jest już dostępny.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
+        "markdown": "### Polecenie ukośnik \nNajprostszą i najbardziej uniwersalną opcją jest użycie polecenia ukośnika (**`/scrt`**)\n\nPrzykład:_Przykład\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** otwiera okno dialogowe do utworzenia sekretu.\n- **`/scrt` _`[secret goes here...]`_** tworzy natychmiast tajny odnośnik (typu **Text**).\n- **`/scrt [text|link|neogram]`** otwiera okno dialogowe, aby utworzyć określony typ sekretu.\n- **`/scrt help`**: otwiera okno dialogowe pomocy.\n\n### Skróty klawiszowe\nDostępne są skróty globalne i na poziomie wiadomości.\n- Kliknij ⚡️, aby uzyskać dostęp do skrótów globalnych i wybierz **scrt.link**.\n- W rozmowie kliknij ikonę menu kontekstowego (3 kropki) i wybierz **odpowiedz z sekretem**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Czytaj pokwitowania\nJest to wbudowana funkcja. Użytkownik otrzymuje powiadomienie, gdy sekret został obejrzany. Używamy emoji \uD83D\uDD25, aby wskazać, kiedy sekret został spalony i link nie jest już dostępny.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
         "title": "Jak używać"
       },
       "intro": "Rozmowy w Slacku nigdy nie są w pełni prywatne. Czy wiesz, że administrator systemu lub Twój szef mogą potencjalnie przeczytać Twoje wiadomości w Slacku? Dzięki aplikacji scrt.link możesz teraz chronić poufne informacje w swoich rozmowach w Slacku.",
       "Introduction": {
-        "markdown": "### Główne cechy\n- Tworzenie jednorazowych sekretów za pomocą **krótkiego skrótu** lub **polecenia slash**.\n- Szyfrowane, jednorazowe wiadomości**, które są przechowywane poza Slackiem.\n- Powiadomienie o spaleniu** po przejrzeniu sekretu. \n- Brak logów, brak kopii zapasowych, brak śladów.\n    \n  👉 [Zainstaluj teraz]{{slackAppInstallLink}})\n---\n#### _Ważne informacje o ograniczeniach bezpieczeństwa_.\nZe względu na charakter\naplikacji Slack, pełne **szyfrowanie end-to-end nie jest możliwe**. Podejmujemy szereg kroków, aby upewnić się, że Twoje tajemnice są bezpieczne, w tym szyfrowane połączenia, piaskownica serwera aplikacji, ograniczony dostęp do infrastruktury itp. W 99% przypadków użycia jest to\njest w porządku i warto podjąć takie ryzyko - jednak Slack to oprogramowanie własnościowe, nad którym nie mamy kontroli. Innymi słowy, jeśli potrzebujesz zaawansowanej ochrony, utwórz sekrety\nna stronie internetowej._",
+        "markdown": "### Główne cechy\n- Tworzenie jednorazowych sekretów za pomocą **krótkiego skrótu** lub **polecenia slash**.\n- Szyfrowane, jednorazowe wiadomości**, które są przechowywane poza Slackiem.\n- Powiadomienie o spaleniu** po przejrzeniu sekretu. \n- Brak logów, brak kopii zapasowych, brak śladów.\n    \n  \uD83D\uDC49 [Zainstaluj teraz]{{slackAppInstallLink}})\n---\n#### _Ważne informacje o ograniczeniach bezpieczeństwa_.\nZe względu na charakter\naplikacji Slack, pełne **szyfrowanie end-to-end nie jest możliwe**. Podejmujemy szereg kroków, aby upewnić się, że Twoje tajemnice są bezpieczne, w tym szyfrowane połączenia, piaskownica serwera aplikacji, ograniczony dostęp do infrastruktury itp. W 99% przypadków użycia jest to\njest w porządku i warto podjąć takie ryzyko - jednak Slack to oprogramowanie własnościowe, nad którym nie mamy kontroli. Innymi słowy, jeśli potrzebujesz zaawansowanej ochrony, utwórz sekrety\nna stronie internetowej._",
         "subtitle": "To bardzo częsty scenariusz: Współpracownik prosi Cię o jakiś token dostępu, klucz API lub hasło. Teraz możesz bezpiecznie odpowiedzieć.",
         "title": "Tajemnice Slacka"
       },

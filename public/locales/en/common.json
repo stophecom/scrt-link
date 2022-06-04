@@ -86,7 +86,7 @@
       "account": "Account",
       "defaults": "Defaults",
       "emojiLink": {
-        "description": "Add some fun with a special emoji link. Example: <2><0>https://🤫.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>.",
+        "description": "Add some fun with a special emoji link. Example: <2><0>https://\uD83E\uDD2B.st/nxKFy…</0> </2><3></3><4>Be aware.</4> Emoji links are supported in: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Currently not supported in: <11>Signal, Slack, Snapchat</11>.",
         "title": "Emoji link"
       },
       "privacyNotice": "This information is <1>private</1> and will never be shown to anybody. We only use it to send you read receipts.",
@@ -235,8 +235,8 @@
   },
   "currency": "Currency",
   "demoNeogramDestructionMessage": "This message self-destructs in …",
-  "demoNeogramMessage": "Wake up Neo…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘",
-  "demoTextMessage": "Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets 😘",
+  "demoNeogramMessage": "Wake up Neo…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets \uD83D\uDE18",
+  "demoTextMessage": "Hi there…\nThis is just a demo!\n\nEnjoy sharing secrets \uD83D\uDE18",
   "email": "Email",
   "error": {
     "API_SECRET_NOT_FOUND": "Secret not found - This usually means the secret link has already been visited and therefore no longer exists.",
@@ -347,7 +347,7 @@
       "heading": "Who is behind this service?"
     },
     "slack-app": {
-      "body": "The Slack app lets you use the power of scrt.link without switching apps. Go to the [Slack App page](/slack) for more information. Or get the app right here:  \n\n👉 [Install Slack App]({{ slackAppInstallLink }})  \n\n_**Important notice:** There are limitations when using the Slack Application. Due to the nature of how these apps are designed, full end-to-end encryption is not possible. In most cases this is not a problem and a risk worth taking - however, if you need advanced protection, create secrets on the website instead._",
+      "body": "The Slack app lets you use the power of scrt.link without switching apps. Go to the [Slack App page](/slack) for more information. Or get the app right here:  \n\n\uD83D\uDC49 [Install Slack App]({{ slackAppInstallLink }})  \n\n_**Important notice:** There are limitations when using the Slack Application. Due to the nature of how these apps are designed, full end-to-end encryption is not possible. In most cases this is not a problem and a risk worth taking - however, if you need advanced protection, create secrets on the website instead._",
       "heading": "Where can I get the Slack App?"
     },
     "slack-data-collection": {
@@ -355,11 +355,11 @@
       "heading": "What data do you collect?"
     },
     "slack-not-approved": {
-      "body": "First, it's important to understand that this app can still be installed and used in the exact same way as officially listed apps. That said, we tried to submit our app to the Slack App Directory to get listed. But since Slack is literally \"restricting the approval of apps that facilitate the sharing of sensitive information\" we were not able to do so. Now think about this for a minute. And afterwards, help us spread the word 🥰",
+      "body": "First, it's important to understand that this app can still be installed and used in the exact same way as officially listed apps. That said, we tried to submit our app to the Slack App Directory to get listed. But since Slack is literally \"restricting the approval of apps that facilitate the sharing of sensitive information\" we were not able to do so. Now think about this for a minute. And afterwards, help us spread the word \uD83E\uDD70",
       "heading": "Why isn't this app approved by Slack?"
     },
     "slack-premium-account": {
-      "body": "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless 🤓.",
+      "body": "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless \uD83E\uDD13.",
       "heading": "Do I need a premium subscription to use the Slack app?"
     },
     "slack-scopes": {
@@ -471,7 +471,7 @@
     "images": {
       "alt": "{{appTitle}} - Share a secret!'"
     },
-    "keywords": "scrt.link, secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
+    "keywords": "secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
   },
   "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "password": "Password",
@@ -664,7 +664,7 @@
     "Imprint": {
       "credits": "Credits",
       "flowSwiss": "This project is supported by Flow Swiss AG - Premium cloud services from Zurich, Switzerland.",
-      "inspiration": "More Inspiration",
+      "inspiration": "Inspiration",
       "policiesAndTerms": "Policies and Terms",
       "subtitle": "Tl;dr: Limited liability.",
       "title": "Imprint"
@@ -734,7 +734,7 @@
           "2": "Slack App",
           "3": "Browser extensions",
           "4": "Personal support",
-          "5": "Emoji links 🤫"
+          "5": "Emoji links \uD83E\uDD2B"
         }
       },
       "gotAccount": "Already got an account?",
@@ -747,12 +747,12 @@
         "subtitle": "Frequently asked questions about the Slack App."
       },
       "HowToUse": {
-        "markdown": "### Slash Command \nThe easiest and most versatile option is to use a slash command (**`/scrt`**)\n\n_Example:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** opens a dialog to create a secret.\n- **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**).\n- **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret.\n- **`/scrt help`**: opens a help dialog.\n\n### Slack Shortcuts\nThere are global and message level shortcuts available.\n- Click ⚡️ to access global shortcuts and choose **scrt.link**.\n- Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Read Receipts\nThis is a built in feature. You get notified when a secret has been viewed. We use a 🔥 emoji to indicate when a secret has been burned and the link is therefore no longer available.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
+        "markdown": "### Slash Command \nThe easiest and most versatile option is to use a slash command (**`/scrt`**)\n\n_Example:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** opens a dialog to create a secret.\n- **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**).\n- **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret.\n- **`/scrt help`**: opens a help dialog.\n\n### Slack Shortcuts\nThere are global and message level shortcuts available.\n- Click ⚡️ to access global shortcuts and choose **scrt.link**.\n- Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Read Receipts\nThis is a built in feature. You get notified when a secret has been viewed. We use a \uD83D\uDD25 emoji to indicate when a secret has been burned and the link is therefore no longer available.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
         "title": "How to use"
       },
       "intro": "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.",
       "Introduction": {
-        "markdown": "### Key Features\n- Create one-time secrets via **shortcut** or **slash command**.\n- **Encrypted, disposable messages** that are stored outside of Slack.\n- **Burn notification** after a secret has been viewed. \n- No logs, no backup, no trace.\n    \n  👉 [Install now]({{slackAppInstallLink}})\n---\n#### _Important information about security limitations_\n_Due to the nature of\nhow Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is\nfine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets\non the website instead._",
+        "markdown": "### Key Features\n- Create one-time secrets via **shortcut** or **slash command**.\n- **Encrypted, disposable messages** that are stored outside of Slack.\n- **Burn notification** after a secret has been viewed. \n- No logs, no backup, no trace.\n    \n  \uD83D\uDC49 [Install now]({{slackAppInstallLink}})\n---\n#### _Important information about security limitations_\n_Due to the nature of\nhow Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is\nfine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets\non the website instead._",
         "subtitle": "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.",
         "title": "Secrets for Slack"
       },
