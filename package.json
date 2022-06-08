@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--max_old_space_size=4096 --inspect' yarn fetch-translations && next dev",
+    "dev": "NODE_OPTIONS='--max_old_space_size=4096 --inspect' next dev",
     "prebuild": "yarn fetch-translations",
     "build": "next build",
     "postbuild": "next-sitemap",
