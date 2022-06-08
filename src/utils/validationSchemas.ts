@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 import { setLocale, object, string } from 'yup'
 import validator from 'validator'
 import { TFunction } from 'next-i18next'
-import { de } from 'yup-locales'
+import { de, fr } from 'yup-locales'
 import defaultLocale from 'yup/lib/locale'
 
 import { Role, ReadReceiptMethod } from '@/api/models/Customer'
@@ -11,10 +11,18 @@ import { getLimits } from '@/utils'
 import { SupportedLanguage } from '@/constants'
 
 export const setYupLocale = (locale?: SupportedLanguage) => {
-  if (locale === 'de') {
-    setLocale(de)
-  } else {
-    setLocale(defaultLocale)
+  switch (locale) {
+    case 'de': {
+      setLocale(de)
+      break
+    }
+    case 'fr': {
+      setLocale(fr)
+      break
+    }
+    default: {
+      setLocale(defaultLocale)
+    }
   }
 }
 
