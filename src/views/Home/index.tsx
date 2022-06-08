@@ -260,9 +260,9 @@ export const HomeView: CustomPage = () => {
         id="SlackApp"
         title={
           <Trans i18nKey="common:views.Home.SlackApp.title">
-            The Slack App&nbsp;
-            <Typography component="span" variant="h3" color="primary">
-              <sup>NEW</sup>
+            The Slack App
+            <Typography sx={{ marginLeft: '.1em' }} component="sup" variant="h3" color="primary">
+              NEW
             </Typography>
           </Trans>
         }
