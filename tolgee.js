@@ -1,20 +1,29 @@
-// import axios from 'axios'
-
-const http = require('https') // or 'https' for https:// URLs
+const http = require('https') // or 'https'
 const fs = require('fs')
 const extract = require('extract-zip')
 const path = require('path')
 
+require('dotenv').config({ path: path.join(__dirname, '/.env.production') })
+
 const projectId = '670'
-const apiKey = 'e0h9lu6t876p29glmcmej81jbr'
+const apiKey = process.env.TOLGEE_API_KEY
 const apiEndpoint = `https://app.tolgee.io/api/repository/${projectId}/export/jsonZip?ak=${apiKey}`
 
-const temporaryDirectory = __dirname + '/tmp'
-const temporaryZipFile = temporaryDirectory + '/file.zip'
+const temporaryDirectory = path.join(__dirname, '/tmp')
+const temporaryZipFile = path.join(temporaryDirectory, '/file.zip')
 
-const localesFolder = __dirname + '/public/locales'
+// Where we store the translation files
+const localesFolder = path.join(__dirname, '/public/locales')
 
-// fs.mkdir(temporaryDirectory)
+// Make sure /tmp folder exists, otherwise create it
+if (!fs.existsSync(temporaryDirectory)) {
+  fs.mkdirSync(temporaryDirectory, (err) => {
+    if (err) {
+      return console.error(err)
+    }
+    console.log('Directory created successfully!')
+  })
+}
 
 // Move/map to existing locales folders
 // Make an async function that gets executed immediately
@@ -53,13 +62,11 @@ async function mapPaths() {
 async function extractZip() {
   try {
     await extract(temporaryZipFile, { dir: temporaryDirectory })
+    console.log('Extraction complete')
 
     await mapPaths()
-    console.log('Extraction complete')
-    // await mapPaths()
   } catch (err) {
     console.warn(err)
-    // handle any errors
   }
 }
 
@@ -70,9 +77,7 @@ const request = http.get(apiEndpoint, function (response) {
   // after download completed close filestream
   file.on('finish', () => {
     file.close()
+    console.log('Download complete')
     extractZip()
-    console.log('Download Completed')
   })
 })
-
-// console.log(data)

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--max_old_space_size=4096 --inspect' next dev",
+    "prebuild": "node tolgee.js",
     "build": "next build",
     "postbuild": "next-sitemap",
     "export": "next export",
