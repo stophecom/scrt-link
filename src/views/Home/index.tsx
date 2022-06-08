@@ -240,7 +240,7 @@ export const HomeView: CustomPage = () => {
       >
         <BaseButtonLink
           href="/security"
-          variant="contained"
+          variant="text"
           color="primary"
           startIcon={<ArrowForward />}
         >
