@@ -12,7 +12,7 @@
     "copied": "Kopiert",
     "copy": "Kopieren",
     "createNewSecret": "Neues Geheimnis erstellen",
-    "createSecretLink": "Geheimen Link erstellen",
+    "createSecretLink": "Geheimlink erstellen",
     "decryptMessage": "Nachricht entschlüsseln",
     "deleteAccount": "Konto löschen",
     "demo": "Demo",
@@ -43,21 +43,8 @@
     "tryFree": "Gratis testen"
   },
   "components": {
-    "AccountTeaser": {
-      "items1": {
-        "0": "Unlimitiert Geheimnisse",
-        "1": "Mehr Zeichen",
-        "2": "SMS Empfangsbestätigungen",
-        "3": "E-Mail Service"
-      },
-      "items2": {
-        "0": "Browser extensions",
-        "1": "Secret files",
-        "2": "More to come…"
-      }
-    },
     "BasePasswordField": {
-      "ariaLabel": "Passwort-Sichtbarkeit ein- und ausschalten"
+      "ariaLabel": "Klartext ein- und ausschalten"
     },
     "DropZone": {
       "backdrop": "Drop It Like It's Hot",
@@ -86,18 +73,18 @@
       "account": "Konto",
       "defaults": "Voreinstellungen",
       "emojiLink": {
-        "description": "Hab Spaß mit unseren Emoji-Links. Beispiel: <2><0>https://\uD83E\uDD2B.st/nxKFy…</0> </2><3></3><4>Achtung.</4> Emoji Links funktionieren mit: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</7>. <9></9>Im Moment nicht möglich mit: <11>Signal, Slack, Snapchat</11>.",
+        "description": "Hab Spaß mit unseren Emoji-Links. Beispiel: {{exampleLink}}..\n**Achtung.** Emoji Links funktionieren mit: {{supportedList}}. Im Moment nicht möglich mit: {{unsupportedList}}. ",
         "title": "Emoji Link"
       },
-      "privacyNotice": "Diese Information ist <1>privat</1> und kannst nur du sehen. Wir benötigen sie ausschliesslich für Empfangsbestätigungen.",
+      "privacyNotice": "Diese Information ist <1>privat</1> und nur für dich sichtbar. Wir benötigen sie ausschliesslich für Empfangsbestätigungen.",
       "success": "Deine Einstellungen wurden gespeichert!"
     },
     "FormDeleteAccount": {
-      "label": "Ich möchte mein Konto schließen."
+      "label": "Ich möchte mein Konto löschen."
     },
     "FormShareSecretLink": {
       "message": {
-        "helperText": "Wir empfehlen, einen Hinweis darauf zu geben, wer du bist. Andernfalls könnte der Empfänger die E-Mail für Spam halten.",
+        "helperText": "Wir empfehlen dir einen Hinweis zum Absender beizufügen. Andernfalls könnte der Empfänger die E-Mail für Spam halten.",
         "label": "Nachricht",
         "placeholder": "Nachricht, die der E-Mail angefügt wird..."
       },
@@ -141,7 +128,7 @@
               "heading": "Bis zu {{characterLimit}} Zeichen"
             },
             "1": {
-              "body": "Du bekommst eine E-Mail Benachrichtigung, sobald ein Geheimnis gelesen wurde.",
+              "body": "Du bekommst eine E-Mail Benachrichtigung sobald ein Geheimnis gelesen wurde.",
               "heading": "Lesebestätigungen per E-Mail"
             },
             "2": {
@@ -176,7 +163,7 @@
               "heading": "Individuelle Neogram Nachrichten"
             },
             "4": {
-              "body": "Wenn du Hilfe brauchst, bist du der Erste in der Schlange.",
+              "body": "Wenn du Hilfe benötigst bist du als Erstes an der Reihe.",
               "heading": "Persönlicher Support"
             },
             "5": {
@@ -215,7 +202,7 @@
       "rememberAliasInfo": "Deine Geheimnis ID ist **{{ alias }}**.  \nWir verwenden sie für die Empfangsbestätigung. Merk sie dir.",
       "webShare": {
         "text": "Du hast ein Geheimnis erhalten: {{shortenedUrl}} \n \nAntworte mit einem Geheimnis:",
-        "title": "Teile dein Geheim-Link:"
+        "title": "Teile dein Geheimlink:"
       }
     },
     "Stats": {
@@ -226,7 +213,7 @@
     "Trust": {
       "encryption": "Ende-zu-Ende-verschlüsselt",
       "noTrace": "Ohne Spuren",
-      "privacy": "Schweizer Privatsphäre"
+      "privacy": "Schweizer Diskretion"
     },
     "UpgradeNotice": {
       "free": "<1>Eröffne ein Gratis-Konto</1>, um diese Funktion zu nutzen.",
@@ -235,7 +222,7 @@
   },
   "currency": "Währung",
   "demoNeogramDestructionMessage": "Diese Nachricht zerstört sich selbst in …",
-  "demoNeogramMessage": "Aufwachen Neo…\nDies ist nur eine Demo!\nNeogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spaß beim Geheimnisse teilen \uD83D\uDE18",
+  "demoNeogramMessage": "Aufwachen Neo…\nDies ist nur ein Beispiel!\nNeogram-Nachrichten zerstören sich nach einer bestimmten Zeit automatisch.\n\n Viel Spaß beim Geheimnisse teilen \uD83D\uDE18",
   "demoTextMessage": "Hallo…\nDies ist nur eine Demo!\n\nViel Spaß beim Geheimnisse teilen \uD83D\uDE18",
   "email": "E-Mail",
   "error": {
@@ -255,16 +242,16 @@
   },
   "faq": {
     "anonymity": {
-      "body": "Wir unternehmen eine Reihe von Schritten, um deine Privatsphäre zu schützen, die auf der [Datenschutzseite](/Privacy) detailliert beschrieben sind - einige der Funktionen erfordern jedoch Dienste von Drittanbietern, die Zugang zu personenbezogenen Daten (PII) haben können. Wenn du deine Privatsphäre weiter schützen möchtest, empfehlen wir dir Folgendes:\n\n-Verbinde dich mit unserem Dienst über ein virtuelles privates Netzwerk (VPN): Auf diese Weise gibst niemals deine persönliche IP-Adresse preis. Wir empfehlen [ProtonVPN](https://protonvpn.com/).\n- Verwende einen Dienst wie [Abine Blur](https://www.abine.com/), um deine persönliche E-Mail-Adresse, Telefonnummer und/oder Kreditkarteninformationen zu verbergen.",
+      "body": "Wir unternehmen eine Reihe von Schritten, um deine Privatsphäre zu schützen, die auf der [Datenschutzseite](privacy) detailliert beschrieben sind - einige der Funktionen erfordern jedoch Dienste von Drittanbietern, die Zugang zu personenbezogenen Daten (PII) haben können. Wenn du deine Privatsphäre weiter schützen möchtest, empfehlen wir dir Folgendes:\n\n-Verbinde dich mit unserem Dienst über ein virtuelles privates Netzwerk (VPN): Auf diese Weise gibst niemals deine persönliche IP-Adresse preis. Wir empfehlen [ProtonVPN](https://protonvpn.com/).\n- Verwende einen Dienst wie [Abine Blur](https://www.abine.com/), um deine persönliche E-Mail-Adresse, Telefonnummer und/oder Kreditkarteninformationen zu verbergen.",
       "heading": "Wie wird meine Privatsphäre geschützt?"
     },
     "browser-extensions": {
-      "body": "Die scrt.link-Browsererweiterungen sind für alle gängigen Browser verfügbar:\n- [Google Chrome]({{ chromeExtensionLink }})\n- [Mozilla Firefox]({{ firefoxExtensionLink }})\n- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})",
+      "body": "Die Browsererweiterungen sind für alle gängigen Browser verfügbar:\n- [Google Chrome]({{ chromeExtensionLink }})\n- [Mozilla Firefox]({{ firefoxExtensionLink }})\n- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})",
       "heading": "Wo kann ich die Browsererweiterungen finden?"
     },
     "category": {
       "accountAndBilling": "Konto und Bezahlung",
-      "general": "Allgemein",
+      "general": "Allgemeines",
       "nerdZone": "Nerd Zone",
       "product": "Produkt und Dienstleistungen",
       "securityAndPrivacy": "Sicherheit und Privatsphäre",
@@ -280,7 +267,7 @@
     },
     "difference-to-disappearing-messages": {
       "body": "Anonymität und Sicherheit. Nachrichten in einem Chatprotokoll können immer zu dir zurückverfolgt werden. Dank scrt.link wird immer nur ein Link in deinem Gesprächsverlauf bleiben. Nachdem der Link einmal besucht wurde, führt er zu einer 404-Fehlerseite. Es gibt keine Möglichkeit, auf den ursprünglichen Inhalt zuzugreifen.",
-      "heading": "Was ist der Unterschied zu verschwindenden Nachrichten auf Signal oder Whatsapp?"
+      "heading": "Was ist der Unterschied zu selbstlöschenden Nachrichten auf Signal oder Whatsapp?"
     },
     "difference-to-snapchat": {
       "body": "Dieselbe Antwort wie bei der vorherigen Frage. Außerdem widerspricht das Geschäftsmodell hinter Snapchat und jeder anderen großen Social-Media-Plattform der Idee von Privatsphäre und Anonymität. Social-Media-Unternehmen müssen ihre Nutzer:innen kennen, um Werbung verkaufen zu können. \n \nEs ist jedoch in Ordnung, einen generierten Geheimlink über Snapchat, Facebook, Instagram, Telegram usw. zu teilen.",
@@ -295,7 +282,7 @@
       "heading": "Wie wird die Ende-zu-Ende-Verschlüsselung erreicht?"
     },
     "how": {
-      "body": "Nachdem du das Formular abgeschickt hast, wird dein Geheimnis verschlüsselt und gespeichert. Du kannst nun den generierten Kurzlink per SMS, E-Mail oder einem anderen Dienst deines Vertrauens weitergeben. (Wir empfehlen Signal, Threema oder Matrix.) Nachdem der Empfänger auf den Link geklickt hat, wird die Nachricht angezeigt und dauerhaft aus der Datenbank entfernt. \n \nFür **zusätzliche Sicherheit** kannst du ein Passwort angeben, das zur Entschlüsselung der Nachricht benötigt wird. (Wir empfehlen, das Kennwort über einen anderen Kanal als den Link weiterzugeben).",
+      "body": "Nachdem du das Formular abgeschickt hast, wird dein Geheimnis verschlüsselt und gespeichert. Du kannst nun den generierten Geheimlink per SMS, E-Mail oder einem anderen Dienst deines Vertrauens weitergeben. (Wir empfehlen Signal, Threema oder Matrix.) Nachdem der Empfänger auf den Link geklickt hat, wird die Nachricht angezeigt und dauerhaft aus der Datenbank entfernt. \n \nFür **zusätzliche Sicherheit** kannst du ein Passwort angeben, das zur Entschlüsselung der Nachricht benötigt wird. (Wir empfehlen, das Kennwort über einen anderen Kanal als den Link weiterzugeben).",
       "heading": "Wie funktioniert dieser Service"
     },
     "message-size": {
@@ -304,14 +291,14 @@
     },
     "notification": {
       "body": "Ja, **SMS- oder E-Mail-Benachrichtigungen** kannst du mittels Konto freischalten. [Gehe zu Konto](/account)",
-      "heading": "Kann ich benachrichtigt werden, wenn ein Geheimnis angesehen wurde?"
+      "heading": "Kann ich benachrichtigt werden, sobald ein Geheimnis angesehen wurde?"
     },
     "payment-methods": {
-      "body": "Unser Zahlungsanbieter [Stripe](https://stripe.com/) bietet eine Vielzahl von Zahlungsmöglichkeiten: Google Pay, Kreditkarte (VISA, Mastercard, American Express, etc.) und viele andere. Sobald du sich für einen Premium-Plan entscheidest, wirst du zu Stripe weitergeleitet, wo du deine bevorzugte Methode auswählen kannst.",
+      "body": "Unser Zahlungsanbieter {{paymentProcessor}} bietet eine Vielzahl von Zahlungsmöglichkeiten: Google Pay, Kreditkarte (VISA, Mastercard, American Express, etc.) und viele andere. Sobald du sich für einen Premium-Plan entscheidest, wirst du zu Stripe weitergeleitet, wo du deine bevorzugte Methode auswählen kannst.",
       "heading": "Welche Zahlungsarten werden unterstützt?"
     },
     "payment-provider": {
-      "body": "Wir arbeiten mit [Stripe](https://stripe.com/) als unserem Zahlungsanbieter. Wir speichern keinerlei zahlungsbezogene Informationen.",
+      "body": "Wir arbeiten mit {{paymentProcessor}} als Zahlungsanbieter und speichern keinerlei zahlungsbezogene Informationen selbst.",
       "heading": "Wer ist der Zahlungsanbieter?"
     },
     "read-receipts-info": {
@@ -335,11 +322,11 @@
       "heading": "Warum erhalte ich die Fehlermeldung \"Geheimnis nicht gefunden\"?"
     },
     "secret-types": {
-      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit, das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Datei**: Schicke eine Datei, egal welches Format. Dies ist ein Beta-Funktion.\n- **Redirect**: Ein anonymer Link der nur ein einziges Mal funktioniert.\n- **Neogram**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})",
-      "heading": "*Text*, *Files*, *Redirect* und *Neogram*?"
+      "body": "- **Text**: Dies ist der Standardmodus. Es ist die bevorzugte Art, Passwörter und ähnliche Geheimnisse zu teilen. Der Empfänger hat die Möglichkeit das Geheimnis zu kopieren.\n[Demo]({{ demoSecretMessageLink }})\n- **Datei**: Schicke eine Datei, egal welches Format. Dies ist ein Beta-Funktion.\n- **Redirect**: Ein anonymer Link, der nur ein einziges Mal funktioniert.\n- **Neogram**: Eine digitale Nachricht, die sich nach dem Lesen automatisch zerstört. Für vertrauliche Notizen, Geständnisse oder geheime Liebesbriefe. [Demo]({{ demoSecretNeogramLink }})",
+      "heading": "*Text*, *Dateien*, *Redirect* und *Neogram*?"
     },
     "security": {
-      "body": "Alle Nachrichten werden Ende-zu-Ende mit **AES-256** verschlüsselt, das mit Brute-Force-Methoden praktisch unknackbar ist. Es würde Milliarden von Jahren dauern, AES mit der heutigen Computertechnologie zu knacken.\nFür ein Höchstmaß an Sicherheit kann ein optionales Passwort (das ebenfalls nie gespeichert wird) zur Verschlüsselung deiner Nachricht verwendet werden. Lesen mehr auf unserer Seite [Sicherheit](/security).",
+      "body": "Alle Nachrichten werden Ende-zu-Ende mit **AES-256** verschlüsselt, das mit Brute-Force-Methoden praktisch unknackbar ist. Es würde Milliarden von Jahren dauern, AES mit der heutigen Computertechnologie zu knacken.\nFür ein Höchstmaß an Sicherheit kann ein optionales Passwort (das ebenfalls nie gespeichert wird) zur Verschlüsselung deiner Nachricht verwendet werden. Mehr Informationen dazu auf unserer Seite [Sicherheit](/security).",
       "heading": "Wie sicher ist dieser Dienst?"
     },
     "service-provider": {
@@ -347,7 +334,7 @@
       "heading": "Wer steckt hinter diesem Dienst?"
     },
     "slack-app": {
-      "body": "Mit der Slack-App kannst du Geheimnisse direkt erstellen. Gehe auf die [Slack App Seite](/slack) für weitere Informationen. Oder hole dir die App gleich hier:  \n\n\uD83D\uDC49 [Slack App installieren]({{ slackAppInstallLink }}) \n\n_**Wichtiger Hinweis:** Es gibt Einschränkungen bei der Verwendung der Slack-Anwendung. Aufgrund der Art, wie diese Apps konzipiert sind, ist eine vollständige Ende-zu-Ende-Verschlüsselung nicht möglich. In den meisten Fällen ist dies kein Problem und ein Risiko, das es wert ist, eingegangen zu werden - wenn du jedoch einen erweiterten Schutz benötigst, erstelle stattdessen Geheimnisse auf der Website._",
+      "body": "Mit der Slack-App kannst du Geheimnisse direkt erstellen. Gehe auf die [Slack App Seite](/slack) für weitere Informationen. Oder hole dir die App gleich hier:  \n\n\uD83D\uDC49 [Slack App installieren]({{ slackAppInstallLink }}) \n\n_**Wichtiger Hinweis:** Es gibt Einschränkungen bei der Verwendung der Slack-Anwendung. Aufgrund der Art, wie diese Apps konzipiert sind, ist eine vollständige Ende-zu-Ende-Verschlüsselung nicht möglich. In den meisten Fällen ist dies kein Problem und ein Risiko, das es wert ist, eingegangen zu werden - wenn du jedoch einen erweiterten Schutz benötigst, erstelle stattdessen Geheimnisse über die Website._",
       "heading": "Wo kann ich die Slack-App bekommen?"
     },
     "slack-data-collection": {
@@ -363,7 +350,7 @@
       "heading": "Benötige ich ein Premium-Abonnement, um die Slack-App zu nutzen?"
     },
     "slack-scopes": {
-      "body": "Die App benötigt grundlegende Informationen über dich (Slack Nutzer:in), die Kanäle und Unterhaltungen. Außerdem benötigt die App die Erlaubnis, in deinem Namen zu posten, einer Konversation beizutreten und _slash commands_ und _shortcuts_ zu verwenden. Genauere Informationen zu den Berechtigungsbereichen erhältst du während der Installation der App.",
+      "body": "Die App benötigt grundlegende Informationen über dich (Slack Nutzer:in), die Kanäle und Unterhaltungen. Außerdem benötigt die App die Erlaubnis, in deinem Namen zu posten, einer Konversation beizutreten und _slash commands_ und _shortcuts_ zu verwenden. Genauere Informationen zu den Berechtigungsbereichen erhältst du während dem Installationsvorgang der App.",
       "heading": "Welche Genehmigungen sind erforderlich?"
     },
     "slack-security": {
@@ -376,7 +363,7 @@
     },
     "slack-user-account": {
       "body": "Nein, derzeit nicht. Bitteschön.",
-      "heading": "Brauche ich ein Konto, um die Slack-App zu nutzen?"
+      "heading": "Benötige ich ein Konto, um die Slack-App zu nutzen?"
     },
     "subscriptions": {
       "body": "Wenn du einen Premium-Plan abonnierst, erhältst du sofortigen Zugriff auf die entsprechenden Funktionen, solange das Abonnement läuft. Die Abrechnung erfolgt monatlich oder jährlich, je nach dem gewählten Abrechnungsintervall. Ein Abonnement kann jederzeit gekündigt werden.",
@@ -384,14 +371,14 @@
     },
     "trial": {
       "body": "**Profitiere von einer Gratis-Probezeit**: Du kannst alle Premium-Funktionen für **{{ trialPeriod }} Tage testen**. Nach Ablauf des Testzeitraums wird der von dir gewählte Tarif in Rechnung gestellt. Kündigungen während des Testzeitraums führen zur sofortigen Beendigung des Abonnements - in diesem Fall fallen **keine Kosten** an.",
-      "heading": "Wie funktionieren die Probephasen?"
+      "heading": "Wie funktioniert die Probezeit ?"
     },
     "who": {
-      "body": "Im Grunde genommen jede und jeder. Alle sollten sich um die Privatsphäre kümmern.  \n Die Möglichkeit, sensible Informationen anonym zu übermitteln, ist vor allem für Journalisten, Anwälte, Politiker, Whistleblower, Menschen, die unterdrückt werden, usw. wichtig.",
+      "body": "Im Grunde genommen jede und jeder. Alle sollten sich um die Privatsphäre kümmern.  \n Die Möglichkeit, sensible Informationen anonym zu übermitteln, ist vor allem für Journalisten, Anwälte, Politiker, Whistleblower, Menschen, die unterdrückt werden, usw. essentiell.",
       "heading": "Für wen ist der Service gedacht?"
     },
     "why": {
-      "body": "Der Austausch von Geheimnissen im Internet ist heikel. Du möchtest nicht, dass sensible Informationen (vertrauliche Informationen wie Passwörter, API-Schlüssel, Zugriffstoken, PIN Codes, Geständnisse usw.) in deinem Slack-Kanal, Whatsapp-Chatprotokoll, Posteingang oder einem anderen Kommunikationskanal bleiben. Ein Einweg-Link garantiert, dass dein Geheimnis nur ein einziges Mal eingesehen wird, bevor es dauerhaft zerstört wird.\n\n**Nutze diesen Dienst, wenn du...**\n- dein Netflix-Passwort einem Familienmitglied mitteilen möchtest.\n- eine private Nachricht von einem öffentlichen Computer aus senden möchtest.\n- Zugangstoken, API-Schlüssel, PIN-Codes an einen Kollegen/eine Kollegin senden möchtest.\n- Zahlungsinformationen wie Kreditkartennummer oder Bitcoin-Wallet-Adresse übermitteln möchtest.\n- eine geheime Schwärmerei gestehen möchten.\n- Informationen weitergeben möchtest, die gegen dich verwendet werden könnten.",
+      "body": "Der Austausch von Geheimnissen im Internet ist heikel. Du möchtest nicht, dass sensible Informationen (vertrauliche Informationen wie Passwörter, API-Schlüssel, Zugriffstoken, PIN Codes, Geständnisse usw.) in deinem Slack-Kanal, Whatsapp-Chatprotokoll, Posteingang oder einem anderen Kommunikationskanal bleiben. Ein Einweg-Link garantiert, dass dein Geheimnis nur ein einziges Mal eingesehen werden kann, bevor es dauerhaft zerstört wird.\n\n**Nutze diesen Dienst, wenn du...**\n- dein Netflix-Passwort einem Familienmitglied mitteilen möchtest.\n- eine private Nachricht von einem öffentlichen Computer aus senden möchtest.\n- Zugangstoken, API-Schlüssel, PIN-Codes an einen Kollegen/eine Kollegin senden möchtest.\n- Zahlungsinformationen wie Kreditkartennummer oder Bitcoin-Wallet-Adresse übermitteln möchtest.\n- einer geheime Schwärmerei deine Liebe gestehen möchtest.\n- Informationen weitergeben möchtest, die gegen dich verwendet werden könnten.",
       "heading": "Warum sollte ich diesen Dienst nutzen?"
     }
   },
@@ -415,7 +402,7 @@
     },
     "readReceiptsOptions": {
       "email": "Via E-Mail",
-      "none": "Keine",
+      "none": "Ohne",
       "sms": "Via SMS"
     },
     "receiptEmail": {
@@ -467,11 +454,11 @@
     }
   },
   "meta": {
-    "description": "Teile geheime Informationen. Mit {{appTitle}} kannst du Passwörter, Kreditkarteninformationen, private Schlüssel oder andere sensible Daten auf sichere Weise weitergeben: Ende-zu-Ende verschlüsselt. Einmalig. Diskret.",
+    "description": "Teile ein Geheimnis. Mit {{appTitle}} kannst du Passwörter, Kreditkarteninformationen, private Schlüssel oder andere sensible Daten auf sichere Weise übertragen: Ende-zu-Ende verschlüsselt. Einmalig. Diskret.",
     "images": {
       "alt": "{{appTitle}} - Teile ein Geheimnis!'"
     },
-    "keywords": "Geheim Link, Geheimnachricht, Einmal-Geheimnis, Einmal-Passwort, Einmal-Nachricht, Einmal-Link, Einmal Link, Einwegnachricht, Einweg Link, E2EE, Selbstzerstörende Links, Passwort teilen"
+    "keywords": "Geheim Link, Geheimnachricht, Einmal-Geheimnis, Einmal-Passwort, Einmal-Nachricht, Einmal-Link, Einmal Link, Einwegnachricht, Einweg Link, E2EE, Selbstzerstörende Links, Passwort teilen, Sicher Dateien senden"
   },
   "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
   "password": "Passwort",
@@ -523,17 +510,17 @@
   "views": {
     "About": {
       "Accounts": {
-        "markdown": "Der Hauptgrund, warum wir Konten anbieten, ist der Schutz vor Spam und Betrug. Alle Hauptfunktionen sind kostenlos und erfordern kein Konto.\n\n Allerdings erfordern einige Funktionen eine grundlegende Authentifizierung (wir fragen nur nach einer E-Mail-Adresse - es macht uns nichts aus, wenn eine temporäre E-Mail-Adresse verwendet wird). Zu diesen Funktionen gehört das Senden von Informationen per E-Mail oder SMS. Konten helfen uns, den Missbrauch der zugrunde liegenden Systeme zu verhindern. \n\nBezahlte Premium-Accounts sind für Power-User und Leute gedacht, die [dieses Projekt unterstützen](/de/pricing) möchten.",
-        "subtitle": "Warum wir kostenlose und premium Konten anbieten.",
+        "markdown": "Der Hauptgrund, warum wir Konten anbieten, ist der Schutz vor Spam und Betrug. Alle Grundfunktionen sind kostenlos und erfordern kein Konto.\n\nAllerdings erfordern einige Funktionen eine Authentifizierung (wir fragen nur nach einer E-Mail-Adresse - es macht uns nichts aus, wenn eine temporäre E-Mail-Adresse verwendet wird). Zu diesen Funktionen gehört das Senden von Informationen per E-Mail oder SMS. Konten helfen uns, den Missbrauch der zugrunde liegenden Systeme zu verhindern. \n\nBezahlte Premium-Abos sind für Power-User und Leute gedacht, die [dieses Projekt unterstützen](/de/pricing) möchten.",
+        "subtitle": "Warum wir Nutzerkonten anbieten.",
         "title": "Nutzerkonten"
       },
       "BrowserExtensions": {
-        "markdown": "Um diesen Dienst einfach und bequem zu gestalten, gibt es Browser-Erweiterungen für alle modernen Browser. Alle Erweiterungen verfügen über die gleichen Sicherheits- und Datenschutzfunktionen.",
+        "markdown": "Um diesen Dienst einfach und bequem zu gestalten, gibt es Browser-Erweiterungen für alle modernen Browser. Alle Erweiterungen verfügen über dieselben Sicherheits- und Datenschutzeigenschaften.",
         "subtitle": "Teile Geheimnisse ohne den Tab zu wechseln.",
         "title": "Browser-Erweiterungen"
       },
       "Developers": {
-        "markdown": "Mit unseren Entwickler-Tools kannst du diesen Dienst einfach in deine eigenen Projekte integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App.",
+        "markdown": "Dank unseren Entwickler-Tools kannst du diesen Dienst einfach in dein eigenes Projekt integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App.",
         "subtitle": "Der gesamte Code ist quelloffen. Du kannst die folgenden Pakete verwenden, um deinen eigenen Dienst zu erstellen oder um unseren Dienst programmatisch über die öffentliche API zu nutzen.",
         "title": "Für Entwickler und Nerds"
       },
@@ -649,7 +636,7 @@
       },
       "SlackApp": {
         "subtitle": "Manche Dinge sollten besser nicht in deinem Chat-Verlauf bleiben. Wenn du nächstes Mal von einem Mitarbeiter nach einem Zugangstoken, API-Schlüssel oder Passwort gefragt wirst, kannst du mit guten Gewissens antworten.",
-        "title": "Die Slack App <1><0>NEU</0></1>",
+        "title": "Die Slack App<1>NEU</1>",
         "usps": {
           "0": "Verschlüsselte Einwegnachrichten, die außerhalb von Slack gespeichert werden.",
           "1": "Erstelle Geheimnisse via Shortcut oder Slash Befehl.",

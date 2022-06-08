@@ -1,777 +1,764 @@
 {
-  "abbreviations": {
-    "faq": "FAQ"
+  "abbreviations" : {
+    "faq" : "FAQ"
   },
-  "button": {
-    "addToSlack": "Dodaj do Slacka",
-    "backToPlans": "Powrót do planów",
-    "cancel": "Anuluj",
-    "cancelSubscription": "Anuluj subskrypcję",
-    "close": "Zamknij",
-    "closeMenu": "Zamknij menu",
-    "copied": "Skopiowane",
-    "copy": "Kopiuj",
-    "createNewSecret": "Utwórz nowy sekret",
-    "createSecretLink": "Utwórz tajny link",
-    "decryptMessage": "Odszyfruj wiadomość",
-    "deleteAccount": "Usuń konto",
-    "demo": "Demo",
-    "destroySecret": "Zniszcz tajemnicę",
-    "home": "Dom",
-    "installNow": "Zainstaluj teraz",
-    "learnMore": "Dowiedz się więcej",
-    "lessOptions": "Mniej opcji",
-    "menu": "Menu",
-    "moreOptions": "Więcej opcji",
-    "myAccount": "Moje konto",
-    "openMenu": "Otwórz menu",
-    "preview": "Podgląd",
-    "privacyPolicy": "Polityka prywatności",
-    "reactivatePlan": "Reaktywuj plan",
-    "readMoreFaq": "Więcej informacji na stronie FAQ",
-    "replyWithSecret": "Odpowiedz sekretem",
-    "save": "Zapisz",
-    "send": "Wyślij",
-    "share": "Share",
-    "signIn": "Zaloguj się",
-    "signOut": "Wyloguj się",
-    "signUp": "Zarejestruj się",
-    "signUpFirst": "Zarejestruj się najpierw",
-    "signUpFree": "Zarejestruj się bezpłatnie",
-    "takeMeHome": "Zabierz mnie do domu",
-    "tryAgain": "Spróbuj ponownie",
-    "tryFree": "Wypróbuj za darmo"
+  "button" : {
+    "addToSlack" : "Dodaj do Slacka",
+    "backToPlans" : "Powrót do planów",
+    "cancel" : "Anuluj",
+    "cancelSubscription" : "Anuluj subskrypcję",
+    "close" : "Zamknij",
+    "closeMenu" : "Zamknij menu",
+    "copied" : "Skopiowane",
+    "copy" : "Kopiuj",
+    "createNewSecret" : "Utwórz nowy sekret",
+    "createSecretLink" : "Utwórz tajny link",
+    "decryptMessage" : "Odszyfruj wiadomość",
+    "deleteAccount" : "Usuń konto",
+    "demo" : "Demo",
+    "destroySecret" : "Zniszcz tajemnicę",
+    "home" : "Dom",
+    "installNow" : "Zainstaluj teraz",
+    "learnMore" : "Dowiedz się więcej",
+    "lessOptions" : "Mniej opcji",
+    "menu" : "Menu",
+    "moreOptions" : "Więcej opcji",
+    "myAccount" : "Moje konto",
+    "openMenu" : "Otwórz menu",
+    "preview" : "Podgląd",
+    "privacyPolicy" : "Polityka prywatności",
+    "reactivatePlan" : "Reaktywuj plan",
+    "readMoreFaq" : "Więcej informacji na stronie FAQ",
+    "replyWithSecret" : "Odpowiedz sekretem",
+    "save" : "Zapisz",
+    "send" : "Wyślij",
+    "share" : "Share",
+    "signIn" : "Zaloguj się",
+    "signOut" : "Wyloguj się",
+    "signUp" : "Zarejestruj się",
+    "signUpFirst" : "Zarejestruj się najpierw",
+    "signUpFree" : "Zarejestruj się bezpłatnie",
+    "takeMeHome" : "Zabierz mnie do domu",
+    "tryAgain" : "Spróbuj ponownie",
+    "tryFree" : "Wypróbuj za darmo"
   },
-  "components": {
-    "AccountTeaser": {
-      "items1": {
-        "0": "Nieograniczona liczba sekretów",
-        "1": "Zwiększony limit znaków",
-        "2": "Potwierdzenia odczytania wiadomości SMS",
-        "3": "Usługa e-mail"
+  "components" : {
+    "BasePasswordField" : {
+      "ariaLabel" : "Przełączanie widoczności hasła"
+    },
+    "DropZone" : {
+      "backdrop" : "Rzucaj jak najęty",
+      "button" : "Wybierz plik",
+      "dragAndDrop" : "...lub przeciągnij i upuść tutaj.",
+      "error" : {
+        "fileToLarge" : "Zbyt duży plik. Maksymalny rozmiar pliku to {{max}}.",
+        "noFiles" : "Nie wybrano pliku. Spróbuj wybrać inny plik.",
+        "tooManyFiles" : "Zbyt wiele plików. W tym momencie można przesłać tylko jeden plik. Przed wysłaniem pliku możesz skompresować wiele plików w jeden plik zip."
       },
-      "items2": {
-        "0": "Rozszerzenia przeglądarki",
-        "1": "Tajne pliki",
-        "2": "Więcej w przyszłości..."
-      }
+      "maxFileSize" : "Maks. {{maxSize}}"
     },
-    "BasePasswordField": {
-      "ariaLabel": "Przełączanie widoczności hasła"
+    "Error" : {
+      "defaultTitle" : "Wystąpił błąd!"
     },
-    "DropZone": {
-      "backdrop": "Rzucaj jak najęty",
-      "button": "Wybierz plik",
-      "dragAndDrop": "...lub przeciągnij i upuść tutaj.",
-      "error": {
-        "fileToLarge": "Zbyt duży plik. Maksymalny rozmiar pliku to {{max}}.",
-        "noFiles": "Nie wybrano pliku. Spróbuj wybrać inny plik.",
-        "tooManyFiles": "Zbyt wiele plików. W tym momencie można przesłać tylko jeden plik. Przed wysłaniem pliku możesz skompresować wiele plików w jeden plik zip."
+    "Footer" : {
+      "abstract" : "**Scrt.link** pozwala na dzielenie się poufnymi informacjami online. Szyfrowane od końca do końca. Jednorazowo.\nTrzymaj poufne informacje z dala od poczty e-mail, Slacka, Teams, Whatsappa i innych kanałów komunikacji. Jednorazowy link jednorazowy gwarantuje, że Twoje sekrety będą dostępne tylko raz - zanim zostaną zniszczone na zawsze."
+    },
+    "FormCreateSecret" : {
+      "getFreeAccount" : "Załóż darmowe konto",
+      "needMore" : "Potrzebujesz więcej?",
+      "secretSaved" : "Tajemnica ocalona!",
+      "selectSecretType" : "Wybierz typ tajemnicy"
+    },
+    "FormCustomer" : {
+      "account" : "Konto",
+      "defaults" : "Domyślnie",
+      "emojiLink" : {
+        "description" : "Dodaj trochę zabawy za pomocą specjalnego łącza emoji. Przykład: <2><0>https://\uD83E\uDD2B.st/nxKFy... <3><4>Uważaj. Łącza emoji są obsługiwane w następujących aplikacjach: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Obecnie nie są obsługiwane w następujących aplikacjach: <11>Signal, Slack, Snapchat.",
+        "title" : "Łącze emoji"
       },
-      "maxFileSize": "Maks. {{maxSize}}"
+      "privacyNotice" : "Te informacje są <1>prywatne i nigdy nie zostaną nikomu pokazane. Używamy ich tylko do wysyłania potwierdzeń odczytu.",
+      "success" : "Twoje ustawienia zostały zapisane!"
     },
-    "Error": {
-      "defaultTitle": "Wystąpił błąd!"
+    "FormDeleteAccount" : {
+      "label" : "Chcę usunąć swoje konto."
     },
-    "Footer": {
-      "abstract": "**Scrt.link** pozwala na dzielenie się poufnymi informacjami online. Szyfrowane od końca do końca. Jednorazowo.\nTrzymaj poufne informacje z dala od poczty e-mail, Slacka, Teams, Whatsappa i innych kanałów komunikacji. Jednorazowy link jednorazowy gwarantuje, że Twoje sekrety będą dostępne tylko raz - zanim zostaną zniszczone na zawsze."
-    },
-    "FormCreateSecret": {
-      "getFreeAccount": "Załóż darmowe konto",
-      "needMore": "Potrzebujesz więcej?",
-      "secretSaved": "Tajemnica ocalona!",
-      "selectSecretType": "Wybierz typ tajemnicy"
-    },
-    "FormCustomer": {
-      "account": "Konto",
-      "defaults": "Domyślnie",
-      "emojiLink": {
-        "description": "Dodaj trochę zabawy za pomocą specjalnego łącza emoji. Przykład: <2><0>https://\uD83E\uDD2B.st/nxKFy... <3><4>Uważaj. Łącza emoji są obsługiwane w następujących aplikacjach: <7>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire. <9>Obecnie nie są obsługiwane w następujących aplikacjach: <11>Signal, Slack, Snapchat.",
-        "title": "Łącze emoji"
+    "FormShareSecretLink" : {
+      "message" : {
+        "helperText" : "Zalecamy dodanie informacji o tym, kim jesteś. W przeciwnym razie odbiorca może pomylić wiadomość ze spamem.",
+        "label" : "Wiadomość",
+        "placeholder" : "Wiadomość, która ma być dołączona do wiadomości e-mail..."
       },
-      "privacyNotice": "Te informacje są <1>prywatne i nigdy nie zostaną nikomu pokazane. Używamy ich tylko do wysyłania potwierdzeń odczytu.",
-      "success": "Twoje ustawienia zostały zapisane!"
-    },
-    "FormDeleteAccount": {
-      "label": "Chcę usunąć swoje konto."
-    },
-    "FormShareSecretLink": {
-      "message": {
-        "helperText": "Zalecamy dodanie informacji o tym, kim jesteś. W przeciwnym razie odbiorca może pomylić wiadomość ze spamem.",
-        "label": "Wiadomość",
-        "placeholder": "Wiadomość, która ma być dołączona do wiadomości e-mail..."
+      "recipientName" : {
+        "label" : "Nazwa odbiorcy",
+        "placeholder" : "NN"
       },
-      "recipientName": {
-        "label": "Nazwa odbiorcy",
-        "placeholder": "NN"
+      "success" : "Wiadomość e-mail została pomyślnie wysłana!"
+    },
+    "FormSignIn" : {
+      "agreement" : "Akceptuję <2>Warunki korzystania z usługi i związane z nimi zasady.",
+      "success" : "Sprawdź swoją pocztę! Łącze logowania zostało wysłane do <1>{{email}}."
+    },
+    "LanguageSelector" : {
+      "label" : "Wybierz swój preferowany język"
+    },
+    "Navigation" : {
+      "ariaLabel" : "Główne menu nawigacyjne"
+    },
+    "PlanSelection" : {
+      "activePlan" : "Ten plan jest obecnie aktywny.",
+      "amountBilledPerMonth" : " {{amount}} miesięcznie",
+      "amountBilledPerYear" : "rozliczane rocznie {{amount}} ",
+      "cancellationNotice" : "Ten plan został anulowany i zostanie zdegradowany do planu bezpłatnego w dniu {{cancellationDate}} r.",
+      "free" : {
+        "price" : "Darmowy na zawsze",
+        "subtitle" : "Bez zobowiązań."
       },
-      "success": "Wiadomość e-mail została pomyślnie wysłana!"
-    },
-    "FormSignIn": {
-      "agreement": "Akceptuję <2>Warunki korzystania z usługi i związane z nimi zasady.",
-      "success": "Sprawdź swoją pocztę! Łącze logowania zostało wysłane do <1>{{email}}."
-    },
-    "LanguageSelector": {
-      "label": "Wybierz swój preferowany język"
-    },
-    "Navigation": {
-      "ariaLabel": "Główne menu nawigacyjne"
-    },
-    "PlanSelection": {
-      "activePlan": "Ten plan jest obecnie aktywny.",
-      "amountBilledPerMonth": " {{amount}} miesięcznie",
-      "amountBilledPerYear": "rozliczane rocznie {{amount}} ",
-      "cancellationNotice": "Ten plan został anulowany i zostanie zdegradowany do planu bezpłatnego w dniu {{cancellationDate}} r.",
-      "free": {
-        "price": "Darmowy na zawsze",
-        "subtitle": "Bez zobowiązań."
+      "freeTrialInfo" : "{{trialPeriod}} dni bezpłatnego okresu próbnego",
+      "interval" : {
+        "monthly" : "Miesięczny",
+        "yearly" : "Roczny",
+        "yearlySavings" : "Oszczędzaj {{percentage}}"
       },
-      "freeTrialInfo": "{{trialPeriod}} dni bezpłatnego okresu próbnego",
-      "interval": {
-        "monthly": "Miesięczny",
-        "yearly": "Roczny",
-        "yearlySavings": "Oszczędzaj {{percentage}}"
-      },
-      "loading": "Ładowanie planów",
-      "plans": {
-        "free": {
-          "usps": {
-            "0": {
-              "body": "Możesz pisać tajne wiadomości składające się nawet z {{characterLimit}} znaków.",
-              "heading": "limit znaków w {{characterLimit}} "
+      "loading" : "Ładowanie planów",
+      "plans" : {
+        "free" : {
+          "usps" : {
+            "0" : {
+              "body" : "Możesz pisać tajne wiadomości składające się nawet z {{characterLimit}} znaków.",
+              "heading" : "limit znaków w {{characterLimit}} "
             },
-            "1": {
-              "body": "Otrzymuj powiadomienia e-mailem, gdy tylko sekret zostanie obejrzany.",
-              "heading": "Odczytaj pokwitowania: E-mail"
+            "1" : {
+              "body" : "Otrzymuj powiadomienia e-mailem, gdy tylko sekret zostanie obejrzany.",
+              "heading" : "Odczytaj pokwitowania: E-mail"
             },
-            "2": {
-              "body": "Nie musisz już przełączać aplikacji: wysyłaj linki do sekretów bezpośrednio z naszej platformy.",
-              "heading": "Usługa dostarczania wiadomości e-mail"
+            "2" : {
+              "body" : "Nie musisz już przełączać aplikacji: wysyłaj linki do sekretów bezpośrednio z naszej platformy.",
+              "heading" : "Usługa dostarczania wiadomości e-mail"
             },
-            "files": {
-              "body": "Możesz wysyłać pliki o objętości do {{uploadLimit}}.",
-              "heading": "Pliki z {{uploadLimit}} "
+            "files" : {
+              "body" : "Możesz wysyłać pliki o objętości do {{uploadLimit}}.",
+              "heading" : "Pliki z {{uploadLimit}} "
             },
-            "secretTypes": {
-              "body": "Posiadając konto, otrzymujesz dostęp do wszystkich typów sekretów.",
-              "heading": "Wszystkie rodzaje sekretów"
+            "secretTypes" : {
+              "body" : "Posiadając konto, otrzymujesz dostęp do wszystkich typów sekretów.",
+              "heading" : "Wszystkie rodzaje sekretów"
             }
           }
         },
-        "premium": {
-          "usps": {
-            "0": {
-              "heading": "Wszystko za darmo, plus:"
+        "premium" : {
+          "usps" : {
+            "0" : {
+              "heading" : "Wszystko za darmo, plus:"
             },
-            "1": {
-              "body": "Możesz pisać tajne wiadomości składające się z maksymalnie {{characterLimit}} znaków. Wystarczająca liczba słów, aby napisać idealny sekretny list miłosny, wyznanie lub wyjawienie.",
-              "heading": "limit znaków{{characterLimit}} "
+            "1" : {
+              "body" : "Możesz pisać tajne wiadomości składające się z maksymalnie {{characterLimit}} znaków. Wystarczająca liczba słów, aby napisać idealny sekretny list miłosny, wyznanie lub wyjawienie.",
+              "heading" : "limit znaków{{characterLimit}} "
             },
-            "2": {
-              "body": "Szybko i wygodnie. Otrzymuj powiadomienia o przeczytanych wiadomościach SMS.",
-              "heading": "Odczytaj pokwitowania: E-mail i SMS"
+            "2" : {
+              "body" : "Szybko i wygodnie. Otrzymuj powiadomienia o przeczytanych wiadomościach SMS.",
+              "heading" : "Odczytaj pokwitowania: E-mail i SMS"
             },
-            "3": {
-              "body": "Dodaj specjalny akcent do swoich sekretów.",
-              "heading": "Dostosuj wiadomości Neogram"
+            "3" : {
+              "body" : "Dodaj specjalny akcent do swoich sekretów.",
+              "heading" : "Dostosuj wiadomości Neogram"
             },
-            "4": {
-              "body": "Będziesz pierwszy w kolejce, jeśli będziesz potrzebował pomocy.",
-              "heading": "Priorytetowe wsparcie"
+            "4" : {
+              "body" : "Będziesz pierwszy w kolejce, jeśli będziesz potrzebował pomocy.",
+              "heading" : "Priorytetowe wsparcie"
             },
-            "5": {
-              "body": "Otrzymasz wszystkie przyszłe aktualizacje bez dodatkowych kosztów. A także wcześniejszy dostęp do nowych funkcji.",
-              "heading": "Jeszcze więcej..."
+            "5" : {
+              "body" : "Otrzymasz wszystkie przyszłe aktualizacje bez dodatkowych kosztów. A także wcześniejszy dostęp do nowych funkcji.",
+              "heading" : "Jeszcze więcej..."
             },
-            "files": {
-              "body": "Możesz wysyłać pliki o rozmiarze do {{uploadLimit}}.",
-              "heading": "{{uploadLimit}} pliki"
+            "files" : {
+              "body" : "Możesz wysyłać pliki o rozmiarze do {{uploadLimit}}.",
+              "heading" : "{{uploadLimit}} pliki"
             }
           }
         }
       },
-      "planSwitchOrCancelNotice": "Możesz zmienić cykl rozliczeniowy lub anulować subskrypcję w dowolnym momencie.",
-      "premium": {
-        "subtitle": "To po prostu okazja."
+      "planSwitchOrCancelNotice" : "Możesz zmienić cykl rozliczeniowy lub anulować subskrypcję w dowolnym momencie.",
+      "premium" : {
+        "subtitle" : "To po prostu okazja."
       },
-      "recurringPriceInfo": "Otrzymujesz rachunek {{price}} za każde {{interval}}.",
-      "subscriptionActiveSuccessMessage": "Misja zakończona! Twoja subskrypcja jest aktywna.",
-      "subscriptionCancellationSuccessMessage": "Twoja subskrypcja została pomyślnie anulowana! Twój plan zostanie automatycznie przeniesiony na plan darmowy w dniu {{cancellationDate}}. Jeśli do tego czasu zmienisz zdanie, możesz w każdej chwili reaktywować subskrypcję.",
-      "subscriptionChangeSuccessMessage": "Udało Ci się zmienić subskrypcję!",
-      "switchToMonthlyBilling": "Przełącz na rozliczenie miesięczne",
-      "switchToYearlyBilling": "Przełącz na roczny cykl rozliczeniowy",
-      "trialEndNotice": "Okres próbny kończy się w dniu {{trialEndDate}}."
+      "recurringPriceInfo" : "Otrzymujesz rachunek {{price}} za każde {{interval}}.",
+      "subscriptionActiveSuccessMessage" : "Misja zakończona! Twoja subskrypcja jest aktywna.",
+      "subscriptionCancellationSuccessMessage" : "Twoja subskrypcja została pomyślnie anulowana! Twój plan zostanie automatycznie przeniesiony na plan darmowy w dniu {{cancellationDate}}. Jeśli do tego czasu zmienisz zdanie, możesz w każdej chwili reaktywować subskrypcję.",
+      "subscriptionChangeSuccessMessage" : "Udało Ci się zmienić subskrypcję!",
+      "switchToMonthlyBilling" : "Przełącz na rozliczenie miesięczne",
+      "switchToYearlyBilling" : "Przełącz na roczny cykl rozliczeniowy",
+      "trialEndNotice" : "Okres próbny kończy się w dniu {{trialEndDate}}."
     },
-    "ShareSecretResult": {
-      "emailService": {
-        "subtitle": "Pozwól nam dostarczyć Ci Twój sekretny link.",
-        "title": "Usługa e-mail"
+    "ShareSecretResult" : {
+      "emailService" : {
+        "subtitle" : "Pozwól nam dostarczyć Ci Twój sekretny link.",
+        "title" : "Usługa e-mail"
       },
-      "emojiLink": {
-        "ariaLabel": "Przełączanie łącza emoji",
-        "title": "Przełączanie łącza emoji"
+      "emojiLink" : {
+        "ariaLabel" : "Przełączanie łącza emoji",
+        "title" : "Przełączanie łącza emoji"
       },
-      "loading": "Zaszyfruj i zapisz...",
-      "rememberAliasInfo": "Twój tajny identyfikator to **Bawełna**.  \nZapamiętaj go, używamy go do potwierdzania odczytu.",
-      "webShare": {
-        "text": "Otrzymałeś tajemnicę: {{shortenedUrl}} \n \nOdpowiedz z sekretem:",
-        "title": "Udostępnij link do swojego sekretu:"
+      "loading" : "Zaszyfruj i zapisz...",
+      "rememberAliasInfo" : "Twój tajny identyfikator to **Bawełna**.  \nZapamiętaj go, używamy go do potwierdzania odczytu.",
+      "webShare" : {
+        "text" : "Otrzymałeś tajemnicę: {{shortenedUrl}} \n \nOdpowiedz z sekretem:",
+        "title" : "Udostępnij link do swojego sekretu:"
       }
     },
-    "Stats": {
-      "created": "utworzony:",
-      "title": "Sekrety",
-      "viewed": "przeglądane:"
+    "Stats" : {
+      "created" : "utworzony:",
+      "title" : "Sekrety",
+      "viewed" : "przeglądane:"
     },
-    "Trust": {
-      "encryption": "Szyfrowanie end-to-end.",
-      "noTrace": "Bez śladu",
-      "privacy": "Szwajcarska prywatność"
+    "Trust" : {
+      "encryption" : "Szyfrowanie end-to-end.",
+      "noTrace" : "Bez śladu",
+      "privacy" : "Szwajcarska prywatność"
     },
-    "UpgradeNotice": {
-      "free": "Załóż <1>darmowe konto, aby włączyć tę funkcję.",
-      "premium": "Uzyskaj konto <1>premium, aby włączyć tę funkcję."
+    "UpgradeNotice" : {
+      "free" : "Załóż <1>darmowe konto, aby włączyć tę funkcję.",
+      "premium" : "Uzyskaj konto <1>premium, aby włączyć tę funkcję."
     }
   },
-  "currency": "Waluta",
-  "demoNeogramDestructionMessage": "Ta wiadomość ulegnie samodestrukcji w ...",
-  "demoNeogramMessage": "Obudź się Neo...\nTo jest tylko demo!\nWiadomości Neogram ulegają samozniszczeniu automatycznie po upływie określonego czasu.\n\nMiłego dzielenia się sekretami \uD83D\uDE18",
-  "demoTextMessage": "Cześć tam...\nTo jest tylko demo!\n\nCiesz się dzieleniem sekretami \uD83D\uDE18",
-  "email": "Wyślij wiadomość e-mail na adres .",
-  "error": {
-    "API_SECRET_NOT_FOUND": "Nie znaleziono sekretu - Zwykle oznacza to, że sekretny link został już odwiedzony i dlatego już nie istnieje.",
-    "invalidAlias": "Nieprawidłowy alias.",
-    "missingDecryptionKey": "Brak klucza deszyfrującego.",
-    "noMessage": "Brak komunikatu.",
-    "secretBurned": "Sekret został już spalony.",
-    "signIn": {
-      "emailUnknown": "Nieznany adres e-mail. Sprawdź swój adres e-mail lub spróbuj zarejestrować się zamiast niego."
+  "currency" : "Waluta",
+  "demoNeogramDestructionMessage" : "Ta wiadomość ulegnie samodestrukcji w ...",
+  "demoNeogramMessage" : "Obudź się Neo...\nTo jest tylko demo!\nWiadomości Neogram ulegają samozniszczeniu automatycznie po upływie określonego czasu.\n\nMiłego dzielenia się sekretami \uD83D\uDE18",
+  "demoTextMessage" : "Cześć tam...\nTo jest tylko demo!\n\nCiesz się dzieleniem sekretami \uD83D\uDE18",
+  "email" : "Wyślij wiadomość e-mail na adres .",
+  "error" : {
+    "API_SECRET_NOT_FOUND" : "Nie znaleziono sekretu - Zwykle oznacza to, że sekretny link został już odwiedzony i dlatego już nie istnieje.",
+    "invalidAlias" : "Nieprawidłowy alias.",
+    "missingDecryptionKey" : "Brak klucza deszyfrującego.",
+    "noMessage" : "Brak komunikatu.",
+    "secretBurned" : "Sekret został już spalony.",
+    "signIn" : {
+      "emailUnknown" : "Nieznany adres e-mail. Sprawdź swój adres e-mail lub spróbuj zarejestrować się zamiast niego."
     },
-    "signUp": {
-      "emailAlreadyExists": "Użytkownik o tym adresie e-mail już istnieje - możesz się zalogować zamiast niego."
+    "signUp" : {
+      "emailAlreadyExists" : "Użytkownik o tym adresie e-mail już istnieje - możesz się zalogować zamiast niego."
     },
-    "unexpectedError": "Nieoczekiwany błąd",
-    "wrongPassword": "Błędne hasło"
+    "unexpectedError" : "Nieoczekiwany błąd",
+    "wrongPassword" : "Błędne hasło"
   },
-  "faq": {
-    "anonymity": {
-      "body": "Podejmujemy szereg działań mających na celu ochronę prywatności użytkowników, szczegółowo opisanych na stronie [Prywatność](/privacy) - jednak niektóre funkcje wymagają korzystania z usług stron trzecich, które mogą mieć dostęp do informacji umożliwiających identyfikację użytkownika (PII). Jeśli chcesz jeszcze bardziej chronić swoją prywatność, zalecamy następujące czynności:\n\n- Połącz się z naszą usługą za pomocą wirtualnej sieci prywatnej (VPN): W ten sposób nigdy nie ujawnisz swojego osobistego adresu IP. Zalecamy [ProtonVPN](https://protonvpn.com/).\n- Skorzystaj z usługi takiej jak [Abine Blur](https://www.abine.com/), aby ukryć swój osobisty adres e-mail, numer telefonu i/lub informacje o karcie kredytowej.",
-      "heading": "W jaki sposób chroniona jest moja prywatność?"
+  "faq" : {
+    "anonymity" : {
+      "body" : "Podejmujemy szereg działań mających na celu ochronę prywatności użytkowników, szczegółowo opisanych na stronie [Prywatność](/privacy) - jednak niektóre funkcje wymagają korzystania z usług stron trzecich, które mogą mieć dostęp do informacji umożliwiających identyfikację użytkownika (PII). Jeśli chcesz jeszcze bardziej chronić swoją prywatność, zalecamy następujące czynności:\n\n- Połącz się z naszą usługą za pomocą wirtualnej sieci prywatnej (VPN): W ten sposób nigdy nie ujawnisz swojego osobistego adresu IP. Zalecamy [ProtonVPN](https://protonvpn.com/).\n- Skorzystaj z usługi takiej jak [Abine Blur](https://www.abine.com/), aby ukryć swój osobisty adres e-mail, numer telefonu i/lub informacje o karcie kredytowej.",
+      "heading" : "W jaki sposób chroniona jest moja prywatność?"
     },
-    "browser-extensions": {
-      "body": "Rozszerzenia przeglądarki scrt.link są dostępne dla wszystkich głównych przeglądarek:\n- [Google Chrome]{{ chromeExtensionLink }})\n- Mozilla Firefox]{{ firefoxExtensionLink }})\n- [Microsoft Edge]{{ microsoftEdgeExtensionLink }})",
-      "heading": "Gdzie mogę znaleźć rozszerzenia do przeglądarki?"
+    "browser-extensions" : {
+      "body" : "Rozszerzenia przeglądarki scrt.link są dostępne dla wszystkich głównych przeglądarek:\n- [Google Chrome]{{ chromeExtensionLink }})\n- Mozilla Firefox]{{ firefoxExtensionLink }})\n- [Microsoft Edge]{{ microsoftEdgeExtensionLink }})",
+      "heading" : "Gdzie mogę znaleźć rozszerzenia do przeglądarki?"
     },
-    "category": {
-      "accountAndBilling": "Konto i rozliczenia",
-      "general": "Ogólne",
-      "nerdZone": "Strefa kujonów",
-      "product": "Produkt i usługa",
-      "securityAndPrivacy": "Bezpieczeństwo i prywatność",
-      "slack": "Aplikacja Slack"
+    "category" : {
+      "accountAndBilling" : "Konto i rozliczenia",
+      "general" : "Ogólne",
+      "nerdZone" : "Strefa kujonów",
+      "product" : "Produkt i usługa",
+      "securityAndPrivacy" : "Bezpieczeństwo i prywatność",
+      "slack" : "Aplikacja Slack"
     },
-    "developer": {
-      "body": "Cały kod jest dostępny na {{gitlabLink}}open-source.",
-      "heading": "Gdzie mogę znaleźć kod źródłowy?"
+    "developer" : {
+      "body" : "Cały kod jest dostępny na {{gitlabLink}}open-source.",
+      "heading" : "Gdzie mogę znaleźć kod źródłowy?"
     },
-    "developer-tools": {
-      "body": "Dostępne są łatwe w użyciu pakiety npm. Przykłady kodu i dalsze informacje na temat integracji można znaleźć na [blogu dewelopera](https://blog.stophe.com/scrtlink-is-built-for-developers).",
-      "heading": "Jak mogę zintegrować to narzędzie z moim projektem?"
+    "developer-tools" : {
+      "body" : "Dostępne są łatwe w użyciu pakiety npm. Przykłady kodu i dalsze informacje na temat integracji można znaleźć na [blogu dewelopera](https://blog.stophe.com/scrtlink-is-built-for-developers).",
+      "heading" : "Jak mogę zintegrować to narzędzie z moim projektem?"
     },
-    "difference-to-disappearing-messages": {
-      "body": "Anonimowość, prywatność i bezpieczeństwo. Zwykłe wiadomości tekstowe w dzienniku czatu zawsze można namierzyć. Istnieje wiele scenariuszy, w których nawet znikające wiadomości stanowią czynnik ryzyka: Czy inne osoby mają czasem dostęp do Twojego telefonu? Co by było, gdybyś zgubił telefon? Albo, co gorsza, Twój telefon może być zagrożony na poziomie systemu operacyjnego. Dzięki funkcji scrt.link w historii rozmów zawsze będzie znajdować się tylko łącze. Po jednokrotnym odwiedzeniu tego łącza zostanie wyświetlona strona błędu 404. Nie ma możliwości uzyskania dostępu do oryginalnej treści.",
-      "heading": "Jaka jest różnica w stosunku do znikających wiadomości w serwisie Signal lub Whatsapp?"
+    "difference-to-disappearing-messages" : {
+      "body" : "Anonimowość, prywatność i bezpieczeństwo. Zwykłe wiadomości tekstowe w dzienniku czatu zawsze można namierzyć. Istnieje wiele scenariuszy, w których nawet znikające wiadomości stanowią czynnik ryzyka: Czy inne osoby mają czasem dostęp do Twojego telefonu? Co by było, gdybyś zgubił telefon? Albo, co gorsza, Twój telefon może być zagrożony na poziomie systemu operacyjnego. Dzięki funkcji scrt.link w historii rozmów zawsze będzie znajdować się tylko łącze. Po jednokrotnym odwiedzeniu tego łącza zostanie wyświetlona strona błędu 404. Nie ma możliwości uzyskania dostępu do oryginalnej treści.",
+      "heading" : "Jaka jest różnica w stosunku do znikających wiadomości w serwisie Signal lub Whatsapp?"
     },
-    "difference-to-snapchat": {
-      "body": "Odpowiedź taka sama jak w poprzednim pytaniu. Ponadto model biznesowy stojący za Snapchatem i każdą inną dużą platformą mediów społecznościowych jest sprzeczny z ideą prywatności i anonimowości. Firmy z branży mediów społecznościowych muszą znać swoich użytkowników, aby móc sprzedawać reklamy. \n    \nJednak dzielenie się wygenerowanym tajnym linkiem za pomocą Snapchata, Facebooka, Instagrama, Telegrama itp. jest w porządku.",
-      "heading": "Jaka jest różnica w stosunku do Snapchata?"
+    "difference-to-snapchat" : {
+      "body" : "Odpowiedź taka sama jak w poprzednim pytaniu. Ponadto model biznesowy stojący za Snapchatem i każdą inną dużą platformą mediów społecznościowych jest sprzeczny z ideą prywatności i anonimowości. Firmy z branży mediów społecznościowych muszą znać swoich użytkowników, aby móc sprzedawać reklamy. \n    \nJednak dzielenie się wygenerowanym tajnym linkiem za pomocą Snapchata, Facebooka, Instagrama, Telegrama itp. jest w porządku.",
+      "heading" : "Jaka jest różnica w stosunku do Snapchata?"
     },
-    "end-subscription": {
-      "body": "Zaloguj się na [stronie konta](/account). W zakładce \"Subskrypcja\" możesz w każdej chwili anulować swoją subskrypcję, **bez zadawania pytań**.",
-      "heading": "Jak anulować subskrypcję?"
+    "end-subscription" : {
+      "body" : "Zaloguj się na [stronie konta](/account). W zakładce \"Subskrypcja\" możesz w każdej chwili anulować swoją subskrypcję, **bez zadawania pytań**.",
+      "heading" : "Jak anulować subskrypcję?"
     },
-    "end-to-end-encryption-info": {
-      "body": "Generujemy dwa losowe ciągi - jeden do identyfikacji Twojego sekretu w bazie danych, a drugi do zaszyfrowania Twojej wiadomości. Klucz szyfrowania nie jest przechowywany. Tylko dzięki pełnemu łączu możesz odszyfrować sekret.\n![Objaśnienie łącza](/images/pl/link-explanation.svg)",
-      "heading": "W jaki sposób odbywa się szyfrowanie end-to-end?"
+    "end-to-end-encryption-info" : {
+      "body" : "Generujemy dwa losowe ciągi - jeden do identyfikacji Twojego sekretu w bazie danych, a drugi do zaszyfrowania Twojej wiadomości. Klucz szyfrowania nie jest przechowywany. Tylko dzięki pełnemu łączu możesz odszyfrować sekret.\n![Objaśnienie łącza](/images/pl/link-explanation.svg)",
+      "heading" : "W jaki sposób odbywa się szyfrowanie end-to-end?"
     },
-    "how": {
-      "body": "Po wysłaniu formularza Twój sekret zostanie zaszyfrowany i zapisany. Wygenerowane krótkie łącze możesz teraz udostępnić za pomocą SMS-a, e-maila lub innej zaufanej usługi. (polecamy Signal, Threema lub Matrix). Po kliknięciu łącza przez odbiorcę wiadomość zostanie wyświetlona i trwale usunięta z bazy danych. \n    \nDla **dodatkowego bezpieczeństwa** możesz dołączyć hasło, które będzie potrzebne do odszyfrowania wiadomości. (Zalecamy udostępnianie hasła innym kanałem niż link).",
-      "heading": "Jak działa ta usługa?"
+    "how" : {
+      "body" : "Po wysłaniu formularza Twój sekret zostanie zaszyfrowany i zapisany. Wygenerowane krótkie łącze możesz teraz udostępnić za pomocą SMS-a, e-maila lub innej zaufanej usługi. (polecamy Signal, Threema lub Matrix). Po kliknięciu łącza przez odbiorcę wiadomość zostanie wyświetlona i trwale usunięta z bazy danych. \n    \nDla **dodatkowego bezpieczeństwa** możesz dołączyć hasło, które będzie potrzebne do odszyfrowania wiadomości. (Zalecamy udostępnianie hasła innym kanałem niż link).",
+      "heading" : "Jak działa ta usługa?"
     },
-    "message-size": {
-      "body": "Obecny limit to {{ maxMessageLengthVisitor }} znaków dla odwiedzających. W planie premium można uzyskać do {{ maxMessageLengthPremium }} znaków.",
-      "heading": "Jaki jest maksymalny rozmiar wiadomości?"
+    "message-size" : {
+      "body" : "Obecny limit to {{ maxMessageLengthVisitor }} znaków dla odwiedzających. W planie premium można uzyskać do {{ maxMessageLengthPremium }} znaków.",
+      "heading" : "Jaki jest maksymalny rozmiar wiadomości?"
     },
-    "notification": {
-      "body": "Tak, możesz otrzymywać **powiadomienia SMS lub e-mail**, jeśli posiadasz konto. [Przejdź do konta](/account)",
-      "heading": "Czy mogę otrzymywać powiadomienia o obejrzeniu sekretu?"
+    "notification" : {
+      "body" : "Tak, możesz otrzymywać **powiadomienia SMS lub e-mail**, jeśli posiadasz konto. [Przejdź do konta](/account)",
+      "heading" : "Czy mogę otrzymywać powiadomienia o obejrzeniu sekretu?"
     },
-    "payment-methods": {
-      "body": "Nasz dostawca płatności [Stripe](https://stripe.com/) oferuje wiele różnych opcji płatności: Google Pay, karta kredytowa (VISA, Mastercard, American Express, itp.) i wiele innych. Po wybraniu planu premium zostaniesz przekierowany do Stripe, gdzie będziesz mógł wybrać preferowaną metodę płatności.",
-      "heading": "Jakie metody płatności są obsługiwane?"
+    "payment-methods" : {
+      "body" : "Nasz dostawca płatności [Stripe](https://stripe.com/) oferuje wiele różnych opcji płatności: Google Pay, karta kredytowa (VISA, Mastercard, American Express, itp.) i wiele innych. Po wybraniu planu premium zostaniesz przekierowany do Stripe, gdzie będziesz mógł wybrać preferowaną metodę płatności.",
+      "heading" : "Jakie metody płatności są obsługiwane?"
     },
-    "payment-provider": {
-      "body": "Współpracujemy z [Stripe](https://stripe.com/) jako dostawcą płatności. Nie przechowujemy żadnych informacji związanych z płatnościami.",
-      "heading": "Kto jest dostawcą płatności?"
+    "payment-provider" : {
+      "body" : "Współpracujemy z [Stripe](https://stripe.com/) jako dostawcą płatności. Nie przechowujemy żadnych informacji związanych z płatnościami.",
+      "heading" : "Kto jest dostawcą płatności?"
     },
-    "read-receipts-info": {
-      "body": "Dla każdego sekretu generujemy Tajny Identyfikator (losowy ciąg znaków), który jest jedynym odniesieniem do oryginalnej wiadomości. Gdy odbiorca otworzy tajny link, powiadamiamy Cię o tym fakcie w wybrany przez Ciebie sposób. W powiadomieniu podajemy tylko Tajny Identyfikator - pamiętaj więc, aby go zachować/pamiętać. Nie trzeba dodawać, że informacje kontaktowe (e-mail lub numer telefonu) są **nigdy nie ujawniane odbiorcy**.\n\n**Email**: Otrzymasz wiadomość e-mail od *Jeramie.Marquardt8@gmail.com*.\n\n**SMS**: Otrzymasz powiadomienie SMS z numeru *{{ twilioSenderPhoneNumber }}.",
-      "heading": "Jak działają pokwitowania odczytu?"
+    "read-receipts-info" : {
+      "body" : "Dla każdego sekretu generujemy Tajny Identyfikator (losowy ciąg znaków), który jest jedynym odniesieniem do oryginalnej wiadomości. Gdy odbiorca otworzy tajny link, powiadamiamy Cię o tym fakcie w wybrany przez Ciebie sposób. W powiadomieniu podajemy tylko Tajny Identyfikator - pamiętaj więc, aby go zachować/pamiętać. Nie trzeba dodawać, że informacje kontaktowe (e-mail lub numer telefonu) są **nigdy nie ujawniane odbiorcy**.\n\n**Email**: Otrzymasz wiadomość e-mail od *Jeramie.Marquardt8@gmail.com*.\n\n**SMS**: Otrzymasz powiadomienie SMS z numeru *{{ twilioSenderPhoneNumber }}.",
+      "heading" : "Jak działają pokwitowania odczytu?"
     },
-    "recovery": {
-      "body": "Nie. Jest to **tajemnica jednorazowa**. Pokazujemy go raz, a następnie usuwamy go na stałe z bazy danych. Nie ma żadnej kopii zapasowej. Znika na zawsze.",
-      "heading": "Czy mogę odzyskać sekret, który został już odwiedzony?"
+    "recovery" : {
+      "body" : "Nie. Jest to **tajemnica jednorazowa**. Pokazujemy go raz, a następnie usuwamy go na stałe z bazy danych. Nie ma żadnej kopii zapasowej. Znika na zawsze.",
+      "heading" : "Czy mogę odzyskać sekret, który został już odwiedzony?"
     },
-    "save": {
-      "body": "Oczywiście, zawsze można zrobić zrzut ekranu. Ideą tej usługi jest bezpieczne jednorazowe udostępnienie poufnych informacji. Nie mamy (oczywiście) wpływu na to, co odbiorca zrobi z wiadomością.",
-      "heading": "Czy odbiorca może zapisać wiadomość?"
+    "save" : {
+      "body" : "Oczywiście, zawsze można zrobić zrzut ekranu. Ideą tej usługi jest bezpieczne jednorazowe udostępnienie poufnych informacji. Nie mamy (oczywiście) wpływu na to, co odbiorca zrobi z wiadomością.",
+      "heading" : "Czy odbiorca może zapisać wiadomość?"
     },
-    "secret-expiration": {
-      "body": "Do końca czasów. Poważnie, nie ma ustalonego maksymalnego limitu czasu. Ale zawsze możesz zniszczyć swój sekret, odwiedzając tajny link.",
-      "heading": "Jak długo przechowujecie nieprzeglądane sekrety?"
+    "secret-expiration" : {
+      "body" : "Do końca czasów. Poważnie, nie ma ustalonego maksymalnego limitu czasu. Ale zawsze możesz zniszczyć swój sekret, odwiedzając tajny link.",
+      "heading" : "Jak długo przechowujecie nieprzeglądane sekrety?"
     },
-    "secret-not-found": {
-      "body": "Oznacza to, że tajne łącze zostało już odwiedzone. Jeśli taka sytuacja zdarzy się nieoczekiwanie:\n- Sprawdź z nadawcą, czy link nie został odwiedzony przez pomyłkę.\n- Dostęp do sekretu został uzyskany za pomocą ataku brut-force lub wystąpił problem z infrastrukturą serwera (nie martw się, zawartość sekretów nadal będzie zaszyfrowana) - oba przypadki są bardzo mało prawdopodobne.\n- **Najgorszy przypadek**: Dostęp do łącza uzyskała osoba trzecia, co ostatecznie oznacza, że kanał komunikacyjny i/lub urządzenie jednej ze stron zostało naruszone.",
-      "heading": "Dlaczego pojawia się błąd \"Nie znaleziono sekretu\"?"
+    "secret-not-found" : {
+      "body" : "Oznacza to, że tajne łącze zostało już odwiedzone. Jeśli taka sytuacja zdarzy się nieoczekiwanie:\n- Sprawdź z nadawcą, czy link nie został odwiedzony przez pomyłkę.\n- Dostęp do sekretu został uzyskany za pomocą ataku brut-force lub wystąpił problem z infrastrukturą serwera (nie martw się, zawartość sekretów nadal będzie zaszyfrowana) - oba przypadki są bardzo mało prawdopodobne.\n- **Najgorszy przypadek**: Dostęp do łącza uzyskała osoba trzecia, co ostatecznie oznacza, że kanał komunikacyjny i/lub urządzenie jednej ze stron zostało naruszone.",
+      "heading" : "Dlaczego pojawia się błąd \"Nie znaleziono sekretu\"?"
     },
-    "secret-types": {
-      "body": "- **Tekst**: Jest to tryb standardowy. Jest to preferowany sposób dzielenia się hasłami i podobnymi tajemnicami. Odbiorca ma możliwość skopiowania sekretu.\n[Demo]{{ demoSecretMessageLink }})\n- **File**: Upuść dowolny plik. Ta funkcja jest obecnie w wersji beta.\n- **Przekierowanie**: Pomyśl o tym jak o skracaczu URL, gdzie wygenerowany link działa tylko raz.\n- **Neogram**: Cyfrowa wiadomość w stylu listu, która po przeczytaniu automatycznie się spala. Używaj go do poufnych notatek, wyznań lub sekretnych listów miłosnych. [Demo]{{ demoSecretNeogramLink }})",
-      "heading": "*Text* [Tekst], *Files* [Pliki], *Redirect* [Przekierowanie] i *Neogram* [Neogram]?"
+    "secret-types" : {
+      "body" : "- **Tekst**: Jest to tryb standardowy. Jest to preferowany sposób dzielenia się hasłami i podobnymi tajemnicami. Odbiorca ma możliwość skopiowania sekretu.\n[Demo]{{ demoSecretMessageLink }})\n- **File**: Upuść dowolny plik. Ta funkcja jest obecnie w wersji beta.\n- **Przekierowanie**: Pomyśl o tym jak o skracaczu URL, gdzie wygenerowany link działa tylko raz.\n- **Neogram**: Cyfrowa wiadomość w stylu listu, która po przeczytaniu automatycznie się spala. Używaj go do poufnych notatek, wyznań lub sekretnych listów miłosnych. [Demo]{{ demoSecretNeogramLink }})",
+      "heading" : "*Text* [Tekst], *Files* [Pliki], *Redirect* [Przekierowanie] i *Neogram* [Neogram]?"
     },
-    "security": {
-      "body": "Wszystkie wiadomości są szyfrowane metodą \"end-to-end\" przy użyciu **AES-256**, która jest praktycznie nie do złamania przy użyciu metod brute-force. Złamanie AES przy użyciu obecnej technologii obliczeniowej zajęłoby miliardy lat.\nAby zapewnić najwyższy poziom bezpieczeństwa, do szyfrowania wiadomości zostanie użyte opcjonalne hasło (które również nigdy nie jest przechowywane). Więcej informacji można znaleźć na naszej stronie [Bezpieczeństwo](/security).",
-      "heading": "Jak bezpieczna jest ta usługa?"
+    "security" : {
+      "body" : "Wszystkie wiadomości są szyfrowane metodą \"end-to-end\" przy użyciu **AES-256**, która jest praktycznie nie do złamania przy użyciu metod brute-force. Złamanie AES przy użyciu obecnej technologii obliczeniowej zajęłoby miliardy lat.\nAby zapewnić najwyższy poziom bezpieczeństwa, do szyfrowania wiadomości zostanie użyte opcjonalne hasło (które również nigdy nie jest przechowywane). Więcej informacji można znaleźć na naszej stronie [Bezpieczeństwo](/security).",
+      "heading" : "Jak bezpieczna jest ta usługa?"
     },
-    "service-provider": {
-      "body": "Scrt.link jest usługą [SANTiHANS GmbH](https://santihans.com), szwajcarskiej firmy technologicznej, której misją jest rozwój sieci. Działamy zgodnie z prawem szwajcarskim. Jako klient korzystasz z jednej z najsilniejszych na świecie regulacji dotyczących ochrony danych i prywatności, [Federalnej Ustawy o Ochronie Danych (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). Ten produkt został stworzony i jest obsługiwany przez [@stophecom](https://twitter.com/stophecom).",
-      "heading": "Kto stoi za tą usługą?"
+    "service-provider" : {
+      "body" : "Scrt.link jest usługą [SANTiHANS GmbH](https://santihans.com), szwajcarskiej firmy technologicznej, której misją jest rozwój sieci. Działamy zgodnie z prawem szwajcarskim. Jako klient korzystasz z jednej z najsilniejszych na świecie regulacji dotyczących ochrony danych i prywatności, [Federalnej Ustawy o Ochronie Danych (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). Ten produkt został stworzony i jest obsługiwany przez [@stophecom](https://twitter.com/stophecom).",
+      "heading" : "Kto stoi za tą usługą?"
     },
-    "slack-app": {
-      "body": "Aplikacja Slack pozwala korzystać z możliwości scrt.link bez konieczności przełączania aplikacji. Aby uzyskać więcej informacji, przejdź na stronę [Slack App page](/slack). Możesz też pobrać aplikację tutaj:  \n\n\uD83D\uDC49 [Install Slack App]{{ slackAppInstallLink }})  \n\n_**Ważna informacja:** Korzystanie z aplikacji Slack wiąże się z pewnymi ograniczeniami. Ze względu na charakter tych aplikacji, pełne szyfrowanie end-to-end nie jest możliwe. W większości przypadków nie stanowi to problemu i jest to ryzyko, które warto podjąć - jeśli jednak potrzebujesz zaawansowanej ochrony, utwórz sekrety na stronie internetowej.",
-      "heading": "Gdzie mogę pobrać aplikację Slack?"
+    "slack-app" : {
+      "body" : "Aplikacja Slack pozwala korzystać z możliwości scrt.link bez konieczności przełączania aplikacji. Aby uzyskać więcej informacji, przejdź na stronę [Slack App page](/slack). Możesz też pobrać aplikację tutaj:  \n\n\uD83D\uDC49 [Install Slack App]{{ slackAppInstallLink }})  \n\n_**Ważna informacja:** Korzystanie z aplikacji Slack wiąże się z pewnymi ograniczeniami. Ze względu na charakter tych aplikacji, pełne szyfrowanie end-to-end nie jest możliwe. W większości przypadków nie stanowi to problemu i jest to ryzyko, które warto podjąć - jeśli jednak potrzebujesz zaawansowanej ochrony, utwórz sekrety na stronie internetowej.",
+      "heading" : "Gdzie mogę pobrać aplikację Slack?"
     },
-    "slack-data-collection": {
-      "body": "Przechowujemy tylko te dane, które są niezbędne do działania aplikacji. Kiedy instalujesz aplikację, przyznajesz nam określone prawa dostępu (np. prawo do umieszczania tajnego linku w Twoim imieniu). Dane te obejmują podstawowe informacje o użytkowniku Slacka (np. nazwa użytkownika, identyfikator), a także indywidualne tokeny autoryzacyjne. Dodatkowo tymczasowo przechowujemy dane wymagane do potwierdzeń odczytu.  \n**Nie przechowujemy żadnych innych danych. Nie wykorzystujemy, nie sprzedajemy ani nie rozpowszechniamy żadnych zgromadzonych przez nas danych. Nawet gdybyśmy chcieli, nie jesteśmy w stanie zidentyfikować Cię jako osoby, ponieważ tylko Slack może posiadać odpowiednie informacje, aby to zrobić.",
-      "heading": "Jakie dane zbierasz?"
+    "slack-data-collection" : {
+      "body" : "Przechowujemy tylko te dane, które są niezbędne do działania aplikacji. Kiedy instalujesz aplikację, przyznajesz nam określone prawa dostępu (np. prawo do umieszczania tajnego linku w Twoim imieniu). Dane te obejmują podstawowe informacje o użytkowniku Slacka (np. nazwa użytkownika, identyfikator), a także indywidualne tokeny autoryzacyjne. Dodatkowo tymczasowo przechowujemy dane wymagane do potwierdzeń odczytu.  \n**Nie przechowujemy żadnych innych danych. Nie wykorzystujemy, nie sprzedajemy ani nie rozpowszechniamy żadnych zgromadzonych przez nas danych. Nawet gdybyśmy chcieli, nie jesteśmy w stanie zidentyfikować Cię jako osoby, ponieważ tylko Slack może posiadać odpowiednie informacje, aby to zrobić.",
+      "heading" : "Jakie dane zbierasz?"
     },
-    "slack-not-approved": {
-      "body": "Po pierwsze, ważne jest, aby zrozumieć, że ta aplikacja nadal może być instalowana i używana w dokładnie taki sam sposób, jak aplikacje znajdujące się na oficjalnej liście. Próbowaliśmy zgłosić naszą aplikację do Slack App Directory, aby znaleźć się na liście. Ale ponieważ Slack dosłownie \"ogranicza zatwierdzanie aplikacji, które ułatwiają dzielenie się wrażliwymi informacjami\", nie byliśmy w stanie tego zrobić. Zastanów się nad tym przez chwilę. A potem pomóż nam to rozpowszechnić \uD83E\uDD70.",
-      "heading": "Dlaczego ta aplikacja nie jest zatwierdzona przez Slacka?"
+    "slack-not-approved" : {
+      "body" : "Po pierwsze, ważne jest, aby zrozumieć, że ta aplikacja nadal może być instalowana i używana w dokładnie taki sam sposób, jak aplikacje znajdujące się na oficjalnej liście. Próbowaliśmy zgłosić naszą aplikację do Slack App Directory, aby znaleźć się na liście. Ale ponieważ Slack dosłownie \"ogranicza zatwierdzanie aplikacji, które ułatwiają dzielenie się wrażliwymi informacjami\", nie byliśmy w stanie tego zrobić. Zastanów się nad tym przez chwilę. A potem pomóż nam to rozpowszechnić \uD83E\uDD70.",
+      "heading" : "Dlaczego ta aplikacja nie jest zatwierdzona przez Slacka?"
     },
-    "slack-premium-account": {
-      "body": "Nie. Nie ma za co. Ale oczywiście możesz wspierać ten projekt poprzez płatne subskrypcje niezależnie od tego \uD83E\uDD13.",
-      "heading": "Czy muszę mieć wykupioną subskrypcję premium, aby korzystać z aplikacji Slack?"
+    "slack-premium-account" : {
+      "body" : "Nie. Nie ma za co. Ale oczywiście możesz wspierać ten projekt poprzez płatne subskrypcje niezależnie od tego \uD83E\uDD13.",
+      "heading" : "Czy muszę mieć wykupioną subskrypcję premium, aby korzystać z aplikacji Slack?"
     },
-    "slack-scopes": {
-      "body": "Aplikacja wymaga podstawowych informacji o użytkowniku, kanałach i konwersacjach. Dodatkowo aplikacja wymaga pozwolenia na pisanie postów w Twoim imieniu, dołączanie do konwersacji oraz używanie _poleceń ukośnikowych_ i _skrótów_. Bardziej szczegółowe informacje o zakresach uprawnień otrzymasz podczas instalacji aplikacji.",
-      "heading": "Jakie uprawnienia są wymagane?"
+    "slack-scopes" : {
+      "body" : "Aplikacja wymaga podstawowych informacji o użytkowniku, kanałach i konwersacjach. Dodatkowo aplikacja wymaga pozwolenia na pisanie postów w Twoim imieniu, dołączanie do konwersacji oraz używanie _poleceń ukośnikowych_ i _skrótów_. Bardziej szczegółowe informacje o zakresach uprawnień otrzymasz podczas instalacji aplikacji.",
+      "heading" : "Jakie uprawnienia są wymagane?"
     },
-    "slack-security": {
-      "body": "Szczera odpowiedź: Nie możemy mieć pewności. Ważne jest, aby zrozumieć, że **end-to-end-encryption is not possible** with Slack apps. Jednak komunikacja między naszym serwerem aplikacji a Slackiem jest szyfrowana i dlatego uważamy, że w 99% przypadków można z niej bezpiecznie korzystać. Należy jednak pamiętać, że **Slack jest oprogramowaniem własnościowym** i nie mamy kontroli nad kodem, który uruchamia instancję Slacka. **Jeśli chcesz mieć 100% pewności, utwórz sekrety przez stronę internetową.**",
-      "heading": "Czy aplikacja Slack jest bezpieczna?"
+    "slack-security" : {
+      "body" : "Szczera odpowiedź: Nie możemy mieć pewności. Ważne jest, aby zrozumieć, że **end-to-end-encryption is not possible** with Slack apps. Jednak komunikacja między naszym serwerem aplikacji a Slackiem jest szyfrowana i dlatego uważamy, że w 99% przypadków można z niej bezpiecznie korzystać. Należy jednak pamiętać, że **Slack jest oprogramowaniem własnościowym** i nie mamy kontroli nad kodem, który uruchamia instancję Slacka. **Jeśli chcesz mieć 100% pewności, utwórz sekrety przez stronę internetową.**",
+      "heading" : "Czy aplikacja Slack jest bezpieczna?"
     },
-    "slack-trust": {
-      "body": "Krótka odpowiedź: Nie ufaj. Wierzymy jednak w zaufanie poprzez przejrzystość. Podczas gdy Ty możesz mieć coś do ukrycia, my nie. Dlatego właśnie cały kod jest otwarty i dostępny na {{gitlabLink}}. Nie krępuj się uruchomić własnej, prywatnej aplikacji Slack.",
-      "heading": "Dlaczego powinienem Ci zaufać?"
+    "slack-trust" : {
+      "body" : "Krótka odpowiedź: Nie ufaj. Wierzymy jednak w zaufanie poprzez przejrzystość. Podczas gdy Ty możesz mieć coś do ukrycia, my nie. Dlatego właśnie cały kod jest otwarty i dostępny na {{gitlabLink}}. Nie krępuj się uruchomić własnej, prywatnej aplikacji Slack.",
+      "heading" : "Dlaczego powinienem Ci zaufać?"
     },
-    "slack-user-account": {
-      "body": "Nie. Obecnie nie. Zapraszamy.",
-      "heading": "Czy muszę mieć konto, aby korzystać z aplikacji Slack?"
+    "slack-user-account" : {
+      "body" : "Nie. Obecnie nie. Zapraszamy.",
+      "heading" : "Czy muszę mieć konto, aby korzystać z aplikacji Slack?"
     },
-    "subscriptions": {
-      "body": "Po subskrypcji planu premium otrzymujesz natychmiastowy dostęp do odpowiednich funkcji na tak długo, jak długo trwa subskrypcja. Rachunek będzie naliczany co miesiąc lub co rok, zgodnie z wybranym okresem rozliczeniowym. Subskrypcję można anulować w dowolnym momencie.",
-      "heading": "Jak działają subskrypcje?"
+    "subscriptions" : {
+      "body" : "Po subskrypcji planu premium otrzymujesz natychmiastowy dostęp do odpowiednich funkcji na tak długo, jak długo trwa subskrypcja. Rachunek będzie naliczany co miesiąc lub co rok, zgodnie z wybranym okresem rozliczeniowym. Subskrypcję można anulować w dowolnym momencie.",
+      "heading" : "Jak działają subskrypcje?"
     },
-    "trial": {
-      "body": "**Spróbuj, zanim kupisz**: Możesz przetestować wszystkie funkcje premium przez **Bezterminowy okres próbny**. Po zakończeniu okresu próbnego naliczane są opłaty zgodnie z wybranym planem. Rezygnacja z usługi w okresie próbnym powoduje natychmiastowe zakończenie subskrypcji - w takim przypadku **brak rozliczenia**.",
-      "heading": "Jak działają wersje próbne?"
+    "trial" : {
+      "body" : "**Spróbuj, zanim kupisz**: Możesz przetestować wszystkie funkcje premium przez **Bezterminowy okres próbny**. Po zakończeniu okresu próbnego naliczane są opłaty zgodnie z wybranym planem. Rezygnacja z usługi w okresie próbnym powoduje natychmiastowe zakończenie subskrypcji - w takim przypadku **brak rozliczenia**.",
+      "heading" : "Jak działają wersje próbne?"
     },
-    "who": {
-      "body": "Zasadniczo każdy. Każdy powinien dbać o prywatność.  \n  Możliwość anonimowego przekazywania poufnych informacji jest szczególnie ważna dla dziennikarzy, prawników, polityków, sygnalistów, osób prześladowanych itp.",
-      "heading": "Dla kogo jest ona przeznaczona?"
+    "who" : {
+      "body" : "Zasadniczo każdy. Każdy powinien dbać o prywatność.  \n  Możliwość anonimowego przekazywania poufnych informacji jest szczególnie ważna dla dziennikarzy, prawników, polityków, sygnalistów, osób prześladowanych itp.",
+      "heading" : "Dla kogo jest ona przeznaczona?"
     },
-    "why": {
-      "body": "Dzielenie się sekretami jest delikatną sprawą. Nie chcesz, aby poufne informacje (informacje poufne, hasła, klucze API, tokeny dostępu, kombinacje kluczy, wyznania itp.) pozostały na Twoim kanale Slack, w dzienniku czatu Whatsapp, skrzynce odbiorczej lub innym kanale komunikacyjnym. Jednorazowe łącze jednorazowego użytku gwarantuje, że Twój sekret zostanie wyświetlony tylko raz, po czym zostanie trwale zniszczony.\n\n**Używaj tej usługi, jeśli chcesz...**.\n- Udostępnić swoje hasło do serwisu Netflix członkowi rodziny.\n- Wysłać prywatną wiadomość z publicznego komputera.\n- Wysłać tokeny dostępu, klucze API, kody PIN do znajomego lub współpracownika.\n- Przekazywanie informacji o płatnościach, takich jak numer karty kredytowej lub adres portfela Bitcoin.\n- Przyznać się do tajemniczego zmiażdżenia.\n- Przekazywanie informacji, które mogą być wykorzystane przeciwko Tobie.",
-      "heading": "Dlaczego powinienem korzystać z tej usługi?"
+    "why" : {
+      "body" : "Dzielenie się sekretami jest delikatną sprawą. Nie chcesz, aby poufne informacje (informacje poufne, hasła, klucze API, tokeny dostępu, kombinacje kluczy, wyznania itp.) pozostały na Twoim kanale Slack, w dzienniku czatu Whatsapp, skrzynce odbiorczej lub innym kanale komunikacyjnym. Jednorazowe łącze jednorazowego użytku gwarantuje, że Twój sekret zostanie wyświetlony tylko raz, po czym zostanie trwale zniszczony.\n\n**Używaj tej usługi, jeśli chcesz...**.\n- Udostępnić swoje hasło do serwisu Netflix członkowi rodziny.\n- Wysłać prywatną wiadomość z publicznego komputera.\n- Wysłać tokeny dostępu, klucze API, kody PIN do znajomego lub współpracownika.\n- Przekazywanie informacji o płatnościach, takich jak numer karty kredytowej lub adres portfela Bitcoin.\n- Przyznać się do tajemniczego zmiażdżenia.\n- Przekazywanie informacji, które mogą być wykorzystane przeciwko Tobie.",
+      "heading" : "Dlaczego powinienem korzystać z tej usługi?"
     }
   },
-  "FormField": {
-    "isEmojiShortLinkEnabled": {
-      "label": "Użyj łącza emoji"
+  "FormField" : {
+    "isEmojiShortLinkEnabled" : {
+      "label" : "Użyj łącza emoji"
     },
-    "name": {
-      "helperText": "Te informacje są <1>prywatne i nigdy nie zostaną nikomu pokazane. Używamy ich tylko po to, aby zapewnić Ci spersonalizowane doświadczenie."
+    "name" : {
+      "helperText" : "Te informacje są <1>prywatne i nigdy nie zostaną nikomu pokazane. Używamy ich tylko po to, aby zapewnić Ci spersonalizowane doświadczenie."
     },
-    "neogramDestructionMessage": {
-      "label": "Wiadomość o zniszczeniu",
-      "placeholder": "Ta wiadomość ulegnie autodestrukcji w..."
+    "neogramDestructionMessage" : {
+      "label" : "Wiadomość o zniszczeniu",
+      "placeholder" : "Ta wiadomość ulegnie autodestrukcji w..."
     },
-    "neogramDestructionTimeout": {
-      "endAdornment": "sekund",
-      "label": "Odliczanie czasu do zniszczenia"
+    "neogramDestructionTimeout" : {
+      "endAdornment" : "sekund",
+      "label" : "Odliczanie czasu do zniszczenia"
     },
-    "readReceiptMethod": {
-      "label": "Odczytywanie paragonów"
+    "readReceiptMethod" : {
+      "label" : "Odczytywanie paragonów"
     },
-    "readReceiptsOptions": {
-      "email": "Przez e-mail",
-      "none": "Brak",
-      "sms": "Przez SMS"
+    "readReceiptsOptions" : {
+      "email" : "Przez e-mail",
+      "none" : "Brak",
+      "sms" : "Przez SMS"
     },
-    "receiptEmail": {
-      "label": "E-mail"
+    "receiptEmail" : {
+      "label" : "E-mail"
     },
-    "receiptPhoneNumber": {
-      "label": "Telefon"
+    "receiptPhoneNumber" : {
+      "label" : "Telefon"
     },
-    "url": {
-      "helperText": "Adres URL, na który ma nastąpić przekierowanie (jednorazowe).",
-      "label": "Tajny adres URL"
+    "url" : {
+      "helperText" : "Adres URL, na który ma nastąpić przekierowanie (jednorazowe).",
+      "label" : "Tajny adres URL"
     }
   },
-  "menu": {
-    "about": "O firmie",
-    "acceptableUsePolicy": "Polityka dopuszczalnego użytkowania",
-    "account": "Moje konto",
-    "blog": "Blog",
-    "contact": "Kontakt",
-    "cookiePolicy": "Polityka dotycząca plików cookie",
-    "dangerZone": "Strefa zagrożenia",
-    "faq": "FAQ",
-    "imprint": "Stopka redakcyjna",
-    "pricing": "Ustalanie cen",
-    "privacy": "Prywatność",
-    "privacyPolicy": "Polityka prywatności",
-    "register": "Zarejestruj się",
-    "secrets": {
-      "files": "Pliki",
-      "neogram": "Neogram",
-      "redirect": "Przekierowanie",
-      "text": "Tekst"
+  "menu" : {
+    "about" : "O firmie",
+    "acceptableUsePolicy" : "Polityka dopuszczalnego użytkowania",
+    "account" : "Moje konto",
+    "blog" : "Blog",
+    "contact" : "Kontakt",
+    "cookiePolicy" : "Polityka dotycząca plików cookie",
+    "dangerZone" : "Strefa zagrożenia",
+    "faq" : "FAQ",
+    "imprint" : "Stopka redakcyjna",
+    "pricing" : "Ustalanie cen",
+    "privacy" : "Prywatność",
+    "privacyPolicy" : "Polityka prywatności",
+    "register" : "Zarejestruj się",
+    "secrets" : {
+      "files" : "Pliki",
+      "neogram" : "Neogram",
+      "redirect" : "Przekierowanie",
+      "text" : "Tekst"
     },
-    "security": "Bezpieczeństwo",
-    "settings": "Ustawienia",
-    "signIn": "Zaloguj się",
-    "signOut": "Wyloguj się",
-    "status": "Status",
-    "subscription": "Subskrypcja",
-    "termsOfService": "Warunki korzystania z usługi",
-    "title": {
-      "account": "Konto",
-      "createSecret": "Utwórz sekret",
-      "help": "Pomoc",
-      "information": "Informacje",
-      "integrations": "Integracje",
-      "secrets": "Sekrety",
-      "support": "Pomoc techniczna"
+    "security" : "Bezpieczeństwo",
+    "settings" : "Ustawienia",
+    "signIn" : "Zaloguj się",
+    "signOut" : "Wyloguj się",
+    "status" : "Status",
+    "subscription" : "Subskrypcja",
+    "termsOfService" : "Warunki korzystania z usługi",
+    "title" : {
+      "account" : "Konto",
+      "createSecret" : "Utwórz sekret",
+      "help" : "Pomoc",
+      "information" : "Informacje",
+      "integrations" : "Integracje",
+      "secrets" : "Sekrety",
+      "support" : "Pomoc techniczna"
     }
   },
-  "meta": {
-    "description": "Utwórz sekret jednorazowy. Dzięki {{appTitle}} możesz w bezpieczny sposób udostępniać hasła, informacje o kartach kredytowych, klucze prywatne lub inne poufne dane: Zaszyfrowane od końca do końca. Jednorazowo.",
-    "images": {
-      "alt": "{{appTitle}} - Podziel się sekretem!"
+  "meta" : {
+    "description" : "Utwórz sekret jednorazowy. Dzięki {{appTitle}} możesz w bezpieczny sposób udostępniać hasła, informacje o kartach kredytowych, klucze prywatne lub inne poufne dane: Zaszyfrowane od końca do końca. Jednorazowo.",
+    "images" : {
+      "alt" : "{{appTitle}} - Podziel się sekretem!"
     },
-    "keywords": "scrt.link, tajny link, tajna wiadomość link, jednorazowy sekret, jednorazowe hasło, jednorazowa wiadomość, jednorazowy link, jednorazowa wiadomość, jednorazowy link, skracacz adresów url, samoniszczące się linki, udostępnianie poufnych informacji"
+    "keywords" : "scrt.link, tajny link, tajna wiadomość link, jednorazowy sekret, jednorazowe hasło, jednorazowa wiadomość, jednorazowy link, jednorazowa wiadomość, jednorazowy link, skracacz adresów url, samoniszczące się linki, udostępnianie poufnych informacji"
   },
-  "missingTranslationsNotice": "Szanowny Kliencie, niestety niektóre treści na tej stronie nie zostały jeszcze przetłumaczone na preferowany przez Ciebie język. Pracujemy nad tym. W międzyczasie, jeśli masz jakiekolwiek pytania lub potrzebujesz dalszej pomocy, skontaktuj się z działem pomocy technicznej.",
-  "password": "Hasło",
-  "perMonth": "za miesiąc",
-  "plans": {
-    "free": {
-      "title": "Bezpłatna strona"
+  "missingTranslationsNotice" : "Szanowny Kliencie, niestety niektóre treści na tej stronie nie zostały jeszcze przetłumaczone na preferowany przez Ciebie język. Pracujemy nad tym. W międzyczasie, jeśli masz jakiekolwiek pytania lub potrzebujesz dalszej pomocy, skontaktuj się z działem pomocy technicznej.",
+  "password" : "Hasło",
+  "perMonth" : "za miesiąc",
+  "plans" : {
+    "free" : {
+      "title" : "Bezpłatna strona"
     }
   },
-  "secretType": {
-    "file": {
-      "label": "Wiadomość",
-      "placeholder": "Dodaj opcjonalną wiadomość dla odbiorcy...",
-      "tabLabel": "Plik"
+  "secretType" : {
+    "file" : {
+      "label" : "Wiadomość",
+      "placeholder" : "Dodaj opcjonalną wiadomość dla odbiorcy...",
+      "tabLabel" : "Plik"
     },
-    "neogram": {
-      "label": "Twój sekret",
-      "placeholder": "Obudź Neo...",
-      "tabLabel": "Neogram"
+    "neogram" : {
+      "label" : "Twój sekret",
+      "placeholder" : "Obudź Neo...",
+      "tabLabel" : "Neogram"
     },
-    "text": {
-      "label": "Twój sekret",
-      "placeholder": "Jaki jest Twój sekret?",
-      "tabLabel": "Tekst"
+    "text" : {
+      "label" : "Twój sekret",
+      "placeholder" : "Jaki jest Twój sekret?",
+      "tabLabel" : "Tekst"
     },
-    "url": {
-      "label": "URL",
-      "placeholder": "np. https://www.example.com",
-      "tabLabel": "Przekierowanie"
+    "url" : {
+      "label" : "URL",
+      "placeholder" : "np. https://www.example.com",
+      "tabLabel" : "Przekierowanie"
     }
   },
-  "validation": {
-    "confirmationRequired": "Pole musi być zaznaczone",
-    "consentRequired": "Wymagana jest Twoja zgoda.",
-    "destructionMessage": "Wiadomość o zniszczeniu",
-    "destructionTimeout": "Limit czasu na zniszczenie",
-    "email": "E-mail",
-    "emojiLink": "Krótkie łącze Emoji",
-    "message": "Wiadomość",
-    "name": "Nazwa",
-    "notAllowed": "Niedozwolone.",
-    "password": "Hasło",
-    "phone": "Telefon",
-    "phoneNotValid": "Numer telefonu jest nieprawidłowy",
-    "readReceipts": "Odczytaj paragony",
-    "secretUrl": "Tajny adres URL",
-    "urlNotValid": "{{label}} nie ma poprawnego formatu URL"
+  "validation" : {
+    "confirmationRequired" : "Pole musi być zaznaczone",
+    "consentRequired" : "Wymagana jest Twoja zgoda.",
+    "destructionMessage" : "Wiadomość o zniszczeniu",
+    "destructionTimeout" : "Limit czasu na zniszczenie",
+    "email" : "E-mail",
+    "emojiLink" : "Krótkie łącze Emoji",
+    "message" : "Wiadomość",
+    "name" : "Nazwa",
+    "notAllowed" : "Niedozwolone.",
+    "password" : "Hasło",
+    "phone" : "Telefon",
+    "phoneNotValid" : "Numer telefonu jest nieprawidłowy",
+    "readReceipts" : "Odczytaj paragony",
+    "secretUrl" : "Tajny adres URL",
+    "urlNotValid" : "{{label}} nie ma poprawnego formatu URL"
   },
-  "views": {
-    "About": {
-      "Accounts": {
-        "markdown": "Głównym powodem, dla którego oferujemy konta, jest zapobieganie spamowi i oszustwom. Wszystkie podstawowe funkcje są bezpłatne i nie wymagają posiadania konta.\n\nNiektóre funkcje wymagają jednak podstawowego uwierzytelnienia (prosimy jedynie o podanie adresu e-mail - nie mamy nic przeciwko temu, abyś używał tymczasowego adresu e-mail). Funkcje te obejmują wysyłanie informacji za pośrednictwem poczty elektronicznej lub wiadomości SMS. Konta pomagają nam zapobiegać nadużyciom w systemach bazowych. \n\nPłatne konta premium są przeznaczone dla zaawansowanych użytkowników i osób, które lubią [wspierać ten projekt](/ceny).",
-        "subtitle": "O tym, dlaczego oferujemy konta darmowe i premium.",
-        "title": "Konta użytkowników"
+  "views" : {
+    "About" : {
+      "Accounts" : {
+        "markdown" : "Głównym powodem, dla którego oferujemy konta, jest zapobieganie spamowi i oszustwom. Wszystkie podstawowe funkcje są bezpłatne i nie wymagają posiadania konta.\n\nNiektóre funkcje wymagają jednak podstawowego uwierzytelnienia (prosimy jedynie o podanie adresu e-mail - nie mamy nic przeciwko temu, abyś używał tymczasowego adresu e-mail). Funkcje te obejmują wysyłanie informacji za pośrednictwem poczty elektronicznej lub wiadomości SMS. Konta pomagają nam zapobiegać nadużyciom w systemach bazowych. \n\nPłatne konta premium są przeznaczone dla zaawansowanych użytkowników i osób, które lubią [wspierać ten projekt](/ceny).",
+        "subtitle" : "O tym, dlaczego oferujemy konta darmowe i premium.",
+        "title" : "Konta użytkowników"
       },
-      "BrowserExtensions": {
-        "markdown": "Aby ta usługa była łatwa i wygodna, dla wszystkich nowoczesnych przeglądarek dostępne są rozszerzenia do przeglądarek. Wszystkie dodatki mają te same funkcje bezpieczeństwa i ochrony prywatności.",
-        "subtitle": "Dziel się sekretami z poziomu swojej przeglądarki.",
-        "title": "Rozszerzenia przeglądarki"
+      "BrowserExtensions" : {
+        "markdown" : "Aby ta usługa była łatwa i wygodna, dla wszystkich nowoczesnych przeglądarek dostępne są rozszerzenia do przeglądarek. Wszystkie dodatki mają te same funkcje bezpieczeństwa i ochrony prywatności.",
+        "subtitle" : "Dziel się sekretami z poziomu swojej przeglądarki.",
+        "title" : "Rozszerzenia przeglądarki"
       },
-      "Developers": {
-        "markdown": "Dzięki naszym narzędziom dla programistów możesz łatwo zintegrować tę usługę z własnymi projektami. Oferujemy publiczne API wraz z pakietami po stronie klienta, które obsługują szyfrowanie typu end-to-end.\n\n### Pakiety NPM\n- {{npmScrtLinkCore}} Użyj tego pakietu, aby utworzyć tajne połączenie. Narzędzia te obsługują wszystko wokół szyfrowania i API. (Jest to ten sam kod, który działa na tej stronie).\n- {{npmScrtLinkCli}} Użyj tego pakietu do tworzenia sekretów z linii poleceń.\n\n### Kod źródłowy\n- {{gitlabScrtLink}} Kod źródłowy API i tej strony.\n- {{gitlabScrtLinkCore}} Kod źródłowy pakietu głównego, który obsługuje szyfrowanie i dostęp do API.\n- {{gitlabScrtLinkCli}} Kod źródłowy narzędzia CLI.\n- {{gitlabScrtLinkSlack}} Kod źródłowy aplikacji Slack.",
-        "subtitle": "Cały kod jest dostępny na zasadach open source. Możesz użyć poniższych pakietów, aby stworzyć własną usługę, lub użyć naszej usługi programowo poprzez publiczne API.",
-        "title": "Dla programistów"
+      "Developers" : {
+        "markdown" : "Dzięki naszym narzędziom dla programistów możesz łatwo zintegrować tę usługę z własnymi projektami. Oferujemy publiczne API wraz z pakietami po stronie klienta, które obsługują szyfrowanie typu end-to-end.\n\n### Pakiety NPM\n- {{npmScrtLinkCore}} Użyj tego pakietu, aby utworzyć tajne połączenie. Narzędzia te obsługują wszystko wokół szyfrowania i API. (Jest to ten sam kod, który działa na tej stronie).\n- {{npmScrtLinkCli}} Użyj tego pakietu do tworzenia sekretów z linii poleceń.\n\n### Kod źródłowy\n- {{gitlabScrtLink}} Kod źródłowy API i tej strony.\n- {{gitlabScrtLinkCore}} Kod źródłowy pakietu głównego, który obsługuje szyfrowanie i dostęp do API.\n- {{gitlabScrtLinkCli}} Kod źródłowy narzędzia CLI.\n- {{gitlabScrtLinkSlack}} Kod źródłowy aplikacji Slack.",
+        "subtitle" : "Cały kod jest dostępny na zasadach open source. Możesz użyć poniższych pakietów, aby stworzyć własną usługę, lub użyć naszej usługi programowo poprzez publiczne API.",
+        "title" : "Dla programistów"
       },
-      "intro": "Wszystko zaczęło się od pomysłu, aby wysyłać prywatne wiadomości w zabawny sposób. Wiadomości, które nie będą się powtarzać. Pomyśl o Snapchacie, ale bez zdradzania danych użytkownika. Pomysł ten przerodził się w projekt, który można podsumować jako \"Dzielenie się sekretami jako usługa\". Istnieją podobne produkty - w rzeczywistości niektóre z nich były świetną inspiracją. Jednak to, co wyróżnia scrt.link, to połączenie wszystkich świetnych pomysłów i koncepcji związanych z bezpieczeństwem i prywatnością z dbałością o design i doświadczenie użytkownika. Bądźcie czujni - na pewno będzie ich więcej!",
-      "Philosophy": {
-        "markdown": "Wolność słowa, wolność prasy i prawo do prywatności to jedne z najważniejszych swobód obywatelskich w wolnym społeczeństwie. Dzięki temu projektowi umożliwiamy wymianę informacji przez Internet w prawdziwie bezpieczny i prywatny sposób. Ten produkt jest tworzony z poszanowaniem integralności i prywatności ludzi przez cały czas. Nie interesujemy się Tobą! Nie interesujemy się Tobą jako osobą ani Twoimi sekretami. Przeczytaj więcej na naszej stronie [Prywatność](/privacy).",
-        "title": "Filozofia"
+      "intro" : "Wszystko zaczęło się od pomysłu, aby wysyłać prywatne wiadomości w zabawny sposób. Wiadomości, które nie będą się powtarzać. Pomyśl o Snapchacie, ale bez zdradzania danych użytkownika. Pomysł ten przerodził się w projekt, który można podsumować jako \"Dzielenie się sekretami jako usługa\". Istnieją podobne produkty - w rzeczywistości niektóre z nich były świetną inspiracją. Jednak to, co wyróżnia scrt.link, to połączenie wszystkich świetnych pomysłów i koncepcji związanych z bezpieczeństwem i prywatnością z dbałością o design i doświadczenie użytkownika. Bądźcie czujni - na pewno będzie ich więcej!",
+      "Philosophy" : {
+        "markdown" : "Wolność słowa, wolność prasy i prawo do prywatności to jedne z najważniejszych swobód obywatelskich w wolnym społeczeństwie. Dzięki temu projektowi umożliwiamy wymianę informacji przez Internet w prawdziwie bezpieczny i prywatny sposób. Ten produkt jest tworzony z poszanowaniem integralności i prywatności ludzi przez cały czas. Nie interesujemy się Tobą! Nie interesujemy się Tobą jako osobą ani Twoimi sekretami. Przeczytaj więcej na naszej stronie [Prywatność](/privacy).",
+        "title" : "Filozofia"
       },
-      "SlackApp": {
-        "subtitle": "Nie musisz już przełączać aplikacji. Dzięki aplikacji Slack App możesz tworzyć jednorazowe sekrety bezpośrednio w swoich rozmowach w Slacku.",
-        "title": "Aplikacja Slack"
+      "SlackApp" : {
+        "subtitle" : "Nie musisz już przełączać aplikacji. Dzięki aplikacji Slack App możesz tworzyć jednorazowe sekrety bezpośrednio w swoich rozmowach w Slacku.",
+        "title" : "Aplikacja Slack"
       },
-      "subtitle": "Cały projekt opiera się na prostym założeniu: im mniej wiemy, tym lepiej.",
-      "title": "O"
+      "subtitle" : "Cały projekt opiera się na prostym założeniu: im mniej wiemy, tym lepiej.",
+      "title" : "O"
     },
-    "AcceptableUsePolicy": {
-      "subtitle": "Tl;dr: Graj fair.",
-      "title": "Polityka akceptowalnego użytkowania"
+    "AcceptableUsePolicy" : {
+      "subtitle" : "Tl;dr: Graj fair.",
+      "title" : "Polityka akceptowalnego użytkowania"
     },
-    "Account": {
-      "accountDeletion": "Usuń swoje konto",
-      "activeSubscriptionWarning": "Masz uruchomioną subskrypcję. Zalecamy, aby najpierw ją anulować.",
-      "ManageSubscriptionButton": {
-        "button": "Zarządzaj subskrypcją w Stripe"
+    "Account" : {
+      "accountDeletion" : "Usuń swoje konto",
+      "activeSubscriptionWarning" : "Masz uruchomioną subskrypcję. Zalecamy, aby najpierw ją anulować.",
+      "ManageSubscriptionButton" : {
+        "button" : "Zarządzaj subskrypcją w Stripe"
       },
-      "settingsDisclaimer": "Poniżej przedstawiono ustawienia domyślne. Możesz nadpisać każde z tych ustawień dla każdego tworzonego przez siebie sekretu.",
-      "signedInAs": "Jesteś zalogowany jako {{email}}.",
-      "subscriptionInfo": "Obecnie korzystasz z planu <1>{{customerRole}}.",
-      "subtitle": "Cześć {{name}}, witaj z powrotem!",
-      "tabsMenu": {
-        "label": "Opcje konta"
+      "settingsDisclaimer" : "Poniżej przedstawiono ustawienia domyślne. Możesz nadpisać każde z tych ustawień dla każdego tworzonego przez siebie sekretu.",
+      "signedInAs" : "Jesteś zalogowany jako {{email}}.",
+      "subscriptionInfo" : "Obecnie korzystasz z planu <1>{{customerRole}}.",
+      "subtitle" : "Cześć {{name}}, witaj z powrotem!",
+      "tabsMenu" : {
+        "label" : "Opcje konta"
       },
-      "title": "Konto"
+      "title" : "Konto"
     },
-    "Alias": {
-      "enterPassword": "Wprowadź hasło, aby odszyfrować swój sekret:",
-      "errorOccurred": "Wystąpił błąd",
-      "file": {
-        "button": {
-          "label": "Odszyfruj i pobierz"
+    "Alias" : {
+      "enterPassword" : "Wprowadź hasło, aby odszyfrować swój sekret:",
+      "errorOccurred" : "Wystąpił błąd",
+      "file" : {
+        "button" : {
+          "label" : "Odszyfruj i pobierz"
         },
-        "name": "Nazwa",
-        "optionalMessage": "Wiadomość",
-        "size": "Rozmiar",
-        "subtitle": "Otrzymałeś plik z tajemnicą:",
-        "type": "Typ",
-        "warning": "Ważne! Nie mamy żadnej wiedzy na temat zawartości tego pliku. Pamiętaj, aby zaufać nadawcy!"
+        "name" : "Nazwa",
+        "optionalMessage" : "Wiadomość",
+        "size" : "Rozmiar",
+        "subtitle" : "Otrzymałeś plik z tajemnicą:",
+        "type" : "Typ",
+        "warning" : "Ważne! Nie mamy żadnej wiedzy na temat zawartości tego pliku. Pamiętaj, aby zaufać nadawcy!"
       },
-      "loadingSecret": "Ładowanie sekretu",
-      "passwordRequired": "Wymagane hasło",
-      "subtitle": "Otrzymałeś tajemnicę:",
-      "title1": "Shhh",
-      "title2": "Puk Puk",
-      "title3": "Witaj",
-      "title4": "Nadchodzi..."
+      "loadingSecret" : "Ładowanie sekretu",
+      "passwordRequired" : "Wymagane hasło",
+      "subtitle" : "Otrzymałeś tajemnicę:",
+      "title1" : "Shhh",
+      "title2" : "Puk Puk",
+      "title3" : "Witaj",
+      "title4" : "Nadchodzi..."
     },
-    "Contact": {
-      "subtitle": "Masz pytanie lub potrzebujesz wsparcia? Skontaktuj się z nami!",
-      "title": "Kontakt",
-      "topic": {
-        "general": "Pytania ogólne",
-        "support": "Pomoc techniczna",
-        "tech": "Techniczne"
+    "Contact" : {
+      "subtitle" : "Masz pytanie lub potrzebujesz wsparcia? Skontaktuj się z nami!",
+      "title" : "Kontakt",
+      "topic" : {
+        "general" : "Pytania ogólne",
+        "support" : "Pomoc techniczna",
+        "tech" : "Techniczne"
       }
     },
-    "CookiePolicy": {
-      "subtitle": "Tl;dr: tylko podstawowe informacje, bez możliwości śledzenia.",
-      "title": "Polityka dotycząca plików cookie"
+    "CookiePolicy" : {
+      "subtitle" : "Tl;dr: tylko podstawowe informacje, bez możliwości śledzenia.",
+      "title" : "Polityka dotycząca plików cookie"
     },
-    "Error": {
-      "subtitle": "Przepraszamy, coś poszło nie tak.",
-      "title": "Błąd {{statusCode}}"
+    "Error" : {
+      "subtitle" : "Przepraszamy, coś poszło nie tak.",
+      "title" : "Błąd {{statusCode}}"
     },
-    "FAQ": {
-      "introQuestion": "W jakiej sprawie możemy Ci pomóc?",
-      "noAnswer": "Nie znalazłeś odpowiedzi, której szukałeś? Skontaktuj się z pomocą techniczną:",
-      "subtitle": "Często zadawane pytania"
+    "FAQ" : {
+      "introQuestion" : "W jakiej sprawie możemy Ci pomóc?",
+      "noAnswer" : "Nie znalazłeś odpowiedzi, której szukałeś? Skontaktuj się z pomocą techniczną:",
+      "subtitle" : "Często zadawane pytania"
     },
-    "Files": {
-      "flowDisclaimer": "Prywatność w Szwajcarii: Pliki będą szyfrowane end-to-end i przechowywane w Zurychu, Szwajcaria przez Flow Swiss AG.",
-      "subtitle": "Udostępniaj pliki zaszyfrowane w technologii end-to-end. Jednorazowo.",
-      "title": "X Files"
+    "Files" : {
+      "flowDisclaimer" : "Prywatność w Szwajcarii: Pliki będą szyfrowane end-to-end i przechowywane w Zurychu, Szwajcaria przez Flow Swiss AG.",
+      "subtitle" : "Udostępniaj pliki zaszyfrowane w technologii end-to-end. Jednorazowo.",
+      "title" : "X Files"
     },
-    "Home": {
-      "default": {
-        "subtitle": "...z łączem, które działa tylko <1>jeden raz</1>, a potem samoistnie się niszczy.",
-        "title": "Podziel się sekretem"
+    "Home" : {
+      "default" : {
+        "subtitle" : "...z łączem, które działa tylko <1>jeden raz</1>, a potem samoistnie się niszczy.",
+        "title" : "Podziel się sekretem"
       },
-      "FAQ": {
-        "subtitle": "Często zadawane pytania."
+      "FAQ" : {
+        "subtitle" : "Często zadawane pytania."
       },
-      "HowItWorks": {
-        "burn": {
-          "text": "Po obejrzeniu sekretu zostanie on zniszczony.",
-          "title": "Spal"
+      "HowItWorks" : {
+        "burn" : {
+          "text" : "Po obejrzeniu sekretu zostanie on zniszczony.",
+          "title" : "Spal"
         },
-        "create": {
-          "text": "Skomponuj swój sekret i uzyskaj jednorazowe łącze.",
-          "title": "Napisz"
+        "create" : {
+          "text" : "Skomponuj swój sekret i uzyskaj jednorazowe łącze.",
+          "title" : "Napisz"
         },
-        "share": {
-          "text": "Wyślij wygenerowane łącze do swojego powiernika.",
-          "title": "Udostępnij"
+        "share" : {
+          "text" : "Wyślij wygenerowane łącze do swojego powiernika.",
+          "title" : "Udostępnij"
         },
-        "subtitle": "Udostępniaj poufne informacje, które mogą być oglądane tylko jeden raz. Jest to doskonały sposób na przekazywanie haseł, informacji o kartach kredytowych, kluczy prywatnych i innych poufnych danych.",
-        "title": "Sekrety jednorazowe"
+        "subtitle" : "Udostępniaj poufne informacje, które mogą być oglądane tylko jeden raz. Jest to doskonały sposób na przekazywanie haseł, informacji o kartach kredytowych, kluczy prywatnych i innych poufnych danych.",
+        "title" : "Sekrety jednorazowe"
       },
-      "SecretLinksExplained": {
-        "button": "Dowiedz się więcej o bezpieczeństwie",
-        "imageAlt": "Łącze - wyjaśnienie",
-        "subtitle": "Szyfrujemy Twój sekret na Twoim urządzeniu. Klucz szyfrowania nigdy nie jest przechowywany, lecz staje się częścią samego łącza. Bez pełnego łącza nikt, łącznie z nami, nie będzie w stanie odszyfrować Twojego sekretu.",
-        "title": "Szyfrowanie end-to-end"
+      "SecretLinksExplained" : {
+        "button" : "Dowiedz się więcej o bezpieczeństwie",
+        "imageAlt" : "Łącze - wyjaśnienie",
+        "subtitle" : "Szyfrujemy Twój sekret na Twoim urządzeniu. Klucz szyfrowania nigdy nie jest przechowywany, lecz staje się częścią samego łącza. Bez pełnego łącza nikt, łącznie z nami, nie będzie w stanie odszyfrować Twojego sekretu.",
+        "title" : "Szyfrowanie end-to-end"
       },
-      "SlackApp": {
-        "subtitle": "Niektórych rzeczy lepiej nie zapisywać w historii czatu. Następnym razem, gdy współpracownik poprosi Cię o token dostępu, klucz API lub hasło, możesz z czystym sumieniem odpowiedzieć.",
-        "title": "Aplikacja Slack <1><0>NOWOŚĆ",
-        "usps": {
-          "0": "Szyfrowane, jednorazowe wiadomości, przechowywane poza Slackiem.",
-          "1": "Tworzenie jednorazowych sekretów za pomocą skrótu lub polecenia slash.",
-          "2": "Powiadomienie o wyświetleniu sekretu po jego obejrzeniu."
+      "SlackApp" : {
+        "subtitle" : "Niektórych rzeczy lepiej nie zapisywać w historii czatu. Następnym razem, gdy współpracownik poprosi Cię o token dostępu, klucz API lub hasło, możesz z czystym sumieniem odpowiedzieć.",
+        "title" : "Aplikacja Slack <1><0>NOWOŚĆ",
+        "usps" : {
+          "0" : "Szyfrowane, jednorazowe wiadomości, przechowywane poza Slackiem.",
+          "1" : "Tworzenie jednorazowych sekretów za pomocą skrótu lub polecenia slash.",
+          "2" : "Powiadomienie o wyświetleniu sekretu po jego obejrzeniu."
         }
       },
-      "success": {
-        "subtitle": "Twoje tajne łącze zostało utworzone - teraz podziel się nim ze swoim powiernikiem.",
-        "title": "Sukces!"
+      "success" : {
+        "subtitle" : "Twoje tajne łącze zostało utworzone - teraz podziel się nim ze swoim powiernikiem.",
+        "title" : "Sukces!"
       }
     },
-    "Imprint": {
-      "credits": "Credits",
-      "flowSwiss": "Ten projekt jest wspierany przez Flow Swiss AG - usługi w chmurze premium z Zurychu, Szwajcaria.",
-      "inspiration": "Inspiracja",
-      "policiesAndTerms": "Zasady i warunki",
-      "subtitle": "Tl;dr: Ograniczona odpowiedzialność.",
-      "title": "Stopka redakcyjna"
+    "Imprint" : {
+      "credits" : "Credits",
+      "flowSwiss" : "Ten projekt jest wspierany przez Flow Swiss AG - usługi w chmurze premium z Zurychu, Szwajcaria.",
+      "inspiration" : "Inspiracja",
+      "policiesAndTerms" : "Zasady i warunki",
+      "subtitle" : "Tl;dr: Ograniczona odpowiedzialność.",
+      "title" : "Stopka redakcyjna"
     },
-    "Neogram": {
-      "subtitle": "Znikające wiadomości w stylu matrycy. Szyfrowane od końca do końca.",
-      "title": "Neogram"
+    "Neogram" : {
+      "subtitle" : "Znikające wiadomości w stylu matrycy. Szyfrowane od końca do końca.",
+      "title" : "Neogram"
     },
-    "Pricing": {
-      "Canceled": {
-        "error": "Anulowałeś proces płatności lub coś poszło nie tak po drodze. Przepraszamy za to. Spróbuj ponownie.",
-        "title": "Płatność anulowana"
+    "Pricing" : {
+      "Canceled" : {
+        "error" : "Anulowałeś proces płatności lub coś poszło nie tak po drodze. Przepraszamy za to. Spróbuj ponownie.",
+        "title" : "Płatność anulowana"
       },
-      "subtitle": "Proste plany, uczciwe ceny.",
-      "title": "Ustalanie cen"
+      "subtitle" : "Proste plany, uczciwe ceny.",
+      "title" : "Ustalanie cen"
     },
-    "Privacy": {
-      "Account": {
-        "markdown": "Dla zaawansowanych użytkowników oferujemy konta użytkowników, które wymagają uwierzytelnienia. Konto można utworzyć, podając jedynie adres e-mail (można użyć tymczasowego lub zamaskowanego adresu e-mail) - żadne inne informacje nie są wymagane. \n\nW przypadku osób odwiedzających naszą stronę internetową używamy tylko niezbędnych plików cookie. Innymi słowy, pliki cookie, które są niezbędne do zapewnienia podstawowych funkcji: Np. zarządzanie bezpiecznym uwierzytelnianiem. Więcej informacji można znaleźć w naszej Polityce prywatności.",
-        "title": "Konto i pliki cookie"
+    "Privacy" : {
+      "Account" : {
+        "markdown" : "Dla zaawansowanych użytkowników oferujemy konta użytkowników, które wymagają uwierzytelnienia. Konto można utworzyć, podając jedynie adres e-mail (można użyć tymczasowego lub zamaskowanego adresu e-mail) - żadne inne informacje nie są wymagane. \n\nW przypadku osób odwiedzających naszą stronę internetową używamy tylko niezbędnych plików cookie. Innymi słowy, pliki cookie, które są niezbędne do zapewnienia podstawowych funkcji: Np. zarządzanie bezpiecznym uwierzytelnianiem. Więcej informacji można znaleźć w naszej Polityce prywatności.",
+        "title" : "Konto i pliki cookie"
       },
-      "Analytics": {
-        "markdown": "Podstawową analizę ruchu w sieci prowadzimy za pomocą {{linkPlausible}} - prostej i przyjaznej dla prywatności alternatywy dla Google Analytics.\n\n- Nie używamy plików cookie.\n- Pełna zgodność z przepisami o ochronie prywatności GDPR, CCPA i PECR\n- Brak gromadzenia danych osobowych\n- Projekt ma charakter open source\n- Wszystkie dane analityczne są **publicznie dostępne**: {{linkDashboard}}",
-        "title": "Analytics"
+      "Analytics" : {
+        "markdown" : "Podstawową analizę ruchu w sieci prowadzimy za pomocą {{linkPlausible}} - prostej i przyjaznej dla prywatności alternatywy dla Google Analytics.\n\n- Nie używamy plików cookie.\n- Pełna zgodność z przepisami o ochronie prywatności GDPR, CCPA i PECR\n- Brak gromadzenia danych osobowych\n- Projekt ma charakter open source\n- Wszystkie dane analityczne są **publicznie dostępne**: {{linkDashboard}}",
+        "title" : "Analytics"
       },
-      "intro": "Dla nas prywatność nie podlega negocjacjom. Starannie wybieramy i ograniczamy nasze narzędzia, aby chronić prawo każdego użytkownika do prywatności. Nie używamy reklam, nie śledzimy osób, nie sprzedajemy danych i ograniczamy wymagania dotyczące danych osobowych do niezbędnego minimum. Nawet w przypadku posiadania konta nigdy nie prosimy o podanie informacji umożliwiających identyfikację użytkownika (PII) bez uzasadnionej przyczyny. Ponadto stosujemy zasady ochrony prywatności w fazie projektowania: Naszą bazę danych skonstruowaliśmy w taki sposób, aby pojedynczy sekret pozostawał całkowicie niezależną jednostką - nawet w przypadku korzystania z konta użytkownika nie można go powiązać z użytkownikiem.",
-      "subtitle": "Bez reklam, bez śledzenia, bez bzdur.",
-      "title": "Prywatność"
+      "intro" : "Dla nas prywatność nie podlega negocjacjom. Starannie wybieramy i ograniczamy nasze narzędzia, aby chronić prawo każdego użytkownika do prywatności. Nie używamy reklam, nie śledzimy osób, nie sprzedajemy danych i ograniczamy wymagania dotyczące danych osobowych do niezbędnego minimum. Nawet w przypadku posiadania konta nigdy nie prosimy o podanie informacji umożliwiających identyfikację użytkownika (PII) bez uzasadnionej przyczyny. Ponadto stosujemy zasady ochrony prywatności w fazie projektowania: Naszą bazę danych skonstruowaliśmy w taki sposób, aby pojedynczy sekret pozostawał całkowicie niezależną jednostką - nawet w przypadku korzystania z konta użytkownika nie można go powiązać z użytkownikiem.",
+      "subtitle" : "Bez reklam, bez śledzenia, bez bzdur.",
+      "title" : "Prywatność"
     },
-    "PrivacyPolicy": {
-      "subtitle": "Tl;dr: Prywatność ma znaczenie.",
-      "title": "Polityka Prywatności"
+    "PrivacyPolicy" : {
+      "subtitle" : "Tl;dr: Prywatność ma znaczenie.",
+      "title" : "Polityka Prywatności"
     },
-    "Redirect": {
-      "subtitle": "Utwórz jednorazowe przekierowanie. Bez śladu.",
-      "title": "Przekierowanie do sekretu"
+    "Redirect" : {
+      "subtitle" : "Utwórz jednorazowe przekierowanie. Bez śladu.",
+      "title" : "Przekierowanie do sekretu"
     },
-    "Security": {
-      "Infrastructure": {
-        "markdown": "Do hostingu naszej infrastruktury wybraliśmy liderów branży:\n\n- Strona internetowa/API na {{linkVercel}}\n- Baza danych w chmurze z {{linkScaleGrid}}\n- Object Storage (Pliki) na {{linkFlowSwiss}}\n- Aplikacja Slack na {{linkHeroku}}\n- Cały kod na {{linkGitlab}}",
-        "subtitle": "Zaufani gracze, niewiele zależności.",
-        "title": "Infrastruktura"
+    "Security" : {
+      "Infrastructure" : {
+        "markdown" : "Do hostingu naszej infrastruktury wybraliśmy liderów branży:\n\n- Strona internetowa/API na {{linkVercel}}\n- Baza danych w chmurze z {{linkScaleGrid}}\n- Object Storage (Pliki) na {{linkFlowSwiss}}\n- Aplikacja Slack na {{linkHeroku}}\n- Cały kod na {{linkGitlab}}",
+        "subtitle" : "Zaufani gracze, niewiele zależności.",
+        "title" : "Infrastruktura"
       },
-      "markdown": "Wszystkie wiadomości są **zaszyfrowane od końca do końca**. Generujemy losowy skrót, aby zaszyfrować Twój sekret **na kliencie** przy użyciu **AES-256** (Advanced Encryption Standard). Klucz szyfrujący nie jest przechowywany, lecz dodawany do tajnego łącza. Bez pełnego łącza nikt (łącznie z nami) nie będzie w stanie odszyfrować Twojej wiadomości. \n\nJeśli zostanie podane hasło, użyjemy go do zaszyfrowania Twojego sekretu **na wierzchu** standardowego szyfrowania. Hasło nie jest przechowywane. Nawet przy **dostępie do całej naszej infrastruktury** napastnik nie mógłby odczytać Twojej wiadomości. Po przejrzeniu sekretu usuwamy go na stałe z naszej bazy danych. Nie ma żadnej kopii zapasowej.\n![Objaśnienie łącza](/images/pl/link-explanation.svg)\n\n### Bezpieczeństwo z założenia\n- Wszystkie połączenia są zabezpieczone przez HTTPS\n- Wszystkie dane są przechowywane w postaci zaszyfrowanej (nie tylko sekrety)\n- Jak najmniej kodu stron trzecich\n- Zależności są regularnie sprawdzane i aktualizowane\n- Cały kod jest {{gitlabLink}}na zasadach open-source",
-      "subtitle": "Najlepsze praktyki, bez dodatków.",
-      "title": "Bezpieczeństwo"
+      "markdown" : "Wszystkie wiadomości są **zaszyfrowane od końca do końca**. Generujemy losowy skrót, aby zaszyfrować Twój sekret **na kliencie** przy użyciu **AES-256** (Advanced Encryption Standard). Klucz szyfrujący nie jest przechowywany, lecz dodawany do tajnego łącza. Bez pełnego łącza nikt (łącznie z nami) nie będzie w stanie odszyfrować Twojej wiadomości. \n\nJeśli zostanie podane hasło, użyjemy go do zaszyfrowania Twojego sekretu **na wierzchu** standardowego szyfrowania. Hasło nie jest przechowywane. Nawet przy **dostępie do całej naszej infrastruktury** napastnik nie mógłby odczytać Twojej wiadomości. Po przejrzeniu sekretu usuwamy go na stałe z naszej bazy danych. Nie ma żadnej kopii zapasowej.\n![Objaśnienie łącza](/images/pl/link-explanation.svg)\n\n### Bezpieczeństwo z założenia\n- Wszystkie połączenia są zabezpieczone przez HTTPS\n- Wszystkie dane są przechowywane w postaci zaszyfrowanej (nie tylko sekrety)\n- Jak najmniej kodu stron trzecich\n- Zależności są regularnie sprawdzane i aktualizowane\n- Cały kod jest {{gitlabLink}}na zasadach open-source",
+      "subtitle" : "Najlepsze praktyki, bez dodatków.",
+      "title" : "Bezpieczeństwo"
     },
-    "SignIn": {
-      "noAccountYet": "Nie masz jeszcze konta?",
-      "signUpNow": "Zarejestruj się teraz",
-      "subtitle": "Zaloguj się ponownie. Chroń swoje tajemnice.",
-      "title": "Zaloguj się"
+    "SignIn" : {
+      "noAccountYet" : "Nie masz jeszcze konta?",
+      "signUpNow" : "Zarejestruj się teraz",
+      "subtitle" : "Zaloguj się ponownie. Chroń swoje tajemnice.",
+      "title" : "Zaloguj się"
     },
-    "SignOut": {
-      "loading": "Wylogowywanie się...",
-      "subtitle": "Bądź bezpieczny! Wróć wkrótce.",
-      "success": "Pomyślnie wylogowałeś się.",
-      "title": "Wyloguj się"
+    "SignOut" : {
+      "loading" : "Wylogowywanie się...",
+      "subtitle" : "Bądź bezpieczny! Wróć wkrótce.",
+      "success" : "Pomyślnie wylogowałeś się.",
+      "title" : "Wyloguj się"
     },
-    "SignUp": {
-      "FreeAccount": {
-        "title": "Zalety darmowego konta",
-        "upsell": "Potrzebujesz więcej? <1>Jest tego więcej.",
-        "Usps": {
-          "0": "Więcej znaków dla Twoich sekretów",
-          "1": "Potwierdzenia przeczytania wiadomości e-mail",
-          "2": "Aplikacja Slack",
-          "3": "Rozszerzenia przeglądarki",
-          "4": "Wsparcie osobiste",
-          "5": "Łącza Emoji \uD83E\uDD2B"
+    "SignUp" : {
+      "FreeAccount" : {
+        "title" : "Zalety darmowego konta",
+        "upsell" : "Potrzebujesz więcej? <1>Jest tego więcej.",
+        "Usps" : {
+          "0" : "Więcej znaków dla Twoich sekretów",
+          "1" : "Potwierdzenia przeczytania wiadomości e-mail",
+          "2" : "Aplikacja Slack",
+          "3" : "Rozszerzenia przeglądarki",
+          "4" : "Wsparcie osobiste",
+          "5" : "Łącza Emoji \uD83E\uDD2B"
         }
       },
-      "gotAccount": "Masz już konto?",
-      "signInNow": "Zaloguj się teraz.",
-      "subtitle": "Wspaniałe rzeczy zaczynają się tutaj...",
-      "title": "Pobierz konto"
+      "gotAccount" : "Masz już konto?",
+      "signInNow" : "Zaloguj się teraz.",
+      "subtitle" : "Wspaniałe rzeczy zaczynają się tutaj...",
+      "title" : "Pobierz konto"
     },
-    "Slack": {
-      "FAQ": {
-        "subtitle": "Najczęściej zadawane pytania dotyczące aplikacji Slack."
+    "Slack" : {
+      "FAQ" : {
+        "subtitle" : "Najczęściej zadawane pytania dotyczące aplikacji Slack."
       },
-      "HowToUse": {
-        "markdown": "### Polecenie ukośnik \nNajprostszą i najbardziej uniwersalną opcją jest użycie polecenia ukośnika (**`/scrt`**)\n\nPrzykład:_Przykład\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** otwiera okno dialogowe do utworzenia sekretu.\n- **`/scrt` _`[secret goes here...]`_** tworzy natychmiast tajny odnośnik (typu **Text**).\n- **`/scrt [text|link|neogram]`** otwiera okno dialogowe, aby utworzyć określony typ sekretu.\n- **`/scrt help`**: otwiera okno dialogowe pomocy.\n\n### Skróty klawiszowe\nDostępne są skróty globalne i na poziomie wiadomości.\n- Kliknij ⚡️, aby uzyskać dostęp do skrótów globalnych i wybierz **scrt.link**.\n- W rozmowie kliknij ikonę menu kontekstowego (3 kropki) i wybierz **odpowiedz z sekretem**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Czytaj pokwitowania\nJest to wbudowana funkcja. Użytkownik otrzymuje powiadomienie, gdy sekret został obejrzany. Używamy emoji \uD83D\uDD25, aby wskazać, kiedy sekret został spalony i link nie jest już dostępny.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
-        "title": "Jak używać"
+      "HowToUse" : {
+        "markdown" : "### Polecenie ukośnik \nNajprostszą i najbardziej uniwersalną opcją jest użycie polecenia ukośnika (**`/scrt`**)\n\nPrzykład:_Przykład\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** otwiera okno dialogowe do utworzenia sekretu.\n- **`/scrt` _`[secret goes here...]`_** tworzy natychmiast tajny odnośnik (typu **Text**).\n- **`/scrt [text|link|neogram]`** otwiera okno dialogowe, aby utworzyć określony typ sekretu.\n- **`/scrt help`**: otwiera okno dialogowe pomocy.\n\n### Skróty klawiszowe\nDostępne są skróty globalne i na poziomie wiadomości.\n- Kliknij ⚡️, aby uzyskać dostęp do skrótów globalnych i wybierz **scrt.link**.\n- W rozmowie kliknij ikonę menu kontekstowego (3 kropki) i wybierz **odpowiedz z sekretem**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Czytaj pokwitowania\nJest to wbudowana funkcja. Użytkownik otrzymuje powiadomienie, gdy sekret został obejrzany. Używamy emoji \uD83D\uDD25, aby wskazać, kiedy sekret został spalony i link nie jest już dostępny.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
+        "title" : "Jak używać"
       },
-      "intro": "Rozmowy w Slacku nigdy nie są w pełni prywatne. Czy wiesz, że administrator systemu lub Twój szef mogą potencjalnie przeczytać Twoje wiadomości w Slacku? Dzięki aplikacji scrt.link możesz teraz chronić poufne informacje w swoich rozmowach w Slacku.",
-      "Introduction": {
-        "markdown": "### Główne cechy\n- Tworzenie jednorazowych sekretów za pomocą **krótkiego skrótu** lub **polecenia slash**.\n- Szyfrowane, jednorazowe wiadomości**, które są przechowywane poza Slackiem.\n- Powiadomienie o spaleniu** po przejrzeniu sekretu. \n- Brak logów, brak kopii zapasowych, brak śladów.\n    \n  \uD83D\uDC49 [Zainstaluj teraz]{{slackAppInstallLink}})\n---\n#### _Ważne informacje o ograniczeniach bezpieczeństwa_.\nZe względu na charakter\naplikacji Slack, pełne **szyfrowanie end-to-end nie jest możliwe**. Podejmujemy szereg kroków, aby upewnić się, że Twoje tajemnice są bezpieczne, w tym szyfrowane połączenia, piaskownica serwera aplikacji, ograniczony dostęp do infrastruktury itp. W 99% przypadków użycia jest to\njest w porządku i warto podjąć takie ryzyko - jednak Slack to oprogramowanie własnościowe, nad którym nie mamy kontroli. Innymi słowy, jeśli potrzebujesz zaawansowanej ochrony, utwórz sekrety\nna stronie internetowej._",
-        "subtitle": "To bardzo częsty scenariusz: Współpracownik prosi Cię o jakiś token dostępu, klucz API lub hasło. Teraz możesz bezpiecznie odpowiedzieć.",
-        "title": "Tajemnice Slacka"
+      "intro" : "Rozmowy w Slacku nigdy nie są w pełni prywatne. Czy wiesz, że administrator systemu lub Twój szef mogą potencjalnie przeczytać Twoje wiadomości w Slacku? Dzięki aplikacji scrt.link możesz teraz chronić poufne informacje w swoich rozmowach w Slacku.",
+      "Introduction" : {
+        "markdown" : "### Główne cechy\n- Tworzenie jednorazowych sekretów za pomocą **krótkiego skrótu** lub **polecenia slash**.\n- Szyfrowane, jednorazowe wiadomości**, które są przechowywane poza Slackiem.\n- Powiadomienie o spaleniu** po przejrzeniu sekretu. \n- Brak logów, brak kopii zapasowych, brak śladów.\n    \n  \uD83D\uDC49 [Zainstaluj teraz]{{slackAppInstallLink}})\n---\n#### _Ważne informacje o ograniczeniach bezpieczeństwa_.\nZe względu na charakter\naplikacji Slack, pełne **szyfrowanie end-to-end nie jest możliwe**. Podejmujemy szereg kroków, aby upewnić się, że Twoje tajemnice są bezpieczne, w tym szyfrowane połączenia, piaskownica serwera aplikacji, ograniczony dostęp do infrastruktury itp. W 99% przypadków użycia jest to\njest w porządku i warto podjąć takie ryzyko - jednak Slack to oprogramowanie własnościowe, nad którym nie mamy kontroli. Innymi słowy, jeśli potrzebujesz zaawansowanej ochrony, utwórz sekrety\nna stronie internetowej._",
+        "subtitle" : "To bardzo częsty scenariusz: Współpracownik prosi Cię o jakiś token dostępu, klucz API lub hasło. Teraz możesz bezpiecznie odpowiedzieć.",
+        "title" : "Tajemnice Slacka"
       },
-      "missingTranslationsNotice": "Szanowny Kliencie, aplikacja Slack App jest obecnie dostępna tylko w języku angielskim.",
-      "subtitle": "Niektórych rzeczy lepiej nie zapisywać w historii czatu.",
-      "title": "Aplikacja Slack"
+      "missingTranslationsNotice" : "Szanowny Kliencie, aplikacja Slack App jest obecnie dostępna tylko w języku angielskim.",
+      "subtitle" : "Niektórych rzeczy lepiej nie zapisywać w historii czatu.",
+      "title" : "Aplikacja Slack"
     },
-    "TermsOfService": {
-      "policies": "Zasady",
-      "subtitle": "Tl;dr: Całkiem standardowo.",
-      "title": "Warunki korzystania z usługi"
+    "TermsOfService" : {
+      "policies" : "Zasady",
+      "subtitle" : "Tl;dr: Całkiem standardowo.",
+      "title" : "Warunki korzystania z usługi"
     },
-    "Text": {
-      "subtitle": "Udostępniaj wiadomości zaszyfrowane metodą end-to-end. Jeden raz.",
-      "title": "Tajny tekst"
+    "Text" : {
+      "subtitle" : "Udostępniaj wiadomości zaszyfrowane metodą end-to-end. Jeden raz.",
+      "title" : "Tajny tekst"
     }
   },
-  "Widget": {
-    "myAccount": "Moje konto",
-    "noAccountYet": "Nie masz jeszcze konta?"
+  "Widget" : {
+    "myAccount" : "Moje konto",
+    "noAccountYet" : "Nie masz jeszcze konta?"
   }
 }
