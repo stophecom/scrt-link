@@ -1,6 +1,7 @@
 const path = require('path')
 
 // Global languages configuration
+// Make sure to update setYupLocale for localized form validation
 const defaultLanguage = 'en'
 const supportedLanguagesMap = {
   en: 'English',
