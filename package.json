@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--max_old_space_size=4096 --inspect' next dev",
-    "prebuild": "node tolgee.js",
+    "prebuild": "yarn fetch-translations",
     "build": "next build",
     "postbuild": "next-sitemap",
     "export": "next export",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
+    "fetch-translations": "node tolgee.js",
     "parse-translations": "i18next 'src/**/*.{ts,tsx}' 'pages/**/*.{ts,tsx}'",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
