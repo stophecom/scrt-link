@@ -24,7 +24,8 @@ import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import { SimpleAccordion } from '@/components/Accordion'
 import { PageError } from '@/components/Error'
-import { Switch } from '@/components/BooleanSwitch'
+
+import Switch from '@/components/Switch'
 import getStripe from '@/utils/stripe'
 import { abbrNum } from '@/utils/index'
 import { api, useStripeCustomer, usePlans, useCustomer } from '@/utils/api'
@@ -377,20 +378,22 @@ const PlanSelection: React.FunctionComponent = () => {
       )}
 
       <Box display="flex" justifyContent="center" pb={4}>
-        <Grid component="label" container alignItems="center" justifyContent="center" spacing={1}>
-          <Grid item>{t('common:components.PlanSelection.interval.monthly', 'Monthly')}</Grid>
-          <Grid item>
-            <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />
-          </Grid>
-          <Grid item>
-            {t('common:components.PlanSelection.interval.yearly', 'Annual')} (
-            {t('common:components.PlanSelection.interval.yearlySavings', {
-              defaultValue: 'Save {{percentage}}%',
-              percentage: yearlyPlanSavings,
-            })}
-            )
-          </Grid>
-        </Grid>
+        <Switch
+          activeSlide={showYearlyPrice ? 1 : 0}
+          options={[
+            {
+              title: t('common:components.PlanSelection.interval.monthly', 'Monthly'),
+            },
+            {
+              title: t('common:components.PlanSelection.interval.yearly', 'Annual'),
+              extra: t('common:components.PlanSelection.interval.yearlySavings', {
+                defaultValue: 'Save {{percentage}}%',
+                percentage: yearlyPlanSavings,
+              }),
+            },
+          ]}
+          onChangeActiveSlide={(index) => setShowYearlyPrices(!!index)}
+        />
       </Box>
 
       <Grid container spacing={2} justifyContent="center">
