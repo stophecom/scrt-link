@@ -107,6 +107,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className, i
             key={language}
             href={router.pathname}
             locale={language}
+            hrefLang={language}
+            rel="alternate"
             onClick={() => setLocaleCookie(language)}
           >
             {supportedLanguagesMap[language as SupportedLanguage] || language.toUpperCase()}
