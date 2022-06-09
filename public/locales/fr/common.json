@@ -117,7 +117,7 @@
       "interval": {
         "monthly": "Mensuel",
         "yearly": "Annuel",
-        "yearlySavings": "Sauvegarder {{percentage}}%."
+        "yearlySavings": "Réduction {{percentage}}%"
       },
       "loading": "Plans de chargement",
       "plans": {
