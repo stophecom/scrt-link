@@ -18,7 +18,7 @@ import { Check } from '@mui/icons-material'
 
 import usePrettyBytes from '@/hooks/usePrettyBytes'
 import { formatNumber } from '@/utils/localization'
-import { limits, trialPeriod } from '@/constants'
+import { limits } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
@@ -36,7 +36,7 @@ const Root = styled('div')`
   flex-grow: 1;
 `
 
-const Trial = styled(Typography)`
+const CTAInfo = styled(Typography)`
   padding-top: 0.2em;
 `
 
@@ -534,7 +534,7 @@ const PlanSelection: React.FunctionComponent = () => {
                     </Box>
                   )}
 
-                  <Box display="flex" flexDirection="column" alignItems="center">
+                  <Box display="flex" flexDirection="column" alignItems="center" pb={2}>
                     {customer?.userId ? (
                       <>
                         {isSubscriptionCanceled || !subscription ? (
@@ -548,16 +548,8 @@ const PlanSelection: React.FunctionComponent = () => {
                             >
                               {isSubscriptionCanceled
                                 ? t('common:button.reactivatePlan', 'Reactivate plan')
-                                : t('common:button.tryFree', 'Try it free')}
+                                : t('common:button.selectPlan', 'Select plan')}
                             </BaseButton>
-                            {!subscription && (
-                              <Trial variant="body2">
-                                {t('common:components.PlanSelection.freeTrialInfo', {
-                                  defaultValue: '{{trialPeriod}} days free trial',
-                                  trialPeriod,
-                                })}
-                              </Trial>
-                            )}
                           </>
                         ) : (
                           <>

@@ -1,4 +1,3 @@
-import { trialPeriod } from '@/constants'
 import { TFunction } from 'next-i18next'
 
 const accountAndBilling = (t: TFunction) => [
@@ -28,15 +27,6 @@ const accountAndBilling = (t: TFunction) => [
       'common:faq.subscriptions.body',
       `Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval. A subscription can be cancelled anytime.`,
     ),
-  },
-  {
-    id: 'trial',
-    category: 'accountAndBilling',
-    heading: t('common:faq.trial.heading', 'How do trials work?'),
-    body: t('common:faq.trial.body', {
-      defaultValue: `**Try before you buy**: You can test all premium features for a **{{ trialPeriod }} day trial period**. Once the trial ends you will be billed based on your chosen plan. Cancellations during the trial period result in the immediate termination of the subscription - **no billing** will be made in such case.`,
-      trialPeriod,
-    }),
   },
   {
     id: 'end-subscription',
