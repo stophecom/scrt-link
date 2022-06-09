@@ -7,6 +7,7 @@ import { defaultLanguage } from '@/constants'
 export const getAbsoluteLocalizedUrl = (pathname: string, locale = 'en') =>
   `${getBaseURL()}${locale === defaultLanguage ? '' : `/${locale}`}${pathname}`
 
+// We currently use US formatting for numbers. We might want to negotiate based on language or let users choose.
 export const formatCurrency = (
   amount: number,
   currency: string = 'USD',

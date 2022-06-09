@@ -14,7 +14,7 @@ import { TFunction } from 'next-i18next'
 export const demoNeogramMessage = (t: TFunction) =>
   t(
     'common:demoNeogramMessage',
-    'Wake up Neo…\nThis is just a demo! Neogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘',
+    'Wake up Neo…\nThis is just a demo!\nNeogram messages self-destruct automatically after a defined period of time.\n\nEnjoy sharing secrets 😘',
   )
 
 const demoSecretMessageLink = (t: TFunction) =>
@@ -44,7 +44,7 @@ const product = (t: TFunction) => [
   {
     id: 'secret-types',
     category: 'product',
-    heading: t('common:faq.secret-types.heading', '*Text*, *Files*, *Redirect* und *Neogram*?'),
+    heading: t('common:faq.secret-types.heading', '*Text*, *Files*, *Redirect* and *Neogram*?'),
     body: t('common:faq.secret-types.body', {
       defaultValue: `- **Text**: This is the standard mode. It's the preferred way to share passwords and similar kind of secrets. The recipient has the option to copy the secret.
 [Demo]({{ demoSecretMessageLink }})

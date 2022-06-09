@@ -222,7 +222,10 @@ export const HomeView: CustomPage = () => {
         id="HowItWorks"
         mb={3}
         title={t('common:views.Home.HowItWorks.title', 'One-Time Secrets')}
-        subtitle={t('common:views.Home.HowItWorks.subtitle')}
+        subtitle={t(
+          'common:views.Home.HowItWorks.subtitle',
+          'Share sensitive information that can only be viewed one time. The perfect way to transmit passwords, credit card information, private keys, or other confidential data.',
+        )}
       >
         <HowItWorks />
       </Section>
@@ -230,11 +233,14 @@ export const HomeView: CustomPage = () => {
       <Section
         id="SecretLinksExplained"
         title={t('common:views.Home.SecretLinksExplained.title', 'End-to-End Encryption')}
-        subtitle={t('common:views.Home.SecretLinksExplained.subtitle')}
+        subtitle={t(
+          'common:views.Home.SecretLinksExplained.subtitle',
+          'We encrypt your secret on your device. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.',
+        )}
       >
         <BaseButtonLink
           href="/security"
-          variant="contained"
+          variant="text"
           color="primary"
           startIcon={<ArrowForward />}
         >
@@ -254,9 +260,9 @@ export const HomeView: CustomPage = () => {
         id="SlackApp"
         title={
           <Trans i18nKey="common:views.Home.SlackApp.title">
-            The Slack App&nbsp;
-            <Typography component="span" variant="h3" color="primary">
-              <sup>NEW</sup>
+            The Slack App
+            <Typography sx={{ marginLeft: '.1em' }} component="sup" variant="h3" color="primary">
+              NEW
             </Typography>
           </Trans>
         }

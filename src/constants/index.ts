@@ -1,11 +1,14 @@
+import { i18n, supportedLanguagesMap } from 'next-i18next.config'
+
 export const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'development'
 export const isProduction = process.env.NEXT_PUBLIC_ENV === 'production'
 export const isPreview = process.env.NEXT_PUBLIC_ENV === 'preview'
 
 // See next-i18next.config
-export const defaultLanguage = 'en'
-export const supportedLanguages = ['en', 'de'] as const
-export type SupportedLanguage = typeof supportedLanguages[number]
+export { supportedLanguagesMap }
+export const defaultLanguage = i18n.defaultLocale
+export const supportedLanguages = Object.keys(supportedLanguagesMap)
+export type SupportedLanguage = keyof typeof supportedLanguagesMap
 
 export const appTitle = 'scrt.link'
 export const trialPeriod = 5
@@ -41,10 +44,16 @@ export const mailjetTemplates = {
   signInRequest: {
     en: { templateId: 2715593, subject: 'Sign in request' },
     de: { templateId: 3400460, subject: 'Konto-Anmeldung' },
+    fr: { templateId: 3970462, subject: 'Connexion au compte' },
+    pl: { templateId: 2715593, subject: 'Sign in request' }, // Todo
+    it: { templateId: 2715593, subject: 'Sign in request' }, // Todo
   },
   readReceipt: {
     en: { templateId: 2818166, subject: 'Secret has been viewed 🔥' },
     de: { templateId: 3400579, subject: 'Geheimnis zerstört 🔥' },
+    fr: { templateId: 3970465, subject: 'Secret détruit 🔥' },
+    pl: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
+    it: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
   },
   youGotSecret: {
     en: {
@@ -54,6 +63,18 @@ export const mailjetTemplates = {
     de: {
       templateId: 3400595,
       subject: 'Du hast ein Geheimnis erhalten',
+    },
+    fr: {
+      templateId: 3970455,
+      subject: 'Tu as reçu un secret',
+    },
+    pl: {
+      templateId: 2939535,
+      subject: 'You received a secret', // Todo
+    },
+    it: {
+      templateId: 2939535,
+      subject: 'You received a secret', // Todo
     },
   },
 }
@@ -66,6 +87,20 @@ export const smsReadReceipt = {
   de: {
     receipt: 'scrt.link: Das folgende Geheimnis wurde gelesen und zerstört🔥:',
     reply: 'Antworte mit einem Geheimnis: https://scrt.link',
+  },
+  fr: {
+    receipt: 'scrt.link: Le secret suivant a été lu et détruit🔥:',
+    reply: 'Réponds avec un secret: https://scrt.link',
+  },
+  pl: {
+    // Todo
+    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
+    reply: 'Reply with a secret: https://scrt.link',
+  },
+  it: {
+    // Todo
+    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
+    reply: 'Reply with a secret: https://scrt.link',
   },
 }
 

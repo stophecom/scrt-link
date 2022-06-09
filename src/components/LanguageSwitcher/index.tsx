@@ -9,7 +9,7 @@ import { Language as LanguageIcon } from '@mui/icons-material'
 import { Link } from '@/components/Link'
 
 import SROnly from '@/components/ScreenreaderOnly'
-import { supportedLanguages } from '@/constants'
+import { supportedLanguages, supportedLanguagesMap, SupportedLanguage } from '@/constants'
 
 const PREFIX = 'LanguageSelector'
 
@@ -41,12 +41,6 @@ const StyledBox = styled(Box)(({ theme }) => ({
     marginLeft: '0.5rem',
   },
 }))
-
-const languageMap = {
-  de: 'Deutsch',
-  en: 'English',
-}
-type LanguageKeys = keyof typeof languageMap
 
 // https://nextjs.org/docs/advanced-features/i18n-routing#leveraging-the-next_locale-cookie
 const setLocaleCookie = (locale: string): void => {
@@ -85,7 +79,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className })
       >
         {supportedLanguages.map((language) => (
           <option key={language} value={language} className={classes.option}>
-            {languageMap[language as LanguageKeys] || language.toUpperCase()}
+            {supportedLanguagesMap[language as SupportedLanguage] || language.toUpperCase()}
           </option>
         ))}
       </select>
@@ -105,7 +99,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className, i
       {supportedLanguages.map((language) => {
         return language === router.locale ? (
           <Typography key={language} component="span" color="primary" className={itemClassName}>
-            {languageMap[language as LanguageKeys] || language.toUpperCase()}
+            {supportedLanguagesMap[language as SupportedLanguage] || language.toUpperCase()}
           </Typography>
         ) : (
           <Link
@@ -113,9 +107,11 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className, i
             key={language}
             href={router.pathname}
             locale={language}
+            hrefLang={language}
+            rel="alternate"
             onClick={() => setLocaleCookie(language)}
           >
-            {languageMap[language as LanguageKeys] || language.toUpperCase()}
+            {supportedLanguagesMap[language as SupportedLanguage] || language.toUpperCase()}
           </Link>
         )
       })}

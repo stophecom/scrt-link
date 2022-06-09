@@ -19,6 +19,7 @@ import { getCustomerValidationSchema, customerNameSchema } from '@/utils/validat
 import { emailPlaceholder, neogramDestructionTimeoutDefault } from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { useCustomer } from '@/utils/api'
+import { MarkdownRaw } from '@/components/Markdown'
 
 export const DestructionMessage = () => {
   const { t } = useTranslation()
@@ -175,16 +176,15 @@ export const FormCustomer = () => {
                   </FormLabel>
                 </Box>
                 <Typography variant="body2">
-                  <Trans i18nKey="common:components.FormCustomer.emojiLink.description">
-                    Add some fun with a special emoji link. Example:{' '}
-                    <Typography variant="body2" noWrap component="span">
-                      <strong>https://🤫.st/nxKFy…</strong>{' '}
-                    </Typography>
-                    <br />
-                    <strong>Be aware.</strong> Emoji links are supported in:{' '}
-                    <em>Whatsapp, Telegram, Threema, Twitter, Matrix, Wire</em>. <br />
-                    Currently not supported in: <em>Signal, Slack, Snapchat</em>.
-                  </Trans>
+                  <MarkdownRaw
+                    source={t('common:components.FormCustomer.emojiLink.description', {
+                      defaultValue: `Add some fun with a special emoji link. Example: {{exampleLink}}  
+**Be aware.** Emoji links are supported in: {{supportedList}}. Currently not supported in: {{unsupportedList}}.`,
+                      exampleLink: '**https://🤫.st/nxKFy…**',
+                      supportedList: '*Whatsapp, Telegram, Threema, Twitter, Matrix, Wire*',
+                      unsupportedList: '*Signal, Slack, Snapchat*',
+                    })}
+                  />
                 </Typography>
                 <BaseSwitchField
                   label={t<string>(

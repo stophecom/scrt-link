@@ -1,3 +1,5 @@
+const { i18n } = require('./next-i18next.config')
+
 module.exports = {
   contextSeparator: '_',
   // Key separator used in your translation keys
@@ -42,7 +44,8 @@ module.exports = {
   lineEnding: 'auto',
   // Control the line ending. See options at https://github.com/ryanve/eol
 
-  locales: ['en', 'de'],
+  locales: i18n.locales,
+  // locales: ['en', 'de'],
   // An array of the locales in your applications
 
   namespaceSeparator: ':',
@@ -62,7 +65,7 @@ module.exports = {
   // An array of globs that describe where to look for source files
   // relative to the location of the configuration file
 
-  sort: false,
+  sort: true,
   // Whether or not to sort the catalog. Can also be a [compareFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#parameters)
 
   skipDefaultValues: false,

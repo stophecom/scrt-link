@@ -47,7 +47,7 @@ const StyledSpinner = styled(Spinner)(({ theme }) => ({
   },
 }))
 
-// t('common:error.SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
+// t('common:error.API_SECRET_NOT_FOUND', 'Secret not found - This usually means the secret link has already been visited and therefore no longer exists.')
 
 type FileMeta = {
   bucket: string

@@ -42,7 +42,7 @@ const handler: NextApiHandler = async (req, res) => {
         throw createError(
           404,
           `Secret not found - This usually means the secret link has already been visited and therefore no longer exists.`,
-          'SECRET_NOT_FOUND',
+          'API_SECRET_NOT_FOUND',
         )
       }
 

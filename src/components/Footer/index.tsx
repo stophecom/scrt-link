@@ -14,6 +14,7 @@ import SubMenu from '@/components/SubMenu'
 import Logo from '@/components/Logo'
 import { Container } from '@/layouts/Default'
 import { about, secrets, integrations, information, support } from '@/data/menu'
+import { MarkdownRaw } from '@/components/Markdown'
 
 const Neogram = dynamic(() => import('@/components/Neogram'))
 
@@ -24,8 +25,9 @@ const StyledBox = styled(Box)`
   box-shadow: inset 0 10px 40px hsl(0deg 0% 0% / 20%);
 
   & .link-padding {
+    display: inline-flex;
     font-size: 0.85rem;
-    padding: ${({ theme }) => theme.spacing(1)};
+    padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(1.2)};
   }
 `
 
@@ -198,14 +200,7 @@ const Footer: React.FC = () => {
           p={2}
         >
           <Legal>
-            <Trans i18nKey="common:components.Footer.abstract">
-              <strong>Scrt.link</strong> lets you share sensitive information online. End-to-end
-              encrypted. One time.
-              <br />
-              Keep confidential information out of email, Slack, Teams, Whatsapp or any other
-              communication channel. A one-time disposable link guarantees your secrets can only
-              ever be accessed once - before being destroyed forever.
-            </Trans>
+            <MarkdownRaw source={t('common:components.Footer.abstract')} />
             <Box display="flex" justifyContent="center" flexWrap="wrap" pt={2}>
               <span className="link-padding">©{new Date().getFullYear()} SANTiHANS GmbH</span>
               {about(t).map(({ href, label }, index) => (

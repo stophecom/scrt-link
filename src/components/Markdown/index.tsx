@@ -47,4 +47,8 @@ const Markdown: React.FunctionComponent<MarkdownProps> = ({ source, className })
   </Typography>
 )
 
+export const MarkdownRaw: React.FunctionComponent<MarkdownProps> = ({ source, className }) => (
+  <ReactMarkdown className={className}>{source}</ReactMarkdown>
+)
+
 export default Markdown

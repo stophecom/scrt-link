@@ -6,19 +6,19 @@ const accountAndBilling = (t: TFunction) => [
     id: 'payment-provider',
     category: 'accountAndBilling',
     heading: t('common:faq.payment-provider.heading', 'Who is the payment provider?'),
-    body: t(
-      'common:faq.payment-provider.body',
-      `We work with [Stripe](https://stripe.com/) as our payment provider. We don't store any payment related information whatsoever.`,
-    ),
+    body: t('common:faq.payment-provider.body', {
+      defaultValue: `We work with {{paymentProcessor}} as our payment provider. We don't store any payment related information whatsoever.`,
+      paymentProcessor: '[Stripe](https://stripe.com/)',
+    }),
   },
   {
     id: 'payment-methods',
     category: 'accountAndBilling',
     heading: t('common:faq.payment-methods.heading', 'What payment methods are supported?'),
-    body: t(
-      'common:faq.payment-methods.body',
-      `Our payment provider [Stripe](https://stripe.com/) offers a variety of payment options: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) among many others. Once you choose a premium plan you get redirected to Stripe where you can select your preferred method.`,
-    ),
+    body: t('common:faq.payment-methods.body', {
+      defaultValue: `Our payment provider {{paymentProcessor}} offers a variety of payment options: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) among many others. Once you choose a premium plan you get redirected to Stripe where you can select your preferred method.`,
+      paymentProcessor: '[Stripe](https://stripe.com/)',
+    }),
   },
   {
     id: 'subscriptions',

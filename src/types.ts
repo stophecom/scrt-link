@@ -27,6 +27,7 @@ declare global {
       NEXT_PUBLIC_FLOW_S3_BUCKET: string
       FLOW_S3_ACCESS_KEY: string
       FLOW_S3_SECRET_KEY: string
+      TOLGEE_API_KEY: string
     }
   }
 }
