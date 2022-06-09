@@ -31,6 +31,7 @@
     "readMoreFaq": "En savoir plus sur la page FAQ",
     "replyWithSecret": "Répondre avec un secret",
     "save": "Enregistrer",
+    "selectPlan": "Select plan",
     "send": "Envoyer",
     "share": "Partager",
     "signIn": "Se connecter",
@@ -117,7 +118,7 @@
       "interval": {
         "monthly": "Mensuel",
         "yearly": "Annuel",
-        "yearlySavings": "Sauvegarder {{percentage}}%."
+        "yearlySavings": "Réduction {{percentage}}%"
       },
       "loading": "Plans de chargement",
       "plans": {

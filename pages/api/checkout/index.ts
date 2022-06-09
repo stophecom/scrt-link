@@ -6,7 +6,6 @@ import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import stripe from '@/api/utils/stripe'
 import createError from '@/api/utils/createError'
-import { trialPeriod } from '@/constants'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 
@@ -44,9 +43,6 @@ const handler: NextApiHandler = async (req, res) => {
               quantity: 1,
             },
           ],
-          subscription_data: {
-            trial_period_days: trialPeriod,
-          },
           // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
           // the actual Session ID is returned in the query parameter when your customer
           // is redirected to the success page.

@@ -11,7 +11,6 @@ export const supportedLanguages = Object.keys(supportedLanguagesMap)
 export type SupportedLanguage = keyof typeof supportedLanguagesMap
 
 export const appTitle = 'scrt.link'
-export const trialPeriod = 5
 export const twilioSenderPhoneNumber = '+17744694525'
 
 export const twitterLink = 'https://twitter.com/ScrtLink'

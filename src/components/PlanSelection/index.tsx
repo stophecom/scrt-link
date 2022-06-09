@@ -18,13 +18,14 @@ import { Check } from '@mui/icons-material'
 
 import usePrettyBytes from '@/hooks/usePrettyBytes'
 import { formatNumber } from '@/utils/localization'
-import { limits, trialPeriod } from '@/constants'
+import { limits } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
 import { SimpleAccordion } from '@/components/Accordion'
 import { PageError } from '@/components/Error'
-import { Switch } from '@/components/BooleanSwitch'
+
+import Switch from '@/components/Switch'
 import getStripe from '@/utils/stripe'
 import { abbrNum } from '@/utils/index'
 import { api, useStripeCustomer, usePlans, useCustomer } from '@/utils/api'
@@ -35,7 +36,7 @@ const Root = styled('div')`
   flex-grow: 1;
 `
 
-const Trial = styled(Typography)`
+const CTAInfo = styled(Typography)`
   padding-top: 0.2em;
 `
 
@@ -377,20 +378,22 @@ const PlanSelection: React.FunctionComponent = () => {
       )}
 
       <Box display="flex" justifyContent="center" pb={4}>
-        <Grid component="label" container alignItems="center" justifyContent="center" spacing={1}>
-          <Grid item>{t('common:components.PlanSelection.interval.monthly', 'Monthly')}</Grid>
-          <Grid item>
-            <Switch checked={showYearlyPrice} onChange={setShowYearlyPrices} />
-          </Grid>
-          <Grid item>
-            {t('common:components.PlanSelection.interval.yearly', 'Annual')} (
-            {t('common:components.PlanSelection.interval.yearlySavings', {
-              defaultValue: 'Save {{percentage}}%',
-              percentage: yearlyPlanSavings,
-            })}
-            )
-          </Grid>
-        </Grid>
+        <Switch
+          activeSlide={showYearlyPrice ? 1 : 0}
+          options={[
+            {
+              title: t('common:components.PlanSelection.interval.monthly', 'Monthly'),
+            },
+            {
+              title: t('common:components.PlanSelection.interval.yearly', 'Annual'),
+              extra: t('common:components.PlanSelection.interval.yearlySavings', {
+                defaultValue: 'Save {{percentage}}%',
+                percentage: yearlyPlanSavings,
+              }),
+            },
+          ]}
+          onChangeActiveSlide={(index) => setShowYearlyPrices(!!index)}
+        />
       </Box>
 
       <Grid container spacing={2} justifyContent="center">
@@ -531,7 +534,7 @@ const PlanSelection: React.FunctionComponent = () => {
                     </Box>
                   )}
 
-                  <Box display="flex" flexDirection="column" alignItems="center">
+                  <Box display="flex" flexDirection="column" alignItems="center" pb={2}>
                     {customer?.userId ? (
                       <>
                         {isSubscriptionCanceled || !subscription ? (
@@ -545,16 +548,8 @@ const PlanSelection: React.FunctionComponent = () => {
                             >
                               {isSubscriptionCanceled
                                 ? t('common:button.reactivatePlan', 'Reactivate plan')
-                                : t('common:button.tryFree', 'Try it free')}
+                                : t('common:button.selectPlan', 'Select plan')}
                             </BaseButton>
-                            {!subscription && (
-                              <Trial variant="body2">
-                                {t('common:components.PlanSelection.freeTrialInfo', {
-                                  defaultValue: '{{trialPeriod}} days free trial',
-                                  trialPeriod,
-                                })}
-                              </Trial>
-                            )}
                           </>
                         ) : (
                           <>
