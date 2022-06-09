@@ -25,8 +25,9 @@ const StyledBox = styled(Box)`
   box-shadow: inset 0 10px 40px hsl(0deg 0% 0% / 20%);
 
   & .link-padding {
+    display: inline-flex;
     font-size: 0.85rem;
-    padding: ${({ theme }) => theme.spacing(1)};
+    padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(1.2)};
   }
 `
 
