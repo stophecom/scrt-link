@@ -44,6 +44,31 @@ docker-compose up
 docker-compose up --build
 ```
 
+### Localization
+
+- Based on https://github.com/isaachinman/next-i18next
+- All translation files are stored under `/public/locales/`.
+- There is a folder for every locale: e.g. `/public/locales/de/common.json`
+- Currently only namespace (common) is used - this might change in the future.
+- Currently using tolgee.io to manage translations.
+
+#### Helper scripts
+
+```js
+// To parse translations, use:
+yarn parse-translations
+
+// To fetch latest translation files from tolgee.io
+yarn fetch-translations
+
+```
+
+#### How to add a new language
+
+- Edit `next-i18next.config` and add language
+- Make sure to update `/src/utils/validationSchemas.ts` to enable translated form validation (yup)
+- Add translation via json file in `/public/locales/`. (Or via tolgee.io)
+
 ### Credits/Inspiration
 
 - [PrivateBin](https://github.com/PrivateBin/PrivateBin)
