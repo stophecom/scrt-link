@@ -179,8 +179,7 @@ I'm glad you pushed that button.
 But now it's time.
 Move on.
 
-Stay safe!
-`
+Stay safe!`
 
 type MenuBlockProps = {
   children: ReactNode
