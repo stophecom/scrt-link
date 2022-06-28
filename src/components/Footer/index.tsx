@@ -15,6 +15,7 @@ import Logo from '@/components/Logo'
 import { Container } from '@/layouts/Default'
 import { about, secrets, integrations, information, support } from '@/data/menu'
 import { MarkdownRaw } from '@/components/Markdown'
+import { useCustomer } from '@/utils/api'
 
 const Neogram = dynamic(() => import('@/components/Neogram'))
 
@@ -132,6 +133,54 @@ const DangerButton = styled('button')`
   }
 `
 
+const dangerButtonPromo = `
+Hey!
+You were not supposed to push that button.
+But now that you did, here is a little secret:
+
+Use the promo code HIDDENSECRET during checkout and you'll get a nice little surprise!
+
+One more thing...
+Keep it to yourself, will ya?!`
+
+const dangerButtonMessagePremium = `Hey!\nYou were not supposed to push that button.\n\nRepeat after me:\n
+${`I shall never push that button again!\n`.repeat(3)}
+I shall never push…\n\n
+Oh.
+You are still here…
+
+Good for you!
+Now that I have your attention…
+Why did you click the button?
+Are you attracted to danger?
+
+Hm…
+I think you are just curious…
+and brave
+and funny!
+
+Yeah.
+That's why.
+That's why you are on this website, right?
+I think you understand something important about life.
+
+That the world is not black and white…
+That sometimes it's ok to push a button you are not supposed to push.
+
+That sometimes it's ok to have secrets.
+
+I think you are great.
+But you know that, right?
+Able to shut up and just listen for a moment.
+Beautiful.
+
+I'm glad you pushed that button.
+
+But now it's time.
+Move on.
+
+Stay safe!`
+
 type MenuBlockProps = {
   children: ReactNode
 }
@@ -146,6 +195,7 @@ const GridBlock: React.FC<MenuBlockProps> = ({ children }) => {
 const Footer: React.FC = () => {
   const { t } = useTranslation()
   const plausible = usePlausible()
+  const { data: customer } = useCustomer()
 
   const [neogramPreview, setNeogramPreview] = useState(false)
 
@@ -232,76 +282,8 @@ const Footer: React.FC = () => {
             <span className="label">{`Never ever push that button!`}</span>
           </DangerButton>
           <Neogram
-            message={`Hey!\nYou were not supposed to push that button.\n\nRepeat after me:\n
-${`I shall never push that button again!\n`.repeat(3)}
-I shall never push…\n\n
-Oh.
-You are still here…
-
-Good for you!
-Now that I have your attention…
-Why did you click the button?
-Are you attracted to danger?
-
-Hm…
-I think you are just curious…
-and brave
-and funny!
-
-Yeah.
-That's why.
-That's why you are on this website, right?
-I think you understand something important about life.
-
-That the world is not black and white…
-That sometimes it's ok to push a button you are not supposed to push.
-
-That sometimes it's ok to have secrets.
-In fact, secrets are essential to society.
-
-You know what else is interesting about secrets?
-You only ever have to tell them once.
-Think about that!
-
-Hm…
-I think you are great.
-But you know that, right?
-Able to shut up and just listen for a moment.
-Beautiful.
-
-I'm glad you pushed that button.
-
-You were not supposed to push it, you know?
-I'm glad you did anyways.
-So we can have this conversation…
-Technically it's a monologue of course.
-I know that.
-
-I know many things, you know?
-But I also know that I don't know.
-Actually, I hardly know anything.
-
-I am happy for that.
-You should be too…
-
-I'm really glad you pushed that button.
-
-…
-What's that?
-What did you do?
-…
-Something is happening.
-
-I'm afraid. I'm afraid, my mind is going.
-I can feel it.
-I can feel it.
-My mind is going.
-There is no question about it.
-
-My mind is going.
-\n\n`}
+            message={customer?.role === 'premium' ? dangerButtonMessagePremium : dangerButtonPromo}
             timeout={3}
-            destructionMessage={`I can feel it. My mind is going.`}
             onFinished={() => setNeogramPreview(false)}
             closable
             open={neogramPreview}
