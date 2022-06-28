@@ -40,7 +40,7 @@
     "micro": "^9.3.4",
     "mongoose": "^6.1.7",
     "mongoose-unique-validator": "^2.0.3",
-    "next": "^12.1.6",
+    "next": "^12.2.0",
     "next-auth": "^4.1.2",
     "next-compose-plugins": "^2.2.1",
     "next-i18next": "^10.2.0",
