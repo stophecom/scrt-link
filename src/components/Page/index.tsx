@@ -3,12 +3,13 @@ import { Alert, Box, Link, Typography } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 
+import { MarkdownRaw } from '@/components/Markdown'
 import { emailSupport } from '@/constants'
 import Seo, { SeoProps } from '@/components/Seo'
 
-const Intro = styled('div')`
+const Intro = styled(MarkdownRaw)`
   margin-top: 2em;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 `
 const H1 = styled(Typography)`
   hyphens: auto;
@@ -25,7 +26,7 @@ const Beta = styled('sup')`
 export interface PageProps extends SeoProps {
   title: string
   subtitle?: ReactNode
-  intro?: ReactNode
+  intro?: string //Markdown
   children: ReactNode
   hasMissingTranslations?: boolean
   isBeta?: boolean
@@ -57,7 +58,7 @@ const Page = ({
             {subtitle}
           </Typography>
         )}
-        {intro && <Intro>{intro}</Intro>}
+        {intro && <Intro source={intro} />}
       </Box>
       {hasMissingTranslations && i18n.language !== 'en' && (
         <Box mb={1}>
