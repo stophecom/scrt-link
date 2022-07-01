@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Box, Typography } from '@mui/material'
 import { useTranslation, Trans } from 'next-i18next'
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 
 import { Link } from '@/components/Link'
 import Section from '@/components/Section'
@@ -12,7 +13,7 @@ import FormSignIn from '@/components/FormSignIn'
 import Page from '@/components/Page'
 
 const SignUp = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <Page
@@ -20,7 +21,7 @@ const SignUp = () => {
       subtitle={t('common:views.SignUp.subtitle', 'Great things start here…')}
     >
       <Box mb={10}>
-        <FormSignIn showSignUp>
+        <FormSignIn callbackUrl={getAbsoluteLocalizedUrl('/onboarding', i18n.language)} showSignUp>
           {t('common:views.SignUp.gotAccount', 'Already got an account?')}{' '}
           <Link href={'/signin'}>{t('common:views.SignUp.signInNow', 'Sign in now')}</Link>
         </FormSignIn>

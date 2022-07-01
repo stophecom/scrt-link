@@ -16,6 +16,7 @@ import FormDeleteAccount from '@/components/FormDeleteAccount'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
+import { placeholderName } from '@/constants'
 
 import { api, useCustomer } from '@/utils/api'
 
@@ -84,7 +85,7 @@ const Account: NextPage<AccountProps> = ({ session }) => {
       title={t('common:views.Account.title', `Account`)}
       subtitle={t('common:views.Account.subtitle', {
         defaultValue: `Hi {{name}}, welcome back!`,
-        name: customer?.name || 'X',
+        name: customer?.name || placeholderName,
       })}
     >
       <TabsMenu

@@ -26,6 +26,7 @@ export const shortUrl = 'https://scrt.li' // Currently not used
 
 export const blogUrl = 'https://blog.stophe.com'
 export const uptimerobotUrl = 'https://stats.uptimerobot.com/v5yqDuEr5z'
+export const placeholderName = 'Agent XY'
 
 // Form defaults
 export const emailPlaceholder = 'example@gmail.com'
