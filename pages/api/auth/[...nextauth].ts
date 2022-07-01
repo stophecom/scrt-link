@@ -7,7 +7,7 @@ import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
 import stripe from '@/api/utils/stripe'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
-import { placeholderName, mailjetTemplates } from '@/constants'
+import { mailjetTemplates, placeholderName } from '@/constants'
 import { nextAuthAdapter } from '@/api/utils/nextAuth'
 import createError from '@/api/utils/createError'
 

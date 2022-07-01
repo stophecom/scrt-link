@@ -15,6 +15,10 @@ const temporaryZipFile = path.join(temporaryDirectory, '/file.zip')
 // Where we store the translation files
 const localesFolder = path.join(__dirname, '/public/locales')
 
+// Only consider supported languages
+const { supportedLanguagesMap } = require('./next-i18next.config')
+const supportedLanguages = Object.keys(supportedLanguagesMap)
+
 // Make sure /tmp folder exists, otherwise create it
 if (!fs.existsSync(temporaryDirectory)) {
   fs.mkdirSync(temporaryDirectory, (err) => {
@@ -37,7 +41,13 @@ async function mapPaths() {
     for (const file of files) {
       // Get the full paths
       const fromPath = path.join(temporaryDirectory, file)
-      const toPath = path.join(localesFolder, path.parse(file).name, 'common.json')
+      const locale = path.parse(file).name
+
+      if (!supportedLanguages.includes(locale)) {
+        continue
+      }
+
+      const toPath = path.join(localesFolder, locale, 'common.json')
 
       // Stat the file to see if we have a file or dir
       const stat = await fs.promises.stat(fromPath)
