@@ -7,7 +7,7 @@ import withDb from '@/api/middlewares/withDb'
 import mailjet from '@/api/utils/mailjet'
 import stripe from '@/api/utils/stripe'
 import { getLocaleFromRequest } from '@/api/utils/helpers'
-import { mailjetTemplates } from '@/constants'
+import { placeholderName, mailjetTemplates } from '@/constants'
 import { nextAuthAdapter } from '@/api/utils/nextAuth'
 import createError from '@/api/utils/createError'
 
@@ -35,7 +35,8 @@ const handler: NextApiHandler = async (req, res) => {
             throw createError(500, 'User with this email already exists - you may sign in instead.')
           }
 
-          const givenName = (user?.name as string) || (req?.query?.name as string) || 'X'
+          const givenName =
+            (user?.name as string) || (req?.query?.name as string) || placeholderName
           if (!user) {
             await models.Customer.findOneAndUpdate(
               { signupUniqueEmailIdentifier: email },
