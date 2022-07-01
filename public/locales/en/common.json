@@ -661,6 +661,15 @@
       "subtitle": "Matrix-style disappearing messages. End-to-end encrypted.",
       "title": "Neogram"
     },
+    "Onboarding": {
+      "button": {
+        "accept": "Accept mission",
+        "skip": "Maybe later"
+      },
+      "intro": "Our mission is to enable everybody to share sensitive information in a **truly private, secure, anonymous** way - something that is vital in a free society. We run this as a passion project, fueled by idealism rather than profits. **However**, to keep basic features free, we depend on a small number of extraordinary people.  \n\nYour mission, should you choose to accept it, is to learn more about our top secret plan that helps us keep this project up and running. Good Luck!",
+      "subtitle": "Hi {{name}}, welcome aboard!",
+      "title": "Mission Briefing"
+    },
     "Pricing": {
       "Canceled": {
         "error": "You either canceled the payment process or something went wrong along the way. Sorry about that. Feel free to try again.",

@@ -661,6 +661,15 @@
       "subtitle": "Selbstzerstörende Nachrichten im Matrix-Stil. Ende-zu-Ende verschlüsselt.",
       "title": "Neogram"
     },
+    "Onboarding": {
+      "button": {
+        "accept": "Auftrag annehmen",
+        "skip": "Vielleicht später"
+      },
+      "intro": "Unsere Mission ist es, allen die Möglichkeit zu geben, sensible Informationen auf eine **wirklich private, sichere und anonyme** Weise auszutauschen - etwas, das in einer freien Gesellschaft unerlässlich ist. Wir betreiben dies als leidenschaftliches Projekt, das eher von Idealismus als von Profit angetrieben wird. Um die grundlegenden Funktionen kostenlos zu halten, sind wir auf eine kleine Anzahl von außergewöhnlichen Menschen angewiesen.  \n\nDeine Aufgabe, solltest du sie annehmen, ist es, mehr über unseren streng geheimen Plan zu erfahren, der es uns ermöglicht, dieses Projekt am Laufen zu halten. Viel Glück!",
+      "subtitle": "Hallo {{name}}, willkommen an Bord!",
+      "title": "Missions-Briefing"
+    },
     "Pricing": {
       "Canceled": {
         "error": "Du hast entweder den Zahlungsvorgang abgebrochen oder es ist etwas schief gelaufen. Das tut uns leid. Versuche es einfach noch einmal.",

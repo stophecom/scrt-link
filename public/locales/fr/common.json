@@ -178,7 +178,7 @@
           }
         }
       },
-      "planSwitchOrCancelNotice": "Tu peu changer de cycle de facturation ou annuler l'abonnement à tout moment.",
+      "planSwitchOrCancelNotice": "Vous pouvez changer de cycle de facturation ou annuler l'abonnement à tout moment.",
       "premium": {
         "subtitle": "Une aubaine."
       },
@@ -233,7 +233,7 @@
     "noMessage": "Pas de message.",
     "secretBurned": "Le secret a déjà été brûlé.",
     "signIn": {
-      "emailUnknown": "Adresse e-mail inconnue. Vérifiez votre adresse e-mail ou essayez de vous inscrire à la place."
+      "emailUnknown": "Adresse e-mail inconnue. Vérifiez vos e-mails ou essayez plutôt de vous inscrire."
     },
     "signUp": {
       "emailAlreadyExists": "Un utilisateur avec cette adresse e-mail existe déjà - Tu peu vous connecter à la place."
@@ -244,7 +244,7 @@
   "faq": {
     "anonymity": {
       "body": "Nous prenons un certain nombre de mesures pour protéger votre vie privée, détaillées sur la [page de confidentialité](/privacy) - toutefois, certaines fonctionnalités nécessitent des services tiers qui peuvent avoir accès à des informations personnelles identifiables (PII). Si vous souhaitez protéger davantage votre vie privée, nous vous recommandons ce qui suit :\n\n- Connectez-vous à notre service via un réseau privé virtuel (VPN) : De cette façon, vous n'exposez jamais votre adresse IP personnelle. Nous recommandons [ProtonVPN](https://protonvpn.com/).\n- Utilisez un service tel que [Abine Blur](https://www.abine.com/) pour masquer votre adresse électronique personnelle, votre numéro de téléphone et/ou vos informations de carte de crédit.",
-      "heading": "Comment ma vie privée est-elle protégée ?"
+      "heading": "Comment ma vie privée est protégée?"
     },
     "browser-extensions": {
       "body": "Les extensions de navigateur scrt.link sont disponibles pour tous les principaux navigateurs :\n- [Google Chrome]({{ chromeExtensionLink }})\n- Mozilla Firefox]({{ firefoxExtensionLink }})\n- Microsoft Edge]({{ microsoftEdgeExtensionLink }})",
@@ -292,11 +292,11 @@
     },
     "notification": {
       "body": "Oui, Tu peu recevoir des **notifications par SMS ou par e-mail** avec un compte. [Aller au compte](/compte)",
-      "heading": "Puis-je recevoir une notification lorsqu'un secret a été consulté ?"
+      "heading": "Puis-je être averti lorsqu'un secret a été consulté ?"
     },
     "payment-methods": {
       "body": "Notre fournisseur de services de paiement {{paymentProcessor}} offre une variété d'options de paiement : Google Pay, carte de crédit (VISA, Mastercard, American Express, etc.) parmi beaucoup d'autres. Une fois que vous avez choisi un plan premium, vous êtes redirigé vers Stripe où tu peu sélectionner votre méthode préférée.",
-      "heading": "Quelles sont les méthodes de paiement prises en charge ?"
+      "heading": "Quels modes de paiement sont pris en charge ?"
     },
     "payment-provider": {
       "body": "Nous travaillons avec {{paymentProcessor}} comme fournisseur de paiement. Nous ne stockons aucune information relative au paiement.",
@@ -304,7 +304,7 @@
     },
     "read-receipts-info": {
       "body": "Pour chaque secret, nous générons un ID secret (une chaîne aléatoire) qui est la seule référence au message original. Lorsque le destinataire ouvre le lien secret, nous vous en informons par la méthode choisie. Dans la notification, nous n'indiquons que l'ID secret - veillez donc à le conserver ou à vous en souvenir. Il va sans dire que les informations de contact (courriel ou numéro de téléphone) ne sont **jamais exposées au destinataire**.\n\n**Courriel** : Vous recevrez un courriel de *{{email}}*.\n\n**SMS** : Vous recevrez une notification par SMS de *{{twilioSenderPhoneNumber}}*.",
-      "heading": "Comment fonctionnent les accusés de réception ?"
+      "heading": "Comment fonctionnent les confirmations de lecture ?"
     },
     "recovery": {
       "body": "Non. Il s'agit d'un **secret unique**. Nous le montrons une fois, puis nous le supprimons définitivement de la base de données. Il n'y a pas de sauvegarde. Il a disparu pour de bon.",
@@ -517,7 +517,7 @@
       },
       "BrowserExtensions": {
         "markdown": "Pour rendre ce service simple et pratique, des extensions de navigateur sont disponibles pour tous les navigateurs modernes. Tous les addons partagent les mêmes fonctionnalités de sécurité et de confidentialité.",
-        "subtitle": "Partagez vos secrets depuis votre navigateur.",
+        "subtitle": "Partagez des secrets depuis votre navigateur.",
         "title": "Extensions de navigateur"
       },
       "Developers": {
@@ -534,7 +534,7 @@
         "subtitle": "Plus besoin de changer d'application. Avec l'application Slack, Tu peu créer des secrets à usage unique directement dans vos conversations Slack.",
         "title": "Application Slack"
       },
-      "subtitle": "L'ensemble du projet repose sur un principe simple : moins on en sait, mieux c'est.",
+      "subtitle": "L'ensemble du projet est basé sur une prémisse simple : moins nous en savons, mieux c'est.",
       "title": "À propos de"
     },
     "AcceptableUsePolicy": {
@@ -547,7 +547,7 @@
       "ManageSubscriptionButton": {
         "button": "Gérer l'abonnement sur Stripe"
       },
-      "settingsDisclaimer": "Les paramètres suivants sont des paramètres par défaut. Tu peu écraser chaque paramètre pour chaque secret que vous créez.",
+      "settingsDisclaimer": "Voici les paramètres par défaut. Vous pouvez écraser chaque paramètre pour chaque secret que vous créez.",
       "signedInAs": "Vous êtes connecté en tant que {{email}}",
       "subscriptionInfo": "Vous êtes actuellement sur le plan <1>{{customerRole}}.",
       "subtitle": "Bonjour {{name}}, bienvenue !",
@@ -568,7 +568,7 @@
         "size": "Taille",
         "subtitle": "Vous avez reçu un fichier secret :",
         "type": "Type",
-        "warning": "Important ! Nous n'avons absolument aucune connaissance du contenu de ce fichier. Faites confiance à l'expéditeur !"
+        "warning": "Important! Nous n'avons absolument aucune connaissance du contenu du fichier. Assurez-vous de faire confiance à l'expéditeur!"
       },
       "loadingSecret": "Chargement du secret",
       "passwordRequired": "Mot de passe requis",
@@ -597,11 +597,11 @@
     },
     "FAQ": {
       "introQuestion": "Sur quel sujet pouvons-nous vous aider ?",
-      "noAnswer": "Vous n'avez pas trouvé la réponse que vous cherchiez ? Contactez l'assistance :",
+      "noAnswer": "Vous n'avez pas trouvé la réponse que vous cherchiez ? Contactez le support:",
       "subtitle": "Foire aux questions"
     },
     "Files": {
-      "flowDisclaimer": "Confidentialité suisse : Les fichiers seront cryptés de bout en bout et stockés à Zurich, en Suisse, par Flow Swiss AG.",
+      "flowDisclaimer": "Confidentialité en Suisse : les fichiers seront cryptés de bout en bout et stockés à Zürich, en Suisse, par Flow Swiss AG.",
       "subtitle": "Partagez des fichiers chiffrés de bout en bout. Une seule fois.",
       "title": "X Files"
     },
@@ -639,7 +639,7 @@
         "subtitle": "Certaines choses ont intérêt à ne pas rester dans votre historique de chat. La prochaine fois qu'un collègue de travail vous demandera un jeton d'accès, une clé API ou un mot de passe, vous pourrez répondre en toute bonne conscience.",
         "title": "L'application Slack<1>NOUVEAU</1>",
         "usps": {
-          "0": "Messages cryptés, jetables, stockés en dehors de Slack.",
+          "0": "Messages cryptés et jetables, stockés en dehors de Slack.",
           "1": "Création de secrets à usage unique via un raccourci ou une commande slash.",
           "2": "Notification par brûlure après qu'un secret a été consulté."
         }
@@ -661,9 +661,18 @@
       "subtitle": "Messages disparaissant dans un style matriciel. Cryptés de bout en bout.",
       "title": "Néogramme"
     },
+    "Onboarding": {
+      "button": {
+        "accept": "Accepter la mission",
+        "skip": "Peut-être plus tard."
+      },
+      "intro": "Notre mission est de permettre à chacun de partager des informations sensibles d'une manière **vraiment privée, sécurisée et anonyme** - ce qui est vital dans une société libre. Nous gérons ce projet comme une passion, alimentée par l'idéalisme plutôt que par les profits. Cependant, pour que les fonctionnalités de base restent gratuites, nous dépendons d'un petit nombre de personnes extraordinaires comme vous.  \n\nVotre mission, si vous l'acceptez, est d'en apprendre davantage sur nos plan top secret qui nous aident à maintenir ce projet opérationnel. Bonne chance !",
+      "subtitle": "Bonjour {{name}}, bienvenue à bord !",
+      "title": "Mission Briefing"
+    },
     "Pricing": {
       "Canceled": {
-        "error": "Vous avez annulé le processus de paiement ou quelque chose s'est mal passé en cours de route. Nous en sommes désolés. N'hésitez pas à réessayer.",
+        "error": "Soit vous avez annulé le processus de paiement, soit quelque chose s'est mal passé en cours de route. Désolé pour ça. N'hésitez pas à réessayer.",
         "title": "Paiement annulé"
       },
       "subtitle": "Des plans simples, des prix équitables.",
@@ -744,7 +753,7 @@
         "subtitle": "C'est un scénario très courant : un collègue vous demande un jeton d'accès, une clé API ou un mot de passe. Maintenant, Tu peu répondre en toute sécurité.",
         "title": "Secrets pour Slack"
       },
-      "missingTranslationsNotice": "Cher client, l'application Slack est actuellement disponible uniquement en anglais.",
+      "missingTranslationsNotice": "Cher client, l'application Slack n'est actuellement disponible qu'en anglais.",
       "subtitle": "Certaines choses ne doivent pas rester dans votre historique de chat.",
       "title": "L'application Slack"
     },
