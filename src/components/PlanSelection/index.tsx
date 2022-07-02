@@ -542,6 +542,7 @@ const PlanSelection: React.FunctionComponent = () => {
                             <BaseButton
                               size="large"
                               variant="contained"
+                              fullWidth
                               color="primary"
                               onClick={() => handleSubmit(price.id)}
                               loading={status?.type === 'loading'}
