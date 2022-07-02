@@ -114,9 +114,9 @@ const PlanSelection: React.FunctionComponent = () => {
 
   const enterpriseUsps = [
     {
-      heading: t('common:components.PlanSelection.plans.enterprise.usps.0.heading', {
-        defaultValue: `Everything in {{premiumPlanName}}`,
-        premiumPlanName,
+      heading: t('common:components.PlanSelection.plans.previousPlanBenefits', {
+        defaultValue: `Everything in {{plan}}`,
+        plan: premiumPlanName,
       }),
     },
     {
@@ -132,13 +132,10 @@ const PlanSelection: React.FunctionComponent = () => {
 
   const premiumUsps = [
     {
-      heading: t(
-        'common:components.PlanSelection.plans.premium.usps.previousPlanBenefits.heading',
-        {
-          defaultValue: `Everything in {{freePlanName}}`,
-          freePlanName,
-        },
-      ),
+      heading: t('common:components.PlanSelection.plans.previousPlanBenefits', {
+        defaultValue: `Everything in {{plan}}`,
+        plan: freePlanName,
+      }),
     },
     {
       heading: t('common:components.PlanSelection.plans.premium.usps.1.heading', {
