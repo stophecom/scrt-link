@@ -9,7 +9,11 @@ import Seo, { SeoProps } from '@/components/Seo'
 
 const Intro = styled(MarkdownRaw)`
   margin-top: 2em;
-  font-size: 1.2rem;
+  font-size: 1rem;
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    font-size: 1.2rem;
+  }
 `
 const H1 = styled(Typography)`
   hyphens: auto;

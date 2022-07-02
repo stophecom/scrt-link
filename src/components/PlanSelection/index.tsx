@@ -18,7 +18,7 @@ import { Check } from '@mui/icons-material'
 
 import usePrettyBytes from '@/hooks/usePrettyBytes'
 import { formatNumber } from '@/utils/localization'
-import { limits } from '@/constants'
+import { limits, premiumPlanName, enterprisePlanName, freePlanName } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
 import BaseButton from '@/components/BaseButton'
 import { Spinner } from '@/components/Spinner'
@@ -92,7 +92,6 @@ const PlanSelection: React.FunctionComponent = () => {
     (isSubscriptionBillingIntervalMonthly && !showYearlyPrice)
   const isSubscriptionTrialing = subscription?.status === 'trialing'
   const isSubscriptionActive = subscription?.status === 'active' || isSubscriptionTrialing
-  const isSubscriptionActiveNotCanceled = isSubscriptionActive && !subscription?.cancel_at
   const isSubscriptionCanceled = isSubscriptionActive && !!subscription?.cancel_at
 
   // Get % yearly savings. We take first plan. (There should be only one)
@@ -105,11 +104,40 @@ const PlanSelection: React.FunctionComponent = () => {
       (1 - premiumPlanPrices.yearly.unit_amount / 12 / premiumPlanPrices.monthly.unit_amount) * 100,
     )
 
+  // Sort plans enterprise comes after premium
+  plans?.sort((a, b) => {
+    if (a.name === premiumPlanName) {
+      return -1
+    }
+    return 0
+  })
+
+  const enterpriseUsps = [
+    {
+      heading: t('common:components.PlanSelection.plans.enterprise.usps.0.heading', {
+        defaultValue: `Everything in {{premiumPlanName}}`,
+        premiumPlanName,
+      }),
+    },
+    {
+      heading: t('common:components.PlanSelection.plans.enterprise.usps.support.heading', {
+        defaultValue: 'You become part of the {{enterprisePlanName}} society.',
+        enterprisePlanName,
+      }),
+      body: t('common:components.PlanSelection.plans.enterprise.usps.support.body', {
+        defaultValue: `Join a circle of like-minded people that make the web a better place. With your contribution you help us become sustainable.`,
+      }),
+    },
+  ]
+
   const premiumUsps = [
     {
       heading: t(
-        'common:components.PlanSelection.plans.premium.usps.0.heading',
-        `Everything in Free, plus:`,
+        'common:components.PlanSelection.plans.premium.usps.previousPlanBenefits.heading',
+        {
+          defaultValue: `Everything in {{freePlanName}}`,
+          freePlanName,
+        },
       ),
     },
     {
@@ -395,12 +423,11 @@ const PlanSelection: React.FunctionComponent = () => {
           onChangeActiveSlide={(index) => setShowYearlyPrices(!!index)}
         />
       </Box>
-
       <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} sm={5} order={{ xs: 2, sm: 1 }}>
+        <Grid item xs={12} md={4} order={{ xs: 3, md: 1 }}>
           <Plan
-            title={t('common:plans.free.title', 'Free')}
-            subtitle={t('common:components.PlanSelection.free.subtitle', 'No strings attached.')}
+            title={freePlanName}
+            subtitle={t('common:components.PlanSelection.free.subtitle', 'For starters')}
             isCurrentPlan={!!customer?.userId && !isSubscriptionActive}
           >
             <Box
@@ -433,20 +460,32 @@ const PlanSelection: React.FunctionComponent = () => {
               return null
             }
             const price = showYearlyPrice ? prices?.yearly : prices?.monthly
+
+            const isPremiumPlan = name === premiumPlanName
+
+            const isCurrentlyActiveSubscriptionPlan =
+              isSubscriptionActive &&
+              price.product === activePrice?.product &&
+              isSubscriptionBillingIntervalMatch
+
             return (
-              <Grid item xs={12} sm={7} key={index} order={{ sm: 2, xs: 1 }}>
+              <Grid item xs={12} sm={6} md={4} key={index} order={{ sm: ++index, xs: 1 }}>
                 <Plan
+                  isFeatured={
+                    isCurrentlyActiveSubscriptionPlan || (!isSubscriptionActive && isPremiumPlan)
+                  }
                   title={name}
                   subtitle={
                     <>
-                      {t('common:components.PlanSelection.premium.subtitle', 'Basically a steal.')}
+                      {isPremiumPlan
+                        ? t('common:components.PlanSelection.premium.subtitle', 'For most People')
+                        : t(
+                            'common:components.PlanSelection.enterprise.subtitle',
+                            'For Visionaries',
+                          )}
                     </>
                   }
-                  isCurrentPlan={
-                    isSubscriptionActive &&
-                    price.product === activePrice?.product &&
-                    isSubscriptionBillingIntervalMatch
-                  }
+                  isCurrentPlan={isCurrentlyActiveSubscriptionPlan}
                 >
                   <Box
                     display="flex"
@@ -486,10 +525,13 @@ const PlanSelection: React.FunctionComponent = () => {
                     </Box>
                   </Box>
                   <Box mb={2}>
-                    <SimpleAccordion name="premiumUsps" items={getAccordionItems(premiumUsps)} />
+                    <SimpleAccordion
+                      name="premiumUsps"
+                      items={getAccordionItems(isPremiumPlan ? premiumUsps : enterpriseUsps)}
+                    />
                   </Box>
 
-                  {subscription && (
+                  {isCurrentlyActiveSubscriptionPlan && (
                     <Box mb={2}>
                       <Alert
                         severity={isSubscriptionCanceled ? 'warning' : 'success'}
@@ -509,75 +551,37 @@ const PlanSelection: React.FunctionComponent = () => {
                               'common:components.PlanSelection.activePlan',
                               'This plan is currently active.',
                             )}
-                            &nbsp;
-                            {isSubscriptionTrialing
-                              ? t('common:components.PlanSelection.trialEndNotice', {
-                                  defaultValue: `Trial ends on {{trialEndDate}}.`,
-                                  trialEndDate: dateFromTimestamp(subscription?.trial_end),
-                                })
-                              : t('common:components.PlanSelection.recurringPriceInfo', {
-                                  defaultValue: `You are being billed {{price}} every {{interval}}.`,
-                                  price: formatCurrency(
-                                    Number(activePrice?.unit_amount) / 100,
-                                    currency,
-                                  ),
-                                  interval: activePrice?.recurring?.interval,
-                                })}
-                            &nbsp;
-                            {t(
-                              'common:components.PlanSelection.planSwitchOrCancelNotice',
-                              'You can switch billing cycle or cancel the subscription anytime.',
-                            )}
                           </>
                         )}
                       </Alert>
                     </Box>
                   )}
 
-                  <Box display="flex" flexDirection="column" alignItems="center" pb={2}>
+                  <Box display="flex" flexDirection="column" alignItems="center" pb={2} mt={'auto'}>
                     {customer?.userId ? (
                       <>
-                        {isSubscriptionCanceled || !subscription ? (
-                          <>
-                            <BaseButton
-                              size="large"
-                              variant="contained"
-                              color="primary"
-                              onClick={() => handleSubmit(price.id)}
-                              loading={status?.type === 'loading'}
-                            >
-                              {isSubscriptionCanceled
-                                ? t('common:button.reactivatePlan', 'Reactivate plan')
-                                : t('common:button.selectPlan', 'Select plan')}
-                            </BaseButton>
-                          </>
+                        {isCurrentlyActiveSubscriptionPlan && !isSubscriptionCanceled ? (
+                          <BaseButton
+                            variant="outlined"
+                            color="primary"
+                            onClick={() => deleteSubscription(subscription.id)}
+                            loading={status?.type === 'loading'}
+                          >
+                            {t('common:button.cancelSubscription', 'Cancel subscription')}
+                          </BaseButton>
                         ) : (
-                          <>
-                            {!isSubscriptionBillingIntervalMatch && (
-                              <BaseButton
-                                variant="contained"
-                                color="primary"
-                                onClick={() =>
-                                  handleSubmit(
-                                    activePrice?.recurring?.interval === 'year'
-                                      ? prices.monthly.id
-                                      : prices.yearly.id,
-                                  )
-                                }
-                                loading={status?.type === 'loading'}
-                              >
-                                {activePrice?.recurring?.interval === 'year'
-                                  ? t(
-                                      'common:components.PlanSelection.switchToMonthlyBilling',
-                                      'Switch to monthly billing',
-                                    )
-                                  : t(
-                                      'common:components.PlanSelection.switchToYearlyBilling',
-                                      'Switch to annual billing',
-                                    )}
-                              </BaseButton>
-                            )}
-                          </>
+                          <BaseButton
+                            size="large"
+                            variant="contained"
+                            fullWidth
+                            color="primary"
+                            onClick={() => handleSubmit(price.id)}
+                            loading={status?.type === 'loading'}
+                          >
+                            {isCurrentlyActiveSubscriptionPlan && isSubscriptionCanceled
+                              ? t('common:button.reactivatePlan', 'Reactivate plan')
+                              : t('common:button.selectPlan', 'Select plan')}
+                          </BaseButton>
                         )}
                       </>
                     ) : (
@@ -591,18 +595,6 @@ const PlanSelection: React.FunctionComponent = () => {
                         {t('common:button.signUpFirst', 'Sign up first')}
                       </BaseButtonLink>
                     )}
-                    {subscription &&
-                      isSubscriptionActiveNotCanceled &&
-                      isSubscriptionBillingIntervalMatch && (
-                        <BaseButton
-                          variant="outlined"
-                          color="primary"
-                          onClick={() => deleteSubscription(subscription.id)}
-                          loading={status?.type === 'loading'}
-                        >
-                          {t('common:button.cancelSubscription', 'Cancel subscription')}
-                        </BaseButton>
-                      )}
                   </Box>
                 </Plan>
               </Grid>

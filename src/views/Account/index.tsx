@@ -1,26 +1,25 @@
 import React, { useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import { Session } from 'next-auth'
 import { getSession, signOut } from 'next-auth/react'
 import { Alert, Box, Typography, Paper, NoSsr } from '@mui/material'
 import { project } from 'ramda'
-import { useTranslation, Trans, TFunction } from 'next-i18next'
+import { useTranslation, TFunction } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { styled } from '@mui/system'
 
+import Markdown from '@/components/Markdown'
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseButton from '@/components/BaseButton'
+import { BaseButtonLink } from '@/components/Link'
 import FormCustomer, { FormCustomerName } from '@/components/FormCustomer'
 import FormDeleteAccount from '@/components/FormDeleteAccount'
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
-import { placeholderName } from '@/constants'
+import { placeholderName, freePlanName } from '@/constants'
 
-import { api, useCustomer } from '@/utils/api'
-
-const PlanSelection = dynamic(() => import('@/components/PlanSelection'))
+import { api, useCustomer, useSubscription } from '@/utils/api'
 
 const AccountInfo = styled(Box)`
   opacity: 0.7;
@@ -68,18 +67,44 @@ const ManageSubscriptionButton = () => {
     </BaseButton>
   )
 }
+
+export const SubscriptionInfo: React.FC = () => {
+  const { t } = useTranslation()
+
+  const { productName, hasActiveSubscription } = useSubscription()
+
+  return (
+    <Box mb={3}>
+      <Alert severity="info">
+        <Markdown
+          source={t('common:views.Account.subscription.info', {
+            defaultValue: `You are currently on the **{{ productName }}** plan.`,
+            productName: productName || freePlanName,
+          })}
+        />
+        {hasActiveSubscription && (
+          <Box mt={2}>
+            <ManageSubscriptionButton />
+          </Box>
+        )}
+      </Alert>
+    </Box>
+  )
+}
+
 type AccountProps = {
   session: Session
 }
 const Account: NextPage<AccountProps> = ({ session }) => {
   const { t, i18n } = useTranslation()
   const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu(t)[0].key)
-  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
+  const { data: customer } = useCustomer()
+  const { productName, hasActiveSubscription } = useSubscription()
 
   const handleMenuChange = (_event: unknown, newValue: MenuItem['key']) => {
     setActiveTab(newValue)
   }
-  const customerRole = customer?.role
+
   return (
     <Page
       title={t('common:views.Account.title', `Account`)}
@@ -104,26 +129,13 @@ const Account: NextPage<AccountProps> = ({ session }) => {
           )}
           {activeTab === 'subscription' && (
             <>
-              <Box mb={2}>
-                <Alert severity="info">
-                  <Trans i18nKey="common:views.Account.subscriptionInfo">
-                    You are currently on the <strong>{{ customerRole }}</strong> plan.
-                  </Trans>
-                  {customerRole === 'premium' && (
-                    <Box mt={1}>
-                      <ManageSubscriptionButton />
-                    </Box>
-                  )}
-                </Alert>
-              </Box>
-
-              <PlanSelection />
+              <SubscriptionInfo />
             </>
           )}
 
           {activeTab === 'danger' && (
             <>
-              {customerRole === 'premium' && (
+              {hasActiveSubscription && (
                 <Box mb={1}>
                   <Alert severity="info">
                     {t(

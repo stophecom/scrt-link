@@ -1,11 +1,12 @@
 import React from 'react'
 import { GetServerSideProps, NextPage } from 'next'
-
+import { Box } from '@mui/material'
 import { Session } from 'next-auth'
 import { getSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ArrowForward } from '@mui/icons-material'
+import { usePlausible } from 'next-plausible'
 
 import { placeholderName } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
@@ -19,6 +20,7 @@ type OnboardingProps = {
 const Onboarding: NextPage<OnboardingProps> = ({ session }) => {
   const { t } = useTranslation()
   const { data: customer } = useCustomer()
+  const plausible = usePlausible()
 
   return (
     <Page
@@ -34,25 +36,48 @@ const Onboarding: NextPage<OnboardingProps> = ({ session }) => {
 **Your mission**, should you choose to accept it, is to learn more about our top secret plans that help us keep this project up and running. Good Luck!`,
       )}
     >
-      <BaseButtonLink
-        href="/pricing"
-        variant="contained"
-        color="primary"
-        size="large"
-        startIcon={<ArrowForward />}
+      <Box
+        display="flex"
+        justifyContent="start"
+        alignItems={{ sm: 'center' }}
+        mt={4}
+        flexDirection={{ xs: 'column', sm: 'row' }}
       >
-        {t('common:views.Onboarding.button.accept', `Accept mission`)}
-      </BaseButtonLink>
-
-      <BaseButtonLink
-        href="/account"
-        variant="outlined"
-        size="large"
-        color="primary"
-        sx={{ marginLeft: '.5em' }}
-      >
-        {t('common:views.Onboarding.button.skip', `Maybe later`)}
-      </BaseButtonLink>
+        <BaseButtonLink
+          href="/pricing"
+          variant="contained"
+          color="primary"
+          size="large"
+          startIcon={<ArrowForward />}
+          onClick={() => {
+            plausible('MissionBriefing', {
+              props: {
+                onboarding: 'Accept',
+              },
+            })
+          }}
+        >
+          {t('common:views.Onboarding.button.accept', `Accept mission`)}
+        </BaseButtonLink>
+        <Box ml={{ sm: 2 }} pt={{ xs: 1, sm: 0 }}>
+          <BaseButtonLink
+            fullWidth
+            href="/account"
+            variant="outlined"
+            size="large"
+            color="primary"
+            onClick={() => {
+              plausible('MissionBriefing', {
+                props: {
+                  onboarding: 'Skip',
+                },
+              })
+            }}
+          >
+            {t('common:views.Onboarding.button.skip', `Maybe later`)}
+          </BaseButtonLink>
+        </Box>
+      </Box>
     </Page>
   )
 }

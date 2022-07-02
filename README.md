@@ -61,6 +61,11 @@ yarn parse-translations
 // To fetch latest translation files from tolgee.io
 yarn fetch-translations
 
+
+// Forward stripe webhooks to localhost (via stripe cli)
+// More info: https://stripe.com/docs/webhooks/test
+stripe listen --load-from-webhooks-api --forward-to localhost:3000
+
 ```
 
 #### How to add a new language

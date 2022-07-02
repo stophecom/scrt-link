@@ -29,6 +29,15 @@ const accountAndBilling = (t: TFunction) => [
     ),
   },
   {
+    id: 'promo-codes',
+    category: 'accountAndBilling',
+    heading: t('common:faq.promo-codes.heading', 'How can I use promo codes?'),
+    body: t(
+      'common:faq.promo-codes.body',
+      `Promo codes can be applied on the Stripe checkout page. Add your personal promo code and hit "Apply". After that you should see a discounted price right away.`,
+    ),
+  },
+  {
     id: 'end-subscription',
     category: 'accountAndBilling',
     heading: t('common:faq.end-subscription.heading', 'How do I cancel a subscription?'),
