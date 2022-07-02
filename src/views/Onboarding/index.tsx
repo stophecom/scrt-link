@@ -6,6 +6,7 @@ import { getSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ArrowForward } from '@mui/icons-material'
+import { usePlausible } from 'next-plausible'
 
 import { placeholderName } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
@@ -19,6 +20,7 @@ type OnboardingProps = {
 const Onboarding: NextPage<OnboardingProps> = ({ session }) => {
   const { t } = useTranslation()
   const { data: customer } = useCustomer()
+  const plausible = usePlausible()
 
   return (
     <Page
@@ -47,11 +49,31 @@ const Onboarding: NextPage<OnboardingProps> = ({ session }) => {
           color="primary"
           size="large"
           startIcon={<ArrowForward />}
+          onClick={() => {
+            plausible('MissionBriefing', {
+              props: {
+                onboarding: 'Accept',
+              },
+            })
+          }}
         >
           {t('common:views.Onboarding.button.accept', `Accept mission`)}
         </BaseButtonLink>
         <Box ml={{ sm: 2 }} pt={{ xs: 1, sm: 0 }}>
-          <BaseButtonLink fullWidth href="/account" variant="outlined" size="large" color="primary">
+          <BaseButtonLink
+            fullWidth
+            href="/account"
+            variant="outlined"
+            size="large"
+            color="primary"
+            onClick={() => {
+              plausible('MissionBriefing', {
+                props: {
+                  onboarding: 'Skip',
+                },
+              })
+            }}
+          >
             {t('common:views.Onboarding.button.skip', `Maybe later`)}
           </BaseButtonLink>
         </Box>
