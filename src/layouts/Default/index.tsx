@@ -43,13 +43,13 @@ type LayoutProps = {
 }
 const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => {
   useEffect(() => {
-    console.log(
-      '%c“If you want to keep a secret, you must also hide it from yourself.” ― George Orwell, 1984',
-      'font-size: 20px;color: #ff0083',
-    )
-    console.log(
-      '%c🤓🤫',
+    console.info(
+      '%c🤫',
       'font-weight: bold; font-size: 50px;color: #ff0083; text-shadow: 3px 3px 0 rgba(0,0,0,0.3)',
+    )
+    console.info(
+      '%cUse promo code HIDDENSECRET in during checkout!',
+      'font-size: 20px;color: #ff0083',
     )
   }, [])
 
