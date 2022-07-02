@@ -2,12 +2,13 @@ import React, { ReactNode } from 'react'
 import { styled } from '@mui/system'
 import { Check } from '@mui/icons-material'
 import { Box, Paper, Typography } from '@mui/material'
-import { useTranslation } from 'next-i18next'
+import clsx from 'clsx'
 
 const PREFIX = 'Plan'
 
 const classes = {
   paper: `${PREFIX}-paper`,
+  paperFeatured: `${PREFIX}-paper--featured`,
   planTitle: `${PREFIX}-planTitle`,
   check: `${PREFIX}-check`,
 }
@@ -19,9 +20,14 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     alignItems: 'center',
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
+    border: '1px solid transparent',
     height: '100%',
     flexDirection: 'column',
     textAlign: 'center',
+  },
+
+  [`&.${classes.paperFeatured}`]: {
+    borderColor: theme.palette.primary.main,
   },
 
   [`& .${classes.planTitle}`]: {
@@ -42,18 +48,31 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   },
 }))
 
-type PlanProps = {
+interface PlanProps {
   title: string
   subtitle: ReactNode
   children?: ReactNode
   isCurrentPlan?: boolean
+  isFeatured?: boolean
 }
-const Plan: React.FunctionComponent<PlanProps> = ({ title, subtitle, children, isCurrentPlan }) => {
-  const { t } = useTranslation()
+const Plan: React.FunctionComponent<PlanProps> = ({
+  title,
+  subtitle,
+  children,
+  isCurrentPlan,
+  isFeatured,
+}) => {
   return (
-    <StyledPaper className={classes.paper}>
+    <StyledPaper className={clsx(classes.paper, { 'Plan-paper--featured': isFeatured })}>
       <Box mb={2}>
-        <Box display="flex" justifyContent="center" p={1} pb={2} fontSize="small">
+        <Box
+          display="flex"
+          justifyContent="center"
+          p={1}
+          pb={2}
+          fontSize="small"
+          sx={{ opacity: 0.7 }}
+        >
           {subtitle}
         </Box>
         <Typography

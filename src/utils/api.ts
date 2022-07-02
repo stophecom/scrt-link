@@ -106,14 +106,21 @@ export const useStripeCustomer = (customerId?: string) => {
   }
 }
 
-export const useSubscription = (subscriptionId: string) => {
-  const { data, error } = useSWR<Stripe.Subscription>(
-    `${baseUrl}/api/subscriptions/${subscriptionId}`,
+export const useSubscription = () => {
+  const { data: customer } = useCustomer()
+  const { stripeCustomer } = useStripeCustomer(customer?.stripe?.customerId)
+
+  // We assume a customer only ever has one subscription
+  const subscription = stripeCustomer?.subscriptions?.data[0]
+
+  const { data, mutate, error } = useSWR<Stripe.Customer>(
+    () => `${baseUrl}/api/subscriptions/products/${subscription?.items.data[0].price.product}`,
   )
+  console.log({ data, error })
 
   return {
-    subscription: data,
-    isLoading: !error && !data,
-    error: error,
+    subscription,
+    productName: data?.name,
+    hasActiveSubscription: subscription?.status === 'active',
   }
 }

@@ -28,6 +28,10 @@ export const blogUrl = 'https://blog.stophe.com'
 export const uptimerobotUrl = 'https://stats.uptimerobot.com/v5yqDuEr5z'
 export const placeholderName = 'XY'
 
+export const freePlanName = 'Confidential'
+export const premiumPlanName = 'Secret'
+export const enterprisePlanName = 'Top Secret'
+
 // Form defaults
 export const emailPlaceholder = 'example@gmail.com'
 export const neogramDestructionTimeoutDefault = 3
