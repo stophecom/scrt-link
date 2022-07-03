@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { styled } from '@mui/system'
 import { Box, Alert } from '@mui/material'
 import { useTranslation } from 'next-i18next'
@@ -19,7 +19,7 @@ const StyledPage = styled(Page)(({ theme }) => ({
 }))
 
 type ErrorProps = {
-  error: string
+  error: ReactNode
 }
 export const Error: React.FunctionComponent<ErrorProps> = ({ error }) => {
   return (

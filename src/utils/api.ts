@@ -45,7 +45,11 @@ export const useCustomer = () => {
   const { data, mutate, error } = useSWR<CustomerFields>(`${baseUrl}/api/me`)
 
   return {
-    data,
+    customer: data,
+    role: data?.role,
+    isVisitor: !data?.userId, // If no customer is returned
+    isFree: data?.role === 'free',
+    isPremium: data?.role === 'premium',
     mutate,
     isLoading: !error && !data,
     error: error,
@@ -107,7 +111,7 @@ export const useStripeCustomer = (customerId?: string) => {
 }
 
 export const useSubscription = () => {
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
   const { stripeCustomer } = useStripeCustomer(customer?.stripe?.customerId)
 
   // We assume a customer only ever has one subscription

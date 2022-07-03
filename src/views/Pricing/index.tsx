@@ -26,7 +26,7 @@ const PlansWrapper = styled('div')`
 
 const Pricing = () => {
   const { t } = useTranslation()
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
 
   return (
     <Page

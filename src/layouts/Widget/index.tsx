@@ -41,7 +41,7 @@ export const Container = styled('main')`
 
 type State = 'default' | 'signin' | 'signup'
 const Layout: React.FC = ({ children }) => {
-  const { data: customer, isLoading } = useCustomer()
+  const { customer, isLoading } = useCustomer()
   const { data: session } = useSession()
   const [state, setState] = useState<State>('default')
   const { t, i18n } = useTranslation()

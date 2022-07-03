@@ -195,7 +195,7 @@ const GridBlock: React.FC<MenuBlockProps> = ({ children }) => {
 const Footer: React.FC = () => {
   const { t } = useTranslation()
   const plausible = usePlausible()
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
 
   const [neogramPreview, setNeogramPreview] = useState(false)
 

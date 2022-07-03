@@ -69,7 +69,7 @@ const PlanSelection: React.FunctionComponent = () => {
   const [showYearlyPrice, setShowYearlyPrices] = React.useState(true)
   const [currency, setCurrency] = React.useState<Currency>('USD')
 
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
   const { plans, isLoading, error } = usePlans(currency)
   const { stripeCustomer, triggerFetchStripeCustomer } = useStripeCustomer(
     customer?.stripe?.customerId,

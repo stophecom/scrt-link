@@ -23,7 +23,7 @@ import { MarkdownRaw } from '@/components/Markdown'
 
 export const DestructionMessage = () => {
   const { t } = useTranslation()
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
 
   return (
     <BaseTextField
@@ -88,7 +88,7 @@ const PrivacyNotice = () => (
 
 export const FormCustomer = () => {
   const { t } = useTranslation()
-  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
+  const { customer, mutate: triggerFetchCustomer } = useCustomer()
 
   const [readReceiptMethod, setReadReceiptMethod] = useState<ReadReceiptMethod>('none')
 
@@ -213,7 +213,7 @@ export const FormCustomer = () => {
 }
 
 export const FormCustomerName = () => {
-  const { data: customer, mutate: triggerFetchCustomer } = useCustomer()
+  const { customer, mutate: triggerFetchCustomer } = useCustomer()
   const { t } = useTranslation()
 
   return (

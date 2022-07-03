@@ -19,7 +19,7 @@ type OnboardingProps = {
 }
 const Onboarding: NextPage<OnboardingProps> = ({ session }) => {
   const { t } = useTranslation()
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
   const plausible = usePlausible()
 
   return (

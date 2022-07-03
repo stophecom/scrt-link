@@ -136,7 +136,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const [key, setKey] = useState<string>('')
   const [alias, setAlias] = useState<string>(generateAlias())
   const [file, setFile] = useState<File | null>(null)
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
 
   const isNeogramAllowed = secretType === 'neogram' && !customer?.role
 
@@ -384,6 +384,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                   <Box py={1}>
                     {secretType === 'file' && (
                       <DropZone
+                        isStandalone={isStandalone}
                         maxFileSize={getLimits(customer?.role || 'visitor').maxFileSize}
                         onChange={(file) => {
                           setFile(file)

@@ -97,7 +97,7 @@ type HeaderProps = {
   hideHeader?: boolean
 }
 const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
-  const { data: customer, isLoading } = useCustomer()
+  const { customer, isLoading } = useCustomer()
   const { data: session } = useSession()
   const { t } = useTranslation()
 

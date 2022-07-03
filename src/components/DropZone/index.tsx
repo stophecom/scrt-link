@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { styled } from '@mui/system'
 import { useDropzone } from 'react-dropzone'
-import { Paper, Button, Chip, Backdrop, Typography } from '@mui/material'
+import { Box, Paper, Button, Chip, Backdrop, Typography } from '@mui/material'
 import { CloudUpload, Delete } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
 
+import { LimitReachedNotice } from '@/components/UpgradeNotice'
 import { Error } from '@/components/Error'
 import { MB } from '@/constants'
 import usePrettyBytes from '@/hooks/usePrettyBytes'
@@ -59,12 +60,13 @@ const Root = styled('div')(({ theme }) => ({
 interface DropZoneProps {
   onChange(file: File | null): void
   maxFileSize?: number
+  isStandalone?: boolean
 }
-const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) => {
+const DropZone: React.FC<DropZoneProps> = ({ isStandalone, onChange, maxFileSize = 10 * MB }) => {
   const { t } = useTranslation('common')
   const prettyBytes = usePrettyBytes()
 
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<ReactNode>(null)
   const [file, setFile] = useState<File | null>(null)
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -101,10 +103,15 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) 
 
     if (file.size > maxFileSize) {
       setError(
-        t('components.DropZone.error.fileToLarge', {
-          defaultValue: 'File too large. Maximum file size is {{max}}.',
-          max: prettyBytes(maxFileSize),
-        }),
+        <>
+          <Box>
+            {t('components.DropZone.error.fileToLarge', {
+              defaultValue: 'File too large. Maximum file size is {{max}}.',
+              max: prettyBytes(maxFileSize),
+            })}
+          </Box>
+          <LimitReachedNotice openLinksInNewTab={isStandalone} />
+        </>,
       )
       return
     }
@@ -170,7 +177,11 @@ const DropZone: React.FC<DropZoneProps> = ({ onChange, maxFileSize = 10 * MB }) 
           </>
         )}
       </Paper>
-      {error && <Error error={error} />}
+      {error && (
+        <Box mt={1}>
+          <Error error={error} />
+        </Box>
+      )}
     </Root>
   )
 }

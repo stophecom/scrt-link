@@ -124,7 +124,7 @@ export const HomeView: CustomPage = () => {
   })
 
   const { t, i18n } = useTranslation('common')
-  const { data: customer, isLoading } = useCustomer()
+  const { customer, isLoading } = useCustomer()
 
   const { data, error } = state
 
@@ -353,7 +353,7 @@ interface WidgetProps {
 export const Widget: CustomPage<WidgetProps> = ({ limitedToSecretType }) => {
   const { t } = useTranslation('common')
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
 
   const { data, error } = state
 

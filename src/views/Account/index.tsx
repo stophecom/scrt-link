@@ -99,7 +99,7 @@ type AccountProps = {
 const Account: NextPage<AccountProps> = ({ session }) => {
   const { t, i18n } = useTranslation()
   const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu(t)[0].key)
-  const { data: customer } = useCustomer()
+  const { customer } = useCustomer()
   const { hasActiveSubscription } = useSubscription()
 
   const handleMenuChange = (_event: unknown, newValue: MenuItem['key']) => {
