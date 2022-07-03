@@ -349,21 +349,39 @@ const AliasView: CustomPage = () => {
                   <Box px={4} pt={3} pb={2}>
                     <Box mb={2}>
                       <Typography variant="body1">
-                        <strong>{t('common:views.Alias.file.name', 'Name')}:</strong> {name}
-                        <br />
-                        <strong>{t('common:views.Alias.file.type', 'Type')}:</strong> {fileType}
-                        <br />
-                        <strong>{t('common:views.Alias.file.size', 'Size')}:</strong>{' '}
-                        {prettyBytes(size)}
-                        <br />
+                        <Box display={'flex'}>
+                          <Typography mr={1} fontWeight={'bold'}>
+                            {t('common:views.Alias.file.name', 'Name')}:
+                          </Typography>
+                          <Typography noWrap mr={2}>
+                            {name}
+                          </Typography>
+                        </Box>
+                        <Box display={'flex'}>
+                          <Typography mr={1} fontWeight={'bold'}>
+                            {t('common:views.Alias.file.type', 'Type')}:
+                          </Typography>
+                          <Typography noWrap mr={2}>
+                            {fileType}
+                          </Typography>
+                        </Box>
+                        <Box display={'flex'}>
+                          <Typography mr={1} fontWeight={'bold'}>
+                            {t('common:views.Alias.file.size', 'Size')}:
+                          </Typography>
+                          <Typography noWrap mr={2}>
+                            {prettyBytes(size)}
+                          </Typography>
+                        </Box>
                         {message && (
-                          <>
-                            <br />
-                            <strong>
-                              {t('common:views.Alias.file.optionalMessage', 'Message')}:{' '}
-                            </strong>
-                            <em>{message}</em>
-                          </>
+                          <Box display={'flex'}>
+                            <Typography mr={1} fontWeight={'bold'}>
+                              {t('common:views.Alias.file.optionalMessage', 'Message')}:
+                            </Typography>
+                            <Typography fontStyle={'italic'} mr={2}>
+                              {message}
+                            </Typography>
+                          </Box>
                         )}
                       </Typography>
                     </Box>
