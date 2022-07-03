@@ -149,6 +149,7 @@ const DropZone: React.FC<DropZoneProps> = ({ isStandalone, onChange, maxFileSize
               id="file-input"
               type="file"
               onChange={(e) => {
+                setFile(null)
                 if (e.target.files) {
                   handleFilesInput(e.target.files)
                 }
