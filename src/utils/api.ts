@@ -120,7 +120,6 @@ export const useSubscription = () => {
   const { data, mutate, error } = useSWR<Stripe.Customer>(
     () => `${baseUrl}/api/subscriptions/products/${subscription?.items.data[0].price.product}`,
   )
-  console.log({ data, error })
 
   return {
     subscription,

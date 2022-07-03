@@ -109,7 +109,6 @@ const PlanSelection: React.FunctionComponent = () => {
     }
   })
 
-  console.log(plans)
   const enterpriseUsps = [
     {
       heading: t('common:components.PlanSelection.plans.previousPlanBenefits', {
