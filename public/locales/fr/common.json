@@ -41,7 +41,8 @@
     "signUpFree": "S'inscrire gratuitement",
     "takeMeHome": "Ramenez-moi à la maison",
     "tryAgain": "Réessayer",
-    "tryFree": "Essayer gratuitement"
+    "tryFree": "Essayer gratuitement",
+    "viewPlans": "Voir les plans"
   },
   "components": {
     "BasePasswordField": {
@@ -110,9 +111,12 @@
       "amountBilledPerMonth": "facturé {{amount}} par mois",
       "amountBilledPerYear": "facturé {{amount}} par an",
       "cancellationNotice": "Ce plan a été annulé et sera rétrogradé au plan gratuit le {{cancellationDate}}.",
+      "enterprise": {
+        "subtitle": "Pour les visionnaires"
+      },
       "free": {
         "price": "Gratuit pour toujours",
-        "subtitle": "Sans engagement de votre part."
+        "subtitle": "Pour Débutants"
       },
       "freeTrialInfo": "Essai gratuit de {{trialPeriod}} jours",
       "interval": {
@@ -122,6 +126,14 @@
       },
       "loading": "Plans de chargement",
       "plans": {
+        "enterprise": {
+          "usps": {
+            "support": {
+              "body": "Rejoignez un cercle de personnes partageant les mêmes idées qui font du web un meilleur endroit. Avec votre contribution, vous nous aidez à devenir durables.",
+              "heading": "Vous faites partie de la société {{enterprisePlanName}}."
+            }
+          }
+        },
         "free": {
           "usps": {
             "0": {
@@ -148,9 +160,6 @@
         },
         "premium": {
           "usps": {
-            "0": {
-              "heading": "Tout ce qui est dans Free, plus :"
-            },
             "1": {
               "body": "Tu peu écrire des messages secrets avec jusqu'à {{character Limit}} caractères. Assez de mots pour la lettre d'amour secrète parfaite, la confession ou la divulgation.",
               "heading": "Limite de caractères de {{characterLimit}} "
@@ -176,19 +185,15 @@
               "heading": "Fichiers {{uploadLimit}} "
             }
           }
-        }
+        },
+        "previousPlanBenefits": "Tout ce qui est dans {{plan}}"
       },
-      "planSwitchOrCancelNotice": "Vous pouvez changer de cycle de facturation ou annuler l'abonnement à tout moment.",
       "premium": {
-        "subtitle": "Une aubaine."
+        "subtitle": "Pour la Majorité"
       },
-      "recurringPriceInfo": "Vous êtes facturé {{price}} toutes les {{interval}}.",
       "subscriptionActiveSuccessMessage": "Mission accomplie ! Votre abonnement est actif.",
       "subscriptionCancellationSuccessMessage": "Votre abonnement a été annulé avec succès ! Votre forfait sera automatiquement rétrogradé vers le forfait gratuit le {{cancellationDate}}. Si vous changez d'avis d'ici là, n'hésitez pas à réactiver à tout moment.",
-      "subscriptionChangeSuccessMessage": "Vous avez modifié votre abonnement avec succès !",
-      "switchToMonthlyBilling": "Passer à la facturation mensuelle",
-      "switchToYearlyBilling": "Passer à une facturation annuelle",
-      "trialEndNotice": "L'essai se termine le {{trialEndDate}}."
+      "subscriptionChangeSuccessMessage": "Vous avez modifié votre abonnement avec succès !"
     },
     "ShareSecretResult": {
       "emailService": {
@@ -215,6 +220,10 @@
       "encryption": "Cryptée de bout en bout",
       "noTrace": "Sans trace",
       "privacy": "Vie privée suisse"
+    },
+    "UpgradeLimits": {
+      "default": "Vous en voulez plus ? <2>Ouvrez un compte gratuit</2> pour augmenter vos limites.",
+      "free": "Besoin de plus ? Voir <2>plans premium</2> pour plus d'informations."
     },
     "UpgradeNotice": {
       "free": "Obtenez un compte <1>gratuit pour activer cette fonctionnalité.",
@@ -301,6 +310,10 @@
     "payment-provider": {
       "body": "Nous travaillons avec {{paymentProcessor}} comme fournisseur de paiement. Nous ne stockons aucune information relative au paiement.",
       "heading": "Qui est le prestataire de paiement ?"
+    },
+    "promo-codes": {
+      "body": "Les codes promotionnels peuvent être appliqués sur la page de paiement de Stripe. Ajoutez votre code promo personnel et cliquez sur \"Appliquer\". Vous devriez ensuite voir un prix réduit immédiatement.",
+      "heading": "Comment utiliser les codes promotionnels ?"
     },
     "read-receipts-info": {
       "body": "Pour chaque secret, nous générons un ID secret (une chaîne aléatoire) qui est la seule référence au message original. Lorsque le destinataire ouvre le lien secret, nous vous en informons par la méthode choisie. Dans la notification, nous n'indiquons que l'ID secret - veillez donc à le conserver ou à vous en souvenir. Il va sans dire que les informations de contact (courriel ou numéro de téléphone) ne sont **jamais exposées au destinataire**.\n\n**Courriel** : Vous recevrez un courriel de *{{email}}*.\n\n**SMS** : Vous recevrez une notification par SMS de *{{twilioSenderPhoneNumber}}*.",
@@ -549,7 +562,9 @@
       },
       "settingsDisclaimer": "Voici les paramètres par défaut. Vous pouvez écraser chaque paramètre pour chaque secret que vous créez.",
       "signedInAs": "Vous êtes connecté en tant que {{email}}",
-      "subscriptionInfo": "Vous êtes actuellement sur le plan <1>{{customerRole}}.",
+      "subscription": {
+        "info": "Vous êtes actuellement sur le plan **{{ productName }}**."
+      },
       "subtitle": "Bonjour {{name}}, bienvenue !",
       "tabsMenu": {
         "label": "Options du compte"
@@ -666,7 +681,7 @@
         "accept": "Accepter la mission",
         "skip": "Peut-être plus tard."
       },
-      "intro": "Notre mission est de permettre à chacun de partager des informations sensibles d'une manière **vraiment privée, sécurisée et anonyme** - ce qui est vital dans une société libre. Nous gérons ce projet comme une passion, alimentée par l'idéalisme plutôt que par les profits. Cependant, pour que les fonctionnalités de base restent gratuites, nous dépendons d'un petit nombre de personnes extraordinaires comme vous.  \n\nVotre mission, si vous l'acceptez, est d'en apprendre davantage sur nos plan top secret qui nous aident à maintenir ce projet opérationnel. Bonne chance !",
+      "intro": "Notre mission est de permettre à chacun de partager des informations sensibles d'une manière **vraiment privée, sécurisée et anonyme** - ce qui est vital dans une société libre. Nous gérons ce projet comme une passion, alimentée par l'idéalisme plutôt que par les profits. Cependant, pour que les fonctionnalités de base restent gratuites, nous dépendons d'un petit nombre de personnes extraordinaires comme vous.  \n\n**Votre mission, si vous l'acceptez**, est d'en apprendre davantage sur nos plans secret qui nous aident à maintenir ce projet opérationnel. Bonne chance !",
       "subtitle": "Bonjour {{name}}, bienvenue à bord !",
       "title": "Mission Briefing"
     },
@@ -674,6 +689,9 @@
       "Canceled": {
         "error": "Soit vous avez annulé le processus de paiement, soit quelque chose s'est mal passé en cours de route. Désolé pour ça. N'hésitez pas à réessayer.",
         "title": "Paiement annulé"
+      },
+      "FAQ": {
+        "subtitle": "Questions fréquemment posées sur les plans et les prix."
       },
       "subtitle": "Des plans simples, des prix équitables.",
       "title": "Tarification"

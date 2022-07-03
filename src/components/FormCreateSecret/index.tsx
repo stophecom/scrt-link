@@ -436,7 +436,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           />
                           {isValid && <Counter messageLength={values?.message?.length || 0} />}
                         </Box>
-                        {isNeogramDisabled && (
+                        {secretType === 'neogram' && isNeogramDisabled && (
                           <Box pt={1}>
                             <UpgradeNotice requiredRole="free" openLinksInNewTab={isStandalone} />
                           </Box>

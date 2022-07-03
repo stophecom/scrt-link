@@ -41,7 +41,8 @@
     "signUpFree": "Sign up free",
     "takeMeHome": "Take me home",
     "tryAgain": "Try again",
-    "tryFree": "Try it free"
+    "tryFree": "Try it free",
+    "viewPlans": "View plans"
   },
   "components": {
     "BasePasswordField": {
@@ -110,9 +111,12 @@
       "amountBilledPerMonth": "billed {{amount}} a month",
       "amountBilledPerYear": "billed {{amount}} annually",
       "cancellationNotice": "This plan has been canceled and will get downgraded to the free plan on {{cancellationDate}}.",
+      "enterprise": {
+        "subtitle": "For Visionaries"
+      },
       "free": {
         "price": "Free forever",
-        "subtitle": "No strings attached."
+        "subtitle": "For starters"
       },
       "freeTrialInfo": "{{trialPeriod}} days free trial",
       "interval": {
@@ -122,6 +126,14 @@
       },
       "loading": "Loading plans",
       "plans": {
+        "enterprise": {
+          "usps": {
+            "support": {
+              "body": "Join a circle of like-minded people that make the web a better place. With your contribution you help us become sustainable.",
+              "heading": "You become part of the {{enterprisePlanName}} society."
+            }
+          }
+        },
         "free": {
           "usps": {
             "0": {
@@ -148,9 +160,6 @@
         },
         "premium": {
           "usps": {
-            "0": {
-              "heading": "Everything in Free, plus:"
-            },
             "1": {
               "body": "You can write secret messages with up to {{characterLimit}} characters. Enough words for the perfect secret love letter, confession or disclosure.",
               "heading": "{{characterLimit}} character limit"
@@ -176,19 +185,15 @@
               "heading": "{{uploadLimit}} files"
             }
           }
-        }
+        },
+        "previousPlanBenefits": "Everything in {{plan}}"
       },
-      "planSwitchOrCancelNotice": "You can switch billing cycle or cancel the subscription anytime.",
       "premium": {
-        "subtitle": "Basically a steal."
+        "subtitle": "For most people"
       },
-      "recurringPriceInfo": "You are being billed {{price}} every {{interval}}.",
       "subscriptionActiveSuccessMessage": "Mission accomplished! Your subscription is active.",
       "subscriptionCancellationSuccessMessage": "Your subscription has been canceled successfully! Your plan will automatically be downgraded to the free plan on {{cancellationDate}}. If you change your mind until then, feel free to reactivate any time.",
-      "subscriptionChangeSuccessMessage": "You successfully changed your subscription!",
-      "switchToMonthlyBilling": "Switch to monthly billing",
-      "switchToYearlyBilling": "Switch to annual billing",
-      "trialEndNotice": "Trial ends on {{trialEndDate}}."
+      "subscriptionChangeSuccessMessage": "You successfully changed your subscription!"
     },
     "ShareSecretResult": {
       "emailService": {
@@ -215,6 +220,10 @@
       "encryption": "End-to-end encrypted",
       "noTrace": "Without a trace",
       "privacy": "Swiss privacy"
+    },
+    "UpgradeLimits": {
+      "default": "Need more? <2>Get a free account</2> to increase your limits.",
+      "free": "Need more? See <2>premium plans</2> for more info."
     },
     "UpgradeNotice": {
       "free": "Get a <1>free account</1> to enable this feature.",
@@ -301,6 +310,10 @@
     "payment-provider": {
       "body": "We work with {{paymentProcessor}} as our payment provider. We don't store any payment related information whatsoever.",
       "heading": "Who is the payment provider?"
+    },
+    "promo-codes": {
+      "body": "Promo codes can be applied on the Stripe checkout page. Add your personal promo code and hit \"Apply\". After that you should see a discounted price right away.",
+      "heading": "How can I use promo codes?"
     },
     "read-receipts-info": {
       "body": "For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.\n\n**Email**: You'll receive an email from *{{ email }}*.\n\n**SMS**: You'll receive an SMS notification from *{{ twilioSenderPhoneNumber }}*.",
@@ -549,7 +562,9 @@
       },
       "settingsDisclaimer": "The following are default settings. You can overwrite each setting for every secret you create.",
       "signedInAs": "You are signed in as {{email}}.",
-      "subscriptionInfo": "You are currently on the <1>{{customerRole}}</1> plan.",
+      "subscription": {
+        "info": "You are currently on the **{{ productName }}** plan."
+      },
       "subtitle": "Hi {{name}}, welcome back!",
       "tabsMenu": {
         "label": "Account options"
@@ -666,7 +681,7 @@
         "accept": "Accept mission",
         "skip": "Maybe later"
       },
-      "intro": "Our mission is to enable everybody to share sensitive information in a **truly private, secure, anonymous** way - something that is vital in a free society. We run this as a passion project, fueled by idealism rather than profits. **However**, to keep basic features free, we depend on a small number of extraordinary people.  \n\nYour mission, should you choose to accept it, is to learn more about our top secret plan that helps us keep this project up and running. Good Luck!",
+      "intro": "Our mission is to enable everybody to share sensitive information in a **truly private, secure, anonymous** way - something that is vital in a free society. We run this as a passion project, fueled by idealism rather than profits. **However**, to keep basic features free, we depend on a small number of extraordinary people.  \n\n**Your mission, should you choose to accept it**, is to learn more about our secret plans that help us keep this project up and running. Good Luck!",
       "subtitle": "Hi {{name}}, welcome aboard!",
       "title": "Mission Briefing"
     },
@@ -674,6 +689,9 @@
       "Canceled": {
         "error": "You either canceled the payment process or something went wrong along the way. Sorry about that. Feel free to try again.",
         "title": "Payment canceled"
+      },
+      "FAQ": {
+        "subtitle": "Frequently asked questions about plans and pricing."
       },
       "subtitle": "Simple plans, fair pricing.",
       "title": "Pricing"

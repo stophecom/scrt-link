@@ -55,20 +55,20 @@ export const LimitReachedNotice: React.FunctionComponent<LimitReachedNoticeProps
 
   let message = (
     <Trans i18nKey="common:components.UpgradeLimits.default">
-      Need more?
+      Need more?{' '}
       <UpgradeLink openLinksInNewTab={openLinksInNewTab} href={'/account'}>
         Get a free account
-      </UpgradeLink>
+      </UpgradeLink>{' '}
       to increase your limits.
     </Trans>
   )
   if (isFree) {
     message = (
       <Trans i18nKey="common:components.UpgradeLimits.free">
-        Need more? See
+        Need more? See{' '}
         <UpgradeLink openLinksInNewTab={openLinksInNewTab} href={'/pricing'}>
           premium plans
-        </UpgradeLink>
+        </UpgradeLink>{' '}
         for more info.
       </Trans>
     )
