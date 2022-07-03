@@ -136,9 +136,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
   const [key, setKey] = useState<string>('')
   const [alias, setAlias] = useState<string>(generateAlias())
   const [file, setFile] = useState<File | null>(null)
-  const { customer } = useCustomer()
-
-  const isNeogramAllowed = secretType === 'neogram' && !customer?.role
+  const { customer, role } = useCustomer()
 
   const secretMap = secretTypesMap(t)
   const tabsMenu = Object.keys(secretMap).map((item) => {
@@ -317,7 +315,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     messageLength: number
   }
   const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
-    const charactersLeft = getLimits(customer?.role || 'visitor').maxMessageLength - messageLength
+    const charactersLeft = getLimits(role).maxMessageLength - messageLength
     return (
       <small style={{ position: 'absolute', bottom: 5, right: 10, opacity: 0.6 }}>
         {charactersLeft.toLocaleString()}
@@ -385,7 +383,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                     {secretType === 'file' && (
                       <DropZone
                         isStandalone={isStandalone}
-                        maxFileSize={getLimits(customer?.role || 'visitor').maxFileSize}
+                        maxFileSize={getLimits(role).maxFileSize}
                         onChange={(file) => {
                           setFile(file)
                           validateForm()

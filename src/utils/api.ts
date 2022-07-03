@@ -46,7 +46,7 @@ export const useCustomer = () => {
 
   return {
     customer: data,
-    role: data?.role,
+    role: data?.role || 'visitor',
     isVisitor: !data?.userId, // If no customer is returned
     isFree: data?.role === 'free',
     isPremium: data?.role === 'premium',
