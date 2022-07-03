@@ -371,7 +371,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
             touched,
             values,
           }) => {
-            const isNeogramDisabled = secretType === 'neogram' && !customer?.role
             return (
               <>
                 <Form
@@ -421,7 +420,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           <BaseTextField
                             name="message"
                             multiline
-                            disabled={isNeogramDisabled}
                             required
                             minRows={3}
                             maxRows={7}
@@ -436,98 +434,89 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           />
                           {isValid && <Counter messageLength={values?.message?.length || 0} />}
                         </Box>
-                        {secretType === 'neogram' && isNeogramDisabled && (
-                          <Box pt={1}>
-                            <UpgradeNotice requiredRole="free" openLinksInNewTab={isStandalone} />
-                          </Box>
-                        )}
                       </>
                     )}
                   </Box>
-                  {isNeogramDisabled || (
-                    <Collapse in={hasFormOptions}>
-                      <NoSsr>
-                        {['file'].includes(secretType) && (
-                          <>
-                            <BaseTextField
-                              name="message"
-                              multiline
-                              minRows={2}
-                              maxRows={3}
-                              label={getFormFieldConfigBySecretType(secretType).label}
-                              placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
-                              InputLabelProps={{
-                                shrink: undefined,
-                              }}
-                            />
-                          </>
-                        )}
-                        <Box py={1}>
-                          <BasePasswordField
-                            sx={{ marginBottom: 0, width: '100%' }}
-                            name="password"
-                          />
-                        </Box>
-                        <Box id="read-receipts" pl={1} pt={3} pb={6}>
-                          <BaseRadioGroupField
-                            options={readReceiptsOptions(t)}
-                            name="readReceiptMethod"
-                            label={t('common:FormField.readReceiptMethod.label', 'Read receipts')}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              setReadReceiptMethod(e.target.value as ReadReceiptMethod)
+
+                  <Collapse in={hasFormOptions}>
+                    <NoSsr>
+                      {['file'].includes(secretType) && (
+                        <>
+                          <BaseTextField
+                            name="message"
+                            multiline
+                            minRows={2}
+                            maxRows={3}
+                            label={getFormFieldConfigBySecretType(secretType).label}
+                            placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
+                            InputLabelProps={{
+                              shrink: undefined,
                             }}
                           />
-                          {values?.readReceiptMethod === 'email' &&
-                            (['free', 'premium'].includes(customer?.role || '') ? (
-                              <Box pt={2}>
-                                <BaseTextField
-                                  name="receiptEmail"
-                                  label={t('common:FormField.receiptEmail.label', 'Email')}
-                                  required
-                                  placeholder={emailPlaceholder}
-                                />
-                              </Box>
-                            ) : (
-                              <Box pt={1}>
-                                <UpgradeNotice
-                                  requiredRole="free"
-                                  openLinksInNewTab={isStandalone}
-                                />
-                              </Box>
-                            ))}
-
-                          {values?.readReceiptMethod === 'sms' &&
-                            (customer?.role === 'premium' ? (
-                              <Box pt={2}>
-                                <BasePhoneField
-                                  name="receiptPhoneNumber"
-                                  required
-                                  label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
-                                />
-                              </Box>
-                            ) : (
-                              <Box pt={1}>
-                                <UpgradeNotice
-                                  requiredRole="premium"
-                                  openLinksInNewTab={isStandalone}
-                                />
-                              </Box>
-                            ))}
-                        </Box>
-
-                        {secretType === 'neogram' && (
-                          <>
-                            <Box py={1}>
-                              <DestructionMessage />
+                        </>
+                      )}
+                      <Box py={1}>
+                        <BasePasswordField
+                          sx={{ marginBottom: 0, width: '100%' }}
+                          name="password"
+                        />
+                      </Box>
+                      <Box id="read-receipts" pl={1} pt={3} pb={6}>
+                        <BaseRadioGroupField
+                          options={readReceiptsOptions(t)}
+                          name="readReceiptMethod"
+                          label={t('common:FormField.readReceiptMethod.label', 'Read receipts')}
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setReadReceiptMethod(e.target.value as ReadReceiptMethod)
+                          }}
+                        />
+                        {values?.readReceiptMethod === 'email' &&
+                          (['free', 'premium'].includes(customer?.role || '') ? (
+                            <Box pt={2}>
+                              <BaseTextField
+                                name="receiptEmail"
+                                label={t('common:FormField.receiptEmail.label', 'Email')}
+                                required
+                                placeholder={emailPlaceholder}
+                              />
                             </Box>
-                            <Box py={1}>
-                              <DestructionTimeout />
+                          ) : (
+                            <Box pt={1}>
+                              <UpgradeNotice requiredRole="free" openLinksInNewTab={isStandalone} />
                             </Box>
-                          </>
-                        )}
-                      </NoSsr>
-                    </Collapse>
-                  )}
+                          ))}
+
+                        {values?.readReceiptMethod === 'sms' &&
+                          (customer?.role === 'premium' ? (
+                            <Box pt={2}>
+                              <BasePhoneField
+                                name="receiptPhoneNumber"
+                                required
+                                label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
+                              />
+                            </Box>
+                          ) : (
+                            <Box pt={1}>
+                              <UpgradeNotice
+                                requiredRole="premium"
+                                openLinksInNewTab={isStandalone}
+                              />
+                            </Box>
+                          ))}
+                      </Box>
+
+                      {secretType === 'neogram' && (
+                        <>
+                          <Box py={1}>
+                            <DestructionMessage />
+                          </Box>
+                          <Box py={1}>
+                            <DestructionTimeout />
+                          </Box>
+                        </>
+                      )}
+                    </NoSsr>
+                  </Collapse>
 
                   <FormFooter display="flex">
                     <Box
@@ -538,25 +527,24 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                       py={{ xs: 1, sm: 0 }}
                       mb={{ xs: 1, sm: 0 }}
                     >
-                      {isNeogramDisabled || (
-                        <BaseButton
-                          id="more-options"
-                          size="small"
-                          color="secondary"
-                          startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
-                          onClick={() => {
-                            // Workaround to validate field initially onChange, not onBlur
-                            if (!touched.readReceiptMethod) {
-                              setFieldTouched('readReceiptMethod')
-                            }
-                            setHasFormOptions(!hasFormOptions)
-                          }}
-                        >
-                          {hasFormOptions
-                            ? t('common:button.lessOptions', 'Less options')
-                            : t('common:button.moreOptions', 'More options')}
-                        </BaseButton>
-                      )}
+                      <BaseButton
+                        id="more-options"
+                        size="small"
+                        color="secondary"
+                        startIcon={hasFormOptions ? <ExpandLess /> : <ExpandMore />}
+                        onClick={() => {
+                          // Workaround to validate field initially onChange, not onBlur
+                          if (!touched.readReceiptMethod) {
+                            setFieldTouched('readReceiptMethod')
+                          }
+                          setHasFormOptions(!hasFormOptions)
+                        }}
+                      >
+                        {hasFormOptions
+                          ? t('common:button.lessOptions', 'Less options')
+                          : t('common:button.moreOptions', 'More options')}
+                      </BaseButton>
+
                       {secretType === 'neogram' && (
                         <Box ml="auto">
                           <BaseButton
@@ -587,7 +575,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                         variant="contained"
                         size="large"
                         loading={isSubmitting}
-                        disabled={!isValid || isNeogramDisabled || (!file && secretType === 'file')}
+                        disabled={!isValid || (!file && secretType === 'file')}
                       >
                         {t('common:button.createSecretLink', 'Create secret link')}
                       </BaseButton>
