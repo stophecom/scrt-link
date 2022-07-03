@@ -368,9 +368,11 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
             validateForm,
             setFieldValue,
             setFieldTouched,
+            errors,
             touched,
             values,
           }) => {
+            console.log(errors)
             return (
               <>
                 <Form
@@ -441,7 +443,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                   <Collapse in={hasFormOptions}>
                     <NoSsr>
                       {['file'].includes(secretType) && (
-                        <>
+                        <Box py={2}>
                           <BaseTextField
                             name="message"
                             multiline
@@ -453,7 +455,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                               shrink: undefined,
                             }}
                           />
-                        </>
+                        </Box>
                       )}
                       <Box py={1}>
                         <BasePasswordField
