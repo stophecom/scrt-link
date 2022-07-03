@@ -36,10 +36,6 @@ const Root = styled('div')`
   flex-grow: 1;
 `
 
-const CTAInfo = styled(Typography)`
-  padding-top: 0.2em;
-`
-
 const AccordionHeading = styled('span')`
   font-size: 1.05rem;
   font-weight: bold;
@@ -108,10 +104,12 @@ const PlanSelection: React.FunctionComponent = () => {
   plans?.sort((a, b) => {
     if (a.name === premiumPlanName) {
       return -1
+    } else {
+      return 1
     }
-    return 0
   })
 
+  console.log(plans)
   const enterpriseUsps = [
     {
       heading: t('common:components.PlanSelection.plans.previousPlanBenefits', {
