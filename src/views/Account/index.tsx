@@ -7,6 +7,7 @@ import { project } from 'ramda'
 import { useTranslation, TFunction } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { styled } from '@mui/system'
+import { ArrowForward } from '@mui/icons-material'
 
 import Markdown from '@/components/Markdown'
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
@@ -99,7 +100,7 @@ const Account: NextPage<AccountProps> = ({ session }) => {
   const { t, i18n } = useTranslation()
   const [activeTab, setActiveTab] = useState<MenuItem['key']>(menu(t)[0].key)
   const { data: customer } = useCustomer()
-  const { productName, hasActiveSubscription } = useSubscription()
+  const { hasActiveSubscription } = useSubscription()
 
   const handleMenuChange = (_event: unknown, newValue: MenuItem['key']) => {
     setActiveTab(newValue)
@@ -130,6 +131,17 @@ const Account: NextPage<AccountProps> = ({ session }) => {
           {activeTab === 'subscription' && (
             <>
               <SubscriptionInfo />
+              <Box mt={2}>
+                <BaseButtonLink
+                  startIcon={<ArrowForward />}
+                  href="/pricing"
+                  variant="contained"
+                  size="large"
+                  color="primary"
+                >
+                  {t('common:button.viewPlans', `View plans`)}
+                </BaseButtonLink>
+              </Box>
             </>
           )}
 
