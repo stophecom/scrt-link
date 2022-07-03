@@ -118,7 +118,7 @@ export const limits = {
   },
   free: {
     maxMessageLength: 280,
-    maxFileSize: 1 * MB,
+    maxFileSize: 10 * MB,
   },
   premium: {
     maxMessageLength: 100000,
