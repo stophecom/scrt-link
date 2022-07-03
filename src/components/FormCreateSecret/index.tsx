@@ -266,6 +266,21 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
 
       const response = await createSecret(messageToStore, data, getBaseURL())
 
+      const characterCountReport = (characterCount: number) => {
+        let min = 0
+        let max = 0
+        const thresholds = [0, 10, 30, 70, 140, 280, 1000, 5000, 10000, 50000, 100000]
+        thresholds.forEach((element, index) => {
+          if (characterCount >= element) {
+            max = thresholds[++index]
+            min = element
+            return
+          }
+        })
+
+        return max ? `Between ${min} and ${max}` : `More than ${min}`
+      }
+
       if (response) {
         dispatch(
           doSuccess({
@@ -279,7 +294,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         plausible('SecretCreation', {
           props: {
             secretType: secretType,
-            messageLength: messageLength,
+            characterCount: characterCountReport(messageLength),
             withPassword: !!password,
           },
         })
@@ -372,7 +387,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
             touched,
             values,
           }) => {
-            console.log(errors)
             return (
               <>
                 <Form
