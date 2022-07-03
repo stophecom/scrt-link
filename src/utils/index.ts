@@ -17,6 +17,11 @@ export const abbrNum = (number: number, decPlaces: number) => {
   // 2 decimal places => 100, 3 => 1000, etc
   decPlaces = Math.pow(10, decPlaces)
 
+  // If number is below 1k, just return it.
+  if (number < 1000) {
+    return number
+  }
+
   // Enumerate number abbreviations
   const abbrev = ['k', 'm', 'b', 't']
   let abbrNum = ''
