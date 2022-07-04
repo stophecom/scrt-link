@@ -56,7 +56,7 @@ export const LimitReachedNotice: React.FunctionComponent<LimitReachedNoticeProps
   let message = (
     <Trans i18nKey="common:components.UpgradeLimits.default">
       Need more?{' '}
-      <UpgradeLink openLinksInNewTab={openLinksInNewTab} href={'/account'}>
+      <UpgradeLink openLinksInNewTab={openLinksInNewTab} href={'/signup'}>
         Get a free account
       </UpgradeLink>{' '}
       to increase your limits.
