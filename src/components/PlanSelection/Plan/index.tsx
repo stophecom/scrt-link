@@ -20,7 +20,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     alignItems: 'center',
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
-    border: '1px solid transparent',
+    borderTop: '3px solid transparent',
     height: '100%',
     flexDirection: 'column',
     textAlign: 'center',
