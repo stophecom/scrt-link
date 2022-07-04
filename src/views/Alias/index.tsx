@@ -25,6 +25,7 @@ import { sanitizeUrl } from '@/utils/index'
 import { SecretUrlFields } from '@/api/models/SecretUrl'
 import BasePasswordField from '@/components/BasePasswordField'
 import BaseButton from '@/components/BaseButton'
+import { Info } from '@/components/Info'
 import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 import { decryptFile, decryptString } from '@/utils/crypto'
@@ -250,7 +251,25 @@ const AliasView: CustomPage = () => {
       return (
         <Box mb={3}>
           <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
-            <Box px={4} py={4} display="flex">
+            <Box
+              px={4}
+              py={4}
+              display="flex"
+              flexDirection={{ xs: 'column', sm: 'row' }}
+              alignItems="center"
+            >
+              <Typography
+                variant={'body2'}
+                mb={{ xs: 2, sm: 0 }}
+                mr={{ xs: 0, sm: 2 }}
+                display={'flex'}
+              >
+                {t(
+                  'common:views.Alias.secretRevelationInfo',
+                  `Be aware! The following secret can only be revealed one time.`,
+                )}
+              </Typography>
+
               <BaseButton
                 fullWidth
                 type="submit"
