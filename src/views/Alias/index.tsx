@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import { styled } from '@mui/system'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -33,17 +33,12 @@ const PREFIX = 'AliasView'
 
 const classes = {
   break: `${PREFIX}-break`,
-  message: `${PREFIX}-message`,
 }
 
 const StyledSpinner = styled(Spinner)(({ theme }) => ({
   [`& .${classes.break}`]: {
     wordBreak: 'break-word',
     whiteSpace: 'pre-wrap',
-  },
-
-  [`& .${classes.message}`]: {
-    fontSize: '1.1rem',
   },
 }))
 
@@ -86,9 +81,10 @@ const AliasView: CustomPage = () => {
   ]
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [secret, setSecret] = useState({} as Partial<SecretState>)
+  const [isSecretRevealed, revealSecret] = useReducer(() => true, false)
+  const [secret, setSecret] = useState<Partial<SecretState>>({})
   const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
-  const [error, setError] = useState('' as Error['message'])
+  const [error, setError] = useState<Error['message']>('')
   const [title, _setTitle] = useState(titles[Math.floor(Math.random() * titles.length)])
 
   const {
@@ -115,26 +111,14 @@ const AliasView: CustomPage = () => {
 
   useEffect(() => {
     const fetchSecret = async () => {
-      if (message) {
+      if (message || !isSecretRevealed) {
         return
       }
 
       try {
-        // Old implementation
-        let { alias } = router.query
-        let decryptionKey
-        if (alias) {
-          if (alias === '🔥') {
-            throw new Error(t('common:error.secretBurned', 'Secret has been burned already.'))
-          }
-
-          decryptionKey = window.location.hash.substring(1)
-        } else {
-          // New version
-          const hashData = window.location.hash.substring(1).split('/')
-          alias = hashData[0]
-          decryptionKey = hashData[1]
-        }
+        const hashData = window.location.hash.substring(1).split('/')
+        const alias = hashData[0]
+        const decryptionKey = hashData[1]
 
         if (!alias || typeof alias !== 'string') {
           throw new Error(t('common:error.invalidAlias', 'Invalid alias.'))
@@ -173,7 +157,7 @@ const AliasView: CustomPage = () => {
     } else {
       fetchSecret()
     }
-  }, [])
+  }, [isSecretRevealed])
 
   // Additional actions after password
   useEffect(() => {
@@ -261,80 +245,107 @@ const AliasView: CustomPage = () => {
     )
   }
 
-  if (message) {
-    if (isEncryptedWithUserPassword) {
+  const Inner = () => {
+    if (!isSecretRevealed) {
       return (
-        <Page
-          title={t('common:views.Alias.passwordRequired', 'Password required')}
-          subtitle={t('common:views.Alias.enterPassword', 'Enter password to decrypt your secret:')}
-          noindex
-        >
-          <Formik<PasswordForm>
-            initialValues={initialValues}
-            validationSchema={passwordValidationSchema(t)}
-            validateOnMount
-            onSubmit={handlePasswordSubmit}
-          >
-            {({ isValid, isSubmitting, setFieldValue }) => {
-              return (
-                <>
-                  <Form noValidate>
-                    <Box mb={2}>
-                      <BasePasswordField required name="password" />
-                    </Box>
-                    <Box mb={1}>
-                      <BaseButton
-                        type="submit"
-                        color="primary"
-                        variant="contained"
-                        size="large"
-                        loading={isSubmitting}
-                        disabled={!isValid}
-                        onClick={() => {
-                          setFieldValue('message', message)
-                        }}
-                      >
-                        {t('common:button.decryptMessage', 'Decrypt Message')}
-                      </BaseButton>
-                    </Box>
-                  </Form>
-                </>
-              )
-            }}
-          </Formik>
-        </Page>
+        <Box mb={3}>
+          <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
+            <Box px={4} py={4} display="flex">
+              <BaseButton
+                fullWidth
+                type="submit"
+                color="primary"
+                variant="contained"
+                size="large"
+                onClick={revealSecret}
+              >
+                {t('common:button.revealSecret', 'Reveal Secret')}
+              </BaseButton>
+            </Box>
+          </Paper>
+        </Box>
       )
-    } else {
-      switch (secretType) {
-        case 'url': {
-          window.location.replace(sanitizeUrl(message))
-          return null
-        }
-        case 'neogram': {
-          return (
-            <Neogram
-              message={message}
-              open={true}
-              timeout={Number(neogramDestructionTimeout)}
-              destructionMessage={neogramDestructionMessage}
-              onFinished={() => {
-                setTimeout(() => router.push('/'), 100)
-              }}
-            />
-          )
-        }
-        case 'file': {
-          if (!file.size) {
+    }
+
+    if (message) {
+      if (isEncryptedWithUserPassword) {
+        return (
+          <Paper
+            elevation={3}
+            className={clsx(classes.break)}
+            variant="outlined"
+            sx={{ borderColor: (theme) => theme.palette.primary.main }}
+          >
+            <Box px={4} pt={4} pb={2}>
+              <Typography variant="h3" color="primary">
+                {t('common:views.Alias.passwordRequired', 'Password required')}
+              </Typography>
+              <Typography variant="subtitle2">
+                {t('common:views.Alias.enterPassword', 'Enter password to decrypt your secret:')}
+              </Typography>
+
+              <Formik<PasswordForm>
+                initialValues={initialValues}
+                validationSchema={passwordValidationSchema(t)}
+                validateOnMount
+                onSubmit={handlePasswordSubmit}
+              >
+                {({ isValid, isSubmitting, setFieldValue }) => {
+                  return (
+                    <>
+                      <Form noValidate>
+                        <Box mb={2}>
+                          <BasePasswordField required name="password" />
+                        </Box>
+                        <Box mb={1}>
+                          <BaseButton
+                            type="submit"
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            loading={isSubmitting}
+                            disabled={!isValid}
+                            onClick={() => {
+                              setFieldValue('message', message)
+                            }}
+                          >
+                            {t('common:button.decryptMessage', 'Decrypt Message')}
+                          </BaseButton>
+                        </Box>
+                      </Form>
+                    </>
+                  )
+                }}
+              </Formik>
+            </Box>
+          </Paper>
+        )
+      } else {
+        switch (secretType) {
+          case 'url': {
+            window.location.replace(sanitizeUrl(message))
             return null
           }
-          const { name, fileType, size, url, message } = file
+          case 'neogram': {
+            return (
+              <Neogram
+                message={message}
+                open={true}
+                timeout={Number(neogramDestructionTimeout)}
+                destructionMessage={neogramDestructionMessage}
+                onFinished={() => {
+                  setTimeout(() => router.push('/'), 100)
+                }}
+              />
+            )
+          }
+          case 'file': {
+            if (!file.size) {
+              return null
+            }
+            const { name, fileType, size, url, message } = file
 
-          return (
-            <Page
-              title={title}
-              subtitle={t('common:views.Alias.file.subtitle', 'You received a secret file:')}
-              noindex
-            >
+            return (
               <Box mb={3}>
                 <Box mb={1}>
                   <Alert severity="info">
@@ -345,9 +356,12 @@ const AliasView: CustomPage = () => {
                   </Alert>
                 </Box>
 
-                <Paper elevation={3} className={clsx(classes.break, classes.message)}>
-                  <Box px={4} pt={3} pb={2}>
+                <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
+                  <Box px={4} pt={3} pb={3}>
                     <Box mb={2}>
+                      <Typography variant="subtitle2">
+                        {t('common:views.Alias.file.info', 'Secret file')}
+                      </Typography>
                       <Typography variant="body1">
                         <Box display={'flex'}>
                           <Typography mr={1} fontWeight={'bold'}>
@@ -405,23 +419,19 @@ const AliasView: CustomPage = () => {
                   <ReplyButton />
                 </Box>
               </Box>
-            </Page>
-          )
-        }
-        default: {
-          return (
-            <Page
-              title={title}
-              subtitle={t('common:views.Alias.subtitle', 'You received a secret:')}
-              noindex
-            >
+            )
+          }
+          default: {
+            return (
               <Box mb={3}>
-                <Paper elevation={3} className={clsx(classes.break, classes.message)}>
+                <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
                   <Box px={4} pt={4} pb={2}>
-                    <span id="secret-decrypted">{message}</span>
+                    <Box id="secret-decrypted" sx={{ fontSize: '1.2rem' }}>
+                      {message}
+                    </Box>
                     <Box pt={2} display="flex" justifyContent="flex-end">
                       <Box mr={2}>
-                        <BaseButtonLink href="/" variant="text" color="primary" size="small">
+                        <BaseButtonLink href="/" variant="text" color="primary">
                           {t('common:button.destroySecret', 'Destroy secret')}
                         </BaseButtonLink>
                       </Box>
@@ -438,7 +448,6 @@ const AliasView: CustomPage = () => {
                           startIcon={<FileCopyOutlinedIcon />}
                           variant="contained"
                           color="primary"
-                          size="small"
                         >
                           {hasCopied
                             ? t('common:button.copied', 'Copied')
@@ -453,14 +462,23 @@ const AliasView: CustomPage = () => {
                   <ReplyButton />
                 </Box>
               </Box>
-            </Page>
-          )
+            )
+          }
         }
       }
     }
+    return <StyledSpinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />
   }
 
-  return <StyledSpinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />
+  return (
+    <Page
+      title={title}
+      subtitle={t('common:views.Alias.subtitle', 'You received a secret')}
+      noindex
+    >
+      <Inner />
+    </Page>
+  )
 }
 
 AliasView.layout = LayoutMinimal
