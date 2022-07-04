@@ -13,7 +13,6 @@ import { createSecret, generateAlias } from 'scrt-link-core'
 
 import DropZone from '@/components/DropZone'
 import { getLimits } from '@/utils'
-import { Link } from '@/components/Link'
 import BaseTextField from '@/components/BaseTextField'
 import BasePasswordField from '@/components/BasePasswordField'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
@@ -25,7 +24,7 @@ import {
 import TabsMenu from '@/components/TabsMenu'
 import BaseRadioGroupField from '@/components/BaseRadioGroupField'
 import BasePhoneField from '@/components/BasePhoneField'
-import UpgradeNotice from '@/components/UpgradeNotice'
+import UpgradeNotice, { LimitReachedNotice } from '@/components/UpgradeNotice'
 
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
@@ -38,6 +37,7 @@ import { getBaseURL } from '@/utils'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { Action, doRequest, doSuccess, doError } from '@/views/Home'
 import { encryptFile, encryptString, generateEncryptionKeyString } from '@/utils/crypto'
+import { Info } from '@/components/Info'
 
 const FormFooter = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
@@ -326,27 +326,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     return secretMap[secretType]
   }
 
-  type CounterProps = {
-    messageLength: number
-  }
-  const Counter: React.FunctionComponent<CounterProps> = ({ messageLength = 0 }) => {
-    const charactersLeft = getLimits(role).maxMessageLength - messageLength
-    return (
-      <small style={{ position: 'absolute', bottom: 5, right: 10, opacity: 0.6 }}>
-        {charactersLeft.toLocaleString()}
-        {charactersLeft < 0 && (
-          <>
-            &nbsp;|&nbsp; {t('common:components.FormCreateSecret.needMore', 'Need more?')}
-            &nbsp;
-            <Link href="/signup">
-              {t('common:components.FormCreateSecret.getFreeAccount', 'Get free account')}
-            </Link>
-          </>
-        )}
-      </small>
-    )
-  }
-
   return (
     <>
       {!limitedToSecretType && (
@@ -387,6 +366,8 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
             touched,
             values,
           }) => {
+            const charactersLeft = getLimits(role).maxMessageLength - (values?.message?.length || 0)
+
             return (
               <>
                 <Form
@@ -448,8 +429,22 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                             aria-label={getFormFieldConfigBySecretType(secretType).label}
                             placeholder={getFormFieldConfigBySecretType(secretType).placeholder}
                           />
-                          {isValid && <Counter messageLength={values?.message?.length || 0} />}
+                          <Box
+                            sx={{
+                              position: 'absolute',
+                              bottom: !isValid && errors?.message && touched.message ? 28 : 5,
+                              right: 10,
+                              opacity: 0.6,
+                            }}
+                          >
+                            <small>{charactersLeft.toLocaleString()}</small>
+                          </Box>
                         </Box>
+                        {charactersLeft < 0 && (
+                          <Box mt={1}>
+                            <Info info={<LimitReachedNotice openLinksInNewTab={isStandalone} />} />
+                          </Box>
+                        )}
                       </>
                     )}
                   </Box>
