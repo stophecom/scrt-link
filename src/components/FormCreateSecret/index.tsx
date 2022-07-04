@@ -271,14 +271,15 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         let max = 0
         const thresholds = [0, 10, 30, 70, 140, 280, 1000, 5000, 10000, 50000, 100000]
         thresholds.forEach((element, index) => {
-          if (characterCount >= element) {
+          if (characterCount > element) {
             max = thresholds[++index]
-            min = element
+            min = ++element
             return
           }
         })
 
-        return max ? `Between ${min} and ${max}` : `More than ${min}`
+        const summary = max ? `Between ${min} and ${max}` : `More than ${min}`
+        return summary
       }
 
       if (response) {
@@ -294,7 +295,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         plausible('SecretCreation', {
           props: {
             secretType: secretType,
-            characterCount: characterCountReport(messageLength),
+            characterCount: secretType !== 'file' && characterCountReport(messageLength),
             withPassword: !!password,
           },
         })
