@@ -493,7 +493,14 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                             </Box>
                           ) : (
                             <Box pt={1}>
-                              <UpgradeNotice requiredRole="free" openLinksInNewTab={isStandalone} />
+                              <Info
+                                info={
+                                  <UpgradeNotice
+                                    requiredRole="free"
+                                    openLinksInNewTab={isStandalone}
+                                  />
+                                }
+                              />
                             </Box>
                           ))}
 
@@ -508,9 +515,13 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                             </Box>
                           ) : (
                             <Box pt={1}>
-                              <UpgradeNotice
-                                requiredRole="premium"
-                                openLinksInNewTab={isStandalone}
+                              <Info
+                                info={
+                                  <UpgradeNotice
+                                    requiredRole="premium"
+                                    openLinksInNewTab={isStandalone}
+                                  />
+                                }
                               />
                             </Box>
                           ))}
