@@ -30,6 +30,7 @@
     "reactivatePlan": "Réactiver le plan",
     "readMoreFaq": "En savoir plus sur la page FAQ",
     "replyWithSecret": "Répondre avec un secret",
+    "revealSecret": "Révéler le secret",
     "save": "Enregistrer",
     "selectPlan": "Select plan",
     "send": "Envoyer",
@@ -41,7 +42,6 @@
     "signUpFree": "S'inscrire gratuitement",
     "takeMeHome": "Ramenez-moi à la maison",
     "tryAgain": "Réessayer",
-    "tryFree": "Essayer gratuitement",
     "viewPlans": "Voir les plans"
   },
   "components": {
@@ -66,8 +66,6 @@
       "abstract": "**Scrt.link** vous permet de partager des informations sensibles en ligne. Cryptée de bout en bout. Une seule fois.\nGardez les informations confidentielles en dehors des e-mails, de Slack, de Teams, de Whatsapp ou de tout autre canal de communication. Un lien jetable à usage unique garantit que vos secrets ne peuvent être consultés qu'une seule fois, avant d'être détruits à jamais."
     },
     "FormCreateSecret": {
-      "getFreeAccount": "Obtenir un compte gratuit",
-      "needMore": "Vous en voulez plus ?",
       "secretSaved": "Secret sauvé !",
       "selectSecretType": "Sélectionnez le type de secret"
     },
@@ -118,7 +116,6 @@
         "price": "Gratuit pour toujours",
         "subtitle": "Pour Débutants"
       },
-      "freeTrialInfo": "Essai gratuit de {{trialPeriod}} jours",
       "interval": {
         "monthly": "Mensuel",
         "yearly": "Annuel",
@@ -383,10 +380,6 @@
       "body": "Une fois que vous avez souscrit à un plan premium, vous obtenez un accès instantané aux fonctionnalités correspondantes pendant toute la durée de l'abonnement. Vous serez facturé chaque mois ou chaque année, en fonction de l'intervalle de facturation sélectionné. Un abonnement peut être résilié à tout moment.",
       "heading": "Comment fonctionnent les abonnements ?"
     },
-    "trial": {
-      "body": "**Essayez avant d'acheter** : tu peu tester toutes les fonctionnalités premium pendant une **période d'essai d'un jour**. Une fois la période d'essai terminée, vous serez facturé selon le plan que vous avez choisi. Les annulations pendant la période d'essai entraînent la résiliation immédiate de l'abonnement - **aucune facturation** ne sera effectuée dans ce cas.",
-      "heading": "Comment fonctionnent les essais ?"
-    },
     "who": {
       "body": "Essentiellement tout le monde. Tout le monde devrait se soucier de la vie privée.  \n  Les moyens de transmettre des informations sensibles de manière anonyme sont particulièrement cruciaux pour les journalistes, les avocats, les politiciens, les lanceurs d'alerte, les personnes opprimées, etc.",
       "heading": "À qui s'adresse-t-il ?"
@@ -477,11 +470,6 @@
   "missingTranslationsNotice": "Cher client, malheureusement, certains contenus de cette page n'ont pas encore été traduits dans la langue de votre choix. Nous y travaillons. En attendant, si vous avez des questions ou si vous avez besoin d'aide supplémentaire, veuillez contacter l'assistance.",
   "password": "Mot de passe",
   "perMonth": "par mois",
-  "plans": {
-    "free": {
-      "title": "Gratuit"
-    }
-  },
   "secretType": {
     "file": {
       "label": "Message",
@@ -578,16 +566,17 @@
         "button": {
           "label": "Décrypter et télécharger"
         },
+        "info": "Fichier secret",
         "name": "Nom",
         "optionalMessage": "Message",
         "size": "Taille",
-        "subtitle": "Vous avez reçu un fichier secret :",
         "type": "Type",
         "warning": "Important! Nous n'avons absolument aucune connaissance du contenu du fichier. Assurez-vous de faire confiance à l'expéditeur!"
       },
       "loadingSecret": "Chargement du secret",
       "passwordRequired": "Mot de passe requis",
-      "subtitle": "Vous avez reçu un secret :",
+      "secretRevelationInfo": "Attention ! Le secret suivant ne peut être révélé qu'une seule fois.",
+      "subtitle": "Vous avez reçu un secret.",
       "title1": "Shhhh",
       "title2": "Knock Knock",
       "title3": "Bonjour",
@@ -598,8 +587,7 @@
       "title": "Contacter",
       "topic": {
         "general": "Questions d'ordre général",
-        "support": "Support",
-        "tech": "Tech"
+        "support": "Support"
       }
     },
     "CookiePolicy": {

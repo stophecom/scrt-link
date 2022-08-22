@@ -30,6 +30,7 @@
     "reactivatePlan": "Plan reaktivieren",
     "readMoreFaq": "Mehr auf FAQ Seite",
     "replyWithSecret": "Mit einem Geheimnis antworten",
+    "revealSecret": "Geheimnis lüften",
     "save": "Speichern",
     "selectPlan": "Plan auswählen",
     "send": "Absenden",
@@ -41,7 +42,6 @@
     "signUpFree": "Gratis registrieren",
     "takeMeHome": "Zur Startseite",
     "tryAgain": "Nochmals versuchen",
-    "tryFree": "Gratis testen",
     "viewPlans": "Pläne ansehen"
   },
   "components": {
@@ -66,8 +66,6 @@
       "abstract": "Dank **scrt.link** kannst du sensible Informationen online teilen. Ende-zu-Ende-verschlüsselt. Einmalig.\nHalte vertrauliche Informationen aus E-Mails, Slack, Teams, Whatsapp und anderen Kommunikationskanälen fern. Ein Einmal-Link garantiert, dass ein Geheimnis nur einmal gelesen werden kann - bevor es für immer zerstört wird."
     },
     "FormCreateSecret": {
-      "getFreeAccount": "Gratis Konto erstellen",
-      "needMore": "Brauchst du mehr?",
       "secretSaved": "Geheimnis gespeichert!",
       "selectSecretType": "Geheimnistyp auswählen"
     },
@@ -118,7 +116,6 @@
         "price": "Kostenlos",
         "subtitle": "Für Beginner"
       },
-      "freeTrialInfo": "{{trialPeriod}} Tage ausprobieren",
       "interval": {
         "monthly": "Monatlich",
         "yearly": "Jährlich",
@@ -383,10 +380,6 @@
       "body": "Wenn du einen Premium-Plan abonnierst, erhältst du sofortigen Zugriff auf die entsprechenden Funktionen, solange das Abonnement läuft. Die Abrechnung erfolgt monatlich oder jährlich, je nach dem gewählten Abrechnungsintervall. Ein Abonnement kann jederzeit gekündigt werden.",
       "heading": "Wie funktionieren die Abos?"
     },
-    "trial": {
-      "body": "**Profitiere von einer Gratis-Probezeit**: Du kannst alle Premium-Funktionen für **{{ trialPeriod }} Tage testen**. Nach Ablauf des Testzeitraums wird der von dir gewählte Tarif in Rechnung gestellt. Kündigungen während des Testzeitraums führen zur sofortigen Beendigung des Abonnements - in diesem Fall fallen **keine Kosten** an.",
-      "heading": "Wie funktioniert die Probezeit ?"
-    },
     "who": {
       "body": "Im Grunde genommen jede und jeder. Alle sollten sich um die Privatsphäre kümmern.  \n Die Möglichkeit, sensible Informationen anonym zu übermitteln, ist vor allem für Journalisten, Anwälte, Politiker, Whistleblower, Menschen, die unterdrückt werden, usw. essentiell.",
       "heading": "Für wen ist der Service gedacht?"
@@ -477,11 +470,6 @@
   "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
   "password": "Passwort",
   "perMonth": "pro Monat",
-  "plans": {
-    "free": {
-      "title": "Free"
-    }
-  },
   "secretType": {
     "file": {
       "label": "Nachricht (optional)",
@@ -578,16 +566,17 @@
         "button": {
           "label": "Entschlüsseln und herunterladen"
         },
+        "info": "Geheime Datei",
         "name": "Name",
         "optionalMessage": "Nachricht",
         "size": "Grösse",
-        "subtitle": "Du hast eine geheime Datei erhalten:",
         "type": "Typ",
         "warning": "Wichtig! Wir haben keinerlei Kenntnis über den Inhalt der Datei. Öffne die Datei nur wenn du dem Absender vertraust!"
       },
       "loadingSecret": "Geheimnis wird geladen",
       "passwordRequired": "Passwort notwendig",
-      "subtitle": "Du hast eine geheime Nachricht bekommen:",
+      "secretRevelationInfo": "Achtung! Das folgende Geheimnis kann nur ein einziges Mal gelüftet werden.",
+      "subtitle": "Du hast eine geheime Nachricht bekommen.",
       "title1": "Pssst",
       "title2": "Klopf Klopf",
       "title3": "Hallo",
@@ -598,8 +587,7 @@
       "title": "Kontakt",
       "topic": {
         "general": "Allgemeine Anfragen",
-        "support": "Support",
-        "tech": "Tech"
+        "support": "Support"
       }
     },
     "CookiePolicy": {

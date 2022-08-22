@@ -30,6 +30,7 @@
     "reactivatePlan": "Reactivate plan",
     "readMoreFaq": "Read more on FAQ page",
     "replyWithSecret": "Reply with a secret",
+    "revealSecret": "Reveal Secret",
     "save": "Save",
     "selectPlan": "Select plan",
     "send": "Send",
@@ -41,7 +42,6 @@
     "signUpFree": "Sign up free",
     "takeMeHome": "Take me home",
     "tryAgain": "Try again",
-    "tryFree": "Try it free",
     "viewPlans": "View plans"
   },
   "components": {
@@ -66,8 +66,6 @@
       "abstract": "**Scrt.link** lets you share sensitive information online. End-to-end encrypted. One time.\nKeep confidential information out of email, Slack, Teams, Whatsapp or any other communication channel. A one-time disposable link guarantees your secrets can only ever be accessed once - before being destroyed forever."
     },
     "FormCreateSecret": {
-      "getFreeAccount": "Get free account",
-      "needMore": "Need more?",
       "secretSaved": "Secret saved!",
       "selectSecretType": "Select secret type"
     },
@@ -118,7 +116,6 @@
         "price": "Free forever",
         "subtitle": "For starters"
       },
-      "freeTrialInfo": "{{trialPeriod}} days free trial",
       "interval": {
         "monthly": "Monthly",
         "yearly": "Annual",
@@ -383,10 +380,6 @@
       "body": "Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval. A subscription can be cancelled anytime.",
       "heading": "How do subscriptions work?"
     },
-    "trial": {
-      "body": "**Try before you buy**: You can test all premium features for a **{{ trialPeriod }} day trial period**. Once the trial ends you will be billed based on your chosen plan. Cancellations during the trial period result in the immediate termination of the subscription - **no billing** will be made in such case.",
-      "heading": "How do trials work?"
-    },
     "who": {
       "body": "Essentially everybody. Everybody should care about privacy.  \n  The means to transmit sensitive information anonymously is especially crucial for journalists, lawyers, politicians, whistleblowers, people who are being oppressed, etc.",
       "heading": "Who is it for?"
@@ -477,11 +470,6 @@
   "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
   "password": "Password",
   "perMonth": "per month",
-  "plans": {
-    "free": {
-      "title": "Free"
-    }
-  },
   "secretType": {
     "file": {
       "label": "Message",
@@ -578,16 +566,17 @@
         "button": {
           "label": "Decrypt and Download"
         },
+        "info": "Secret file",
         "name": "Name",
         "optionalMessage": "Message",
         "size": "Size",
-        "subtitle": "You received a secret file:",
         "type": "Type",
         "warning": "Important! We have absolutely no knowledge about the contents of the file. Be sure to trust the sender!"
       },
       "loadingSecret": "Loading secret",
       "passwordRequired": "Password required",
-      "subtitle": "You received a secret:",
+      "secretRevelationInfo": "Be aware! The following secret can only be revealed one time.",
+      "subtitle": "You received a secret.",
       "title1": "Shhh",
       "title2": "Knock Knock",
       "title3": "Hello",
@@ -598,8 +587,7 @@
       "title": "Contact",
       "topic": {
         "general": "General inquiries",
-        "support": "Support",
-        "tech": "Tech"
+        "support": "Support"
       }
     },
     "CookiePolicy": {
