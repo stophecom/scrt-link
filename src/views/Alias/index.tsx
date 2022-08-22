@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useReducer } from 'react'
 import { styled } from '@mui/system'
 import { GetServerSideProps } from 'next'
+import dynamic from 'next/dynamic'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Formik, Form, FormikConfig } from 'formik'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -29,13 +30,14 @@ import { Spinner } from '@/components/Spinner'
 import Page from '@/components/Page'
 import { decryptFile, decryptString } from '@/utils/crypto'
 
+const Markdown = dynamic(() => import('@/components/Markdown'))
 const PREFIX = 'AliasView'
 
 const classes = {
   break: `${PREFIX}-break`,
 }
 
-const StyledSpinner = styled(Spinner)(({ theme }) => ({
+const Root = styled('div')(({ theme }) => ({
   [`& .${classes.break}`]: {
     wordBreak: 'break-word',
     whiteSpace: 'pre-wrap',
@@ -63,7 +65,7 @@ const AliasView: CustomPage = () => {
   const prettyBytes = usePrettyBytes()
   const { t } = useTranslation()
 
-  const { preview } = router.query
+  const { preview, f } = router.query
 
   // Use preview mode if data if passed via URL params
   let previewData = {} as Partial<SecretState>
@@ -72,6 +74,14 @@ const AliasView: CustomPage = () => {
     previewData = JSON.parse(obj)
   }
   const isPreview = previewData?.secretType
+
+  // Render secret as markdown
+  // Use parameter "?f=md"
+  type Format = 'md' | null
+  let format: Format = null
+  if (f) {
+    format = decodeURIComponent(f as string) as Format
+  }
 
   const titles = [
     t('common:views.Alias.title1', 'Shhh'),
@@ -445,7 +455,7 @@ const AliasView: CustomPage = () => {
                 <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
                   <Box px={4} pt={4} pb={2}>
                     <Box id="secret-decrypted" sx={{ fontSize: '1.2rem' }}>
-                      {message}
+                      {format === 'md' ? <Markdown source={message} /> : message}
                     </Box>
                     <Box pt={2} display="flex" justifyContent="flex-end">
                       <Box mr={2}>
@@ -485,7 +495,7 @@ const AliasView: CustomPage = () => {
         }
       }
     }
-    return <StyledSpinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />
+    return <Spinner message={t('common:views.Alias.loadingSecret', 'Loading secret')} />
   }
 
   return (
@@ -494,7 +504,9 @@ const AliasView: CustomPage = () => {
       subtitle={t('common:views.Alias.subtitle', 'You received a secret')}
       noindex
     >
-      <Inner />
+      <Root>
+        <Inner />
+      </Root>
     </Page>
   )
 }
