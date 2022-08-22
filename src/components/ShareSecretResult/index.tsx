@@ -11,7 +11,14 @@ import {
   IconButton,
 } from '@mui/material'
 
-import { Replay, Share, ExpandLess, ExpandMore, EmojiEmotions } from '@mui/icons-material'
+import {
+  Replay,
+  Share,
+  ExpandLess,
+  ExpandMore,
+  EmojiEmotionsOutlined,
+  TextFormat,
+} from '@mui/icons-material'
 import { RWebShare } from 'react-web-share'
 
 import Markdown from '@/components/Markdown'
@@ -45,6 +52,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
 
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = useState(isEmojiShortLinkEnabled)
+  const [isMarkdownEnabled, setIsMarkdownEnabled] = useState(false)
   const [isEmailServiceEnabled, setIsEmailServiceEnabled] = useState(false)
   const [wrap, setWrap] = useState(false)
 
@@ -52,8 +60,9 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const secretHash = `#${alias}/${encryptionKey}`
 
   const domain = isEmojiLinkEnabled ? `${emojiShortUrl}/${i18n.language}` : baseUrl
-  const shortenedUrl = alias ? `${domain}${secretHash}` : null
-  const shortenedUrlEmailService = `${baseUrl}${secretHash}`
+  const query = isMarkdownEnabled ? '?f=md' : ''
+  const shortenedUrl = alias ? `${domain}${query}${secretHash}` : null
+  const shortenedUrlEmailService = `${baseUrl}${query}${secretHash}`
 
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
@@ -172,10 +181,30 @@ Remember it, we use it for the read receipt.`,
                     setIsEmojiLinkEnabled(!isEmojiLinkEnabled)
                   }}
                 >
-                  <EmojiEmotions
+                  <EmojiEmotionsOutlined
                     fontSize="inherit"
                     color={isEmojiLinkEnabled ? 'primary' : 'inherit'}
                     style={{ opacity: isEmojiLinkEnabled ? 1 : 0.5 }}
+                  />
+                </IconButton>
+                <IconButton
+                  aria-label={t(
+                    'common:components.ShareSecretResult.markdown.ariaLabel',
+                    'Render as Markdown',
+                  ).concat(': ', isMarkdownEnabled ? t('common:on', 'On') : t('common:off', 'Off'))}
+                  title={t(
+                    'common:components.ShareSecretResult.markdown.title',
+                    'Render as Markdown',
+                  ).concat(': ', isMarkdownEnabled ? t('common:on', 'On') : t('common:off', 'Off'))}
+                  size="small"
+                  onClick={() => {
+                    setIsMarkdownEnabled(!isMarkdownEnabled)
+                  }}
+                >
+                  <TextFormat
+                    fontSize="inherit"
+                    color={isMarkdownEnabled ? 'primary' : 'inherit'}
+                    style={{ opacity: isMarkdownEnabled ? 1 : 0.5 }}
                   />
                 </IconButton>
               </Box>
