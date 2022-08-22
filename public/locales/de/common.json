@@ -202,6 +202,10 @@
         "title": "Emoji Link ein-/ausschalten"
       },
       "loading": "Verschlüsseln und speichern…",
+      "markdown": {
+        "ariaLabel": "Als Markdown anzeigen",
+        "title": "Als Markdown anzeigen"
+      },
       "rememberAliasInfo": "Deine Geheimnis ID ist **{{ alias }}**.  \nWir verwenden sie für die Empfangsbestätigung. Merk sie dir.",
       "webShare": {
         "text": "Du hast ein Geheimnis erhalten: {{shortenedUrl}} \n \nAntworte mit einem Geheimnis:",
@@ -237,7 +241,6 @@
     "invalidAlias": "Alias ungültig.",
     "missingDecryptionKey": "Entschlüsselungscode fehlt",
     "noMessage": "Keine Nachricht.",
-    "secretBurned": "Geheimnis wurde bereits zerstört.",
     "signIn": {
       "emailUnknown": "Unbekannte E-Mail-Adresse. Überprüfe die E-Mail oder registriere dich zuerst."
     },
@@ -468,6 +471,8 @@
     "keywords": "Geheim Link, Geheimnachricht, Einmal-Geheimnis, Einmal-Passwort, Einmal-Nachricht, Einmal-Link, Einmal Link, Einwegnachricht, Einweg Link, E2EE, Selbstzerstörende Links, Passwort teilen, Sicher Dateien senden"
   },
   "missingTranslationsNotice": "Liebe Kundin, lieber Kunde, leider sind einige Inhalte auf dieser Seite noch nicht in die von dir bevorzugte Sprache übersetzt worden. Wir arbeiten daran. Wenn du in der Zwischenzeit Fragen hast oder weitere Unterstützung benötigst, wende dich bitte an den Support.",
+  "off": "Aus",
+  "on": "An",
   "password": "Passwort",
   "perMonth": "pro Monat",
   "secretType": {

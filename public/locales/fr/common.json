@@ -202,6 +202,10 @@
         "title": "Basculer le lien emoji"
       },
       "loading": "Cryptage et sauvegarde...",
+      "markdown": {
+        "ariaLabel": "Rendu au format Markdown",
+        "title": "Rendu au format Markdown"
+      },
       "rememberAliasInfo": "Votre ID secret est **bus**.  \nMémorisez-le, nous l'utilisons pour le reçu de lecture.",
       "webShare": {
         "text": "Vous avez reçu un secret : {{shortenedUrl}} \n \nRépondez avec un secret :",
@@ -237,7 +241,6 @@
     "invalidAlias": "Alias invalides.",
     "missingDecryptionKey": "Clé de décryptage manquante.",
     "noMessage": "Pas de message.",
-    "secretBurned": "Le secret a déjà été brûlé.",
     "signIn": {
       "emailUnknown": "Adresse e-mail inconnue. Vérifiez vos e-mails ou essayez plutôt de vous inscrire."
     },
@@ -468,6 +471,8 @@
     "keywords": "scrt.link, lien secret, lien de message secret, secret à usage unique, mot de passe à usage unique, message à usage unique, lien à usage unique, message jetable, lien jetable, raccourcisseur d'url, liens autodestructeurs, partage d'informations sensibles"
   },
   "missingTranslationsNotice": "Cher client, malheureusement, certains contenus de cette page n'ont pas encore été traduits dans la langue de votre choix. Nous y travaillons. En attendant, si vous avez des questions ou si vous avez besoin d'aide supplémentaire, veuillez contacter l'assistance.",
+  "off": "Off",
+  "on": "On",
   "password": "Mot de passe",
   "perMonth": "par mois",
   "secretType": {

@@ -202,6 +202,10 @@
         "title": "Toggle emoji link"
       },
       "loading": "Encrypt and save…",
+      "markdown": {
+        "ariaLabel": "Render as Markdown",
+        "title": "Render as Markdown"
+      },
       "rememberAliasInfo": "Your Secret ID is **{{ alias }}**.  \nRemember it, we use it for the read receipt.",
       "webShare": {
         "text": "You received a secret: {{shortenedUrl}} \n \nReply with a secret:",
@@ -237,7 +241,6 @@
     "invalidAlias": "Invalid alias.",
     "missingDecryptionKey": "Decryption key missing.",
     "noMessage": "No message.",
-    "secretBurned": "Secret has been burned already.",
     "signIn": {
       "emailUnknown": "Unknown email address. Check your email or try to sign up instead."
     },
@@ -468,6 +471,8 @@
     "keywords": "secret link, secret message link, one time secret, one time password, one time message, one time link, disposable message, disposable link, url shortener, self-destructive links, share sensitive information"
   },
   "missingTranslationsNotice": "Dear customer, unfortunately some content on this page has not been translated to your preferred language yet. We are working on it. In the meantime, if you have any questions or need further assistance, please contact support.",
+  "off": "Off",
+  "on": "On",
   "password": "Password",
   "perMonth": "per month",
   "secretType": {
