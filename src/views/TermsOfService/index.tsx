@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 
 import data from '@/data/TermsOfService.md'
 import Page from '@/components/Page'
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import { Menu } from '@/views/Imprint'
 import { policies } from '@/data/menu'
 

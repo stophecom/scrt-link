@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 import { BaseButtonLink } from '@/components/Link'

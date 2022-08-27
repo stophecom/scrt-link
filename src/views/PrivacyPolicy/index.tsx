@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 
 import data from '@/data/PrivacyPolicy.md'
 import Page from '@/components/Page'
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import { ImprintInfo } from '@/views/Imprint'
 
 const PrivacyPolicy = () => {

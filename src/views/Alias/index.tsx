@@ -452,36 +452,45 @@ const AliasView: CustomPage = () => {
           default: {
             return (
               <Box mb={3}>
-                <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
-                  <Box px={4} pt={4} pb={2}>
-                    <Box id="secret-decrypted" sx={{ fontSize: '1.2rem' }}>
-                      {format === 'md' ? <Markdown source={message} /> : message}
+                <Paper elevation={3} variant="outlined">
+                  <Box px={{ xs: 3, sm: 4 }} pt={4} pb={2}>
+                    <Box id="secret-decrypted">
+                      {format === 'md' ? (
+                        <Markdown source={message} />
+                      ) : (
+                        <Box className={clsx(classes.break)} sx={{ fontSize: '1.2rem' }}>
+                          {message}
+                        </Box>
+                      )}
                     </Box>
+
                     <Box pt={2} display="flex" justifyContent="flex-end">
                       <Box mr={2}>
                         <BaseButtonLink href="/" variant="text" color="primary">
                           {t('common:button.destroySecret', 'Destroy secret')}
                         </BaseButtonLink>
                       </Box>
-                      <CopyToClipboard
-                        text={message}
-                        onCopy={() => {
-                          setHasCopied(true)
-                          setTimeout(() => {
-                            setHasCopied(false)
-                          }, 2000)
-                        }}
-                      >
-                        <BaseButton
-                          startIcon={<FileCopyOutlinedIcon />}
-                          variant="contained"
-                          color="primary"
+                      {format !== 'md' && (
+                        <CopyToClipboard
+                          text={message}
+                          onCopy={() => {
+                            setHasCopied(true)
+                            setTimeout(() => {
+                              setHasCopied(false)
+                            }, 2000)
+                          }}
                         >
-                          {hasCopied
-                            ? t('common:button.copied', 'Copied')
-                            : t('common:button.copy', 'Copy')}
-                        </BaseButton>
-                      </CopyToClipboard>
+                          <BaseButton
+                            startIcon={<FileCopyOutlinedIcon />}
+                            variant="contained"
+                            color="primary"
+                          >
+                            {hasCopied
+                              ? t('common:button.copied', 'Copied')
+                              : t('common:button.copy', 'Copy')}
+                          </BaseButton>
+                        </CopyToClipboard>
+                      )}
                     </Box>
                   </Box>
                 </Paper>

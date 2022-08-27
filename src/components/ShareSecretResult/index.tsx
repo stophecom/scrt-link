@@ -21,7 +21,7 @@ import {
 } from '@mui/icons-material'
 import { RWebShare } from 'react-web-share'
 
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import FormShareSecretLink from '@/components/FormShareSecretLink'
 import CopyToClipboardButton from '@/components/CopyToClipboardButton'
 import BaseButton from '@/components/BaseButton'

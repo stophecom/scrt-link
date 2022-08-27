@@ -9,7 +9,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { styled } from '@mui/system'
 import { ArrowForward } from '@mui/icons-material'
 
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseButton from '@/components/BaseButton'
 import { BaseButtonLink } from '@/components/Link'

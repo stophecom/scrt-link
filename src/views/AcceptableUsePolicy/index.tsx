@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 
 import Page from '@/components/Page'
 import data from '@/data/AcceptableUsePolicy.md'
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 
 const AcceptableUsePolicy = () => {
   const { t } = useTranslation()

@@ -4,7 +4,7 @@ import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 import { usePlausible } from 'next-plausible'
 
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 
 const PREFIX = 'FaqAccordion'
 

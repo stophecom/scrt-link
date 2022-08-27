@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 
 import data from '@/data/CookiePolicy.md'
 import Page from '@/components/Page'
-import Markdown from '@/components/Markdown'
+import { MarkdownStyled as Markdown } from '@/components/Markdown'
 
 const CookiePolicy = () => {
   const { t } = useTranslation()
