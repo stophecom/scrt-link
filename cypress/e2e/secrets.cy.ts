@@ -21,6 +21,10 @@ context('Secrets', function () {
       })
   })
 
+  it('should see revelation confirmation screen', function () {
+    cy.get('[data-cy="reveal-button"]').should('exist').click({ force: true })
+  })
+
   it('should retrieve and see the decrypted secret', function () {
     cy.get('#secret-decrypted').should('have.text', secrets.message)
   })

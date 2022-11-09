@@ -11,7 +11,11 @@ export const Spinner: React.FunctionComponent<SpinnerProps> = ({ message }) => (
       <Box mb={2}>
         <CircularProgress />
       </Box>
-      {message && <Typography variant="subtitle2">{message}…</Typography>}
+      {message && (
+        <Typography variant="subtitle2" component={'div'}>
+          {message}…
+        </Typography>
+      )}
     </Box>
   </NoSsr>
 )

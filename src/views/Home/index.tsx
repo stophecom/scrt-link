@@ -246,10 +246,9 @@ export const HomeView: CustomPage = () => {
         >
           {t('common:views.Home.SecretLinksExplained.button', 'Learn more about security')}
         </BaseButtonLink>
-        <Box mb={0}>
+        <Box mb={0} position="relative" sx={{ aspectRatio: '1030 / 320' }}>
           <Image
-            width={1030}
-            height={320}
+            fill
             src={imgLinkExplanation}
             alt={t('common:views.Home.SecretLinksExplained.imageAlt', 'Link explained')}
           />
@@ -273,12 +272,9 @@ export const HomeView: CustomPage = () => {
       >
         <Box mb={5}>
           <BoxShadowWrapper>
-            <Image
-              width={800}
-              height={420}
-              src="/images/slack/slack-illustration.svg"
-              alt="Slack"
-            />
+            <Box position="relative" sx={{ aspectRatio: '800 / 420' }}>
+              <Image fill src="/images/slack/slack-illustration.svg" alt="Slack" />
+            </Box>
           </BoxShadowWrapper>
         </Box>
         <Box>

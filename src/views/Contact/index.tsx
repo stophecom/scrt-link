@@ -28,7 +28,7 @@ const Contact = () => {
       )}
       jsonLd={jsonLd}
     >
-      <Typography variant="body1">
+      <Typography variant="body1" component={'div'}>
         {t('common:views.Contact.topic.general', 'General inquiries')}:{' '}
         <Link href={`mailto:${email}`}>{email}</Link>
         <br />

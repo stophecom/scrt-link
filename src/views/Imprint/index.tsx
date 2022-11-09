@@ -27,7 +27,7 @@ export const Menu: React.FunctionComponent<MenuProps> = ({ menu }) => (
 )
 
 export const ImprintInfo = () => (
-  <Typography>
+  <Typography component={'div'}>
     SANTiHANS GmbH
     <br />
     CH-4056 Basel <br />
@@ -58,7 +58,7 @@ const Imprint = () => {
         <Typography variant="h3">{t('common:views.Imprint.credits', 'Credits')}</Typography>
       </Box>
       <Box mb={2}>
-        <Typography variant="body1">
+        <Typography variant="body1" component={'div'}>
           {t(
             'common:views.Imprint.flowSwiss',
             'This project is supported by Flow Swiss AG - Premium cloud services from Zurich, Switzerland.',

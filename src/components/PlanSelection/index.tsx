@@ -48,7 +48,7 @@ const PriceInner = styled('div')(({ theme }) => ({
 }))
 
 const Price: React.FunctionComponent = ({ children }) => (
-  <Typography variant="h2" mb={2}>
+  <Typography variant="h2" mb={2} component={'div'}>
     <PriceInner>{children}</PriceInner>
   </Typography>
 )
