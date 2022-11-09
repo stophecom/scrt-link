@@ -58,28 +58,6 @@ export const mailjetTemplates = {
     pl: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
     it: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
   },
-  youGotSecret: {
-    en: {
-      templateId: 2939535,
-      subject: 'You received a secret',
-    },
-    de: {
-      templateId: 3400595,
-      subject: 'Du hast ein Geheimnis erhalten',
-    },
-    fr: {
-      templateId: 3970455,
-      subject: 'Tu as reçu un secret',
-    },
-    pl: {
-      templateId: 2939535,
-      subject: 'You received a secret', // Todo
-    },
-    it: {
-      templateId: 2939535,
-      subject: 'You received a secret', // Todo
-    },
-  },
 }
 // Twilio SMS templates
 export const smsReadReceipt = {

@@ -32,12 +32,14 @@ const Result = dynamic(() => import('@/components/ShareSecretResult'))
 const FormCreateSecret = dynamic(() => import('@/components/FormCreateSecret'))
 
 type Request = Pick<SecretUrlFields, 'alias'> & { encryptionKey: string }
+
 type Success = Partial<
-  SecretPost & {
-    progress: number
-    encryptionKey: string
-    readReceiptMethod: ReadReceiptMethod
-  }
+  Pick<SecretUrlFields, 'secretType'> &
+    SecretPost & {
+      progress: number
+      encryptionKey: string
+      readReceiptMethod: ReadReceiptMethod
+    }
 >
 export interface State {
   data: Maybe<Partial<Success & Request>>
@@ -124,7 +126,7 @@ export const HomeView: CustomPage = () => {
   })
 
   const { t, i18n } = useTranslation('common')
-  const { customer, role } = useCustomer()
+  const { customer } = useCustomer()
 
   const { data, error } = state
 
@@ -167,7 +169,6 @@ export const HomeView: CustomPage = () => {
           <Result
             data={data}
             isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
-            role={role}
             onReset={() => {
               dispatch(doReset())
             }}
@@ -349,7 +350,7 @@ interface WidgetProps {
 export const Widget: CustomPage<WidgetProps> = ({ limitedToSecretType }) => {
   const { t } = useTranslation('common')
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { customer, role } = useCustomer()
+  const { customer } = useCustomer()
 
   const { data, error } = state
 
@@ -368,11 +369,9 @@ export const Widget: CustomPage<WidgetProps> = ({ limitedToSecretType }) => {
       <Result
         data={data}
         isEmojiShortLinkEnabled={customer?.isEmojiShortLinkEnabled ?? false}
-        role={role}
         onReset={() => {
           dispatch(doReset())
         }}
-        isStandalone={true}
       />
     )
   }

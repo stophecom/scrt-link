@@ -196,15 +196,3 @@ export const getSignInValidationSchema = (t: TFunction, isSignUp?: boolean) =>
         }
       : {}),
   })
-
-export const shareSecretViaEmailSchema = (t: TFunction) =>
-  Yup.object().shape({
-    message: Yup.string().label(t('common:validation.message', 'Message')).max(280).trim(),
-    recipientName: Yup.string().label(t('common:validation.name', 'Name')).max(280).trim(),
-    secretUrl: Yup.string().label(t('common:validation.secretUrl', 'Secret URL')).required().trim(),
-    recipientEmail: Yup.string()
-      .label(t('common:validation.email', 'Email'))
-      .required()
-      .email()
-      .trim(),
-  })

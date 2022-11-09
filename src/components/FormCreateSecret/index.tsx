@@ -287,6 +287,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
           doSuccess({
             message: t('common:components.FormCreateSecret.secretSaved', 'Secret saved!'),
             alias,
+            secretType,
             encryptionKey,
             readReceiptMethod,
           }),
