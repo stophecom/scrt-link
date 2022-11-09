@@ -95,7 +95,7 @@ const AliasView: CustomPage = () => {
   const [secret, setSecret] = useState<Partial<SecretState>>({})
   const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
   const [error, setError] = useState<Error['message']>('')
-  const [title, _setTitle] = useState(titles[Math.floor(Math.random() * titles.length)])
+  const [title, setTitle] = useState(titles[0])
 
   const {
     message,
@@ -111,6 +111,8 @@ const AliasView: CustomPage = () => {
     const handleRouteChange = () => {
       setSecret({})
     }
+
+    setTitle(titles[Math.floor(Math.random() * titles.length)])
 
     router.events.on('routeChangeStart', handleRouteChange)
 
@@ -259,7 +261,7 @@ const AliasView: CustomPage = () => {
     if (!isSecretRevealed) {
       return (
         <Box mb={3}>
-          <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
+          <Paper className={clsx(classes.break)} variant="outlined">
             <Box
               px={4}
               py={4}
@@ -299,7 +301,6 @@ const AliasView: CustomPage = () => {
       if (isEncryptedWithUserPassword) {
         return (
           <Paper
-            elevation={3}
             className={clsx(classes.break)}
             variant="outlined"
             sx={{ borderColor: (theme) => theme.palette.primary.main }}
@@ -384,7 +385,7 @@ const AliasView: CustomPage = () => {
                   </Alert>
                 </Box>
 
-                <Paper elevation={3} className={clsx(classes.break)} variant="outlined">
+                <Paper className={clsx(classes.break)} variant="outlined">
                   <Box px={4} pt={3} pb={3}>
                     <Box mb={2}>
                       <Typography variant="subtitle2">
@@ -452,7 +453,7 @@ const AliasView: CustomPage = () => {
           default: {
             return (
               <Box mb={3}>
-                <Paper elevation={3} variant="outlined">
+                <Paper variant="outlined">
                   <Box px={{ xs: 3, sm: 4 }} pt={4} pb={2}>
                     <Box id="secret-decrypted">
                       {format === 'md' ? (
