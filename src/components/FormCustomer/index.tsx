@@ -175,7 +175,7 @@ export const FormCustomer = () => {
                     {t('common:components.FormCustomer.emojiLink.title', 'Emoji link')} 🤫
                   </FormLabel>
                 </Box>
-                <Typography variant="body2">
+                <Typography variant="body2" component={'div'}>
                   <MarkdownRaw
                     source={t('common:components.FormCustomer.emojiLink.description', {
                       defaultValue: `Add some fun with a special emoji link. Example: {{exampleLink}}  

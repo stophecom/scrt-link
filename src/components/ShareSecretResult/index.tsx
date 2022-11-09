@@ -126,7 +126,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                 {['email', 'sms'].includes(readReceiptMethod || '') && (
                   <Box pt={3}>
                     <Alert severity="info">
-                      <Typography variant="body2">
+                      <Typography variant="body2" component={'div'}>
                         <Markdown
                           source={t('common:components.ShareSecretResult.rememberAliasInfo', {
                             defaultValue: `Your Secret ID is **{{ alias }}**.  
@@ -220,7 +220,7 @@ Remember it, we use it for the read receipt.`,
               </BaseButton>
             </Box>
             <Box ml="auto" px={1} flexShrink={0}>
-              <Typography color="textSecondary" variant="caption">
+              <Typography color="textSecondary" variant="caption" component={'div'}>
                 {data?.message || (
                   <>
                     <CircularProgress size=".8em" color="inherit" />{' '}

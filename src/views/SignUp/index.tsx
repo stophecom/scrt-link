@@ -39,7 +39,7 @@ const SignUp = () => {
             ]}
           />
         </Box>
-        <Typography variant="body1">
+        <Typography variant="body1" component={'div'}>
           <Trans i18nKey="common:views.SignUp.FreeAccount.upsell">
             Need more? <Link href="/pricing">There is more</Link>.
           </Trans>
