@@ -31,13 +31,15 @@ const FaqAccordion = dynamic(() => import('@/components/Accordion'))
 const Result = dynamic(() => import('@/components/ShareSecretResult'))
 const FormCreateSecret = dynamic(() => import('@/components/FormCreateSecret'))
 
-type Request = Pick<SecretUrlFields, 'alias' | 'secretType'> & { encryptionKey: string }
+type Request = Pick<SecretUrlFields, 'alias'> & { encryptionKey: string }
+
 type Success = Partial<
-  SecretPost & {
-    progress: number
-    encryptionKey: string
-    readReceiptMethod: ReadReceiptMethod
-  }
+  Pick<SecretUrlFields, 'secretType'> &
+    SecretPost & {
+      progress: number
+      encryptionKey: string
+      readReceiptMethod: ReadReceiptMethod
+    }
 >
 export interface State {
   data: Maybe<Partial<Success & Request>>
