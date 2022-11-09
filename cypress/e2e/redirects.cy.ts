@@ -18,3 +18,5 @@ context('Redirects', function () {
     cy.location('hash').should('contain', '#some-secret')
   })
 })
+
+export {}
