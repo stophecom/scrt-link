@@ -13,6 +13,8 @@ import BoxShadowWrapper from '@/components/BoxShadowWrapper'
 import { slackAppInstallLink } from '@/constants'
 import slackAppFaq from '@/data/faq/slack'
 
+import profilePic from '../public/me.png'
+
 const PREFIX = 'Slack'
 
 const classes = {
@@ -115,15 +117,16 @@ const Slack = () => {
     >
       <Box mb={4} position="relative">
         <BoxShadowWrapper>
-          <Image
-            className={classes.image}
-            src="/images/slack/slack-screenshot-command.png"
-            alt="Screenshot"
-            width={1926}
-            height={792}
-            objectFit="cover"
-            objectPosition="top"
-          />
+          <Box position="relative" sx={{ aspectRatio: '1926 / 792' }}>
+            <Image
+              className={classes.image}
+              src="/images/slack/slack-screenshot-command.png"
+              alt="Screenshot"
+              fill
+              objectFit="cover"
+              objectPosition="top"
+            />
+          </Box>
         </BoxShadowWrapper>
         <SlackInstallButton className={classes.cta} />
       </Box>

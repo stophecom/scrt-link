@@ -88,8 +88,8 @@ Paid premium accounts are meant for power users and people who like to [support 
           `No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.`,
         )}
       >
-        <Box mb={3} width={200}>
-          <Image width={420} height={124} src="/images/slack/Slack_RGB_White.svg" alt="Slack" />
+        <Box mb={3}>
+          <Image width={210} height={62} src="/images/slack/Slack_RGB_White.svg" alt="Slack" />
         </Box>
         <BaseButtonLink variant="contained" href={slackAppInstallLink}>
           {t('common:button.installNow', 'Install now')}

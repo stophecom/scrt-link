@@ -22,6 +22,7 @@ export const Container = styled('main')`
 `
 
 const LogoPage = styled(Link)`
+  position: relative;
   display: block;
   width: 80px;
   height: 80px;
@@ -59,7 +60,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
       <Header hideHeader={hideHeader} />
       <Container>
         <LogoPage href="/">
-          <Image width={'100%'} height={'100%'} src="/logo-transparent.svg" alt={appTitle} />
+          <Image fill src="/logo-transparent.svg" alt={appTitle} />
           <SROnly>{appTitle}</SROnly>
         </LogoPage>
 
