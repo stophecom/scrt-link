@@ -91,7 +91,7 @@
     "@types/validator": "^13.1.1",
     "@types/yup": "^0.29.13",
     "babel-plugin-import": "^1.13.3",
-    "cypress": "^9.5.0",
+    "cypress": "^11.0.0",
     "eslint": "<8.0.0",
     "eslint-config-next": "13.0.2",
     "i18next-parser": "^5.2.0",

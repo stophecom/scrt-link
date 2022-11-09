@@ -10,6 +10,7 @@
 
 # cypress
 /cypress/videos
+/cypress/screenshots
 
 # next.js
 /.next/

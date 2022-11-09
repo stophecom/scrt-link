@@ -282,6 +282,7 @@ const AliasView: CustomPage = () => {
               </Typography>
 
               <BaseButton
+                data-cy="reveal-button"
                 fullWidth
                 type="submit"
                 color="primary"
