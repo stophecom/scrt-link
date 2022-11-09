@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 import { styled } from '@mui/system'
 import { GetServerSideProps } from 'next'
 import dynamic from 'next/dynamic'
@@ -65,7 +65,7 @@ const AliasView: CustomPage = () => {
   const prettyBytes = usePrettyBytes()
   const { t } = useTranslation()
 
-  const { preview, f } = router.query
+  const { preview, f, snap } = router.query
 
   // Use preview mode if data if passed via URL params
   let previewData = {} as Partial<SecretState>
@@ -91,7 +91,7 @@ const AliasView: CustomPage = () => {
   ]
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [isSecretRevealed, revealSecret] = useReducer(() => true, false)
+  const [isSecretRevealed, revealSecret] = useReducer(() => true, !!snap)
   const [secret, setSecret] = useState<Partial<SecretState>>({})
   const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
   const [error, setError] = useState<Error['message']>('')

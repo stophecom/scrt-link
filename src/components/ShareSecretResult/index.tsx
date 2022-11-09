@@ -22,10 +22,10 @@ import {
 import { RWebShare } from 'react-web-share'
 
 import { MarkdownStyled as Markdown } from '@/components/Markdown'
-import FormShareSecretLink from '@/components/FormShareSecretLink'
+
 import CopyToClipboardButton from '@/components/CopyToClipboardButton'
 import BaseButton from '@/components/BaseButton'
-import UpgradeNotice from '@/components/UpgradeNotice'
+import BooleanSwitch from '@/components/BooleanSwitch'
 import Spacer from '@/components/Spacer'
 import { State } from '@/views/Home/index'
 import { CustomerFields } from '@/api/models/Customer'
@@ -33,17 +33,14 @@ import { emojiShortUrl } from '@/constants'
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 
 type ResultProps = Pick<State, 'data'> &
-  Pick<CustomerFields, 'isEmojiShortLinkEnabled' | 'role'> & {
+  Pick<CustomerFields, 'isEmojiShortLinkEnabled'> & {
     onReset: () => void
-    isStandalone?: boolean
   }
 
 const Result: React.FunctionComponent<ResultProps> = ({
   data,
   onReset,
   isEmojiShortLinkEnabled,
-  role,
-  isStandalone,
 }) => {
   const { t, i18n } = useTranslation()
   const alias = data?.alias
@@ -53,17 +50,27 @@ const Result: React.FunctionComponent<ResultProps> = ({
   // Form options
   const [isEmojiLinkEnabled, setIsEmojiLinkEnabled] = useState(isEmojiShortLinkEnabled)
   const [isMarkdownEnabled, setIsMarkdownEnabled] = useState(false)
-  const [isEmailServiceEnabled, setIsEmailServiceEnabled] = useState(false)
+  const [isConfirmationStepSkipped, setIsConfirmationStepSkipped] = useState(false)
+  const [isSharingOptionsActive, setIsSharingOptionsActive] = useState(false)
   const [wrap, setWrap] = useState(false)
 
   const baseUrl = getAbsoluteLocalizedUrl('/l', i18n.language)
   const secretHash = `#${alias}/${encryptionKey}`
 
   const domain = isEmojiLinkEnabled ? `${emojiShortUrl}/${i18n.language}` : baseUrl
-  const query = isMarkdownEnabled ? '?f=md' : ''
-  const shortenedUrl = alias ? `${domain}${query}${secretHash}` : null
-  const shortenedUrlEmailService = `${baseUrl}${query}${secretHash}`
+  const queryItems = []
 
+  if (isMarkdownEnabled) {
+    queryItems.push('f=md')
+  }
+  if (isConfirmationStepSkipped) {
+    queryItems.push('snap=true')
+  }
+
+  const query = queryItems.length ? `?${queryItems.join('&')}` : ''
+  const shortenedUrl = alias ? `${domain}${query}${secretHash}` : null
+
+  console.log(data)
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
       <style
@@ -138,27 +145,90 @@ Remember it, we use it for the read receipt.`,
                     </Alert>
                   </Box>
                 )}
-                <Collapse in={isEmailServiceEnabled}>
+                <Collapse in={isSharingOptionsActive}>
                   <Box mt={4} pt={4} borderTop={1} borderColor="grey.800">
                     <Box mb={2}>
                       <Typography variant="h4">
                         {t(
-                          'common:components.ShareSecretResult.emailService.title',
-                          'Email service',
-                        )}
-                      </Typography>
-                      <Typography variant="body1">
-                        {t(
-                          'common:components.ShareSecretResult.emailService.subtitle',
-                          'Let us deliver your secret link for you.',
+                          'common:components.ShareSecretResult.sharingOptions.title',
+                          'Sharing Options',
                         )}
                       </Typography>
                     </Box>
-                    {['premium', 'free'].includes(role) ? (
-                      <FormShareSecretLink secretUrl={shortenedUrlEmailService} />
-                    ) : (
-                      <UpgradeNotice requiredRole={'free'} openLinksInNewTab={isStandalone} />
-                    )}
+                    <Box>
+                      <Box py={1}>
+                        <BooleanSwitch
+                          label={
+                            <Box pl={1}>
+                              {t(
+                                'common:components.ShareSecretResult.emojiLink.label',
+                                'Emoji link',
+                              )}
+                            </Box>
+                          }
+                          onChange={() => {
+                            setIsEmojiLinkEnabled(!isEmojiLinkEnabled)
+                          }}
+                          checked={isEmojiLinkEnabled}
+                        />
+                      </Box>
+                      <Box py={1}>
+                        <BooleanSwitch
+                          label={
+                            <Box pl={1}>
+                              {t(
+                                'common:components.ShareSecretResult.skipConfirmation.label',
+                                'Instant revelation',
+                              )}
+                              <Typography
+                                fontSize={'[0.9rem]'}
+                                component="div"
+                                variant="body2"
+                                color={'grayText'}
+                              >
+                                {t(
+                                  'common:components.ShareSecretResult.skipConfirmation.info',
+                                  'When enabled, the confirmation screen will be skipped. Be aware, this may lead to lost secrets because some apps visit links ahead of time.',
+                                )}
+                              </Typography>
+                            </Box>
+                          }
+                          onChange={() => {
+                            setIsConfirmationStepSkipped(!isConfirmationStepSkipped)
+                          }}
+                          checked={isConfirmationStepSkipped}
+                        />
+                      </Box>
+                      {data.secretType === 'text' && (
+                        <Box py={1}>
+                          <BooleanSwitch
+                            label={
+                              <Box pl={1}>
+                                {t(
+                                  'common:components.ShareSecretResult.markdown.label',
+                                  'Markdown',
+                                )}
+                                <Typography
+                                  fontSize={'[0.9rem]'}
+                                  component="div"
+                                  variant="body2"
+                                  color={'grayText'}
+                                >
+                                  {t(
+                                    'common:components.ShareSecretResult.skipConfirmation.info',
+                                    'When enabled, the secret text will be rendered as markdown.',
+                                  )}
+                                </Typography>
+                              </Box>
+                            }
+                            onChange={(value) => {
+                              setIsMarkdownEnabled(!isMarkdownEnabled)
+                            }}
+                            checked={isMarkdownEnabled}
+                          />
+                        </Box>
+                      )}
+                    </Box>
                   </Box>
                 </Collapse>
               </Box>
@@ -166,57 +236,15 @@ Remember it, we use it for the read receipt.`,
           )}
           <Box p={1} display="flex">
             <Box display="flex" alignItems="center">
-              <Box mr={1}>
-                <IconButton
-                  aria-label={t(
-                    'common:components.ShareSecretResult.emojiLink.ariaLabel',
-                    'Toggle emoji link',
-                  )}
-                  title={t(
-                    'common:components.ShareSecretResult.emojiLink.title',
-                    'Toggle emoji link',
-                  )}
-                  size="small"
-                  onClick={() => {
-                    setIsEmojiLinkEnabled(!isEmojiLinkEnabled)
-                  }}
-                >
-                  <EmojiEmotionsOutlined
-                    fontSize="inherit"
-                    color={isEmojiLinkEnabled ? 'primary' : 'inherit'}
-                    style={{ opacity: isEmojiLinkEnabled ? 1 : 0.5 }}
-                  />
-                </IconButton>
-                <IconButton
-                  aria-label={t(
-                    'common:components.ShareSecretResult.markdown.ariaLabel',
-                    'Render as Markdown',
-                  ).concat(': ', isMarkdownEnabled ? t('common:on', 'On') : t('common:off', 'Off'))}
-                  title={t(
-                    'common:components.ShareSecretResult.markdown.title',
-                    'Render as Markdown',
-                  ).concat(': ', isMarkdownEnabled ? t('common:on', 'On') : t('common:off', 'Off'))}
-                  size="small"
-                  onClick={() => {
-                    setIsMarkdownEnabled(!isMarkdownEnabled)
-                  }}
-                >
-                  <TextFormat
-                    fontSize="inherit"
-                    color={isMarkdownEnabled ? 'primary' : 'inherit'}
-                    style={{ opacity: isMarkdownEnabled ? 1 : 0.5 }}
-                  />
-                </IconButton>
-              </Box>
               <BaseButton
-                endIcon={isEmailServiceEnabled ? <ExpandLess /> : <ExpandMore />}
+                endIcon={isSharingOptionsActive ? <ExpandLess /> : <ExpandMore />}
                 size="small"
                 color="secondary"
                 onClick={() => {
-                  setIsEmailServiceEnabled(!isEmailServiceEnabled)
+                  setIsSharingOptionsActive(!isSharingOptionsActive)
                 }}
               >
-                {t('common:components.ShareSecretResult.emailService.title', 'Email service')}
+                {t('common:components.ShareSecretResult.sharingOptions.button', 'Sharing options')}
               </BaseButton>
             </Box>
             <Box ml="auto" px={1} flexShrink={0}>
