@@ -234,16 +234,6 @@ const PlanSelection: React.FunctionComponent = () => {
         'Get notification via Email whenever a secret has been viewed.',
       ),
     },
-    {
-      heading: t(
-        'common:components.PlanSelection.plans.free.usps.2.heading',
-        'Email delivery service',
-      ),
-      body: t(
-        'common:components.PlanSelection.plans.free.usps.2.body',
-        'No more app switching: Send secret links directly from our platform.',
-      ),
-    },
   ]
 
   useEffect(() => {
