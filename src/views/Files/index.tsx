@@ -28,7 +28,7 @@ const FilesView: CustomPage = () => {
 
   return (
     <Page
-      title={t('common:views.Files.title', 'X Files')}
+      title={t('common:views.Files.title', 'Files')}
       subtitle={t('common:views.Files.subtitle', 'Share end-to-end encrypted files. One time.')}
       isBeta
     >
