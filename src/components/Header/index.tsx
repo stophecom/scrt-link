@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
+import { DiamondOutlined } from '@mui/icons-material'
 
 import { useCustomer } from '@/utils/api'
 import SROnly from '@/components/ScreenreaderOnly'
@@ -105,6 +106,8 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
     threshold: 0.1,
   })
 
+  console.log(customer)
+
   return (
     <HeaderBarReserveSpace ref={ref}>
       <HeaderBar className={clsx({ 'HeaderBar--scrolled': !inView })}>
@@ -121,11 +124,16 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                     <BaseButtonLink href="/account" color="primary" variant="text">
                       <Typography
                         component="span"
+                        display={'flex'}
+                        alignItems={'center'}
                         variant="button"
                         style={{ maxWidth: '150px' }}
                         noWrap
                       >
                         {customer?.name || t('common:button.myAccount', 'My account')}
+                        {customer?.role === 'premium' && (
+                          <DiamondOutlined style={{ fontSize: '1.2em', marginLeft: '0.2em' }} />
+                        )}
                       </Typography>
                     </BaseButtonLink>
                   </NoSsr>
