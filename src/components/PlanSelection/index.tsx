@@ -234,16 +234,6 @@ const PlanSelection: React.FunctionComponent = () => {
         'Get notification via Email whenever a secret has been viewed.',
       ),
     },
-    {
-      heading: t(
-        'common:components.PlanSelection.plans.free.usps.2.heading',
-        'Email delivery service',
-      ),
-      body: t(
-        'common:components.PlanSelection.plans.free.usps.2.body',
-        'No more app switching: Send secret links directly from our platform.',
-      ),
-    },
   ]
 
   useEffect(() => {
@@ -418,7 +408,7 @@ const PlanSelection: React.FunctionComponent = () => {
         />
       </Box>
       <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} md={4} order={{ xs: 3, md: 1 }}>
+        <Grid item xs={12} md={4}>
           <Plan
             title={freePlanName}
             subtitle={t('common:components.PlanSelection.free.subtitle', 'For starters')}

@@ -95,7 +95,7 @@ const AliasView: CustomPage = () => {
   const [secret, setSecret] = useState<Partial<SecretState>>({})
   const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
   const [error, setError] = useState<Error['message']>('')
-  const [title, setTitle] = useState(titles[0])
+  const [title, setTitle] = useState('')
 
   const {
     message,
@@ -112,7 +112,9 @@ const AliasView: CustomPage = () => {
       setSecret({})
     }
 
-    setTitle(titles[Math.floor(Math.random() * titles.length)])
+    if (!title) {
+      setTitle(titles[Math.floor(Math.random() * titles.length)])
+    }
 
     router.events.on('routeChangeStart', handleRouteChange)
 
