@@ -1,24 +1,9 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
-import {
-  Alert,
-  Box,
-  CircularProgress,
-  Paper,
-  Typography,
-  Collapse,
-  IconButton,
-} from '@mui/material'
+import { Alert, Box, CircularProgress, Paper, Typography, Collapse } from '@mui/material'
 
-import {
-  Replay,
-  Share,
-  ExpandLess,
-  ExpandMore,
-  EmojiEmotionsOutlined,
-  TextFormat,
-} from '@mui/icons-material'
+import { Replay, Share, ExpandLess, ExpandMore } from '@mui/icons-material'
 import { RWebShare } from 'react-web-share'
 
 import { MarkdownStyled as Markdown } from '@/components/Markdown'
@@ -215,7 +200,7 @@ Remember it, we use it for the read receipt.`,
                                   color={'grayText'}
                                 >
                                   {t(
-                                    'common:components.ShareSecretResult.skipConfirmation.info',
+                                    'common:components.ShareSecretResult.markdown.info',
                                     'When enabled, the secret text will be rendered as markdown.',
                                   )}
                                 </Typography>
