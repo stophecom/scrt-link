@@ -9,11 +9,12 @@ import { twilioSms } from '@/api/utils/twilio'
 import { decryptAES } from '@/utils/db'
 
 import { getLocaleFromRequest } from '@/api/utils/helpers'
-import { mailjetTemplates, smsReadReceipt } from '@/constants'
+import { mailjetTemplates, ntfyTemplates, smsReadReceipt } from '@/constants'
 
 const handler: NextApiHandler = async (req, res) => {
   const locale = getLocaleFromRequest(req)
   const mailTemplate = mailjetTemplates.readReceipt[locale]
+  const ntfyTemplate = ntfyTemplates.readReceipt[locale]
   const smsTemplate = smsReadReceipt[locale]
 
   // Run the middleware
@@ -88,6 +89,18 @@ const handler: NextApiHandler = async (req, res) => {
           TemplateLanguage: true,
           Variables: {
             alias,
+          },
+        }).catch(console.error)
+      }
+
+      if (receiptApi?.ntfy) {
+        await fetch(`https://ntfy.sh/${receiptApi.ntfy}`, {
+          method: 'POST', // PUT works too
+          body: `${ntfyTemplate.receipt} ${alias}`,
+          headers: {
+            Title: ntfyTemplate.subject,
+            Priority: 'urgent',
+            Tags: 'fire',
           },
         }).catch(console.error)
       }

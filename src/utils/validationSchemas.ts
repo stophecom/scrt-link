@@ -27,7 +27,7 @@ export const setYupLocale = (locale?: SupportedLanguage) => {
 }
 
 const secretTypes = ['text', 'url', 'neogram', 'file']
-const readReceiptMethods = ['none', 'sms', 'email']
+const readReceiptMethods = ['none', 'sms', 'email', 'ntfy']
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -57,6 +57,10 @@ const receiptEmailValidation = (t: TFunction) => ({
     .required()
     .max(200)
     .trim(),
+})
+
+const receiptNtfyValidation = (t: TFunction) => ({
+  receiptNtfy: Yup.string().label(t('common:validation.ntfy', 'Ntfy')).required().max(200).trim(),
 })
 
 const receiptPhoneNumberValidation = (t: TFunction) => ({
@@ -91,6 +95,7 @@ export const getValidationSchemaByType = (
 ) => {
   const maxMessageLength = getLimits(role).maxMessageLength
   const isEmailReceiptAllowed = ['free', 'premium'].includes(role)
+  const isNtfyReceiptAllowed = ['free', 'premium'].includes(role)
   const isSMSReceiptAllowed = role === 'premium'
 
   const messageValidation = (maxLength: number) => ({
@@ -122,6 +127,7 @@ export const getValidationSchemaByType = (
   const schemataByReadReceiptMap = {
     none: {},
     sms: receiptPhoneNumberValidation(t),
+    ntfy: receiptNtfyValidation(t),
     email: receiptEmailValidation(t),
   }
 
@@ -136,6 +142,7 @@ export const getValidationSchemaByType = (
           'none',
           ...(isEmailReceiptAllowed ? ['email'] : []),
           ...(isSMSReceiptAllowed ? ['sms'] : []),
+          ...(isNtfyReceiptAllowed ? ['ntfy'] : []),
         ],
         t('common:validation.notAllowed', 'Not allowed.'),
       )
@@ -172,6 +179,7 @@ export const getCustomerValidationSchema = (t: TFunction, readReceiptMethod: Rea
     ),
     ...(readReceiptMethod === 'email' ? receiptEmailValidation(t) : {}),
     ...(readReceiptMethod === 'sms' ? receiptPhoneNumberValidation(t) : {}),
+    ...(readReceiptMethod === 'ntfy' ? receiptNtfyValidation(t) : {}),
   })
 
 export const customerNameSchema = object({

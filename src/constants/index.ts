@@ -33,6 +33,7 @@ export const enterprisePlanName = 'Top Secret'
 
 // Form defaults
 export const emailPlaceholder = 'example@gmail.com'
+export const ntfyPlaceholder = 'scrt_test_xyz123'
 export const neogramDestructionTimeoutDefault = 3
 
 export const chromeExtensionLink =
@@ -57,6 +58,23 @@ export const mailjetTemplates = {
     fr: { templateId: 3970465, subject: 'Secret détruit 🔥' },
     pl: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
     it: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
+  },
+}
+// Ntfy templates
+export const ntfyTemplates = {
+  readReceipt: {
+    en: {
+      subject: 'Secret has been viewed',
+      receipt: 'The following secret has been viewed and destroyed:',
+    },
+    de: {
+      subject: 'Geheimnis zerstört',
+      receipt: 'Das folgende Geheimnis wurde gelesen und zerstört:',
+    },
+    fr: {
+      subject: 'Secret détruit',
+      receipt: 'Le secret suivant a été lu et détruit:',
+    },
   },
 }
 // Twilio SMS templates

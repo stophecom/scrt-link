@@ -11,7 +11,7 @@ export interface SecretUrlFields {
   isEncryptedWithUserPassword: boolean
   neogramDestructionMessage?: string
   neogramDestructionTimeout?: number
-  receiptApi?: { slack: string }
+  receiptApi?: { slack?: string; ntfy?: string }
   receiptEmail?: string
   receiptPhoneNumber?: string
 }
@@ -35,6 +35,7 @@ const SecretUrlSchema = new mongoose.Schema(
     neogramDestructionTimeout: { type: Number, required: false },
     receiptApi: {
       slack: String,
+      ntfy: String,
     },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },

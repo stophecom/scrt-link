@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-export const readReceiptOptions = ['none', 'sms', 'email'] as const
+export const readReceiptOptions = ['none', 'sms', 'email', 'ntfy'] as const
 export type ReadReceiptMethod = typeof readReceiptOptions[number]
 
 const roles = ['free', 'premium', 'visitor'] as const
@@ -13,6 +13,7 @@ export interface CustomerFields {
     customerId: string
   }
   receiptEmail: string
+  receiptNtfy: string
   receiptPhoneNumber: string
   neogramDestructionMessage: string
   neogramDestructionTimeout: number
@@ -27,6 +28,7 @@ export interface CustomerFields {
 export const customerWriteData = [
   'receiptEmail',
   'receiptPhoneNumber',
+  'receiptNtfy',
   'neogramDestructionMessage',
   'neogramDestructionTimeout',
   'isEmojiShortLinkEnabled',
@@ -49,6 +51,7 @@ const CustomerSchema = new mongoose.Schema(
     signupUniqueEmailIdentifier: { type: String, required: false, trim: true, unique: true },
     receiptEmail: { type: String, required: false, trim: true },
     receiptPhoneNumber: { type: String, required: false, trim: true },
+    receiptNtfy: { type: String, required: false, trim: true },
     readReceiptMethod: { type: String, enum: readReceiptOptions, required: false },
     isEmojiShortLinkEnabled: { type: Boolean, required: false },
     neogramDestructionMessage: { type: String, required: false, trim: true },

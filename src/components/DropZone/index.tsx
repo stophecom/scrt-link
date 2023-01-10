@@ -126,7 +126,7 @@ const DropZone: React.FC<DropZoneProps> = ({ isStandalone, onChange, maxFileSize
           {t('components.DropZone.backdrop', `Drop It Like It's Hot`)}
         </Typography>
       </Backdrop>
-      <Paper elevation={0} variant="outlined" className={classes.paper}>
+      <Paper variant="outlined" className={classes.paper}>
         {file && (
           <>
             <Chip

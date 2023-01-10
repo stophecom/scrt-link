@@ -106,8 +106,6 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
     threshold: 0.1,
   })
 
-  console.log(customer)
-
   return (
     <HeaderBarReserveSpace ref={ref}>
       <HeaderBar className={clsx({ 'HeaderBar--scrolled': !inView })}>
