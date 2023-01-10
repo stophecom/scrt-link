@@ -16,7 +16,7 @@ import FormFactory from '@/components/FormFactory'
 import UpgradeNotice from '@/components/UpgradeNotice'
 import { getCustomerValidationSchema, customerNameSchema } from '@/utils/validationSchemas'
 
-import { emailPlaceholder, neogramDestructionTimeoutDefault } from '@/constants'
+import { emailPlaceholder, ntfyPlaceholder, neogramDestructionTimeoutDefault } from '@/constants'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { useCustomer } from '@/utils/api'
 import { MarkdownRaw } from '@/components/Markdown'
@@ -67,6 +67,20 @@ export const DestructionTimeout: React.FunctionComponent<
   )
 }
 
+export const NtfyHelp: React.FC = () => {
+  const { t } = useTranslation()
+
+  return (
+    <MarkdownRaw
+      source={t('common:FormField.receiptNtfy.help', {
+        defaultValue:
+          'Unique endpoint that is used to send you notifications to your ntfy app. For more info visit {{link}}.',
+        link: '[https://ntfy.sh](https://ntfy.sh)',
+      })}
+    />
+  )
+}
+
 export const readReceiptsOptions = (t: TFunction) => [
   { value: 'none', label: t('common:FormField.readReceiptsOptions.none', 'None') },
   {
@@ -76,6 +90,10 @@ export const readReceiptsOptions = (t: TFunction) => [
   {
     value: 'sms',
     label: t('common:FormField.readReceiptsOptions.sms', 'Via SMS'),
+  },
+  {
+    value: 'ntfy',
+    label: t('common:FormField.readReceiptsOptions.ntfy', 'Via ntfy'),
   },
 ]
 
@@ -146,6 +164,15 @@ export const FormCustomer = () => {
                         required
                         placeholder={emailPlaceholder}
                         helperText={<PrivacyNotice />}
+                      />
+                    )}
+                    {values?.readReceiptMethod === 'ntfy' && (
+                      <BaseTextField
+                        name="receiptNtfy"
+                        label={t('common:FormField.receiptNtfy.label', 'Ntfy endpoint')}
+                        required
+                        placeholder={ntfyPlaceholder}
+                        helperText={<NtfyHelp />}
                       />
                     )}
                     {values?.readReceiptMethod === 'sms' && (

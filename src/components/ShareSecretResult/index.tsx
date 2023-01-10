@@ -55,7 +55,6 @@ const Result: React.FunctionComponent<ResultProps> = ({
   const query = queryItems.length ? `?${queryItems.join('&')}` : ''
   const shortenedUrl = alias ? `${domain}${query}${secretHash}` : null
 
-  console.log(data)
   return (
     <Spacer flexDirection="column" spacing={2} marginY={1}>
       <style
@@ -77,7 +76,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
             </BaseButton>
           </Box>
           {shortenedUrl && (
-            <Paper elevation={3} variant="outlined">
+            <Paper variant="outlined">
               <Box px={{ xs: 2, sm: 4 }} pt={4} pb={3} key="paper-inner">
                 <Box mb={4} display="flex" flexDirection="column">
                   <Typography
@@ -115,7 +114,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     <CopyToClipboardButton text={shortenedUrl} />
                   </Box>
                 </Box>
-                {['email', 'sms'].includes(readReceiptMethod || '') && (
+                {['email', 'sms', 'ntfy'].includes(readReceiptMethod || '') && (
                   <Box pt={3}>
                     <Alert severity="info">
                       <Typography variant="body2" component={'div'}>

@@ -19,6 +19,7 @@ import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import {
   DestructionMessage,
   DestructionTimeout,
+  NtfyHelp,
   readReceiptsOptions,
 } from '@/components/FormCustomer'
 import TabsMenu from '@/components/TabsMenu'
@@ -29,7 +30,7 @@ import UpgradeNotice, { LimitReachedNotice } from '@/components/UpgradeNotice'
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
 import BaseButton from '@/components/BaseButton'
 import { api } from '@/utils/api'
-import { emailPlaceholder } from '@/constants'
+import { emailPlaceholder, ntfyPlaceholder } from '@/constants'
 import { demoNeogramMessage } from '@/data/faq/product'
 import { useCustomer } from '@/utils/api'
 import { getBaseURL } from '@/utils'
@@ -81,6 +82,7 @@ type SecretUrlFormValues = Omit<SecretUrlFields, 'isEncryptedWithUserPassword'> 
   encryptionKey: string
   alias: string
   readReceiptMethod: ReadReceiptMethod
+  receiptNtfy?: string
   file?: File
 }
 
@@ -176,6 +178,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
     neogramDestructionTimeout: customer?.neogramDestructionTimeout || 3,
     receiptEmail: customer?.receiptEmail || '',
     receiptPhoneNumber: customer?.receiptPhoneNumber || '',
+    receiptNtfy: customer?.receiptNtfy || '',
     readReceiptMethod: (customer?.readReceiptMethod as ReadReceiptMethod) || 'none',
   }
 
@@ -189,6 +192,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       readReceiptMethod,
       receiptEmail,
       receiptPhoneNumber,
+      receiptNtfy,
     } = values
     const messageLength = message?.length || 0
 
@@ -254,6 +258,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         encryptionKey,
         secretType,
         receiptEmail: readReceiptMethod === 'email' && receiptEmail ? receiptEmail : undefined,
+        receiptApi: readReceiptMethod === 'ntfy' && receiptNtfy ? { ntfy: receiptNtfy } : undefined,
         receiptPhoneNumber:
           readReceiptMethod === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
       }
@@ -474,7 +479,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           name="password"
                         />
                       </Box>
-                      <Box id="read-receipts" pl={1} pt={3} pb={6}>
+                      <Box id="read-receipts" pt={3} pb={6}>
                         <BaseRadioGroupField
                           options={readReceiptsOptions(t)}
                           name="readReceiptMethod"
@@ -483,6 +488,29 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                             setReadReceiptMethod(e.target.value as ReadReceiptMethod)
                           }}
                         />
+                        {values?.readReceiptMethod === 'ntfy' &&
+                          (['free', 'premium'].includes(customer?.role || '') ? (
+                            <Box pt={2}>
+                              <BaseTextField
+                                name="receiptNtfy"
+                                label={t('common:FormField.receiptNtfy.label', 'Ntfy endpoint')}
+                                required
+                                placeholder={ntfyPlaceholder}
+                                helperText={<NtfyHelp />}
+                              />
+                            </Box>
+                          ) : (
+                            <Box pt={1}>
+                              <Info
+                                info={
+                                  <UpgradeNotice
+                                    requiredRole="free"
+                                    openLinksInNewTab={isStandalone}
+                                  />
+                                }
+                              />
+                            </Box>
+                          ))}
                         {values?.readReceiptMethod === 'email' &&
                           (['free', 'premium'].includes(customer?.role || '') ? (
                             <Box pt={2}>
