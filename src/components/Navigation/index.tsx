@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
-import { Box, Grid, Divider, Typography } from '@mui/material'
+import { NoSsr, Box, Grid, Divider, Typography } from '@mui/material'
 import TrapFocus from '@mui/base/FocusTrap'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
-import { Person } from '@mui/icons-material'
+import { Person, DiamondOutlined } from '@mui/icons-material'
 
+import { BaseButtonLink } from '@/components/Link'
+import { useCustomer } from '@/utils/api'
 import { Container } from '@/layouts/Default'
 import SubMenu from '@/components/SubMenu'
 import Logo from '@/components/Logo'
@@ -125,6 +127,7 @@ const NavigationWrapper = styled('div')`
 
 const NavigationMenu: React.FunctionComponent = () => {
   const { data: session } = useSession()
+  const { customer, isLoading } = useCustomer()
   const { t } = useTranslation()
 
   return (
@@ -143,7 +146,21 @@ const NavigationMenu: React.FunctionComponent = () => {
             alignItems={'start'}
             justifyContent={{ xs: 'center', sm: 'start' }}
           >
-            <Logo fontSize={['1.4em']} />
+            <Box display={'flex'} flexDirection="column">
+              <Logo fontSize={['1.4em']} />
+              <NoSsr>
+                {customer?.role !== 'premium' && (
+                  <BaseButtonLink
+                    href="/pricing"
+                    color="secondary"
+                    variant="outlined"
+                    startIcon={<DiamondOutlined />}
+                  >
+                    {t('common:button.goPremium', 'Go Premium')}
+                  </BaseButtonLink>
+                )}
+              </NoSsr>
+            </Box>
           </Grid>
           <Grid
             item

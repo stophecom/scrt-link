@@ -20,26 +20,30 @@ type SubMenuProps = {
 export const SubMenu: React.FC<SubMenuProps & Omit<BoxProps, 'title'>> = ({
   title,
   menu,
+  children,
   ...box
 }) => {
   return (
-    <Box display={'flex'} flexDirection={'column'} {...box}>
-      <Typography component="div" fontWeight={'bold'} mb={1} pt={3} color="primary">
-        {title}
-      </Typography>
-      {menu.map(({ label, href, prefetch, target, rel }, index) => (
-        <LinkStyled
-          key={index}
-          href={href}
-          prefetch={prefetch}
-          target={target}
-          rel={rel}
-          color="inherit"
-          underline="hover"
-        >
-          {label}
-        </LinkStyled>
-      ))}
+    <Box display={'flex'} flexDirection={'column'}>
+      <Box display={'flex'} flexDirection={'column'} {...box}>
+        <Typography component="div" fontWeight={'bold'} mb={1} pt={3} color="primary">
+          {title}
+        </Typography>
+        {menu.map(({ label, href, prefetch, target, rel }, index) => (
+          <LinkStyled
+            key={index}
+            href={href}
+            prefetch={prefetch}
+            target={target}
+            rel={rel}
+            color="inherit"
+            underline="hover"
+          >
+            {label}
+          </LinkStyled>
+        ))}
+      </Box>
+      {children}
     </Box>
   )
 }
