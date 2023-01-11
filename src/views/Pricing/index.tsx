@@ -3,6 +3,8 @@ import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import { styled } from '@mui/system'
 
+import { Box } from '@mui/material'
+
 import Page from '@/components/Page'
 import PlanSelection from '@/components/PlanSelection'
 
@@ -10,6 +12,8 @@ import accountAndBilling from '@/data/faq/accountAndBilling'
 import Section from '@/components/Section'
 import { SubscriptionInfo } from '@/views/Account'
 import { useCustomer } from '@/utils/api'
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import PoweredByStripe from '!@svgr/webpack!@/assets/images/PoweredByStripe.svg'
 
 const FaqAccordion = dynamic(() => import('@/components/Accordion'))
 
@@ -48,6 +52,12 @@ const Pricing = () => {
       >
         <FaqAccordion items={accountAndBilling(t)} />
       </Section>
+
+      <Box display={'flex'} justifyContent="center" pt={3}>
+        <Box sx={{ width: '180px', opacity: 0.8 }}>
+          <PoweredByStripe />
+        </Box>
+      </Box>
     </Page>
   )
 }
