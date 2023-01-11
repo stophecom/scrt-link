@@ -20,15 +20,15 @@ import { useCustomer } from '@/utils/api'
 const Neogram = dynamic(() => import('@/components/Neogram'))
 
 const StyledBox = styled(Box)`
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   background: ${({ theme }) => theme.palette.background.paper};
   color: ${({ theme }) => theme.palette.text.secondary};
   box-shadow: inset 0 10px 40px hsl(0deg 0% 0% / 20%);
 
   & .link-padding {
     display: inline-flex;
-    font-size: 0.85rem;
-    padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(1.2)};
+    font-size: 0.9rem;
+    padding: ${({ theme }) => theme.spacing(1.5)} ${({ theme }) => theme.spacing(1.5)};
   }
 `
 
@@ -39,7 +39,7 @@ const Legal = styled('div')`
 
 const Bullet = styled('span')`
   color: ${({ theme }) => theme.palette.success.main};
-  padding-left: 5px;
+  margin-left: -5px;
 `
 const DangerButton = styled('button')`
   position: relative;
@@ -258,8 +258,14 @@ const Footer: React.FC = () => {
                   {label}
                 </Link>
               ))}
-              <span className="link-padding">
-                <Link href={uptimerobotUrl} target="_blank" rel="noreferrer" color="inherit">
+              <span>
+                <Link
+                  className="link-padding"
+                  href={uptimerobotUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  color="inherit"
+                >
                   {t('common:menu.status', 'Status')}
                 </Link>
                 <Bullet>●</Bullet>
