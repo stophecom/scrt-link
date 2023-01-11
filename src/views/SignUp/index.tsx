@@ -17,7 +17,7 @@ const SignUp = () => {
 
   return (
     <Page
-      title={t('common:views.SignUp.title', 'Get Account')}
+      title={t('common:views.SignUp.title', 'Create account')}
       subtitle={t('common:views.SignUp.subtitle', 'Great things start here…')}
     >
       <Box mb={10}>

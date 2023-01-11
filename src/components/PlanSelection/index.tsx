@@ -125,6 +125,16 @@ const PlanSelection: React.FunctionComponent = () => {
         defaultValue: `Join a circle of like-minded people that make the web a better place. With your contribution you help us become sustainable.`,
       }),
     },
+    {
+      heading: t(
+        'common:components.PlanSelection.plans.enterprise.usps.premiumSupport.heading',
+        'Premium support',
+      ),
+      body: t(
+        'common:components.PlanSelection.plans.enterprise.usps.premiumSupport.body',
+        `Personal support from the founder.`,
+      ),
+    },
   ]
 
   const premiumUsps = [

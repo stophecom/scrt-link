@@ -9,7 +9,7 @@ const Redirect: CustomPage = () => {
 
   return (
     <Page
-      title={t('common:views.Redirect.title', 'Secret Redirect')}
+      title={t('common:views.Redirect.title', 'Secret redirect')}
       subtitle={t('common:views.Redirect.subtitle', 'Create a one-time redirect. Without a trace.')}
     >
       <Widget limitedToSecretType="url" />
