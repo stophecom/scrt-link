@@ -15,7 +15,7 @@ const SignIn = () => {
 
   return (
     <Page
-      title={t('common:views.SignIn.title', 'Sign In')}
+      title={t('common:views.SignIn.title', 'Sign in')}
       subtitle={t('common:views.SignIn.subtitle', 'Sign back in. Protect your secrets.')}
     >
       <Box mb={10}>
