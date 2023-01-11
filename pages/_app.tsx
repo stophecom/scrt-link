@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import { appWithTranslation, useTranslation, TFunction } from 'next-i18next'
 import { CacheProvider, EmotionCache } from '@emotion/react'
+import CssBaseline from '@mui/material/CssBaseline'
 import { DefaultSeoProps, DefaultSeo } from 'next-seo'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
@@ -128,6 +128,7 @@ const MyApp = ({
             </Head>
 
             <BaseThemeProvider>
+              <CssBaseline enableColorScheme />
               <Layout>
                 <Component session={session} {...pageProps} />
               </Layout>
