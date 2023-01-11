@@ -169,7 +169,17 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                     </Typography>
                   </BaseButtonLink>
                 ) : (
-                  <BaseButtonLink href="/account" color="primary" variant="text">
+                  <BaseButtonLink
+                    sx={{
+                      fontSize: {
+                        xs: '.7rem',
+                        sm: 'button.fontSize',
+                      },
+                    }}
+                    href="/account"
+                    color="primary"
+                    variant="text"
+                  >
                     {t('common:button.signIn', 'Sign in')}
                   </BaseButtonLink>
                 )}
