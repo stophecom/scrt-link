@@ -116,31 +116,45 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
           </LogoHeader>
           <Box display="flex" marginLeft="auto" alignItems="center">
             {hideHeader || (
-              <>
+              <NoSsr>
+                {customer?.role !== 'premium' && (
+                  <BaseButtonLink
+                    href="/pricing"
+                    size="small"
+                    color="secondary"
+                    variant="outlined"
+                    startIcon={<DiamondOutlined />}
+                    sx={{ marginRight: '1em' }}
+                  >
+                    {t('common:button.goPremium', 'Go Premium')}
+                  </BaseButtonLink>
+                )}
                 {session && !isLoading ? (
-                  <NoSsr>
-                    <BaseButtonLink href="/account" color="primary" variant="text">
-                      <Typography
-                        component="span"
-                        display={'flex'}
-                        alignItems={'center'}
-                        variant="button"
-                        style={{ maxWidth: '150px' }}
-                        noWrap
-                      >
-                        {customer?.name || t('common:button.myAccount', 'My account')}
-                        {customer?.role === 'premium' && (
-                          <DiamondOutlined style={{ fontSize: '1.2em', marginLeft: '0.2em' }} />
-                        )}
-                      </Typography>
-                    </BaseButtonLink>
-                  </NoSsr>
+                  <BaseButtonLink
+                    href="/account"
+                    color="primary"
+                    variant="text"
+                    endIcon={
+                      customer?.role === 'premium' && (
+                        <DiamondOutlined style={{ fontSize: '1.2em' }} />
+                      )
+                    }
+                  >
+                    <Typography
+                      component="span"
+                      variant="button"
+                      style={{ maxWidth: '150px' }}
+                      noWrap
+                    >
+                      {customer?.name || t('common:button.myAccount', 'My account')}
+                    </Typography>
+                  </BaseButtonLink>
                 ) : (
                   <BaseButtonLink href="/account" color="primary" variant="text">
                     {t('common:button.signIn', 'Sign in')}
                   </BaseButtonLink>
                 )}
-              </>
+              </NoSsr>
             )}
             <Navigation />
           </Box>
