@@ -6,8 +6,8 @@ import { Link, LinkProps } from '@/components/Link'
 
 const LinkStyled = styled(Link)`
   font-size: 1rem;
-  padding-top: 0.15rem;
-  padding-bottom: 0.15rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 `
 
 interface CustomLink extends LinkProps {
