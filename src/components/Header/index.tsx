@@ -124,7 +124,13 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                     color="secondary"
                     variant="outlined"
                     startIcon={<DiamondOutlined />}
-                    sx={{ marginRight: '1em' }}
+                    sx={{
+                      marginRight: '1em',
+                      fontSize: {
+                        xs: '.7rem',
+                        sm: 'button.fontSize',
+                      },
+                    }}
                   >
                     {t('common:button.goPremium', 'Go Premium')}
                   </BaseButtonLink>
@@ -134,6 +140,12 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                     href="/account"
                     color="primary"
                     variant="text"
+                    sx={{
+                      fontSize: {
+                        xs: '.7rem',
+                        sm: 'button.fontSize',
+                      },
+                    }}
                     endIcon={
                       customer?.role === 'premium' && (
                         <DiamondOutlined style={{ fontSize: '1.2em' }} />
@@ -143,7 +155,14 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                     <Typography
                       component="span"
                       variant="button"
-                      style={{ maxWidth: '150px' }}
+                      sx={{
+                        marginRight: '1em',
+                        fontSize: {
+                          xs: '.7rem',
+                          sm: 'button.fontSize',
+                        },
+                        maxWidth: '140px',
+                      }}
                       noWrap
                     >
                       {customer?.name || t('common:button.myAccount', 'My account')}

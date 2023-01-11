@@ -30,7 +30,7 @@ const NavigationButton = styled(BaseButton)`
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
   display: flex;
-  margin-left: 1rem;
+  margin-left: 0.6rem;
   position: relative;
   z-index: 300;
 `
@@ -315,7 +315,17 @@ const Navigation = () => {
           aria-controls="navigation"
           onClick={isActive ? closeNavigation : showNavigation}
         >
-          <Typography variant="button">{t('common:button.menu', 'Menu')}</Typography>
+          <Typography
+            variant="button"
+            sx={{
+              fontSize: {
+                xs: '.7rem',
+                sm: 'button.fontSize',
+              },
+            }}
+          >
+            {t('common:button.menu', 'Menu')}
+          </Typography>
           <Hamburger
             className={clsx({
               'Hamburger--active': isActive,
