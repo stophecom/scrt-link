@@ -156,7 +156,6 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                       component="span"
                       variant="button"
                       sx={{
-                        marginRight: '1em',
                         fontSize: {
                           xs: '.7rem',
                           sm: 'button.fontSize',
