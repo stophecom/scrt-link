@@ -49,6 +49,7 @@ export const mailjetTemplates = {
     en: { templateId: 2715593, subject: 'Sign in request' },
     de: { templateId: 3400460, subject: 'Konto-Anmeldung' },
     fr: { templateId: 3970462, subject: 'Connexion au compte' },
+    sr: { templateId: 2715593, subject: 'Sign in request' }, // Todo
     pl: { templateId: 2715593, subject: 'Sign in request' }, // Todo
     it: { templateId: 2715593, subject: 'Sign in request' }, // Todo
   },
@@ -56,6 +57,7 @@ export const mailjetTemplates = {
     en: { templateId: 2818166, subject: 'Secret has been viewed 🔥' },
     de: { templateId: 3400579, subject: 'Geheimnis zerstört 🔥' },
     fr: { templateId: 3970465, subject: 'Secret détruit 🔥' },
+    sr: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
     pl: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
     it: { templateId: 2818166, subject: 'Secret has been viewed 🔥' }, // Todo
   },
@@ -74,6 +76,11 @@ export const ntfyTemplates = {
     fr: {
       subject: 'Secret détruit',
       receipt: 'Le secret suivant a été lu et détruit:',
+    },
+    sr: {
+      // TODO
+      subject: 'Secret has been viewed',
+      receipt: 'The following secret has been viewed and destroyed:',
     },
   },
 }
@@ -97,6 +104,11 @@ export const smsReadReceipt = {
     reply: 'Reply with a secret: https://scrt.link',
   },
   it: {
+    // Todo
+    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
+    reply: 'Reply with a secret: https://scrt.link',
+  },
+  sr: {
     // Todo
     receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
     reply: 'Reply with a secret: https://scrt.link',
