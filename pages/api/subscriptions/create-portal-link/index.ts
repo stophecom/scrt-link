@@ -35,7 +35,7 @@ const handler: NextApiHandler = async (req, res) => {
         const { url } = await stripe.billingPortal.sessions.create({
           customer: customer.stripe.customerId,
           return_url: `${getBaseURL()}/account`,
-          locale: locale,
+          locale: locale === 'sr' ? 'en' : locale, // Serbian not supported
         })
 
         res.status(200).json({ url })
