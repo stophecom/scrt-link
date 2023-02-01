@@ -32,7 +32,7 @@ const handler: NextApiHandler = async (req, res) => {
 
         // Create Checkout Sessions from body params.
         const params: Stripe.Checkout.SessionCreateParams = {
-          locale: locale,
+          locale: 'auto', // Set it to auto since we have languages that are not supported by Stripe
           mode: 'subscription',
           allow_promotion_codes: true,
           customer: customer?.stripe?.customerId,
