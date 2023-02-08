@@ -61,18 +61,24 @@ yarn parse-translations
 // To fetch latest translation files from tolgee.io
 yarn fetch-translations
 
-
-// Forward stripe webhooks to localhost (via stripe cli)
-// More info: https://stripe.com/docs/webhooks/test
-stripe listen --load-from-webhooks-api --forward-to localhost:3000
-
 ```
 
 #### How to add a new language
 
 - Edit `next-i18next.config` and add language
 - Make sure to update `/src/utils/validationSchemas.ts` to enable translated form validation (yup)
+- Check mail and sms template texts in `src/constants` - which are currently hardcoded.
 - Add translation via json file in `/public/locales/`. (Or via tolgee.io)
+- Add translated versions for images in `/public/images/{locale}`
+
+### Stripe Webhooks
+
+```js
+// Forward stripe webhooks to localhost (via stripe cli)
+// More info: https://stripe.com/docs/webhooks/test
+stripe listen --load-from-webhooks-api --forward-to localhost:3000
+
+```
 
 ### Credits/Inspiration
 

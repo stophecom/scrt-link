@@ -231,7 +231,9 @@ const AliasView: CustomPage = () => {
 
       setFile({ ...meta })
 
-      const { url } = await api(`/files?file=${key}&bucket=${bucket}`, { method: 'DELETE' })
+      const { url } = await api<{ url: string }>(`/files?file=${key}&bucket=${bucket}`, {
+        method: 'DELETE',
+      })
       const response = await fetch(url)
 
       if (!response.ok) {

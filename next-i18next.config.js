@@ -7,6 +7,7 @@ const supportedLanguagesMap = {
   en: 'English',
   de: 'Deutsch',
   fr: 'Français',
+  sr: 'Serbian',
   // it: 'Italian',
   // pl: 'Polski',
 }

@@ -30,11 +30,11 @@ For the highest level of security, an optional password (which is never stored e
       'common:faq.end-to-end-encryption-info.heading',
       'How is end-to-end encryption achieved?',
     ),
-    body: t(
-      'common:faq.end-to-end-encryption-info.body',
-      `We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.
-![Link explanation](/images/en/link-explanation.svg)`,
-    ),
+    body: t('common:faq.end-to-end-encryption-info.body', {
+      defaultValue: `We generate two random strings, one to identify your secret in the database and one to encrypt your message. We don't store the encryption key. Only with the full link you are able to decrypt the secret.
+{{illustration}}`,
+      illustration: `![Link explanation](/images/localized/en/link-explanation.svg)`,
+    }),
   },
   {
     id: 'recovery',
