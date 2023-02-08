@@ -130,7 +130,7 @@ export const HomeView: CustomPage = () => {
 
   const { data, error } = state
 
-  const imgLinkExplanation = `/images/${i18n.language}/link-explanation.svg`
+  const imgLinkExplanation = `/images/localized/${i18n.language}/link-explanation.svg`
 
   useEffect(() => {
     document.addEventListener('keydown', (e) => {

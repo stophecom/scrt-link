@@ -49,7 +49,7 @@ const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): 
       site_name: appTitle,
       images: [
         {
-          url: `${baseUrl}/images/${language}/og-image.png`,
+          url: `${baseUrl}/images/localized/${language}/og-image.png`,
           height: 1200,
           width: 630,
           alt: t('common:meta.images.alt', {
