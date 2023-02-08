@@ -69,6 +69,7 @@ yarn fetch-translations
 - Make sure to update `/src/utils/validationSchemas.ts` to enable translated form validation (yup)
 - Check mail and sms template texts in `src/constants` - which are currently hardcoded.
 - Add translation via json file in `/public/locales/`. (Or via tolgee.io)
+- Add translated versions for images in `/public/images/{locale}`
 
 ### Stripe Webhooks
 
