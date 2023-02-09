@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale = 'en
     return {
       redirect: {
         permanent: false,
-        destination: `/account`,
+        destination: getAbsoluteLocalizedUrl('/account', locale),
       },
     }
   }

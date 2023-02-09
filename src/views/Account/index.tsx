@@ -207,7 +207,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale = 'en
     return {
       redirect: {
         permanent: false,
-        destination: `/signin`,
+        destination: getAbsoluteLocalizedUrl('/signin', locale),
       },
     }
   }
