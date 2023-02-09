@@ -8,6 +8,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ArrowForward } from '@mui/icons-material'
 import { usePlausible } from 'next-plausible'
 
+import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import { placeholderName } from '@/constants'
 import { BaseButtonLink } from '@/components/Link'
 import Page from '@/components/Page'
@@ -91,7 +92,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale = 'en
     return {
       redirect: {
         permanent: false,
-        destination: `/signin`,
+        destination: getAbsoluteLocalizedUrl('/signin', locale),
       },
     }
   }
