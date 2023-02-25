@@ -13,7 +13,6 @@ declare global {
       AES_KEY_512: string
       MJ_APIKEY_PUBLIC: string
       MJ_APIKEY_PRIVATE: string
-      MJ_SMS_TOKEN: string
       JWT_SECRET: string
       NEXT_AUTH_SECRET: string
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string
