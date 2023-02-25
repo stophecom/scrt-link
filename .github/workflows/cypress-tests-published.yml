@@ -1,0 +1,30 @@
+name: Cypress Tests Published
+
+on:
+  deployment_status:
+
+jobs:
+  run-e2e-published:
+    name: Run end-to-end tests on published site
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: pnpm ci
+      - name: Run tests on preview PR
+        if: github.event.deployment_status.environment != 'Production'
+        run: pnpm cypress run --config baseUrl=${{ github.event.deployment_status.target_url }}
+      - name: Run tests on production PR
+        if: github.event.deployment_status.environment == 'Production'
+        run: pnpm cypress run --config baseUrl=https://scrt.link
+      - name: Create folder for artifacts
+        if: always()
+        run: mkdir -p test-results
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-report-published
+          path: test-results
