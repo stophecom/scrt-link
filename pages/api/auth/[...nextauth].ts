@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 import NextAuth from 'next-auth'
-import Email from 'next-auth/providers/email'
+import { EmailConfig } from 'next-auth/providers/email'
 
 import handleErrors from '@/api/middlewares/handleErrors'
 import withDb from '@/api/middlewares/withDb'
@@ -19,50 +19,57 @@ const handler: NextApiHandler = async (req, res) => {
     throw createError(500, 'Could not find db connection')
   }
 
+  const nextAuthEmailConfig: EmailConfig = {
+    id: 'email',
+    type: 'email',
+    name: 'Email',
+    // Server can be an SMTP connection string or a nodemailer config object
+    server: { host: 'localhost', port: 25, auth: { user: '', pass: '' } }, // Not used
+    from: 'NextAuth <no-reply@example.com>', // Not used
+    maxAge: 24 * 60 * 60,
+    async sendVerificationRequest({ identifier: email, url }) {
+      const user = await nextAuthAdapter.getUserByEmail(email)
+
+      // If a new user tries to sign in (instead of sign up) we throw an error and vice-versa
+      // Unfortunately the following custom error messages won't work. It will return "EmailSignin" error instead.
+      if (req.query.signUpOrSignIn === 'signIn' && !user) {
+        throw createError(500, 'You need to sign up first!')
+      }
+      if (req.query.signUpOrSignIn === 'signUp' && user) {
+        throw createError(500, 'User with this email already exists - you may sign in instead.')
+      }
+
+      const givenName = (user?.name as string) || (req?.query?.name as string) || placeholderName
+      if (!user) {
+        await models.Customer.findOneAndUpdate(
+          { signupUniqueEmailIdentifier: email },
+          { name: givenName },
+          {
+            upsert: true,
+            new: true,
+          },
+        )
+      }
+
+      await mailjet({
+        To: [{ Email: email, Name: givenName }],
+        Subject: template.subject,
+        TemplateID: template.templateId,
+        TemplateLanguage: true,
+        Variables: {
+          url: url,
+        },
+      }).catch((error) => {
+        console.error('Email sign-in request failed: ', error)
+        throw new Error('SEND_VERIFICATION_EMAIL_ERROR')
+      })
+    },
+    options: {},
+  }
+
   return await NextAuth(req, res, {
     adapter: nextAuthAdapter,
-    providers: [
-      Email({
-        sendVerificationRequest: async ({ identifier: email, url }) => {
-          const user = await nextAuthAdapter.getUserByEmail(email)
-
-          // If a new user tries to sign in (instead of sign up) we throw an error and vice-versa
-          // Unfortunately the following custom error messages won't work. It will return "EmailSignin" error instead.
-          if (req.query.signUpOrSignIn === 'signIn' && !user) {
-            throw createError(500, 'You need to sign up first!')
-          }
-          if (req.query.signUpOrSignIn === 'signUp' && user) {
-            throw createError(500, 'User with this email already exists - you may sign in instead.')
-          }
-
-          const givenName =
-            (user?.name as string) || (req?.query?.name as string) || placeholderName
-          if (!user) {
-            await models.Customer.findOneAndUpdate(
-              { signupUniqueEmailIdentifier: email },
-              { name: givenName },
-              {
-                upsert: true,
-                new: true,
-              },
-            )
-          }
-
-          await mailjet({
-            To: [{ Email: email, Name: givenName }],
-            Subject: template.subject,
-            TemplateID: template.templateId,
-            TemplateLanguage: true,
-            Variables: {
-              url: url,
-            },
-          }).catch((error) => {
-            console.error('Email sign-in request failed: ', error)
-            throw new Error('SEND_VERIFICATION_EMAIL_ERROR')
-          })
-        },
-      }),
-    ],
+    providers: [nextAuthEmailConfig],
     callbacks: {
       async jwt({ token, user, isNewUser }) {
         // The arguments user, account, profile and isNewUser are only passed the first time this callback is called on a new session, after the user signs in.
