@@ -8,12 +8,21 @@ jobs:
     name: Run end-to-end tests on published site
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
       - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm ci
+        run: pnpm install
       - name: Run tests on preview PR
         if: github.event.deployment_status.environment != 'Production'
         run: pnpm cypress run --config baseUrl=${{ github.event.deployment_status.target_url }}
