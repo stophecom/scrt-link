@@ -23,7 +23,7 @@ pnpm start
 
 ```
 
-#### Run with Docker
+#### Run with Docker (WIP)
 
 ```js
 // Docker: Build image. Note that Docker build requires .env.production file.
