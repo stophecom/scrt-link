@@ -33,7 +33,7 @@ specifiers:
   babel-plugin-import: ^1.13.3
   clsx: ^1.1.1
   cypress: ^11.0.0
-  dotenv: ^14.2.0
+  dotenv: ^16.0.3
   eslint: <8.0.0
   eslint-config-next: 13.0.2
   extract-zip: ^2.0.1
@@ -104,7 +104,7 @@ dependencies:
   accept-language-parser: 1.5.0
   axios: 0.25.0
   clsx: 1.2.1
-  dotenv: 14.3.2
+  dotenv: 16.0.3
   focus-trap-react: 10.1.0_biqbaboplfbrettd7655fr4n2y
   formik: 2.2.9_react@18.2.0
   i18next: 22.4.10
@@ -5628,15 +5628,9 @@ packages:
       domhandler: 5.0.3
     dev: true
 
-  /dotenv/14.3.2:
-    resolution: {integrity: sha512-vwEppIphpFdvaMCaHfCEv9IgwcxMljMw2TnAQBB4VWPvzXQLTb82jwmdOKzlEVUL3gNFT4l4TPKO+Bn+sqcrVQ==}
-    engines: {node: '>=12'}
-    dev: false
-
   /dotenv/16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: true
 
   /duplexer2/0.1.4:
     resolution: {integrity: sha512-asLFVfWWtJ90ZyOUHMqk7/S2w2guQKxUI2itj3d92ADHhxUSbCMGi1f1cBcJ7xM1To+pE/Khbwo1yuNbMEPKeA==}

@@ -33,8 +33,11 @@
 .DS_Store
 
 # local env files
+.env
 .env.*
 !.env.example
 
 .vercel
 
+# Scalegrid CA File
+ca-certificate.pem

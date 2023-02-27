@@ -2,6 +2,7 @@ import '@/types'
 import mongoose from 'mongoose'
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import { Maybe } from '@/types'
+
 import models from '../models'
 declare module 'http' {
   interface IncomingMessage {
@@ -38,8 +39,9 @@ const withDb = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiR
 
   // @todo Use pem certificate here
   pendingPromise = mongoose.connect(process.env.DB, {
-    // ssl: true,
-    // sslCA: `${__dirname}/scrtLinkDev.pem`,
+    ssl: true,
+    retryWrites: true,
+    tlsCAFile: `${process.cwd()}/ca-certificate.pem`,
   })
 
   try {
