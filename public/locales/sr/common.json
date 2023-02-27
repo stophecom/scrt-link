@@ -50,8 +50,8 @@
       "ariaLabel" : "Prikažite/sakrijte šifru"
     },
     "DropZone" : {
-      "backdrop" : "Drop It Like It's Hot",
-      "button" : "Odaberite fajl",
+      "backdrop" : "Ostavite ga \"kao da je vruće\"",
+      "button" : "Odaberite datoteku",
       "dragAndDrop" : "... ili privucite ovde",
       "error" : {
         "fileToLarge" : "Vaša datoteka je prevelika. Maksimalna velicina datoteke je {{max}}",
@@ -67,7 +67,7 @@
       "abstract" : "**Scrt.link** omogućava deljenje osetljivih informacija na mreži.  End-to-end šifrovano. Čuva vaše osetljive informacije izvan email-a, Slack-a, Teams-a, Whatsapp-a ili bilo koje druge aplikacije koju koristite. Jednokratno raspoloživ link garantuje da se vašim tajnama može pristupiti samo jednom - pre nego što budu uništene zauvek."
     },
     "FormCreateSecret" : {
-      "secretSaved" : "Tajna poruka sacuvana!",
+      "secretSaved" : "Tajna poruka sačuvana!",
       "selectSecretType" : "Izaberite tip tajne poruke"
     },
     "FormCustomer" : {
@@ -77,7 +77,7 @@
         "description" : "Dodajte malo zabave preko emoji linka. Primer: {{exampleLink}} **Budite svesni.** Emoji linkovi su pouzdani u: {{supportedList}}. Trenutno nisu pouzdani u: {{unsupportedList}}.",
         "title" : "Emoji link"
       },
-      "privacyNotice" : "Ova informacija je <1>privatna</1>  i neće biti prikazana nikome. Koristimo ga samo da bismo vam poslali potvrdu o čitanju.   \n",
+      "privacyNotice" : "Ova informacija je <1>privatna</1>  i neće biti prikazana nikome. Koristimo je samo da bismo vam poslali potvrdu o čitanju.   \n",
       "success" : "Vaše postavke su sačuvane!"
     },
     "FormDeleteAccount" : {
@@ -96,7 +96,7 @@
       "success" : "Email je uspešno poslat!"
     },
     "FormSignIn" : {
-      "agreement" : "Slažem se sa  <2>Terms Of Service</2> i povezanim politikama.\n",
+      "agreement" : "Slažem se sa  <2>Uslovima korišćenja</2> i povezanim politikama.\n",
       "success" : "Proverite email! Link za prijavu je poslat na <1>{{email}}</1>.\n"
     },
     "LanguageSelector" : {
@@ -109,7 +109,7 @@
       "activePlan" : "Ovaj paket je aktivan.",
       "amountBilledPerMonth" : "Naplaćuje se {{amount}} mesečno ",
       "amountBilledPerYear" : "Naplaćuje se {{amount}} godišnje\n",
-      "cancellationNotice" : "Ovaj paket je otkazan i biće prebačen {{cancellationDate}} na besplatan plan.",
+      "cancellationNotice" : "Ovaj paket je otkazan i biće prebačen dana {{cancellationDate}} na besplatan plan.",
       "enterprise" : {
         "subtitle" : "Za vizionare"
       },
@@ -120,7 +120,7 @@
       "interval" : {
         "monthly" : "Mesečno",
         "yearly" : "Godišnje",
-        "yearlySavings" : "Sačuvajte {{percentage}}%\n"
+        "yearlySavings" : "Uštedite {{percentage}}%\n"
       },
       "loading" : "Učitavanje paketa",
       "plans" : {
@@ -163,7 +163,7 @@
               "heading" : "{{characterLimit}} limit karaktera\n"
             },
             "2" : {
-              "body" : "Brzo, povoljno. Dobijate informaciju o čitanju putem SMS-a",
+              "body" : "Brzo, povoljno. Dobijte informaciju o čitanju putem SMS-a.",
               "heading" : "Potvrda čitanja: Email & SMS"
             },
             "3" : {
@@ -175,7 +175,7 @@
               "heading" : "Prioritetna podrška"
             },
             "5" : {
-              "body" : "Dobićete sva buduća ažuriranja bez naplate. Plus, rani pristup predstojećim funkcijama.",
+              "body" : "Dobićete sva buduća ažuriranja bez naplate. Plus, rani pristup planiranim funkcijama.",
               "heading" : "Sledi još..."
             },
             "files" : {
@@ -189,7 +189,7 @@
       "premium" : {
         "subtitle" : "Za najviše ljudi"
       },
-      "subscriptionActiveSuccessMessage" : "Misija uspešna! Vaša pretplata je aktivna.",
+      "subscriptionActiveSuccessMessage" : "Misija uspešna! Vaša pretplata je aktivirana.",
       "subscriptionCancellationSuccessMessage" : "Vaša pretplata je uspešno otkazana!. Vaš paket će automacki biti vraćen na bestplatan plan dana {{cancellationDate}}. Ako promenite mišljenje do tada, budite slobodni da reaktivirate bilo kada. ",
       "subscriptionChangeSuccessMessage" : "Uspešno ste promenili svoju pretplatu."
     },
@@ -213,7 +213,7 @@
         "title" : "Opcije deljenja"
       },
       "skipConfirmation" : {
-        "info" : "Kada je omogućeno, ekran za potvrdu će biti preskočen. Imajte na umu da to može dovesti do izgubljenih tajni jer neke aplikacije proveravaju linkove unapred. \n",
+        "info" : "Kada je omogućeno, ekran za potvrdu će biti preskočen. Imajte na umu da to može dovesti do izgubljenih tajni, jer neke aplikacije proveravaju linkove unapred. \n",
         "label" : "Trenutno otkriće"
       },
       "webShare" : {
@@ -227,13 +227,13 @@
       "viewed" : "pogledano: "
     },
     "Trust" : {
-      "encryption" : "End-to-end kriptovano\n",
+      "encryption" : "End-to-end šifrovano\n",
       "noTrace" : "Bez traga",
       "privacy" : "Švajcarska privatnost"
     },
     "UpgradeLimits" : {
       "default" : "Potrebno vam je više ? <2>Kreirajte besplatan nalog </2> da povećate svoje limite.",
-      "free" : "Potrebno vam je više ? Pogledajte <2>premijum paketi</2> za više informacija."
+      "free" : "Potrebno vam je više ? Pogledajte <2>Premijum paketi</2> za više informacija."
     },
     "UpgradeNotice" : {
       "free" : "Kreirajte  <1>besplatan nalog</1> da biste omogućili ovu opciju.\n",
@@ -281,7 +281,7 @@
       "heading" : "Gde mogu pronaći izvorni kod ? "
     },
     "developer-tools" : {
-      "body" : "Dostupni su vam laki za korišćenje npm paketi. Za primere koda i detaljnije informacije posetite stranicu: [programerski blog](https://blog.stophe.com/scrtlink-is-built-for-developers).",
+      "body" : "Dostupni su vam jednostavni npm paketi za korišćenje. Za primere koda i detaljnije informacije posetite stranicu: [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers).",
       "heading" : "Da li je moguće integrisati ovaj alat u moj projekat? "
     },
     "difference-to-disappearing-messages" : {
@@ -289,15 +289,15 @@
       "heading" : "Koja je razlika u odnosu na poruke koje nestaju na aplikacijama Signal ili Whatsapp?"
     },
     "difference-to-snapchat" : {
-      "body" : "Isti je odgovor kao na prethodno pitanje. Takođe, biznis model na kome je zasnovan Snapchat i svaka druga socijalna medija je u kontradiktornosti što se tiče privatnosti i anonimnosti.",
+      "body" : "Isti je odgovor kao na prethodno pitanje. Takođe, biznis model na kome je zasnovan Snapchat i svaka druga socijalna mreža je u kontradiktornosti što se tiče privatnosti i anonimnosti.",
       "heading" : "Koja je razlika u odnosu na Snapchat? "
     },
     "end-subscription" : {
-      "body" : "Prijavite se na [nalog stranica](/account). Na stranici \"Pretplata\" možete da otkažete pretplatu u bilo kojem trenutku, **bez pitanja**.",
+      "body" : "Prijavite se na [moj nalog](/account). Na stranici \"Pretplata\" možete da otkažete pretplatu u bilo kom trenutku, **bez pitanja**.",
       "heading" : "Kako mogu otkazati pretplatu? "
     },
     "end-to-end-encryption-info" : {
-      "body" : "Generišemo dva nasumička niza, jedan niz za identifikaciju vaše tajne poruke u bazi podataka i drugi niz za šifrovanje vaše poruke. Ne čuvamo ključ za šifrovanje. Samo sa kompletnim linkom možete da dešifrujete tajnu poruku. ![Link explanation](/images/en/link-explanation.svg)",
+      "body" : "Generišemo dva nasumička niza, jedan niz za identifikaciju vaše tajne poruke u bazi podataka i drugi niz za šifrovanje vaše poruke. Ne čuvamo ključ za šifrovanje. Samo sa kompletnim linkom možete da dešifrujete tajnu poruku. \n{{illustration}}",
       "heading" : "Kako je end-to-end šifrovanje postignuto?"
     },
     "how" : {
@@ -306,14 +306,14 @@
     },
     "message-size" : {
       "body" : "Trenutni limit je {{ maxMessageLengthVisitor }} karaktera za posetioce. Sa premijum paketom možete doći do {{ maxMessageLengthPremium }} karaktera.\n",
-      "heading" : "Koji je maksimalna veličina poruke? "
+      "heading" : "Koja je maksimalna veličina poruke? "
     },
     "notification" : {
       "body" : "Da, možete da dobijete **SMS ili email obaveštenje** pomoću naloga. [Idi na Nalog](/account)",
       "heading" : "Mogu li da dobijem obaveštenje kada je tajna poruka pregledana? "
     },
     "payment-methods" : {
-      "body" : "Naš provajder plaćanja {{paymentProcessor}} daje mogućnost različitih opcija plaćanja: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.) između mnogih drugih. Jednom kada odabere premijum paket, bićete preusmereni na \"Stripe\" gde ćete izabrati željeni metod.",
+      "body" : "Naš provajder plaćanja {{paymentProcessor}} daje mogućnost različitih opcija plaćanja: Google Pay, Credit Card (VISA, Mastercard, American Express, etc.). Jednom kada odabere premijum paket, bićete preusmereni na \"Stripe\" gde ćete izabrati željeni metod plaćanja.",
       "heading" : "Koji načini plaćanja su podržani?"
     },
     "payment-provider" : {
@@ -321,15 +321,15 @@
       "heading" : "Ko je provajder plaćanja?"
     },
     "promo-codes" : {
-      "body" : "Promo kodovi se mogu primeniti na \"Stripe\" stranici za plaćanje. \nDodajte svoj lični promo kod i pritisnite \"Apply\". Nakon toga, odmah bi trebalo da vidite sniženu cenu.",
+      "body" : "Promo kodovi se mogu primeniti na \"Stripe\" stranici za plaćanje. \nDodajte svoj lični promo kod i pritisnite \"Apply\". Nakon toga, trebalo bi odmah da vidite sniženu cenu.",
       "heading" : "Kako mogu iskoristiti promo kodove? "
     },
     "read-receipts-info" : {
-      "body" : "Za svaku tajnu generišemo tajni ID (nasumični niz) koji je jedina referenca na originalnu poruku. Kada primalac otvori tajni link, obavestićemo vas koristeći izabrani metod. U obaveštenju uključujemo samo tajni ID - zato ga obavezno sačuvajte/zapamtite. Nepotrebno je reći da kontakt informacije (email ili broj telefona) **nisu nikada izloženi primaocu**. **Email**: Dobićete email od *{{ email }}*. **SMS**: Dobićete obaveštenje putem SMS-a od *{{ twilioSenderPhoneNumber }}*.\n",
+      "body" : "Za svaku tajnu generišemo tajni ID (nasumični niz) koji je jedina referenca na originalnu poruku. Kada primalac otvori tajni link, obavestićemo vas koristeći izabrani metod. U obaveštenju uključujemo samo tajni ID - zato ga obavezno sačuvajte/zapamtite. Nepotrebno je napomenuti da kontakt informacije (email ili broj telefona) **nisu nikada izloženi primaocu**. **Email**: Dobićete email od *{{ email }}*. **SMS**: Dobićete obaveštenje putem SMS-a od *{{ twilioSenderPhoneNumber }}*.\n",
       "heading" : "Kako potvrda čitanja funkcioniše? "
     },
     "recovery" : {
-      "body" : "Ne. To je **једнократна тајна**. Prikazana je jednom, a zatim se trajno briše iz baze podataka. Nema rezervne kopije, Nestalo je zauvek. ",
+      "body" : "Ne. To je **jednokratna tajna**. Prikazana je jednom, a zatim se trajno briše iz baze podataka. Nema rezervne kopije. Nestalo je zauvek. ",
       "heading" : "Mogu li da pronađem tajnu poruku koja je već posećena-pročitana? "
     },
     "save" : {
@@ -341,15 +341,15 @@
       "heading" : "Koliko dugo se čuvaju tajne poruke koje nisu pročitane? "
     },
     "secret-not-found" : {
-      "body" : "Tо значи да је тајна веза већ посећена. Ако се ово догоди неочекивано: - Проверите код пошиљаоца да линк није посећен грешком. - Тајни се приступило путем brute-force напада или постоји проблем са инфраструктуром сервера (не брините, садржај тајни би и даље био шифрован) - оба случаја су мало вероватна. - **Najgori slučaj**: Treća strana je pristupila link-u, što znači da je vaš komunikacioni kanal i/ili uređaj već kompromitovan. ",
+      "body" : "To znači da je tajni link već posećen. Ako se ovo dogodi neočekivano: - Proverite sa pošiljaocom da link nije posećen graškom. - Tajni se pristupilo putem brute-force (nasilnih) napada ili postoji problem sa infrastrukturom servera (ne brinite, sadržaj tajni je i dalje šifrovan) - oba slučaja su malo verovatna. - **Najgori slučaj**: Treća strana je pristupila link-u, što znači da je vaš komunikacioni kanal i/ili uređaj već kompromitovan. ",
       "heading" : "Zašto dobijem poruku \"tajna nije pronađena\"?"
     },
     "secret-types" : {
-      "body" : "- **Tekst**: Ovo je standardni režim. To je omiljen način za deljenje šifri i sličnih svrsta tajni. Primalac poruke ima opciju da kopira tajnu. \n[Demo]({{ demoSecretMessageLink }}) - **Datoteka**: Prevucite bilo koju datoteku. Ova funkcija je trenutno u beta verziji. - **Preusmeravanje**: Zamislite to kao kraći URL gde je sadržaj generisanog linka dostupan samo jednom. - **Neogram**: Digitalna poruka u stilu slova koja automatski nestaju nakon čitanja.Koristite ga za poverljive beleške, priznanja ili ljubavna pisma. [Demo]({{ demoSecretNeogramLink }})",
+      "body" : "- **Tekst**: Ovo je standardni režim. To je omiljen način za deljenje šifri i sličnih svrsta tajni. Primalac poruke ima opciju da kopira tajnu. \n[Demo]({{ demoSecretMessageLink }}) - **Datoteka**: Prevucite bilo koju datoteku. Ova funkcija je trenutno u beta verziji. - **Preusmeravanje**: Zamislite to kao kraći URL gde je sadržaj generisanog linka dostupan samo jednom. - **Neogram**: Digitalna poruka u stilu slova koja automatski nestaju nakon čitanja. Koristite ga za poverljive beleške, priznanja ili ljubavna pisma. [Demo]({{ demoSecretNeogramLink }})",
       "heading" : "*Tekst*, *Datoteke*, *Preusmeriti* i *Neogram*?"
     },
     "security" : {
-      "body" : "Sve poruke su end-to-end šifrovane sa tehnologijom **AES-256**,\n koji je praktično neprobojan korišćenjem brute-force metode. AES je potrebno bilion godina da se raspadne koristeći trenutnu tehnologiju. Za najviši nivo sigurnosti, opciona šifra (koja se takođe ne čuva) će se koristiti za šifrovanje vaše poruke. Pročitajte više na našoj stranici [Sigurnost stranici](/security).\n",
+      "body" : "Sve poruke su end-to-end šifrovane sa tehnologijom **AES-256**,\n koji je praktično neprobojan korišćenjem brute-force metode. AES je potrebno bilion godina da se raspadne koristeći trenutnu tehnologiju. Za najviši nivo sigurnosti, opciona šifra (koja se takođe ne čuva) će se koristiti za šifrovanje vaše poruke. Pročitajte više na našoj stranici [Sigurnost](/security).\n",
       "heading" : "Koliko je ova usluga sigurna?"
     },
     "service-provider" : {
@@ -357,11 +357,11 @@
       "heading" : "Ko stoji iza ove usluge?"
     },
     "slack-app" : {
-      "body" : "Slack aplikacija vam omogućava da koristite scrt.link bez promene aplikacije. Klikom na [Slack aplikacija stranicu](/slack) dobićete više informacija. Ili preuzmite aplikaciju ovde:  \uD83D\uDC49 [Install Slack App]({{ slackAppInstallLink }}) _**važno obaveštenje:** Postoje ograničenja kada koristite Slack aplikaciju. Zbog načina na koji rade ove aplikacije, komplentna end-to-end enkripcija nije moguća. U mnogim slučajevima ovo nije problem i rizik koji vredi preuzeti - međutim, ako vam je potrebna napredna zaštita, kreirajte tajne linkove na sajtu. ",
+      "body" : "Slack aplikacija vam omogućava da koristite scrt.link bez promene aplikacije. Klikom na [Slack aplikacija stranicu](/slack) dobićete više informacija. Ili preuzmite aplikaciju ovde:  \uD83D\uDC49 [Install Slack App]({{ slackAppInstallLink }}) _**važno obaveštenje:** Postoje ograničenja kada koristite Slack aplikaciju. Zbog načina na koji rade ove aplikacije, kompletna end-to-end enkripcija nije moguća. U mnogim slučajevima ovo nije problem i rizik koji vredi preuzeti - međutim, ako vam je potrebna napredna zaštita, kreirajte tajne linkove na sajtu. ",
       "heading" : "Gde mogu da preuzmem \"Slack\" aplikaciju? "
     },
     "slack-data-collection" : {
-      "body" : "Čuvamo samo podatke koji su neophodni za pokretanje aplikacije. Kada instalirate aplikaciju, dajete nam određena prava pristupa (npr. pravo da postavite tajnu vezu na vaše ime). Ovi podaci uključuju osnovne informacije koje se prenosi iz Slack aplikacije (npr. korisničko ime, itd) kao i pojedinačne tokene za autorizaciju. \nPored toga, privremeno čuvamo podatke potrebne za potvrdu čitanja. **Ne čuvamo nikakve druge podatke**. Ne menjamo, prodajemo ili distribuiramo podatke koje prikupljamo. Čak i da želimo, ne možemo da vas identifikujemo kao osobu, jer samo Slack  aplikacija može imati relevantne informacije za tako nešto. \n",
+      "body" : "Čuvamo samo podatke koji su neophodni za pokretanje aplikacije. Kada instalirate aplikaciju, dajete nam određena prava pristupa (npr. pravo da postavite tajnu vezu na vaše ime). Ovi podaci uključuju osnovne informacije koje se prenosi iz Slack aplikacije (npr. korisničko ime, itd) kao i pojedinačne tokene za autorizaciju. Pored toga, privremeno čuvamo podatke potrebne za potvrdu čitanja. **Ne čuvamo nikakve druge podatke**. Ne menjamo, prodajemo ili distribuiramo podatke koje prikupljamo. Čak i da želimo, ne možemo da vas identifikujemo kao osobu, jer samo Slack  aplikacija može imati relevantne informacije za tako nešto. \n",
       "heading" : "Koje podatke prikupljate?"
     },
     "slack-not-approved" : {
@@ -369,15 +369,15 @@
       "heading" : "Zašto aplikacija nije odobrena od strane Slack aplikacije?"
     },
     "slack-premium-account" : {
-      "body" : "Ne. Veoma ste dobrodošli. Ali, naravno, možete podržati ovaj projekat sa plaćenom pretplatom bez obzira \uD83E\uDD13.",
+      "body" : "Ne. Veoma ste dobrodošli. Ali, naravno, možete podržati ovaj projekat sa plaćenom pretplatom \uD83E\uDD13.",
       "heading" : "Da li mi je potreban premijum pretplata da bi koristio Slack aplikaciju? "
     },
     "slack-scopes" : {
-      "body" : "Aplikacija zahteva osnovne informacije o koristisniku, kanalima i raygovorima. Pored toga, aplikaciji je potrebna dozvola za objavljivanje u vaše ime, pristup razgovorima i korišćenja komandi \"slash commands\" i _shortcuts_. Dobićete detaljnije informacije o dozvolama prilikom intaliranja aplikacije. ",
+      "body" : "Aplikacija zahteva osnovne informacije o koristisniku, kanalima i razgovorima. Pored toga, aplikaciji je potrebna dozvola za objavljivanje u vaše ime, pristup razgovorima i korišćenja komandi \"slash commands\" i _shortcuts_. Dobićete detaljnije informacije o dozvolama prilikom intaliranja aplikacije. ",
       "heading" : "Koje su dozvole obavezne? "
     },
     "slack-security" : {
-      "body" : "Iskren odgovor: Ne možemo znati sa sigurnošću. Važno je znati da end-to-end enkripcija nije moguća sa Slack aplikacijama. Međutim, komunikacija između našeg servera i Slack aplikacije je ekriptovana i verujemo da je sigurna u 99% slučajeva. Ali ipak, imajte na umu da je **Slack je vlasnički program** i mi nemamo kontrolu nad kodom koji koristi Slack aplikacija. **Ako želite da budete sigurni 100%, kreirajte tajni link preko pretraživača na web-u.**",
+      "body" : "Iskren odgovor: Ne možemo znati sa sigurnošću. Važno je znati da end-to-end šifrovanje nije moguće sa Slack aplikacijama. Međutim, komunikacija između našeg servera i Slack aplikacije je šifrovana i verujemo da je sigurna u 99% slučajeva. Ali ipak, imajte na umu da je **Slack je vlasnički program** i mi nemamo kontrolu nad kodom koji koristi Slack aplikacija. **Ako želite da budete sigurni 100%, kreirajte tajni link preko pretraživača na web-u.**",
       "heading" : "Da li je Slack aplikacija sigurna? "
     },
     "slack-trust" : {
@@ -393,11 +393,11 @@
       "heading" : "Kako funkcionišu pretplate? "
     },
     "who" : {
-      "body" : "Uglavnom svi. Svako treba da vodi računa o privatnosti.  Slanje  osetljivih informacija je suštinskog značaja, posebno za novinare, advokate, političare, ljude koji su ugnjetavani, itd...",
+      "body" : "Uglavnom svi. Svako treba da vodi računa o privatnosti.  Slanje  osetljivih informacija je od suštinskog značaja, posebno za novinare, advokate, političare, ljude koji su ugnjetavani, itd...",
       "heading" : "Kome je namenjen? "
     },
     "why" : {
-      "body" : "Deljenje tajni je delikatno. Ne želite da osetljive informacije (šifre, API ključevi, pristupni tokeni, kombinacije tastera, priznanja, itd.) ostanu u vašem Slack kanalu, Whatsapp ćaskanju, prijemnom sandučetu ili kom drugom kanalu komunikacije. \nJednokratna veza za jednokratnu upotrebu garantuje da se vaša tajna pregleda tačno jednom, pre nego što trajnu bude uništena. **Koristite ovu uslugu u slučaju da želite...** - Podelite vašu Netflix šifru sa porodicom. - Šaljete privatnu poruku sa javnog računara. - Šaljete pristupne tokene, API ključeve, PIN kodove kolegi ili prijatelju. - Prosleđujete informacije o plaćanju kao što su broj kreditne kartice ili adresa Bitcoin novčanika. - Priznajete tajnu simpatiju. - Prenosite informacije koje bi mogle biti upotebljene protiv vas.",
+      "body" : "Deljenje tajni je delikatno. Ne želite da osetljive informacije (šifre, API ključevi, pristupni tokeni, kombinacije tastera, priznanja, itd.) ostanu u vašem Slack kanalu, Whatsapp ćaskanju, prijemnom sandučetu ili kom drugom kanalu komunikacije. Jednokratna veza za jednokratnu upotrebu garantuje da se vaša tajna pregleda tačno jednom, pre nego što trajnu bude uništena. **Koristite ovu uslugu u slučaju da želite...** - Podelite vašu Netflix šifru sa porodicom. - Šaljete privatnu poruku sa javnog računara. - Šaljete pristupne tokene, API ključeve, PIN kodove kolegi ili prijatelju. - Prosleđujete informacije o plaćanju kao što su broj kreditne kartice ili adresa Bitcoin novčanika. - Priznajete tajnu simpatiju. - Prenosite informacije koje bi mogle biti upotebljene protiv vas.",
       "heading" : "Zašto bih trebao da koristim ovaj servis? "
     }
   },
@@ -406,7 +406,7 @@
       "label" : "Koristite emoji link"
     },
     "name" : {
-      "helperText" : "Ova poruka je privatna <1>private</1> i neće biti prikazana nikome. Samo ga koristimo da bismo vama pružili persovanizovano iskustvo."
+      "helperText" : "Ova poruka je  <1>privatna</1> i neće biti prikazana nikome. Samo ga koristimo da bismo vama pružili persovanizovano iskustvo."
     },
     "neogramDestructionMessage" : {
       "label" : "Poruka koja će se uništiti.",
@@ -417,7 +417,7 @@
       "label" : "Odbrojavanje za uništenje"
     },
     "readReceiptMethod" : {
-      "label" : "potvrda čitanja"
+      "label" : "Potvrda čitanja"
     },
     "readReceiptsOptions" : {
       "email" : "Putem email-a ",
@@ -454,7 +454,7 @@
     "privacyPolicy" : "Politika privatnosti",
     "register" : "Registrujte se",
     "secrets" : {
-      "files" : "Datoteka",
+      "files" : "Datoteke",
       "neogram" : "Neogram",
       "redirect" : "Preusmeriti",
       "text" : "Tekst"
@@ -535,7 +535,7 @@
         "title" : "Korisnički nalog"
       },
       "BrowserExtensions" : {
-        "markdown" : "Da bi ova usluga bila laka i zgodna, postoje proširenja pretraživača koja su dostupna za većinu moretnih pretraživača. Svako proširenje deli iste funkcije bezbednosti i privatnosti. ",
+        "markdown" : "Da bi ova usluga bila laka i zgodna, postoje proširenja pretraživača koja su dostupna za većinu modernih pretraživača. Svako proširenje deli iste funkcije bezbednosti i privatnosti. ",
         "subtitle" : "Podelite tajne iz vašeg pretraživača.",
         "title" : "Potražite proširenja pretraživača"
       },
@@ -593,7 +593,7 @@
       },
       "loadingSecret" : "Učitavanje tajne",
       "passwordRequired" : "Šifra je obavezna",
-      "secretRevelationInfo" : "Budite svesni! Sledeća tajna se može otkriti samo jednom. ",
+      "secretRevelationInfo" : "Budite svesni! Sledeća tajna se može pogledati/otkriti samo jednom. ",
       "subtitle" : "Primili ste tajnu poruku. ",
       "title1" : "Shhh",
       "title2" : "Kuc Kuc",
@@ -601,7 +601,7 @@
       "title4" : "Dolazni..."
     },
     "Contact" : {
-      "subtitle" : "Da li imate pitanje ili vam je potrebna podrška? Ostanimo u vezi!",
+      "subtitle" : "Da li imate pitanje ili vam je potrebna podrška? Ostanimo u kontaktu!",
       "title" : "Kontakt",
       "topic" : {
         "general" : "Opšta pitanja",
@@ -644,7 +644,7 @@
           "title" : "Zapišite"
         },
         "share" : {
-          "text" : "Pošaljite napravljene link vašem primaocu.",
+          "text" : "Pošaljite napravljeni link vašem primaocu.",
           "title" : "Podelite"
         },
         "subtitle" : "Podelite osetljive informacije koje mogu biti pregledane jednom. Ovo je savršen način da pošaljete šifre, informacije kreditnih kartica, privatnih ključeva ili drugih poverljivih podataka.",
@@ -658,11 +658,11 @@
       },
       "SlackApp" : {
         "subtitle" : "Neke poruke ne trebaju da ostanu u istoriji razgovora. Sledeći put kada vas kolega upita za pristupni ključ, API ključ, možete odgovoriti mirne savesti. \n",
-        "title" : "Slack aplikacija<1>NEW</1>\n",
+        "title" : "Slack aplikacija<1>NOVA</1>\n",
         "usps" : {
           "0" : "Šifrovane poruke za jednokratnu upotrebu, sačuvane izvan Slack-a.\n",
-          "1" : "Kreirajte jednokratnu tajnu sa prečicama ili slash(/) komandom.\n\nCreate one-time secrets via shortcut or slash command.\n",
-          "2" : "Obaveštenje da je tajnu pogledana i uništena. "
+          "1" : "Kreirajte jednokratnu tajnu sa prečicama ili slash(/) komandom.",
+          "2" : "Uništite obaveštenje da je tajnu pogledana i uništena. "
         }
       },
       "success" : {
@@ -687,7 +687,7 @@
         "accept" : "Prihvatite misiju",
         "skip" : "Možda kasnije"
       },
-      "intro" : "Naša misija je da omogućimo svima da dele osetljive informacije na **zaista privatan**, bezbedan, anoninam ničin - nešto što je od veoma značajno u slobodnom društvu. ",
+      "intro" : "Naša misija je da omogućimo svima da dele osetljive informacije na **zaista privatan**, bezbedan, anoninam način - nešto što je veoma značajno u slobodnom društvu. Pokrenuli smo ovaj projekat kao realizaciju ideje, vođeni idealizmom, a ne profitom. Da bi osnovne funkcije bile besplatne, oslanjamo se na mali broj izuzetnih ljudi. **Vaš zadatak, ukoliko prihvatate**, jeste da saznate više o našim tajnim planovima koji nam pomažu da ovaj projekat nastavimo. Srećno!",
       "subtitle" : "Zdravo {{name}}, dobro došli!",
       "title" : "Informacije o misiji"
     },
@@ -704,7 +704,7 @@
     },
     "Privacy" : {
       "Account" : {
-        "markdown" : "Za napredne korisnike nudimo korisničke naloge koji zahtevaju autentifikaciju. Možete da kreirate nalog samo sa email adresom (možete da koristite privremenu ili prekrivenu) - dodatne informacije nisu obavezne. Za ljude koji posećuju naču web stranicu - mi uvek koristimo samo neophodne kolačiće. Drugim rečima, kolačići su neophodni za prižanje osnovnih funkcija: npr. : upravljanje bezbednom autentifikacijom. Pročitajte više u našoj politici privatnosti. ",
+        "markdown" : "Za napredne korisnike nudimo korisničke naloge koji zahtevaju autentifikaciju. Možete da kreirate nalog samo sa email adresom (možete da koristite privremenu ili prekrivenu) - dodatne informacije nisu obavezne. Za ljude koji posećuju naču web stranicu - mi uvek koristimo samo neophodne kolačiće. Drugim rečima, kolačići su neophodni za prižanje osnovnih funkcija: npr.: upravljanje bezbednom autentifikacijom. Pročitajte više u našoj politici privatnosti. ",
         "title" : "Nalog i kolačići"
       },
       "Analytics" : {
@@ -725,11 +725,11 @@
     },
     "Security" : {
       "Infrastructure" : {
-        "markdown" : "Izabrali smo lidere u undustriji za hostovanje infrastrukture - web sajt/API na {{linkVercel}} - Baza podataka {{linkScaleGrid}} -skladištenje objekata (Datoteke) sa {{linkFlowSwiss}} - Slack aplikacija na {{linkHeroku}} - sav kod na {{linkGitlab}}",
+        "markdown" : "Izabrali smo lidere u industriji za hostovanje infrastrukture - web sajt/API na {{linkVercel}} - Baza podataka {{linkScaleGrid}} -skladištenje objekata (Datoteka) sa {{linkFlowSwiss}} - Slack aplikacija na {{linkHeroku}} - ceo kod na {{linkGitlab}}",
         "subtitle" : "Pouzdani igrači, malo zavisnosti.",
         "title" : "Infrastruktura"
       },
-      "markdown" : "Sve poruke su **end-to-end šifrovane**. Generišemo nasumičnu kombinaciju da bi šifrovali vašu tajnu  **klijent** koristeći **AES-256** (Napredni sistem šifrovanja). Ključ za šifrovanje se nikada ne čuva, već se dodaje link-u same tajne. Bez celog linka, niko (uključujući nas) nikada neće moći da dešifruje vašu poruku. \nAko je data šifra, koristimo je za šifrovanje vaše tajne **na vrhu** standardnog šifrovanja. ",
+      "markdown" : "Sve poruke su **end-to-end šifrovane**. Generišemo nasumičnu kombinaciju da bi šifrovali vašu tajnu  **na klijentu** koristeći **AES-256** (Napredni sistem šifrovanja). Ključ za šifrovanje se nikada ne čuva, već se dodaje link-u same tajne. Bez celog linka, niko (uključujući i nas) nikada neće moći da dešifruje vašu poruku. \n\nAko je šifra ukljucena, koristimo je za šifrovanje vaše tajne **na vrhu** standardnog šifrovanja. Šifra neće biti sačuvana. Čak i sa **pristupom celoj strukturi** napadač neće biti u mogućnosti da pročita poruku. Nakon što je poruka pročitana, mi je trajno brišemo iz baze podataka. Nema povratka. \n{{illustration}}\n\n### Sigurnost - Sve konekcije su osigurane sa HTTPS - Svi podaci se čuvaju šifrovani (ne samo tajne poruke) - Third-party kod sveden na minimum - Dependencies su proverene i ažuriraju redovno - Ceo kod je dostupan na {{gitlabLink}}",
       "subtitle" : "Najbolji praktični saveti, bez doplate.\n",
       "title" : "Sigurnost"
     },
@@ -748,10 +748,10 @@
     "SignUp" : {
       "FreeAccount" : {
         "title" : "Benefiti besplatnog naloga",
-        "upsell" : "Trebate više? <1>Ovde je više</1>.\n",
+        "upsell" : "Više informacija? <1>Ovde</1>.\n",
         "Usps" : {
-          "0" : "Više karaktera za vašu tajne",
-          "1" : "Email potvrda citanja",
+          "0" : "Više karaktera za vaše tajne",
+          "1" : "Email potvrda čitanja",
           "2" : "Slack aplikacija",
           "3" : "Proširenja pretraživača",
           "4" : "Lična podrška",
@@ -768,18 +768,18 @@
         "subtitle" : "Često postavljena pitanja u vezi Slack aplikacije."
       },
       "HowToUse" : {
-        "markdown" : "/",
-        "title" : "/"
+        "markdown" : "### Slash Command The easiest and most versatile option is to use a slash command (**`/scrt`**) _Example:_ ![Image](/images/slack/slack-screenshot-command-input.png) - **`/scrt`** opens a dialog to create a secret. - **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**). - **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret. - **`/scrt help`**: opens a help dialog. ### Slack Shortcuts There are global and message level shortcuts available. - Click ⚡️ to access global shortcuts and choose **scrt.link**. - Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**. ![Image](/images/slack/slack-screenshot-shortcut-detail.png) ### Read Receipts This is a built in feature. You get notified when a secret has been viewed. We use a \uD83D\uDD25 emoji to indicate when a secret has been burned and the link is therefore no longer available. ![Image](/images/slack/slack-screenshot-read-receipt.png)\n",
+        "title" : "How to use\n"
       },
-      "intro" : "/",
+      "intro" : "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.\n",
       "Introduction" : {
-        "markdown" : "/",
-        "subtitle" : "/",
-        "title" : "/"
+        "markdown" : "### Key Features - Create one-time secrets via **shortcut** or **slash command**. - **Encrypted, disposable messages** that are stored outside of Slack. - **Burn notification** after a secret has been viewed. - No logs, no backup, no trace. \uD83D\uDC49 [Install now]({{slackAppInstallLink}}) --- #### _Important information about security limitations_ _Due to the nature of how Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is fine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets on the website instead._\n",
+        "subtitle" : "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.\n",
+        "title" : "Secrets for Slack\n"
       },
-      "missingTranslationsNotice" : "/",
-      "subtitle" : "/",
-      "title" : "/"
+      "missingTranslationsNotice" : "Dear customer, the Slack App is currently only available in English.\n",
+      "subtitle" : "Some things better not stay in your chat history.\n",
+      "title" : "The Slack App\n"
     },
     "TermsOfService" : {
       "policies" : "Politike",
