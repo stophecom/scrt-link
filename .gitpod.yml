@@ -1,8 +1,8 @@
 # Please adjust to your needs (see https://www.gitpod.io/docs/config-gitpod-file)
 
 tasks:
-  - init: yarn install 
-    command: yarn dev
+  - init: pnpm install
+    command: pnpm dev
 
 ports:
   - name: Website
