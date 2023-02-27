@@ -2,15 +2,19 @@ import { encryptMessage, decryptMessage } from 'scrt-link-core'
 
 export const encodeStringsForDB = <T>(obj: T = {} as T): Record<string, T[keyof T]> => {
   const result = {} as Record<string, T[keyof T]>
+  // @ts-ignore
   Object.entries(obj).forEach(([key, value]) => {
+    // @ts-ignore
     result[key] = typeof value === 'string' ? encodeURIComponent(value.trim()) : value
   })
   return result
 }
 
-export const decodeStringsFromDB = <T>(obj: T = {} as T): Record<string, T[keyof T]> => {
+export const decodeStringsFromDB = <T>(obj: T): Record<string, T[keyof T]> => {
   const result = {} as Record<string, T[keyof T]>
+  // @ts-ignore
   Object.entries(obj).forEach(([key, value]) => {
+    // @ts-ignore
     result[key] = typeof value === 'string' ? decodeURIComponent(value) : value
   })
   return result

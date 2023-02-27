@@ -6,9 +6,6 @@ const { i18n } = require('./next-i18next.config')
 const plugins = [withPlausibleProxy]
 
 const config = {
-  experimental: {
-    outputStandalone: true,
-  },
   i18n,
 
   // swcMinify: true, // Wait for nextjs 12
