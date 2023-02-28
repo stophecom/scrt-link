@@ -20,7 +20,7 @@
     "@aws-sdk/client-s3": "^3.49.0",
     "@aws-sdk/s3-presigned-post": "^3.49.0",
     "@aws-sdk/s3-request-presigner": "^3.49.0",
-    "@emotion/cache": "^11.7.1",
+    "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.10.5",
