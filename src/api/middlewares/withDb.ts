@@ -41,7 +41,7 @@ const withDb = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiR
   pendingPromise = mongoose.connect(process.env.DB, {
     ssl: true,
     retryWrites: true,
-    tlsCAFile: `${process.cwd()}/ca-certificate.pem`,
+    tlsCAFile: `src/ca-certificate.pem`,
   })
 
   try {

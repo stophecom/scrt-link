@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
     client = new MongoClient(uri, {
       ssl: true,
       retryWrites: true,
-      tlsCAFile: `${process.cwd()}/ca-certificate.pem`,
+      tlsCAFile: `src/ca-certificate.pem`,
     })
     global._mongoClientPromise = client.connect()
   }
