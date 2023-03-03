@@ -7,6 +7,7 @@ const plugins = [withPlausibleProxy]
 
 const config = {
   i18n,
+  output: 'standalone',
 
   // swcMinify: true, // Wait for nextjs 12
   webpack: (config, { isServer }) => {
