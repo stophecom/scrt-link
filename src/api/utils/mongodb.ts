@@ -3,7 +3,8 @@ import fs from 'fs'
 import mongoose from 'mongoose'
 
 const originalCertificate = path.join(process.cwd(), '/tmp/ca-certificate.pem')
-const certificate = path.join(__dirname, '/ca-certificate.pem')
+// https://vercel.com/guides/how-can-i-use-files-in-serverless-functions
+const certificate = path.join('/tmp/ca-certificate.pem')
 
 fs.copyFile(originalCertificate, certificate, (err) => {
   if (err) {
