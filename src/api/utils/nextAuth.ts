@@ -1,5 +1,4 @@
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
-
 import clientPromise from '@/api/utils/mongodb'
 
-export const nextAuthAdapter = MongoDBAdapter(clientPromise)
+import { MongooseAdapter } from './next-auth-mongoose-adapter'
+export const nextAuthAdapter = MongooseAdapter(clientPromise)
