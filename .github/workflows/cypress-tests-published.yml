@@ -24,11 +24,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run tests on preview PR
-        working-directory: ./app/website
         if: github.event.deployment_status.environment != 'Production'
         run: pnpm cypress run --config baseUrl=${{ github.event.deployment_status.target_url }}
       - name: Run tests on production PR
-        working-directory: ./app/website
         if: github.event.deployment_status.environment == 'Production'
         run: pnpm cypress run --config baseUrl=https://scrt.link
       - name: Create folder for artifacts
