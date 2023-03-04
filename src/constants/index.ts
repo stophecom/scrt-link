@@ -18,7 +18,7 @@ export const twitterHandle = '@ScrtLink'
 export const email = 'shhh@scrt.link'
 export const emailSupport = 'support@scrt.link'
 export const emailSantihans = 'info@santihans.com'
-export const gitlab = 'https://gitlab.com/kingchiller'
+export const repositoryUrl = 'https://github.com/stophecom/scrt-link'
 export const baseUrl = isProduction
   ? 'https://scrt.link'
   : process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
