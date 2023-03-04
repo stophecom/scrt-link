@@ -37,9 +37,6 @@ const config = {
       '@mui/lab': {
         transform: '@mui/lab/{{member}}',
       },
-      '@mui/material/styles': {
-        transform: '@emotion/styled',
-      },
     },
   },
   swcMinify: true,
