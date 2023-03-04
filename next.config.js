@@ -1,15 +1,44 @@
-const withPlugins = require('next-compose-plugins')
 const { withPlausibleProxy } = require('next-plausible')
 
 const { i18n } = require('./next-i18next.config')
 
-const plugins = [withPlausibleProxy]
-
 const config = {
   i18n,
   output: 'standalone',
-
-  // swcMinify: true, // Wait for nextjs 12
+  compiler: {
+    emotion: {
+      importMap: {
+        '@mui/system': {
+          styled: {
+            canonicalImport: ['@emotion/styled', 'default'],
+            styledBaseImport: ['@mui/system', 'styled'],
+          },
+        },
+        '@mui/material/styles': {
+          styled: {
+            canonicalImport: ['@emotion/styled', 'default'],
+            styledBaseImport: ['@mui/material/styles', 'styled'],
+          },
+        },
+      },
+    },
+  },
+  experimental: {
+    modularizeImports: {
+      '@mui/material': {
+        transform: '@mui/material/{{member}}',
+      },
+      '@mui/icons-material': {
+        transform: '@mui/icons-material/{{member}}',
+      },
+      '@mui/styles': {
+        transform: '@mui/styles/{{member}}',
+      },
+      '@mui/lab': {
+        transform: '@mui/lab/{{member}}',
+      },
+    },
+  },
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.md$/,
@@ -34,4 +63,4 @@ const config = {
   },
 }
 
-module.exports = withPlugins(plugins, config)
+module.exports = withPlausibleProxy()(config)

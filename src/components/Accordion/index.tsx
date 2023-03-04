@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/material'
 import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material'
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 import { usePlausible } from 'next-plausible'
@@ -14,8 +14,8 @@ const classes = {
 
 const Root = styled('div')(({ theme }) => ({
   [`& .${classes.heading}`]: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightBold,
+    fontSize: `${theme.typography.pxToRem(15)}`,
+    fontWeight: `${theme.typography.fontWeightBold}`,
     '& p': {
       marginBottom: 0,
     },
