@@ -12,7 +12,13 @@ import { SessionProvider } from 'next-auth/react'
 import { setYupLocale } from '@/utils/validationSchemas'
 import { CustomPage } from '@/types'
 import DefaultLayout from '@/layouts/Default'
-import { appTitle, twitterHandle, supportedLanguages, SupportedLanguage } from '@/constants'
+import {
+  appTitle,
+  twitterHandle,
+  supportedLanguages,
+  SupportedLanguage,
+  baseUrl,
+} from '@/constants'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
 
@@ -22,7 +28,6 @@ import createEmotionCache from '@/utils/createEmotionCache'
 const clientSideEmotionCache = createEmotionCache()
 
 const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): DefaultSeoProps => {
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   const strippedPathname = pathname === '/' ? '' : pathname
   const url = `${baseUrl}${strippedPathname}`
   const title = appTitle
