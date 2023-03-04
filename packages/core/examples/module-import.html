@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Module Example</title>
+  </head>
+  <body>
+    <!-- Import as module -->
+    <script type="module">
+      // import { createSecret } from "https://cdn.skypack.dev/@scrt-link/core";
+
+      import { createSecret } from '../dist/esbuild/esm.js'
+
+      function logSubmit(event) {
+        event.preventDefault()
+
+        log.textContent = `Processing…`
+
+        const { secretLink } = createSecret(`${input.value || ''}`).then(({ secretLink }) => {
+          log.textContent = `Success! Your secret link is: ${secretLink}`
+        })
+      }
+
+      const form = document.getElementById('form')
+      const input = document.getElementById('input')
+      const log = document.getElementById('log')
+      form.addEventListener('submit', logSubmit)
+    </script>
+
+    <form id="form">
+      <label>Secret: <input id="input" type="text" /></label>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="log"></p>
+  </body>
+</html>

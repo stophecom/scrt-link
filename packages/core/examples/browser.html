@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Script example</title>
+    <script src="../dist/esbuild/browser.js"></script>
+  </head>
+  <body>
+    <form id="form">
+      <label>Secret: <input id="input" type="text" /></label>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="log"></p>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault()
+
+        log.textContent = `Processing…`
+
+        window.createSecret(`${input.value || ''}`).then(({ secretLink }) => {
+          log.textContent = `Success! Your secret link is: ${secretLink}`
+        })
+      }
+
+      const form = document.getElementById('form')
+      const input = document.getElementById('input')
+      const log = document.getElementById('log')
+      form.addEventListener('submit', handleSubmit)
+    </script>
+  </body>
+</html>

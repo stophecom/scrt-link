@@ -1,0 +1,30 @@
+image: node:14
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - deploy
+
+lint-and-test:
+  stage: test
+  script:
+    - yarn install
+    - yarn test
+    - yarn lint
+    - yarn build-all
+
+# Deploy docs to Gitlab pages
+pages:
+  stage: deploy
+  only:
+    - main
+  script:
+    - yarn install
+    - yarn docs
+    - mv docs public
+  artifacts:
+    paths:
+      - public
