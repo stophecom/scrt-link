@@ -8,7 +8,7 @@ export const getS3Client = () =>
   // All config options:  https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/interfaces/s3clientconfig.html
   new S3Client({
     // apiVersion: '2006-03-01',
-    endpoint: { hostname: process.env.FLOW_S3_ENDPOINT, path: '', protocol: 'https' },
+    endpoint: { hostname: process.env.FLOW_S3_ENDPOINT, path: '', protocol: 'https:' },
     region: 'zrh1', // This needs to be set, but can be anything really b/c we use custom endpoint. E.g. us-east-1
     credentials: {
       accessKeyId: process.env.FLOW_S3_ACCESS_KEY,

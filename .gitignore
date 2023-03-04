@@ -32,14 +32,12 @@
 # misc
 .DS_Store
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # local env files
+.env
 .env.*
 !.env.example
 
 .vercel
 
+# Scalegrid CA File
+ca-certificate.pem

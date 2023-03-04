@@ -22,7 +22,7 @@ import createEmotionCache from '@/utils/createEmotionCache'
 const clientSideEmotionCache = createEmotionCache()
 
 const getDefaultSeoConfig = (t: TFunction, pathname: string, language: string): DefaultSeoProps => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   const strippedPathname = pathname === '/' ? '' : pathname
   const url = `${baseUrl}${strippedPathname}`
   const title = appTitle

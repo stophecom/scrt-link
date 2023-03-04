@@ -4,7 +4,7 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -17,7 +17,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NODE_OPTIONS=--max_old_space_size=4096
-RUN yarn build
+RUN pnpm build
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner

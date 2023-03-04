@@ -12,18 +12,18 @@ First, add `.env.development` with ENV variables listed in `.env.example`.
 
 ```js
 // Install
-yarn
+pnpm
 
 // Development server
-yarn dev
+pnpm dev
 
 // Build and start server. Note that build command requires .env.production.
-yarn build
-yarn start
+pnpm build
+pnpm start
 
 ```
 
-#### Run with Docker
+#### Run with Docker (WIP)
 
 ```js
 // Docker: Build image. Note that Docker build requires .env.production file.
@@ -56,10 +56,10 @@ docker-compose up --build
 
 ```js
 // To parse translations, use:
-yarn parse-translations
+pnpm parse-translations
 
 // To fetch latest translation files from tolgee.io
-yarn fetch-translations
+pnpm fetch-translations
 
 ```
 

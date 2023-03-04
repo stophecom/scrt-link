@@ -1,14 +1,27 @@
-/*
-Only used for next-auth MongoDb adapter.
-Application uses mongoose. See api/middleware/withDB.ts
-*/
-import { MongoClient } from 'mongodb'
+import path from 'path'
+import fs from 'fs'
+import mongoose from 'mongoose'
+
+const originalCertificate = path.join(process.cwd(), '/tmp/ca-certificate.pem')
+// https://vercel.com/guides/how-can-i-use-files-in-serverless-functions
+const certificate = path.join('/tmp/ca-certificate.pem')
+
+fs.copyFile(originalCertificate, certificate, (err) => {
+  if (err) {
+    console.log('Error copying certificate:', err)
+  } else {
+    console.log('Successfully copied certificate ')
+  }
+})
 
 const uri = process.env.DB
-const options = {}
+const options = {
+  ssl: true,
+  retryWrites: true,
+  tlsCAFile: certificate,
+}
 
-let client
-let clientPromise: Promise<MongoClient>
+let clientPromise: Promise<typeof mongoose>
 
 if (!process.env.DB) {
   throw new Error('Please add your Mongo URI to .env')
@@ -18,14 +31,13 @@ if (process.env.NODE_ENV === 'development') {
   // In development mode, use a global variable so that the value
   // is preserved across module reloads caused by HMR (Hot Module Replacement).
   if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options)
-    global._mongoClientPromise = client.connect()
+    global._mongoClientPromise = mongoose.connect(uri, options)
   }
   clientPromise = global._mongoClientPromise
 } else {
   // In production mode, it's best to not use a global variable.
-  client = new MongoClient(uri, options)
-  clientPromise = client.connect()
+
+  clientPromise = mongoose.connect(uri, options)
 }
 
 // Export a module-scoped MongoClient promise. By doing this in a

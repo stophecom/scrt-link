@@ -25,3 +25,5 @@ describe('Sitemap', function () {
     })
   })
 })
+
+export {}

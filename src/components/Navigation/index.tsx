@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
 import { NoSsr, Box, Grid, Divider, Typography } from '@mui/material'
-import TrapFocus from '@mui/base/FocusTrap'
+import FocusTrap from 'focus-trap-react'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
@@ -287,7 +287,7 @@ const Navigation = () => {
   })
 
   return (
-    <TrapFocus open={isActive}>
+    <FocusTrap active={isActive}>
       <div>
         <NavigationInner
           className={clsx({
@@ -339,7 +339,7 @@ const Navigation = () => {
           </Hamburger>
         </NavigationButton>
       </div>
-    </TrapFocus>
+    </FocusTrap>
   )
 }
 
