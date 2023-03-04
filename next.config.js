@@ -39,7 +39,6 @@ const config = {
       },
     },
   },
-  swcMinify: true,
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.md$/,
