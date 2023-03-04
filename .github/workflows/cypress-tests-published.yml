@@ -6,6 +6,7 @@ on:
 jobs:
   run-e2e-published:
     name: Run end-to-end tests on published site
+    working-directory: ./app/website
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     strategy:
