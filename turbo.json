@@ -24,7 +24,9 @@
         "FLOW_S3_SECRET_KEY",
         "NEXT_PUBLIC_FLOW_S3_BUCKET",
         "TOLGEE_API_KEY",
-        "SCALEGRID_CA_CERTIFICATE"
+        "SCALEGRID_CA_CERTIFICATE",
+        "NEXT_PUBLIC_VERCEL_URL",
+        "NODE_ENV"
       ],
       "outputs": [".next/**", "dist/**"]
     },
