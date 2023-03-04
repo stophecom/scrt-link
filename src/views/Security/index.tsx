@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
+import { repositoryUrl } from '@/constants'
 
 const Security = () => {
   const { t, i18n } = useTranslation()
@@ -24,7 +25,7 @@ If a password is provided, we use it to encrypt your secret **on top** of the st
 - As little third-party code as possible
 - Dependencies are checked and updated regularly
 - All code is open-source on {{gitlabLink}}`,
-        gitlabLink: '[Gitlab](https://gitlab.com/kingchiller/scrt-link)',
+        gitlabLink: `[Github](${repositoryUrl})`,
         illustration: `![Illustration](/images/localized/${i18n.language}/link-explanation.svg)`,
       })}
     >
@@ -48,7 +49,7 @@ If a password is provided, we use it to encrypt your secret **on top** of the st
             linkScaleGrid: '[Scalegrid](https://scalegrid.io/)',
             linkFlowSwiss: '[Flow Swiss AG](https://flow.swiss/)',
             linkHeroku: '[Heroku](https://heroku.com/)',
-            linkGitlab: '[Gitlab](https://gitlab.com/kingchiller/scrt-link)',
+            linkGitlab: `[Github](${repositoryUrl})`,
           })}
         />
       </Section>

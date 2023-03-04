@@ -16,7 +16,7 @@ import {
 import {
   npmScrtLinkCore,
   npmScrtLinkCli,
-  gitlabScrtLink,
+  repositoryLink,
   gitlabScrtLinkCore,
   gitlabScrtLinkSlack,
   gitlabScrtLinkCli,
@@ -124,7 +124,7 @@ Paid premium accounts are meant for power users and people who like to [support 
 - {{gitlabScrtLinkSlack}} Source code of the Slack App.`,
             npmScrtLinkCore,
             npmScrtLinkCli,
-            gitlabScrtLink,
+            gitlabScrtLink: repositoryLink,
             gitlabScrtLinkCore,
             gitlabScrtLinkCli,
             gitlabScrtLinkSlack,

@@ -1,5 +1,7 @@
 import { TFunction } from 'next-i18next'
 
+import { repositoryUrl } from '@/constants'
+
 const nerdZoneFaq = (t: TFunction) => [
   {
     id: 'developer',
@@ -7,7 +9,7 @@ const nerdZoneFaq = (t: TFunction) => [
     heading: t('common:faq.developer.heading', 'Where can I find the source code?'),
     body: t('common:faq.developer.body', {
       defaultValue: `All code is open-source on {{gitlabLink}}`,
-      gitlabLink: '[Gitlab](https://gitlab.com/kingchiller/scrt-link).',
+      gitlabLink: `[Github](${repositoryUrl}).`,
     }),
   },
   {
