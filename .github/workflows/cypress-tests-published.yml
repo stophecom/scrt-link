@@ -6,8 +6,12 @@ on:
 jobs:
   run-e2e-published:
     name: Run end-to-end tests on published site
+
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/website
     strategy:
       matrix:
         node-version: [18]
@@ -31,10 +35,10 @@ jobs:
         run: pnpm cypress run --config baseUrl=https://scrt.link
       - name: Create folder for artifacts
         if: always()
-        run: mkdir -p test-results
+        run: mkdir -p apps/website/cypress-artifacts
       - name: Upload test results
-        if: always()
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: cypress-report-published
-          path: test-results
+          path: apps/website/cypress-artifacts

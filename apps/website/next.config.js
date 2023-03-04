@@ -1,15 +1,10 @@
-const withPlugins = require('next-compose-plugins')
 const { withPlausibleProxy } = require('next-plausible')
 
 const { i18n } = require('./next-i18next.config')
 
-const plugins = [withPlausibleProxy]
-
 const config = {
   i18n,
   output: 'standalone',
-
-  // swcMinify: true, // Wait for nextjs 12
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.md$/,
@@ -34,4 +29,4 @@ const config = {
   },
 }
 
-module.exports = withPlugins(plugins, config)
+module.exports = withPlausibleProxy()(config)

@@ -1,0 +1,43 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# cypress
+/cypress/videos
+/cypress/screenshots
+
+# next.js
+/.next/
+/out/
+
+# Ssdfitemap.xml (auto generated)
+/public/sitemap.xml
+
+# next-pwa
+/public/sw*
+/public/workbox*
+
+# Outdated translations via parse-translations
+/public/locales/*/common_old.json
+
+# Used for fetching files from tolgee
+/tmp
+
+# misc
+.DS_Store
+
+# local env files
+.env
+.env.*
+!.env.example
+
+.vercel
+
+# Scalegrid CA File
+ca-certificate.pem

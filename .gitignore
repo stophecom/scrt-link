@@ -5,26 +5,9 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
-# cypress
-/cypress/videos
-/cypress/screenshots
-
 # next.js
 /.next/
 /out/
-
-# Ssdfitemap.xml (auto generated)
-/public/sitemap.xml
-
-# next-pwa
-/public/sw*
-/public/workbox*
-
-# Outdated translations via parse-translations
-/public/locales/*/common_old.json
 
 # Used for fetching files from tolgee
 /tmp
@@ -39,5 +22,4 @@
 
 .vercel
 
-# Scalegrid CA File
-ca-certificate.pem
+.turbo/

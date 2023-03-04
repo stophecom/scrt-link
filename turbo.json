@@ -1,0 +1,50 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "env": [
+        "NEXT_PUBLIC_ENV",
+        "DB",
+        "AES_KEY_512",
+        "MJ_APIKEY_PUBLIC",
+        "MJ_APIKEY_PRIVATE",
+        "MJ_SMS_TOKEN",
+        "JWT_SECRET",
+        "NEXT_AUTH_SECRET",
+        "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+        "STRIPE_SECRET_KEY",
+        "STRIPE_WEBHOOK_SECRET",
+        "TWILIO_ACCOUNT_SID",
+        "TWILIO_AUTH_TOKEN",
+        "SLACK_APP_API_URL",
+        "SLACK_APP_API_KEY",
+        "FLOW_S3_ENDPOINT",
+        "FLOW_S3_ACCESS_KEY",
+        "FLOW_S3_SECRET_KEY",
+        "NEXT_PUBLIC_FLOW_S3_BUCKET",
+        "TOLGEE_API_KEY",
+        "SCALEGRID_CA_CERTIFICATE",
+        "NEXT_PUBLIC_VERCEL_URL",
+        "NODE_ENV"
+      ],
+      "outputs": [".next/**", "dist/**"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    },
+    "start": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}

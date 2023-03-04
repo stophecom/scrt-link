@@ -1,0 +1,56 @@
+{
+  "name": "@scrt-link/core",
+  "version": "0.2.8",
+  "description": "Core for scrt.link - a tool to securely share sensitive information online.",
+  "author": "Chris <stophecom@pm.me>",
+  "repository": "https://github.com/stophecom/scrt-link.git",
+  "license": "MIT",
+  "main": "./dist/tsc/main.js",
+  "types": "./dist/tsc/main.d.ts",
+  "exports": {
+    "import": "./dist/tsc/main.js",
+    "require": "./dist/esbuild/cjs.js",
+    "browser": "./dist/esbuild/esm.js",
+    "default": "./dist/tsc/main.js",
+    "types": "./dist/tsc/main.d.ts"
+  },
+  "scripts": {
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
+    "clean": "rm -rf dist build package",
+    "ts-node": "ts-node",
+    "docs": "typedoc --entryPoints src/main.ts",
+    "dev": "pnpm build --watch",
+    "build": "tsc -p tsconfig.json",
+    "build-all": "pnpm clean && pnpm build && pnpm esbuild-cjs && pnpm esbuild-browser && pnpm esbuild-esm",
+    "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
+    "esbuild-cjs": "esbuild src/main.ts --bundle --platform=node --minify --sourcemap=external --outfile=dist/esbuild/cjs.js",
+    "esbuild-esm": "esbuild src/main.ts --bundle --format=esm --minify --sourcemap=external --outfile=dist/esbuild/esm.js"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.0.2",
+    "@types/jest": "^26.0.21",
+    "@types/nanoid-dictionary": "^4.2.0",
+    "@types/node": "^15.0.1",
+    "@types/ramda": "^0.27.44",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "esbuild": "^0.13.15",
+    "eslint": "^7.22.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.5.1",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.5.0",
+    "typedoc": "^0.21.10",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "nanoid": "^3.1.25",
+    "nanoid-dictionary": "^4.3.0",
+    "ramda": "^0.27.1"
+  }
+}
