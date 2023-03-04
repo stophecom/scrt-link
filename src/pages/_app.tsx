@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import { appWithTranslation, useTranslation, TFunction } from 'next-i18next'
