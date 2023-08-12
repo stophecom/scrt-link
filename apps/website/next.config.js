@@ -29,4 +29,4 @@ const config = {
   },
 }
 
-module.exports = withPlausibleProxy()(config)
+module.exports = withPlausibleProxy({ exclude: '/l/*, /*/l/*' })(config)
