@@ -1,5 +1,3 @@
-const { withPlausibleProxy } = require('next-plausible')
-
 const { i18n } = require('./next-i18next.config')
 
 const config = {
@@ -18,6 +16,19 @@ const config = {
 
     return config
   },
+  async headers() {
+    return [
+      {
+        source: '/l',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'",
+          },
+        ],
+      },
+    ]
+  },
   redirects: async () => {
     return [
       {
@@ -29,4 +40,4 @@ const config = {
   },
 }
 
-module.exports = withPlausibleProxy({ exclude: '/l/*, /*/l/*' })(config)
+module.exports = config
