@@ -117,7 +117,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
           <Box display="flex" marginLeft="auto" alignItems="center">
             {hideHeader || (
               <NoSsr>
-                {customer?.role !== 'premium' && (
+                {/* {customer?.role !== 'premium' && (
                   <BaseButtonLink
                     href="/pricing"
                     size="small"
@@ -134,7 +134,7 @@ const Header: React.FC<HeaderProps> = ({ hideHeader }) => {
                   >
                     {t('common:button.goPremium', 'Go Premium')}
                   </BaseButtonLink>
-                )}
+                )} */}
                 {session && !isLoading ? (
                   <BaseButtonLink
                     href="/account"
