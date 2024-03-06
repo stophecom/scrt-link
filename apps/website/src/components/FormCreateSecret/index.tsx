@@ -623,6 +623,7 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                           setFieldValue('secretType', secretType)
                         }}
                         type="submit"
+                        data-cy="secret-link-submit"
                         color="primary"
                         variant="contained"
                         size="large"

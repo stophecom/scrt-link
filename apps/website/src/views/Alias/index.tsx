@@ -460,7 +460,7 @@ const AliasView: CustomPage = () => {
               <Box mb={3}>
                 <Paper variant="outlined">
                   <Box px={{ xs: 3, sm: 4 }} pt={4} pb={2}>
-                    <Box id="secret-decrypted">
+                    <Box data-cy="secret-decrypted">
                       {format === 'md' ? (
                         <Markdown source={message} />
                       ) : (
