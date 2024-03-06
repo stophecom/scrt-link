@@ -10,11 +10,11 @@ context('Secrets', function () {
   // Create secrets
   it('should write a secret message', function () {
     cy.get('#form-create-secret textarea[name="message"]').type(secrets.message)
-    cy.get('#form-create-secret').submit()
+    cy.get('[data-cy="secret-link-submit"]').click({ force: true })
   })
 
   it('should receive and visit the secret link', function () {
-    cy.get('#result-secret-link')
+    cy.get('[data-cy="result-secret-link"]')
       .invoke('text')
       .then((href) => {
         cy.visit(href)
@@ -22,11 +22,12 @@ context('Secrets', function () {
   })
 
   it('should see revelation confirmation screen', function () {
-    cy.get('[data-cy="reveal-button"]').should('exist').click({ force: true })
+    cy.get('[data-cy="reveal-button"]').should('exist')
+    cy.get('[data-cy="reveal-button"]').click({ force: true })
   })
 
   it('should retrieve and see the decrypted secret', function () {
-    cy.get('#secret-decrypted').should('have.text', secrets.message)
+    cy.get('[data-cy="secret-decrypted"]').should('have.text', secrets.message)
   })
 
   it('should add a 🔥 emoji', function () {
@@ -36,7 +37,7 @@ context('Secrets', function () {
 
   it('should not see decrypted secret anymore after reloading the page', function () {
     cy.reload()
-    cy.get('#secret-decrypted').should('not.exist')
+    cy.get('[data-cy="secret-decrypted"]').should('not.exist')
     cy.get('h1').should('contain.text', 'Error')
   })
 })

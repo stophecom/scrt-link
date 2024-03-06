@@ -138,7 +138,7 @@ Hey!
 You were not supposed to push that button.
 But now that you did, here is a little secret:
 
-Use the promo code HIDDENSECRET during checkout and you'll get a nice little surprise!
+Use the promo code HIDDENTREASURE during checkout and you'll get a nice little surprise!
 
 One more thing...
 Keep it to yourself, will ya?!`
