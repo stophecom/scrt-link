@@ -91,7 +91,7 @@ const AliasView: CustomPage = () => {
   ]
 
   const [hasCopied, setHasCopied] = useState(false)
-  const [isSecretRevealed, revealSecret] = useReducer(() => true, !!snap)
+  const [isSecretRevealed, revealSecret] = useReducer(() => true, false)
   const [secret, setSecret] = useState<Partial<SecretState>>({})
   const [file, setFile] = useState<Partial<FileMeta & { url: string }>>({})
   const [error, setError] = useState<Error['message']>('')
@@ -106,8 +106,13 @@ const AliasView: CustomPage = () => {
     decryptionKey,
   } = secret
 
-  // Cleanup state
   useEffect(() => {
+    // If "Instant Revelation" is active, we reveal the secret instantly.
+    if (snap) {
+      revealSecret()
+    }
+
+    // Cleanup state
     const handleRouteChange = () => {
       setSecret({})
     }
