@@ -49,7 +49,7 @@ const Layout: React.FC<LayoutProps> = ({ children, hideFooter, hideHeader }) => 
       'font-weight: bold; font-size: 50px;color: #ff0083; text-shadow: 3px 3px 0 rgba(0,0,0,0.3)',
     )
     console.info(
-      '%cUse promo code HIDDENTREASURE in during checkout!',
+      '%cUse promo code HIDDENTREASURE during checkout!',
       'font-size: 20px;color: #ff0083',
     )
   }, [])
