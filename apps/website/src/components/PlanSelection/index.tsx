@@ -166,16 +166,6 @@ const PlanSelection: React.FunctionComponent = () => {
     },
     {
       heading: t(
-        'common:components.PlanSelection.plans.premium.usps.2.heading',
-        'Read receipts: Email & SMS',
-      ),
-      body: t(
-        'common:components.PlanSelection.plans.premium.usps.2.body',
-        'Fast, convenient. Get read notifications via SMS.',
-      ),
-    },
-    {
-      heading: t(
         'common:components.PlanSelection.plans.premium.usps.3.heading',
         'Customize Neogram messages',
       ),

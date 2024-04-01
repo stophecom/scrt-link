@@ -1,4 +1,4 @@
-import mj, { Email, SMS } from 'node-mailjet'
+import mj, { Email } from 'node-mailjet'
 import { email } from '@/constants'
 const mailjet = ({ To, Subject = 'Shhh', ...props }: Partial<Email.SendParamsMessage>) =>
   mj
