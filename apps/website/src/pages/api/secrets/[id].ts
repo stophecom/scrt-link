@@ -5,17 +5,15 @@ import withDb from '@/api/middlewares/withDb'
 import handleErrors from '@/api/middlewares/handleErrors'
 import createError from '@/api/utils/createError'
 import mailjet from '@/api/utils/mailjet'
-import { twilioSms } from '@/api/utils/twilio'
 import { decryptAES } from '@/utils/db'
 
 import { getLocaleFromRequest } from '@/api/utils/helpers'
-import { mailjetTemplates, ntfyTemplates, smsReadReceipt } from '@/constants'
+import { mailjetTemplates, ntfyTemplates } from '@/constants'
 
 const handler: NextApiHandler = async (req, res) => {
   const locale = getLocaleFromRequest(req)
   const mailTemplate = mailjetTemplates.readReceipt[locale]
   const ntfyTemplate = ntfyTemplates.readReceipt[locale]
-  const smsTemplate = smsReadReceipt[locale]
 
   // Run the middleware
   await NextCors(req, res, {
@@ -56,7 +54,6 @@ const handler: NextApiHandler = async (req, res) => {
         neogramDestructionTimeout,
         receiptApi,
         receiptEmail,
-        receiptPhoneNumber,
         message,
       } = secretUrl
 
@@ -73,13 +70,6 @@ const handler: NextApiHandler = async (req, res) => {
         },
         { new: true },
       )
-
-      if (receiptPhoneNumber) {
-        await twilioSms({
-          to: `+${decryptAES(receiptPhoneNumber)}`,
-          body: `${smsTemplate.receipt} ${alias}\n\n${smsTemplate.reply}`,
-        }).catch(console.error)
-      }
 
       if (receiptEmail) {
         await mailjet({

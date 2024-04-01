@@ -86,36 +86,6 @@ export const ntfyTemplates = {
     },
   },
 }
-// Twilio SMS templates
-export const smsReadReceipt = {
-  en: {
-    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
-    reply: 'Reply with a secret: https://scrt.link',
-  },
-  de: {
-    receipt: 'scrt.link: Das folgende Geheimnis wurde gelesen und zerstört🔥:',
-    reply: 'Antworte mit einem Geheimnis: https://scrt.link',
-  },
-  fr: {
-    receipt: 'scrt.link: Le secret suivant a été lu et détruit🔥:',
-    reply: 'Réponds avec un secret: https://scrt.link',
-  },
-  pl: {
-    // Todo
-    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
-    reply: 'Reply with a secret: https://scrt.link',
-  },
-  it: {
-    // Todo
-    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
-    reply: 'Reply with a secret: https://scrt.link',
-  },
-  sr: {
-    // Todo
-    receipt: 'scrt.link: The following secret has been viewed and destroyed🔥:',
-    reply: 'Reply with a secret: https://scrt.link',
-  },
-}
 
 export const MB = 10 ** 6 // 1000000 Bytes = 1 MB.
 

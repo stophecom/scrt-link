@@ -88,10 +88,6 @@ export const readReceiptsOptions = (t: TFunction) => [
     label: t('common:FormField.readReceiptsOptions.email', 'Via Email'),
   },
   {
-    value: 'sms',
-    label: t('common:FormField.readReceiptsOptions.sms', 'Via SMS'),
-  },
-  {
     value: 'ntfy',
     label: t('common:FormField.readReceiptsOptions.ntfy', 'Via ntfy'),
   },
@@ -174,23 +170,6 @@ export const FormCustomer = () => {
                         placeholder={ntfyPlaceholder}
                         helperText={<NtfyHelp />}
                       />
-                    )}
-                    {values?.readReceiptMethod === 'sms' && (
-                      <>
-                        <BasePhoneField
-                          name="receiptPhoneNumber"
-                          label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
-                          required
-                          disabled={customer?.role !== 'premium'}
-                          helperText={
-                            customer?.role !== 'premium' ? (
-                              <UpgradeNotice requiredRole="premium" />
-                            ) : (
-                              <PrivacyNotice />
-                            )
-                          }
-                        />
-                      </>
                     )}
                   </Box>
                 )}

@@ -67,7 +67,7 @@ pnpm fetch-translations
 
 - Edit `next-i18next.config` and add language
 - Make sure to update `/src/utils/validationSchemas.ts` to enable translated form validation (yup)
-- Check mail and sms template texts in `src/constants` - which are currently hardcoded.
+- Check mail template texts in `src/constants` - which are currently hardcoded.
 - Add translation via json file in `/public/locales/`. (Or via tolgee.io)
 - Add translated versions for images in `/public/images/{locale}`
 

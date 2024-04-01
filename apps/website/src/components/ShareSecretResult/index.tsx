@@ -114,7 +114,7 @@ const Result: React.FunctionComponent<ResultProps> = ({
                     <CopyToClipboardButton text={shortenedUrl} />
                   </Box>
                 </Box>
-                {['email', 'sms', 'ntfy'].includes(readReceiptMethod || '') && (
+                {['email', 'ntfy'].includes(readReceiptMethod || '') && (
                   <Box pt={3}>
                     <Alert severity="info">
                       <Typography variant="body2" component={'div'}>

@@ -27,7 +27,7 @@ export const setYupLocale = (locale?: SupportedLanguage) => {
 }
 
 const secretTypes = ['text', 'url', 'neogram', 'file']
-const readReceiptMethods = ['none', 'sms', 'email', 'ntfy']
+const readReceiptMethods = ['none', 'email', 'ntfy']
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -63,14 +63,6 @@ const receiptNtfyValidation = (t: TFunction) => ({
   receiptNtfy: Yup.string().label(t('common:validation.ntfy', 'Ntfy')).required().max(200).trim(),
 })
 
-const receiptPhoneNumberValidation = (t: TFunction) => ({
-  receiptPhoneNumber: Yup.string()
-    .label(t('common:validation.phone', 'Phone'))
-    .matches(phoneRegExp, t('common:validation.phoneNotValid', 'Phone number is not valid'))
-    .required()
-    .trim(),
-})
-
 const urlValidation = (t: TFunction) => ({
   message: Yup.string()
     .label('URL')
@@ -96,7 +88,6 @@ export const getValidationSchemaByType = (
   const maxMessageLength = getLimits(role).maxMessageLength
   const isEmailReceiptAllowed = ['free', 'premium'].includes(role)
   const isNtfyReceiptAllowed = ['free', 'premium'].includes(role)
-  const isSMSReceiptAllowed = role === 'premium'
 
   const messageValidation = (maxLength: number) => ({
     message: Yup.string()
@@ -126,7 +117,6 @@ export const getValidationSchemaByType = (
 
   const schemataByReadReceiptMap = {
     none: {},
-    sms: receiptPhoneNumberValidation(t),
     ntfy: receiptNtfyValidation(t),
     email: receiptEmailValidation(t),
   }
@@ -141,7 +131,6 @@ export const getValidationSchemaByType = (
         [
           'none',
           ...(isEmailReceiptAllowed ? ['email'] : []),
-          ...(isSMSReceiptAllowed ? ['sms'] : []),
           ...(isNtfyReceiptAllowed ? ['ntfy'] : []),
         ],
         t('common:validation.notAllowed', 'Not allowed.'),
@@ -178,7 +167,6 @@ export const getCustomerValidationSchema = (t: TFunction, readReceiptMethod: Rea
       t('common:validation.emojiLink', 'Emoji short link'),
     ),
     ...(readReceiptMethod === 'email' ? receiptEmailValidation(t) : {}),
-    ...(readReceiptMethod === 'sms' ? receiptPhoneNumberValidation(t) : {}),
     ...(readReceiptMethod === 'ntfy' ? receiptNtfyValidation(t) : {}),
   })
 

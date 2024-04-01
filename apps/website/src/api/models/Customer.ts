@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 
-export const readReceiptOptions = ['none', 'sms', 'email', 'ntfy'] as const
-export type ReadReceiptMethod = typeof readReceiptOptions[number]
+export const readReceiptOptions = ['none', 'email', 'ntfy'] as const
+export type ReadReceiptMethod = (typeof readReceiptOptions)[number]
 
 const roles = ['free', 'premium', 'visitor'] as const
-export type Role = typeof roles[number]
+export type Role = (typeof roles)[number]
 
 export interface CustomerFields {
   userId: string
@@ -14,7 +14,6 @@ export interface CustomerFields {
   }
   receiptEmail: string
   receiptNtfy: string
-  receiptPhoneNumber: string
   neogramDestructionMessage: string
   neogramDestructionTimeout: number
   isEmojiShortLinkEnabled: boolean
@@ -27,7 +26,6 @@ export interface CustomerFields {
 // User editable data
 export const customerWriteData = [
   'receiptEmail',
-  'receiptPhoneNumber',
   'receiptNtfy',
   'neogramDestructionMessage',
   'neogramDestructionTimeout',
@@ -50,7 +48,6 @@ const CustomerSchema = new mongoose.Schema(
     name: { type: String, required: false, trim: true },
     signupUniqueEmailIdentifier: { type: String, required: false, trim: true, unique: true },
     receiptEmail: { type: String, required: false, trim: true },
-    receiptPhoneNumber: { type: String, required: false, trim: true },
     receiptNtfy: { type: String, required: false, trim: true },
     readReceiptMethod: { type: String, enum: readReceiptOptions, required: false },
     isEmojiShortLinkEnabled: { type: Boolean, required: false },

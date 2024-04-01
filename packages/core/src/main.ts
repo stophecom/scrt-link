@@ -27,7 +27,6 @@ export const createSecret: CreateSecret = async (
     neogramDestructionTimeout = 3,
     receiptApi,
     receiptEmail,
-    receiptPhoneNumber,
   } = options
 
   if (password && is(String, password)) {
@@ -50,7 +49,6 @@ export const createSecret: CreateSecret = async (
       : {}),
     receiptApi,
     receiptEmail,
-    receiptPhoneNumber,
   }
 
   return api(`${baseUrl}/api/secrets`, { method: 'POST' }, reject(isNil, data)).then(() => ({
