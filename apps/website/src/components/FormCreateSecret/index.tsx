@@ -24,7 +24,6 @@ import {
 } from '@/components/FormCustomer'
 import TabsMenu from '@/components/TabsMenu'
 import BaseRadioGroupField from '@/components/BaseRadioGroupField'
-import BasePhoneField from '@/components/BasePhoneField'
 import UpgradeNotice, { LimitReachedNotice } from '@/components/UpgradeNotice'
 
 import { getValidationSchemaByType } from '@/utils/validationSchemas'
@@ -177,7 +176,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       ),
     neogramDestructionTimeout: customer?.neogramDestructionTimeout || 3,
     receiptEmail: customer?.receiptEmail || '',
-    receiptPhoneNumber: customer?.receiptPhoneNumber || '',
     receiptNtfy: customer?.receiptNtfy || '',
     readReceiptMethod: (customer?.readReceiptMethod as ReadReceiptMethod) || 'none',
   }
@@ -191,7 +189,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
       encryptionKey,
       readReceiptMethod,
       receiptEmail,
-      receiptPhoneNumber,
       receiptNtfy,
     } = values
     const messageLength = message?.length || 0
@@ -259,8 +256,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
         secretType,
         receiptEmail: readReceiptMethod === 'email' && receiptEmail ? receiptEmail : undefined,
         receiptApi: readReceiptMethod === 'ntfy' && receiptNtfy ? { ntfy: receiptNtfy } : undefined,
-        receiptPhoneNumber:
-          readReceiptMethod === 'sms' && receiptPhoneNumber ? receiptPhoneNumber : undefined,
       }
 
       if (secretType !== 'neogram') {
@@ -527,28 +522,6 @@ const FormCreateSecret: React.FunctionComponent<FormCreateSecretProps> = ({
                                 info={
                                   <UpgradeNotice
                                     requiredRole="free"
-                                    openLinksInNewTab={isStandalone}
-                                  />
-                                }
-                              />
-                            </Box>
-                          ))}
-
-                        {values?.readReceiptMethod === 'sms' &&
-                          (customer?.role === 'premium' ? (
-                            <Box pt={2}>
-                              <BasePhoneField
-                                name="receiptPhoneNumber"
-                                required
-                                label={t('common:FormField.receiptPhoneNumber.label', 'Phone')}
-                              />
-                            </Box>
-                          ) : (
-                            <Box pt={1}>
-                              <Info
-                                info={
-                                  <UpgradeNotice
-                                    requiredRole="premium"
                                     openLinksInNewTab={isStandalone}
                                   />
                                 }

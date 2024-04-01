@@ -75,7 +75,7 @@ const product = (t: TFunction) => [
     ),
     body: t(
       'common:faq.notification.body',
-      `Yes, you can get **SMS or Email notifications** with an account. [Go to Account](/account)`,
+      `Yes, you can get **Ntfy or Email notifications** with an account. [Go to Account](/account)`,
     ),
   },
   {
@@ -85,9 +85,7 @@ const product = (t: TFunction) => [
     body: t('common:faq.read-receipts-info.body', {
       defaultValue: `For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.
 
-**Email**: You'll receive an email from *{{ email }}*.
-
-**SMS**: You'll receive an SMS notification from *{{ twilioSenderPhoneNumber }}*.`,
+**Email**: You'll receive an email from *{{ email }}*.`,
       email,
       twilioSenderPhoneNumber,
     }),

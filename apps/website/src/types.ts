@@ -17,8 +17,6 @@ declare global {
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string
       STRIPE_SECRET_KEY: string
       STRIPE_WEBHOOK_SECRET: string
-      TWILIO_ACCOUNT_SID: string
-      TWILIO_AUTH_TOKEN: string
       SLACK_APP_API_URL: string
       SLACK_APP_API_KEY: string
       FLOW_S3_ENDPOINT: string

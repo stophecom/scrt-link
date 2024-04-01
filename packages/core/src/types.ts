@@ -8,7 +8,6 @@ export interface CreateSecretOptions {
   neogramDestructionTimeout?: number
   password?: string
   receiptEmail?: string
-  receiptPhoneNumber?: string
   receiptApi?: Record<string, unknown>
 }
 

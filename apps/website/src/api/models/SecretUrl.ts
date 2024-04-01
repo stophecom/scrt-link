@@ -13,7 +13,6 @@ export interface SecretUrlFields {
   neogramDestructionTimeout?: number
   receiptApi?: { slack?: string; ntfy?: string }
   receiptEmail?: string
-  receiptPhoneNumber?: string
 }
 
 export type SecretUrlData = BaseDocumentData & SecretUrlFields // Not used. @todo clean up types
@@ -38,7 +37,6 @@ const SecretUrlSchema = new mongoose.Schema(
       ntfy: String,
     },
     receiptEmail: { type: String, required: false, trim: true },
-    receiptPhoneNumber: { type: String, required: false, trim: true },
   },
   { timestamps: true },
 )

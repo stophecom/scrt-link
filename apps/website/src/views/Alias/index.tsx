@@ -56,7 +56,7 @@ type FileMeta = {
 }
 
 type OnSubmit<FormValues> = FormikConfig<FormValues>['onSubmit']
-type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptPhoneNumber' | 'receiptApi'> & {
+type SecretState = Omit<SecretUrlFields, 'receiptEmail' | 'receiptApi'> & {
   decryptionKey: string
 }
 

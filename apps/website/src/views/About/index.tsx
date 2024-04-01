@@ -58,7 +58,7 @@ const About = () => {
             'common:views.About.Accounts.markdown',
             `The main reason we offer accounts is to prevent spam and fraud. All core features are free of charge and don't require an account.
 
-That said, some features do require basic authentication  (We just ask for an email address - we don't mind you using a temporary email address). These features include sending information via email or SMS. Accounts help us prevent abuse of the underlying systems. 
+That said, some features do require basic authentication  (We just ask for an email address - we don't mind you using a temporary email address). These features include sending information via email. Accounts help us prevent abuse of the underlying systems. 
 
 Paid premium accounts are meant for power users and people who like to [support this project](/pricing).`,
           )}

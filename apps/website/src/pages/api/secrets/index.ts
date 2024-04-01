@@ -42,7 +42,6 @@ const handler: NextApiHandler = async (req, res) => {
         isEncryptedWithUserPassword,
         alias,
         receiptEmail,
-        receiptPhoneNumber,
         receiptApi,
         neogramDestructionMessage,
         neogramDestructionTimeout,
@@ -75,7 +74,6 @@ const handler: NextApiHandler = async (req, res) => {
           : {}),
         receiptApi,
         ...(receiptEmail ? { receiptEmail: encryptAES(receiptEmail) } : {}),
-        ...(receiptPhoneNumber ? { receiptPhoneNumber: encryptAES(receiptPhoneNumber) } : {}),
       })
 
       try {
