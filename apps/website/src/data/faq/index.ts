@@ -1,8 +1,7 @@
 import { TFunction } from 'next-i18next'
 
 import general from './general'
-import slack from './slack'
-import nerdZone from './nerdZone'
+
 import securityAndPrivacy from './securityAndPrivacy'
 import product from './product'
 import accountAndBilling from './accountAndBilling'
@@ -18,8 +17,6 @@ export const faqCategories = (t: TFunction) => [
     id: 'accountAndBilling',
     title: t('common:faq.category.accountAndBilling', 'Account and Billing'),
   },
-  { id: 'slack', title: t('common:faq.category.slack', 'Slack App') },
-  { id: 'nerdZone', title: t('common:faq.category.nerdZone', 'Nerd Zone') },
 ]
 
 export const faq = (t: TFunction) => [
@@ -27,8 +24,6 @@ export const faq = (t: TFunction) => [
   ...product(t),
   ...securityAndPrivacy(t),
   ...accountAndBilling(t),
-  ...slack(t),
-  ...nerdZone(t),
 ]
 
 export const shortFaq = (t: TFunction) =>

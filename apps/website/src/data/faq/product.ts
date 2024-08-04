@@ -1,14 +1,5 @@
 import { formatNumber } from '@/utils/localization'
-import {
-  baseUrl,
-  limits,
-  email,
-  twilioSenderPhoneNumber,
-  chromeExtensionLink,
-  firefoxExtensionLink,
-  microsoftEdgeExtensionLink,
-  slackAppInstallLink,
-} from '@/constants'
+import { baseUrl, limits, email } from '@/constants'
 import { TFunction } from 'next-i18next'
 
 export const demoNeogramMessage = (t: TFunction) =>
@@ -87,7 +78,6 @@ const product = (t: TFunction) => [
 
 **Email**: You'll receive an email from *{{ email }}*.`,
       email,
-      twilioSenderPhoneNumber,
     }),
   },
   {
@@ -101,33 +91,6 @@ const product = (t: TFunction) => [
 - The secret was accessed via brut-force attack or there is an issue with the server infrastructure (don't worry, the contents of the secrets would still be encrypted) - both cases are very unlikely.
 - **Worst case**: A third party accessed the link, which ultimately means, your communication channel and/or either party's device has been compromised.`,
     ),
-  },
-  {
-    id: 'browser-extensions',
-    category: 'product',
-    heading: t('common:faq.browser-extensions.heading', 'Where can I find the browser extensions?'),
-    body: t('common:faq.browser-extensions.body', {
-      defaultValue: `The scrt.link browser extensions are available for all major browsers:
-- [Google Chrome]({{ chromeExtensionLink }})
-- [Mozilla Firefox]({{ firefoxExtensionLink }})
-- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})`,
-      chromeExtensionLink,
-      firefoxExtensionLink,
-      microsoftEdgeExtensionLink,
-    }),
-  },
-  {
-    id: 'slack-app',
-    category: 'product',
-    heading: t('common:faq.slack-app.heading', 'Where can I get the Slack App?'),
-    body: t('common:faq.slack-app.body', {
-      defaultValue: `The Slack app lets you use the power of scrt.link without switching apps. Go to the [Slack App page](/slack) for more information. Or get the app right here:  
-
-👉 [Install Slack App]({{ slackAppInstallLink }})  
-
-_**Important notice:** There are limitations when using the Slack Application. Due to the nature of how these apps are designed, full end-to-end encryption is not possible. In most cases this is not a problem and a risk worth taking - however, if you need advanced protection, create secrets on the website instead._`,
-      slackAppInstallLink,
-    }),
   },
 ]
 

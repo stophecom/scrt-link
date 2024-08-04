@@ -11,9 +11,8 @@ export const supportedLanguages = Object.keys(supportedLanguagesMap)
 export type SupportedLanguage = keyof typeof supportedLanguagesMap
 
 export const appTitle = 'scrt.link'
-export const twilioSenderPhoneNumber = '+17744694525'
 
-export const twitterLink = 'https://twitter.com/ScrtLink'
+export const twitterLink = 'https://x.com/ScrtLink'
 export const twitterHandle = '@ScrtLink'
 export const email = 'shhh@scrt.link'
 export const emailSupport = 'support@scrt.link'
@@ -37,13 +36,6 @@ export const enterprisePlanName = 'Top Secret'
 export const emailPlaceholder = 'example@gmail.com'
 export const ntfyPlaceholder = 'scrt_test_xyz123'
 export const neogramDestructionTimeoutDefault = 3
-
-export const chromeExtensionLink =
-  'https://chrome.google.com/webstore/detail/scrtlink-share-a-secret/gkpenncdoafjgnphhnmoiocbfbojggip'
-export const firefoxExtensionLink = 'https://addons.mozilla.org/en-US/firefox/addon/scrt-link'
-export const microsoftEdgeExtensionLink =
-  'https://microsoftedge.microsoft.com/addons/detail/scrtlink-share-a-secre/ijchnpicofdgjjnedmdnhodglbnfmgih'
-export const slackAppInstallLink = 'https://slack.scrt.link/slack/install'
 
 // Mailjet templates
 export const mailjetTemplates = {

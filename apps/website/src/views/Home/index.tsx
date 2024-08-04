@@ -15,13 +15,11 @@ import { PageError } from '@/components/Error'
 import { SecretUrlFields, SecretType } from '@/api/models/SecretUrl'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
-import BoxShadowWrapper from '@/components/BoxShadowWrapper'
-import UnorderedList from '@/components/UnorderedList'
 import StrokeHighlight from './components/StrokeHighlight'
 import HowItWorks from './components/HowItWorks'
 
 import Trust from './components/Trust'
-import { slackAppInstallLink } from '@/constants'
+
 import { useCustomer } from '@/utils/api'
 import { ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretPost } from '@/types'
@@ -253,70 +251,6 @@ export const HomeView: CustomPage = () => {
             src={imgLinkExplanation}
             alt={t('common:views.Home.SecretLinksExplained.imageAlt', 'Link explained')}
           />
-        </Box>
-      </Section>
-
-      <Section
-        id="SlackApp"
-        title={
-          <Trans i18nKey="common:views.Home.SlackApp.title">
-            The Slack App
-            <Typography sx={{ marginLeft: '.1em' }} component="sup" variant="h3" color="primary">
-              NEW
-            </Typography>
-          </Trans>
-        }
-        subtitle={t(
-          'common:views.Home.SlackApp.subtitle',
-          'Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.',
-        )}
-      >
-        <Box mb={5}>
-          <BoxShadowWrapper>
-            <Box position="relative" sx={{ aspectRatio: '800 / 420' }}>
-              <Image fill src="/images/slack/slack-illustration.svg" alt="Slack" />
-            </Box>
-          </BoxShadowWrapper>
-        </Box>
-        <Box>
-          <UnorderedList
-            items={[
-              t(
-                'common:views.Home.SlackApp.usps.0',
-                'Encrypted, disposable messages, stored outside of Slack.',
-              ),
-              t(
-                'common:views.Home.SlackApp.usps.1',
-                'Create one-time secrets via shortcut or slash command.',
-              ),
-              t(
-                'common:views.Home.SlackApp.usps.2',
-                'Burn notification after a secret has been viewed.',
-              ),
-            ]}
-          />
-          <Box
-            display="flex"
-            justifyContent="start"
-            alignItems={{ sm: 'center' }}
-            mt={4}
-            flexDirection={{ xs: 'column', sm: 'row' }}
-          >
-            <BaseButtonLink href="/slack" variant="contained" color="primary">
-              {t('common:button.learnMore', 'Learn more')}
-            </BaseButtonLink>
-            <Box ml={{ sm: 2 }} pt={{ xs: 1, sm: 0 }}>
-              <BaseButtonLink
-                href={slackAppInstallLink}
-                size="large"
-                variant="text"
-                color="primary"
-                fullWidth
-              >
-                {t('common:button.addToSlack', 'Add to Slack')}
-              </BaseButtonLink>
-            </Box>
-          </Box>
         </Box>
       </Section>
 

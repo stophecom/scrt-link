@@ -3,7 +3,6 @@
     "faq" : "Često postavljena pitanja"
   },
   "button" : {
-    "addToSlack" : "Dodajte na Slack",
     "backToPlans" : "Nazad na pakete",
     "cancel" : "Otkaži",
     "cancelSubscription" : "Otkažite pretplatu",
@@ -163,8 +162,7 @@
               "heading" : "{{characterLimit}} limit karaktera\n"
             },
             "2" : {
-              "body" : "Brzo, povoljno. Dobijte informaciju o čitanju putem SMS-a.",
-              "heading" : "Potvrda čitanja: Email & SMS"
+              "heading" : "Potvrda čitanja: Email"
             },
             "3" : {
               "body" : "Dodajte specijalni efekat tajnoj poruci. ",
@@ -264,25 +262,11 @@
       "body" : "Preduzimamo brojne korake da bi zaštitili vašu bezbednost, detaljnije je objašneno na stranici [privacy page](/privacy) - međutim neke od funkcija zahtevaju uslugu trećih strana koje mogu imati pristup informacijama koje mogu da identifikuju (PII). Ako želite dodatno da zaštitite svoju privatnost, preporučujemo vam sledeće: - Povežite se na našu uslugu preko vitruelne privatne mreže (VPN): Na ovaj način nikada ne pokazujete svoju ličnu IP adresu. Preporučujemo vam da koristite [ProtonVPN](https://protonvpn.com/). - ili koristite uslugu kao što je [Abine Blur](https://www.abine.com/) da sakrijete svoj email, broj telefona i/ili podatke o kreditnoj kartici. ",
       "heading" : "Kako je moja privatnost zaštićena? "
     },
-    "browser-extensions" : {
-      "body" : "scrt.link dodatak pretraživača je dostupan za poznatije pretraživače: - [Google Chrome]({{ chromeExtensionLink }}) - [Mozilla Firefox]({{ firefoxExtensionLink }}) - [Microsoft Edge]({{ microsoftEdgeExtensionLink }})\n",
-      "heading" : "Gde mogu da pronađem dodatke pretraživača ? "
-    },
     "category" : {
       "accountAndBilling" : "Nalog i plaćanje",
       "general" : "Uopšteno",
-      "nerdZone" : "Zona za napredne",
       "product" : "Proizvodi i usluge",
-      "securityAndPrivacy" : "Sigurnost i privatnost",
-      "slack" : "Slack aplikacija"
-    },
-    "developer" : {
-      "body" : "Besplatan ceo kod pronađite na: {{gitlabLink}}",
-      "heading" : "Gde mogu pronaći izvorni kod ? "
-    },
-    "developer-tools" : {
-      "body" : "Dostupni su vam jednostavni npm paketi za korišćenje. Za primere koda i detaljnije informacije posetite stranicu: [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers).",
-      "heading" : "Da li je moguće integrisati ovaj alat u moj projekat? "
+      "securityAndPrivacy" : "Sigurnost i privatnost"
     },
     "difference-to-disappearing-messages" : {
       "body" : "Anonimnost, privatnost i bezbednost. Tekstualne poruke koje se nalaze u dnevniku ćaskanja uvek se mogu pratiti i otkriti ko ih je poslao. Postoji mnogo scenarija u kojima čak i poruke koje nestaju predstavljaju faktor rizika od pronalaska osobe koja ih je poslala: Da li druge osove ponekad imaju pristup vašem telefonu? Šta ako ste izgubili telefon? Ili još gore, vaš telefon može biti hakovan na nivou operativnog sistema. Uz scrt.link uvek ćete imati samo vezu u istoriji ćaskanja. Nakon što je veza jednom posećena, ona će dovesti do stranice sa greškom 404. Ne postoji način da se pristupi originalnom sadržaju.",
@@ -309,7 +293,7 @@
       "heading" : "Koja je maksimalna veličina poruke? "
     },
     "notification" : {
-      "body" : "Da, možete da dobijete **SMS ili email obaveštenje** pomoću naloga. [Idi na Nalog](/account)",
+      "body" : "Da, možete da dobijete **email obaveštenje** pomoću naloga. [Idi na Nalog](/account)",
       "heading" : "Mogu li da dobijem obaveštenje kada je tajna poruka pregledana? "
     },
     "payment-methods" : {
@@ -325,7 +309,7 @@
       "heading" : "Kako mogu iskoristiti promo kodove? "
     },
     "read-receipts-info" : {
-      "body" : "Za svaku tajnu generišemo tajni ID (nasumični niz) koji je jedina referenca na originalnu poruku. Kada primalac otvori tajni link, obavestićemo vas koristeći izabrani metod. U obaveštenju uključujemo samo tajni ID - zato ga obavezno sačuvajte/zapamtite. Nepotrebno je napomenuti da kontakt informacije (email ili broj telefona) **nisu nikada izloženi primaocu**. **Email**: Dobićete email od *{{ email }}*. **SMS**: Dobićete obaveštenje putem SMS-a od *{{ twilioSenderPhoneNumber }}*.\n",
+      "body" : "Za svaku tajnu generišemo tajni ID (nasumični niz) koji je jedina referenca na originalnu poruku. Kada primalac otvori tajni link, obavestićemo vas koristeći izabrani metod. U obaveštenju uključujemo samo tajni ID - zato ga obavezno sačuvajte/zapamtite. Nepotrebno je napomenuti da kontakt informacije (email ili broj telefona) **nisu nikada izloženi primaocu**. \n\n**Email**: Dobićete email od *{{ email }}*. \n",
       "heading" : "Kako potvrda čitanja funkcioniše? "
     },
     "recovery" : {
@@ -355,38 +339,6 @@
     "service-provider" : {
       "body" : "Scrt.link je usluga [SANTiHANS GmbH](https://santihans.com), kompanije koja je stacionirana u Švajcarskoj sa misijom da unapredi internet. Poslujemo po Švajcarskim zakonima. Kao korisnik imate priliku da koristite jedan od najjačih svetskih propisa o zaštiti podataka i privatnosti [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). Ovaj projekat je kreirao i njime upravlja [@stophecom](https://twitter.com/stophecom).\n",
       "heading" : "Ko stoji iza ove usluge?"
-    },
-    "slack-app" : {
-      "body" : "Slack aplikacija vam omogućava da koristite scrt.link bez promene aplikacije. Klikom na [Slack aplikacija stranicu](/slack) dobićete više informacija. Ili preuzmite aplikaciju ovde:  \uD83D\uDC49 [Install Slack App]({{ slackAppInstallLink }}) _**važno obaveštenje:** Postoje ograničenja kada koristite Slack aplikaciju. Zbog načina na koji rade ove aplikacije, kompletna end-to-end enkripcija nije moguća. U mnogim slučajevima ovo nije problem i rizik koji vredi preuzeti - međutim, ako vam je potrebna napredna zaštita, kreirajte tajne linkove na sajtu. ",
-      "heading" : "Gde mogu da preuzmem \"Slack\" aplikaciju? "
-    },
-    "slack-data-collection" : {
-      "body" : "Čuvamo samo podatke koji su neophodni za pokretanje aplikacije. Kada instalirate aplikaciju, dajete nam određena prava pristupa (npr. pravo da postavite tajnu vezu na vaše ime). Ovi podaci uključuju osnovne informacije koje se prenosi iz Slack aplikacije (npr. korisničko ime, itd) kao i pojedinačne tokene za autorizaciju. Pored toga, privremeno čuvamo podatke potrebne za potvrdu čitanja. **Ne čuvamo nikakve druge podatke**. Ne menjamo, prodajemo ili distribuiramo podatke koje prikupljamo. Čak i da želimo, ne možemo da vas identifikujemo kao osobu, jer samo Slack  aplikacija može imati relevantne informacije za tako nešto. \n",
-      "heading" : "Koje podatke prikupljate?"
-    },
-    "slack-not-approved" : {
-      "body" : "Prvo, vrlo je važno napomenuti da se ova aplikacija i dalje može instalitati i koristiti kao ostale aplikacije. Mi smo pokušali da dodamo našu aplikaciju u direktorijum Slack aplikacije, ali pošto Slack doslovno \"ograničava aplikacije koje omogućavaju deljenje osetljivih informacija\", nismo uspeli. Sada razmislite o ovome na trenutak, a posle toga nam pomognite da proširimo aplikaciju \uD83E\uDD70 ",
-      "heading" : "Zašto aplikacija nije odobrena od strane Slack aplikacije?"
-    },
-    "slack-premium-account" : {
-      "body" : "Ne. Veoma ste dobrodošli. Ali, naravno, možete podržati ovaj projekat sa plaćenom pretplatom \uD83E\uDD13.",
-      "heading" : "Da li mi je potreban premijum pretplata da bi koristio Slack aplikaciju? "
-    },
-    "slack-scopes" : {
-      "body" : "Aplikacija zahteva osnovne informacije o koristisniku, kanalima i razgovorima. Pored toga, aplikaciji je potrebna dozvola za objavljivanje u vaše ime, pristup razgovorima i korišćenja komandi \"slash commands\" i _shortcuts_. Dobićete detaljnije informacije o dozvolama prilikom intaliranja aplikacije. ",
-      "heading" : "Koje su dozvole obavezne? "
-    },
-    "slack-security" : {
-      "body" : "Iskren odgovor: Ne možemo znati sa sigurnošću. Važno je znati da end-to-end šifrovanje nije moguće sa Slack aplikacijama. Međutim, komunikacija između našeg servera i Slack aplikacije je šifrovana i verujemo da je sigurna u 99% slučajeva. Ali ipak, imajte na umu da je **Slack je vlasnički program** i mi nemamo kontrolu nad kodom koji koristi Slack aplikacija. **Ako želite da budete sigurni 100%, kreirajte tajni link preko pretraživača na web-u.**",
-      "heading" : "Da li je Slack aplikacija sigurna? "
-    },
-    "slack-trust" : {
-      "body" : "Kratak odgovor: Nemoj. Ipak, verujemo u poverenje kroz transparentnost. Dok vi imate nešto da sakrijete, mi nemamo. Zbog toga je sav kod otvoren i dostupan na {{gitlabLink}}. Budite slobodni da pokrenete svoju Slack aplikaciju.",
-      "heading" : "Zašto bih trebao da vam verujem? "
-    },
-    "slack-user-account" : {
-      "body" : "Ne. Tranutne ne. Vi ste dobrodošli. ",
-      "heading" : "Da li mi je potreban nalog da bi koristio Slack aplikaciju? "
     },
     "subscriptions" : {
       "body" : "Jednom kada se pretplatite za premijum paket, dobijate trenutni pristup svim funkcijma koje se nalaze u paketu i to dok traje period pretplate. Naplata će se vršiti svakog meseca ili godine, u zavisnosti od izabranog intervala plaćanja. Pretplata može biti otkazana bilo kada.",
@@ -421,8 +373,7 @@
     },
     "readReceiptsOptions" : {
       "email" : "Putem email-a ",
-      "none" : "Nijedan",
-      "sms" : "Putem SMS-a"
+      "none" : "Nijedan"
     },
     "receiptEmail" : {
       "label" : "Email\n"
@@ -534,24 +485,10 @@
         "subtitle" : "Zašto imamo u ponudi besplatne i premijum naloge?",
         "title" : "Korisnički nalog"
       },
-      "BrowserExtensions" : {
-        "markdown" : "Da bi ova usluga bila laka i zgodna, postoje proširenja pretraživača koja su dostupna za većinu modernih pretraživača. Svako proširenje deli iste funkcije bezbednosti i privatnosti. ",
-        "subtitle" : "Podelite tajne iz vašeg pretraživača.",
-        "title" : "Potražite proširenja pretraživača"
-      },
-      "Developers" : {
-        "markdown" : "Sa našim alatima za programere možete lako da integrišete ovu uslugu u sopstvene projekte. Dajemo javni API zajedno sa paketima koji koriste end-to-end šifrovanje. ### NPM пакети - {{npmScrtLinkCore}} koristite ovaj paket da napravite tajni link. Ovaj alat se koristi za sve oko šifrovanja i API. (To je isti kod koji se koristi na ovoj veb lokaciji.) - {{npmScrtLinkCli}}. Koristite ovaj paket da kreirate tajne poruke iz komandne linije. ### Izvorni kod - {{gitlabScrtLink}} Izvorni kod za API i ovaj sajt. - {{gitlabScrtLinkCore}} Izvorni kod osnovnog paketa koji upravlja šifrovanjem i pristupom API-ju. - {{gitlabScrtLinkCli}} Izvorni kod CLI alata. - {{gitlabScrtLinkSlack}} Izvorni kod Slack aplikacije.",
-        "subtitle" : "Kod je otvorenog tipa. Možete da koristite sledeće pakete da kreirate sopstvenu uslugu ili da koristite našu uslugu programski preko javnog API. ",
-        "title" : "Za programere"
-      },
       "intro" : "Sve je počelo sa idejom da se privatne poruke pošalju na zabavan način. Poruke koje imaju rok trajanja. Razmislite o Snapchat-u, ali bez davanja vaših korisničkih podataka. Ideja je prerasla u projekat koji bi mogao da se protumači kao \"Deljenje tajnih poruka kao usluga\". Postoje slični projekti - neki su bili odlična inspiracija. Medjutim, ono što izdvaja scrt.link je kombinacija svih sjajnih ideja i koncepata oko bezbednosti i privatnosti, sa pažnjom na dizajn i korisničko uputstvo. Ostanite sa nama - postoji još mnogo toga!",
       "Philosophy" : {
         "markdown" : "Sloboda govora, sloboda štampe i pravo na privatnost su među najvažnijim građanskim pravima u slobodnom društvu. Ovim projektom vam omogućavamo da razmenjujete informacije preko interneta na zaista bezbedan i privatan način. Ovaj proizvod je napravljen na način koji poštuje integritet i privatnost ljudi do samog kraja. Nemamo nikakav interes za vase tajne, a ni vaše lične informacije. Pročitajte više na našoj stranici [Privacy page](/privacy).",
         "title" : "Filozofija"
-      },
-      "SlackApp" : {
-        "subtitle" : "Nema potrebe za promenom aplikacije. Sa Slack aplikacijom možete da kreirate jednokratne tajne u svojim Slack razgovorima.",
-        "title" : "Slack aplikacija"
       },
       "subtitle" : "Ceo projekat je kreiran na jednostavnoj tezi: Što manje znaš. to je bolje.",
       "title" : "O nama"
@@ -656,15 +593,6 @@
         "subtitle" : "Šifrujemo vašu tajnu na vašem uređaju. Ključ za šifrovanje se nikada ne čuva, već je sastavni deo linka. Bez celog linka, niko, uključujući i nas, nikada neće moći da dešifruje vašu tajnu. ",
         "title" : "End-to-end šifrovano\n"
       },
-      "SlackApp" : {
-        "subtitle" : "Neke poruke ne trebaju da ostanu u istoriji razgovora. Sledeći put kada vas kolega upita za pristupni ključ, API ključ, možete odgovoriti mirne savesti. \n",
-        "title" : "Slack aplikacija<1>NOVA</1>\n",
-        "usps" : {
-          "0" : "Šifrovane poruke za jednokratnu upotrebu, sačuvane izvan Slack-a.\n",
-          "1" : "Kreirajte jednokratnu tajnu sa prečicama ili slash(/) komandom.",
-          "2" : "Uništite obaveštenje da je tajnu pogledana i uništena. "
-        }
-      },
       "success" : {
         "subtitle" : "Vaš tajni link je kreiran - prosledite ga vašem primaocu. \n",
         "title" : "Uspešno!"
@@ -752,8 +680,6 @@
         "Usps" : {
           "0" : "Više karaktera za vaše tajne",
           "1" : "Email potvrda čitanja",
-          "2" : "Slack aplikacija",
-          "3" : "Proširenja pretraživača",
           "4" : "Lična podrška",
           "5" : "Emoji link \uD83E\uDD2B"
         }
@@ -762,24 +688,6 @@
       "signInNow" : "Prijavite se sada",
       "subtitle" : "Ovde počinju sjajne stvari...",
       "title" : "Kreirajte nalog"
-    },
-    "Slack" : {
-      "FAQ" : {
-        "subtitle" : "Često postavljena pitanja u vezi Slack aplikacije."
-      },
-      "HowToUse" : {
-        "markdown" : "### Slash Command The easiest and most versatile option is to use a slash command (**`/scrt`**) _Example:_ ![Image](/images/slack/slack-screenshot-command-input.png) - **`/scrt`** opens a dialog to create a secret. - **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**). - **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret. - **`/scrt help`**: opens a help dialog. ### Slack Shortcuts There are global and message level shortcuts available. - Click ⚡️ to access global shortcuts and choose **scrt.link**. - Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**. ![Image](/images/slack/slack-screenshot-shortcut-detail.png) ### Read Receipts This is a built in feature. You get notified when a secret has been viewed. We use a \uD83D\uDD25 emoji to indicate when a secret has been burned and the link is therefore no longer available. ![Image](/images/slack/slack-screenshot-read-receipt.png)\n",
-        "title" : "How to use\n"
-      },
-      "intro" : "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.\n",
-      "Introduction" : {
-        "markdown" : "### Key Features - Create one-time secrets via **shortcut** or **slash command**. - **Encrypted, disposable messages** that are stored outside of Slack. - **Burn notification** after a secret has been viewed. - No logs, no backup, no trace. \uD83D\uDC49 [Install now]({{slackAppInstallLink}}) --- #### _Important information about security limitations_ _Due to the nature of how Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is fine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets on the website instead._\n",
-        "subtitle" : "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.\n",
-        "title" : "Secrets for Slack\n"
-      },
-      "missingTranslationsNotice" : "Dear customer, the Slack App is currently only available in English.\n",
-      "subtitle" : "Some things better not stay in your chat history.\n",
-      "title" : "The Slack App\n"
     },
     "TermsOfService" : {
       "policies" : "Politike",

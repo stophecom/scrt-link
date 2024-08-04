@@ -17,7 +17,7 @@ import Logo from '@/components/Logo'
 import BaseButton from '@/components/BaseButton'
 import SROnly from '@/components/ScreenreaderOnly'
 import { LanguageSelector } from '@/components/LanguageSwitcher'
-import { account, secrets, integrations, information, support } from '@/data/menu'
+import { account, secrets, information, support } from '@/data/menu'
 
 const NavigationButton = styled(BaseButton)`
   align-items: center;
@@ -204,16 +204,9 @@ const NavigationMenu: React.FunctionComponent = () => {
             item
             xs={12}
             sm={4}
-            mb={{ xs: 2, sm: 0 }}
             display={'flex'}
             justifyContent={{ xs: 'center', sm: 'start' }}
-          >
-            <SubMenu
-              sx={{ '& a': { fontSize: ['1.4rem', '1em'] } }}
-              menu={integrations}
-              title={t('common:menu.title.integrations', 'Integrations')}
-            />
-          </Grid>
+          ></Grid>
           <Grid
             item
             xs={12}

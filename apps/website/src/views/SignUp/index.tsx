@@ -32,8 +32,6 @@ const SignUp = () => {
             items={[
               t('common:views.SignUp.FreeAccount.Usps.0', 'More characters for your secrets'),
               t('common:views.SignUp.FreeAccount.Usps.1', 'Email read receipts'),
-              t('common:views.SignUp.FreeAccount.Usps.2', 'Slack App'),
-              t('common:views.SignUp.FreeAccount.Usps.3', 'Browser extensions'),
               t('common:views.SignUp.FreeAccount.Usps.4', 'Personal support'),
               t('common:views.SignUp.FreeAccount.Usps.5', 'Emoji links 🤫'),
             ]}
