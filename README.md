@@ -8,8 +8,6 @@ Live: **[scrt.link](https://scrt.link)**.
 
 This project is set up as a monorepo. In the `/apps` folder we store the website application, in `packages` the common libraries.
 
-The other apps, like the slack app and the browser extensions may be ported eventually.
-
 ```bash
 
 # Install dependencies

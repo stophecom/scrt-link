@@ -13,7 +13,7 @@ import Stats from '@/components/Stats'
 import SubMenu from '@/components/SubMenu'
 import Logo from '@/components/Logo'
 import { Container } from '@/layouts/Default'
-import { about, secrets, integrations, information, support } from '@/data/menu'
+import { about, secrets, information, support } from '@/data/menu'
 import { MarkdownRaw } from '@/components/Markdown'
 import { useCustomer } from '@/utils/api'
 
@@ -208,12 +208,6 @@ const Footer: React.FC = () => {
           </Grid>
           <GridBlock>
             <SubMenu menu={secrets(t)} title={t('common:menu.title.secrets', 'Secrets')} />
-          </GridBlock>
-          <GridBlock>
-            <SubMenu
-              menu={integrations}
-              title={t('common:menu.title.integrations', 'Integrations')}
-            />
           </GridBlock>
           <GridBlock>
             <SubMenu

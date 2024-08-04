@@ -1,24 +1,15 @@
 import React from 'react'
-import { Box } from '@mui/material'
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 
 import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
-import { BaseButtonLink } from '@/components/Link'
-import {
-  chromeExtensionLink,
-  firefoxExtensionLink,
-  microsoftEdgeExtensionLink,
-  slackAppInstallLink,
-} from '@/constants'
+
 import {
   npmScrtLinkCore,
   npmScrtLinkCli,
   repositoryLink,
   gitlabScrtLinkCore,
-  gitlabScrtLinkSlack,
   gitlabScrtLinkCli,
 } from '@/data/markdown'
 
@@ -64,41 +55,6 @@ Paid premium accounts are meant for power users and people who like to [support 
           )}
         />
       </Section>
-      <Section
-        title={t('common:views.About.BrowserExtensions.title', 'Browser Extensions')}
-        subtitle={t(
-          'common:views.About.BrowserExtensions.subtitle',
-          `Share secrets from within your browser.`,
-        )}
-      >
-        <Markdown
-          source={`${t(
-            'common:views.About.BrowserExtensions.markdown',
-            'To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.',
-          )}
-- [Google Chrome](${chromeExtensionLink})
-- [Mozilla Firefox](${firefoxExtensionLink})
-- [Microsoft Edge](${microsoftEdgeExtensionLink})`}
-        />
-      </Section>
-      <Section
-        title={t('common:views.About.SlackApp.title', 'Slack Application')}
-        subtitle={t(
-          'common:views.About.SlackApp.subtitle',
-          `No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.`,
-        )}
-      >
-        <Box mb={3}>
-          <Image width={210} height={62} src="/images/slack/Slack_RGB_White.svg" alt="Slack" />
-        </Box>
-        <BaseButtonLink variant="contained" href={slackAppInstallLink}>
-          {t('common:button.installNow', 'Install now')}
-        </BaseButtonLink>
-        &nbsp;&nbsp;
-        <BaseButtonLink variant="text" href="/slack">
-          {t('common:button.learnMore', 'Learn more')}
-        </BaseButtonLink>
-      </Section>
 
       <Section
         title={t('common:views.About.Developers.title', 'For Developers')}
@@ -120,14 +76,12 @@ Paid premium accounts are meant for power users and people who like to [support 
 
 - {{gitlabScrtLink}} Source code of the API and this website.
 - {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.
-- {{gitlabScrtLinkCli}} Source code of the CLI tool.
-- {{gitlabScrtLinkSlack}} Source code of the Slack App.`,
+- {{gitlabScrtLinkCli}} Source code of the CLI tool.`,
             npmScrtLinkCore,
             npmScrtLinkCli,
             gitlabScrtLink: repositoryLink,
             gitlabScrtLinkCore,
             gitlabScrtLinkCli,
-            gitlabScrtLinkSlack,
           })}
         />
       </Section>

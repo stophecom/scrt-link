@@ -71,7 +71,6 @@
     "stripe": "^8.148.0",
     "swr": "^1.0.0",
     "throttle-debounce": "^3.0.1",
-    "twilio": "^3.68.0",
     "universal-cookie": "^4.0.4",
     "validator": "^13.5.2",
     "windups": "^1.1.9",

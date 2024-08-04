@@ -96,6 +96,7 @@ const handler: NextApiHandler = async (req, res) => {
       }
 
       // Here we send receiptId to slack app endpoint. See https://gitlab.com/kingchiller/scrt-link-slack for more info.
+      // This is deprecated and will be discontinued.
       if (receiptApi?.slack) {
         await fetch(`${process.env.SLACK_APP_API_URL}/receipts`, {
           method: 'POST',

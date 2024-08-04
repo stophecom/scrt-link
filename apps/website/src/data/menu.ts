@@ -27,34 +27,6 @@ export const secrets = (t: TFunction) => [
   },
 ]
 
-export const integrations = [
-  {
-    href: '/slack',
-    label: 'Slack App',
-  },
-  {
-    href: chromeExtensionLink,
-    label: 'Google Chrome',
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-  },
-  {
-    href: firefoxExtensionLink,
-    label: 'Mozilla Firefox',
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-  },
-  {
-    href: microsoftEdgeExtensionLink,
-    label: 'Microsoft Edge',
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-  },
-]
-
 export const information = (t: TFunction) => [
   {
     href: '/about',
