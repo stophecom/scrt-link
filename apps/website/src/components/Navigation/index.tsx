@@ -204,6 +204,13 @@ const NavigationMenu: React.FunctionComponent = () => {
             item
             xs={12}
             sm={4}
+            display={'flex'}
+            justifyContent={{ xs: 'center', sm: 'start' }}
+          ></Grid>
+          <Grid
+            item
+            xs={12}
+            sm={4}
             mb={{ xs: 2, sm: 0 }}
             display={'flex'}
             justifyContent={{ xs: 'center', sm: 'start' }}

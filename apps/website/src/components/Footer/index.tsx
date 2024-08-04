@@ -1,6 +1,6 @@
 import React, { useState, ReactNode } from 'react'
-import { Grid, Box, IconButton, Typography } from '@mui/material'
-import { Twitter } from '@mui/icons-material'
+import { Grid, Box, IconButton } from '@mui/material'
+import { X } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
@@ -232,7 +232,7 @@ const Footer: React.FC = () => {
             title={twitterHandle}
             size="large"
           >
-            <Twitter fontSize="inherit" />
+            <X fontSize="inherit" />
           </IconButton>
         </Box>
 

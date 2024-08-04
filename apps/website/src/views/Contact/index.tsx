@@ -36,7 +36,7 @@ const Contact = () => {
         <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
         <br />
         <br />
-        Twitter: <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
+        X: <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
         <br />
         <br />
       </Typography>

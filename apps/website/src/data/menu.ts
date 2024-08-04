@@ -1,12 +1,6 @@
 import { TFunction } from 'next-i18next'
 
-import {
-  blogUrl,
-  chromeExtensionLink,
-  firefoxExtensionLink,
-  microsoftEdgeExtensionLink,
-  twitterLink,
-} from '@/constants'
+import { blogUrl } from '@/constants'
 
 export const secrets = (t: TFunction) => [
   {
@@ -58,13 +52,6 @@ export const support = (t: TFunction) => [
   {
     href: '/faq',
     label: t('common:menu.faq', 'FAQ'),
-  },
-  {
-    href: twitterLink,
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    label: 'Twitter',
   },
   {
     href: '/contact',
