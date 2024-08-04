@@ -262,10 +262,6 @@
       "body" : "Nous prenons un certain nombre de mesures pour protéger votre vie privée, détaillées sur la [page de confidentialité](/privacy) - toutefois, certaines fonctionnalités nécessitent des services tiers qui peuvent avoir accès à des informations personnelles identifiables (PII). Si vous souhaitez protéger davantage votre vie privée, nous vous recommandons ce qui suit :\n\n- Connectez-vous à notre service via un réseau privé virtuel (VPN) : De cette façon, vous n'exposez jamais votre adresse IP personnelle. Nous recommandons [ProtonVPN](https://protonvpn.com/).\n- Utilisez un service tel que [Abine Blur](https://www.abine.com/) pour masquer votre adresse électronique personnelle, votre numéro de téléphone et/ou vos informations de carte de crédit.",
       "heading" : "Comment ma vie privée est protégée?"
     },
-    "browser-extensions" : {
-      "body" : "Les extensions de navigateur scrt.link sont disponibles pour tous les principaux navigateurs :\n- [Google Chrome]({{ chromeExtensionLink }})\n- Mozilla Firefox]({{ firefoxExtensionLink }})\n- Microsoft Edge]({{ microsoftEdgeExtensionLink }})",
-      "heading" : "Où puis-je trouver les extensions de navigateur ?"
-    },
     "category" : {
       "accountAndBilling" : "Compte et facturation",
       "general" : "Général",
@@ -498,11 +494,6 @@
         "subtitle" : "Pourquoi nous proposons des comptes gratuits et premium.",
         "title" : "Comptes d'utilisateur"
       },
-      "BrowserExtensions" : {
-        "markdown" : "Pour rendre ce service simple et pratique, des extensions de navigateur sont disponibles pour tous les navigateurs modernes. Tous les addons partagent les mêmes fonctionnalités de sécurité et de confidentialité.",
-        "subtitle" : "Partagez des secrets depuis votre navigateur.",
-        "title" : "Extensions de navigateur"
-      },
       "Developers" : {
         "markdown" : "Grâce à nos outils de développement, Tu peu facilement intégrer ce service dans vos propres projets. Nous offrons une API publique ainsi que des paquets côté client qui gèrent le cryptage de bout en bout.\n\n### Paquets NPM\n- {{npmScrtLinkCore}} Utilisez ce paquet pour créer un lien secret. Cet outil gère tout ce qui concerne le cryptage et l'API. (C'est le même code qui fonctionne sur ce site web).\n- {{npmScrtLinkCli}} Utilisez ce paquet pour créer des secrets à partir de la ligne de commande.\n\n### Code source\n- {{gitlabScrtLink}} Code source de l'API et de ce site web.\n- {{gitlabScrtLinkCore}} Code source du paquet principal qui gère le cryptage et l'accès à l'API.\n- {{gitlabScrtLinkCli}} Code source de l'outil CLI.\n- {{gitlabScrtLinkSlack}} Code source de l'application Slack.",
         "subtitle" : "Tout le code est open source. Tu peu utiliser les paquets suivants pour créer votre propre service, ou pour utiliser notre service de manière programmatique via l'API publique.",
@@ -703,7 +694,6 @@
         "Usps" : {
           "0" : "Plus de caractères pour vos secrets",
           "1" : "Accusés de réception de lecture par e-mail",
-          "3" : "Extensions de navigateur",
           "4" : "Soutien personnel",
           "5" : "Liens Emoji \uD83E\uDD2B"
         }

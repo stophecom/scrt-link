@@ -262,10 +262,6 @@
       "body" : "Wir unternehmen eine Reihe von Schritten, um deine Privatsphäre zu schützen, die auf der [Datenschutzseite](privacy) detailliert beschrieben sind - einige der Funktionen erfordern jedoch Dienste von Drittanbietern, die Zugang zu personenbezogenen Daten (PII) haben können. Wenn du deine Privatsphäre weiter schützen möchtest, empfehlen wir dir Folgendes:\n\n-Verbinde dich mit unserem Dienst über ein virtuelles privates Netzwerk (VPN): Auf diese Weise gibst niemals deine persönliche IP-Adresse preis. Wir empfehlen [ProtonVPN](https://protonvpn.com/).\n- Verwende einen Dienst wie [Abine Blur](https://www.abine.com/), um deine persönliche E-Mail-Adresse, Telefonnummer und/oder Kreditkarteninformationen zu verbergen.",
       "heading" : "Wie wird meine Privatsphäre geschützt?"
     },
-    "browser-extensions" : {
-      "body" : "Die Browsererweiterungen sind für alle gängigen Browser verfügbar:\n- [Google Chrome]({{ chromeExtensionLink }})\n- [Mozilla Firefox]({{ firefoxExtensionLink }})\n- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})",
-      "heading" : "Wo kann ich die Browsererweiterungen finden?"
-    },
     "category" : {
       "accountAndBilling" : "Konto und Bezahlung",
       "general" : "Allgemeines",
@@ -498,11 +494,6 @@
         "subtitle" : "Warum wir Nutzerkonten anbieten.",
         "title" : "Nutzerkonten"
       },
-      "BrowserExtensions" : {
-        "markdown" : "Um diesen Dienst einfach und bequem zu gestalten, gibt es Browser-Erweiterungen für alle modernen Browser. Alle Erweiterungen verfügen über dieselben Sicherheits- und Datenschutzeigenschaften.",
-        "subtitle" : "Teile Geheimnisse ohne den Tab zu wechseln.",
-        "title" : "Browser-Erweiterungen"
-      },
       "Developers" : {
         "markdown" : "Dank unseren Entwickler-Tools kannst du diesen Dienst einfach in dein eigenes Projekt integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App.",
         "subtitle" : "Der gesamte Code ist quelloffen. Du kannst die folgenden Pakete verwenden, um deinen eigenen Dienst zu erstellen oder um unseren Dienst programmatisch über die öffentliche API zu nutzen.",
@@ -703,7 +694,6 @@
         "Usps" : {
           "0" : "Mehr Zeichen für deine Geheimnisse",
           "1" : "E-Mail-Lesebestätigungen",
-          "3" : "Browsererweiterungen",
           "4" : "Persönlicher Support",
           "5" : "Emoji Links \uD83E\uDD2B"
         }

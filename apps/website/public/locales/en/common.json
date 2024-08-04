@@ -262,10 +262,6 @@
       "body" : "We take a number of steps to protect your privacy, detailed on the [privacy page](/privacy) - however some of the features require third party services that may have access to personal identifiable information (PII). If you want to further protect your privacy, we recommend the following:\n\n- Connect to our service via a virtual private network (VPN): This way you never expose your personal IP address. We recommend [ProtonVPN](https://protonvpn.com/).\n- Use a service such as [Abine Blur](https://www.abine.com/) to hide your personal email address, phone number and/or credit card information.",
       "heading" : "How is my privacy protected?"
     },
-    "browser-extensions" : {
-      "body" : "The scrt.link browser extensions are available for all major browsers:\n- [Google Chrome]({{ chromeExtensionLink }})\n- [Mozilla Firefox]({{ firefoxExtensionLink }})\n- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})",
-      "heading" : "Where can I find the browser extensions?"
-    },
     "category" : {
       "accountAndBilling" : "Account and Billing",
       "general" : "General",
@@ -498,11 +494,6 @@
         "subtitle" : "On why we offer free and premium accounts.",
         "title" : "User Accounts"
       },
-      "BrowserExtensions" : {
-        "markdown" : "To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.",
-        "subtitle" : "Share secrets from within your browser.",
-        "title" : "Browser Extensions"
-      },
       "Developers" : {
         "markdown" : "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App.",
         "subtitle" : "All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.",
@@ -703,7 +694,6 @@
         "Usps" : {
           "0" : "More characters for your secrets",
           "1" : "Email read receipts",
-          "3" : "Browser extensions",
           "4" : "Personal support",
           "5" : "Emoji links \uD83E\uDD2B"
         }

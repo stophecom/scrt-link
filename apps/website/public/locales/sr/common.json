@@ -262,10 +262,6 @@
       "body" : "Preduzimamo brojne korake da bi zaštitili vašu bezbednost, detaljnije je objašneno na stranici [privacy page](/privacy) - međutim neke od funkcija zahtevaju uslugu trećih strana koje mogu imati pristup informacijama koje mogu da identifikuju (PII). Ako želite dodatno da zaštitite svoju privatnost, preporučujemo vam sledeće: - Povežite se na našu uslugu preko vitruelne privatne mreže (VPN): Na ovaj način nikada ne pokazujete svoju ličnu IP adresu. Preporučujemo vam da koristite [ProtonVPN](https://protonvpn.com/). - ili koristite uslugu kao što je [Abine Blur](https://www.abine.com/) da sakrijete svoj email, broj telefona i/ili podatke o kreditnoj kartici. ",
       "heading" : "Kako je moja privatnost zaštićena? "
     },
-    "browser-extensions" : {
-      "body" : "scrt.link dodatak pretraživača je dostupan za poznatije pretraživače: - [Google Chrome]({{ chromeExtensionLink }}) - [Mozilla Firefox]({{ firefoxExtensionLink }}) - [Microsoft Edge]({{ microsoftEdgeExtensionLink }})\n",
-      "heading" : "Gde mogu da pronađem dodatke pretraživača ? "
-    },
     "category" : {
       "accountAndBilling" : "Nalog i plaćanje",
       "general" : "Uopšteno",
@@ -498,11 +494,6 @@
         "subtitle" : "Zašto imamo u ponudi besplatne i premijum naloge?",
         "title" : "Korisnički nalog"
       },
-      "BrowserExtensions" : {
-        "markdown" : "Da bi ova usluga bila laka i zgodna, postoje proširenja pretraživača koja su dostupna za većinu modernih pretraživača. Svako proširenje deli iste funkcije bezbednosti i privatnosti. ",
-        "subtitle" : "Podelite tajne iz vašeg pretraživača.",
-        "title" : "Potražite proširenja pretraživača"
-      },
       "Developers" : {
         "markdown" : "Sa našim alatima za programere možete lako da integrišete ovu uslugu u sopstvene projekte. Dajemo javni API zajedno sa paketima koji koriste end-to-end šifrovanje. ### NPM пакети - {{npmScrtLinkCore}} koristite ovaj paket da napravite tajni link. Ovaj alat se koristi za sve oko šifrovanja i API. (To je isti kod koji se koristi na ovoj veb lokaciji.) - {{npmScrtLinkCli}}. Koristite ovaj paket da kreirate tajne poruke iz komandne linije. ### Izvorni kod - {{gitlabScrtLink}} Izvorni kod za API i ovaj sajt. - {{gitlabScrtLinkCore}} Izvorni kod osnovnog paketa koji upravlja šifrovanjem i pristupom API-ju. - {{gitlabScrtLinkCli}} Izvorni kod CLI alata. - {{gitlabScrtLinkSlack}} Izvorni kod Slack aplikacije.",
         "subtitle" : "Kod je otvorenog tipa. Možete da koristite sledeće pakete da kreirate sopstvenu uslugu ili da koristite našu uslugu programski preko javnog API. ",
@@ -703,7 +694,6 @@
         "Usps" : {
           "0" : "Više karaktera za vaše tajne",
           "1" : "Email potvrda čitanja",
-          "3" : "Proširenja pretraživača",
           "4" : "Lična podrška",
           "5" : "Emoji link \uD83E\uDD2B"
         }
