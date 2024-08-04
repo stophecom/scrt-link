@@ -55,36 +55,6 @@ Paid premium accounts are meant for power users and people who like to [support 
           )}
         />
       </Section>
-
-      <Section
-        title={t('common:views.About.Developers.title', 'For Developers')}
-        subtitle={t(
-          'common:views.About.Developers.subtitle',
-          `All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.`,
-        )}
-      >
-        <Markdown
-          source={t('common:views.About.Developers.markdown', {
-            defaultValue: `With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.
-
-### NPM Packages
-
-- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)
-- {{npmScrtLinkCli}} Use this package to create secrets from the command line.
-
-### Source Code
-
-- {{gitlabScrtLink}} Source code of the API and this website.
-- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.
-- {{gitlabScrtLinkCli}} Source code of the CLI tool.`,
-            npmScrtLinkCore,
-            npmScrtLinkCli,
-            gitlabScrtLink: repositoryLink,
-            gitlabScrtLinkCore,
-            gitlabScrtLinkCli,
-          })}
-        />
-      </Section>
     </Page>
   )
 }

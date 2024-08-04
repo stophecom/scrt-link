@@ -265,17 +265,8 @@
     "category" : {
       "accountAndBilling" : "Compte et facturation",
       "general" : "Général",
-      "nerdZone" : "Zone Nerd",
       "product" : "Produits et services",
       "securityAndPrivacy" : "Sécurité et confidentialité"
-    },
-    "developer" : {
-      "body" : "Tout le code est open-source sur {{gitlabLink}}",
-      "heading" : "Où puis-je trouver le code source ?"
-    },
-    "developer-tools" : {
-      "body" : "Il existe des packages npm faciles à utiliser. Pour des exemples de code et de plus amples informations sur l'intégration, visitez le [blog du développeur](https://blog.stophe.com/scrtlink-is-built-for-developers).",
-      "heading" : "Comment intégrer cet outil dans mon projet ?"
     },
     "difference-to-disappearing-messages" : {
       "body" : "Anonymat, confidentialité et sécurité. Les messages en texte clair dans un journal de chat peuvent toujours être retracés. Il existe de nombreux scénarios dans lesquels même la disparition des messages constitue un facteur de risque : D'autres personnes ont-elles parfois accès à votre téléphone ? Et si vous perdiez votre téléphone ? Ou pire encore, votre téléphone pourrait être compromis au niveau du système d'exploitation. Avec scrt.link, vous aurez toujours juste un lien dans l'historique de vos conversations. Après que le lien ait été visité une fois, il mènera à une page d'erreur 404. Il n'y a aucun moyen d'accéder au contenu original.",
@@ -493,11 +484,6 @@
         "markdown" : "La principale raison pour laquelle nous proposons des comptes est de prévenir le spam et la fraude. Toutes les fonctionnalités de base sont gratuites et ne nécessitent pas de compte.\n\nCela dit, certaines fonctionnalités nécessitent une authentification de base (Nous demandons simplement une adresse électronique - cela ne nous dérange pas que vous utilisiez une adresse électronique temporaire). Ces fonctions comprennent l'envoi d'informations par courrier électronique ou par SMS. Les comptes nous aident à prévenir les abus des systèmes sous-jacents. \n\nLes comptes premium payants sont destinés aux utilisateurs expérimentés et aux personnes qui souhaitent [soutenir ce projet](/tarification).",
         "subtitle" : "Pourquoi nous proposons des comptes gratuits et premium.",
         "title" : "Comptes d'utilisateur"
-      },
-      "Developers" : {
-        "markdown" : "Grâce à nos outils de développement, Tu peu facilement intégrer ce service dans vos propres projets. Nous offrons une API publique ainsi que des paquets côté client qui gèrent le cryptage de bout en bout.\n\n### Paquets NPM\n- {{npmScrtLinkCore}} Utilisez ce paquet pour créer un lien secret. Cet outil gère tout ce qui concerne le cryptage et l'API. (C'est le même code qui fonctionne sur ce site web).\n- {{npmScrtLinkCli}} Utilisez ce paquet pour créer des secrets à partir de la ligne de commande.\n\n### Code source\n- {{gitlabScrtLink}} Code source de l'API et de ce site web.\n- {{gitlabScrtLinkCore}} Code source du paquet principal qui gère le cryptage et l'accès à l'API.\n- {{gitlabScrtLinkCli}} Code source de l'outil CLI.\n- {{gitlabScrtLinkSlack}} Code source de l'application Slack.",
-        "subtitle" : "Tout le code est open source. Tu peu utiliser les paquets suivants pour créer votre propre service, ou pour utiliser notre service de manière programmatique via l'API publique.",
-        "title" : "Pour les développeurs"
       },
       "intro" : "Tout a commencé avec l'idée d'envoyer des messages privés de manière amusante. Des messages qui ne persistent pas. Pensez à Snapchat, mais sans donner vos données d'utilisateur. L'idée s'est transformée en un projet que l'on pourrait résumer par \"Partager des secrets en tant que service\". Il existe des produits similaires - en fait, certains ont été une grande source d'inspiration. Cependant, ce qui distingue scrt.link, c'est la combinaison de toutes les grandes idées et de tous les concepts autour de la sécurité et de la confidentialité, avec l'attention portée au design et à l'expérience utilisateur. Restez à l'écoute - la suite est à venir !",
       "Philosophy" : {

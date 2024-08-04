@@ -265,17 +265,8 @@
     "category" : {
       "accountAndBilling" : "Konto und Bezahlung",
       "general" : "Allgemeines",
-      "nerdZone" : "Nerd Zone",
       "product" : "Produkt und Dienstleistungen",
       "securityAndPrivacy" : "Sicherheit und Privatsphäre"
-    },
-    "developer" : {
-      "body" : "Der Quellcode ist frei zugänglich unter {{gitlabLink}}.",
-      "heading" : "Wo kann ich den Quellcode finden?"
-    },
-    "developer-tools" : {
-      "body" : "Es sind einfach zu verwendende npm-Pakete verfügbar. Code-Beispiele und weitere Informationen zur Integration gibt's im [Entwickler-Blog](https://blog.stophe.com/scrtlink-is-built-for-developers).",
-      "heading" : "Wie kann ich dieses Tool in mein Projekt integrieren?"
     },
     "difference-to-disappearing-messages" : {
       "body" : "Anonymität und Sicherheit. Nachrichten in einem Chatprotokoll können immer zu dir zurückverfolgt werden. Dank scrt.link wird immer nur ein Link in deinem Gesprächsverlauf bleiben. Nachdem der Link einmal besucht wurde, führt er zu einer 404-Fehlerseite. Es gibt keine Möglichkeit, auf den ursprünglichen Inhalt zuzugreifen.",
@@ -493,11 +484,6 @@
         "markdown" : "Der Hauptgrund, warum wir Konten anbieten, ist der Schutz vor Spam und Betrug. Alle Grundfunktionen sind kostenlos und erfordern kein Konto.\n\nAllerdings erfordern einige Funktionen eine Authentifizierung (wir fragen nur nach einer E-Mail-Adresse - es macht uns nichts aus, wenn eine temporäre E-Mail-Adresse verwendet wird). Zu diesen Funktionen gehört das Senden von Informationen per E-Mail oder SMS. Konten helfen uns, den Missbrauch der zugrunde liegenden Systeme zu verhindern. \n\nBezahlte Premium-Abos sind für Power-User und Leute gedacht, die [dieses Projekt unterstützen](/de/pricing) möchten.",
         "subtitle" : "Warum wir Nutzerkonten anbieten.",
         "title" : "Nutzerkonten"
-      },
-      "Developers" : {
-        "markdown" : "Dank unseren Entwickler-Tools kannst du diesen Dienst einfach in dein eigenes Projekt integrieren. Wir bieten eine öffentliche API zusammen mit clientseitigen Paketen an, die eine Ende-zu-Ende-Verschlüsselung ermöglichen.\n### NPM Pakete\n- {{npmScrtLinkCore}} Verwende dieses Paket, um einen geheimen Link zu erstellen. Dieses Tool kümmert sich um alles rund um Verschlüsselung und API. (Es ist der gleiche Code, der auf dieser Website läuft.)\n- {{npmScrtLinkCli}} Verwende dieses Paket, um Geheimnisse von der Kommandozeile aus zu erstellen.\n\n### Quellcode\n- {{gitlabScrtLink}} Quellcode der API und dieser Website.\n- {{gitlabScrtLinkCore}} Quellcode des Kernpakets, das die Verschlüsselung und den API-Zugang verwaltet.\n- {{gitlabScrtLinkCli}} Quellcode des CLI-Tools.\n- {{gitlabScrtLinkSlack}} Quellcode der Slack-App.",
-        "subtitle" : "Der gesamte Code ist quelloffen. Du kannst die folgenden Pakete verwenden, um deinen eigenen Dienst zu erstellen oder um unseren Dienst programmatisch über die öffentliche API zu nutzen.",
-        "title" : "Für Entwickler und Nerds"
       },
       "intro" : "Am Anfang stand die Idee, private Nachrichten auf unterhaltsame Art und Weise zu versenden. Nachrichten, die nicht bestehen bleiben. Denke an Snapchat, aber ohne dass du deine Benutzerdaten preisgibst. Die Idee wuchs zu einem Projekt heran, das man als \"Geheimnisse teilen als Service\" zusammenfassen könnte. Es gibt ähnliche Produkte da draußen - einige haben uns sogar sehr inspiriert. Was scrt.link jedoch von anderen abhebt, ist die Kombination aus all den großartigen Ideen und Konzepten rund um Sicherheit und Datenschutz mit dem Augenmerk auf Design und Benutzerfreundlichkeit. Bleib gespannt - es kommt noch mehr!",
       "Philosophy" : {

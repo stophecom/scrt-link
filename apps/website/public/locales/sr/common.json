@@ -265,17 +265,8 @@
     "category" : {
       "accountAndBilling" : "Nalog i plaćanje",
       "general" : "Uopšteno",
-      "nerdZone" : "Zona za napredne",
       "product" : "Proizvodi i usluge",
       "securityAndPrivacy" : "Sigurnost i privatnost"
-    },
-    "developer" : {
-      "body" : "Besplatan ceo kod pronađite na: {{gitlabLink}}",
-      "heading" : "Gde mogu pronaći izvorni kod ? "
-    },
-    "developer-tools" : {
-      "body" : "Dostupni su vam jednostavni npm paketi za korišćenje. Za primere koda i detaljnije informacije posetite stranicu: [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers).",
-      "heading" : "Da li je moguće integrisati ovaj alat u moj projekat? "
     },
     "difference-to-disappearing-messages" : {
       "body" : "Anonimnost, privatnost i bezbednost. Tekstualne poruke koje se nalaze u dnevniku ćaskanja uvek se mogu pratiti i otkriti ko ih je poslao. Postoji mnogo scenarija u kojima čak i poruke koje nestaju predstavljaju faktor rizika od pronalaska osobe koja ih je poslala: Da li druge osove ponekad imaju pristup vašem telefonu? Šta ako ste izgubili telefon? Ili još gore, vaš telefon može biti hakovan na nivou operativnog sistema. Uz scrt.link uvek ćete imati samo vezu u istoriji ćaskanja. Nakon što je veza jednom posećena, ona će dovesti do stranice sa greškom 404. Ne postoji način da se pristupi originalnom sadržaju.",
@@ -493,11 +484,6 @@
         "markdown" : "Glavni razlog zašto nudimo naloge je sprečavanje neželjene pošte i prevara. Sve osnovne funkcije su besplatne i ne zahtevaju pravljenje naloga. Međutim, neke funkcije zahtevaju autentifikaciju (tražimo samo adresu email-a - nema problema ako je privremeni e-mail). Ove funkcije uključuju slanje informacija putem e-mail-a ili SMS-a. Nalozi nam pomožu da sprečimo zloupotrebu osnovnih sistema. Plaćene premijum pretplate su namenjene iskusnim korisnicima i ljudima koji žele da  [podrže ovaj projekat](/pricing).",
         "subtitle" : "Zašto imamo u ponudi besplatne i premijum naloge?",
         "title" : "Korisnički nalog"
-      },
-      "Developers" : {
-        "markdown" : "Sa našim alatima za programere možete lako da integrišete ovu uslugu u sopstvene projekte. Dajemo javni API zajedno sa paketima koji koriste end-to-end šifrovanje. ### NPM пакети - {{npmScrtLinkCore}} koristite ovaj paket da napravite tajni link. Ovaj alat se koristi za sve oko šifrovanja i API. (To je isti kod koji se koristi na ovoj veb lokaciji.) - {{npmScrtLinkCli}}. Koristite ovaj paket da kreirate tajne poruke iz komandne linije. ### Izvorni kod - {{gitlabScrtLink}} Izvorni kod za API i ovaj sajt. - {{gitlabScrtLinkCore}} Izvorni kod osnovnog paketa koji upravlja šifrovanjem i pristupom API-ju. - {{gitlabScrtLinkCli}} Izvorni kod CLI alata. - {{gitlabScrtLinkSlack}} Izvorni kod Slack aplikacije.",
-        "subtitle" : "Kod je otvorenog tipa. Možete da koristite sledeće pakete da kreirate sopstvenu uslugu ili da koristite našu uslugu programski preko javnog API. ",
-        "title" : "Za programere"
       },
       "intro" : "Sve je počelo sa idejom da se privatne poruke pošalju na zabavan način. Poruke koje imaju rok trajanja. Razmislite o Snapchat-u, ali bez davanja vaših korisničkih podataka. Ideja je prerasla u projekat koji bi mogao da se protumači kao \"Deljenje tajnih poruka kao usluga\". Postoje slični projekti - neki su bili odlična inspiracija. Medjutim, ono što izdvaja scrt.link je kombinacija svih sjajnih ideja i koncepata oko bezbednosti i privatnosti, sa pažnjom na dizajn i korisničko uputstvo. Ostanite sa nama - postoji još mnogo toga!",
       "Philosophy" : {
