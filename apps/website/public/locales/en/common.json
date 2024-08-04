@@ -3,7 +3,6 @@
     "faq" : "FAQ"
   },
   "button" : {
-    "addToSlack" : "Add to Slack",
     "backToPlans" : "Back to plans",
     "cancel" : "Cancel",
     "cancelSubscription" : "Cancel subscription",
@@ -163,8 +162,7 @@
               "heading" : "{{characterLimit}} character limit"
             },
             "2" : {
-              "body" : "Fast, convenient. Get read notifications via SMS.",
-              "heading" : "Read receipts: Email & SMS"
+              "heading" : "Read receipts: Email"
             },
             "3" : {
               "body" : "Add a special touch to your secrets.",
@@ -264,25 +262,11 @@
       "body" : "We take a number of steps to protect your privacy, detailed on the [privacy page](/privacy) - however some of the features require third party services that may have access to personal identifiable information (PII). If you want to further protect your privacy, we recommend the following:\n\n- Connect to our service via a virtual private network (VPN): This way you never expose your personal IP address. We recommend [ProtonVPN](https://protonvpn.com/).\n- Use a service such as [Abine Blur](https://www.abine.com/) to hide your personal email address, phone number and/or credit card information.",
       "heading" : "How is my privacy protected?"
     },
-    "browser-extensions" : {
-      "body" : "The scrt.link browser extensions are available for all major browsers:\n- [Google Chrome]({{ chromeExtensionLink }})\n- [Mozilla Firefox]({{ firefoxExtensionLink }})\n- [Microsoft Edge]({{ microsoftEdgeExtensionLink }})",
-      "heading" : "Where can I find the browser extensions?"
-    },
     "category" : {
       "accountAndBilling" : "Account and Billing",
       "general" : "General",
-      "nerdZone" : "Nerd Zone",
       "product" : "Product and Service",
-      "securityAndPrivacy" : "Security and Privacy",
-      "slack" : "Slack App"
-    },
-    "developer" : {
-      "body" : "All code is open-source on {{gitlabLink}}",
-      "heading" : "Where can I find the source code?"
-    },
-    "developer-tools" : {
-      "body" : "There are easy-to-use npm packages available. For code examples and further information about integration visit the [developer blog](https://blog.stophe.com/scrtlink-is-built-for-developers).",
-      "heading" : "How can integrate this tool in my project?"
+      "securityAndPrivacy" : "Security and Privacy"
     },
     "difference-to-disappearing-messages" : {
       "body" : "Anonymity, privacy and security. Plain text messages within a chat log can always get traced back to you. There are many scenarios where even disappearing messages are a risk factor: Do other people have access to your phone sometimes? What if you lost your phone? Or even worse, your phone might be compromised on an operating system level. With scrt.link you will always just have a link in your conversation history. After the link has been visited once, it will lead to a 404 error page. There is no way of accessing the original content.",
@@ -309,7 +293,7 @@
       "heading" : "What is the maximum message size?"
     },
     "notification" : {
-      "body" : "Yes, you can get **SMS or Email notifications** with an account. [Go to Account](/account)",
+      "body" : "Yes, you can get **Email notifications** with an account. [Go to Account](/account)",
       "heading" : "Can I get notified when a secret has been viewed?"
     },
     "payment-methods" : {
@@ -325,7 +309,7 @@
       "heading" : "How can I use promo codes?"
     },
     "read-receipts-info" : {
-      "body" : "For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.\n\n**Email**: You'll receive an email from *{{ email }}*.\n\n**SMS**: You'll receive an SMS notification from *{{ twilioSenderPhoneNumber }}*.",
+      "body" : "For each secret, we generate a Secret ID (a random string) which is the only reference to the original message. Once the recipient opens the secret link, we notify you using the chosen method. In the notification we only include the Secret ID - so be sure to store/remember it. Needless to say, the contact information (email or phone number) is **never exposed to the recipient**.\n\n**Email**: You'll receive an email from *{{ email }}*.",
       "heading" : "How do read receipts work?"
     },
     "recovery" : {
@@ -353,40 +337,8 @@
       "heading" : "How secure is this service?"
     },
     "service-provider" : {
-      "body" : "Scrt.link is a service by [SANTiHANS GmbH](https://santihans.com), a Swiss based tech company with a mission to advance the web. We operate under Swiss law. As a customer you profit from one of the world's strongest data and privacy protection regulation, the [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). This product has been created and is operated by [@stophecom](https://twitter.com/stophecom).",
+      "body" : "Scrt.link is a service by [SANTiHANS GmbH](https://santihans.com), a Swiss based tech company with a mission to advance the web. We operate under Swiss law. As a customer you profit from one of the world's strongest data and privacy protection regulation, the [Federal Act on Data Protection (FADP)](https://fedlex.data.admin.ch/eli/cc/1993/1945_1945_1945). This product has been created and is operated by [@stophecom](https://x.com/stophecom).",
       "heading" : "Who is behind this service?"
-    },
-    "slack-app" : {
-      "body" : "The Slack app lets you use the power of scrt.link without switching apps. Go to the [Slack App page](/slack) for more information. Or get the app right here:  \n\n\uD83D\uDC49 [Install Slack App]({{ slackAppInstallLink }})  \n\n_**Important notice:** There are limitations when using the Slack Application. Due to the nature of how these apps are designed, full end-to-end encryption is not possible. In most cases this is not a problem and a risk worth taking - however, if you need advanced protection, create secrets on the website instead._",
-      "heading" : "Where can I get the Slack App?"
-    },
-    "slack-data-collection" : {
-      "body" : "We only store data that is necessary to run the app. When you install the app, you grant us specific access rights (e.g. the right to post a secret link in your name). This data includes basic Slack user information (e.g. username, id) as well as the individual authorization tokens. Additionally, we temporarily store data required for read receipts.  \n**We don't store any other data. We do not repurpose, sell or distribute any data we collect. Even if we wanted to, we are not able to identify you as a person, since only Slack may have the relevant information to do so.**",
-      "heading" : "What data do you collect?"
-    },
-    "slack-not-approved" : {
-      "body" : "First, it's important to understand that this app can still be installed and used in the exact same way as officially listed apps. That said, we tried to submit our app to the Slack App Directory to get listed. But since Slack is literally \"restricting the approval of apps that facilitate the sharing of sensitive information\" we were not able to do so. Now think about this for a minute. And afterwards, help us spread the word \uD83E\uDD70",
-      "heading" : "Why isn't this app approved by Slack?"
-    },
-    "slack-premium-account" : {
-      "body" : "No. You are very welcome. But, you may of course support this project with a paid subscriptions regardless \uD83E\uDD13.",
-      "heading" : "Do I need a premium subscription to use the Slack app?"
-    },
-    "slack-scopes" : {
-      "body" : "The app requires basic information about the user, channels and conversations. Additionally, the app needs the permission to post in your name, join a conversation and make use of _slash commands_ and _shortcuts_. You'll get more detailed information about permission scopes during the app installation.",
-      "heading" : "What permissions are required?"
-    },
-    "slack-security" : {
-      "body" : "The honest answer: We can't know for sure. It's important to understand that **end-to-end-encryption is not possible** with Slack apps. However, the communication between our app server and Slack is encrypted and we therefore believe that for 99% of use cases it's safe to use. Still, please be aware that **Slack is proprietary software** and we don't have control over code that runs your Slack instance. **In case you need to be 100% sure, create secrets via the website instead.**",
-      "heading" : "Is the Slack App secure?"
-    },
-    "slack-trust" : {
-      "body" : "Short answer: Don't. That said, we believe in trust through transparency. While you might have something to hide, we don't. That's why all code is open source and available on {{gitlabLink}}. Feel free to launch your own private Slack App.",
-      "heading" : "Why should I trust you?"
-    },
-    "slack-user-account" : {
-      "body" : "No. Currently not. You are welcome.",
-      "heading" : "Do I need an account to use the Slack app?"
     },
     "subscriptions" : {
       "body" : "Once you subscribe to a premium plan, you get instant access to the corresponding features for as long as the subscription lasts. You will be billed every month or year, based on the selected billing interval. A subscription can be cancelled anytime.",
@@ -421,8 +373,7 @@
     },
     "readReceiptsOptions" : {
       "email" : "Via Email",
-      "none" : "None",
-      "sms" : "Via SMS"
+      "none" : "None"
     },
     "receiptEmail" : {
       "label" : "Email"
@@ -534,24 +485,10 @@
         "subtitle" : "On why we offer free and premium accounts.",
         "title" : "User Accounts"
       },
-      "BrowserExtensions" : {
-        "markdown" : "To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.",
-        "subtitle" : "Share secrets from within your browser.",
-        "title" : "Browser Extensions"
-      },
-      "Developers" : {
-        "markdown" : "With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.\n\n### NPM Packages\n\n- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)\n- {{npmScrtLinkCli}} Use this package to create secrets from the command line.\n\n### Source Code\n\n- {{gitlabScrtLink}} Source code of the API and this website.\n- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.\n- {{gitlabScrtLinkCli}} Source code of the CLI tool.\n- {{gitlabScrtLinkSlack}} Source code of the Slack App.",
-        "subtitle" : "All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.",
-        "title" : "For Developers"
-      },
       "intro" : "It all started with the idea to send private messages in a fun way. Messages that don't persist. Think Snapchat, but without giving away your user data. The idea grew into a project that could be summarized as \"Sharing secrets as a service\". There are similar products out there - in fact, some have been a great inspiration. However, what sets scrt.link apart is the combination of all the great ideas and concepts around security and privacy, with the attention on design and user experience. Stay tuned - there is for more come!",
       "Philosophy" : {
         "markdown" : "Freedom of speech, freedom of the press, and the right to privacy are among the most important civil liberties in a free society. With this project we empower you to exchange information over the internet in truly secure and private way. This product is made in a way that respects people's integrity and privacy all the way. We have no interest in you! Not in you as a person, nor in your secrets. Read more on our [Privacy page](/privacy).",
         "title" : "Philosophy"
-      },
-      "SlackApp" : {
-        "subtitle" : "No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.",
-        "title" : "Slack Application"
       },
       "subtitle" : "The whole project is based on a simple premise: The less we know, the better.",
       "title" : "About"
@@ -656,15 +593,6 @@
         "subtitle" : "We encrypt your secret on your device. The encryption key is never stored but becomes part of the link itself. Without the full link, nobody, including us, will ever be able to decrypt your secret.",
         "title" : "End-to-End Encryption"
       },
-      "SlackApp" : {
-        "subtitle" : "Some things better not stay in your chat history. Next time a coworker asks you for an access token, API key or password, you can respond in good conscience.",
-        "title" : "The Slack App<1>NEW</1>",
-        "usps" : {
-          "0" : "Encrypted, disposable messages, stored outside of Slack.",
-          "1" : "Create one-time secrets via shortcut or slash command.",
-          "2" : "Burn notification after a secret has been viewed."
-        }
-      },
       "success" : {
         "subtitle" : "Your secret link has been created - now share it with your confidant.",
         "title" : "Success!"
@@ -725,7 +653,7 @@
     },
     "Security" : {
       "Infrastructure" : {
-        "markdown" : "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Object Storage (Files) with {{linkFlowSwiss}}\n- Slack App on {{linkHeroku}}\n- All code on {{linkGitlab}}",
+        "markdown" : "We chose industry leaders to host our infrastructure:\n\n- Website/API on {{linkVercel}}\n- Cloud Database with {{linkScaleGrid}}\n- Object Storage (Files) with {{linkFlowSwiss}}\n- All code on {{linkGitlab}}",
         "subtitle" : "Trusted players, few dependencies.",
         "title" : "Infrastructure"
       },
@@ -752,8 +680,6 @@
         "Usps" : {
           "0" : "More characters for your secrets",
           "1" : "Email read receipts",
-          "2" : "Slack App",
-          "3" : "Browser extensions",
           "4" : "Personal support",
           "5" : "Emoji links \uD83E\uDD2B"
         }
@@ -762,24 +688,6 @@
       "signInNow" : "Sign in now",
       "subtitle" : "Great things start here…",
       "title" : "Create account"
-    },
-    "Slack" : {
-      "FAQ" : {
-        "subtitle" : "Frequently asked questions about the Slack App."
-      },
-      "HowToUse" : {
-        "markdown" : "### Slash Command \nThe easiest and most versatile option is to use a slash command (**`/scrt`**)\n\n_Example:_\n![Image](/images/slack/slack-screenshot-command-input.png)\n\n- **`/scrt`** opens a dialog to create a secret.\n- **`/scrt` _`[secret goes here…]`_** creates a secret link instantly (of type **Text**).\n- **`/scrt [text|link|neogram]`** opens a dialog to create a specific type of secret.\n- **`/scrt help`**: opens a help dialog.\n\n### Slack Shortcuts\nThere are global and message level shortcuts available.\n- Click ⚡️ to access global shortcuts and choose **scrt.link**.\n- Within a conversation, click the context menu icon (3 dots) and choose **Reply with a secret**.\n\n![Image](/images/slack/slack-screenshot-shortcut-detail.png)\n\n### Read Receipts\nThis is a built in feature. You get notified when a secret has been viewed. We use a \uD83D\uDD25 emoji to indicate when a secret has been burned and the link is therefore no longer available.\n![Image](/images/slack/slack-screenshot-read-receipt.png)",
-        "title" : "How to use"
-      },
-      "intro" : "Slack conversations are never fully private. Did you know that a systems administrator or your boss could potentially read your Slack messages? With the scrt.link App you can now protect sensitive information within your Slack conversation.",
-      "Introduction" : {
-        "markdown" : "### Key Features\n- Create one-time secrets via **shortcut** or **slash command**.\n- **Encrypted, disposable messages** that are stored outside of Slack.\n- **Burn notification** after a secret has been viewed. \n- No logs, no backup, no trace.\n    \n  \uD83D\uDC49 [Install now]({{slackAppInstallLink}})\n---\n#### _Important information about security limitations_\n_Due to the nature of\nhow Slack apps are designed, full **end-to-end encryption is not possible**. We take a number of steps to make sure your secrets are safe, including encrypted connections, sandboxed application server, limited access to infrastructure, etc. In 99% of use cases this is\nfine and a risk worth taking - still, Slack is proprietary software where we don't have control over. In other words, if you need advanced protection, create secrets\non the website instead._",
-        "subtitle" : "It's a very common scenario: A coworker asks you for some access token, API key or password. Now, you can safely respond.",
-        "title" : "Secrets for Slack"
-      },
-      "missingTranslationsNotice" : "Dear customer, the Slack App is currently only available in English.",
-      "subtitle" : "Some things better not stay in your chat history.",
-      "title" : "The Slack App"
     },
     "TermsOfService" : {
       "policies" : "Policies",

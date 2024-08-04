@@ -1,12 +1,6 @@
 import { TFunction } from 'next-i18next'
 
-import {
-  blogUrl,
-  chromeExtensionLink,
-  firefoxExtensionLink,
-  microsoftEdgeExtensionLink,
-  twitterLink,
-} from '@/constants'
+import { blogUrl } from '@/constants'
 
 export const secrets = (t: TFunction) => [
   {
@@ -24,34 +18,6 @@ export const secrets = (t: TFunction) => [
   {
     href: '/neogram',
     label: t('common:menu.secrets.neogram', 'Neogram'),
-  },
-]
-
-export const integrations = [
-  {
-    href: '/slack',
-    label: 'Slack App',
-  },
-  {
-    href: chromeExtensionLink,
-    label: 'Google Chrome',
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-  },
-  {
-    href: firefoxExtensionLink,
-    label: 'Mozilla Firefox',
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-  },
-  {
-    href: microsoftEdgeExtensionLink,
-    label: 'Microsoft Edge',
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
   },
 ]
 
@@ -86,13 +52,6 @@ export const support = (t: TFunction) => [
   {
     href: '/faq',
     label: t('common:menu.faq', 'FAQ'),
-  },
-  {
-    href: twitterLink,
-    prefetch: false,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    label: 'Twitter',
   },
   {
     href: '/contact',

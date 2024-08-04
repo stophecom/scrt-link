@@ -187,7 +187,7 @@ export const FormCustomer = () => {
                       defaultValue: `Add some fun with a special emoji link. Example: {{exampleLink}}  
 **Be aware.** Emoji links are supported in: {{supportedList}}. Currently not supported in: {{unsupportedList}}.`,
                       exampleLink: '**https://🤫.st/nxKFy…**',
-                      supportedList: '*Whatsapp, Telegram, Threema, Twitter, Matrix, Wire*',
+                      supportedList: '*Whatsapp, Telegram, Threema, X, Matrix, Wire*',
                       unsupportedList: '*Signal, Slack, Snapchat*',
                     })}
                   />

@@ -43,7 +43,6 @@ If a password is provided, we use it to encrypt your secret **on top** of the st
 - Website/API on {{linkVercel}}
 - Cloud Database with {{linkScaleGrid}}
 - Object Storage (Files) with {{linkFlowSwiss}}
-- Slack App on {{linkHeroku}}
 - All code on {{linkGitlab}}`,
             linkVercel: '[Vercel](https://vercel.com)',
             linkScaleGrid: '[Scalegrid](https://scalegrid.io/)',

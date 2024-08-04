@@ -1,6 +1,6 @@
 import React, { useState, ReactNode } from 'react'
-import { Grid, Box, IconButton, Typography } from '@mui/material'
-import { Twitter } from '@mui/icons-material'
+import { Grid, Box, IconButton } from '@mui/material'
+import { X } from '@mui/icons-material'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
@@ -13,7 +13,7 @@ import Stats from '@/components/Stats'
 import SubMenu from '@/components/SubMenu'
 import Logo from '@/components/Logo'
 import { Container } from '@/layouts/Default'
-import { about, secrets, integrations, information, support } from '@/data/menu'
+import { about, secrets, information, support } from '@/data/menu'
 import { MarkdownRaw } from '@/components/Markdown'
 import { useCustomer } from '@/utils/api'
 
@@ -211,12 +211,6 @@ const Footer: React.FC = () => {
           </GridBlock>
           <GridBlock>
             <SubMenu
-              menu={integrations}
-              title={t('common:menu.title.integrations', 'Integrations')}
-            />
-          </GridBlock>
-          <GridBlock>
-            <SubMenu
               menu={information(t)}
               title={t('common:menu.title.information', 'Information')}
             />
@@ -238,7 +232,7 @@ const Footer: React.FC = () => {
             title={twitterHandle}
             size="large"
           >
-            <Twitter fontSize="inherit" />
+            <X fontSize="inherit" />
           </IconButton>
         </Box>
 

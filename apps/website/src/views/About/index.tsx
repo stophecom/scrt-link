@@ -1,26 +1,9 @@
 import React from 'react'
-import { Box } from '@mui/material'
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 
 import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
-import { BaseButtonLink } from '@/components/Link'
-import {
-  chromeExtensionLink,
-  firefoxExtensionLink,
-  microsoftEdgeExtensionLink,
-  slackAppInstallLink,
-} from '@/constants'
-import {
-  npmScrtLinkCore,
-  npmScrtLinkCli,
-  repositoryLink,
-  gitlabScrtLinkCore,
-  gitlabScrtLinkSlack,
-  gitlabScrtLinkCli,
-} from '@/data/markdown'
 
 const About = () => {
   const { t } = useTranslation()
@@ -62,73 +45,6 @@ That said, some features do require basic authentication  (We just ask for an em
 
 Paid premium accounts are meant for power users and people who like to [support this project](/pricing).`,
           )}
-        />
-      </Section>
-      <Section
-        title={t('common:views.About.BrowserExtensions.title', 'Browser Extensions')}
-        subtitle={t(
-          'common:views.About.BrowserExtensions.subtitle',
-          `Share secrets from within your browser.`,
-        )}
-      >
-        <Markdown
-          source={`${t(
-            'common:views.About.BrowserExtensions.markdown',
-            'To make this service easy and convenient, there are browser extensions available for all modern browsers. All addons share the same security and privacy features.',
-          )}
-- [Google Chrome](${chromeExtensionLink})
-- [Mozilla Firefox](${firefoxExtensionLink})
-- [Microsoft Edge](${microsoftEdgeExtensionLink})`}
-        />
-      </Section>
-      <Section
-        title={t('common:views.About.SlackApp.title', 'Slack Application')}
-        subtitle={t(
-          'common:views.About.SlackApp.subtitle',
-          `No more switching apps. With the Slack App you can create one-time secrets right within your Slack conversations.`,
-        )}
-      >
-        <Box mb={3}>
-          <Image width={210} height={62} src="/images/slack/Slack_RGB_White.svg" alt="Slack" />
-        </Box>
-        <BaseButtonLink variant="contained" href={slackAppInstallLink}>
-          {t('common:button.installNow', 'Install now')}
-        </BaseButtonLink>
-        &nbsp;&nbsp;
-        <BaseButtonLink variant="text" href="/slack">
-          {t('common:button.learnMore', 'Learn more')}
-        </BaseButtonLink>
-      </Section>
-
-      <Section
-        title={t('common:views.About.Developers.title', 'For Developers')}
-        subtitle={t(
-          'common:views.About.Developers.subtitle',
-          `All code is open source. You can use the following packages to create your own service, or to use our service programmatically via public API.`,
-        )}
-      >
-        <Markdown
-          source={t('common:views.About.Developers.markdown', {
-            defaultValue: `With our developer tools you can easily integrate this service into your own projects. We offer a public API together with client-side packages that handle end-to-end-encryption.
-
-### NPM Packages
-
-- {{npmScrtLinkCore}} Use this package to create a secret link. This tools handles everything around encryption and API. (It's the same code that runs on this website.)
-- {{npmScrtLinkCli}} Use this package to create secrets from the command line.
-
-### Source Code
-
-- {{gitlabScrtLink}} Source code of the API and this website.
-- {{gitlabScrtLinkCore}} Source code of core package that handles encryption and API access.
-- {{gitlabScrtLinkCli}} Source code of the CLI tool.
-- {{gitlabScrtLinkSlack}} Source code of the Slack App.`,
-            npmScrtLinkCore,
-            npmScrtLinkCli,
-            gitlabScrtLink: repositoryLink,
-            gitlabScrtLinkCore,
-            gitlabScrtLinkCli,
-            gitlabScrtLinkSlack,
-          })}
         />
       </Section>
     </Page>
