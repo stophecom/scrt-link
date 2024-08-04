@@ -5,14 +5,6 @@ import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import Page from '@/components/Page'
 import Section from '@/components/Section'
 
-import {
-  npmScrtLinkCore,
-  npmScrtLinkCli,
-  repositoryLink,
-  gitlabScrtLinkCore,
-  gitlabScrtLinkCli,
-} from '@/data/markdown'
-
 const About = () => {
   const { t } = useTranslation()
 
