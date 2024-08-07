@@ -24,7 +24,9 @@
         "TOLGEE_API_KEY",
         "SCALEGRID_CA_CERTIFICATE",
         "NEXT_PUBLIC_VERCEL_URL",
-        "NODE_ENV"
+        "NODE_ENV",
+        "NEXT_PUBLIC_POSTHOG_KEY",
+        "NEXT_PUBLIC_POSTHOG_HOST"
       ],
       "outputs": [".next/**", "dist/**"]
     },
