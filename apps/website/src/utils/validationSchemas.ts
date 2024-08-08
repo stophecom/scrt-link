@@ -1,9 +1,8 @@
 import * as Yup from 'yup'
-import { setLocale, object, string } from 'yup'
+import { setLocale, object, string, defaultLocale } from 'yup'
 import validator from 'validator'
 import { TFunction } from 'next-i18next'
 import { de, fr } from 'yup-locales'
-import defaultLocale from 'yup/lib/locale'
 
 import { Role, ReadReceiptMethod } from '@/api/models/Customer'
 import { SecretType } from '@/api/models/SecretUrl'
