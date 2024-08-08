@@ -13,10 +13,10 @@ importers:
         version: 8.35.0
       eslint-config-turbo:
         specifier: latest
-        version: 0.0.9(eslint@8.35.0)
+        version: 2.0.12(eslint@8.35.0)
       turbo:
         specifier: latest
-        version: 1.8.3
+        version: 2.0.12
 
   apps/website:
     dependencies:
@@ -33,13 +33,13 @@ importers:
         specifier: ^11.7.1
         version: 11.10.5
       '@emotion/react':
-        specifier: ^11.10.5
+        specifier: ^11.10.6
         version: 11.10.6(@types/react@17.0.53)(react@18.2.0)
       '@emotion/server':
         specifier: ^11.4.0
         version: 11.10.0
       '@emotion/styled':
-        specifier: ^11.10.5
+        specifier: ^11.10.6
         version: 11.10.6(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react@18.2.0)
       '@mui/icons-material':
         specifier: ^5.16
@@ -48,10 +48,10 @@ importers:
         specifier: ^5.0.0-alpha.68
         version: 5.0.0-alpha.121(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@emotion/styled@11.10.6(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react@18.2.0))(@mui/material@5.11.11(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@emotion/styled@11.10.6(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@types/react@17.0.53)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mui/material':
-        specifier: ^5.10.13
+        specifier: ^5.11.11
         version: 5.11.11(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@emotion/styled@11.10.6(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mui/system':
-        specifier: ^5.11.9
+        specifier: ^5.11.11
         version: 5.11.11(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@emotion/styled@11.10.6(@emotion/react@11.10.6(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react@18.2.0))(@types/react@17.0.53)(react@18.2.0)
       '@scrt-link/core':
         specifier: workspace:*
@@ -100,28 +100,28 @@ importers:
         version: 2.0.3(mongoose@6.10.1)
       next:
         specifier: ^14.0.4
-        version: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-auth:
         specifier: ^4.20.1
-        version: 4.20.1(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 4.20.1(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-compose-plugins:
         specifier: ^2.2.1
         version: 2.2.1
       next-i18next:
         specifier: ^10.5.0
-        version: 10.5.0(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 10.5.0(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-plausible:
         specifier: ^3.7.2
-        version: 3.7.2(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 3.7.2(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-seo:
         specifier: ^4.26.0
-        version: 4.29.0(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 4.29.0(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nextjs-cors:
         specifier: ^2.1.2
-        version: 2.1.2(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+        version: 2.1.2(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       nextjs-progressbar:
         specifier: ^0.0.13
-        version: 0.0.13(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 0.0.13(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       node-mailjet:
         specifier: ^3.3.1
         version: 3.4.1
@@ -254,7 +254,7 @@ importers:
         version: 5.4.0
       next-sitemap:
         specifier: ^1.6.99
-        version: 1.9.12(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+        version: 1.9.12(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       prettier:
         specifier: ^2.5.1
         version: 2.8.4
@@ -1111,6 +1111,7 @@ packages:
   '@babel/plugin-proposal-class-properties@7.18.6':
     resolution: {integrity: sha512-cumfXOF0+nzZrrN8Rf0t7M+tF6sZc7vhQwYQck9q1/5w2OExlD+b4v4RpMJFaV1Z7WcDRgO6FqvxqxGlwo+RHQ==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
@@ -1147,6 +1148,7 @@ packages:
   '@babel/plugin-proposal-nullish-coalescing-operator@7.18.6':
     resolution: {integrity: sha512-wQxQzxYeJqHcfppzBDnm1yAY0jSRkUXR2z8RePZYrKwMKgMlE8+Z6LUno+bd6LvbGh8Gltvy74+9pIYkr+XkKA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
@@ -1171,18 +1173,21 @@ packages:
   '@babel/plugin-proposal-optional-chaining@7.21.0':
     resolution: {integrity: sha512-p4zeefM72gpmEe2fkUr/OnOXpWEf8nAgk7ZYVqqfFiyIG7oFfVZcCrU64hWn5xp4tQ9LkV4bTIa5rD0KANpKNA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
   '@babel/plugin-proposal-private-methods@7.18.6':
     resolution: {integrity: sha512-nutsvktDItsNn4rpGItSNV2sz1XwS+nfU0Rg8aCx3W3NOKVzdMjJRu0O5OkgDp3ZGICSTbgRpxZoWsxoKRvbeA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
   '@babel/plugin-proposal-private-property-in-object@7.21.0':
     resolution: {integrity: sha512-ha4zfehbJjc5MmXBlHec1igel5TJXXLDDRbuJ4+XT2TJcyD9/V1919BA8gMvsdHcNMBy4WBUBiRb3nw/EQUtBw==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
@@ -2434,10 +2439,12 @@ packages:
   '@humanwhocodes/config-array@0.11.8':
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/config-array@0.5.0':
     resolution: {integrity: sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -2445,6 +2452,7 @@ packages:
 
   '@humanwhocodes/object-schema@1.2.1':
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@istanbuljs/load-nyc-config@1.1.0':
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
@@ -3444,6 +3452,7 @@ packages:
 
   abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
+    deprecated: Use your platform's native atob() and btoa() methods instead
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -3553,6 +3562,7 @@ packages:
   are-we-there-yet@2.0.0:
     resolution: {integrity: sha512-Ci/qENmwHnsYo9xKIcUJN5LeDKdJ6R1Z1j9V/J5wyq8nh/mYPEpIKJbBZXtZjG04HiK7zV/p6Vs9952MrMeUIw==}
     engines: {node: '>=10'}
+    deprecated: This package is no longer supported.
 
   arg@4.1.0:
     resolution: {integrity: sha512-ZWc51jO3qegGkVh8Hwpv636EkbesNV5ZNQPCtRa+0qytRYPEs9IYT9qITY9buezqUH5uqyzlWLcufrzU2rffdg==}
@@ -4513,6 +4523,7 @@ packages:
   domexception@2.0.1:
     resolution: {integrity: sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==}
     engines: {node: '>=8'}
+    deprecated: Use your platform's native DOMException instead
 
   domhandler@5.0.3:
     resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
@@ -4894,8 +4905,8 @@ packages:
       typescript:
         optional: true
 
-  eslint-config-turbo@0.0.9:
-    resolution: {integrity: sha512-j1cTdx3tRmKo0csyfQKhpuT8dynK9oddbK5nmrShoMpXI2qMbxHLYH7MWAid4FmJN8rYympy3VKw5U63Yazycg==}
+  eslint-config-turbo@2.0.12:
+    resolution: {integrity: sha512-3PUzoyeJi2SjsTSjfWgTUIHK7kOqsapDEaOT7sCjFnZXvuhYLKxW37lysjq7+55abGGm0yQTXxNFLjrQKUORag==}
     peerDependencies:
       eslint: '>6.6.0'
 
@@ -4958,8 +4969,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-turbo@0.0.9:
-    resolution: {integrity: sha512-fEsuSnYU3GLtT+s66mUuzDL1LaSieIx5uk3tPO0ToGv7hI2XzOfP24aPkQItTBGl7kq2JaVkRzPwcnfz8hkp0w==}
+  eslint-plugin-turbo@2.0.12:
+    resolution: {integrity: sha512-vXWKer7F0RPTcVy1B+hFTEK4mlEOpouB8MCAFD3WW4C6t98wvuDCsIPjxIldpxg7CnwmRxALpNWgNVkU2LVVEQ==}
     peerDependencies:
       eslint: '>6.6.0'
 
@@ -5383,6 +5394,7 @@ packages:
   gauge@3.0.2:
     resolution: {integrity: sha512-+5J6MS/5XksCuXq++uFRsnUd7Ovu1XenbeuIuNRJxYWjgQbPuFhT14lAvsWfqfAmnwluf1OwMjz39HjfLPci0Q==}
     engines: {node: '>=10'}
+    deprecated: This package is no longer supported.
 
   generic-names@4.0.0:
     resolution: {integrity: sha512-ySFolZQfw9FoDb3ed9d80Cm9f0+r7qj+HJkWjeD9RBfpxEVTlVhol+gvaQB/78WbwYfbnNh8nWHHBSlg072y6A==}
@@ -5465,9 +5477,11 @@ packages:
 
   glob@7.1.7:
     resolution: {integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   global-dirs@3.0.1:
     resolution: {integrity: sha512-NBcGGFbBA9s1VzD41QXDG+3++t9Mn5t1FpLdhESY6oKY4gYTFpX4wO3sqGUa0Srjtbfj3szX0RnemmrVRUdULA==}
@@ -5726,6 +5740,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -5766,10 +5781,12 @@ packages:
   is-accessor-descriptor@0.1.6:
     resolution: {integrity: sha512-e1BM1qnDbMRG3ll2U9dSK0UMHuWOs3pY3AtcFsmvwPtKL3MML/Q86i+GilLfvqEs4GW+ExB91tQ3Ig9noDIZ+A==}
     engines: {node: '>=0.10.0'}
+    deprecated: Please upgrade to v0.1.7
 
   is-accessor-descriptor@1.0.0:
     resolution: {integrity: sha512-m5hnHTkcVsPfqx3AKlyttIPb7J+XykHvJP2B9bZDjlhLIoEq4XoK64Vg7boZlVWYK6LUY94dYPEE7Lh0ZkZKcQ==}
     engines: {node: '>=0.10.0'}
+    deprecated: Please upgrade to v1.0.1
 
   is-alphabetical@1.0.4:
     resolution: {integrity: sha512-DwzsA04LQ10FHTZuL0/grVDk4rFoVH1pjAToYwBrHSxcrBIGQuXrQMtD5U1b0U2XVgKZCTLLP8u2Qxqhy3l2Vg==}
@@ -5832,10 +5849,12 @@ packages:
   is-data-descriptor@0.1.4:
     resolution: {integrity: sha512-+w9D5ulSoBNlmw9OHn3U2v51SyoCd0he+bB3xMl62oijhrspxowjU+AIcDY0N3iEJbUEkB15IlMASQsxYigvXg==}
     engines: {node: '>=0.10.0'}
+    deprecated: Please upgrade to v0.1.5
 
   is-data-descriptor@1.0.0:
     resolution: {integrity: sha512-jbRXy1FmtAoCjQkVmIVYwuuqDFUbaOeDjmed1tOGPrsMhtJA4rD9tkgA0F1qJ3gRFRXcHYVkdeaP50Q5rE/jLQ==}
     engines: {node: '>=0.10.0'}
+    deprecated: Please upgrade to v1.0.1
 
   is-date-object@1.0.5:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
@@ -7034,6 +7053,7 @@ packages:
 
   npmlog@5.0.1:
     resolution: {integrity: sha512-AqZtDUWOMKs1G/8lwylVjrdYgqA4d9nu8hc+0gzRxlDb1I10+FHBGMXs6aiQHFdCUUlqH99MUMuLfzWDNDtfxw==}
+    deprecated: This package is no longer supported.
 
   nprogress@0.2.0:
     resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
@@ -7849,10 +7869,12 @@ packages:
 
   rimraf@2.7.1:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rollup-plugin-inject@3.0.2:
@@ -8574,38 +8596,38 @@ packages:
   tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
 
-  turbo-darwin-64@1.8.3:
-    resolution: {integrity: sha512-bLM084Wr17VAAY/EvCWj7+OwYHvI9s/NdsvlqGp8iT5HEYVimcornCHespgJS/yvZDfC+mX9EQkn3V2JmYgGGw==}
+  turbo-darwin-64@2.0.12:
+    resolution: {integrity: sha512-NAgfgbXxX/JScWQmmQnGbPuFZq7LIswHfcMk5JwyBXQM/xmklNOxxac7MnGGIOf19Z2f6S3qHy17VIj0SeGfnA==}
     cpu: [x64]
     os: [darwin]
 
-  turbo-darwin-arm64@1.8.3:
-    resolution: {integrity: sha512-4oZjXtzakopMK110kue3z/hqu3WLv+eDLZOX1NGdo49gqca9BeD8GbH+sXpAp6tqyeuzpss+PIliVYuyt7LgbA==}
+  turbo-darwin-arm64@2.0.12:
+    resolution: {integrity: sha512-cP02uer5KSJ+fXL+OfRRk5hnVjV0c60hxDgNcJxrZpfhun7HHoKDDR7w2xhQntiA45aC6ZZEXRqMKpj6GAmKbg==}
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@1.8.3:
-    resolution: {integrity: sha512-uvX2VKotf5PU14FCxJA5iHItPQno2JWzerMd+g3/h/Asay6dvxvtVjc39MQeGT0H5njSvzVKFkT+3/5q8lgOEg==}
+  turbo-linux-64@2.0.12:
+    resolution: {integrity: sha512-+mQgGfg1eq5qF+wenK/FKJaNMNAo5DQLC4htQy+8osW+fx6U+8+6UlPQPaycAWDEqwOI7NwuqkeHfkEQLQUTyQ==}
     cpu: [x64]
     os: [linux]
 
-  turbo-linux-arm64@1.8.3:
-    resolution: {integrity: sha512-E1p+oH3XKMaPS4rqWhYsL4j2Pzc0d/9P5KU7Kn1kqVLo2T3iRA7n2KVULEieUNE0nTH+aIJPXYXOpqCI5wFJaA==}
+  turbo-linux-arm64@2.0.12:
+    resolution: {integrity: sha512-KFyEZDXfPU1DK4zimxdCcqAcK7IIttX4mfsgB7NsSEOmH0dhHOih/YFYiyEDC1lTRx0C2RlzQ0Kjjdz48AN5Eg==}
     cpu: [arm64]
     os: [linux]
 
-  turbo-windows-64@1.8.3:
-    resolution: {integrity: sha512-cnzAytHtoLXd0J7aNzRpZFpL/GTjcBmkvAPlbOdf/Pl1iwS4qzGrudZQ+OM1lmLgLIfBPIavsGHBknTwTNib4A==}
+  turbo-windows-64@2.0.12:
+    resolution: {integrity: sha512-kJj4KCkZTkDTDCqsSw1m1dbO4WeoQq1mYUm/thXOH0OkeqYbSMt0EyoTcJOgKUDsrMnzZD2gPfYrlYHtV69lVA==}
     cpu: [x64]
     os: [win32]
 
-  turbo-windows-arm64@1.8.3:
-    resolution: {integrity: sha512-ulIiItNm2w/zYJdD5/oAzjzNns1IjbpweRzpsE8tLXaWwo6+fnXXkyloUug0IUhcd2k6fJXfoiDZfygqpOVuXg==}
+  turbo-windows-arm64@2.0.12:
+    resolution: {integrity: sha512-TY3ROxguDilN2olCwcZMaePdW01Xhma0pZU7bNhsQEqca9RGAmsZBuzfGnTMcWPmv4tpnb/PlX1hrt1Hod/44Q==}
     cpu: [arm64]
     os: [win32]
 
-  turbo@1.8.3:
-    resolution: {integrity: sha512-zGrkU1EuNFmkq6iky6LcMqD4h0OLE8XysVFxQWRIZbcTNnf0XAycbsbeEyiJpiWeqb7qtg2bVuY9EYcNoNhVuQ==}
+  turbo@2.0.12:
+    resolution: {integrity: sha512-8s2KwqjwQj7z8Z53SUZSKVkQOZ2/Sl4D2F440oaBY/k2lGju60dW6srEpnn8/RIDeICZmQn3pQHF79Jfnc5Skw==}
     hasBin: true
 
   tweetnacl@0.14.5:
@@ -10858,7 +10880,7 @@ snapshots:
   '@babel/plugin-syntax-bigint@7.8.3(@babel/core@7.21.0)':
     dependencies:
       '@babel/core': 7.21.0
-      '@babel/helper-plugin-utils': 7.20.2
+      '@babel/helper-plugin-utils': 7.22.5
 
   '@babel/plugin-syntax-class-properties@7.12.13(@babel/core@7.21.0)':
     dependencies:
@@ -10918,12 +10940,12 @@ snapshots:
   '@babel/plugin-syntax-import-meta@7.10.4(@babel/core@7.21.0)':
     dependencies:
       '@babel/core': 7.21.0
-      '@babel/helper-plugin-utils': 7.20.2
+      '@babel/helper-plugin-utils': 7.22.5
 
   '@babel/plugin-syntax-import-meta@7.10.4(@babel/core@7.23.6)':
     dependencies:
       '@babel/core': 7.23.6
-      '@babel/helper-plugin-utils': 7.20.2
+      '@babel/helper-plugin-utils': 7.22.5
 
   '@babel/plugin-syntax-json-strings@7.8.3(@babel/core@7.21.0)':
     dependencies:
@@ -12358,7 +12380,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.4
       collect-v8-coverage: 1.0.1
 
-  '@jest/test-sequencer@26.6.3(ts-node@9.1.1(typescript@4.9.5))':
+  '@jest/test-sequencer@26.6.3':
     dependencies:
       '@jest/test-result': 26.6.2
       graceful-fs: 4.2.11
@@ -12366,11 +12388,7 @@ snapshots:
       jest-runner: 26.6.3(ts-node@9.1.1(typescript@4.9.5))
       jest-runtime: 26.6.3(ts-node@9.1.1(typescript@4.9.5))
     transitivePeerDependencies:
-      - bufferutil
-      - canvas
       - supports-color
-      - ts-node
-      - utf-8-validate
 
   '@jest/transform@26.6.2':
     dependencies:
@@ -12670,7 +12688,7 @@ snapshots:
   '@smithy/abort-controller@2.0.15':
     dependencies:
       '@smithy/types': 2.7.0
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/config-resolver@2.0.21':
@@ -12708,7 +12726,7 @@ snapshots:
       '@aws-crypto/crc32': 3.0.0
       '@smithy/types': 2.7.0
       '@smithy/util-hex-encoding': 2.0.0
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/fetch-http-handler@2.3.1':
@@ -12736,7 +12754,7 @@ snapshots:
 
   '@smithy/is-array-buffer@2.0.0':
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/middleware-content-length@2.0.17':
@@ -12815,13 +12833,13 @@ snapshots:
     dependencies:
       '@smithy/types': 2.7.0
       '@smithy/util-uri-escape': 2.0.0
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/querystring-parser@2.0.15':
     dependencies:
       '@smithy/types': 2.7.0
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/service-error-classification@2.0.8':
@@ -12844,7 +12862,7 @@ snapshots:
       '@smithy/util-middleware': 2.0.8
       '@smithy/util-uri-escape': 2.0.0
       '@smithy/util-utf8': 2.0.2
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/smithy-client@2.1.18':
@@ -12886,12 +12904,12 @@ snapshots:
   '@smithy/util-buffer-from@2.0.0':
     dependencies:
       '@smithy/is-array-buffer': 2.0.0
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/util-config-provider@2.0.0':
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/util-defaults-mode-browser@2.0.22':
@@ -12923,7 +12941,7 @@ snapshots:
 
   '@smithy/util-hex-encoding@2.0.0':
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/util-middleware@2.0.8':
@@ -12953,7 +12971,7 @@ snapshots:
 
   '@smithy/util-uri-escape@2.0.0':
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.2
     optional: true
 
   '@smithy/util-utf8@2.0.2':
@@ -13072,12 +13090,12 @@ snapshots:
 
   '@types/babel__generator@7.6.4':
     dependencies:
-      '@babel/types': 7.21.2
+      '@babel/types': 7.23.6
 
   '@types/babel__template@7.4.1':
     dependencies:
-      '@babel/parser': 7.21.2
-      '@babel/types': 7.21.2
+      '@babel/parser': 7.23.6
+      '@babel/types': 7.23.6
 
   '@types/babel__traverse@7.18.3':
     dependencies:
@@ -13945,7 +13963,7 @@ snapshots:
 
   ast-types@0.13.4:
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.2
 
   ast-types@0.15.2:
     dependencies:
@@ -14019,8 +14037,8 @@ snapshots:
 
   babel-plugin-jest-hoist@26.6.2:
     dependencies:
-      '@babel/template': 7.20.7
-      '@babel/types': 7.21.2
+      '@babel/template': 7.22.15
+      '@babel/types': 7.23.6
       '@types/babel__core': 7.20.0
       '@types/babel__traverse': 7.18.3
 
@@ -15359,7 +15377,7 @@ snapshots:
       eslint: 7.32.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@7.32.0))(eslint@7.32.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@7.32.0))(eslint@7.32.0))(eslint@7.32.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.1)(eslint@7.32.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@7.32.0)
       eslint-plugin-react: 7.33.2(eslint@7.32.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@7.32.0)
@@ -15369,10 +15387,10 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-config-turbo@0.0.9(eslint@8.35.0):
+  eslint-config-turbo@2.0.12(eslint@8.35.0):
     dependencies:
       eslint: 8.35.0
-      eslint-plugin-turbo: 0.0.9(eslint@8.35.0)
+      eslint-plugin-turbo: 2.0.12(eslint@8.35.0)
 
   eslint-import-resolver-node@0.3.9:
     dependencies:
@@ -15388,7 +15406,7 @@ snapshots:
       enhanced-resolve: 5.15.0
       eslint: 7.32.0
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@7.32.0))(eslint@7.32.0))(eslint@7.32.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@7.32.0))(eslint@7.32.0))(eslint@7.32.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.1)(eslint@7.32.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.2
       is-core-module: 2.13.1
@@ -15410,7 +15428,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@7.32.0))(eslint@7.32.0))(eslint@7.32.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.15.0(eslint@7.32.0)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.1)(eslint@7.32.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.3
@@ -15481,8 +15499,9 @@ snapshots:
       semver: 6.3.1
       string.prototype.matchall: 4.0.10
 
-  eslint-plugin-turbo@0.0.9(eslint@8.35.0):
+  eslint-plugin-turbo@2.0.12(eslint@8.35.0):
     dependencies:
+      dotenv: 16.0.3
       eslint: 8.35.0
 
   eslint-scope@5.1.1:
@@ -16937,7 +16956,7 @@ snapshots:
   jest-config@26.6.3(ts-node@9.1.1(typescript@4.9.5)):
     dependencies:
       '@babel/core': 7.21.0
-      '@jest/test-sequencer': 26.6.3(ts-node@9.1.1(typescript@4.9.5))
+      '@jest/test-sequencer': 26.6.3
       '@jest/types': 26.6.2
       babel-jest: 26.6.3(@babel/core@7.21.0)
       chalk: 4.1.2
@@ -18119,13 +18138,13 @@ snapshots:
 
   netmask@2.0.2: {}
 
-  next-auth@4.20.1(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-auth@4.20.1(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.21.0
       '@panva/hkdf': 1.0.4
       cookie: 0.5.0
       jose: 4.13.1
-      next: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       oauth: 0.9.15
       openid-client: 5.4.0
       preact: 10.13.0
@@ -18136,7 +18155,7 @@ snapshots:
 
   next-compose-plugins@2.2.1: {}
 
-  next-i18next@10.5.0(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-i18next@10.5.0(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.21.0
       '@types/hoist-non-react-statics': 3.3.1
@@ -18144,32 +18163,32 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       i18next: 21.10.0
       i18next-fs-backend: 1.2.0
-      next: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-i18next: 11.18.6(i18next@21.10.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     transitivePeerDependencies:
       - react-dom
       - react-native
 
-  next-plausible@3.7.2(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-plausible@3.7.2(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  next-seo@4.29.0(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next-seo@4.29.0(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  next-sitemap@1.9.12(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
+  next-sitemap@1.9.12(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
     dependencies:
       '@corex/deepmerge': 2.6.148
       minimist: 1.2.8
-      next: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
-  next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@next/env': 14.0.4
       '@swc/helpers': 0.5.2
@@ -18179,7 +18198,7 @@ snapshots:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      styled-jsx: 5.1.1(@babel/core@7.21.0)(react@18.2.0)
+      styled-jsx: 5.1.1(@babel/core@7.23.6)(react@18.2.0)
       watchpack: 2.4.0
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.0.4
@@ -18195,14 +18214,14 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  nextjs-cors@2.1.2(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
+  nextjs-cors@2.1.2(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
     dependencies:
       cors: 2.8.5
-      next: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
-  nextjs-progressbar@0.0.13(next@14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
+  nextjs-progressbar@0.0.13(next@14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
     dependencies:
-      next: 14.0.4(@babel/core@7.21.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next: 14.0.4(@babel/core@7.23.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       nprogress: 0.2.0
       prop-types: 15.8.1
       react: 18.2.0
@@ -19693,12 +19712,12 @@ snapshots:
     dependencies:
       inline-style-parser: 0.1.1
 
-  styled-jsx@5.1.1(@babel/core@7.21.0)(react@18.2.0):
+  styled-jsx@5.1.1(@babel/core@7.23.6)(react@18.2.0):
     dependencies:
       client-only: 0.0.1
       react: 18.2.0
     optionalDependencies:
-      '@babel/core': 7.21.0
+      '@babel/core': 7.23.6
 
   stylis@4.1.3: {}
 
@@ -20058,32 +20077,32 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  turbo-darwin-64@1.8.3:
+  turbo-darwin-64@2.0.12:
     optional: true
 
-  turbo-darwin-arm64@1.8.3:
+  turbo-darwin-arm64@2.0.12:
     optional: true
 
-  turbo-linux-64@1.8.3:
+  turbo-linux-64@2.0.12:
     optional: true
 
-  turbo-linux-arm64@1.8.3:
+  turbo-linux-arm64@2.0.12:
     optional: true
 
-  turbo-windows-64@1.8.3:
+  turbo-windows-64@2.0.12:
     optional: true
 
-  turbo-windows-arm64@1.8.3:
+  turbo-windows-arm64@2.0.12:
     optional: true
 
-  turbo@1.8.3:
+  turbo@2.0.12:
     optionalDependencies:
-      turbo-darwin-64: 1.8.3
-      turbo-darwin-arm64: 1.8.3
-      turbo-linux-64: 1.8.3
-      turbo-linux-arm64: 1.8.3
-      turbo-windows-64: 1.8.3
-      turbo-windows-arm64: 1.8.3
+      turbo-darwin-64: 2.0.12
+      turbo-darwin-arm64: 2.0.12
+      turbo-linux-64: 2.0.12
+      turbo-linux-arm64: 2.0.12
+      turbo-windows-64: 2.0.12
+      turbo-windows-arm64: 2.0.12
 
   tweetnacl@0.14.5: {}
 
@@ -20511,7 +20530,7 @@ snapshots:
 
   vm2@3.9.14:
     dependencies:
-      acorn: 8.8.2
+      acorn: 8.11.2
       acorn-walk: 8.2.0
 
   void-elements@3.1.0: {}
