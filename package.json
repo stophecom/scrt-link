@@ -2,6 +2,7 @@
   "repository": "https://github.com/stophecom/scrt-link",
   "license": "MIT",
   "private": true,
+  "name": "scrt.link-root",
   "workspaces": [
     "apps/*",
     "packages/*"

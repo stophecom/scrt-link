@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 import { setLocale, object, string } from 'yup'
 import validator from 'validator'
-import { TFunction } from 'next-i18next'
+import { TFunction } from 'i18next'
 import { de, fr } from 'yup-locales'
 import defaultLocale from 'yup/lib/locale'
 
@@ -133,7 +133,7 @@ export const getValidationSchemaByType = (
           ...(isEmailReceiptAllowed ? ['email'] : []),
           ...(isNtfyReceiptAllowed ? ['ntfy'] : []),
         ],
-        t('common:validation.notAllowed', 'Not allowed.'),
+        t('common:validation.notAllowed', 'Not allowed.') as string,
       )
       .required()
       .label(t('common:validation.readReceipts', 'Read receipts')),
@@ -178,7 +178,10 @@ export const deleteCustomerValidationSchema = (t: TFunction) =>
   Yup.object().shape({
     isSure: Yup.boolean()
       .required()
-      .oneOf([true], t('common:validation.confirmationRequired', 'Field must be checked')),
+      .oneOf(
+        [true],
+        t('common:validation.confirmationRequired', 'Field must be checked') as string,
+      ),
   })
 
 export const getSignInValidationSchema = (t: TFunction, isSignUp?: boolean) =>
@@ -188,7 +191,10 @@ export const getSignInValidationSchema = (t: TFunction, isSignUp?: boolean) =>
       ? {
           isConsentToTermsGiven: Yup.boolean()
             .required()
-            .oneOf([true], t('common:validation.consentRequired', 'Your consent is required.')),
+            .oneOf(
+              [true],
+              t('common:validation.consentRequired', 'Your consent is required.') as string,
+            ),
         }
       : {}),
   })
