@@ -9,6 +9,7 @@ import Head from 'next/head'
 import { FAQPage, WithContext } from 'schema-dts'
 import remark from 'remark'
 import strip from 'strip-markdown'
+import { identity } from 'ramda'
 
 import { scrollIntoView } from '@/utils/browser'
 import FaqAccordion from '@/components/Accordion'
@@ -96,7 +97,7 @@ const Faq = ({ faqByCategory, jsonLd }: FaqProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
-  const t = i18n?.getFixedT(locale)
+  const t = i18n?.getFixedT(locale) || identity
 
   if (!t) {
     throw Error('TFunction not defined.')
