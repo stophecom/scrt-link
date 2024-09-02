@@ -1,4 +1,4 @@
-import { TFunction } from 'next-i18next'
+import { TFunction } from 'i18next'
 
 const securityAndPrivacy = (t: TFunction) => [
   {

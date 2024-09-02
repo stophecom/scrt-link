@@ -1,6 +1,6 @@
 import { formatNumber } from '@/utils/localization'
 import { baseUrl, limits, email } from '@/constants'
-import { TFunction } from 'next-i18next'
+import { TFunction } from 'i18next'
 
 export const demoNeogramMessage = (t: TFunction) =>
   t(
