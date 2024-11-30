@@ -1,6 +1,5 @@
 import React, { useState, ReactNode } from 'react'
-import { Grid, Box, IconButton } from '@mui/material'
-import { X } from '@mui/icons-material'
+import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
@@ -8,7 +7,7 @@ import { usePlausible } from 'next-plausible'
 
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { Link } from '@/components/Link'
-import { twitterLink, twitterHandle, uptimerobotUrl } from '@/constants'
+import { uptimerobotUrl } from '@/constants'
 import Stats from '@/components/Stats'
 import SubMenu from '@/components/SubMenu'
 import Logo from '@/components/Logo'
@@ -222,18 +221,6 @@ const Footer: React.FC = () => {
 
         <Box display="flex" flexWrap="wrap" justifyContent="center" p={2}>
           <Stats />
-        </Box>
-
-        <Box display="flex" justifyContent="center">
-          <IconButton
-            target="_blank"
-            href={twitterLink}
-            aria-label={twitterHandle}
-            title={twitterHandle}
-            size="large"
-          >
-            <X fontSize="inherit" />
-          </IconButton>
         </Box>
 
         <Box

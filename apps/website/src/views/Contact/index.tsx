@@ -4,9 +4,9 @@ import { Link } from '@mui/material'
 import { useTranslation } from 'next-i18next'
 
 import Page from '@/components/Page'
-import ExternalLink from '@/components/ExternalLink'
+
 import { ImprintInfo } from '@/views/Imprint'
-import { email, emailSupport, twitterLink, twitterHandle } from '@/constants'
+import { email, emailSupport } from '@/constants'
 
 const jsonLd = {
   '@context': 'https://www.schema.org',
@@ -34,11 +34,6 @@ const Contact = () => {
         <br />
         {t('common:views.Contact.topic.support', 'Support')}:{' '}
         <Link href={`mailto:${emailSupport}`}>{emailSupport}</Link>
-        <br />
-        <br />
-        X: <ExternalLink href={twitterLink}>{twitterHandle}</ExternalLink>
-        <br />
-        <br />
       </Typography>
 
       <ImprintInfo />

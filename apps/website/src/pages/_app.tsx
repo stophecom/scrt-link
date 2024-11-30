@@ -12,13 +12,7 @@ import { SessionProvider } from 'next-auth/react'
 import { setYupLocale } from '@/utils/validationSchemas'
 import { CustomPage } from '@/types'
 import DefaultLayout from '@/layouts/Default'
-import {
-  appTitle,
-  twitterHandle,
-  supportedLanguages,
-  SupportedLanguage,
-  baseUrl,
-} from '@/constants'
+import { appTitle, supportedLanguages, SupportedLanguage, baseUrl } from '@/constants'
 import BaseThemeProvider from '@/components/BaseThemeProvider'
 import theme from '@/theme'
 
@@ -113,9 +107,6 @@ const MyApp = ({
           <SWRConfig value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}>
             <DefaultSeo {...getDefaultSeoConfig(t, router.pathname, i18n.language)} />
             <Head>
-              <meta name="twitter:card" content="summary" key="twitter:card" />
-              <meta name="twitter:creator" content={twitterHandle} key="twitter:creator" />
-
               <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
               <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
               <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

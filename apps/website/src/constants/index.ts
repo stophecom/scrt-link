@@ -12,8 +12,6 @@ export type SupportedLanguage = keyof typeof supportedLanguagesMap
 
 export const appTitle = 'scrt.link'
 
-export const twitterLink = 'https://x.com/ScrtLink'
-export const twitterHandle = '@ScrtLink'
 export const email = 'shhh@scrt.link'
 export const emailSupport = 'support@scrt.link'
 export const emailSantihans = 'info@santihans.com'
