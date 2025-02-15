@@ -24,8 +24,6 @@ declare global {
       FLOW_S3_ACCESS_KEY: string
       FLOW_S3_SECRET_KEY: string
       TOLGEE_API_KEY: string
-      NEXT_PUBLIC_POSTHOG_KEY: string
-      NEXT_PUBLIC_POSTHOG_HOST: string
     }
   }
 }
