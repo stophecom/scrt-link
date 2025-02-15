@@ -1,5 +1,8 @@
 # scrt.link
 
+> [!WARNING]  
+> This repo is being archived soon. New version of scrt.link lives here: https://github.com/stophecom/scrt-link-v2
+
 **Scrt.link** lets you share one-time secrets with a link that self-destructs after the first visit.
 
 Live: **[scrt.link](https://scrt.link)**.
