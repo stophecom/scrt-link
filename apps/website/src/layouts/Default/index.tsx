@@ -7,7 +7,6 @@ import Image from 'next/image'
 
 import { pink } from '@/theme'
 import SROnly from '@/components/ScreenreaderOnly'
-import { CSPostHogProvider } from '@/providers/posthog'
 
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
@@ -76,7 +75,7 @@ const LayoutDefault: React.FC = ({ children }) => <Layout>{children}</Layout>
 
 export const LayoutMinimal: React.FC = ({ children }) => (
   <Layout hideFooter hideHeader>
-    <CSPostHogProvider>{children}</CSPostHogProvider>
+    {children}
   </Layout>
 )
 
