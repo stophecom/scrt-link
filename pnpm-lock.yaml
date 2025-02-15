@@ -125,9 +125,6 @@ importers:
       node-mailjet:
         specifier: ^3.3.1
         version: 3.4.1
-      posthog-js:
-        specifier: ^1.194.1
-        version: 1.194.1
       pretty-bytes:
         specifier: ^5.6.0
         version: 5.6.0
@@ -4237,9 +4234,6 @@ packages:
   core-js@3.29.0:
     resolution: {integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==}
 
-  core-js@3.39.0:
-    resolution: {integrity: sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g==}
-
   core-util-is@1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
 
@@ -5210,9 +5204,6 @@ packages:
 
   fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
-
-  fflate@0.4.8:
-    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
 
   figures@3.2.0:
     resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
@@ -7412,9 +7403,6 @@ packages:
     resolution: {integrity: sha512-D/kj5JNu6oo2EIy+XL/26JEDTlIbB8hw85G8StOE6L74RQAVVP5rej6wxCNqyMbR4RkPfqvezVbPw81Ngd6Kcw==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.194.1:
-    resolution: {integrity: sha512-d68hmU9DY4iPe3WneBlnglERhimRhXuF7Lx0Au6OTmOL+IFdFUxB3Qf5LaLqJc1QLt3NUolMq1HiXOaIULe3kQ==}
-
   preact-render-to-string@5.2.6:
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
     peerDependencies:
@@ -7422,9 +7410,6 @@ packages:
 
   preact@10.13.0:
     resolution: {integrity: sha512-ERdIdUpR6doqdaSIh80hvzebHB7O6JxycOhyzAeLEchqOq/4yueslQbfnPwXaNhAYacFTyCclhwkEbOumT0tHw==}
-
-  preact@10.23.1:
-    resolution: {integrity: sha512-O5UdRsNh4vdZaTieWe3XOgSpdMAmkIYBCT3VhQDlKrzyCm8lUYsk0fmVEvoQQifoOjFRTaHZO69ylrzTW2BH+A==}
 
   prelude-ls@1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
@@ -9027,9 +9012,6 @@ packages:
 
   web-vitals@0.2.4:
     resolution: {integrity: sha512-6BjspCO9VriYy12z356nL6JBS0GYeEcA457YyRzD+dD6XYCQ75NKhcOHUMHentOE7OcVCIXXDvOm0jKFfQG2Gg==}
-
-  web-vitals@4.2.3:
-    resolution: {integrity: sha512-/CFAm1mNxSmOj6i0Co+iGFJ58OS4NRGVP+AWS/l509uIK5a1bSoIVaHz/ZumpHTfHSZBpgrJ+wjfpAOrTHok5Q==}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -14613,8 +14595,6 @@ snapshots:
 
   core-js@3.29.0: {}
 
-  core-js@3.39.0: {}
-
   core-util-is@1.0.2: {}
 
   core-util-is@1.0.3: {}
@@ -15912,8 +15892,6 @@ snapshots:
   fd-slicer@1.1.0:
     dependencies:
       pend: 1.2.0
-
-  fflate@0.4.8: {}
 
   figures@3.2.0:
     dependencies:
@@ -18703,21 +18681,12 @@ snapshots:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
-  posthog-js@1.194.1:
-    dependencies:
-      core-js: 3.39.0
-      fflate: 0.4.8
-      preact: 10.23.1
-      web-vitals: 4.2.3
-
   preact-render-to-string@5.2.6(preact@10.13.0):
     dependencies:
       preact: 10.13.0
       pretty-format: 3.8.0
 
   preact@10.13.0: {}
-
-  preact@10.23.1: {}
 
   prelude-ls@1.1.2: {}
 
@@ -20591,8 +20560,6 @@ snapshots:
       defaults: 1.0.4
 
   web-vitals@0.2.4: {}
-
-  web-vitals@4.2.3: {}
 
   webidl-conversions@3.0.1: {}
 
