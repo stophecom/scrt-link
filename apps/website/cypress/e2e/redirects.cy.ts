@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 const emojiUrl = 'https://🤫.st/'
-const productionDomain = 'scrt.link'
+const productionDomain = 'v1.scrt.link'
 
 context('Redirects', function () {
   it('should redirect to scrt.link', function () {

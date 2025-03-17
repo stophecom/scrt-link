@@ -17,7 +17,7 @@ export const emailSupport = 'support@scrt.link'
 export const emailSantihans = 'info@santihans.com'
 export const repositoryUrl = 'https://github.com/stophecom/scrt-link'
 export const baseUrl = isProduction
-  ? 'https://scrt.link'
+  ? 'https://v1.scrt.link'
   : process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'
 export const emojiShortUrl = 'https://🤫.st'
 export const shortUrl = 'https://scrt.li' // Currently not used
