@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { throttle } from 'throttle-debounce'
-import { NoSsr, Box, Grid, Divider, Typography } from '@mui/material'
+import { Box, Grid, Divider, Typography } from '@mui/material'
 import FocusTrap from 'focus-trap-react'
 import { useSession } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/system'
-import { Person, DiamondOutlined } from '@mui/icons-material'
+import { Person } from '@mui/icons-material'
 
-import { BaseButtonLink } from '@/components/Link'
 import { useCustomer } from '@/utils/api'
 import { Container } from '@/layouts/Default'
 import SubMenu from '@/components/SubMenu'
@@ -148,18 +147,6 @@ const NavigationMenu: React.FunctionComponent = () => {
           >
             <Box display={'flex'} flexDirection="column">
               <Logo fontSize={['1.4em']} />
-              <NoSsr>
-                {customer?.role !== 'premium' && (
-                  <BaseButtonLink
-                    href="/pricing"
-                    color="secondary"
-                    variant="outlined"
-                    startIcon={<DiamondOutlined />}
-                  >
-                    {t('common:button.goPremium', 'Go Premium')}
-                  </BaseButtonLink>
-                )}
-              </NoSsr>
             </Box>
           </Grid>
           <Grid

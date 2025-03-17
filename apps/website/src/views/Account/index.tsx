@@ -7,14 +7,13 @@ import { project } from 'ramda'
 import { useTranslation, TFunction } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { styled } from '@mui/system'
-import { ArrowForward } from '@mui/icons-material'
 
 import { MarkdownStyled as Markdown } from '@/components/Markdown'
 import { getAbsoluteLocalizedUrl } from '@/utils/localization'
 import BaseButton from '@/components/BaseButton'
-import { BaseButtonLink } from '@/components/Link'
+
 import FormCustomer, { FormCustomerName } from '@/components/FormCustomer'
-import FormDeleteAccount from '@/components/FormDeleteAccount'
+
 import Page from '@/components/Page'
 import TabsMenu from '@/components/TabsMenu'
 import Section from '@/components/Section'
@@ -126,51 +125,6 @@ const Account: NextPage<AccountProps> = ({ session }) => {
             <>
               <FormCustomerName />
               <FormCustomer />
-            </>
-          )}
-          {activeTab === 'subscription' && (
-            <>
-              <SubscriptionInfo />
-              <Box mt={2}>
-                <BaseButtonLink
-                  startIcon={<ArrowForward />}
-                  href="/pricing"
-                  variant="contained"
-                  size="large"
-                  color="primary"
-                >
-                  {t('common:button.viewPlans', `View plans`)}
-                </BaseButtonLink>
-              </Box>
-            </>
-          )}
-
-          {activeTab === 'danger' && (
-            <>
-              {hasActiveSubscription && (
-                <Box mb={1}>
-                  <Alert severity="info">
-                    {t(
-                      'common:views.Account.activeSubscriptionWarning',
-                      'You have a running subscription. We recommend to cancel it first.',
-                    )}
-                    <Box mt={1}>
-                      <ManageSubscriptionButton />
-                    </Box>
-                  </Alert>
-                </Box>
-              )}
-
-              <DangerZone square>
-                <Box p={3}>
-                  <Box mb={5}>
-                    <Typography variant="h3">
-                      {t('common:views.Account.accountDeletion', 'Delete your account')}
-                    </Typography>
-                  </Box>
-                  <FormDeleteAccount />
-                </Box>
-              </DangerZone>
             </>
           )}
         </Section>

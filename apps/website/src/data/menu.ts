@@ -35,11 +35,6 @@ export const information = (t: TFunction) => [
     label: t('common:menu.privacy', 'Privacy'),
   },
   {
-    href: '/pricing',
-    label: t('common:menu.pricing', 'Pricing'),
-    prefetch: false,
-  },
-  {
     href: blogUrl,
     label: t('common:menu.blog', 'Blog'),
     prefetch: false,
